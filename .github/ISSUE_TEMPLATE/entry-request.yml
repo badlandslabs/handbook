@@ -1,0 +1,39 @@
+name: Entry request
+description: Suggest a topic that belongs in the handbook
+labels: ["entry-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest an entry. The more specific, the faster it lands.
+  - type: input
+    id: name
+    attributes:
+      label: Proposed entry name
+      description: Plain name — what the thing does, not what it's called in marketing
+      placeholder: "e.g. Streaming Responses, Fallback Chains"
+    validations:
+      required: true
+  - type: dropdown
+    id: book
+    attributes:
+      label: Which book?
+      options:
+        - Book of Stacks
+        - Book of the Workspace
+        - Book of the Forward-Deployed Engineer
+        - Book of the Frontier
+    validations:
+      required: true
+  - type: textarea
+    id: situation
+    attributes:
+      label: Situation
+      description: One sentence — where does this bite, when do you reach for it?
+    validations:
+      required: true
+  - type: textarea
+    id: receipt
+    attributes:
+      label: Do you have a receipt?
+      description: A real run log makes this land faster. Paste it here if you have one.

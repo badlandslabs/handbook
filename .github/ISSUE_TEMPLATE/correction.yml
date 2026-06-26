@@ -1,0 +1,36 @@
+name: Correction
+description: Something in the handbook is wrong, stale, or fabricated
+labels: ["correction"]
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: Entry
+      description: Entry code and name
+      placeholder: "e.g. S-01 · Local Model Dispatch"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: What kind of correction?
+      options:
+        - Factually wrong
+        - Stale (was true, no longer is)
+        - Fabricated receipt
+        - Bloat (sentences that don't earn their place)
+        - Missing receipt
+        - Broken link
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: What should it say instead?
+      description: If you have a real receipt to back the correction, paste it here.

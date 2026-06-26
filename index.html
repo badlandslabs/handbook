@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Agent Handbook</title>
+  <meta name="description" content="Practical, receipted patterns for building AI agents. From zero to production. No guesswork.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root { --theme-color: #1a56db; }
+
+    .sidebar-nav li > a { font-size: 0.88rem; }
+    .sidebar-nav li > ul { padding-left: 1rem; }
+
+    /* Receipt callout */
+    blockquote.receipt {
+      border-left: 3px solid #f59e0b;
+      background: #fffbeb;
+      color: #1c1917;
+    }
+    blockquote.receipt p:first-child::before {
+      content: "✓ Receipt  ";
+      font-weight: 700;
+      color: #92400e;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Pending receipt */
+    blockquote.pending {
+      border-left: 3px solid #e5e7eb;
+      background: #f9fafb;
+      color: #6b7280;
+    }
+
+    .markdown-section code {
+      background: #f3f4f6;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+
+    .entry-meta {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Loading the handbook…</div>
+  <script>
+    window.$docsify = {
+      name: '📖 AI Agent Handbook',
+      nameLink: '/',
+      repo: 'https://github.com/stancsz/handbook',
+      homepage: 'README.md',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      relativePath: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search entries…',
+        noData: 'No entries found.',
+        depth: 4,
+      },
+      copyCode: {
+        buttonText: 'copy',
+        errorText: '✗',
+        successText: '✓'
+      },
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+</body>
+</html>
