@@ -57,6 +57,7 @@
   - [W-05 · LLMOps and Agent Observability](workspace/w05-llmops-observability.md)
   - [W-06 · AGENTS.md](workspace/w06-agents-md.md)
   - [W-07 · Agent Span Tracing](workspace/w07-agent-span-tracing.md)
+  - [W-09 · Prompt Versioning](workspace/w09-prompt-versioning.md)
 
 - **Book of Production**
   - [Overview](forward-deployed/)
