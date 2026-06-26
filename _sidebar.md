@@ -75,6 +75,7 @@
   - [S-67 · Full Response Caching](stacks/s67-full-response-caching.md)
   - [S-68 · Input Pre-Screening](stacks/s68-input-pre-screening.md)
   - [S-69 · Streaming Cancellation](stacks/s69-streaming-cancellation.md)
+  - [S-70 · Agent Loop Termination](stacks/s70-agent-loop-termination.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -129,6 +130,7 @@
   - [F-38 · Model Version Pinning](forward-deployed/f38-model-version-pinning.md)
   - [F-39 · Session State Persistence](forward-deployed/f39-session-state-persistence.md)
   - [F-40 · User Feedback Collection](forward-deployed/f40-user-feedback-collection.md)
+  - [F-41 · Feature Flags for AI Rollout](forward-deployed/f41-feature-flags-for-ai.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
