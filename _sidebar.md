@@ -43,5 +43,6 @@
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
   - [R-02 · Reasoning Models](frontier/r02-reasoning-models.md)
   - [R-03 · Fine-tuning vs Prompting vs RAG](frontier/r03-fine-tuning-vs-prompting.md)
+  - [R-04 · Small Language Models for Agents](frontier/r04-small-language-models.md)
 
 - [Contributing](CONTRIBUTING.md)
