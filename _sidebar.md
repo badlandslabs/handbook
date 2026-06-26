@@ -91,6 +91,7 @@
   - [S-83 · Cross-Encoder Reranking](stacks/s83-cross-encoder-reranking.md)
   - [S-84 · Tool Return Value Design](stacks/s84-tool-return-value-design.md)
   - [S-85 · Batch Tool Design](stacks/s85-batch-tool-design.md)
+  - [S-86 · Knowledge Base Document Updates](stacks/s86-knowledge-base-document-updates.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -161,6 +162,7 @@
   - [F-54 · Privacy-Safe Request Logging](forward-deployed/f54-privacy-safe-logging.md)
   - [F-55 · Agent Task Replanning](forward-deployed/f55-agent-task-replanning.md)
   - [F-56 · Prompt Composition Guards](forward-deployed/f56-prompt-composition-guards.md)
+  - [F-57 · RAG Answer Citations](forward-deployed/f57-rag-answer-citations.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
