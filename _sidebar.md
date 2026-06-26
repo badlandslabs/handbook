@@ -36,6 +36,7 @@
   - [S-28 · Progressive Disclosure](stacks/s28-progressive-disclosure.md)
   - [S-29 · False Consensus](stacks/s29-false-consensus.md)
   - [S-30 · Code-Test-Fix Loop](stacks/s30-code-test-fix-loop.md)
+  - [S-31 · Prompt Compression](stacks/s31-prompt-compression.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

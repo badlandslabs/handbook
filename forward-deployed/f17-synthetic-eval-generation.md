@@ -1,6 +1,6 @@
 # F-17 · Synthetic Eval Generation
 
-You need 50 labeled test cases before you can ship a prompt change with confidence. Writing them by hand takes hours — and you'll write cases you've already thought of, missing the failures waiting in production. An LLM can generate edge cases you haven't imagined, on demand, at any scale.
+You need 50 labeled test cases before you can ship a prompt change with confidence. Writing them by hand takes hours — and you'll write cases you've already thought of, missing the failures waiting in production. An LLM can generate edge cases you haven't imagined, on demand.
 
 ## Forces
 
@@ -61,7 +61,7 @@ Total cost ratio: filter consumed 4.5× the tokens of generation.
 
 1. **Filter costs dominate.** At 5 cases, filter tokens (13,613) dwarfed generation (3,013). At scale, batch filtering or a smaller judge model is the right optimization — not cutting the filter.
 
-2. **The hard case held up.** Case 5 ("charged twice, app crashing, considering refund") was genuinely ambiguous. The filter correctly identified `refund_request` as the primary intent. At N=5, all cases passed — in real use at N=50+, expect ~10–20% rejection or correction rate.
+2. **The hard case held up.** Case 5 ("charged twice, app crashing, considering refund") was genuinely ambiguous. The filter correctly identified `refund_request` as the primary intent. At N=5, all cases passed — the 0% rejection rate at small N is expected; a larger batch surfaces more variation in generation quality.
 
 3. **Non-English appeared without prompting.** The Spanish ticket emerged naturally from the edge-case instruction. Without explicit instruction, diversity collapses toward the training distribution's majority language and phrasing.
 

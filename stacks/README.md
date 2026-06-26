@@ -60,3 +60,4 @@ The moves that improve accuracy, reduce hallucination, and manage uncertainty at
 | [S-28](s28-progressive-disclosure.md) | Progressive Disclosure | Index first; load the body only when needed |
 | [S-29](s29-false-consensus.md) | False Consensus | Agreement isn't truth; vote only over independent samples |
 | [S-30](s30-code-test-fix-loop.md) | Code-Test-Fix Loop | Test execution is the oracle; self-review is a probabilistic bet |
+| [S-31](s31-prompt-compression.md) | Prompt Compression | Compress retrieved passages before injection; compress once, save on every query |
