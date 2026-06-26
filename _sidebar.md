@@ -69,5 +69,6 @@
   - [R-05 · Self-Evolving Agents](frontier/r05-self-evolving-agents.md)
   - [R-06 · Mixture of Experts](frontier/r06-mixture-of-experts.md)
   - [R-07 · Post-Training and RLVR](frontier/r07-post-training-rlvr.md)
+  - [R-08 · Inference-Time Compute Scaling](frontier/r08-inference-time-compute-scaling.md)
 
 - [Contributing](CONTRIBUTING.md)

@@ -36,7 +36,7 @@ B) Heterogeneous: 4 different extractions from one paragraph (emails, $ amounts,
 The honest result: **parity** — decomposition did not beat one-shot here, and cost more calls. That is the lesson, not a failure of the pattern: a capable model handles a well-specified, moderate task in one call, so planning is pure overhead at this scale. Plan-and-execute earns its keep when the goal genuinely exceeds one call — long-horizon work where errors compound ([F-11](../forward-deployed/f11-agent-reliability.md)), tasks needing coverage guarantees across many heterogeneous steps, or where decomposition lets you route cheap steps to cheap models. Reach for it when one shot *demonstrably* drops coverage or wanders — measure first.
 
 ## See also
-[S-25](s25-reflection.md) · [S-19](s19-agent-loop.md) · [S-05](s05-multi-agent-patterns.md) · [S-23](s23-workflows-vs-agents.md) · [S-06](s06-model-routing.md)
+[S-25](s25-reflection.md) · [S-19](s19-agent-loop.md) · [S-05](s05-multi-agent-patterns.md) · [R-08](../frontier/r08-inference-time-compute-scaling.md) · [S-06](s06-model-routing.md)
 
 ## Go deeper
 Keywords: `plan-and-execute` · `task decomposition` · `least-to-most` · `ReAct` · `ReWOO` · `hierarchical task network` · `Plan-and-Solve` · `LATS` · `subtask success criteria`
