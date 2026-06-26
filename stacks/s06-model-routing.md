@@ -40,7 +40,20 @@ def route(task_type: str, token_count: int) -> str:
 ```
 
 ## Receipt
-> Receipt pending — 2026-06-25. Model names verified against Anthropic docs as of this date. Cost ratios approximate; check current pricing at anthropic.com/pricing.
+> Verified 2026-06-25 — used llama3.2 (via Ollama, localhost:11435) as the lightweight router to classify 10 requests (EASY/MEDIUM/HARD) against their intended tier. Tier prices below are **illustrative** ($0.30 / $3 / $15 per M tokens, small/mid/frontier) — verify current vendor pricing.
+
+```
+router agreed with intended tier: 4/10
+  EASY tasks (4):   all 4 correct
+  MEDIUM tasks (3): all downgraded to EASY
+  HARD tasks (3):   downgraded to MEDIUM (2) or EASY (1)
+distribution chosen: EASY 8, MEDIUM 2, HARD 0
+
+cost (equal token volume per request):
+  all-frontier: $150.00     routed: $8.40     "savings": 94%
+```
+
+Read this as a warning, not a win. The headline **94%** is partly *illusory*: the weak router systematically **under-rated** difficulty — it sent "prove √2 is irrational" and "design a distributed rate limiter" to the cheapest tier. That is the misrouting failure exactly: a hard task on a weak model yields *fluent, plausible, wrong* output that no downstream step catches. The cost lever is real (easy tasks genuinely cost ~50× less), but **the router is the hard part** — a cheap router "saves" by under-provisioning. Mitigations: use a stronger model as the router, bias toward routing *up* on uncertainty, and measure router accuracy against held-out human labels before trusting the savings number.
 
 ## See also
 [S-01](s01-local-model-dispatch.md) · [S-05](s05-multi-agent-patterns.md) · [R-01](../frontier/r01-model-landscape.md) · [F-08](../forward-deployed/f08-agent-cost-control.md)
