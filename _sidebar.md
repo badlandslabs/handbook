@@ -75,6 +75,7 @@
   - [F-17 · Synthetic Eval Generation](forward-deployed/f17-synthetic-eval-generation.md)
   - [F-18 · Architecture Sets the Cost Floor](forward-deployed/f18-architecture-sets-the-cost-floor.md)
   - [F-19 · Agent Testing Strategies](forward-deployed/f19-agent-testing-strategies.md)
+  - [F-20 · Rate Limits and Retry Patterns](forward-deployed/f20-rate-limits-and-retry.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
