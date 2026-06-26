@@ -47,6 +47,7 @@
   - [S-39 · Output Parsing Robustness](stacks/s39-output-parsing-robustness.md)
   - [S-40 · Multimodal Inputs](stacks/s40-multimodal-inputs.md)
   - [S-41 · Agent Handoff Patterns](stacks/s41-agent-handoff-patterns.md)
+  - [S-42 · Event-Driven Agents](stacks/s42-event-driven-agents.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
