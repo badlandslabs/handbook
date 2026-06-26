@@ -28,6 +28,7 @@
   - [S-23 · Workflows vs Agents](stacks/s23-workflows-vs-agents.md)
   - [S-24 · Self-Consistency](stacks/s24-self-consistency.md)
   - [S-25 · Reflection](stacks/s25-reflection.md)
+  - [S-26 · Planning](stacks/s26-planning.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
