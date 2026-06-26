@@ -32,3 +32,4 @@ Agent architectures and the patterns that build them. Each entry is a move — a
 | [S-26](s26-planning.md) | Planning | Decompose into subtasks, then execute |
 | [S-27](s27-reranking.md) | Reranking | Recall wide, then rerank for precision |
 | [S-28](s28-progressive-disclosure.md) | Progressive Disclosure | Index first; load the body only when needed |
+| [S-29](s29-false-consensus.md) | False Consensus | Agreement isn't truth; vote only over independent samples |
