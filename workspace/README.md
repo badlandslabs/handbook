@@ -10,3 +10,4 @@ Tooling, environment, and the AI dev setup. These entries cover the practical la
 | [W-04](w04-observability.md) | Observability | Log tokens, latencies, and failures |
 | [W-05](w05-llmops-observability.md) | LLMOps and Agent Observability | Per-step tracing across multi-agent pipelines |
 | [W-06](w06-agents-md.md) | AGENTS.md | One context file every coding agent reads |
+| [W-07](w07-agent-span-tracing.md) | Agent Span Tracing | Emit spans per LLM call, tool call, and decision; share one trace ID |
