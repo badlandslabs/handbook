@@ -113,6 +113,7 @@
   - [S-105 · Data Call Cost Threshold](stacks/s105-data-call-cost-threshold.md)
   - [S-106 · Event Log Replay](stacks/s106-event-log-replay.md)
   - [S-107 · Pipeline Stage Output Budget](stacks/s107-pipeline-stage-output-budget.md)
+  - [S-108 · Progressive Tool Results](stacks/s108-progressive-tool-results.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -205,6 +206,7 @@
   - [F-76 · Instruction Hierarchy Testing](forward-deployed/f76-instruction-hierarchy-testing.md)
   - [F-77 · Cross-Model Divergence Detection](forward-deployed/f77-cross-model-divergence.md)
   - [F-78 · Confidence-Gated Delivery](forward-deployed/f78-confidence-gated-delivery.md)
+  - [F-79 · Semantic Regression Detection](forward-deployed/f79-semantic-regression-detection.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
