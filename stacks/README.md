@@ -21,3 +21,4 @@ Agent architectures and the patterns that build them. Each entry is a move — a
 | [S-15](s15-browser-computer-use-agents.md) | Browser and Computer-Use Agents | Drive real UIs; the least reliable layer |
 | [S-16](s16-prompting.md) | Prompting | How to phrase the ask, by model family |
 | [S-17](s17-embeddings.md) | Embeddings | Text as vectors; the basis of RAG and memory |
+| [S-18](s18-tokenization.md) | Tokenization | What a token is, and why it's the bill |
