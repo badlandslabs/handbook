@@ -49,7 +49,7 @@ Start here: Can you solve it with a good prompt?
 > Receipt pending — 2026-06-25. Decision tree based on widely-agreed field practice. Fine-tuning costs depend on provider, dataset size, and model — get current quotes from Anthropic/OpenAI fine-tuning pages before budgeting.
 
 ## See also
-[S-07](../stacks/s07-rag.md) · [R-01](r01-model-landscape.md) · [S-06](../stacks/s06-model-routing.md)
+[S-07](../stacks/s07-rag.md) · [R-07](r07-post-training-rlvr.md) · [R-01](r01-model-landscape.md) · [S-06](../stacks/s06-model-routing.md)
 
 ## Go deeper
 Keywords: `fine-tuning` · `LoRA` · `QLoRA` · `RLHF` · `DPO` · `RAG vs fine-tuning` · `instruction tuning` · `few-shot prompting`

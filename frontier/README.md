@@ -12,3 +12,4 @@ Research, model landscape, and the open questions. These entries cover what's ha
 | [R-04](r04-small-language-models.md) | Small Language Models for Agents | Why the default agent model should be small |
 | [R-05](r05-self-evolving-agents.md) | Self-Evolving Agents | Agents that get better at the job, not just do it |
 | [R-06](r06-mixture-of-experts.md) | Mixture of Experts | Why a 671B model can serve like a 37B one |
+| [R-07](r07-post-training-rlvr.md) | Post-Training and RLVR | How 2026 reasoning models are actually trained |
