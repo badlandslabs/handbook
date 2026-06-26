@@ -100,6 +100,7 @@
   - [S-92 · Tool Schema Migration](stacks/s92-tool-schema-migration.md)
   - [S-93 · Tool Side-Effect Idempotency](stacks/s93-tool-side-effect-idempotency.md)
   - [S-94 · Agent Output Diffing](stacks/s94-agent-output-diffing.md)
+  - [S-95 · Retry Cost Attribution](stacks/s95-retry-cost-attribution.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -179,6 +180,7 @@
   - [F-63 · Mid-Task Context Recovery](forward-deployed/f63-mid-task-context-recovery.md)
   - [F-64 · Prompt Template Testing](forward-deployed/f64-prompt-template-testing.md)
   - [F-65 · Prompt Regression Testing](forward-deployed/f65-prompt-regression-testing.md)
+  - [F-66 · Agent Personalization](forward-deployed/f66-agent-personalization.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
