@@ -48,6 +48,7 @@
   - [S-40 · Multimodal Inputs](stacks/s40-multimodal-inputs.md)
   - [S-41 · Agent Handoff Patterns](stacks/s41-agent-handoff-patterns.md)
   - [S-42 · Event-Driven Agents](stacks/s42-event-driven-agents.md)
+  - [S-43 · Tool Result Caching](stacks/s43-tool-result-caching.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
