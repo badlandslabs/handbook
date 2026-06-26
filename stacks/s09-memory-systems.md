@@ -46,7 +46,7 @@ Tools: Chroma (local), pgvector (Postgres), Pinecone (hosted).
 > Receipt pending — 2026-06-25. File-based pattern above is minimal Python; test it. Vector DB integrations vary by provider — verify current API shapes before use.
 
 ## See also
-[S-07](s07-rag.md) · [S-02](s02-context-budget.md) · [S-05](s05-multi-agent-patterns.md)
+[S-07](s07-rag.md) · [S-17](s17-embeddings.md) · [S-02](s02-context-budget.md) · [S-05](s05-multi-agent-patterns.md)
 
 ## Go deeper
 Keywords: `agent memory` · `Mem0` · `Letta` · `Zep` · `episodic memory` · `semantic memory` · `pgvector` · `Chroma`
