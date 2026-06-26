@@ -20,7 +20,7 @@ How to write the instruction itself so the model does what you meant. Where [S-1
 > XML-tag guidance for Claude (clarity, accuracy, parseability) is from Anthropic's primary docs: [Use XML tags to structure your prompts](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags). Model-family differences (reasoning vs instruction prompts, GPT Markdown-first, Gemini preferring examples, reserving CoT for non-reasoning models) are the consensus across 2026 prompt-engineering guides — directional, and worth confirming against each provider's current docs, which move fast. The "Markdown ≈15% fewer tokens than equivalent XML" figure is a reported benchmark, not independently reproduced here. Verified 2026-06-25.
 
 ## See also
-[S-13](s13-context-engineering.md) · [S-04](s04-structured-output.md) · [R-02](../frontier/r02-reasoning-models.md) · [S-06](s06-model-routing.md) · [S-02](s02-context-budget.md)
+[S-13](s13-context-engineering.md) · [S-04](s04-structured-output.md) · [R-02](../frontier/r02-reasoning-models.md) · [S-06](s06-model-routing.md) · [S-02](s02-context-budget.md) · [S-36](s36-system-prompt-architecture.md)
 
 ## Go deeper
 Keywords: `prompt engineering` · `XML tags` · `few-shot` · `chain-of-thought` · `reasoning model prompting` · `system prompt` · `structured output` · `delimiters` · `role prompting`
