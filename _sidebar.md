@@ -48,5 +48,6 @@
   - [R-03 · Fine-tuning vs Prompting vs RAG](frontier/r03-fine-tuning-vs-prompting.md)
   - [R-04 · Small Language Models for Agents](frontier/r04-small-language-models.md)
   - [R-05 · Self-Evolving Agents](frontier/r05-self-evolving-agents.md)
+  - [R-06 · Mixture of Experts](frontier/r06-mixture-of-experts.md)
 
 - [Contributing](CONTRIBUTING.md)

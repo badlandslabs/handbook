@@ -20,7 +20,7 @@ The argument that the right default model inside an agent is a small one — fro
 > Thesis from ["Small Language Models are the Future of Agentic AI"](https://arxiv.org/abs/2506.02153) (Belcak et al., NVIDIA Research, arXiv 2506.02153, June 2025) — a **position paper**, not a benchmark study. Its three pillars: SLMs (working definition ~<10B params) are sufficiently powerful, inherently more suitable, and more economical for many agent invocations. The "10–30× cheaper to serve" figure is NVIDIA's own estimate; downstream parity claims (e.g. a fine-tuned 3.8B model beating a frontier model on a narrow domain) are vendor/blog-reported — directional, benchmark your own task. Verified 2026-06-25; not independently reproduced here.
 
 ## See also
-[S-06](../stacks/s06-model-routing.md) · [S-01](../stacks/s01-local-model-dispatch.md) · [W-03](../workspace/w03-local-models-ollama.md) · [R-01](r01-model-landscape.md) · [R-03](r03-fine-tuning-vs-prompting.md)
+[S-06](../stacks/s06-model-routing.md) · [S-01](../stacks/s01-local-model-dispatch.md) · [W-03](../workspace/w03-local-models-ollama.md) · [R-01](r01-model-landscape.md) · [R-06](r06-mixture-of-experts.md) · [R-03](r03-fine-tuning-vs-prompting.md)
 
 ## Go deeper
 Keywords: `small language models` · `SLM` · `agentic AI` · `NVIDIA 2506.02153` · `heterogeneous model stack` · `on-device LLM` · `model routing` · `fine-tuning` · `blended cost`

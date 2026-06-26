@@ -11,3 +11,4 @@ Research, model landscape, and the open questions. These entries cover what's ha
 | [R-03](r03-fine-tuning-vs-prompting.md) | Fine-tuning vs Prompting vs RAG | The real decision tree |
 | [R-04](r04-small-language-models.md) | Small Language Models for Agents | Why the default agent model should be small |
 | [R-05](r05-self-evolving-agents.md) | Self-Evolving Agents | Agents that get better at the job, not just do it |
+| [R-06](r06-mixture-of-experts.md) | Mixture of Experts | Why a 671B model can serve like a 37B one |
