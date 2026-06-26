@@ -131,6 +131,7 @@
   - [S-122 · Retrieved Chunk Deduplication at Prompt Assembly](stacks/s122-retrieved-chunk-dedup.md)
   - [S-123 · Prompt Section Cost Attribution](stacks/s123-prompt-section-cost-attribution.md)
   - [S-124 · API Response Change Rate Monitor](stacks/s124-api-response-change-rate-monitor.md)
+  - [S-125 · Multi-Source Claim Conflict Detection](stacks/s125-multi-source-claim-conflict.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -240,6 +241,7 @@
   - [F-93 · Claim Verifiability Classification](forward-deployed/f93-claim-verifiability-classification.md)
   - [F-94 · Intra-Session Claim Consistency](forward-deployed/f94-intra-session-claim-consistency.md)
   - [F-95 · Tool Invocation Cost Attribution](forward-deployed/f95-tool-invocation-cost-attribution.md)
+  - [F-96 · Session Complexity-Based Model Escalation](forward-deployed/f96-session-complexity-model-escalation.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
