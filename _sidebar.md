@@ -97,6 +97,7 @@
   - [S-89 · Per-Tenant Quota Distribution](stacks/s89-per-tenant-quota-distribution.md)
   - [S-90 · Sequential Tool Pipelines](stacks/s90-sequential-tool-pipelines.md)
   - [S-91 · Multilingual Prompt Management](stacks/s91-multilingual-prompt-management.md)
+  - [S-92 · Tool Schema Migration](stacks/s92-tool-schema-migration.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -173,6 +174,7 @@
   - [F-60 · Agent Clarification Strategy](forward-deployed/f60-agent-clarification-strategy.md)
   - [F-61 · Agent Conversation Repair](forward-deployed/f61-agent-conversation-repair.md)
   - [F-62 · Handling Unexpected Model Refusals](forward-deployed/f62-handling-model-refusals.md)
+  - [F-63 · Mid-Task Context Recovery](forward-deployed/f63-mid-task-context-recovery.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
