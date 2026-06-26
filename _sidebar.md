@@ -125,6 +125,7 @@
   - [S-117 · Webhook Event Deduplication](stacks/s117-webhook-event-deduplication.md)
   - [S-118 · Adaptive Polling Interval](stacks/s118-adaptive-polling-interval.md)
   - [S-119 · Agent-to-Frontend Event Protocol](stacks/s119-agent-to-frontend-event-protocol.md)
+  - [S-120 · Output Schema Backward Compat Adapter](stacks/s120-output-schema-backward-compat-adapter.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -229,6 +230,7 @@
   - [F-88 · Session Cost Ceiling](forward-deployed/f88-session-cost-ceiling.md)
   - [F-89 · Verbatim Citation Verification](forward-deployed/f89-verbatim-citation-verification.md)
   - [F-90 · Pre-Session Tool Health Gate](forward-deployed/f90-pre-session-tool-health-gate.md)
+  - [F-91 · Rate Limit Proactive Pacing](forward-deployed/f91-rate-limit-proactive-pacing.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
