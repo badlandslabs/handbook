@@ -82,6 +82,7 @@
   - [F-19 · Agent Testing Strategies](forward-deployed/f19-agent-testing-strategies.md)
   - [F-20 · Rate Limits and Retry Patterns](forward-deployed/f20-rate-limits-and-retry.md)
   - [F-21 · Data Privacy and PII](forward-deployed/f21-data-privacy-pii.md)
+  - [F-22 · CI/CD for AI Pipelines](forward-deployed/f22-cicd-for-ai-pipelines.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
