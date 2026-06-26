@@ -51,6 +51,7 @@
   - [S-43 · Tool Result Caching](stacks/s43-tool-result-caching.md)
   - [S-44 · Few-Shot Example Selection](stacks/s44-few-shot-example-selection.md)
   - [S-45 · Sampling Parameters](stacks/s45-sampling-parameters.md)
+  - [S-46 · Chain-of-Thought Elicitation](stacks/s46-chain-of-thought.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
