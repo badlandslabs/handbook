@@ -95,6 +95,8 @@
   - [F-23 · Pre-Build Cost Estimation](forward-deployed/f23-cost-estimation.md)
   - [F-24 · Graceful Degradation](forward-deployed/f24-graceful-degradation.md)
   - [F-25 · Red-Teaming AI Systems](forward-deployed/f25-red-teaming.md)
+  - [F-26 · Behavioral Drift Detection](forward-deployed/f26-behavioral-drift-detection.md)
+  - [F-27 · Data Flywheel](forward-deployed/f27-data-flywheel.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)

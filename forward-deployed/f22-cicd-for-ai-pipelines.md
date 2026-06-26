@@ -98,7 +98,7 @@ The ROI case is not primarily cost — it's trust. Token waste from a 15% regres
 
 ## See also
 
-[W-09](../workspace/w09-prompt-versioning.md) · [F-07](f07-evaluation-driven-development.md) · [F-17](f17-synthetic-eval-generation.md) · [S-39](../stacks/s39-output-parsing-robustness.md) · [F-12](f12-llm-as-a-judge.md)
+[W-09](../workspace/w09-prompt-versioning.md) · [F-07](f07-evaluation-driven-development.md) · [F-17](f17-synthetic-eval-generation.md) · [S-39](../stacks/s39-output-parsing-robustness.md) · [F-12](f12-llm-as-a-judge.md) · [F-26](f26-behavioral-drift-detection.md)
 
 ## Go deeper
 
