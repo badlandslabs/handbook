@@ -26,6 +26,7 @@
   - [S-21 · Context Compaction](stacks/s21-context-compaction.md)
   - [S-22 · Tool Selection at Scale](stacks/s22-tool-selection-at-scale.md)
   - [S-23 · Workflows vs Agents](stacks/s23-workflows-vs-agents.md)
+  - [S-24 · Self-Consistency](stacks/s24-self-consistency.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

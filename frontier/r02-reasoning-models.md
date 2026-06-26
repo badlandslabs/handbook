@@ -50,7 +50,7 @@ response = client.messages.create(
 > Receipt pending — 2026-06-25. Extended thinking API syntax follows Anthropic documentation. Budget_tokens behavior and billing confirmed in docs; run against your task to verify cost impact.
 
 ## See also
-[R-01](r01-model-landscape.md) · [S-06](../stacks/s06-model-routing.md) · [S-02](../stacks/s02-context-budget.md)
+[R-01](r01-model-landscape.md) · [S-24](../stacks/s24-self-consistency.md) · [S-06](../stacks/s06-model-routing.md) · [S-02](../stacks/s02-context-budget.md)
 
 ## Go deeper
 Keywords: `chain of thought` · `extended thinking` · `o3` · `o4-mini` · `DeepSeek R1` · `reasoning budget` · `test-time compute` · `inference scaling`
