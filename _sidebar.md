@@ -74,6 +74,7 @@
   - [S-66 · Retrieval Score Thresholds](stacks/s66-retrieval-score-thresholds.md)
   - [S-67 · Full Response Caching](stacks/s67-full-response-caching.md)
   - [S-68 · Input Pre-Screening](stacks/s68-input-pre-screening.md)
+  - [S-69 · Streaming Cancellation](stacks/s69-streaming-cancellation.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -127,6 +128,7 @@
   - [F-37 · Knowledge Cutoff Handling](forward-deployed/f37-knowledge-cutoff-handling.md)
   - [F-38 · Model Version Pinning](forward-deployed/f38-model-version-pinning.md)
   - [F-39 · Session State Persistence](forward-deployed/f39-session-state-persistence.md)
+  - [F-40 · User Feedback Collection](forward-deployed/f40-user-feedback-collection.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
