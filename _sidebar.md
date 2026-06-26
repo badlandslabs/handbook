@@ -80,6 +80,7 @@
   - [S-72 · Cost Anomaly Detection](stacks/s72-cost-anomaly-detection.md)
   - [S-73 · Multi-Tenant AI Isolation](stacks/s73-multi-tenant-ai-isolation.md)
   - [S-74 · Agent Capability Registry](stacks/s74-agent-capability-registry.md)
+  - [S-75 · Context Injection Order](stacks/s75-context-injection-order.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -139,6 +140,7 @@
   - [F-43 · Guardrail Latency](forward-deployed/f43-guardrail-latency.md)
   - [F-44 · Webhook Result Delivery](forward-deployed/f44-webhook-result-delivery.md)
   - [F-45 · AI Response Latency SLOs](forward-deployed/f45-latency-slos.md)
+  - [F-46 · Eval Metrics by Output Type](forward-deployed/f46-eval-metrics-by-output-type.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
