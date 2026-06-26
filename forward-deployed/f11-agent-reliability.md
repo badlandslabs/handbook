@@ -34,7 +34,7 @@ pass@1 (per-run success): 63%   pass^8 (all 8 succeed): 0%
 at 63%/step, a 10-step chain finishes ~1% of the time
 ```
 
-The model is clearly *capable* — it wrote a valid 7-word sentence five times. It is not *reliable* — `pass^8` is 0%, and the same 63% per-step rate in a 10-step agent loop would complete ~1% of runs. Capability passed; reliability failed. (The 95%→60% and METR-doubling figures are from 2026 reliability-science literature, cited above; the 63%/0% numbers are this run.)
+The model is clearly *capable* — it wrote a valid 7-word sentence five times. It is not *reliable* — `pass^8` is 0%, and the same 63% per-step rate in a 10-step agent loop would complete ~1% of runs. Capability passed; reliability failed. The 63%/0% numbers are this run; the 95%→60% compounding is arithmetic; the METR "time-horizon doubling ~every 7 months" and `pass^k` framing are from 2026 long-horizon-reliability research — verify the current paper before quoting a specific figure, as the metric is actively moving.
 
 ## See also
 [F-02](f02-evaluation-at-scale.md) · [F-03](f03-failure-modes.md) · [F-05](f05-agent-failure-taxonomy.md) · [F-07](f07-evaluation-driven-development.md) · [S-05](../stacks/s05-multi-agent-patterns.md)
