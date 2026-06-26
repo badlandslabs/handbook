@@ -49,6 +49,7 @@
   - [S-41 · Agent Handoff Patterns](stacks/s41-agent-handoff-patterns.md)
   - [S-42 · Event-Driven Agents](stacks/s42-event-driven-agents.md)
   - [S-43 · Tool Result Caching](stacks/s43-tool-result-caching.md)
+  - [S-44 · Few-Shot Example Selection](stacks/s44-few-shot-example-selection.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
