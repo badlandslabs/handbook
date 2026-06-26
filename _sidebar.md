@@ -23,6 +23,7 @@
   - [S-18 · Tokenization](stacks/s18-tokenization.md)
   - [S-19 · The Agent Loop](stacks/s19-agent-loop.md)
   - [S-20 · Agent Skills](stacks/s20-agent-skills.md)
+  - [S-21 · Context Compaction](stacks/s21-context-compaction.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
