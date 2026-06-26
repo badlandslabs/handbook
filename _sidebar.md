@@ -84,6 +84,7 @@
   - [S-76 · Semantic Dedup at Ingest](stacks/s76-semantic-dedup-at-ingest.md)
   - [S-77 · System Prompt Injection Hardening](stacks/s77-system-prompt-injection-hardening.md)
   - [S-78 · Agent-to-Human Escalation](stacks/s78-agent-to-human-escalation.md)
+  - [S-79 · Hybrid Search](stacks/s79-hybrid-search.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -147,6 +148,7 @@
   - [F-47 · Multi-Agent Result Aggregation](forward-deployed/f47-multi-agent-result-aggregation.md)
   - [F-48 · Prompt Template Management](forward-deployed/f48-prompt-template-management.md)
   - [F-49 · Embedding Model Selection](forward-deployed/f49-embedding-model-selection.md)
+  - [F-50 · RAG Answer Debugging](forward-deployed/f50-rag-answer-debugging.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
