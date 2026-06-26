@@ -66,6 +66,7 @@
   - [S-58 · Prompt Layering](stacks/s58-prompt-layering.md)
   - [S-59 · Instruction Density](stacks/s59-instruction-density.md)
   - [S-60 · Prompt Cache Invalidation](stacks/s60-prompt-cache-invalidation.md)
+  - [S-61 · Streaming Structured Output](stacks/s61-streaming-structured-output.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -111,6 +112,7 @@
   - [F-29 · Cost Attribution](forward-deployed/f29-cost-attribution.md)
   - [F-30 · Runtime Output Validation](forward-deployed/f30-runtime-output-validation.md)
   - [F-31 · Structured Call Logging](forward-deployed/f31-structured-call-logging.md)
+  - [F-32 · Context Overflow Recovery](forward-deployed/f32-context-overflow-recovery.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
