@@ -20,7 +20,7 @@ Keeping a production agent's spend from spiraling. Where [F-07](f07-evaluation-d
 > The token-count multiplier (agentic workloads use ~5–30× more tokens per task) is Gartner (March 2026). Cost-overrun prevalence (92% of agentic-AI adopters see overruns; 71% lack cost visibility/control) is IDC. Blended token price fell ~67% YoY (≈$18.40→$6.07 per million tokens, Q1'25→Q1'26) while bills rose — reported from aggregated enterprise API data. Savings figures (model routing ~60%, prompt caching 45–80%, output priced ~4:1 over input) are consistent across 2026 FinOps/agent-cost writeups — directional, benchmark your own. Specific company "burned the annual budget" anecdotes circulating in 2026 are reported, not independently verified. Verified 2026-06-25.
 
 ## See also
-[F-07](f07-evaluation-driven-development.md) · [S-06](../stacks/s06-model-routing.md) · [S-08](../stacks/s08-prompt-caching.md) · [S-19](../stacks/s19-agent-loop.md) · [W-05](../workspace/w05-llmops-observability.md) · [F-18](f18-architecture-sets-the-cost-floor.md)
+[F-07](f07-evaluation-driven-development.md) · [S-06](../stacks/s06-model-routing.md) · [S-08](../stacks/s08-prompt-caching.md) · [S-19](../stacks/s19-agent-loop.md) · [W-05](../workspace/w05-llmops-observability.md) · [F-18](f18-architecture-sets-the-cost-floor.md) · [F-29](f29-cost-attribution.md)
 
 ## Go deeper
 Keywords: `FinOps for AI` · `cost per task` · `token budget` · `spend caps` · `model routing` · `prompt caching` · `cost attribution` · `runaway agent` · `unit economics`

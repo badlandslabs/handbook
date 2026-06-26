@@ -59,6 +59,7 @@
   - [S-51 · Tool Schema Design](stacks/s51-tool-schema-design.md)
   - [S-52 · Chunking Strategy](stacks/s52-chunking-strategy.md)
   - [S-53 · Confidence Calibration](stacks/s53-confidence-calibration.md)
+  - [S-54 · Multi-Turn Conversation Design](stacks/s54-multi-turn-conversation-design.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -101,6 +102,7 @@
   - [F-26 · Behavioral Drift Detection](forward-deployed/f26-behavioral-drift-detection.md)
   - [F-27 · Data Flywheel](forward-deployed/f27-data-flywheel.md)
   - [F-28 · Prompt Debugging](forward-deployed/f28-prompt-debugging.md)
+  - [F-29 · Cost Attribution](forward-deployed/f29-cost-attribution.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
