@@ -19,3 +19,4 @@ Agent architectures and the patterns that build them. Each entry is a move — a
 | [S-13](s13-context-engineering.md) | Context Engineering | The smallest high-signal token set that works |
 | [S-14](s14-a2a-protocol.md) | A2A Protocol | The agent-to-agent layer beside MCP |
 | [S-15](s15-browser-computer-use-agents.md) | Browser and Computer-Use Agents | Drive real UIs; the least reliable layer |
+| [S-16](s16-prompting.md) | Prompting | How to phrase the ask, by model family |
