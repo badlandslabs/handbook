@@ -61,7 +61,7 @@ tokens: in=2766 out=114
 Forcing the tool call worked even on a small local model — the output is a typed object, not text to parse. Note the input cost: 2,766 tokens for one schema (Ollama serializes tool schemas verbosely; see [S-03](s03-tool-use.md)). The pattern is API-level and model-agnostic; the same call shape runs against Claude.
 
 ## See also
-[S-03](s03-tool-use.md) · [S-05](s05-multi-agent-patterns.md) · [S-10](s10-mcp.md)
+[S-03](s03-tool-use.md) · [S-05](s05-multi-agent-patterns.md) · [S-10](s10-mcp.md) · [S-39](s39-output-parsing-robustness.md)
 
 ## Go deeper
 Keywords: `JSON mode` · `tool_choice` · `Pydantic AI` · `Instructor library` · `output validation` · `schema enforcement`
