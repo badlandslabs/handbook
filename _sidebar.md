@@ -104,6 +104,7 @@
   - [S-96 · Tool Fallback Chains](stacks/s96-tool-fallback-chains.md)
   - [S-97 · Tool Result Summarization](stacks/s97-tool-result-summarization.md)
   - [S-98 · Streaming Agent Loop](stacks/s98-streaming-agent-loop.md)
+  - [S-99 · Agent Task Economics](stacks/s99-agent-task-economics.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -187,6 +188,7 @@
   - [F-67 · Dynamic Tool Registration](forward-deployed/f67-dynamic-tool-registration.md)
   - [F-68 · Quality-Gated Model Escalation](forward-deployed/f68-quality-gated-model-escalation.md)
   - [F-69 · Output Surface Adapters](forward-deployed/f69-output-surface-adapters.md)
+  - [F-70 · Verifiable Output Design](forward-deployed/f70-verifiable-output-design.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
