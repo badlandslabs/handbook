@@ -77,5 +77,6 @@
   - [R-07 · Post-Training and RLVR](frontier/r07-post-training-rlvr.md)
   - [R-08 · Inference-Time Compute Scaling](frontier/r08-inference-time-compute-scaling.md)
   - [R-09 · Long-Context Models](frontier/r09-long-context-models.md)
+  - [R-10 · Speculative Decoding](frontier/r10-speculative-decoding.md)
 
 - [Contributing](CONTRIBUTING.md)

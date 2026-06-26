@@ -50,7 +50,7 @@ Task 4 — "23 × 47?" (Ollama bridge injects metadata noise on some draws)
 
 ## See also
 
-[S-24](../stacks/s24-self-consistency.md) · [S-25](../stacks/s25-reflection.md) · [S-26](../stacks/s26-planning.md) · [R-07](r07-post-training-rlvr.md) · [S-06](../stacks/s06-model-routing.md)
+[S-24](../stacks/s24-self-consistency.md) · [S-25](../stacks/s25-reflection.md) · [S-26](../stacks/s26-planning.md) · [R-07](r07-post-training-rlvr.md) · [R-10](r10-speculative-decoding.md)
 
 ## Go deeper
 

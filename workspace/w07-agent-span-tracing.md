@@ -35,7 +35,7 @@ function endSpan(span, result = {}) {
 }
 ```
 
-Call `startSpan` before each operation; call `endSpan` after. The span object holds everything. Emit to `console.log` in development; pipe to an OTel collector in production.
+Call `startSpan` before each operation; call `endSpan` after. Emit to `console.log` in development; pipe to an OTel collector in production.
 
 **Attribute names:** follow OTel GenAI semantic conventions (`gen_ai.usage.input_tokens`, `gen_ai.request.model`, etc.) — this makes spans compatible with Arize Phoenix, Langfuse, and any OTel-native backend without vendor lock-in.
 
