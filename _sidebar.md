@@ -87,6 +87,7 @@
   - [F-21 · Data Privacy and PII](forward-deployed/f21-data-privacy-pii.md)
   - [F-22 · CI/CD for AI Pipelines](forward-deployed/f22-cicd-for-ai-pipelines.md)
   - [F-23 · Pre-Build Cost Estimation](forward-deployed/f23-cost-estimation.md)
+  - [F-24 · Graceful Degradation](forward-deployed/f24-graceful-degradation.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)

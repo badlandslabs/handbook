@@ -63,7 +63,7 @@ router_settings:
 > Verified 2026-06-25. Incident count (114 in 90 days, 30 major) and Claude 529 error rate (11.7%, Sep 2025) from Portkey blog, sourced from their gateway telemetry. LiteLLM `context_window_fallbacks` key verified against LiteLLM Router docs. Portkey request volume from portkey.ai. Code blocks above are illustrative and have not been run.
 
 ## See also
-[S-06](s06-model-routing.md) · [F-03](../forward-deployed/f03-failure-modes.md) · [W-04](../workspace/w04-observability.md)
+[S-06](s06-model-routing.md) · [F-24](../forward-deployed/f24-graceful-degradation.md) · [F-03](../forward-deployed/f03-failure-modes.md) · [W-04](../workspace/w04-observability.md)
 
 ## Go deeper
 Keywords: `LiteLLM Router` · `Portkey` · `circuit breaker` · `LLM fallback` · `Claude 529` · `context window fallback`
