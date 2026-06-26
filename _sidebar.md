@@ -73,6 +73,7 @@
   - [S-65 · Multi-Model Pipelines](stacks/s65-multi-model-pipelines.md)
   - [S-66 · Retrieval Score Thresholds](stacks/s66-retrieval-score-thresholds.md)
   - [S-67 · Full Response Caching](stacks/s67-full-response-caching.md)
+  - [S-68 · Input Pre-Screening](stacks/s68-input-pre-screening.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -125,6 +126,7 @@
   - [F-36 · Agent Persona and Character](forward-deployed/f36-agent-persona-and-character.md)
   - [F-37 · Knowledge Cutoff Handling](forward-deployed/f37-knowledge-cutoff-handling.md)
   - [F-38 · Model Version Pinning](forward-deployed/f38-model-version-pinning.md)
+  - [F-39 · Session State Persistence](forward-deployed/f39-session-state-persistence.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
