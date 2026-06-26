@@ -40,6 +40,7 @@
   - [S-32 · The Verifiability Divider](stacks/s32-verifiability-divider.md)
   - [S-33 · Live Data vs Stale Snapshots](stacks/s33-live-data-vs-stale-snapshots.md)
   - [S-34 · Narrow-Scope Agent Design](stacks/s34-narrow-scope-agent-design.md)
+  - [S-35 · Latency Budget](stacks/s35-latency-budget.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
