@@ -65,6 +65,7 @@
   - [S-57 · Negative Prompting](stacks/s57-negative-prompting.md)
   - [S-58 · Prompt Layering](stacks/s58-prompt-layering.md)
   - [S-59 · Instruction Density](stacks/s59-instruction-density.md)
+  - [S-60 · Prompt Cache Invalidation](stacks/s60-prompt-cache-invalidation.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -109,6 +110,7 @@
   - [F-28 · Prompt Debugging](forward-deployed/f28-prompt-debugging.md)
   - [F-29 · Cost Attribution](forward-deployed/f29-cost-attribution.md)
   - [F-30 · Runtime Output Validation](forward-deployed/f30-runtime-output-validation.md)
+  - [F-31 · Structured Call Logging](forward-deployed/f31-structured-call-logging.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
