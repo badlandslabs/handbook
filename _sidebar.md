@@ -120,6 +120,7 @@
   - [S-112 · Speculative Pre-Generation](stacks/s112-speculative-pre-generation.md)
   - [S-113 · Reactive Schema Evolution](stacks/s113-reactive-schema-evolution.md)
   - [S-114 · Reasoning Scratchpad Budget](stacks/s114-reasoning-scratchpad-budget.md)
+  - [S-115 · Agent HTTP Connection Reuse](stacks/s115-agent-http-connection-reuse.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -219,6 +220,7 @@
   - [F-83 · Agent Capability Testing](forward-deployed/f83-agent-capability-testing.md)
   - [F-84 · Output Consistency Under Paraphrase](forward-deployed/f84-output-consistency-under-paraphrase.md)
   - [F-85 · Tool Call Latency Profiling](forward-deployed/f85-tool-call-latency-profiling.md)
+  - [F-86 · Prompt Token Budget CI](forward-deployed/f86-prompt-token-budget-ci.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
