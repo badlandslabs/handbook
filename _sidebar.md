@@ -85,6 +85,7 @@
   - [S-77 · System Prompt Injection Hardening](stacks/s77-system-prompt-injection-hardening.md)
   - [S-78 · Agent-to-Human Escalation](stacks/s78-agent-to-human-escalation.md)
   - [S-79 · Hybrid Search](stacks/s79-hybrid-search.md)
+  - [S-80 · Prompt Cache Warming](stacks/s80-prompt-cache-warming.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -149,6 +150,7 @@
   - [F-48 · Prompt Template Management](forward-deployed/f48-prompt-template-management.md)
   - [F-49 · Embedding Model Selection](forward-deployed/f49-embedding-model-selection.md)
   - [F-50 · RAG Answer Debugging](forward-deployed/f50-rag-answer-debugging.md)
+  - [F-51 · Agent Action Rollback](forward-deployed/f51-agent-action-rollback.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
