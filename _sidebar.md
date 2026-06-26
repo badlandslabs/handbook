@@ -81,6 +81,7 @@
   - [S-73 · Multi-Tenant AI Isolation](stacks/s73-multi-tenant-ai-isolation.md)
   - [S-74 · Agent Capability Registry](stacks/s74-agent-capability-registry.md)
   - [S-75 · Context Injection Order](stacks/s75-context-injection-order.md)
+  - [S-76 · Semantic Dedup at Ingest](stacks/s76-semantic-dedup-at-ingest.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -141,6 +142,7 @@
   - [F-44 · Webhook Result Delivery](forward-deployed/f44-webhook-result-delivery.md)
   - [F-45 · AI Response Latency SLOs](forward-deployed/f45-latency-slos.md)
   - [F-46 · Eval Metrics by Output Type](forward-deployed/f46-eval-metrics-by-output-type.md)
+  - [F-47 · Multi-Agent Result Aggregation](forward-deployed/f47-multi-agent-result-aggregation.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
