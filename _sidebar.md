@@ -68,6 +68,7 @@
   - [F-15 · Durable Execution](forward-deployed/f15-durable-execution.md)
   - [F-16 · Tool Call Validation](forward-deployed/f16-tool-call-validation.md)
   - [F-17 · Synthetic Eval Generation](forward-deployed/f17-synthetic-eval-generation.md)
+  - [F-18 · Architecture Sets the Cost Floor](forward-deployed/f18-architecture-sets-the-cost-floor.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
