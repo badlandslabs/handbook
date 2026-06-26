@@ -10,3 +10,4 @@ Research, model landscape, and the open questions. These entries cover what's ha
 | [R-02](r02-reasoning-models.md) | Reasoning Models | What changes when a model thinks |
 | [R-03](r03-fine-tuning-vs-prompting.md) | Fine-tuning vs Prompting vs RAG | The real decision tree |
 | [R-04](r04-small-language-models.md) | Small Language Models for Agents | Why the default agent model should be small |
+| [R-05](r05-self-evolving-agents.md) | Self-Evolving Agents | Agents that get better at the job, not just do it |
