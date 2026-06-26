@@ -46,6 +46,7 @@
   - [F-08 · Agent Cost Control](forward-deployed/f08-agent-cost-control.md)
   - [F-09 · Human in the Loop](forward-deployed/f09-human-in-the-loop.md)
   - [F-10 · Agent Identity and Access](forward-deployed/f10-agent-identity-and-access.md)
+  - [F-11 · Agent Reliability](forward-deployed/f11-agent-reliability.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)

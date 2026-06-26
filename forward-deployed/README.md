@@ -14,3 +14,4 @@ Shipping AI to real users — the field methods, the failure modes, what product
 | [F-08](f08-agent-cost-control.md) | Agent Cost Control | See, cap, and attribute what an agent spends |
 | [F-09](f09-human-in-the-loop.md) | Human in the Loop | Put a person at the right checkpoints |
 | [F-10](f10-agent-identity-and-access.md) | Agent Identity and Access | Scoped, short-lived credentials per agent |
+| [F-11](f11-agent-reliability.md) | Agent Reliability | Capability is "can it?"; reliability is "every time?" |
