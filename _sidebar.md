@@ -46,6 +46,7 @@
   - [S-38 · Agent State Design](stacks/s38-agent-state-design.md)
   - [S-39 · Output Parsing Robustness](stacks/s39-output-parsing-robustness.md)
   - [S-40 · Multimodal Inputs](stacks/s40-multimodal-inputs.md)
+  - [S-41 · Agent Handoff Patterns](stacks/s41-agent-handoff-patterns.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
