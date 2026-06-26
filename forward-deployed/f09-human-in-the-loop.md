@@ -20,7 +20,7 @@ Putting a person at the right checkpoints in an autonomous agent — the safety 
 > The three approval modes (pre-action / escalation / post-action) and the always-approve action categories are the 2026 consensus across HITL design writeups. EU AI Act [Article 14](https://artificialintelligenceact.eu/article/14/) is primary: human oversight is a design requirement scaled to autonomy, requiring the ability to understand, intervene, and halt; high-risk-system enforcement lands August 2026. The "claimed 90% ≈ ~75% actual" miscalibration and chain-compounding figures are illustrative from production-overconfidence analyses — directional, not measured constants; the "$100 / 30-minute" thresholds are one protocol's defaults, not a standard. Verified 2026-06-25; not independently reproduced here.
 
 ## See also
-[S-19](../stacks/s19-agent-loop.md) · [F-01](f01-shipping-ai.md) · [F-04](f04-guardrails.md) · [F-06](f06-agent-sandboxing.md) · [S-15](../stacks/s15-browser-computer-use-agents.md)
+[S-19](../stacks/s19-agent-loop.md) · [F-15](f15-durable-execution.md) · [F-01](f01-shipping-ai.md) · [F-04](f04-guardrails.md) · [F-06](f06-agent-sandboxing.md)
 
 ## Go deeper
 Keywords: `human in the loop` · `HITL` · `human on the loop` · `approval gate` · `escalation` · `confidence calibration` · `automation bias` · `EU AI Act Article 14` · `kill switch`
