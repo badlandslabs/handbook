@@ -12,3 +12,4 @@ Shipping AI to real users — the field methods, the failure modes, what product
 | [F-06](f06-agent-sandboxing.md) | Agent Sandboxing | Isolate agent-run code so a bad command can't reach the host |
 | [F-07](f07-evaluation-driven-development.md) | Evaluation-Driven Development | Make quality a CI gate, not a guess |
 | [F-08](f08-agent-cost-control.md) | Agent Cost Control | See, cap, and attribute what an agent spends |
+| [F-09](f09-human-in-the-loop.md) | Human in the Loop | Put a person at the right checkpoints |
