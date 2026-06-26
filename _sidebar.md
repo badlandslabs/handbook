@@ -22,6 +22,7 @@
   - [S-17 · Embeddings](stacks/s17-embeddings.md)
   - [S-18 · Tokenization](stacks/s18-tokenization.md)
   - [S-19 · The Agent Loop](stacks/s19-agent-loop.md)
+  - [S-20 · Agent Skills](stacks/s20-agent-skills.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

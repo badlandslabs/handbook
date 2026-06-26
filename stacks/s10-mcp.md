@@ -73,7 +73,7 @@ if __name__ == "__main__":
 > Receipt pending — 2026-06-25. Code above follows the official MCP Python SDK (`pip install mcp`). Run `pip install mcp` and test the server before deploying. Spec at modelcontextprotocol.io.
 
 ## See also
-[S-03](s03-tool-use.md) · [W-02](../workspace/w02-claude-code.md) · [S-05](s05-multi-agent-patterns.md)
+[S-03](s03-tool-use.md) · [S-20](s20-agent-skills.md) · [W-02](../workspace/w02-claude-code.md) · [S-05](s05-multi-agent-patterns.md)
 
 ## Go deeper
 Keywords: `Model Context Protocol` · `MCP server` · `MCP client` · `modelcontextprotocol.io` · `tool protocol` · `Claude Desktop`
