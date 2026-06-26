@@ -66,7 +66,7 @@ WITH MEMORY (fresh session + retrieved facts):
   AWS region: eu-west-1 (Ireland); On-call: page Dana, then the platform channel  ✓
 ```
 
-Two things the run shows: (1) the model is genuinely stateless — with no memory it correctly admits it doesn't know, rather than guessing; (2) Tier-2 retrieval pulled only the **2 relevant** facts out of 4, so the fresh session answered correctly without re-injecting the whole history. Retrieval here is crude keyword matching; swap in embeddings ([S-17](s17-embeddings.md)) for semantic recall at scale. The Python snippet above is the same save/load pattern; vector-DB API shapes vary by provider — verify before use.
+Two things the run shows: (1) the model is genuinely stateless — it has no access to the fact at all (given an explicit "say I do not know" option, it took it, because there was nothing to retrieve); (2) Tier-2 retrieval pulled only the **2 relevant** facts out of 4, so the fresh session answered correctly without re-injecting the whole history. Retrieval here is crude keyword matching; swap in embeddings ([S-17](s17-embeddings.md)) for semantic recall at scale. The Python snippet above is the same save/load pattern; vector-DB API shapes vary by provider — verify before use.
 
 ## See also
 [S-07](s07-rag.md) · [S-17](s17-embeddings.md) · [S-21](s21-context-compaction.md) · [S-02](s02-context-budget.md) · [S-05](s05-multi-agent-patterns.md)
