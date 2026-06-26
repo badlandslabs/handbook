@@ -38,7 +38,7 @@ PART 2 — seeded buggy first draft (sums values, ignores subtraction; a realist
 Two honest lessons. (1) **Reflection isn't free or universal:** the model solved this common task correctly on the first try, so a critique loop would have spent extra calls for zero gain — I saw the same first-pass success across five varied tasks. (2) **When the draft is genuinely broken, a test-driven loop repairs it:** a romanToInt that ignored subtractive notation went 2/8 → 8/8 in one refine, driven by the actual failing cases. The lever is the *objective check* — without the test harness, the model would have had nothing concrete to fix. (Only the buggy first draft in Part 2 was seeded; the critique and the fix are genuine model output.)
 
 ## See also
-[S-24](s24-self-consistency.md) · [S-26](s26-planning.md) · [R-08](../frontier/r08-inference-time-compute-scaling.md) · [S-06](s06-model-routing.md) · [F-07](../forward-deployed/f07-evaluation-driven-development.md)
+[S-24](s24-self-consistency.md) · [S-26](s26-planning.md) · [S-30](s30-code-test-fix-loop.md) · [R-08](../frontier/r08-inference-time-compute-scaling.md) · [F-07](../forward-deployed/f07-evaluation-driven-development.md)
 
 ## Go deeper
 Keywords: `self-refine` · `reflexion` · `generate-critique-refine` · `iterative refinement` · `CRITIC` · `Madaan 2023 arXiv 2303.17651` · `Shinn 2023 arXiv 2303.11366` · `LATS` · `convergence stopping` · `test-time compute`
