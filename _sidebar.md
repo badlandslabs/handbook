@@ -57,6 +57,8 @@
   - [S-49 · Retrieval Evaluation](stacks/s49-retrieval-evaluation.md)
   - [S-50 · Prompt Format and Structure](stacks/s50-prompt-format.md)
   - [S-51 · Tool Schema Design](stacks/s51-tool-schema-design.md)
+  - [S-52 · Chunking Strategy](stacks/s52-chunking-strategy.md)
+  - [S-53 · Confidence Calibration](stacks/s53-confidence-calibration.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
