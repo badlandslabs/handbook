@@ -20,7 +20,7 @@ A way to turn text into numbers that capture meaning, so a computer can tell whi
 > Mechanism (cosine similarity, MRL front-loading, quantization stacking, renormalize-after-truncation) is from HuggingFace's [embedding quantization](https://huggingface.co/blog/embedding-quantization) and [Matryoshka](https://huggingface.co/blog/matryoshka) writeups. A documented MRL result: OpenAI `text-embedding-3-large` truncated to 256 dims outperforms the older `ada-002` at 1536 dims on MTEB (OpenAI's own announcement). Specific model scores, prices, and rankings are monthly-moving snapshots — check the live [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) and provider pricing before committing. Verified 2026-06-25; not independently benchmarked here.
 
 ## See also
-[S-07](s07-rag.md) · [S-09](s09-memory-systems.md) · [S-02](s02-context-budget.md) · [R-01](../frontier/r01-model-landscape.md) · [F-02](../forward-deployed/f02-evaluation-at-scale.md)
+[S-07](s07-rag.md) · [S-27](s27-reranking.md) · [S-09](s09-memory-systems.md) · [S-02](s02-context-budget.md) · [R-01](../frontier/r01-model-landscape.md)
 
 ## Go deeper
 Keywords: `embeddings` · `cosine similarity` · `MTEB` · `Matryoshka representation learning` · `vector quantization` · `int8` · `binary quantization` · `cross-encoder reranking` · `vector database`

@@ -29,6 +29,7 @@
   - [S-24 · Self-Consistency](stacks/s24-self-consistency.md)
   - [S-25 · Reflection](stacks/s25-reflection.md)
   - [S-26 · Planning](stacks/s26-planning.md)
+  - [S-27 · Reranking](stacks/s27-reranking.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

@@ -30,3 +30,4 @@ Agent architectures and the patterns that build them. Each entry is a move — a
 | [S-24](s24-self-consistency.md) | Self-Consistency | Sample k chains, take the majority vote |
 | [S-25](s25-reflection.md) | Reflection | Generate, critique, refine — with a stop rule |
 | [S-26](s26-planning.md) | Planning | Decompose into subtasks, then execute |
+| [S-27](s27-reranking.md) | Reranking | Recall wide, then rerank for precision |
