@@ -103,6 +103,7 @@
   - [S-95 · Retry Cost Attribution](stacks/s95-retry-cost-attribution.md)
   - [S-96 · Tool Fallback Chains](stacks/s96-tool-fallback-chains.md)
   - [S-97 · Tool Result Summarization](stacks/s97-tool-result-summarization.md)
+  - [S-98 · Streaming Agent Loop](stacks/s98-streaming-agent-loop.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -185,6 +186,7 @@
   - [F-66 · Agent Personalization](forward-deployed/f66-agent-personalization.md)
   - [F-67 · Dynamic Tool Registration](forward-deployed/f67-dynamic-tool-registration.md)
   - [F-68 · Quality-Gated Model Escalation](forward-deployed/f68-quality-gated-model-escalation.md)
+  - [F-69 · Output Surface Adapters](forward-deployed/f69-output-surface-adapters.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
