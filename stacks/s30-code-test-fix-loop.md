@@ -14,7 +14,7 @@ When a code agent has no test oracle, it stops when it *thinks* it's done. That 
 
 **Tests before code.** The oracle must exist before the agent starts writing. If you don't have tests, the agent is flying blind regardless of how good the model is.
 
-**Feed the exact failure, not a summary.** Give the model the raw assertion error, traceback, and failing values. "The test for `is_balanced(')')( ')` returned `True`, expected `False`" is a repair signal. "Something is wrong" is not.
+**Feed the exact failure, not a summary.** Give the model the raw assertion error, traceback, and failing values. `FAIL: is_balanced(")(") returned True, expected False` is a repair signal. "Something is wrong" is not.
 
 **Cap iterations.** Set a hard limit — 3 to 5 fix cycles is normal; beyond that, hand off to a human. The agent should not cycle until the context window fills. Document which test is still failing at handoff.
 
@@ -26,7 +26,7 @@ When a code agent has no test oracle, it stops when it *thinks* it's done. That 
 
 > Verified 2026-06-26 — parentheses balancer with a seeded bug, against llama3.2 via Ollama (localhost:11435).
 
-**Bug:** `is_balanced(s)` only checks the final count (returns `count == 0`), so `")("`  ends at count 0 and returns `True` — wrong.
+**Bug:** `is_balanced(s)` only checks the final count (returns `count == 0`), so `")("` ends at count 0 and returns `True` — wrong.
 
 ```
 Test run on buggy code: 4/5 pass

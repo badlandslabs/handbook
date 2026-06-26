@@ -74,5 +74,6 @@
   - [R-06 · Mixture of Experts](frontier/r06-mixture-of-experts.md)
   - [R-07 · Post-Training and RLVR](frontier/r07-post-training-rlvr.md)
   - [R-08 · Inference-Time Compute Scaling](frontier/r08-inference-time-compute-scaling.md)
+  - [R-09 · Long-Context Models](frontier/r09-long-context-models.md)
 
 - [Contributing](CONTRIBUTING.md)

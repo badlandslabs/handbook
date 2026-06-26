@@ -14,3 +14,4 @@ Research, model landscape, and the open questions. These entries cover what's ha
 | [R-06](r06-mixture-of-experts.md) | Mixture of Experts | Why a 671B model can serve like a 37B one |
 | [R-07](r07-post-training-rlvr.md) | Post-Training and RLVR | How 2026 reasoning models are actually trained |
 | [R-08](r08-inference-time-compute-scaling.md) | Inference-Time Compute Scaling | Spend more at query time, not training time |
+| [R-09](r09-long-context-models.md) | Long-Context Models | 1M tokens is standard now — here's what changed and what didn't |
