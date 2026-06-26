@@ -8,3 +8,5 @@ Tooling, environment, and the AI dev setup. These entries cover the practical la
 | [W-02](w02-claude-code.md) | Claude Code | The AI-native terminal IDE |
 | [W-03](w03-local-models-ollama.md) | Local Models with Ollama | Self-hosted inference in 5 minutes |
 | [W-04](w04-observability.md) | Observability | Log tokens, latencies, and failures |
+| [W-05](w05-llmops-observability.md) | LLMOps and Agent Observability | Per-step tracing across multi-agent pipelines |
+| [W-06](w06-agents-md.md) | AGENTS.md | One context file every coding agent reads |

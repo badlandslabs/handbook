@@ -24,6 +24,7 @@
   - [W-03 · Local Models with Ollama](workspace/w03-local-models-ollama.md)
   - [W-04 · Observability](workspace/w04-observability.md)
   - [W-05 · LLMOps and Agent Observability](workspace/w05-llmops-observability.md)
+  - [W-06 · AGENTS.md](workspace/w06-agents-md.md)
 
 - **Book of the Forward-Deployed Engineer**
   - [Overview](forward-deployed/)
