@@ -49,7 +49,16 @@ No markdown. No prose. No explanation.
 - Validate and retry on schema mismatch — one retry fixes most cases
 
 ## Receipt
-> Receipt pending — 2026-06-25. Tool use schema pattern follows Anthropic API docs. `tool_choice` forcing is documented but needs live verification.
+
+> Verified 2026-06-25 — forced `tool_choice` run against llama3.2 via Ollama (localhost:11435) with the Anthropic Node SDK. The model was made to call `extract_person` and returned valid structured JSON, no prose, no fences:
+
+```
+stop_reason: tool_use
+Extracted: {"age":34,"employer":"Anthropic","name":"John Smith"}
+tokens: in=2766 out=114
+```
+
+Forcing the tool call worked even on a small local model — the output is a typed object, not text to parse. Note the input cost: 2,766 tokens for one schema (Ollama serializes tool schemas verbosely; see [S-03](s03-tool-use.md)). The pattern is API-level and model-agnostic; the same call shape runs against Claude.
 
 ## See also
 [S-03](s03-tool-use.md) · [S-05](s05-multi-agent-patterns.md) · [S-10](s10-mcp.md)
