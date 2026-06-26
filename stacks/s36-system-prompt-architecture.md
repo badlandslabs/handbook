@@ -61,7 +61,7 @@ Token delta: -20  (constitutional is shorter — precision beats hedging)
 
 ## See also
 
-[S-16](s16-prompting.md) · [S-13](s13-context-engineering.md) · [S-08](s08-prompt-caching.md) · [S-34](s34-narrow-scope-agent-design.md) · [F-13](../forward-deployed/f13-prompt-injection.md)
+[S-16](s16-prompting.md) · [S-13](s13-context-engineering.md) · [S-08](s08-prompt-caching.md) · [S-34](s34-narrow-scope-agent-design.md) · [F-13](../forward-deployed/f13-prompt-injection.md) · [S-58](s58-prompt-layering.md)
 
 ## Go deeper
 
