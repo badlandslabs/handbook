@@ -79,6 +79,7 @@
   - [S-71 · Long Document Processing](stacks/s71-long-document-processing.md)
   - [S-72 · Cost Anomaly Detection](stacks/s72-cost-anomaly-detection.md)
   - [S-73 · Multi-Tenant AI Isolation](stacks/s73-multi-tenant-ai-isolation.md)
+  - [S-74 · Agent Capability Registry](stacks/s74-agent-capability-registry.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -137,6 +138,7 @@
   - [F-42 · AI Incident Response](forward-deployed/f42-ai-incident-response.md)
   - [F-43 · Guardrail Latency](forward-deployed/f43-guardrail-latency.md)
   - [F-44 · Webhook Result Delivery](forward-deployed/f44-webhook-result-delivery.md)
+  - [F-45 · AI Response Latency SLOs](forward-deployed/f45-latency-slos.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
