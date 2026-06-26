@@ -77,7 +77,7 @@ Streaming works. 101 input / 25 output tokens for a count-to-5 task.
 **Warning from the receipt:** llama3.2 appended `STATUS: DONE / FILES_TOUCHED: none / BLOCKERS:` noise after its answer — system prompt template leakage from the model's training data. Local models may inject unexpected suffixes into streamed output. Always terminate the stream at a natural boundary, not by assuming the last token is clean. Hosted frontier models (Claude, GPT) don't exhibit this.
 
 ## See also
-[S-04](s04-structured-output.md) · [S-05](s05-multi-agent-patterns.md) · [F-03](../forward-deployed/f03-failure-modes.md) · [S-35](s35-latency-budget.md)
+[S-04](s04-structured-output.md) · [S-05](s05-multi-agent-patterns.md) · [F-03](../forward-deployed/f03-failure-modes.md) · [S-35](s35-latency-budget.md) · [S-37](s37-batch-vs-realtime.md)
 
 ## Go deeper
 Keywords: `SSE` · `Server-Sent Events` · `@microsoft/fetch-event-source` · `ReadableStream` · `AG-UI` · `A2UI` · `Google ADK` · `WebSocket streaming`

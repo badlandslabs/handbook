@@ -42,6 +42,7 @@
   - [S-34 · Narrow-Scope Agent Design](stacks/s34-narrow-scope-agent-design.md)
   - [S-35 · Latency Budget](stacks/s35-latency-budget.md)
   - [S-36 · System Prompt Architecture](stacks/s36-system-prompt-architecture.md)
+  - [S-37 · Batch vs Real-Time Pipelines](stacks/s37-batch-vs-realtime.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
