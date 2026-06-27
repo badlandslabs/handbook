@@ -159,6 +159,7 @@
   - [S-150 · Prompt Context Block Deduplication](stacks/s150-prompt-context-block-deduplication.md)
   - [S-151 · Source Response Latency Variance Monitor](stacks/s151-source-response-latency-variance-monitor.md)
   - [S-152 · Live Event Significance Scorer](stacks/s152-live-event-significance-scorer.md)
+  - [S-153 · Tool Result Novelty Filter](stacks/s153-tool-result-novelty-filter.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -296,6 +297,7 @@
   - [F-121 · Output Field Value Anomaly Detection](forward-deployed/f121-output-field-value-anomaly-detection.md)
   - [F-122 · Output-Context Consistency Assertions](forward-deployed/f122-output-context-consistency-assertions.md)
   - [F-123 · Session Cost Forecaster](forward-deployed/f123-session-cost-forecaster.md)
+  - [F-124 · Assertion Coverage Audit](forward-deployed/f124-assertion-coverage-audit.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
