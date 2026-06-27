@@ -183,6 +183,7 @@
   - [S-174 · Stale-While-Revalidate for Live Data](stacks/s174-stale-while-revalidate-live-data.md)
   - [S-175 · Cross-Session Tool Result Cache](stacks/s175-cross-session-tool-result-cache.md)
   - [S-176 · Context Section Budget Enforcer](stacks/s176-context-section-budget-enforcer.md)
+  - [S-177 · Output Length Overrun Gate](stacks/s177-output-length-overrun-gate.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -344,6 +345,7 @@
   - [F-145 · Extraction Schema Completeness Score](forward-deployed/f145-extraction-schema-completeness-score.md)
   - [F-146 · Extraction Conditional Numeric Range Check](forward-deployed/f146-extraction-conditional-numeric-range-check.md)
   - [F-147 · Extraction Field Co-Presence Assertion](forward-deployed/f147-extraction-field-co-presence-assertion.md)
+  - [F-148 · Extraction Field Source Quote Verification](forward-deployed/f148-extraction-field-source-quote-verification.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
