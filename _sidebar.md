@@ -162,6 +162,7 @@
   - [S-153 · Tool Result Novelty Filter](stacks/s153-tool-result-novelty-filter.md)
   - [S-154 · Per-Entity Event Dedup on Reconnect](stacks/s154-per-entity-event-dedup-on-reconnect.md)
   - [S-155 · Tool Call Argument Size Cap](stacks/s155-tool-call-argument-size-cap.md)
+  - [S-156 · Tool Result Size Drift Detector](stacks/s156-tool-result-size-drift-detector.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -302,6 +303,7 @@
   - [F-124 · Assertion Coverage Audit](forward-deployed/f124-assertion-coverage-audit.md)
   - [F-125 · Prompt Empty Section Pruner](forward-deployed/f125-prompt-empty-section-pruner.md)
   - [F-126 · Output Field Change Velocity](forward-deployed/f126-output-field-change-velocity.md)
+  - [F-127 · Extraction Field Null Rate Monitor](forward-deployed/f127-extraction-field-null-rate-monitor.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
