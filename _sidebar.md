@@ -188,6 +188,7 @@
   - [S-179 · Adaptive Retrieval Top-K Selector](stacks/s179-adaptive-retrieval-top-k-selector.md)
   - [S-180 · Cross-Layer Prompt Instruction Deduplicator](stacks/s180-cross-layer-prompt-instruction-deduplicator.md)
   - [S-181 · Live Data Event Deduplicator](stacks/s181-live-data-event-deduplicator.md)
+  - [S-182 · Streaming Output Budget Gate](stacks/s182-streaming-output-budget-gate.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -354,6 +355,7 @@
   - [F-150 · Extraction Mutual Field Completeness Check](forward-deployed/f150-extraction-mutual-field-completeness-check.md)
   - [F-151 · Extraction Field Enum Validation](forward-deployed/f151-extraction-field-enum-validation.md)
   - [F-152 · Extraction Field Null Rate Monitor](forward-deployed/f152-extraction-field-null-rate-monitor.md)
+  - [F-153 · Extraction Temporal Arithmetic Check](forward-deployed/f153-extraction-temporal-arithmetic-check.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
