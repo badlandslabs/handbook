@@ -180,6 +180,7 @@
   - [S-171 · Response Format Token Overhead](stacks/s171-response-format-token-overhead.md)
   - [S-172 · Multi-Variant Prompt Cache Warming Planner](stacks/s172-multi-variant-prompt-cache-warming.md)
   - [S-173 · Intra-Turn Tool Call Deduplicator](stacks/s173-intra-turn-tool-call-deduplicator.md)
+  - [S-174 · Stale-While-Revalidate for Live Data](stacks/s174-stale-while-revalidate-live-data.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -338,6 +339,7 @@
   - [F-142 · Cross-Extraction Field Consistency Check](forward-deployed/f142-cross-extraction-field-consistency-check.md)
   - [F-143 · Output Field Conditional Presence Check](forward-deployed/f143-output-field-conditional-presence-check.md)
   - [F-144 · Extraction Event Sequence Monotonicity Check](forward-deployed/f144-extraction-event-sequence-monotonicity-check.md)
+  - [F-145 · Extraction Schema Completeness Score](forward-deployed/f145-extraction-schema-completeness-score.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
