@@ -150,6 +150,7 @@
   - [S-141 · Source Schema Contract Versioning](stacks/s141-source-schema-contract-versioning.md)
   - [S-142 · Streaming Partial Result Early Termination](stacks/s142-streaming-partial-result-early-termination.md)
   - [S-143 · Output Token Variance Tracking](stacks/s143-output-token-variance-tracking.md)
+  - [S-144 · Live Data Burst Event Coalescing](stacks/s144-live-data-burst-event-coalescing.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -278,6 +279,7 @@
   - [F-112 · Tool Determinism Testing](forward-deployed/f112-tool-determinism-testing.md)
   - [F-113 · Per-Entity Data Completeness Tracking](forward-deployed/f113-per-entity-data-completeness-tracking.md)
   - [F-114 · Source Response Time SLOs](forward-deployed/f114-source-response-time-slos.md)
+  - [F-115 · Output Schema Migration Test Harness](forward-deployed/f115-output-schema-migration-test-harness.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
