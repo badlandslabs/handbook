@@ -173,6 +173,7 @@
   - [S-164 · Push-Pull Hybrid Scheduler](stacks/s164-push-pull-hybrid-scheduler.md)
   - [S-165 · Derived Value Freshness Tracker](stacks/s165-derived-value-freshness-tracker.md)
   - [S-166 · Multi-Item Prompt Batching](stacks/s166-multi-item-prompt-batching.md)
+  - [S-167 · Source Freshness Budget Router](stacks/s167-source-freshness-budget-router.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -324,6 +325,7 @@
   - [F-135 · Extraction Output Field Normalizer](forward-deployed/f135-extraction-output-field-normalizer.md)
   - [F-136 · Extraction Lifecycle Audit Record](forward-deployed/f136-extraction-lifecycle-audit-record.md)
   - [F-137 · Linguistic Hedge Detector](forward-deployed/f137-linguistic-hedge-detector.md)
+  - [F-138 · Model Swap A/B Test](forward-deployed/f138-model-swap-ab-test.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
