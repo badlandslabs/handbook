@@ -177,6 +177,7 @@
   - [S-168 · Tool Definition Waste Audit](stacks/s168-tool-definition-waste-audit.md)
   - [S-169 · Incremental Live Data Aggregator](stacks/s169-incremental-live-data-aggregator.md)
   - [S-170 · Cost-Per-Outcome Tracker](stacks/s170-cost-per-outcome-tracker.md)
+  - [S-171 · Response Format Token Overhead](stacks/s171-response-format-token-overhead.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -332,6 +333,7 @@
   - [F-139 · Source-Driven Extraction Count Assert](forward-deployed/f139-source-driven-extraction-count-assert.md)
   - [F-140 · Extraction Date Ordering Assertions](forward-deployed/f140-extraction-date-ordering-assertions.md)
   - [F-141 · Extraction Class Distribution Monitor](forward-deployed/f141-extraction-class-distribution-monitor.md)
+  - [F-142 · Cross-Extraction Field Consistency Check](forward-deployed/f142-cross-extraction-field-consistency-check.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
