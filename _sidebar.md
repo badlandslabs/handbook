@@ -195,6 +195,7 @@
   - [S-186 · Model-Tier Calibration](stacks/s186-model-tier-calibration.md)
   - [S-187 · Prompt Cache Break-Even Calculator](stacks/s187-prompt-cache-break-even-calculator.md)
   - [S-188 · Predictive Live Data Prefetch](stacks/s188-predictive-live-data-prefetch.md)
+  - [S-189 · Request-Type Instruction Selector](stacks/s189-request-type-instruction-selector.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -368,6 +369,7 @@
   - [F-157 · Extraction Result Acceptance Gate](forward-deployed/f157-extraction-result-acceptance-gate.md)
   - [F-158 · Agent Action Pre-Execution Check](forward-deployed/f158-agent-action-pre-execution-check.md)
   - [F-159 · Tool Call Sequence Invariant](forward-deployed/f159-tool-call-sequence-invariant.md)
+  - [F-160 · Agent Termination Condition Verifier](forward-deployed/f160-agent-termination-condition-verifier.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
