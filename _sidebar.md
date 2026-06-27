@@ -167,6 +167,7 @@
   - [S-158 · Agent Turn Early Exit](stacks/s158-agent-turn-early-exit.md)
   - [S-159 · Live Field Change Notification Filter](stacks/s159-live-field-change-notification-filter.md)
   - [S-160 · Tool Call Count Budget](stacks/s160-tool-call-count-budget.md)
+  - [S-161 · Entity Change Aggregator](stacks/s161-entity-change-aggregator.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -312,6 +313,7 @@
   - [F-129 · Per-Entity Output Regression Check](forward-deployed/f129-per-entity-output-regression-check.md)
   - [F-130 · Per-Turn Model Router](forward-deployed/f130-per-turn-model-router.md)
   - [F-131 · Output Field String Pattern Validator](forward-deployed/f131-output-field-string-pattern-validator.md)
+  - [F-132 · Output Array Field Cardinality Validator](forward-deployed/f132-output-array-cardinality-validator.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
