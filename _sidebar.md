@@ -151,6 +151,7 @@
   - [S-142 · Streaming Partial Result Early Termination](stacks/s142-streaming-partial-result-early-termination.md)
   - [S-143 · Output Token Variance Tracking](stacks/s143-output-token-variance-tracking.md)
   - [S-144 · Live Data Burst Event Coalescing](stacks/s144-live-data-burst-event-coalescing.md)
+  - [S-145 · Derived Field Computation Registry](stacks/s145-derived-field-computation-registry.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -280,6 +281,7 @@
   - [F-113 · Per-Entity Data Completeness Tracking](forward-deployed/f113-per-entity-data-completeness-tracking.md)
   - [F-114 · Source Response Time SLOs](forward-deployed/f114-source-response-time-slos.md)
   - [F-115 · Output Schema Migration Test Harness](forward-deployed/f115-output-schema-migration-test-harness.md)
+  - [F-116 · Per-Field Extraction Error Rate Tracking](forward-deployed/f116-per-field-extraction-error-rate-tracking.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
