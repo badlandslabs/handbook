@@ -144,6 +144,7 @@
   - [S-135 · Per-Entity Cache Warming from Change Events](stacks/s135-per-entity-cache-warming-from-change-events.md)
   - [S-136 · Adaptive Per-Entity Poll Rate](stacks/s136-adaptive-per-entity-poll-rate.md)
   - [S-137 · Multi-Source Field-Level Merge](stacks/s137-multi-source-field-level-merge.md)
+  - [S-138 · Source Response Normalization](stacks/s138-source-response-normalization.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -266,6 +267,7 @@
   - [F-106 · Intra-Output Contradiction Detection](forward-deployed/f106-intra-output-contradiction-detection.md)
   - [F-107 · In-Flight Request Deduplication](forward-deployed/f107-in-flight-request-deduplication.md)
   - [F-108 · Streaming Output Token Metering](forward-deployed/f108-streaming-output-token-metering.md)
+  - [F-109 · Pre-Execution Run Cost Projection](forward-deployed/f109-pre-execution-run-cost-projection.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
