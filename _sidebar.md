@@ -193,6 +193,7 @@
   - [S-184 · Input Token Structure Audit](stacks/s184-input-token-structure-audit.md)
   - [S-185 · Task Merge vs Split Cost Model](stacks/s185-task-merge-vs-split-cost-model.md)
   - [S-186 · Model-Tier Calibration](stacks/s186-model-tier-calibration.md)
+  - [S-187 · Prompt Cache Break-Even Calculator](stacks/s187-prompt-cache-break-even-calculator.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -364,6 +365,7 @@
   - [F-155 · Extraction Array Field Uniqueness Check](forward-deployed/f155-extraction-array-field-uniqueness-check.md)
   - [F-156 · Extraction Field Length Bounds Check](forward-deployed/f156-extraction-field-length-bounds-check.md)
   - [F-157 · Extraction Result Acceptance Gate](forward-deployed/f157-extraction-result-acceptance-gate.md)
+  - [F-158 · Agent Action Pre-Execution Check](forward-deployed/f158-agent-action-pre-execution-check.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
