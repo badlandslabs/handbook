@@ -1,6 +1,6 @@
 # S-31 · Prompt Compression
 
-Retrieved documents injected into prompts are written for humans — they repeat themselves, hedge their claims, and bury the key facts in prose. A 450-token RAG passage often contains 200 tokens of actual signal. Sending the rest to the model costs tokens on every query and degrades attention on the parts that matter.
+Retrieved documents injected into prompts are written for humans — they repeat themselves, hedge their claims, and bury the key facts in prose. A 450-token RAG passage can contain 200 tokens of actual signal. Sending the rest to the model costs tokens on every query and degrades attention on the parts that matter.
 
 ## Forces
 
@@ -25,7 +25,7 @@ Passage: {retrieved_text}
 
 Run at temperature 0.0. The compressed output becomes the injection, not the original.
 
-**Token pruning (higher ratios, requires separate scorer):** LLMLingua uses a small model (GPT-2 or LLaMA-7B) to score each token's perplexity. Low perplexity = predictable = removable. Removes individual tokens rather than rewriting; achieves 4–10× compression in production (20× is achievable but starts degrading accuracy).
+**Token pruning (higher ratios, requires separate scorer):** LLMLingua uses a small model (GPT-2 or LLaMA-7B) to score each token's perplexity. Low perplexity = predictable = removable. Removes individual tokens rather than rewriting; per published benchmarks (EMNLP '23, ACL '24), achieves 4–10× compression in production (20× is achievable on math benchmarks but degrades on open-domain tasks).
 
 **Compress at index time when possible.** If the same document will be retrieved across many queries, compress once during indexing and cache the result. Break-even on the compression call is ~12 queries; after that, every query is pure savings.
 
