@@ -178,6 +178,7 @@
   - [S-169 · Incremental Live Data Aggregator](stacks/s169-incremental-live-data-aggregator.md)
   - [S-170 · Cost-Per-Outcome Tracker](stacks/s170-cost-per-outcome-tracker.md)
   - [S-171 · Response Format Token Overhead](stacks/s171-response-format-token-overhead.md)
+  - [S-172 · Multi-Variant Prompt Cache Warming Planner](stacks/s172-multi-variant-prompt-cache-warming.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -334,6 +335,7 @@
   - [F-140 · Extraction Date Ordering Assertions](forward-deployed/f140-extraction-date-ordering-assertions.md)
   - [F-141 · Extraction Class Distribution Monitor](forward-deployed/f141-extraction-class-distribution-monitor.md)
   - [F-142 · Cross-Extraction Field Consistency Check](forward-deployed/f142-cross-extraction-field-consistency-check.md)
+  - [F-143 · Output Field Conditional Presence Check](forward-deployed/f143-output-field-conditional-presence-check.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
