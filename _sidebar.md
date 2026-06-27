@@ -140,6 +140,7 @@
   - [S-131 · Webhook Payload Schema Drift Detection](stacks/s131-webhook-payload-schema-drift.md)
   - [S-132 · Source Conflict Resolution Policy](stacks/s132-source-conflict-resolution-policy.md)
   - [S-133 · Embedding Batch String Deduplication](stacks/s133-embedding-batch-string-dedup.md)
+  - [S-134 · Cursor-Based Incremental Live Query](stacks/s134-cursor-based-incremental-live-query.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
@@ -258,6 +259,7 @@
   - [F-102 · Cross-Field Reference Integrity](forward-deployed/f102-cross-field-reference-integrity.md)
   - [F-103 · Response Completeness Check](forward-deployed/f103-response-completeness-check.md)
   - [F-104 · Live Source Health Monitor](forward-deployed/f104-live-source-health-monitor.md)
+  - [F-105 · Output Claim Density Routing](forward-deployed/f105-output-claim-density-routing.md)
 - **Book of the Frontier**
   - [Overview](frontier/)
   - [R-01 · Model Landscape](frontier/r01-model-landscape.md)
