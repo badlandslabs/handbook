@@ -71,6 +71,7 @@
   - [S-59 · Instruction Density](stacks/s59-instruction-density.md)
   - [S-193 · LLM-as-Judge Eval Pipeline](stacks/s193-llm-as-judge-eval-pipeline.md)
   - [S-194 · Synthetic Data Generation for Fine-Tuning](stacks/s194-synthetic-data-fine-tuning-pipeline.md)
+  - [S-195 · Agent Checkpoint and Resume](stacks/s195-agent-checkpoint-resume.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
