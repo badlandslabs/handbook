@@ -126,6 +126,7 @@
   - [F-164 · Agent Memory Decay and Staleness](forward-deployed/f164-agent-memory-decay.md)
   - [F-165 · Agent Benchmark Exploitation](forward-deployed/f165-agent-benchmark-exploitation.md)
   - [F-166 · Agent Adversarial Failure Injection](forward-deployed/f166-agent-adversarial-failure-injection.md)
+  - [F-167 · RAG Faithfulness Gate](forward-deployed/f167-rag-faithfulness-gate.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
