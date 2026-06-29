@@ -78,6 +78,7 @@
   - [S-199 · Agent Self-Healing Loops](stacks/s199-agent-self-healing-loops.md)
   - [S-200 · Agent Reliability Compounding](stacks/s200-agent-reliability-compounding.md)
   - [S-201 · MCP Server Security Hardening](stacks/s201-mcp-server-security-hardening.md)
+  - [S-202 · LLM-as-Judge Evaluation Harness](stacks/s202-llm-as-judge-harness.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
