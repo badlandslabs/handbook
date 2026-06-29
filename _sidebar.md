@@ -76,6 +76,7 @@
   - [S-197 · MCP + A2A Two-Layer Orchestration](stacks/s197-mcp-a2a-two-layer-orchestration.md)
   - [S-198 · Agent Tool-Call Guardrails](stacks/s198-agent-tool-call-guardrails.md)
   - [S-199 · Agent Self-Healing Loops](stacks/s199-agent-self-healing-loops.md)
+  - [S-200 · Agent Reliability Compounding](stacks/s200-agent-reliability-compounding.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
