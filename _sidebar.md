@@ -133,6 +133,7 @@
   - [F-168 · Runtime Constitutional Agent Governance](forward-deployed/f168-runtime-constitutional-agent-governance.md)
   - [F-169 · EU AI Act Article 12 Agent Audit Trail](forward-deployed/f169-eu-ai-act-article-12-agent-trail.md)
   - [F-170 · Agent Automation Tier Authorization](forward-deployed/f170-agent-automation-tier-authorization.md)
+  - [F-171 · Agent Drift Detection](forward-deployed/f171-agent-drift-detection.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
