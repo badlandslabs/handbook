@@ -1,6 +1,10 @@
 - [Home](/)
 - [The Laws](laws.md)
 
+- **🔥 Priority / 优先阅读**
+  - [w10 · 技能三角：Agent编排 + RAG + LLM评估](workspace/w10-skill-triangle.md) ⭐
+  - [w11 · AI大厂最稀缺的10项技能](workspace/w11-top-10-ai-skills.md)
+
 - **Book of Patterns**
   - [Overview](stacks/)
   - *— Foundations —*
