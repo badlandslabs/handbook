@@ -65,6 +65,7 @@
   - [S-57 · Negative Prompting](stacks/s57-negative-prompting.md)
   - [S-58 · Prompt Layering](stacks/s58-prompt-layering.md)
   - [S-59 · Instruction Density](stacks/s59-instruction-density.md)
+  - [S-193 · LLM-as-Judge Eval Pipeline](stacks/s193-llm-as-judge-eval-pipeline.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
