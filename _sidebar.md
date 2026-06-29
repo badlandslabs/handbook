@@ -130,6 +130,7 @@
   - [F-167 · RAG Faithfulness Gate](forward-deployed/f167-rag-faithfulness-gate.md)
   - [F-168 · Runtime Constitutional Agent Governance](forward-deployed/f168-runtime-constitutional-agent-governance.md)
   - [F-169 · EU AI Act Article 12 Agent Audit Trail](forward-deployed/f169-eu-ai-act-article-12-agent-trail.md)
+  - [F-170 · Agent Automation Tier Authorization](forward-deployed/f170-agent-automation-tier-authorization.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
