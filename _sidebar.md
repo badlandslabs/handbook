@@ -81,6 +81,7 @@
   - [S-202 · LLM-as-Judge Evaluation Harness](stacks/s202-llm-as-judge-harness.md)
   - [S-203 · Inference Engine Selection](stacks/s203-inference-engine-selection.md)
   - [S-204 · Agent Circuit Breaker](stacks/s204-agent-circuit-breaker.md)
+  - [S-205 · Agent Sandbox Isolation](stacks/s205-agent-sandbox-isolation.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
