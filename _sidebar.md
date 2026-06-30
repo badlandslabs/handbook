@@ -95,6 +95,7 @@
   - [S-217 · Agent Capability Authorization](stacks/s217-agent-capability-authorization.md)
   - [S-218 · Agent Stack Stratification](stacks/s218-agent-stack-stratification.md)
   - [S-219 · Agent Eval Harness](stacks/s219-agent-eval-harness.md)
+  - [S-220 · Agentic Behavioral Regression Suite](stacks/s220-agentic-behavioral-regression-suite.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
