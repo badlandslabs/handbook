@@ -102,6 +102,7 @@
   - [S-235 · Production Failure → Regression Test](stacks/s235-production-failure-to-regression-test.md)
   - [S-240 · MCP Tool Execution Isolation](stacks/s240-mcp-tool-execution-isolation.md)
   - [S-244 · Semantic Caching at the Vector Layer](stacks/s244-semantic-caching-at-the-vector-layer.md)
+  - [S-246 · The Production Eval Pipeline](stacks/s246-production-eval-pipeline-the-four-stage-loop.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
