@@ -1,0 +1,238 @@
+======================================================================
+  QUANTITATIVE SWING TRADING SCAN — 2026-06-30
+  NASDAQ (QQQ) | SPY | IWM + Top NASDAQ 100 Components
+  Horizon: 2–21 day swing trades
+======================================================================
+
+[1] Fetching Index Data for Macro Regime Classification...
+  QQQ: 124 bars, last close $724.08 | SMA200=False | RSI14=True
+  SPY: 124 bars, last close $741.00 | SMA200=False | RSI14=True
+  IWM: 124 bars, last close $298.97 | SMA200=False | RSI14=True
+
+[2] Macro Regime Classification...
+  SPY:  UNKNOWN
+  QQQ:  UNKNOWN
+  IWM:  UNKNOWN
+
+  ★ CONSENSUS REGIME: TRANSITIONAL
+
+[3] Fetching Component Data & Scoring...
+  [1/27] NVDA... score=2.5 RSI=NEUTRAL (37.5)
+  [2/27] ADP... score=6 RSI=OPTIMAL zone (47.0)
+  [3/27] TEAM... score=5.0 RSI=OVERSOLD bounce potential (24.8)
+  [4/27] COST... score=3.0 RSI=NEUTRAL (38.8)
+  [5/27] DDOG... score=6.5 RSI=OPTIMAL zone (63.5)
+  [6/27] ADBE... score=4 RSI=OVERSOLD bounce potential (24.7)
+  [7/27] AAPL... score=4.0 RSI=NEUTRAL (35.3)
+  [8/27] AMAT... score=5.8 RSI=NEUTRAL (73.4)
+  [9/27] AMZN... score=4.8 RSI=OPTIMAL zone (46.4)
+  [10/27] NET... score=6.0 RSI=OPTIMAL zone (47.8)
+  [11/27] LRCX... score=5.0 RSI=NEUTRAL (66.8)
+  [12/27] MSFT... score=4 RSI=OVERSOLD bounce potential (31.5)
+  [13/27] CRM... score=4 RSI=OVERSOLD bounce potential (24.4)
+  [14/27] ORCL... score=5.8 RSI=OVERSOLD bounce potential (11.3)
+  [15/27] MU... score=6.5 RSI=OPTIMAL zone (60.2)
+  [16/27] SNOW... score=7.0 RSI=OPTIMAL zone (58.6)
+  [17/27] GOOGL... score=2.0 RSI=NEUTRAL (44.4)
+  [18/27] AVGO... score=3.0 RSI=NEUTRAL (42.7)
+  [19/27] PANW... score=4.8 RSI=OVERBLOWN (82.6) — risk of reversal
+  [20/27] KLAC... score=5.0 RSI=NEUTRAL (68.3)
+  [21/27] INTC... score=7.0 RSI=OPTIMAL zone (63.9)
+  [22/27] TSLA... score=5.8 RSI=OPTIMAL zone (51.0)
+  [23/27] HON... score=3.2 RSI=NEUTRAL (68.5)
+  [24/27] QCOM... score=3.5 RSI=NEUTRAL (38.8)
+  [25/27] META... score=3.0 RSI=NEUTRAL (42.5)
+  [26/27] CRWD... score=5.8 RSI=NEUTRAL (72.0)
+  [27/27] AMD... score=6.5 RSI=OPTIMAL zone (58.5)
+
+[4] Ranking & Filtering...
+
+  Top 5 by Score:
+  #1 SNOW   | Score:   7.0 | Close: $251.65 | RSI: OPTIMAL zone (58.6) | Trend: BULL (above 20 & 50 EMA)
+  #2 INTC   | Score:   7.0 | Close: $131.72 | RSI: OPTIMAL zone (63.9) | Trend: BULL (above 20 & 50 EMA)
+  #3 DDOG   | Score:   6.5 | Close: $248.57 | RSI: OPTIMAL zone (63.5) | Trend: BULL (above 20 & 50 EMA)
+  #4 MU     | Score:   6.5 | Close: $1145.28 | RSI: OPTIMAL zone (60.2) | Trend: BULL (above 20 & 50 EMA)
+  #5 AMD    | Score:   6.5 | Close: $539.49 | RSI: OPTIMAL zone (58.5) | Trend: BULL (above 20 & 50 EMA)
+
+[5] Generating Trade Blueprints for Top 3 Setups...
+
+██████████████████████████████████████████████████████████████████████
+  STAGE 1 — EXECUTIVE SUMMARY & MARKET REGIME
+██████████████████████████████████████████████████████████████████████
+
+  Regime: TRANSITIONAL
+  Description: Transitional/Ranging Market — mixed signals, no clear trend. Use range-bound strategies.
+  SPY: UNKNOWN
+  QQQ: UNKNOWN
+  IWM: UNKNOWN
+
+██████████████████████████████████████████████████████████████████████
+  STAGE 2 — RESEARCH SYNTHESIS (Macro / Technical / Fundamental)
+██████████████████████████████████████████████████████████████████████
+
+  ▶ SNOW — Sector/Industry: N/A
+    Market Cap: $87.2B | P/E: N/A | Fwd P/E: 93.66683 | 52wk Range: 118.3 – 284.99
+    Earnings Growth: N/A | Revenue Growth: 0.335
+    Upcoming Earnings: 2026-09-03
+    Trend: BULL (above 20 & 50 EMA)
+    RSI: OPTIMAL zone (58.6) | MACD: MACD positive | Volume: Average (1.0x)
+    ATR: $14.07 (5.6%)
+    20d Range Position: 51%
+    BB Upper/Mid/Lower: $266.16 / $240.74 / $215.32
+    SMA20/50/200: $240.74 / $191.80 / $nan
+
+  ▶ INTC — Sector/Industry: N/A
+    Market Cap: $662.0B | P/E: N/A | Fwd P/E: 84.70957 | 52wk Range: 18.97 – 141.45
+    Earnings Growth: N/A | Revenue Growth: 0.072
+    Upcoming Earnings: 2026-07-23
+    Trend: BULL (above 20 & 50 EMA)
+    RSI: OPTIMAL zone (63.9) | MACD: MACD positive | Volume: Average (0.8x)
+    ATR: $10.97 (8.3%)
+    20d Range Position: 77%
+    BB Upper/Mid/Lower: $143.74 / $120.27 / $96.81
+    SMA20/50/200: $120.27 / $109.65 / $nan
+
+  ▶ DDOG — Sector/Industry: N/A
+    Market Cap: $88.5B | P/E: 621.425 | Fwd P/E: 87.0136 | 52wk Range: 98.01 – 278.705
+    Earnings Growth: 1.04 | Revenue Growth: 0.322
+    Upcoming Earnings: 2026-08-07
+    Trend: BULL (above 20 & 50 EMA)
+    RSI: OPTIMAL zone (63.5) | MACD: MACD negative | Volume: Average (0.9x)
+    ATR: $11.82 (4.8%)
+    20d Range Position: 54%
+    BB Upper/Mid/Lower: $266.80 / $235.66 / $204.52
+    SMA20/50/200: $235.66 / $199.94 / $nan
+
+██████████████████████████████████████████████████████████████████████
+  STAGE 3 — COGNITIVE CRITIQUE & REGIME ALIGNMENT RISK
+██████████████████████████████████████████████████████████████████████
+
+  Macro Alignment Check:
+    Consensus Regime: TRANSITIONAL
+    All setups below are evaluated for alignment with this regime.
+    In a TRANSITIONAL regime, LONG bias is preferred.
+    SHORT trades require explicit decoupling justification.
+
+  Bear Case for Each Setup:
+
+  SNOW Bear Case:
+    - High volatility (5.6%) — wide stops needed, position size compressed
+    - Sector rotation risk: if Nasdaq rotation occurs, SNOW could gap through stop
+
+  SNOW Invalidation Triggers:
+    1. Daily close below $223.5 → immediate exit
+    2. Macro TRANSITIONAL → confirm if regime flips to BEAR
+    3. Volume collapse below 0.5x 20d avg on entry day → abort
+    4. If earnings within 5 trading days: avoid or use earnings straddle
+
+  INTC Bear Case:
+    - High volatility (8.3%) — wide stops needed, position size compressed
+    - Sector rotation risk: if Nasdaq rotation occurs, INTC could gap through stop
+
+  INTC Invalidation Triggers:
+    1. Daily close below $109.79 → immediate exit
+    2. Macro TRANSITIONAL → confirm if regime flips to BEAR
+    3. Volume collapse below 0.5x 20d avg on entry day → abort
+    4. If earnings within 5 trading days: avoid or use earnings straddle
+
+  DDOG Bear Case:
+    - High volatility (4.8%) — wide stops needed, position size compressed
+    - Sector rotation risk: if Nasdaq rotation occurs, DDOG could gap through stop
+
+  DDOG Invalidation Triggers:
+    1. Daily close below $224.93 → immediate exit
+    2. Macro TRANSITIONAL → confirm if regime flips to BEAR
+    3. Volume collapse below 0.5x 20d avg on entry day → abort
+    4. If earnings within 5 trading days: avoid or use earnings straddle
+
+
+██████████████████████████████████████████████████████████████████████
+  STAGE 4 — TACTICAL ORDER BLUEPRINTS (Top 3 Swing Setups)
+██████████████████████████████████████████████████████████████████████
+
+======================================================================
+  SNOW   | LONG  | Score: 7.0/10 | Regime: TRANSITIONAL
+======================================================================
+  PRICE & ENTRY
+    Current Price:    $251.65
+    Entry Type:       BUY LIMIT @ $250.39
+  STOP LOSS & RISK
+    Stop Loss:        $223.5 (Risk: 11.18% / $26.89/share)
+    ATR(14):          $14.07 (5.59%)
+  PROFIT TARGETS
+    T1 (3:1 RRR):     $293.87 → +16.78% | RR: 1.5:1
+    T2 (5:1 RRR):     $322.02 → +27.96%
+  POSITION MANAGEMENT
+    Position Size:    10% of capital max
+    Trailing Stop:    Trail by 21.11 once T1 hit
+  TECHNICAL CONTEXT
+    RSI(14):          OPTIMAL zone (58.6)
+    Trend:            BULL (above 20 & 50 EMA)
+    MACD:             MACD positive
+    Volume:           Average (1.0x)
+    20d Range Pos:    51%
+  INVALIDATION: Close below $223.5 (macro BEAR shift)
+  ⚠ Earnings within window: 2026-09-03
+
+======================================================================
+  INTC   | LONG  | Score: 7.0/10 | Regime: TRANSITIONAL
+======================================================================
+  PRICE & ENTRY
+    Current Price:    $131.72
+    Entry Type:       BUY LIMIT @ $131.06
+  STOP LOSS & RISK
+    Stop Loss:        $109.79 (Risk: 16.65% / $21.27/share)
+    ATR(14):          $10.97 (8.33%)
+  PROFIT TARGETS
+    T1 (3:1 RRR):     $164.62 → +24.98% | RR: 1.5:1
+    T2 (5:1 RRR):     $186.55 → +41.63%
+  POSITION MANAGEMENT
+    Position Size:    10% of capital max
+    Trailing Stop:    Trail by 16.45 once T1 hit
+  TECHNICAL CONTEXT
+    RSI(14):          OPTIMAL zone (63.9)
+    Trend:            BULL (above 20 & 50 EMA)
+    MACD:             MACD positive
+    Volume:           Average (0.8x)
+    20d Range Pos:    77%
+  INVALIDATION: Close below $109.79 (macro BEAR shift)
+  ⚠ Earnings within window: 2026-07-23
+
+======================================================================
+  DDOG   | LONG  | Score: 6.5/10 | Regime: TRANSITIONAL
+======================================================================
+  PRICE & ENTRY
+    Current Price:    $248.57
+    Entry Type:       BUY LIMIT @ $247.33
+  STOP LOSS & RISK
+    Stop Loss:        $224.93 (Risk: 9.51% / $22.4/share)
+    ATR(14):          $11.82 (4.75%)
+  PROFIT TARGETS
+    T1 (3:1 RRR):     $284.03 → +14.27% | RR: 1.5:1
+    T2 (5:1 RRR):     $307.66 → +23.77%
+  POSITION MANAGEMENT
+    Position Size:    10% of capital max
+    Trailing Stop:    Trail by 17.73 once T1 hit
+  TECHNICAL CONTEXT
+    RSI(14):          OPTIMAL zone (63.5)
+    Trend:            BULL (above 20 & 50 EMA)
+    MACD:             MACD negative
+    Volume:           Average (0.9x)
+    20d Range Pos:    54%
+  INVALIDATION: Close below $224.93 (macro BEAR shift)
+  ⚠ Earnings within window: 2026-08-07
+
+██████████████████████████████████████████████████████████████████████
+  PORTFOLIO WATCH — REGIME EXPOSURE ADVISORY
+██████████████████████████████████████████████████████████████████████
+
+  Combined portfolio beta estimate: 0.10
+  Net exposure: 30.0%
+  Recommended max total exposure: 20-30% of capital
+  In TRANSITIONAL regime: Ranging — fade extremes, favor mean-reversion
+
+======================================================================
+  SCAN COMPLETE — 2026-06-30
+  Data sourced via yfinance (Yahoo Finance). Scores are model-based.
+  All trades require personal due diligence before execution.
+======================================================================

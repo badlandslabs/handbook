@@ -97,6 +97,7 @@
   - [S-219 · Agent Eval Harness](stacks/s219-agent-eval-harness.md)
   - [S-220 · Agentic Behavioral Regression Suite](stacks/s220-agentic-behavioral-regression-suite.md)
   - [S-222 · Agent Trajectory Replay](stacks/s222-agent-trajectory-replay.md)
+  - [S-230 · Agent Harness Engineering](stacks/s230-agent-harness-engineering-the-eval-layer-production-demands.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

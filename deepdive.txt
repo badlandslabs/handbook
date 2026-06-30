@@ -1,0 +1,81 @@
+
+=================================================================
+  AMD DEEP-DIVE
+=================================================================
+  PRICE & VOLATILITY
+    Close: $539.49 | ATR: $37.38 (6.9% of price)
+    5d Change: -2.2%
+  MOMENTUM
+    RSI(14): 58.5
+    MACD Hist: 0.41 (cross: NEUTRAL)
+    Trend: BULL
+  STRUCTURE
+    SMA20: $513.56 | SMA50: $444.35
+    20d Range: $437.23 – $562.99 | Pos: 81%
+    Bollinger: $459.35 / $513.56 / $567.78
+    Volume: 0.8x 20d avg
+  TRADE BLUEPRINT
+    Entry:      BUY LIMIT @ $536.79
+    Stop Loss:  $464.72  (13.9% risk)
+    T1 (3:1):   $651.64  (+20.8%)
+    T2 (5:1):   $726.41  (+34.6%)
+    Reward/Risk Ratio: 1.5:1
+  FUNDAMENTALS
+    Market Cap: $879.7B
+    Forward P/E: 40.969307
+    Revenue Growth: 0.378
+    52wk Range: $133.5 – $562.99
+
+=================================================================
+  MU DEEP-DIVE
+=================================================================
+  PRICE & VOLATILITY
+    Close: $1145.28 | ATR: $109.06 (9.5% of price)
+    5d Change: -5.5%
+  MOMENTUM
+    RSI(14): 60.2
+    MACD Hist: 16.81 (cross: NEUTRAL)
+    Trend: BULL
+  STRUCTURE
+    SMA20: $1044.12 | SMA50: $815.90
+    20d Range: $854.35 – $1255.00 | Pos: 73%
+    Bollinger: $853.87 / $1044.12 / $1234.38
+    Volume: 1.0x 20d avg
+  TRADE BLUEPRINT
+    Entry:      BUY LIMIT @ $1139.55
+    Stop Loss:  $927.15  (19.0% risk)
+    T1 (3:1):   $1472.47  (+28.6%)
+    T2 (5:1):   $1690.59  (+47.6%)
+    Reward/Risk Ratio: 1.5:1
+  FUNDAMENTALS
+    Market Cap: $1.3T
+    Forward P/E: 7.6536484
+    Revenue Growth: 3.457
+    52wk Range: $103.38 – $1255.0
+
+=================================================================
+  TSLA DEEP-DIVE
+=================================================================
+  PRICE & VOLATILITY
+    Close: $411.84 | ATR: $18.60 (4.5% of price)
+    5d Change: +1.7%
+  MOMENTUM
+    RSI(14): 51.0
+    MACD Hist: -4.08 (cross: NEUTRAL)
+    Trend: NEUTRAL
+  STRUCTURE
+    SMA20: $400.36 | SMA50: $405.22
+    20d Range: $368.60 – $433.60 | Pos: 67%
+    Bollinger: $369.37 / $400.36 / $431.34
+    Volume: 1.2x 20d avg
+  TRADE BLUEPRINT
+    Entry:      BUY LIMIT @ $409.78
+    Stop Loss:  $374.64  (9.0% risk)
+    T1 (3:1):   $467.64  (+13.5%)
+    T2 (5:1):   $504.84  (+22.6%)
+    Reward/Risk Ratio: 1.5:1
+  FUNDAMENTALS
+    Market Cap: $1.5T
+    Forward P/E: 164.60037
+    Revenue Growth: 0.158
+    52wk Range: $288.77 – $498.83
