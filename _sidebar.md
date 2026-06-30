@@ -98,6 +98,7 @@
   - [S-220 · Agentic Behavioral Regression Suite](stacks/s220-agentic-behavioral-regression-suite.md)
   - [S-222 · Agent Trajectory Replay](stacks/s222-agent-trajectory-replay.md)
   - [S-230 · Agent Harness Engineering](stacks/s230-agent-harness-engineering-the-eval-layer-production-demands.md)
+  - [S-233 · Agent Failure Classification and Recovery Pipeline](stacks/s233-agent-failure-classification-and-recovery-pipeline.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
