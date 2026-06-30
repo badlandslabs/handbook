@@ -93,6 +93,8 @@
   - [S-214 · Multi-Agent Orchestration Pattern Selection](stacks/s214-multi-agent-pattern-selection.md)
   - [S-215 · Model Merging for Agent Specialization](stacks/s215-model-merging.md)
   - [S-217 · Agent Capability Authorization](stacks/s217-agent-capability-authorization.md)
+  - [S-218 · Agent Stack Stratification](stacks/s218-agent-stack-stratification.md)
+  - [S-219 · Agent Eval Harness](stacks/s219-agent-eval-harness.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
