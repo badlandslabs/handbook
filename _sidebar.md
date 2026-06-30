@@ -116,6 +116,7 @@
   - [S-259 · OWASP ASI Top 10 for Agentic AI](stacks/s259-owasp-asi-top-10-for-agentic-applications.md)
   - [S-260 · The Agent Stack Is Stratifying Into Six Layers](stacks/s260-the-agent-stack-is-stratifying-into-six-layers.md)
   - [S-261 · MCP Security — The Attack Surface You Inherited](stacks/s261-mcp-security-attack-surface.md)
+  - [S-264 · Per-Engineer AI Cost Attribution](stacks/s264-per-engineer-ai-cost-attribution.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
