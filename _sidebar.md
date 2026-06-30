@@ -143,6 +143,7 @@
   - [F-171 · Agent Drift Detection](forward-deployed/f171-agent-drift-detection.md)
   - [F-172 · Agent Workflow Graph State](forward-deployed/f172-agent-workflow-graph-state.md)
   - [F-173 · Agentic Corrective RAG](forward-deployed/f173-agentic-corrective-rag.md)
+  - [F-174 · Constraint Decay in Code Agents](forward-deployed/f174-constraint-decay-in-code-agents.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
