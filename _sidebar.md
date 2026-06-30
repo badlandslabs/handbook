@@ -86,6 +86,7 @@
   - [S-207 · Semantic Caching for Agents](stacks/s207-semantic-caching-for-agents.md)
   - [S-208 · Per-Tenant LLM Cost Attribution](stacks/s208-per-tenant-llm-cost-attribution.md)
   - [S-209 · Agent Production Observability](stacks/s209-agent-production-observability.md)
+  - [S-210 · Agentic Knowledge Compilation](stacks/s210-agent-knowledge-compilation.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
