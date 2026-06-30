@@ -104,6 +104,8 @@
   - [S-244 · Semantic Caching at the Vector Layer](stacks/s244-semantic-caching-at-the-vector-layer.md)
   - [S-246 · The Production Eval Pipeline](stacks/s246-production-eval-pipeline-the-four-stage-loop.md)
   - [S-249 · Agentic Payment Layer — AP2](stacks/s249-agentic-payment-layer-ap2.md)
+  - [S-250 · Four Multi-Agent Orchestration Patterns in Production](stacks/s250-four-multi-agent-orchestration-patterns-production.md)
+  - [S-251 · Golden Dataset Curation as Code](stacks/s251-golden-dataset-curation-as-code.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
