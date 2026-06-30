@@ -160,6 +160,7 @@
   - [F-175 · Agent Capability Negotiation](forward-deployed/f175-agent-capability-negotiation.md)
   - [F-176 · Agent Runbook-Driven Reliability](forward-deployed/f176-agent-runbook-driven-reliability.md)
   - [F-177 · Deterministic Agent Verification](forward-deployed/f177-deterministic-agent-verification.md)
+  - [F-178 · Synthetic Test Data Generation](forward-deployed/f178-synthetic-test-data-generation.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
