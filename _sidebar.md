@@ -84,6 +84,7 @@
   - [S-205 · Agent Sandbox Isolation](stacks/s205-agent-sandbox-isolation.md)
   - [S-206 · Context Debt](stacks/s206-context-debt.md)
   - [S-207 · Semantic Caching for Agents](stacks/s207-semantic-caching-for-agents.md)
+  - [S-208 · Per-Tenant LLM Cost Attribution](stacks/s208-per-tenant-llm-cost-attribution.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
