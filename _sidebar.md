@@ -131,6 +131,7 @@
   - [S-280 · MCP Server Governance](stacks/s280-mcp-server-governance.md)
   - [S-281 · Agent Evaluation Is the Missing Layer Nobody Builds Until Production Breaks](stacks/s281-agent-evaluation-the-layer-nobody-builds-until-production-breaks.md)
   - [S-282 · Agent Guardrails](stacks/s282-agent-guardrails.md)
+  - [S-289 · Agentic Red Teaming: Structured Methodology](stacks/s289-agentic-red-teaming-structured-methodology.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
