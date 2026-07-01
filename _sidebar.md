@@ -202,6 +202,7 @@
   - [F-183 · Agent Session Continuity](forward-deployed/f183-agent-session-continuity.md)
   - [F-184 · Agent Loop Invariant Checking](forward-deployed/f184-agent-loop-invariant-checking.md)
   - [F-185 · Cross-Session Memory Poisoning](forward-deployed/f185-cross-session-memory-poisoning.md)
+  - [F-186 · AI Agent NHI Governance](forward-deployed/f186-ai-agent-nhi-identity-governance.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
