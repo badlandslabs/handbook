@@ -129,6 +129,8 @@
   - [S-272 · Agent Circuit Breakers and Spend Guards](stacks/s272-agent-circuit-breakers-and-spend-guards.md)
   - [S-276 · Adversarial Agent CI Testing — RAMPART & PyRIT](stacks/s276-adversarial-agent-ci-testing-rampart-pyrit.md)
   - [S-280 · MCP Server Governance](stacks/s280-mcp-server-governance.md)
+  - [S-281 · Agent Evaluation Is the Missing Layer Nobody Builds Until Production Breaks](stacks/s281-agent-evaluation-the-layer-nobody-builds-until-production-breaks.md)
+  - [S-282 · Agent Guardrails](stacks/s282-agent-guardrails.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
