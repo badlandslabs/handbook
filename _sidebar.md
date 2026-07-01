@@ -127,6 +127,7 @@
   - [S-269 · MCP Tool Abstraction Layer](stacks/s269-mcp-tool-abstraction-layer.md)
   - [S-270 · Choosing an Eval Framework](stacks/s270-choosing-an-eval-framework.md)
   - [S-272 · Agent Circuit Breakers and Spend Guards](stacks/s272-agent-circuit-breakers-and-spend-guards.md)
+  - [S-276 · Adversarial Agent CI Testing — RAMPART & PyRIT](stacks/s276-adversarial-agent-ci-testing-rampart-pyrit.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
