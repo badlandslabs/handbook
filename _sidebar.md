@@ -121,6 +121,10 @@
   - [S-264 · Per-Engineer AI Cost Attribution](stacks/s264-per-engineer-ai-cost-attribution.md)
   - [S-265 · When to Use a Framework and When to Go Direct](stacks/s265-when-to-use-a-framework-and-when-to-go-direct.md)
   - [S-266 · Inter-Agent Trust Delegation](stacks/s266-inter-agent-trust-delegation.md)
+  - [S-267 · Tiered Model Routing](stacks/s267-tiered-model-routing-cost-slash.md)
+  - [S-268 · Multi-Agent Coordination Patterns](stacks/s268-multi-agent-coordination-patterns.md)
+  - [S-269 · MCP Tool Abstraction Layer](stacks/s269-mcp-tool-abstraction-layer.md)
+  - [S-270 · Choosing an Eval Framework](stacks/s270-choosing-an-eval-framework.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
