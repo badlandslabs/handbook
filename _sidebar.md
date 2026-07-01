@@ -227,6 +227,7 @@
   - [F-190 · Kubernetes Agent Sandbox Controller](forward-deployed/f190-kubernetes-agent-sandbox-controller.md)
   - [F-191 · AI Agent Evaluation Harness](forward-deployed/f191-ai-agent-evaluation-harness.md)
   - [F-192 · Cost Velocity Circuit Breaker](forward-deployed/f192-cost-velocity-circuit-breaker.md)
+  - [F-193 · Agent Escalation Gating](forward-deployed/f193-agent-escalation-gating.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
