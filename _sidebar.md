@@ -18,6 +18,7 @@
   - [S-08 · Prompt Caching](stacks/s08-prompt-caching.md)
   - [S-09 · Memory Systems](stacks/s09-memory-systems.md)
   - [S-10 · MCP](stacks/s10-mcp.md)
+  - [S-100 · Agentic RAG](stacks/s100-agentic-rag.md)
   - *— Architecture —*
   - [S-11 · LLM Gateway and Fallback Architecture](stacks/s11-llm-gateway-fallback.md)
   - [S-12 · Streaming Response Delivery](stacks/s12-streaming.md)
