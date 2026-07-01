@@ -207,6 +207,7 @@
   - [F-185 · Cross-Session Memory Poisoning](forward-deployed/f185-cross-session-memory-poisoning.md)
   - [F-186 · AI Agent NHI Governance](forward-deployed/f186-ai-agent-nhi-identity-governance.md)
   - [F-187 · Cross-Surface Consistency Collapse](forward-deployed/f187-cross-surface-consistency-collapse.md)
+  - [F-188 · AI Agent Red Teaming](forward-deployed/f188-ai-agent-red-teaming.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
