@@ -200,6 +200,7 @@
   - [F-182 · MCP Server CVE Supply Chain Exploits](forward-deployed/f182-mcp-server-cve-supply-chain-exploits.md)
   - [F-183 · Agent Session Continuity](forward-deployed/f183-agent-session-continuity.md)
   - [F-184 · Agent Loop Invariant Checking](forward-deployed/f184-agent-loop-invariant-checking.md)
+  - [F-185 · Cross-Session Memory Poisoning](forward-deployed/f185-cross-session-memory-poisoning.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
