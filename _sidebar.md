@@ -141,6 +141,9 @@
   - [S-303 · Agentic Memory: From Stateless to Stateful Agents](stacks/s303-agentic-memory-from-stateless-to-stateful-agents.md)
   - [S-304 · The Agent Cost Trace: Making Invisible Spend Visible](stacks/s304-agent-cost-trace-attribution-in-production.md)
   - [S-305 · Agent Trajectory Assertions](stacks/s305-agent-trajectory-assertions.md)
+  - [S-306 · MCP Tool Description Quality Is the Bottleneck](stacks/s306-mcp-tool-description-quality-is-the-bottleneck.md)
+  - [S-307 · The Agent Stack Is Stratifying — Stop Building Monoliths](stacks/s307-the-agent-stack-is-stratifying.md)
+  - [S-308 · Production Per-Turn Agent Evaluation: Closing the Eval-Production Gap](stacks/s308-production-per-turn-agent-evaluation.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
