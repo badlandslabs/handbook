@@ -196,6 +196,7 @@
   - [F-180 · AI Incident Commander](forward-deployed/f180-ai-incident-commander.md)
   - [F-181 · Silent Tool Call Failures](forward-deployed/f181-silent-tool-call-failures.md)
   - [F-182 · MCP Server CVE Supply Chain Exploits](forward-deployed/f182-mcp-server-cve-supply-chain-exploits.md)
+  - [F-183 · Agent Session Continuity](forward-deployed/f183-agent-session-continuity.md)
   - [F-110 · Agent Sandboxing](forward-deployed/f110-agent-sandboxing.md)
 
 - **Book of the Frontier**
