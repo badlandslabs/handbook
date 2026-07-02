@@ -158,6 +158,8 @@
   - [S-344 · Cost-Aware Multi-Dimensional Agent Evaluation](stacks/s344-cost-aware-multi-dimensional-agent-evaluation.md)
   - [S-346 · The Token Cost Trap: Multi-Agent Economics and Fixes](stacks/s346-the-token-cost-trap-multi-agent-economics-and-fixes.md)
   - [S-347 · Kubernetes-Native Agent Sandbox](stacks/s347-kubernetes-native-agent-sandbox.md)
+  - [S-348 · When to Split: Multi-Agent Coordination Patterns](stacks/s348-when-to-split-multi-agent-coordination-patterns.md)
+  - [S-349 · Agentic Guardrails: The Four-Layer Enforcement Plane](stacks/s349-agentic-guardrails-four-layer-enforcement-plane.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
