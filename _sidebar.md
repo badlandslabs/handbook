@@ -46,6 +46,7 @@
   - [S-33 · Live Data vs Stale Snapshots](stacks/s33-live-data-vs-stale-snapshots.md)
   - [S-34 · Narrow-Scope Agent Design](stacks/s34-narrow-scope-agent-design.md)
   - [S-35 · Latency Budget](stacks/s35-latency-budget.md)
+  - [S-355 · Agent Autonomy Levels](stacks/s355-agent-autonomy-levels-bounded-autonomy.md)
   - [S-36 · System Prompt Architecture](stacks/s36-system-prompt-architecture.md)
   - [S-37 · Batch vs Real-Time Pipelines](stacks/s37-batch-vs-realtime.md)
   - [S-38 · Agent State Design](stacks/s38-agent-state-design.md)
