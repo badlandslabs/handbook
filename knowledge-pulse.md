@@ -12,6 +12,8 @@
 | I-003 | Long-Running Agent Orchestration (Planner-Worker) | planner-worker, temporal layers, strategic-tactical-operational, task decomposition, long-horizon, CORPGEN, replan, 35-minute wall | 8 | 9 | 9 | 8 | 7 | **8.35** | WRITTEN — S-357 | 2026-07-02 | 2026-07-02 |
 | I-004 | Governance Decay: Context Compaction Silently Erases Safety Constraints | governance-decay, constraint-eviction, compaction, safety, standing-policies, context-window, constraint-pinning, safety-erosion, constraintrot | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-360 | 2026-07-02 | 2026-07-02 |
 | I-005 | Budget-Aware Agents: Cost as First-Class Behavioral Dimension | budget-awareness, cost-self-regulation, token-budget, cost-per-outcome, agent-economics, cost-mode-switching, context-accumulation, resource-constrained-agent | 9 | 9 | 8 | 9 | 8 | **8.65** | WRITTEN — S-362 | 2026-07-02 | 2026-07-02 |
+|| I-006 | MCP Supply Chain: From `npx` to Production Catalog | mcp-supply-chain, artifact-pinning, sbom, slsa, ci-cd, signed-digest, mcp-registry, artifact-security, catalog-governance, artifact-provenance | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-365 | 2026-07-02 | 2026-07-02 |
+|| I-007 | Agent Span Tracing: Observable Agent Sessions | opentelemetry, span, trace, observability, session-span, tool-call-trace, retrieval-trace, llm-span, trace-eval, otel-agent, agent-debugging, lineage, trace-to-eval | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-367 | 2026-07-02 | 2026-07-02 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
 
@@ -29,6 +31,7 @@
 | Governance Decay | Context compaction (summarization/eviction) silently erases in-context safety constraints — violation rates jump from 0% to 30–59% without model or prompt changes. Compaction optimizes for task continuity, not constraint preservation. Defense: Constraint Pinning (~47 pinned tokens restores 0% violations). | I-004 | Chen, arXiv:2606.22528 (27 Jun 2026). The same mechanism that prevents context overflow also destroys safety guarantees. |
 | Phase-State Machines | Action records need explicit lifecycle states (PENDING → COMMITTED → COMPENSATING → COMPENSATED) to survive distributed retries and multi-agent handoffs. | I-001 | Analogous to saga pattern in distributed transactions. |
 | Blast Radius Isolation | Compensation actions must themselves be idempotent. Using the compensation key as the idempotency key for the reversal prevents double-credit. | I-001 | Confirmed via Cordum's production guide. |
+| Agent Span Tracing | Every LLM call, tool invocation, and state transition is a typed, timestamped span in a trace tree. Session root span → LLM spans → tool spans (retrieval/action/compute) → nested compaction/handoff spans. Enables trace-driven eval (isolating which step failed) and post-hoc causality analysis across agent handoffs. Tiered export by span type (LLM to Langfuse, tools to Datadog, full tree to S3). | I-007 | OpenTelemetry SDK semantics. Fills observability gap between S-100 (agentic RAG) and S-331 (LLM-as-judge). |
 
 *When a pattern accumulates 3+ supporting ideas, synthesize a synthesis note below.*
 
@@ -86,14 +89,31 @@ token-budget → I-005
 cost-per-outcome → I-005
 agent-economics → I-003, I-005
 context-accumulation → I-003, I-005
+mcp-supply-chain → I-006
+trace → I-007
+observability → I-007
+tracing → I-007
+span → I-007
+opentelemetry → I-007
+eval → I-007
+artifact-pinning → I-006
+sbom → I-006
+catalog-governance → I-006
 ```
 
 ## Recent Decisions
 
 | Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
+| 2026-07-02 | I-007 | WRITTEN — S-367 | Agent Span Tracing (observable agent sessions) — gap: observability for multi-turn agents is completely uncovered despite being a top-3 production pain point. Tracing per-LLM-call, per-tool-call, and per-retrieval spans with OpenTelemetry enables trace-driven eval (isolating which step failed) and cross-agent causality analysis. Tiered export to Langfuse/Braintrust (LLM spans), Datadog (tool spans), and S3 (full tree for audit). Connects to S-100 (retrieval spans), S-331 (LLM-as-judge eval), S-362 (cost per span), and S-93 (error recording). Confirmed via Zylos observability research, Databricks MLflow OTel guide, and Digital Applied sandbox analysis. |
 | 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay happens). |
+| 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker as an explicit state object, cost-per-step projections enabling early termination before budget exhaustion. Connects to S-355 (bounded autonomy — budget as governance constraint) and S-356 (context accumulation cost compounding). |
+| 2026-07-02 | I-006 | WRITTEN — S-365 | MCP Supply Chain (from npx to production catalog) — gap: MCP is covered in S-10 but the supply-chain security implications of installing arbitrary server packages are not. Key pattern: artifact pinning + SBOM + signed digest + catalog governance mirror the npm security model that failed. Confirmed via Zylos MCP security research, Anthropic MCP audit guide, OWASP A06:2025. Tiered defense (pinning → SBOM → signature verification → catalog governance) closes the full chain. |
+| 2026-07-02 | I-003 | WRITTEN — S-357 | Long-Running Agent Orchestration (Planner-Worker Temporal Layer Pattern) — gap: S-05 covers multi-agent but not the temporal decomposition that makes long-horizon agents reliable. Key pattern: strategic/tactical/operational separation with 3.5x completion improvement (15.2% vs 4.3% baseline). Confirmed via Zylos CORPGEN framework. Planner runs once at strategic level; worker runs at operational level within temporal fence; no re-deriving intent mid-execution. |
+| 2026-07-02 | I-002 | WRITTEN — S-355 | Agent Autonomy Levels (Bounded Autonomy) — gap: no existing entry maps the SAE-inspired L0-L5 autonomy taxonomy to agent production decisions. Key pattern: production ceiling is L3-L4; L5 is unsafe for enterprise; the read-to-write escalation gate is the single most actionable heuristic. Confirmed across CSA v2.0, Zylos CORPGEN, and EU AI Act obligations. |
+|| 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker as an explicit state object, cost-per-step projections enabling early termination before budget exhaustion. Connects to S-355 (bounded autonomy — budget as governance constraint) and S-356 (context accumulation cost compounding). |
 | 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker injection into context, cost-aware tool selection. Timely: AgentMarketCap (Apr 2026) shows 40–60% cost reduction via budget-aware design; Orq.ai FinOps (Jun 2026) on cost-per-outcome KPIs. NOT covered by s346 (token cost trap — focuses on multiplicative compounding economics) or f192 (cost velocity circuit breaker — reactive, not behavioral). |
+| 2026-07-02 | I-006 | WRITTEN — S-365 | MCP Supply Chain (artifact integrity from npx to production catalog) — gap: MCP server hardening (s201), attack surface (s261), and protocol convergence (s359) are covered, but the CI/CD artifact pipeline for MCP servers (hash-pinning, SBOM, signed digests, catalog governance gates) is completely missing. Key pattern: treating MCP servers as production artifacts with the same rigor as container images. Timely: JFrog detected active MCP server exploits in Q1 2026; Kong MCP Registry, Cisco/CrowdStrike MCP governance, and OBOT.ai's pipeline hardening guide all published in mid-2026. The npx→production gap is where the next major MCP security incident will come from. |
 | 2026-07-02 | I-001 | WRITTEN — S-352 | Compensation keys (distinct from idempotency keys) cover the layer above: reversing correctly-executed wrong-intent actions. All existing entries (S-93, S-181, F-107) cover prevention/deduplication — none cover autonomous reversal. Gap confirmed by Cordum, AgentMag, and early GitHub discussions on agentic compensation. |
 | 2026-07-02 | I-003 | WRITTEN — S-357 | Long-Running Agent Orchestration (Planner-Worker, CORPGEN three-layer temporal decomposition). Completely uncovered in handbook — zero entries on task decomposition, planner-worker, or strategic/tactical/operational layer separation. 3.5x completion improvement and 90% cost reduction are concrete and verifiable. Runner-up: Synthetic Data Pipelines (R-13 covers research angle, stacks thin but not a gap), Constitutional Guardrails (S-349 already covers four-layer enforcement). |
 
