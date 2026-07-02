@@ -10,7 +10,8 @@
 | I-001 | Agentic Compensation Keys | idempotency, side-effects, retry, compensation, autonomous | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-352 | 2026-07-02 | 2026-07-02 |
 | I-002 | Agent Autonomy Levels (Bounded Autonomy) | autonomy levels, SAE taxonomy, L0-L5, governance, read-to-write gate, bounded autonomy, CSA, EU AI Act, trust calibration | 9 | 9 | 8 | 9 | 9 | **8.75** | WRITTEN — S-355 | 2026-07-02 | 2026-07-02 |
 | I-003 | Long-Running Agent Orchestration (Planner-Worker) | planner-worker, temporal layers, strategic-tactical-operational, task decomposition, long-horizon, CORPGEN, replan, 35-minute wall | 8 | 9 | 9 | 8 | 7 | **8.35** | WRITTEN — S-357 | 2026-07-02 | 2026-07-02 |
-| I-004 | Governance Decay: Context Compaction Silently Erases Safety Constraints | governance-decay, constraint-eviction, compaction, safety, standing-policies, context-window, constraint-pinning, tiered-constraints, safety-erosion, constraintrot | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-360 | 2026-07-02 | 2026-07-02 |
+| I-004 | Governance Decay: Context Compaction Silently Erases Safety Constraints | governance-decay, constraint-eviction, compaction, safety, standing-policies, context-window, constraint-pinning, safety-erosion, constraintrot | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-360 | 2026-07-02 | 2026-07-02 |
+| I-005 | Budget-Aware Agents: Cost as First-Class Behavioral Dimension | budget-awareness, cost-self-regulation, token-budget, cost-per-outcome, agent-economics, cost-mode-switching, context-accumulation, resource-constrained-agent | 9 | 9 | 8 | 9 | 8 | **8.65** | WRITTEN — S-362 | 2026-07-02 | 2026-07-02 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
 
@@ -79,13 +80,20 @@ constraint-pinning → I-004
 safety-erosion → I-004
 constraintrot → I-004
 guardrails → I-002, I-004
+budget-aware → I-005
+cost-self-regulation → I-005
+token-budget → I-005
+cost-per-outcome → I-005
+agent-economics → I-003, I-005
+context-accumulation → I-003, I-005
 ```
 
 ## Recent Decisions
 
 | Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
-| 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay strikes), S-206 (context debt — Governance Decay is a specific subtype). Constraint Pinning defense restores 0% violations with ~47 pinned tokens. Timeliness=10 (very recent paper), Gap=10 (zero coverage). |
+| 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay happens). |
+| 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker injection into context, cost-aware tool selection. Timely: AgentMarketCap (Apr 2026) shows 40–60% cost reduction via budget-aware design; Orq.ai FinOps (Jun 2026) on cost-per-outcome KPIs. NOT covered by s346 (token cost trap — focuses on multiplicative compounding economics) or f192 (cost velocity circuit breaker — reactive, not behavioral). |
 | 2026-07-02 | I-001 | WRITTEN — S-352 | Compensation keys (distinct from idempotency keys) cover the layer above: reversing correctly-executed wrong-intent actions. All existing entries (S-93, S-181, F-107) cover prevention/deduplication — none cover autonomous reversal. Gap confirmed by Cordum, AgentMag, and early GitHub discussions on agentic compensation. |
 | 2026-07-02 | I-003 | WRITTEN — S-357 | Long-Running Agent Orchestration (Planner-Worker, CORPGEN three-layer temporal decomposition). Completely uncovered in handbook — zero entries on task decomposition, planner-worker, or strategic/tactical/operational layer separation. 3.5x completion improvement and 90% cost reduction are concrete and verifiable. Runner-up: Synthetic Data Pipelines (R-13 covers research angle, stacks thin but not a gap), Constitutional Guardrails (S-349 already covers four-layer enforcement). |
 

@@ -49,6 +49,8 @@
   - [S-355 · Agent Autonomy Levels](stacks/s355-agent-autonomy-levels-bounded-autonomy.md)
   - [S-357 · Long-Running Agent Orchestration: The Planner-Worker Temporal Layer Pattern](stacks/s357-long-running-agent-orchestration-planner-worker-temporal-layers.md)
   - [S-360 · Governance Decay: The Silent Safety Erosion Pattern](stacks/s360-governance-decay-the-silent-safety-erosion-pattern.md)
+  - [S-361 · Agent Stack Stratification](stacks/s361-agent-stack-stratification-sandboxing-infrastructure-prerequisite.md)
+  - [S-362 · Budget-Aware Agents: Cost as a First-Class Behavioral Dimension](stacks/s362-budget-aware-agents-cost-self-regulation.md)
   - [S-36 · System Prompt Architecture](stacks/s36-system-prompt-architecture.md)
   - [S-37 · Batch vs Real-Time Pipelines](stacks/s37-batch-vs-realtime.md)
   - [S-38 · Agent State Design](stacks/s38-agent-state-design.md)
