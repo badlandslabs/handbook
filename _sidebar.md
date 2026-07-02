@@ -154,6 +154,7 @@
   - [S-331 · LLM-as-a-Judge Evaluation](stacks/s331-llm-as-judge-evaluation.md)
   - [S-335 · Preference Data Pipeline Engineering](stacks/s335-preference-data-pipeline-engineering.md)
   - [S-340 · Agent Hard Enforcement Plane](stacks/s340-agent-hard-enforcement-plane.md)
+  - [S-342 · Autonomous Context Compression](stacks/s342-autonomous-context-compression.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
