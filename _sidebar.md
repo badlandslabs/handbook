@@ -156,6 +156,8 @@
   - [S-340 · Agent Hard Enforcement Plane](stacks/s340-agent-hard-enforcement-plane.md)
   - [S-342 · Autonomous Context Compression](stacks/s342-autonomous-context-compression.md)
   - [S-344 · Cost-Aware Multi-Dimensional Agent Evaluation](stacks/s344-cost-aware-multi-dimensional-agent-evaluation.md)
+  - [S-346 · The Token Cost Trap: Multi-Agent Economics and Fixes](stacks/s346-the-token-cost-trap-multi-agent-economics-and-fixes.md)
+  - [S-347 · Kubernetes-Native Agent Sandbox](stacks/s347-kubernetes-native-agent-sandbox.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
