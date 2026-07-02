@@ -55,6 +55,7 @@
   - [S-364 · Agent Stack Stratification: MCP Convergence](stacks/s364-agent-stack-stratification-mcp-convergence.md)
   - [S-365 · MCP Supply Chain: From `npx` to Production Catalog](stacks/s365-mcp-supply-chain-from-npx-to-production-catalog.md)
   - [S-368 · Agent Span Tracing: Observable Agent Sessions](stacks/s368-agent-span-tracing-observable-agent-sessions.md)
+  - [S-370 · Agent Chaos Engineering: Fault Injection for AI Agent Reliability](stacks/s370-agent-chaos-engineering-fault-injection-testing.md)
   - [S-36 · System Prompt Architecture](stacks/s36-system-prompt-architecture.md)
   - [S-37 · Batch vs Real-Time Pipelines](stacks/s37-batch-vs-realtime.md)
   - [S-38 · Agent State Design](stacks/s38-agent-state-design.md)

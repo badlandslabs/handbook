@@ -13,7 +13,8 @@
 | I-004 | Governance Decay: Context Compaction Silently Erases Safety Constraints | governance-decay, constraint-eviction, compaction, safety, standing-policies, context-window, constraint-pinning, safety-erosion, constraintrot | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-360 | 2026-07-02 | 2026-07-02 |
 | I-005 | Budget-Aware Agents: Cost as First-Class Behavioral Dimension | budget-awareness, cost-self-regulation, token-budget, cost-per-outcome, agent-economics, cost-mode-switching, context-accumulation, resource-constrained-agent | 9 | 9 | 8 | 9 | 8 | **8.65** | WRITTEN — S-362 | 2026-07-02 | 2026-07-02 |
 || I-006 | MCP Supply Chain: From `npx` to Production Catalog | mcp-supply-chain, artifact-pinning, sbom, slsa, ci-cd, signed-digest, mcp-registry, artifact-security, catalog-governance, artifact-provenance | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-365 | 2026-07-02 | 2026-07-02 |
-|| I-007 | Agent Span Tracing: Observable Agent Sessions | opentelemetry, span, trace, observability, session-span, tool-call-trace, retrieval-trace, llm-span, trace-eval, otel-agent, agent-debugging, lineage, trace-to-eval | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-368 | 2026-07-02 | 2026-07-02 |
+|| I-008 | Agent Chaos Engineering: Fault Injection for Production Reliability | chaos-engineering, fault-injection, reliability, resilience, fault-tolerance, chaos-agent, tool-failure, api-failure, blast-radius, metamorphic-relations, ReliabilityBench, pass@k, agent-testing, production-hardening | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-370 | 2026-07-02 | 2026-07-02 |
+| I-007 | Agent Span Tracing: Observable Agent Sessions | opentelemetry, span, trace, observability, session-span, tool-call-trace, retrieval-trace, llm-span, trace-eval, otel-agent, agent-debugging, lineage, trace-to-eval | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-368 | 2026-07-02 | 2026-07-02 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
 
@@ -39,27 +40,31 @@
 
 *Add synthesized insights here when pattern density ≥ 3*
 
+| Three-Dimensional Reliability Surface R(k,ε,λ) | Production agent reliability has three independent axes: consistency (pass@k), robustness (semantic perturbations ε), and fault tolerance (tool/API failures λ). Single-metric benchmarks (pass@1) systematically overestimate — agents at 60% pass@1 may have only 25% consistency across trials. Chaos engineering tests all three simultaneously. | I-008 | ReliabilityBench (arXiv:2601.06112, Jan 2026). |
+| Action Metamorphic Relations | Correctness defined by end-state equivalence, not text similarity. "Refund processed" and "Refund processed via batch" are equally correct if the balance updated. Prevents false negatives from cosmetic output drift. | I-008 | Key insight from ReliabilityBench methodology. |
+| Blast Radius Accumulation | Agent side effects accumulate before failure detection. The cost of chaos engineering failure is measured in undone work — compensation actions, not just failed requests. Every step before failure detection is a potential write that must be reversed. | I-008, I-001 | Confirmed via Zylos chaos engineering research. |
+
 ## Deduplication Index
 
 *Keyword → idea ID mapping. Updated after each run.*
 ```
-ai-agent → I-001, I-002, I-003
+ai-agent → I-001, I-002, I-008
 llm →
-evaluation →
-reliability → I-001, I-002
-cost → I-003
+evaluation → I-008
+reliability → I-001, I-002, I-008
+cost →
 mcp →
 multi-agent → I-001, I-003
 sandbox →
 guardrails → I-002
 routing →
-memory → I-003
+memory →
 rag →
 tracing →
 synthetic-data →
 fine-tuning →
 idempotency → I-001
-side-effect → I-001
+side-effect → I-001, I-008
 compensation → I-001
 retry → I-001, I-003
 circuit-breaker →
@@ -95,16 +100,24 @@ observability → I-007
 tracing → I-007
 span → I-007
 opentelemetry → I-007
-eval → I-007
+eval → I-007, I-008
 artifact-pinning → I-006
 sbom → I-006
 catalog-governance → I-006
+chaos-engineering → I-008
+fault-injection → I-008
+blast-radius → I-001, I-008
+metamorphic-relations → I-008
+pass@k → I-008
+reliabilitybench → I-008
+agent-chaos → I-008
 ```
 
 ## Recent Decisions
 
 | Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
+| 2026-07-02 | I-008 | WRITTEN — S-370 | Agent Chaos Engineering: Fault Injection for Production Reliability — gap: fault injection testing for AI agents is completely uncovered despite being a top production pain point. All eval entries (S-219, S-202) cover *scoring* outputs; none cover *injecting failures* to discover failure modes before production. Key patterns: R(k,ε,λ) three-dimensional reliability surface from ReliabilityBench (arXiv:2601.06112), action metamorphic relations (end-state equivalence vs text similarity), three fault classes (tool/API/data failures), `agent-chaos` PyPI toolkit, three-tier pre-deployment chaos protocol, production readiness threshold R(5,0.2,0.3)≥0.80. Ties I-006 and I-007 at 9.10 composite. Chosen over data-layer reliability (already has S-100, S-33, S-128 coverage) and over LLM-as-judge critiques (S-202 already covers judge drift). |
 | 2026-07-02 | I-007 | WRITTEN — S-368 | Agent Span Tracing (observable agent sessions) — gap: observability for multi-turn agents is completely uncovered despite being a top-3 production pain point. Tracing per-LLM-call, per-tool-call, and per-retrieval spans with OpenTelemetry enables trace-driven eval (isolating which step failed) and cross-agent causality analysis. Tiered export to Langfuse/Braintrust (LLM spans), Datadog (tool spans), and S3 (full tree for audit). Connects to S-100 (retrieval spans), S-331 (LLM-as-judge eval), S-362 (cost per span), and S-93 (error recording). Confirmed via Zylos observability research, Databricks MLflow OTel guide, and Digital Applied sandbox analysis. |
 | 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay happens). |
 | 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker as an explicit state object, cost-per-step projections enabling early termination before budget exhaustion. Connects to S-355 (bounded autonomy — budget as governance constraint) and S-356 (context accumulation cost compounding). |
