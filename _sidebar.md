@@ -160,6 +160,7 @@
   - [S-347 · Kubernetes-Native Agent Sandbox](stacks/s347-kubernetes-native-agent-sandbox.md)
   - [S-348 · When to Split: Multi-Agent Coordination Patterns](stacks/s348-when-to-split-multi-agent-coordination-patterns.md)
   - [S-349 · Agentic Guardrails: The Four-Layer Enforcement Plane](stacks/s349-agentic-guardrails-four-layer-enforcement-plane.md)
+  - [S-352 · Agentic Compensation Keys: Idempotency for the Autonomous Retry Era](stacks/s352-agentic-compensation-keys-the-autonomous-retry-era.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
