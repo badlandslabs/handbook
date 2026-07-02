@@ -14,7 +14,8 @@
 | I-005 | Budget-Aware Agents: Cost as First-Class Behavioral Dimension | budget-awareness, cost-self-regulation, token-budget, cost-per-outcome, agent-economics, cost-mode-switching, context-accumulation, resource-constrained-agent | 9 | 9 | 8 | 9 | 8 | **8.65** | WRITTEN — S-362 | 2026-07-02 | 2026-07-02 |
 | I-006 | MCP Supply Chain: From `npx` to Production Catalog | mcp-supply-chain, artifact-pinning, sbom, slsa, ci-cd, signed-digest, mcp-registry, artifact-security, catalog-governance, artifact-provenance | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-365 | 2026-07-02 | 2026-07-02 |
 | I-008 | Agent Chaos Engineering: Fault Injection for Production Reliability | chaos-engineering, fault-injection, reliability, resilience, fault-tolerance, chaos-agent, tool-failure, api-failure, blast-radius, metamorphic-relations, ReliabilityBench, pass@k, agent-chaos, failure-injection | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-370 | 2026-07-02 | 2026-07-02 |
-| I-009 | Inference-Time Distillation: Cost-Efficient Agents Without Fine-Tuning | inference-time-distillation, dynamic-icl, self-consistency, cascade, agility, cost-accuracy, pareto, teacher-student, agent-cost, in-context-learning, agent-economics, distillation | 8 | 10 | 8 | 9 | 7 | **8.45** | WRITTEN — S-372 | 2026-07-02 | 2026-07-02 |
+| I-010 | Agentic Prompt Injection: Defense-in-Depth for Production | prompt-injection, defense-in-depth, capability-gating, mcp-security, zero-trust, a2a-signed-cards, blast-radius, guardrails, indirect-injection, owasp-llm01, environmental-input, human-in-the-loop, security, agent-hijacking | 10 | 10 | 9 | 9 | 7 | **9.35** | WRITTEN — S-375 | 2026-07-02 | 2026-07-02 |
+| I-011 | Entity Grounding: Knowledge Graphs as Verifiable Memory | entity-grounding, knowledge-graph, graphrag, provenance, entity-resolution, hallucination, retrieval-grounding, multi-hop, entity-linking, knowledge-graph-verification, graph-traversal, hybrid-retrieval, grounding-layer | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-378 | 2026-07-02 | 2026-07-02 |
 | I-007 | Agent Span Tracing: Observable Agent Sessions | opentelemetry, span, trace, observability, session-span, tool-call-trace, retrieval-trace, llm-span, trace-eval, otel-agent, agent-debugging, lineage, trace-to-eval | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-368 | 2026-07-02 | 2026-07-02 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
@@ -41,9 +42,13 @@
 
 *Add synthesized insights here when pattern density ≥ 3*
 
-| Inference-Time Cost-Accuracy Agility | The cost-quality tradeoff for agents is solved at inference time via dynamic ICL + self-consistency cascades — no training required. Agility (rapid iteration without human bottlenecks) is preserved while shifting the Pareto frontier. | I-009 | Sarukkai et al., arXiv:2512.02543, Stanford ICLR 2026 Workshop DATA-FM. |
+|| Retrieval Grounding vs Generation Grounding | Hallucination has two distinct failure modes: retrieval hallucination (wrong chunks) and generation hallucination (model confabulation). Vector RAG + semantic output validation addresses the second. Knowledge graph grounding addresses the first by replacing chunk retrieval with entity-level traversal. Confusing which layer you're fixing leads to wrong architectural choices. | I-011 | Microsoft GraphRAG: 16.7% → 56.2% on multi-hop reasoning (3.4×). Confirmed by PolyglotSoft, Neo4j, Atolio, and OpenReview (ICLR 2026). |
+|| Inference-Time Cost-Accuracy Agility | The cost-quality tradeoff for agents is solved at inference time via dynamic ICL + self-consistency cascades — no training required. Agility (rapid iteration without human bottlenecks) is preserved while shifting the Pareto frontier. | I-009 | Sarukkai et al., arXiv:2512.02543, Stanford ICLR 2026 Workshop DATA-FM. |
 | Action Metamorphic Relations | Correctness defined by end-state equivalence, not text similarity. "Refund processed" and "Refund processed via batch" are equally correct if the balance updated. Prevents false negatives from cosmetic output drift. | I-008 | Key insight from ReliabilityBench methodology. |
-| Blast Radius Accumulation | Agent side effects accumulate before failure detection. The cost of chaos engineering failure is measured in undone work — compensation actions, not just failed requests. Every step before failure detection is a potential write that must be reversed. | I-008, I-001 | Confirmed via Zylos chaos engineering research. |
+| Structural Input Separation | Environmental inputs (web, email, docs) must be wrapped in explicit structural markers that distinguish untrusted content from system directives. The model learns to treat marked content as informational, not authoritative. This shifts injection defense from content filtering to structural boundary enforcement. | I-010 | Inspired by Zylos 2026 research; mirrors the principle behind S-363 context position architecture (what enters the context carries weight). |
+| Capability-Gated Tool Calls | Every tool invocation is gated on the agent's proven capability, not the LLM's output. The LLM cannot grant itself capabilities — this is the enforcement boundary that makes autonomy levels (I-002) technically enforceable rather than advisory. | I-010, I-002 | Complements S-355's read-to-write escalation gate with a granular per-tool capability matrix. |
+| Environmental Input Attack Surface | Agents ingest untrusted content from the environment (web pages, emails, documents, tool responses) that carries no intrinsic trust signal. The attacker's surface = every input the agent reads. Indirect injection via RAG poisoning requires only 5 crafted documents to manipulate responses 90% of the time. | I-010 | Expands the threat model beyond adversarial user input to include passive, non-interactive attack vectors. |
+| Seven-Layer Defense-in-Depth | No single mitigation (regex filter, system prompt instruction, moderation API) is sufficient. Effective defense requires seven independent layers: structural separation, capability gating, MCP hardening, output validation, A2A identity, blast radius containment, and human-in-the-loop. Each layer covers failure modes the others miss. | I-010 | Consistent with Zylos, AgDex, OWASP LLM01 guidance. Raises attacker cost beyond practical exploitation. |
 
 ## Deduplication Index
 
@@ -88,7 +93,7 @@ standing-policies → I-004
 constraint-pinning → I-004
 safety-erosion → I-004
 constraintrot → I-004
-guardrails → I-002, I-004
+guardrails → I-002, I-004, I-010
 budget-aware → I-005
 cost-self-regulation → I-005
 token-budget → I-005
@@ -119,13 +124,36 @@ cascade → I-009
 agility → I-009
 pareto → I-009
 distillation → I-009
+prompt-injection → I-010
+defense-in-depth → I-010
+capability-gating → I-010
+zero-trust → I-010
+a2a-identity → I-010
+knowledge-graph → I-011
+graphrag → I-011
+grounding → I-011
+provenance → I-011
+entity-linking → I-011
+entity-resolution → I-011
+multi-hop → I-011
+graph-traversal → I-011
+hybrid-retrieval → I-011
+entity-grounding → I-011
+mcp-security → I-010
+indirect-injection → I-010
+owasp-llm01 → I-010
+environmental-input → I-010
+human-in-the-loop → I-010
+security → I-010
+agent-hijacking → I-010
+blast-radius → I-001, I-008, I-010
 ```
 
 ## Recent Decisions
 
 | Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
-| 2026-07-02 | I-009 | WRITTEN — S-372 | Inference-Time Distillation for Agents — gap: the cost-agility Pareto tradeoff for production agents is completely uncovered. Fine-tuning destroys iteration speed, prompt engineering is brittle. arXiv:2512.02543 (Sarukkai et al., Stanford, ICLR 2026 DATA-FM Workshop, April 2026) shows established inference-time techniques (dynamic ICL + self-consistency cascades) can shift the Pareto frontier without any training. ALFWorld: 2.5× cost reduction at 96% teacher accuracy; AppWorld: 3.5× cost reduction at 79% of teacher accuracy. Chosen over agent security defense-in-depth (partial coverage via S-261, S-276), over long-context degradation (covered via S-363), and over model collapse (covered via S-194). Key pattern: ICL retrieval quality dominates cascade quality — the trajectory corpus is the biggest lever. Composites with S-362 (cascade depth as cost-mode), S-20 (skills vs ICL), S-44 (example selection). |
+| 2026-07-02 | I-011 | WRITTEN — S-378 | Entity Grounding: Knowledge Graphs as Verifiable Memory — gap: no handbook entry covers the architectural distinction between chunk-based RAG (vector) and entity-level graph grounding, despite GraphRAG achieving 3.4× accuracy gains on multi-hop reasoning (16.7% → 56.2%). S-212 (semantic output validation) and S-221/S-374 (agentic RAG) cover adjacent ground but not the core architectural shift. Composite 9.25. Chosen over multi-agent state synchronization (partial coverage via S-373 authority design), agent memory architectures (covered by S-303/S-314, less specific), and event-driven agent coordination (covered by S-377). |
 | 2026-07-02 | I-007 | WRITTEN — S-368 | Agent Span Tracing (observable agent sessions) — gap: observability for multi-turn agents is completely uncovered despite being a top-3 production pain point. Tracing per-LLM-call, per-tool-call, and per-retrieval spans with OpenTelemetry enables trace-driven eval (isolating which step failed) and cross-agent causality analysis. Tiered export to Langfuse/Braintrust (LLM spans), Datadog (tool spans), and S3 (full tree for audit). Connects to S-100 (retrieval spans), S-331 (LLM-as-judge eval), S-362 (cost per span), and S-93 (error recording). Confirmed via Zylos observability research, Databricks MLflow OTel guide, and Digital Applied sandbox analysis. |
 | 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay happens). |
 | 2026-07-02 | I-005 | WRITTEN — S-362 | Budget-Aware Agents (cost as first-class behavioral dimension) — gap: cost observability (s322, s346, f192) is covered but budget-embedded agent behavior is not. Key pattern: 3-mode cost system (full→conservative→terminate) at 50%/80% budget thresholds, cost tracker as an explicit state object, cost-per-step projections enabling early termination before budget exhaustion. Connects to S-355 (bounded autonomy — budget as governance constraint) and S-356 (context accumulation cost compounding). |
