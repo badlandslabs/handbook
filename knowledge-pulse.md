@@ -16,6 +16,7 @@
 | I-008 | Agent Chaos Engineering: Fault Injection for Production Reliability | chaos-engineering, fault-injection, reliability, resilience, fault-tolerance, chaos-agent, tool-failure, api-failure, blast-radius, metamorphic-relations, ReliabilityBench, pass@k, agent-chaos, failure-injection | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-370 | 2026-07-02 | 2026-07-02 |
 | I-010 | Agentic Prompt Injection: Defense-in-Depth for Production | prompt-injection, defense-in-depth, capability-gating, mcp-security, zero-trust, a2a-signed-cards, blast-radius, guardrails, indirect-injection, owasp-llm01, environmental-input, human-in-the-loop, security, agent-hijacking | 10 | 10 | 9 | 9 | 7 | **9.35** | WRITTEN — S-375 | 2026-07-02 | 2026-07-02 |
 | I-011 | Entity Grounding: Knowledge Graphs as Verifiable Memory | entity-grounding, knowledge-graph, graphrag, provenance, entity-resolution, hallucination, retrieval-grounding, multi-hop, entity-linking, knowledge-graph-verification, graph-traversal, hybrid-retrieval, grounding-layer | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-378 | 2026-07-02 | 2026-07-02 |
+| I-012 | Antagonistic Validation: Team of Rivals Architecture | antagonistic-validation, team-of-rivals, multi-agent-veto, adversarial-review, swiss-cheese-model, self-correction-failure, bounded-veto, hard-soft-veto, composer-antagonist-integrator, organizational-reliability, structural-opposition, channel-capacity, shannon | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-380 | 2026-07-02 | 2026-07-02 |
 | I-007 | Agent Span Tracing: Observable Agent Sessions | opentelemetry, span, trace, observability, session-span, tool-call-trace, retrieval-trace, llm-span, trace-eval, otel-agent, agent-debugging, lineage, trace-to-eval | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-368 | 2026-07-02 | 2026-07-02 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
@@ -49,6 +50,7 @@
 | Capability-Gated Tool Calls | Every tool invocation is gated on the agent's proven capability, not the LLM's output. The LLM cannot grant itself capabilities — this is the enforcement boundary that makes autonomy levels (I-002) technically enforceable rather than advisory. | I-010, I-002 | Complements S-355's read-to-write escalation gate with a granular per-tool capability matrix. |
 | Environmental Input Attack Surface | Agents ingest untrusted content from the environment (web pages, emails, documents, tool responses) that carries no intrinsic trust signal. The attacker's surface = every input the agent reads. Indirect injection via RAG poisoning requires only 5 crafted documents to manipulate responses 90% of the time. | I-010 | Expands the threat model beyond adversarial user input to include passive, non-interactive attack vectors. |
 | Seven-Layer Defense-in-Depth | No single mitigation (regex filter, system prompt instruction, moderation API) is sufficient. Effective defense requires seven independent layers: structural separation, capability gating, MCP hardening, output validation, A2A identity, blast radius containment, and human-in-the-loop. Each layer covers failure modes the others miss. | I-010 | Consistent with Zylos, AgDex, OWASP LLM01 guidance. Raises attacker cost beyond practical exploitation. |
+| Antagonistic Validation | Reliability emerges from disagreement, not consensus. Multiple imperfect agents with misaligned incentives and bounded veto authority create structural opposition — errors must survive adversarial scrutiny before propagation. Three roles: Composer (generates), Antagonist (attacks), Integrator (decides). Vetoes are categorized hard/soft/advisory. Iteration count is bounded. Based on Swiss Cheese Model (Reason 2000) and Shannon's channel capacity. | I-012 | arXiv:2601.14351; GitHub multi-agent reliability analysis. Complements S-101 (deterministic sessions) and S-355 (L3+ autonomy requires structured oversight). |
 
 ## Deduplication Index
 
@@ -147,12 +149,21 @@ human-in-the-loop → I-010
 security → I-010
 agent-hijacking → I-010
 blast-radius → I-001, I-008, I-010
+antagonistic-validation → I-012
+team-of-rivals → I-012
+multi-agent-veto → I-012
+adversarial-review → I-012
+self-correction → I-012
+structural-opposition → I-012
+bounded-veto → I-012
+compositional-agent → I-012
 ```
 
 ## Recent Decisions
 
 | Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
+| 2026-07-02 | I-012 | WRITTEN — S-380 | Antagonistic Validation: Team of Rivals — gap: no handbook entry covers the organizational architecture for multi-agent adversarial validation. s05-multi-agent-patterns covers coordination but not structural opposition. ArXiv:2601.14351 (Vijayaraghavan et al.) provides the theoretical foundation (Swiss Cheese Model, Shannon capacity, bounded veto). APEX-Agents benchmark shows <25% first-attempt task completion; this pattern directly addresses the architectural root cause. Composite 9.45. Chosen over: semantic drift / catastrophic forgetting (covered by s94-agent-output-diffing, s79-semantic-regression-detection), recursive collapse (related but distinct failure mode, less specific pattern). |
 | 2026-07-02 | I-011 | WRITTEN — S-378 | Entity Grounding: Knowledge Graphs as Verifiable Memory — gap: no handbook entry covers the architectural distinction between chunk-based RAG (vector) and entity-level graph grounding, despite GraphRAG achieving 3.4× accuracy gains on multi-hop reasoning (16.7% → 56.2%). S-212 (semantic output validation) and S-221/S-374 (agentic RAG) cover adjacent ground but not the core architectural shift. Composite 9.25. Chosen over multi-agent state synchronization (partial coverage via S-373 authority design), agent memory architectures (covered by S-303/S-314, less specific), and event-driven agent coordination (covered by S-377). |
 | 2026-07-02 | I-007 | WRITTEN — S-368 | Agent Span Tracing (observable agent sessions) — gap: observability for multi-turn agents is completely uncovered despite being a top-3 production pain point. Tracing per-LLM-call, per-tool-call, and per-retrieval spans with OpenTelemetry enables trace-driven eval (isolating which step failed) and cross-agent causality analysis. Tiered export to Langfuse/Braintrust (LLM spans), Datadog (tool spans), and S3 (full tree for audit). Connects to S-100 (retrieval spans), S-331 (LLM-as-judge eval), S-362 (cost per span), and S-93 (error recording). Confirmed via Zylos observability research, Databricks MLflow OTel guide, and Digital Applied sandbox analysis. |
 | 2026-07-02 | I-004 | WRITTEN — S-360 | Governance Decay (context compaction silently erases safety constraints) — completely uncovered in the handbook. arXiv:2606.22528 (Chen, 27 Jun 2026) just published. Violation rates jump 0%→59% with no model/prompt changes. The same compaction systems teams deploy to avoid context overflow are simultaneously destroying safety guarantees. Directly related to S-355 (bounded autonomy — L3+ agents are highest risk), S-198 (tool-call guardrails — enforcement downstream of where decay happens). |
