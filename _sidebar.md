@@ -204,6 +204,10 @@
   - [S-348 · When to Split: Multi-Agent Coordination Patterns](stacks/s348-when-to-split-multi-agent-coordination-patterns.md)
   - [S-349 · Agentic Guardrails: The Four-Layer Enforcement Plane](stacks/s349-agentic-guardrails-four-layer-enforcement-plane.md)
   - [S-352 · Agentic Compensation Keys: Idempotency for the Autonomous Retry Era](stacks/s352-agentic-compensation-keys-the-autonomous-retry-era.md)
+  - [S-500 · Action Hallucination Detection: When the Agent Completes a Task It Never Performed](stacks/s500-action-hallucination-detection.md)
+  - [S-501 · AgentOps Evaluation Stack: The Five-Layer Production Eval System](stacks/s501-agentops-evaluation-stack.md)
+  - [S-502 · The Stratifying Stack: Six Layers, Three Winners, One Defensible Asset](stacks/s502-stratifying-agent-stack-six-layers.md)
+  - [S-503 · Consequential Action Gates: Tiered HITL Architecture for Production Agents](stacks/s503-consequential-action-gates-tiered-hitl-architecture.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
