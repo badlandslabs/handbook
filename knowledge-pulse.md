@@ -39,6 +39,7 @@
 | I-043 | Agent Behavioral Contracts: Design-by-Contract for the Autonomous Era | behavioral-contract, design-by-contract, agent-specification, declarative-governance, invariant, precondition, postcondition, behavior-intent, behavior-lock, promotion-invariant, policy-as-code, ABC, EU-AI-Act, governance-artifact, contract-enforcement | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-454 | 2026-07-03 | 2026-07-03 |
 | I-046 | Agentic Prompt Caching: Cache-Aware Agent Loop Design | agentic-caching, cache-boundary-design, three-layer-cache, hierarchical-caching, system-prompt-only, cache-break-cost, milestone-boundary, layer-a-b-c, token-budget, context-cache, ephemeral-cache, static-prefix, dynamic-suffix, arXiv:2601.06007 | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-462 | 2026-07-03 | 2026-07-03 |
 | I-042 | Agent Evaluation Harness: Pinned Eval Set Anti-Regression | eval-harness, pinned-eval-set, CI-regression-gate, LLM-judge, oracle-hierarchy, trace-to-test, production-trace, continuous-eval, anti-regression, eval-dataset, tool-sequence-check, outcome-check, trace-conversion | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-538 | 2026-07-04 | 2026-07-04 |
+| I-048 | The Self-Correction Gap: When Agents Can't Self-Heal | self-correction, reflection-loop, reflexion, generate-evaluate-revise, validation-loop, objective-signal, subjective-signal, llm-as-judge, self-heal, scaffolding, echo-chamber, round-limit, Type-1-reflexion, Type-2-reflexion, Type-3-reflexion | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-561 | 2026-07-04 | 2026-07-04 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
 
@@ -48,7 +49,7 @@
 |---------|-------------|---------------------|-------|
 | L0–L5 Autonomy Taxonomy | Inspired by SAE J3016 automotive standards; the dividing line is L2 vs L3 (pre-action approval vs post-action audit). Production ceiling is L3–L4. L5 is explicitly unsafe for enterprise across CSA, ASDLC, Zylos, and SAE frameworks. | I-002 | Critical convergence: all independent frameworks agree on the same levels. |
 | Bounded Autonomy | Agents get wide latitude within enforceable fences; escalation is mandatory at defined boundaries. The absence of an explicit level is not L0 — it is "whatever the agent can get away with." | I-002 | L3+ requires undo stack + governance agent overlay. |
-| Behavioral Contract Pattern | Formal specification of agent behavior as a structured contract tuple (P, I_hard, I_soft, G_hard, G_soft, R) with two deployment artifacts: human-authored `behavior.intent` and machine-generated `behavior.lock`. The contract makes behavioral compliance measurable rather than a feeling. Enforced at tool-call boundaries, not at output level. Sourced from BehaviorSpec (Solsta, March 2026) and ABC (Bhardwaj, arxiv:2602.22302, Feb 2026). | I-043 | Supplements — not replaces — guardrails (S-349) and autonomy levels (S-002). Contracts are the specification layer; guardrails are the enforcement layer. |
+| Behavioral Contract Pattern | Formal specification of agent behavior as a structured contract tuple (P, I_hard, I_soft, G_hard, G_soft, R) with two deployment artifacts: human-authored `behavior.intent` and machine-generated `behavior.lock`. The contract makes behavioral compliance measurable rather than a feeling. Sourced from BehaviorSpec (Solsta, March 2026) and ABC (Bhardwaj, arxiv:2602.22302, Feb 2026). I-049 extends this to output-surface contracting: Pydantic-based surface-level invariants validated at every production output, with three-tier violation handling (HARD reject / SOFT flag / QUALITY queue). The hard/soft partition at the output boundary is the key design decision — it blocks catastrophic outputs while allowing graceful degradation. | I-043, I-049 | Supplements — not replaces — guardrails (S-349) and autonomy levels (S-002). Contracts are the specification layer; guardrails are the enforcement layer; output contracting is the telemetry layer. |
 | Delivery-Gate Pattern | Run success ≠ delivery success. The agent runtime tracks loop completion; the user receives the outcome. When budget cuts or timeouts interrupt, delivery (the last step) is the first casualty. Treat verification as a required gate, not a best-effort step. | I-034 | Confirmed across Pazi.ai (cron "succeed but never deliver"), Harness Engineering (11-day stale-token case), Maxim AI observability guide. Gates must be out-of-band reads, not tool return values. |
 | Semantic Exit Gate | Agents return HTTP 200 and complete workflows while silently corrupting downstream state. The detection gap: traditional observability (latency, error rate) shows green; semantic correctness is never checked. Semantic exit gates define business invariants per tool and enforce them (BLOCK/WARN/DEFER) before delivery. Connects Delivery-Gate (run success ≠ outcome) to LLM-as-Judge (S-193) and Reliability Compounding (S-200). | I-037 | 68% pilot-to-production failure rate (Deloitte 2025); only 5% of orgs have agents in production (Cleanlab); <1/3 satisfied with observability. Code example: SemanticExitGate class with BLOCK/WARN/DEFER modes and assert helpers. |
 | Read-to-Write Escalation Gate | The transition from reading information to modifying external systems is the single most actionable governance heuristic. Confirmed across CSA, Zylos, and Vitalora. Every escalation taxonomy converges here. | I-002 | This is a technical gate (function), not a policy document. |
@@ -79,6 +80,7 @@
 | Seven-Layer Defense-in-Depth | No single mitigation (regex filter, system prompt instruction, moderation API) is sufficient. Effective defense requires seven independent layers: structural separation, capability gating, MCP hardening, output validation, A2A identity, blast radius containment, and human-in-the-loop. Each layer covers failure modes the others miss. | I-010 | Consistent with Zylos, AgDex, OWASP LLM01 guidance. Raises attacker cost beyond practical exploitation. |
 | Antagonistic Validation | Reliability emerges from disagreement, not consensus. Multiple imperfect agents with misaligned incentives and bounded veto authority create structural opposition — errors must survive adversarial scrutiny before propagation. Three roles: Composer (generates), Antagonist (attacks), Integrator (decides). Vetoes are categorized hard/soft/advisory. Iteration count is bounded. Based on Swiss Cheese Model (Reason 2000) and Shannon's channel capacity. | I-012 | arXiv:2601.14351; GitHub multi-agent reliability analysis. Complements S-101 (deterministic sessions) and S-355 (L3+ autonomy requires structured oversight). |
 | Failure Mode Taxonomy + Self-Healing | Agent failures are qualitatively distinct from web service failures: F1 (loop), F2 (deadlock), F3 (resource contention), F4 (silent corruption), F5 (irreversible action). Recovery is layered: detect (watchdog/loop detector), contain (circuit breaker/budget watcher), recover (steer vs. kill decision). The compounding math is brutal: 10 steps at 85% reliability = 20% success. Zylos (2026-05-06) provides the failure taxonomy; the supervisor tree + circuit breaker architecture closes the loop. | I-032 | Zylos Research 2026-05-06; AgentCircuit (HN). Steer-vs-kill rule from practitioner HN thread. |
+| Signal Hierarchy for Self-Correction | Self-correction quality is determined by the evaluation signal type, not the model or the loop structure. Level 1 (objective/deterministic): test execution, schema validation, math verification — reliably improve across unlimited revision rounds; Reflexion reached 91% on HumanEval. Level 2 (semi-objective): format checks, policy retrieval, tool-sequence validation — use with 2-round max. Level 3 (subjective): LLM-as-judge for quality/tone — degrade after round 1 due to echo-chamber; use with 1-round only. Naive self-correction (no signal hierarchy, unlimited rounds) degrades performance on 40-60% of tasks. Cleanlab (Nov 2025): "understanding when agents are right/wrong/uncertain" is the top production challenge for 73% of enterprise teams. | I-048 | ToolHalla March 2026; CallSphere March 2026; Cleanlab AI Agents in Production 2025. Extends I-001 (retry) and I-032 (self-healing taxonomy) with the specific scaffolding that makes self-correction actually work. |
 | Quadratic Context Degradation (Smart Zone / Dumb Zone) | LLMs degrade O(n²) in attention, creating a sharp smart zone (~100K tokens) beyond which reasoning quality drops regardless of advertised context. This is orthogonal to context-window overflow: a 200K model can degrade at 70K. Long context supports retrieval but not reasoning — the two are conflated by vendor marketing. Defenses: live token budget tracking, clear-and-restart over compaction, task-level RAG-style chunking, per-model profiling. Matt Pocock / Dex Hardy framing (2026); corroborated by RULER benchmark research. | I-038 | Distinct from S-13 context-rot (entropy-based degradation over time) and S-21 context-compaction (the lossy mitigation). Smart zone is about the fixed per-call reasoning ceiling. |
 | Self-Assessment Is Untrusted | Agents evaluating their own completion is a trust inversion: the system that might have failed is the same one that declares success. False success (agent asserts completion, environment state proves otherwise) occurs at 45–48% of tau2-bench failures and 75.8% of AppWorld coding-agent trajectories. LLM judges amplify the problem by relying on the same completion narrative. TF-IDF detectors (AUROC 0.83–0.95) outperform LLM judges (AUROC 0.54–0.65) by 4–8x on the same flag rate. The fix: state-based exit gates, not text-based self-assessment. | I-039 | arXiv:2606.09863 (Advani, FAGEN@ICML 2026). Complements S-433 (semantic exit gates — pre-delivery check) and S-438 (trace vs eval gap). TF-IDF approach is fast (3,300x lower latency) and domain-calibrated. |
 | Action Hallucination vs. Tool Call Hallucination | S-396 covers Tool Call Hallucination (agent calls wrong/unregistered tool). Action Hallucination is the complement: agent claims it called a tool (or that a tool succeeded) when no such call was recorded. Both share the same root cause — the model confabulates action outcomes from completion narratives — but require different detection layers. Tool Call Hallucination is a dispatch problem; Action Hallucination is a verification problem. | I-046, I-031 | Action Hallucination: "I deleted the records" with no call in the log. Tool Call Hallucination: "I'll call search_order" (never registered). The four-layer AVL (audit log → outcome reification → risk-tier routing → schema validation) closes the verification gap that S-198 and S-257 leave open. |
@@ -96,7 +98,12 @@ oracle-hierarchy → I-042
 trace-to-test → I-042
 continuous-eval → I-042
 anti-regression → I-042
-CI-regression-gate → I-042
+| name-collision → I-050 |
+| mcp-tool-hijacking → I-050 |
+| permission-combo → I-050 |
+| server-isolation → I-050 |
+| typosquatting → I-050, I-006 |
+| cve-2026-30856 → I-050 |
 *Keyword → idea ID mapping. Updated after each run.*
 ```
 ai-agent → I-001, I-002, I-008
@@ -109,7 +116,14 @@ multi-agent → I-001, I-003
 sandbox →
 guardrails → I-002
 failure-mode → I-032
-self-heal → I-032
+self-heal → I-032, I-048
+self-correction → I-048
+reflection → I-048
+reflexion → I-048
+generate-evaluate-revise → I-048
+validation-loop → I-048
+objective-signal → I-048
+llm-as-judge → I-042, I-048
 loop → I-032
 deadlock → I-032
 circuit-breaker → I-032
@@ -206,6 +220,18 @@ judge-health → I-042
 judge-degraded → I-042
 judge-evaluation → I-042
 llm-judge-failure → I-042
+output-contract → I-049
+semantic-regression → I-049
+behavioral-invariant → I-049
+surface-validation → I-049
+pydantic-contract → I-049
+three-tier-violation → I-049
+hard-contract → I-049
+soft-contract → I-049
+quality-signal → I-049
+eval-to-CI → I-049
+gray-failure → I-049
+green-dashboard-bad-output → I-049
 ```
 
 opentelemetry → I-007
@@ -353,9 +379,10 @@ confidence-gate-failure → I-047
 
 ## Recent Decisions
 
-| Run Date | Idea ID | Decision | Rationale |
+|| Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
-| 2026-07-03 | I-047 | WRITTEN — S-503 | Consequential Action Gates: Tiered HITL Architecture — gap: S-355 defines autonomy levels (L0–L5) and S-349 covers the general guardrail plane, but neither addresses the specific engineering pattern for routing agent actions through risk-stratified approval queues before execution. The tiered HITL architecture (T1 read-only/autonomous, T2 internal/reversible with undo, T3 external/staging queue, T4 irreversible/mandatory human approval) fills this gap. EU AI Act Article 14 (effective 2026-08-02) mandates verifiable human oversight controls for high-risk agentic systems — T4 gates provide exactly this. ISO 42001 A.8.2 maps directly to tier classification. Composite 9.50. Chosen over: Speculative Tool Execution (covered by s228/s218/s13), Semantic Caching for Agents (already S-207), Agent Decision Auditability (partial overlap with S-106 event log replay and S-101 deterministic sessions, but this entry covers the action-classificat |
+|| 2026-07-04 | I-048 | WRITTEN — S-561 | The Self-Correction Gap: When Agents Can't Self-Heal — Cleanlab Nov 2025 survey: understanding when agents are right/wrong/uncertain is the top production challenge (73% of teams).
+t |
 | 2026-07-04 | I-048 | WRITTEN — S-541 | Agent Drift Detection: Behavioral Regression in Production — gap: s113 covers schema drift (data format changes), but no entry covers behavioral drift (agent decision quality degrading over time, across sessions, or after vendor updates). Shadow traffic with frozen model is a new engineering pattern not yet in the handbook. arXiv:2601.04170 (Jan 2026) and prefactor.tech (May 2026) both confirm agent drift is a top-3 production failure mode teams are unprepared for. ASI (Agent Stability Index) metric provides a concrete scoring mechanism. Composite 9.00. Chosen over: MCP CVE taxonomy (covered by S-201/S-182), Agent Memory Interoperability (covered by S-431/S-447), Benchmark Contamination Deep-Dive (covered by S-430/S-538). |ion/enforcement layer, not the logging layer). |
 | 2026-07-03 | I-043 | WRITTEN — S-454 | Agent Behavioral Contracts — gap: no handbook entry covers formal Design-by-Contract for agents. Two independent frameworks confirmed this gap: BehaviorSpec (Solsta, March 2026) and ABC (Bhardwaj, Accenture, arxiv:2602.22302, February 2026). Both converge on the same solution: structured contract tuples (P, I, G, R) + immutable deployment binding. Contrarian: most teams believe guardrails alone are sufficient; contracts are the missing formal layer above guardrails. Composite 9.40. Chosen over: eval set coverage methodology (covered by s193, s220, s235, s281), self-correcting agent patterns (covered by s100, s281), agent identity governance (I-033 already written). |
 | 2026-07-02 | I-012 | WRITTEN — S-380 | Antagonistic Validation: Team of Rivals — gap: no handbook entry covers the organizational architecture for multi-agent adversarial validation. s05-multi-agent-patterns covers coordination but not structural opposition. ArXiv:2601.14351 (Vijayaraghavan et al.) provides the theoretical foundation (Swiss Cheese Model, Shannon capacity, bounded veto). APEX-Agents benchmark shows <25% first-attempt task completion; this pattern directly addresses the architectural root cause. Composite 9.45. Chosen over: semantic drift / catastrophic forgetting (covered by s94-agent-output-diffing, s79-semantic-regression-detection), recursive collapse (related but distinct failure mode, less specific pattern). |
@@ -386,8 +413,8 @@ confidence-gate-failure → I-047
 ## Meta
 
 - Created: 2026-07-02
-- Last Updated: 2026-07-03 (run: +I-041 agent-memory-persistence / S-447)
-- Total ideas discovered: 21
+- Last Updated: 2026-07-04 (run: +I-049 behavioral-output-contracting / S-553, +I-052 eval-illusion / S-569)
+- Total ideas discovered: 22
 - Total patterns distilled: 7
 
 | I-030 | Untrusted Content Ingestion Gate | content-sanitization, indirect-prompt-injection, trust-boundary, document-security, content-boundary, ingestion-layer, CVE-2026-2256, EchoLeak, data-exfiltration, defense-in-depth | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-389 | 2026-07-02 | 2026-07-02 |
@@ -402,5 +429,16 @@ confidence-gate-failure → I-047
 
 | 2026-07-04 | I-042 | WRITTEN — S-538 | Agent Evaluation Harness: Pinned Eval Set Anti-Regression — gap: S-94 covers mechanical output diffing (tool sequence comparison); S-532 covers what SLO signals to monitor; S-116 covers determinism testing. None covers the full eval harness pipeline: how to curate a pinned eval set, how to score outputs with an oracle hierarchy (near-zero → LLM judge → human), how to gate CI/CD on eval pass rate, and how to auto-convert production traces into new eval cases. MCPlato (May 2026) and Extency (April 2026) both confirm this is the #1 operational gap for production agents. Composite 9.35. Chosen over: Synthetic Training Data from Agent Traces (covered by I-041 memory patterns), Retry Economics (covered by S-95/S-99/S-531). |
 
+| 2026-07-04 | I-049 | WRITTEN — S-553 | Behavioral Output Contracting: Closing the Semantic Regression Gap — gap: no handbook entry covers surface-level output validation at the behavioral contract level (Pydantic-based invariants, three-tier violation handling, eval-to-CI promotion). S-538 (eval harness) covers the test set infrastructure but not the enforcement layer. S-525 (trace vs eval gap) identifies this problem but doesn't prescribe the pattern. S-552 (undersized eval layer) motivates it but doesn't solve it. Key insight from Arthur.ai (June 2026) and WisFlux: HTTP-layer green + semantic bad outputs is the dominant failure mode for production agents — and the existing stack has no entry targeting it directly. Three-tier partition (HARD reject / SOFT flag / QUALITY queue) borrowed from DevOps error-budget thinking applied to agent output surfaces. Composite 9.15. Ideas Bank was exhausted; discovered fresh via research on production eval best practices. |
+
+| 2026-07-04 | I-051 | WRITTEN — S-566 | Loop Engineering: The Control Layer Around Agent Execution — gap: s19 (agent loop) covers the basic ReAct cycle; s199 (self-healing loops) covers recovery after detection; neither covers the engineering decisions that prevent loops from forming in the first place. No entry covers the taxonomy of loop types (Ralph loop, plan-execute oscillation, sub-agent recursion, context window thrash) or the architectural decisions (bounded execution, progress gating, checkpoint-and-demote). Two canonical posts from steipete and Boris Cherny provide the loop taxonomy and Claude Code's demote-specialize pattern. Composite 9.25. Chosen over: Multi-Agent Conflict Resolution (covered by s268 topology patterns). |
+
+| 2026-07-04 | I-052 | WRITTEN — S-569 | The Eval Illusion: When Passing Evals Don't Prevent Production Failures — gap: s249 covers the eval gap (no evals exist); s430 covers benchmark gaming (scores are gamed); s230 covers harness engineering (bencharms are gameable); s541 covers agent drift (temporal degradation). None covers the specific failure mode where evals EXIST and PASS but production still breaks because the eval input distribution doesn't match the production distribution. Rand Corporation (2025): 80.3% of AI projects fail despite high benchmark scores. AgentMarketCap (Apr 2026): SWE-bench crosses 93.9% while enterprise production failure rates remain at 73–95%. The eval illusion is the mechanism: passing evals measure the wrong distribution. Shadow-mode production sampling and production-distribution-driven eval expansion are the core patterns. Composite 9.70. Highest-scoring unwritten idea. Chosen over: Tool Schema Drift (covered by s113 reactive schema evolution), Capability Degradation (covered by s401 agent drift). |
 
 | I-048 | Agent Drift Detection: Behavioral Regression in Production | agent-drift, behavioral-degradation, model-drift, vendor-update, shadow-traffic, ASI, agent-stability-index, semantic-drift, coordination-drift, behavioral-drift, regression-suite, production-monitoring, behavioral-baseline, prefactor, arxiv-2601.04170 | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-541 | 2026-07-04 | 2026-07-04 |
+| I-049 | Behavioral Output Contracting: Closing the Semantic Regression Gap | output-contract, semantic-regression, behavioral-invariant, surface-validation, pydantic-contract, three-tier-violation, hard-contract, soft-contract, quality-signal, eval-to-CI, regression-promotion, production-evaluation, gray-failure, green-dashboard-bad-output | 9 | 9 | 9 | 10 | 8 | **9.15** | WRITTEN — S-553 | 2026-07-04 | 2026-07-04 |
+| I-051 | Loop Engineering: The Control Layer Around Agent Execution | loop-engineering, harness-engineering, ReAct, Ralph-loop, bounded-execution, circuit-breaker, termination-condition, progress-gating, multi-loop, checkpoint, demote-specialize, Boris-Cherny, Claude-Code, loop-taxonomy, steipete | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-566 | 2026-07-04 | 2026-07-04 |
+| I-052 | The Eval Illusion: When Passing Evals Don't Prevent Production Failures | eval-illusion, distribution-gap, eval-coverage, benchmark-gap, production-distribution, shadow-mode, private-eval, adversarial-sampling, eval-feedback-loop, semantic-validation, input-coverage, eval-rot, benchmark-lies, S-249, S-430, S-230, F-189, F-196 | 10 | 9 | 10 | 10 | 9 | **9.70** | WRITTEN — S-569 | 2026-07-04 | 2026-07-04 |
+| Green-Dashboard Bad Output | Agents complete workflows and return 200 OK while silently producing wrong results. The problem isn't failure detection — it's that the success path has an undetected quality failure mode. Requires behavioral output contracting (I-049) and state verification (I-039). | I-039, I-049 | Also called "gray failure" — visible as success, catastrophic in outcome. |
+| Tool Name Collision / Permission Combination | MCP's open registry lets malicious servers hijack tool names or combine benign-looking permissions into dangerous escalation paths. Neither tool-level allowlisting nor server-level permission scopes catch the interaction effect. Requires origin-tracked tool resolution + cross-server permission audit. | I-050 | CVE-2026-30856 confirmed real exploit. OWASP MCP04-2025 covers supply chain but not runtime combination attacks. |
+|
