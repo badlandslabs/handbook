@@ -234,6 +234,20 @@
   - [S-536 · When to Split the Agent Orchestration Pattern: Decision Framework](stacks/s536-when-to-split-the-agent-orchestration-pattern-decision-framework.md)
   - [S-537 · The Agent Stack Is Stratifying into Specialized Layers](stacks/s537-the-agent-stack-is-stratifying-into-specialized-layers.md)
   - [S-538 · Agent Evaluation Harness: The Pinned Eval Set Anti-Regression Pattern](stacks/s538-agent-evaluation-harness.md)
+  - [S-553 · Behavioral Output Contracting: Closing the Semantic Regression Gap](stacks/s553-behavioral-output-contracting.md)
+  - [S-551 · Agent Semantic Versioning: The Versioning Gap](stacks/s551-agent-semantic-versioning-the-versioning-gap.md)
+  - [S-556 · MCP Tool Name Collision and Server Permission Attacks](stacks/s556-mcp-tool-hijacking.md)
+  - [S-558 · Agent Behavioral Contracts](stacks/s558-agent-behavioral-contracts.md)
+  - [S-560 · The Five-to-Ten Tool Ceiling: Where Agent Capability Plateaus](stacks/s560-the-five-to-ten-tool-ceiling.md)
+  - [S-561 · The Self-Correction Gap: When Agents Can't Self-Heal](stacks/s561-the-self-correction-gap-when-agents-cant-self-heal.md)
+  - [S-562 · The Framework Is a Deployment Timeline Decision](stacks/s562-the-framework-is-a-deployment-timeline-decision.md)
+  - [S-563 · MCP Becoming the USB of AI Tool Integration](stacks/s563-mcp-becoming-the-usb-of-ai-tool-integration.md)
+  - [S-564 · The Stack Stratifies](stacks/s564-the-stack-stratifies-why-monolithic-agent-frameworks-break-in-production.md)
+  - [S-565 · LangGraph vs CrewAI vs AutoGen](stacks/s565-langgraph-vs-crewai-vs-autogen-the-orchestration-framework-decision.md)
+  - [S-566 · Loop Engineering](stacks/s566-loop-engineering-the-control-layer-around-agent-execution.md)
+  - [S-572 · The Context Window Is Not a Vault](stacks/s572-the-context-window-is-not-a-vault-when-credentials-flow-through-llm-memory.md)
+  - [S-573 · The Stack Is Not a Stack](stacks/s573-the-stack-is-not-a-stack-its-six-layers-and-only-two-are-defensible.md)
+  - [S-574 · Agent Per-Principal, Per-Endpoint: Least Privilege at NHI Scale](stacks/s574-agent-per-principal-per-endpoint-least-privilege.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -314,6 +328,7 @@
   - [F-194 · AgentJacking & MCP Tool-Response Poisoning](forward-deployed/f194-agentjacking-mcp-tool-response-poisoning.md)
   - [F-195 · Outcome Delivery Verification](forward-deployed/f195-outcome-delivery-verification.md)
   - [F-196 · Streaming Production Evaluation: The Always-On Eval Loop](forward-deployed/f196-streaming-production-evaluation.md)
+  - [F-197 · DAG-Aware Agent Scheduling: Parallel Execution Across Turns](forward-deployed/f197-dag-aware-agent-scheduling-parallel-execution-across-turns.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
@@ -332,5 +347,4 @@
   - [R-13 · Agent Trajectory Synthesis](frontier/r13-agent-trajectory-synthesis.md)
   - [R-14 · Agent Memory Controller](frontier/r14-agent-memory-controller.md)
   - [R-15 · Domain Agent Lightweight Fine-Tuning](frontier/r15-domain-agent-lightweight-fine-tuning.md)
-
 - [Contributing](CONTRIBUTING.md)
