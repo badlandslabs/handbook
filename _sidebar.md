@@ -267,6 +267,7 @@
   - [S-633 · The Recovery Paradox: When Self-Healing Mechanisms Burn the Budget](stacks/s633-the-recovery-paradox-when-self-healing-mechanisms-burn-the-budget.md)
   - [S-638 · Agent Spend Guardrails: The Multiplication Problem](stacks/s638-agent-spend-guardrails-the-multiplication-problem.md)
   - [S-643 · The Coordination Layer Is the Product](stacks/s643-the-coordination-layer-is-the-product.md)
+  - [S-646 · Agent Drift in Multi-Agent Systems](stacks/s646-agent-drift-in-multi-agent-systems.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
