@@ -268,6 +268,11 @@
   - [S-638 · Agent Spend Guardrails: The Multiplication Problem](stacks/s638-agent-spend-guardrails-the-multiplication-problem.md)
   - [S-643 · The Coordination Layer Is the Product](stacks/s643-the-coordination-layer-is-the-product.md)
   - [S-646 · Agent Drift in Multi-Agent Systems](stacks/s646-agent-drift-in-multi-agent-systems.md)
+  - [S-651 · Agentic SLOs: The Six Metrics That Actually Matter](stacks/s651-agentic-slos-the-six-metrics-that-actually-matter.md)
+  - [S-655 · Silent Failure Detection for Production Agents](stacks/s655-silent-failure-detection-production-agents.md)
+  - [S-653 · LLM-as-Judge Failure Modes](stacks/s653-llm-as-judge-failure-modes.md)
+  - [S-658 · Golden Trace Set Curation](stacks/s658-golden-trace-set-curation.md)
+  - [S-661 · Agent Protocol Abstraction: Governing a Multi-Framework Fleet](stacks/s661-agent-protocol-abstraction-layer.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
