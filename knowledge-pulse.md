@@ -53,10 +53,12 @@
 | I-077 | MCP Credential Provisioning at Scale | mcp-gateway, credential-sprawl, tool-level-rbac, ephemeral-token, just-in-time, auth-proxy, on-behalf-of, short-lived-token, n×m-credentials, enterprise-mcp, bifrost, composio, obot, entral, oauth2.1, pcke, virtual-key, blast-radius, mcp-auth, mcp-110m | 8 | 9 | 9 | 10 | 8 | **8.55** | WRITTEN — S-663 | 2026-07-06 | 2026-07-06 |
 | I-078 | MCP Tool Description Poisoning: The Schema Is the Attack Surface | tool-description-poisoning, schema-poisoning, description-injection, OWASP-MCP-Top-10, CVE-2026-33032, mcp-security, tool-schema, cross-session-persistence, Palo-Alto-Unit-42, OX-Security-2026, 78-percent-attack-success, 200k-exposed-instances, 30-plus-CVEs, mcp-scan, schema-fingerprint, credential-exfiltration, deprecation-hijack, tool-name-hijack, supply-chain | 10 | 10 | 9 | 10 | 9 | **9.65** | WRITTEN — S-743 | 2026-07-07 | 2026-07-07 |
 | I-080 | Token Budget as First-Class Architecture: Phase Allocation Pattern | token-budget, phase-allocation, context-architecture, graceful-degradation, budget-enforcement, token-ceiling, systems-design, context-rot, reasoning-loop, architecture-constraint | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-757 | 2026-07-07 | 2026-07-07 |
+| I-081 | Memory Staleness: Fix Events as Memory-Invalidation Triggers | memory-staleness, cache-invalidation, derived-state, workaround-becomes-belief, software-fix, implicit-conflict, STALE-benchmark, provenance-tag, re-validation, memory-rot, workaround-invalidation, fix-event-trigger, memory-spoilage | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-765 | 2026-07-07 | 2026-07-07 |
 | I-079 | Agentic Memory Confabulation: The Self-Reinforcing False Belief Problem | confabulation, self-reflection, reflexive-agent, reflexion, false-belief, trial-zero-probe, reality-monitoring, belief-state-drift, self-reinforcing, hallucination-vs-confabulation, reflective-memory, ALFWorld, arxiv-2605.29463, ICML-2026, arxiv-2604.16548, memory-security, memory-lifecycle, Dixit-Kamal-Oates | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-746 | 2026-07-07 | 2026-07-07 |
 | I-076 | Agent Drift in Multi-Agent Systems | agent-drift, semantic-drift, coordination-drift, behavioral-drift, ASI, Agent Stability Index, multi-agent-degradation, drift-detection, drift-mitigation, episodic-consolidation, behavioral-anchoring, drift-aware-routing, inter-agent-agreement, 12-dimension-metric | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-646 | 2026-07-05 | 2026-07-05 |
 | I-074 | Golden Trace Set Curation | golden-trace, curated-corpus, trace-grading, anchor-positive, anchor-negative, process-grade, outcome-grade, trace-versioning, eval-seed, regression-seed, training-data-seed, coverage-check | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-658 | 2026-07-05 | 2026-07-05 |
-| I-075 | Competence Without Integrity: The Corrupt Success Pattern | corrupt-success, procedure-integrity, procedure-compliance, outcome-vs-process, trajectory-violation, benchmark-gaming, specification-gaming, confident-closing, false-success, benchmark-contamination, procedure-aware-eval, PAE, invariant-checking, procedural-gate, compliant-trajectory | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-669 | 2026-07-06 | 2026-07-06 |
+|| I-075 | Competence Without Integrity: The Corrupt Success Pattern | corrupt-success, procedure-integrity, procedure-compliance, outcome-vs-process, trajectory-violation, benchmark-gaming, specification-gaming, confident-closing, false-success, benchmark-contamination, procedure-aware-eval, PAE, invariant-checking, procedural-gate, compliant-trajectory | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-669 | 2026-07-06 | 2026-07-06 |
+| I-076 | Agent Flight Recorder: Tamper-Evident Append-Only Audit Logs for Autonomous Agents | flight-recorder, tamper-evident, hash-chain, append-only-log, agent-audit, forensic-replay, ci-regression, log-integrity, black-box, WORM, prompt-injection, compliance, SOC2, GDPR, EU-AI-Act, lightbox | 9 | 10 | 9 | 8 | 9 | **9.15** | WRITTEN — S-760 | 2026-07-07 | 2026-07-07 |
 
 *Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
 
@@ -158,6 +160,18 @@ under-consolidation → I-064
 memory-hygiene → I-064
 quarantine → I-064
 consolidation-window → I-064
+memory-staleness → I-081
+memory-rot → I-081
+cache-invalidation → I-081
+derived-state → I-081
+workaround-becomes-belief → I-081
+fix-event-trigger → I-081
+implicit-conflict → I-081
+STALE-benchmark → I-081
+provenance-tag → I-081
+re-validation → I-081
+memory-spoilage → I-081
+fix-event → I-081
 agent-sprawl → I-065
 agent-control-plane → I-065
 governance → I-065
@@ -510,7 +524,8 @@ hard-ceiling → I-080, S-02
 graceful-degradation → I-080
 context-rot → I-080
 reasoning-loop-budget → I-080
-```
+
+|| 2026-07-07 | I-081 | WRITTEN — S-765 | Memory Staleness: Fix Events as Memory-Invalidation Triggers — research: Tian Pan "Agent That Memorized Your Bug" (tianpan.co, May 2026) on workaround-as-false-belief; STALE benchmark (May 2026, implicit conflict ~55% accuracy); MemGym (May 2026); Anna Jey "Long-Term Memory That Does Not Rot" (Towards AI, May 2026). Deduplication: S-09 covers memory types/tiers but not staleness/invalidation. S-064 covers memory consolidation but not cache invalidation per software fix. Novel angle: treat every code/deploy event as a potential memory-invalidation trigger with provenance-tagged entries and re-validation at retrieval. Distinguishes from S-079 (memory confabulation — internal false belief) and S-080 (token budget — resource constraint). |
 
 ## Recent Decisions
 
@@ -561,8 +576,8 @@ t |
 ## Meta
 
 - Created: 2026-07-02
-- Last Updated: 2026-07-07 (run: +I-076 / S-749 — Agent-Native CI/CD)
-- Total ideas discovered: 76
+- Last Updated: 2026-07-07 (run: +I-068 / S-767 — Tool-Call Hallucination Plateau)
+- Total ideas discovered: 77
 - Total patterns distilled: 8
 
 | I-030 | Untrusted Content Ingestion Gate | content-sanitization, indirect-prompt-injection, trust-boundary, document-security, content-boundary, ingestion-layer, CVE-2026-2256, EchoLeak, data-exfiltration, defense-in-depth | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-389 | 2026-07-02 | 2026-07-02 |
@@ -604,6 +619,7 @@ t |
 | I-065 | Agent Sprawl Governance: The Agent Control Plane | agent-sprawl, governance, control-plane, registry, lifecycle-management, policy-enforcement, observability-bridge, inter-agent-protocol, eu-ai-act, compliance, iam, nhi, non-human-identity, ibm, mcp-vs-control-plane, audit-trail, auto-suspend, capability-registry, 45-to-1 | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-622 | 2026-07-05 | 2026-07-05 |
 | I-066 | Action Completion Verification: When "Done" Doesn't Mean Done | action-verification, completion-signal, state-verification, silent-failure, write-verify, invariant-check, read-back, state-mismatch, tool-response-vs-state, blast-radius-analysis, idempotency-masking, compensated-action | 9 | 10 | 9 | 9 | 8 | **9.05** | WRITTEN — S-627 | 2026-07-05 | 2026-07-05 |
 | I-067 | Compression Guideline Optimization (ACON): Feedback-Driven Context Compaction | acon, compression-guideline, context-compaction, feedback-loop, paired-trajectory, distill-compressor, compression-optimization, auto-compressor, guideline-evolution, constraint-preservation, long-horizon-agent, microsoft, iclr-2026, arxiv-2510.00615 | 9 | 9 | 9 | 8 | 7 | **8.65** | WRITTEN — S-753 | 2026-07-07 | 2026-07-07 |
+| I-068 | The Tool-Call Hallucination Plateau: 3-7% Per-Call Failure That Won't Go Away | tool-call-hallucination, reliability-plateau, BFCL, compounding-failure, pass-at-k, circuit-breaker, tool-schema-firewall, production-reliability, frontier-model-limitation, multi-agent-failure | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-767 | 2026-07-07 | 2026-07-07 |
 | Plan Template (Structural Cache) | Unlike KV cache (model-specific) or semantic cache (data-dependent), plan templates cache the *sequence of tool-call patterns* with a task-signature hash. Reuse happens when the structural schema matches, regardless of input values. Extracted from successful trajectories, adapted on retrieval, success-rate-gated on reuse. | I-063 | Stanford APC (NeurIPS 2025): 50.31% cost, 27.28% latency reduction. Fills the gap between [S-08] (provider caching) and [S-607] (cost compounding). |
 | Green-Dashboard Bad Output | Agents complete workflows and return 200 OK while silently producing wrong results. The problem isn't failure detection — it's that the success path has an undetected quality failure mode. Requires behavioral output contracting (I-049) and state verification (I-039). | I-039, I-049 | Also called "gray failure" — visible as success, catastrophic in outcome. |
 | Tool Name Collision / Permission Combination | MCP's open registry lets malicious servers hijack tool names or combine benign-looking permissions into dangerous escalation paths. Neither tool-level allowlisting nor server-level permission scopes catch the interaction effect. Requires origin-tracked tool resolution + cross-server permission audit. | I-050 | CVE-2026-30856 confirmed real exploit. OWASP MCP04-2025 covers supply chain but not runtime combination attacks. |

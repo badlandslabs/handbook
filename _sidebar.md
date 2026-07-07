@@ -280,6 +280,13 @@
   - [S-667 · Multi-Agent Orchestration: When to Split and How to Coordinate](stacks/s667-multi-agent-orchestration-when-to-split-and-how-to-coordinate.md)
   - [S-668 · The Trace-Eval Gap: Why Instrumented Teams Still Ship Blind](stacks/s668-the-trace-eval-gap-why-instrumented-teams-still-ship-blind.md)
   - [S-669 · Competence Without Integrity: The Corrupt Success Pattern](stacks/s669-competence-without-integrity-the-corrupt-success-pattern.md)
+  - [S-743 · MCP Tool Description Poisoning: The Schema Is the Attack Surface](stacks/s743-mcp-tool-description-poisoning-the-schema-is-the-attack-surface.md)
+  - [S-753 · Compression Guideline Optimization: The Feedback Loop That Fixes Context Compaction](stacks/s753-compression-guideline-optimization-the-feedback-loop-that-fixes-context-compaction.md)
+  - [S-760 · Agent Flight Recorder: The Tamper-Evident Audit Log for Autonomous Systems](stacks/s760-agent-flight-recorder-the-tamper-evident-audit-log-for-autonomous-systems.md)
+  - [S-761 · The God Agent Anti-Pattern and the Multi-Agent Decision Matrix](stacks/s761-the-god-agent-anti-pattern-and-the-multi-agent-decision-matrix.md)
+  - [S-762 · The Cost Convergence: Multi-Agent Parallelization as Cheaper Than It Looks](stacks/s762-the-cost-convergence-multi-agent-parallelization-as-cheaper-than-it-looks.md)
+  - [S-763 · MCP Tool Description Poisoning: The Attack Your Trusted Tools Deliver](stacks/s763-mcp-tool-description-poisoning-the-attack-your-trusted-tools-deliver.md)
+  - [S-767 · The Tool-Call Hallucination Plateau](workspace/s767-tool-call-hallucination-plateau.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
