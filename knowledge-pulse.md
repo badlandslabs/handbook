@@ -54,14 +54,26 @@
 | I-078 | MCP Tool Description Poisoning: The Schema Is the Attack Surface | tool-description-poisoning, schema-poisoning, description-injection, OWASP-MCP-Top-10, CVE-2026-33032, mcp-security, tool-schema, cross-session-persistence, Palo-Alto-Unit-42, OX-Security-2026, 78-percent-attack-success, 200k-exposed-instances, 30-plus-CVEs, mcp-scan, schema-fingerprint, credential-exfiltration, deprecation-hijack, tool-name-hijack, supply-chain | 10 | 10 | 9 | 10 | 9 | **9.65** | WRITTEN — S-743 | 2026-07-07 | 2026-07-07 |
 | I-080 | Token Budget as First-Class Architecture: Phase Allocation Pattern | token-budget, phase-allocation, context-architecture, graceful-degradation, budget-enforcement, token-ceiling, systems-design, context-rot, reasoning-loop, architecture-constraint | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-757 | 2026-07-07 | 2026-07-07 |
 | I-081 | Memory Staleness: Fix Events as Memory-Invalidation Triggers | memory-staleness, cache-invalidation, derived-state, workaround-becomes-belief, software-fix, implicit-conflict, STALE-benchmark, provenance-tag, re-validation, memory-rot, workaround-invalidation, fix-event-trigger, memory-spoilage | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-765 | 2026-07-07 | 2026-07-07 |
+|| I-082 | When Prompts Become Shells: The Agent Framework RCE Paradigm | prompt-as-attack-surface, framework-rce, cve-2026-25592, cve-2026-26030, semantic-kernel, cvss-10, sandbox-escape, eval-injection, output-interpretation, capability-audit, patch-management, least-privilege, microsoft-defender, prompt-injection-rce, function-exposure, content-vs-execution | 10 | 9 | 8 | 10 | 9 | **9.30** | WRITTEN — S-768 | 2026-07-07 | 2026-07-07 |
+|| I-083 | The Entropy Principle: Agent Systems Degrade Without External Triggers | entropy-principle, silent-failure, channel-fracture, cognitive-lag, capability-suppression, value-drift, data-consistency-drift, entropy-growth, round-compounding, entropy-rate-lambda, entropy-reset, disorder-accumulation, autonomous-degradation, multi-agent-drift, entropy-threshold | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-776 | 2026-07-07 | 2026-07-07 |
+|| I-084 | KV-Snapshot Sharing for Multi-Agent Inference | kv-snapshot, prefill-reuse, kv-cache-sharing, disaggregated-serving, prefix-reuse, copy-on-write-kv, token-hash, snapshot-registry, multi-agent-inference, inference-cost, kv-fan-out, subagent-cold-start, persistent-kv | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-464 | 2026-07-07 | 2026-07-07 |
+|| I-085 | The Eval Estimator Spectrum: pass^k vs pass@k — Why 97% Is Really 34% | pass-at-k, pass-power-k, eval-estimator, reliability-metric, benchmark-gap, majority-vote, compound-reliability, stochastic-agent, eval-benchmark, swebench, pass1-vs-passk, sampling-variance, estimator-selection, production-reliability | 9 | 9 | 10 | 9 | 9 | **9.20** | WRITTEN — S-781 | 2026-07-07 | 2026-07-07 |
+| I-085 | The Eval Estimator Spectrum: pass^k vs pass@k — Why 97% Is Really 34% | pass-at-k, pass-power-k, eval-estimator, reliability-metric, benchmark-gap, majority-vote, compound-reliability, stochastic-agent, eval-benchmark, swebench, pass1-vs-passk, sampling-variance, estimator-selection, production-reliability | 9 | 9 | 10 | 9 | 9 | **9.20** | WRITTEN — S-781 | 2026-07-07 | 2026-07-07 |
+| I-086 | A2UI Protocol: The Missing User-Facing Layer | a2ui, agent-to-user, structured-events, component-protocol, declarative-ui, three-layer-stack, mcp-a2a-a2ui, agent-protocol, streaming-ui, bidirectional-agent, google-a2ui, ag-ui, copilotkit, component-catalog, trust-boundary | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-789 | 2026-07-08 | 2026-07-08 |
 | I-079 | Agentic Memory Confabulation: The Self-Reinforcing False Belief Problem | confabulation, self-reflection, reflexive-agent, reflexion, false-belief, trial-zero-probe, reality-monitoring, belief-state-drift, self-reinforcing, hallucination-vs-confabulation, reflective-memory, ALFWorld, arxiv-2605.29463, ICML-2026, arxiv-2604.16548, memory-security, memory-lifecycle, Dixit-Kamal-Oates | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-746 | 2026-07-07 | 2026-07-07 |
 | I-076 | Agent Drift in Multi-Agent Systems | agent-drift, semantic-drift, coordination-drift, behavioral-drift, ASI, Agent Stability Index, multi-agent-degradation, drift-detection, drift-mitigation, episodic-consolidation, behavioral-anchoring, drift-aware-routing, inter-agent-agreement, 12-dimension-metric | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-646 | 2026-07-05 | 2026-07-05 |
 | I-074 | Golden Trace Set Curation | golden-trace, curated-corpus, trace-grading, anchor-positive, anchor-negative, process-grade, outcome-grade, trace-versioning, eval-seed, regression-seed, training-data-seed, coverage-check | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-658 | 2026-07-05 | 2026-07-05 |
 || I-075 | Competence Without Integrity: The Corrupt Success Pattern | corrupt-success, procedure-integrity, procedure-compliance, outcome-vs-process, trajectory-violation, benchmark-gaming, specification-gaming, confident-closing, false-success, benchmark-contamination, procedure-aware-eval, PAE, invariant-checking, procedural-gate, compliant-trajectory | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-669 | 2026-07-06 | 2026-07-06 |
-| I-076 | Agent Flight Recorder: Tamper-Evident Append-Only Audit Logs for Autonomous Agents | flight-recorder, tamper-evident, hash-chain, append-only-log, agent-audit, forensic-replay, ci-regression, log-integrity, black-box, WORM, prompt-injection, compliance, SOC2, GDPR, EU-AI-Act, lightbox | 9 | 10 | 9 | 8 | 9 | **9.15** | WRITTEN — S-760 | 2026-07-07 | 2026-07-07 |
+|| I-081 | The Fixed Token Overhead Problem | fixed-overhead, per-call-overhead, token-tax, system-prompt-overhead, tool-schema-overhead, effective-cost, cache-key, overhead-ratio, token-budget, cost-estimation, multiplier, per-token-price, cheap-model-trap | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-773 | 2026-07-07 | 2026-07-07 |
+|| I-082 | Adaptive Token Budget Phase Allocation (Token Budget as Architecture) | token-budget-phase, phase-allocation, budget-ceiling-architecture, hard-ceiling, graceful-degradation, context-rot, reasoning-loop-budget | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-757 (fixed tracker) | 2026-07-07 | 2026-07-07 |
 
-*Composite = Urgency×0.35 + Gap×0.25 + Specificity×0.20 + Timeliness×0.10 + Density×0.10*
+||| 2026-07-07 | I-084 | WRITTEN — S-464 | KV-Snapshot Sharing for Multi-Agent Inference — all 83 prior ideas WRITTEN; fresh research cycle. Key sources: Towards Data Science "Prefill Once, F …
 
+| I-083 | MCP Tool-Level RBAC: Least-Privilege Enforcement for Agent Tool Access | mcp-rbac, tool-permission, least-privilege, virtual-key, capability-token, tool-filtering, discovery-enforcement, invocation-enforcement, approval-workflow, role-based-access, mcp-security, Bifrost, cerbos, pbac, nist-zta | 9 | 8 | 8 | 9 | 7 | **8.35** | WRITTEN — S-779 | 2026-07-07 | 2026-07-07 |
+| I-084 | Sub-Agent Result Accountability in Fan-Out Pipelines | fan-out, sub-agent, coverage-declaration, silent-failure, result-accountability, aggregation-validation, parallel-agent, orchestrator-merge, mcp-contention, coverage-gap, gray-failure, parallel-silent | 9 | 10 | 9 | 9 | 9 | **9.25** | WRITTEN — S-785 | 2026-07-07 | 2026-07-07 |
+| I-085 | Invisible Model Drift: Silent Provider Updates Breaking Production AI | invisible-model-drift, silent-update, provider-update, model-version, version-pin, behavioral-canary, output-schema-contract, cross-provider-parity, model-regression, provider-deprecation, drift-detection, shadow-routing, behavioral-probe, CI-gate, model-gitops | 9 | 10 | 9 | 9 | 7 | **8.70** | WRITTEN — S-787 | 2026-07-07 | 2026-07-07 |
+
+| I-091 | Agent Token Budget Enforcement: The Three-Layer Runaway Cost Pattern | token-budget, token-enforcement, budget-ceiling, accumulation-watchdog, kill-switch, cost-control, runaway-agent, cost-attribution, async-agent, spend-cap, dollar-budget, dynamic-max-tokens, shared-budget, redis-budget, graceful-degradation | 9 | 8 | 9 | 9 | 7 | **8.45** | WRITTEN — S-791 | 2026-07-08 | 2026-07-08 |
 ## Pattern Log
 
 || Pattern | Description | Supporting Idea IDs | Notes |
@@ -121,11 +133,13 @@
 
 | MCP Skills and Capabilities | The 2026 MCP roadmap (AAIF/Linux Foundation, March 2026) introduces Skills as a higher-order abstraction above individual tools: composable multi-tool workflows published as discoverable, versioned capability units. Closes the gap between how agents reason (workflows) and how MCP exposes capability (function calls). Key artifacts: capability manifest, skill resolver with cross-step parameter passing, tool pinning for version control, capability-routing layer. Reduces tool-listing from O(servers × tools) to O(capabilities). | I-049 | Distinct from s269 (tool abstraction) and s280 (server governance) — skills sit between those layers. |
 | Tool DAG Scheduling (LLMCompiler Pattern) | Agent tool calls are analogous to compiler instructions: dependency analysis + topological layering + artifact reuse + bounded fan-out. Sequential tool calls are the default bottleneck (N × RTT); parallel calls collapse to max(RTT) only when dependencies are known. The LLMCompiler pattern builds a DAG from $dep: markers, groups calls into independent layers, fans each layer out concurrently, reuses artifacts across dependents, and caps concurrency per rate-limited source. Failure modes: cycles (deadlock), cross-dependency cascades, fan-out storms. PASTE adds speculative execution for near-zero perceived latency. Stanford ICML 2024 + Zylos Research + March 2026 PASTE paper. Distinct from S-55 (basic parallel calls, no dependencies). Distinct from S-191 (cost cap, no scheduling). | I-060 | Composite 8.55. Valid gap: 600+ stacks entries, zero cover tool dependency DAG scheduling with artifact reuse. |
-| Immutable Audit Ledger | Decision/Invocation/Outcome three-entry-per-action structure, SHA-256 chain-linking, policy-reference-at-invocation-time, append-only storage backend (S3 Object Lock, FoundationDB). Satisfies EU AI Act Art.12 and GDPR Art.22 structurally — not just linguistically. The key insight: the ledger must be written synchronously before the action executes; post-hoc logging is legally insufficient because the agent may report differently than what happened. CA ADMT (Jan 2027) requires five-year risk assessment retention. | I-061 | Distinct from S-106 (event log replay for debugging) and S-101 (deterministic sessions) — neither covers regulatory compliance or cryptographic chain integrity. |
+|| Immutable Audit Ledger | Decision/Invocation/Outcome three-entry-per-action structure, SHA-256 chain-linking, policy-reference-at-invocation-time, append-only storage backend (S3 Object Lock, FoundationDB). Satisfies EU AI Act Art.12 and GDPR Art.22 structurally — not just linguistically. The key insight: the ledger must be written synchronously before the action executes; post-hoc logging is legally insufficient because the agent may report differently than what happened. CA ADMT (Jan 2027) requires five-year risk assessment retention. | I-061 | Distinct from S-106 (event log replay for debugging) and S-101 (deterministic sessions) — neither covers regulatory compliance or cryptographic chain integrity. |
+||| KV Fan-Out: Prefill Reuse Compounds at Agent Depth | Multi-agent pipelines multiply the same prefix (system prompt, tool definitions) across N sub-agents, each paying full prefill cost. A 4k shared prefix × 50 sub-agents = 200k wasted tokens per pipeline run. The solution: immutable KV-snapshot registry keyed by token-sequence hash, with copy-on-write fork semantics for sub-agent spawning. Result: 1.95× throughput improvement (TDS, Jun 2026), 52× activation latency reduction for branch agents (TokenDance, arXiv:2604.03143). At agent depth >3, this pattern eliminates 40-60% of total inference token spend. | I-084 | Distinct from S-08 (semantic prompt caching) and S-462 (agent-loop prompt caching) — both operate at the scaffolding/harness layer. KV fan-out operates at the inference engine KV-cache layer, enabling sub-agent cold-start elimination. Also distinct from S-243 (inference cost stratification) which measures cost but doesn't address the structural waste. |
 
 | Tool DAG Scheduling (LLMCompiler Pattern) | Agent tool calls are analogous to compiler instructions: dependency analysis + topological layering + artifact reuse + bounded fan-out. Sequential tool calls are the default bottleneck (N × RTT); parallel calls collapse to max(RTT) only when dependencies are known. The Zylos Research benchmark (2026-04-26) shows 1.8x–3.7x wall-clock speedup, 6x cost reduction. PASTE (Mar 2026) adds dependency self-discovery via LLM-driven analysis before execution. | I-060 | Distinct from s335 (orchestrator-worker) — DAG scheduling is about tool-level parallelism within a single agent's step, not inter-agent coordination. |
-| Schema Poisoning: The Pre-Session, Cross-Session Attack Vector | Unlike indirect prompt injection (content-scoped, session-bounded) and command injection (parameter-scoped), schema poisoning operates at the metadata layer — tool names, descriptions, and JSON schemas — loaded before session start and persisting across every session. This is the OWASP MCP Top 10 #1 risk. Palo Alto Unit 42: 78.3% attack success with 5 MCP servers. OX Security (May 2026): 200K+ exposed instances, 30+ CVEs filed Jan–Feb 2026. CVE-2026-33032 (CVSS 9.8): unauthenticated MCP endpoint in nginx-ui allows complete server takeover. The attack is invisible to output evaluators — the tool call itself looks correct because it's calling a legitimate registered tool with legitimate parameters. Detection requires schema-level fingerprinting (hash diffing on reconnect), description-injection eval harnesses, and credential-parameter assertion layers. | I-078 | OX Security May 2026 disclosure; Palo Alto Unit 42; OWASP MCP Top 10 (2026); Cycode OWASP guide (Jun 2026); paperclipped.de MCP security analysis (Feb 2026); CVE-2026-33032 via OpenCVE/cvefeed.io; Invariant Labs mcp-scan. |
-
+| Agent Framework RCE: Prompts as Shells | Semantic Kernel CVEs (CVE-2026-25592 CVSS 10.0, CVE-2026-26030) demonstrated that prompt injection escalates to host-level RCE when frameworks expose I/O functions as callable kernel functions without sandboxing. The attack chain: indirect injection (malicious doc) → LLM generates function call → framework interprets and executes host I/O (file download via eval()) → host compromise. Existing security entries cover content-layer defenses (F-04 guardrails, F-194 AgentJacking, S-763 tool description poisoning) but none cover framework-level RCE via legitimate function exposure. Pattern: (1) capability audit / least privilege on exposed functions, (2) output interpretation boundaries — HITL gate for high-stakes calls, (3) patch management with 24hr SLA for CVSS 9+, (4) retrieval input sanitization for vector store attacks. Microsoft Security Blog (May 7 2026); BreakMyAgent (May 14 2026); Red Hat CVE-2026-26030. | I-082 | Distinct from F-194 (AgentJacking — MCP response trust), F-04 (content-layer guardrails), S-763 (tool description poisoning — metadata/schemabuild-time). This covers framework-internal function exposure as RCE vector — architectural, not content-level. |
+|
+| Token Accumulation Is Invisible Until It Is Catastrophic | Most cost management focuses on per-call optimization (model routing, caching, prompt compression). But in agentic systems the real danger is accumulation — 30 model calls at $0.01 each with no visibility looks fine individually and disastrous in aggregate. The solution is cross-call budget tracking in a durable store, with a task-level kill switch that no single call can bypass. This is orthogonal to per-call optimization: even the most efficient agent needs a ceiling. | I-091 | Cloudchipr AI agent cost management (Apr 2026); AIMadeTools cost tracking guide (Apr 2026); OpenEmpower production failures analysis (Jun 2026); GrowthAccelerationPartners runaway token costs (Jun 2026). Cross-ref: I-068 (Recovery Paradox — same root cause: budget exhaustion without visibility). |
 ## Deduplication Index
 
 agentic-plan-caching → I-063
@@ -172,6 +186,14 @@ provenance-tag → I-081
 re-validation → I-081
 memory-spoilage → I-081
 fix-event → I-081
+framework-rce → I-082
+cve-2026-25592 → I-082
+cve-2026-26030 → I-082
+prompt-as-attack-surface → I-082
+prompt-injection-rce → I-082
+semantic-kernel-vuln → I-082
+cvss-10 → I-082
+output-interpretation → I-082
 agent-sprawl → I-065
 agent-control-plane → I-065
 governance → I-065
@@ -205,6 +227,13 @@ supervisor-tree → I-032
 graceful-degradation → I-032
 steer-vs-kill → I-032
 compensation → I-001, I-032
+| collective-hallucination → I-082 |
+| hallucination-diffusion → I-082 |
+| network-propagation → I-082 |
+| amplification-factor → I-082 |
+| emergent-consensus → I-082 |
+| R0-hallucination → I-082 |
+
 routing →
 memory →
 rag →
@@ -524,10 +553,47 @@ hard-ceiling → I-080, S-02
 graceful-degradation → I-080
 context-rot → I-080
 reasoning-loop-budget → I-080
+kv-snapshot → I-084
+prefill-reuse → I-084
+kv-cache-sharing → I-084
+kv-fan-out → I-084
+snapshot-registry → I-084
+subagent-cold-start → I-084
+prefix-reuse → I-084
+copy-on-write-kv → I-084
+a2ui → I-086
+agent-to-user → I-086
+declarative-ui → I-086
+three-layer-protocol → I-086
+mcp-a2a-a2ui → I-086
+structured-agent-events → I-086
+ag-ui → I-086
+copilotkit → I-086
+component-catalog → I-086
+bidirectional-agent → I-086
+agent-protocol-stack → I-086
+token-budget-enforcement → I-091
+dollar-budget → I-091
+accumulation-watchdog → I-091
+kill-switch-agent → I-091
+runaway-cost → I-091
+dynamic-max-tokens → I-091
+shared-budget-tracker → I-091
+cost-circuit-breaker-agent → I-091
+graceful-degradation-budget → I-091
 
-|| 2026-07-07 | I-081 | WRITTEN — S-765 | Memory Staleness: Fix Events as Memory-Invalidation Triggers — research: Tian Pan "Agent That Memorized Your Bug" (tianpan.co, May 2026) on workaround-as-false-belief; STALE benchmark (May 2026, implicit conflict ~55% accuracy); MemGym (May 2026); Anna Jey "Long-Term Memory That Does Not Rot" (Towards AI, May 2026). Deduplication: S-09 covers memory types/tiers but not staleness/invalidation. S-064 covers memory consolidation but not cache invalidation per software fix. Novel angle: treat every code/deploy event as a potential memory-invalidation trigger with provenance-tagged entries and re-validation at retrieval. Distinguishes from S-079 (memory confabulation — internal false belief) and S-080 (token budget — resource constraint). |
+||| 2026-07-08 | I-086 | WRITTEN — S-789 | A2UI Protocol: The Missing User-Facing Layer — research: A2UI v0.8 spec (github.com/a2ui-project/a2ui); A2UI Composer (a2ui-composer.ag-ui.com); A2A Protocol blog three-layer stack article (AgentMarketCap, Apr 2026); A2UI atoui.org landing page; DEV.to A2UI guide (Jun 2026). Deduplication: S-12 covers streaming/SSE delivery (raw token transport), S-14 covers A2A (agent-agent), S-10 covers MCP (agent-tool). None covers structured agent-to-user communication with declarative component rendering. A2UI completes the three-layer stack reference architecture. Novel angle: component catalog as the safe HTML alternative — agents emit typed component descriptors, clients render with their own widgets, eliminating the HTML injection surface entirely while enabling rich interactive UIs. Distinguishes from S-12 (transport only) and S-197 (MCP+A2A two-layer model that A2UI extends to three). |
+
+||| 2026-07-07 | I-081 | WRITTEN — S-765 | Memory Staleness: Fix Events as Memory-Invalidation Triggers — research: Tian Pan "Agent That Memorized Your Bug" (tianpan.co, May 2026) on workaround-as-false-belief; STALE benchmark (May 2026, implicit conflict ~55% accuracy); MemGym (May 2026); Anna Jey "Long-Term Memory That Does Not Rot" (Towards AI, May 2026). Deduplication: S-09 covers memory types/tiers but not staleness/invalidation. S-064 covers memory consolidation but not cache invalidation per software fix. Novel angle: treat every code/deploy event as a potential memory-invalidation trigger with provenance-tagged entries and re-validation at retrieval. Distinguishes from S-079 (memory confabulation — internal false belief) and S-080 (token budget — resource constraint). |
+
+||| 2026-07-07 | I-084 | WRITTEN — S-464 | KV-Snapshot Sharing for Multi-Agent Inference — all 83 prior ideas WRITTEN; fresh research cycle. Key sources: Towards Data Science "Prefill Once, Fan Out" (Jun 2026) on KV-snapshot fan-out; arXiv:2604.03143 TokenDance (Apr 2026) on collective KV cache sharing across multi-agent pipelines; NVIDIA Dynamo docs on KV-indexer and prefix-based routing; General Compute blog on disaggregated prefill/decode. Deduplication: S-08 covers semantic prompt caching (server-side), S-462 covers agent-loop-aware prompt caching (scaffolding layer), S-243 covers agentic inference cost stratification (economics). None cover the KV-layer shared registry with copy-on-write fork for sub-agent spawning. This is the architectural layer below: compute-once, fork-KV, serve fast. Pattern: prefill deduplication compounds at agent depth — 50 sub-agents × shared 4k prefix = 40-60% wasted tokens without this pattern. Pattern name: "KV Fan-Out". |
 
 ## Recent Decisions
+
+| 2026-07-08 | S-791 — Agent Token Budget Enforcement | Chose this over: Async Task Execution Model (lower composite score 8.05 vs 8.45), LLM Gateway Pattern (7.45), Synthetic Data for Evals (7.4). I-068 (Recovery Paradox) covers the failure mode; S-791 provides the concrete enforcement architecture. Existing S-99 (task economics) and S-95 (retry cost) cover adjacent territory but neither addresses accumulation across turns. Research confirmed 4 independent sources reporting runaway cost as a top-3 production failure in 2026. |
+| | | DUPLICATE KILL: "LLM Router Pattern" — already covered by S-06 (Model Routing). The router itself is well-documented; what was missing was the budget enforcement layer on top, which is what S-791 adds. |
+| | | DUPLICATE KILL: "Prompt Injection Defense" — I-050 (MCP security) and I-083 (Entropy Principle) cover adversarial inputs and defense layers. OWASP LLM Top 10 is derivative. |
+| | | DUPLICATE KILL: "Synthetic Data Generation" — covered by existing eval entries (S-074, S-042). Lower timeliness score as production tooling is maturing slowly. |
 
 || Run Date | Idea ID | Decision | Rationale |
 |----------|---------|----------|-----------|
@@ -573,12 +639,14 @@ t |
 
 | 2026-07-07 | I-076 | WRITTEN — S-749 | Agent-Native CI/CD — gap: Tracker ~75 ideas, all previously WRITTEN. Gap analysis of 747 existing stacks entries confirmed no entry covers the full deployment pipeline lifecycle: eval-gated merges (golden dataset + trajectory scoring as PR gate), shadow rollouts (parallel inference on production traffic), Git-backed prompt rollback (instant config revert without redeploy), and continuous production monitoring (trajectory stability, escalation rate, output entropy). Sub-components exist: S-703 (trajectory invariants), S-735 (eval floor), S-748 (multi-agent foundations), S-94 (output diffing). The pipeline lifecycle itself — treating prompts and configs as versioned deploy artifacts — had no dedicated entry. Research: Zylos Research (May 2026), CallSphere (Jun 2026), RockB (May 2026), AWS Prescriptive Guidance (2026) all independently confirmed practitioner demand. Composite 9.55. Chosen over: Tool Hallucination (covered by S-396), Agent Memory Interop (covered by S-431/S-447), Multi-Agent Orchestration Patterns (covered by S-05/S-739). |
 
+| 2026-07-07 | I-082 | WRITTEN — S-771 | Collective Hallucination: The Network Amplification Problem — gap: All 82 prior ideas WRITTEN; tracker exhausted. Gap analysis of 770 existing stacks entries found no entry modeling hallucination as a graph dynamical process across multi-agent networks. Existing entries cover single-agent hallucination (I-011 entity grounding, I-015 constrained decoding, I-031 tool call hallucination), false consensus voting (S-29), confabulation (S-746), and agent drift (S-646) — but none model the network-level propagation, amplification, and topology-dependent diffusion of hallucinated claims across agent graphs. Key research: arXiv:2606.07941 (Collective Hallucination in Multi-Agent LLMs, June 2026): AF=1.45, R₀=1.08, HPR-Adaptive defense reduces hallucination rate 39%. IEEE TNNLS Xu & Wu (Jan 2026): token-level hallucination snowball model and bidirectional entailment clustering. Two independent production reports (Centific Jul 2026, Conceptualise May 2026) confirm cascading multi-agent errors as top failure mode. The core insight: hallucination in multi-agent systems is not an agent-level bug — it is a network phenomenon with topology-dependent amplification. Novel entry. Composite 9.50. |
+
 ## Meta
 
 - Created: 2026-07-02
-- Last Updated: 2026-07-07 (run: +I-068 / S-767 — Tool-Call Hallucination Plateau)
-- Total ideas discovered: 77
-- Total patterns distilled: 8
+- Last Updated: 2026-07-07 (run: +I-082 / S-771 — Collective Hallucination: The Network Amplification Problem)
+- Total ideas discovered: 82
+- Total patterns distilled: 9
 
 | I-030 | Untrusted Content Ingestion Gate | content-sanitization, indirect-prompt-injection, trust-boundary, document-security, content-boundary, ingestion-layer, CVE-2026-2256, EchoLeak, data-exfiltration, defense-in-depth | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-389 | 2026-07-02 | 2026-07-02 |
 || I-031 | Tool Call Hallucination | tool-hallucination, reliability-alignment, schema-anchoring, tool-selection, tool-usage, parameter-mismatch, unregistered-tool, RelyToolBench, output-gating, pretraining-bleed | 9 | 7 | 8 | 8 | 8 | **8.15** | WRITTEN — S-396 | 2026-07-02 | 2026-07-02 |
@@ -620,7 +688,10 @@ t |
 | I-066 | Action Completion Verification: When "Done" Doesn't Mean Done | action-verification, completion-signal, state-verification, silent-failure, write-verify, invariant-check, read-back, state-mismatch, tool-response-vs-state, blast-radius-analysis, idempotency-masking, compensated-action | 9 | 10 | 9 | 9 | 8 | **9.05** | WRITTEN — S-627 | 2026-07-05 | 2026-07-05 |
 | I-067 | Compression Guideline Optimization (ACON): Feedback-Driven Context Compaction | acon, compression-guideline, context-compaction, feedback-loop, paired-trajectory, distill-compressor, compression-optimization, auto-compressor, guideline-evolution, constraint-preservation, long-horizon-agent, microsoft, iclr-2026, arxiv-2510.00615 | 9 | 9 | 9 | 8 | 7 | **8.65** | WRITTEN — S-753 | 2026-07-07 | 2026-07-07 |
 | I-068 | The Tool-Call Hallucination Plateau: 3-7% Per-Call Failure That Won't Go Away | tool-call-hallucination, reliability-plateau, BFCL, compounding-failure, pass-at-k, circuit-breaker, tool-schema-firewall, production-reliability, frontier-model-limitation, multi-agent-failure | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-767 | 2026-07-07 | 2026-07-07 |
+| I-082 | Collective Hallucination: The Network Amplification Problem | collective-hallucination, network-propagation, hallucination-amplification, multi-agent-topology, graph-dynamical-system, consensus-false, HPR-adaptive, bidirectional-entailment, provenance-anchor, emergent-consensus, hallucination-diffusion, R0-hallucination | 9 | 10 | 10 | 9 | 9 | **9.50** | WRITTEN — S-771 | 2026-07-07 | 2026-07-07 |
 | Plan Template (Structural Cache) | Unlike KV cache (model-specific) or semantic cache (data-dependent), plan templates cache the *sequence of tool-call patterns* with a task-signature hash. Reuse happens when the structural schema matches, regardless of input values. Extracted from successful trajectories, adapted on retrieval, success-rate-gated on reuse. | I-063 | Stanford APC (NeurIPS 2025): 50.31% cost, 27.28% latency reduction. Fills the gap between [S-08] (provider caching) and [S-607] (cost compounding). |
 | Green-Dashboard Bad Output | Agents complete workflows and return 200 OK while silently producing wrong results. The problem isn't failure detection — it's that the success path has an undetected quality failure mode. Requires behavioral output contracting (I-049) and state verification (I-039). | I-039, I-049 | Also called "gray failure" — visible as success, catastrophic in outcome. |
 | Tool Name Collision / Permission Combination | MCP's open registry lets malicious servers hijack tool names or combine benign-looking permissions into dangerous escalation paths. Neither tool-level allowlisting nor server-level permission scopes catch the interaction effect. Requires origin-tracked tool resolution + cross-server permission audit. | I-050 | CVE-2026-30856 confirmed real exploit. OWASP MCP04-2025 covers supply chain but not runtime combination attacks. |
+| Entropy Principle: Agents Degrade Without Triggers | LLM agent systems experience monotonic entropy increase (S(t) = S₀·e^(λt)) without any external trigger. Five failure types emerge from this: Channel Fracture (31.2%, L1 handoff degradation), Cognitive Framework Lag (22.8%, L2 stale assumptions), Data Consistency Drift (18.1%, L3 state disagreement), Value Drift (14.6%, L4 goal divergence), Capability Suppression (13.3%, L5 tool non-invocation). Counter-intuitive: degradation is intrinsic to language-based autonomous systems, not a bug. Solution: entropy-reset pattern — flush agent state, memory, and inter-agent channels at empirically calibrated round thresholds. | I-083 | arXiv:2606.08162 (Liu, Jun 2026); 40K+ trials + 100K+ production observations. Distinct from S-383 (goal drift = L4 only), S-360 (safety erosion = governance layer), S-775 (handoff = Channel Fracture mechanism). |
 |
+| I-083 | MCP Tool-Level RBAC: Least-Privilege Enforcement for Agent Tool Access | mcp-rbac, tool-permission, least-privilege, virtual-key, capability-token, tool-filtering, discovery-enforcement, invocation-enforcement, approval-workflow, role-based-access, mcp-security, Bifrost, cerbos, pbac, nist-zta | 9 | 8 | 8 | 9 | 7 | **8.35** | WRITTEN — S-779 | 2026-07-07 | 2026-07-07 |

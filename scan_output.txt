@@ -1,0 +1,259 @@
+Data fetch time: 2026-07-06 14:33:53 UTC
+============================================================
+
+======================================================================
+MARKET INDICES
+======================================================================
+
+SPY (SPDR S&P 500 ETF)
+  Price: $749.81  Day Chg: +0.68%
+  52W H/L: $758.45 / $627.66  Pos in Range: 93.4%
+  EMA20: $741.49  SMA50: $736.72  SMA200: $None
+  RSI(14): 56.3  ATR(14): $10.28  Vol Ratio: 0.16
+  MACD: 2.37  Signal: 2.11  Hist: 2.37
+  Position: ABOVE EMA20+SMA50
+
+QQQ (Invesco QQQ Trust)
+  Price: $724.74  Day Chg: +1.70%
+  52W H/L: $747.83 / $554.99  Pos in Range: 88.0%
+  EMA20: $720.89  SMA50: $709.92  SMA200: $None
+  RSI(14): 51.2  ATR(14): $17.16  Vol Ratio: 0.18
+  MACD: 3.43  Signal: 5.11  Hist: 3.43
+  Position: ABOVE EMA20+SMA50
+
+IWM (iShares Russell 2000)
+  Price: $299.27  Day Chg: +0.57%
+  52W H/L: $302.72 / $238.12  Pos in Range: 94.7%
+  EMA20: $294.65  SMA50: $286.55  SMA200: $None
+  RSI(14): 61.8  ATR(14): $5.0  Vol Ratio: 0.16
+  MACD: 4.19  Signal: 4.25  Hist: 4.19
+  Position: ABOVE EMA20+SMA50
+
+======================================================================
+NASDAQ-100 COMPONENT SWING SCAN
+======================================================================
+
+AAPL (Apple Inc.)  [Score: +5.0]
+  Price: $311.54  Day Chg: +0.94%
+  52W H/L: $317.4 / $242.97  Range: 92.1%
+  EMA20: $296.04  SMA50: $294.23  SMA200: $None
+  RSI(14): 63.3  ATR(14): $8.75  Vol Ratio: 0.16
+  MACD: 0.80  Signal: -0.58  Hist: 0.80 (BULL)
+  20D Slope: +0.10%
+  P/E: 37.7
+
+AMD (Advanced Micro Devices)  [Score: +4.0]
+  Price: $567.27  Day Chg: +9.55%
+  52W H/L: $584.73 / $188.22  Range: 95.6%
+  EMA20: $522.85  SMA50: $465.66  SMA200: $None
+  RSI(14): 58.0  ATR(14): $38.46  Vol Ratio: 0.33
+  MACD: 24.45  Signal: 26.24  Hist: 24.45 (BEAR)
+  20D Slope: +8.42%
+  P/E: 189.2
+
+AMAT (Applied Materials)  [Score: +4.0]
+  Price: $609.37  Day Chg: +1.05%
+  52W H/L: $739.67 / $278.76  Range: 71.7%
+  EMA20: $594.69  SMA50: $494.1  SMA200: $None
+  RSI(14): 54.1  ATR(14): $51.48  Vol Ratio: 0.15
+  MACD: 46.46  Signal: 49.90  Hist: 46.46 (BEAR)
+  20D Slope: +21.46%
+  P/E: 57.4
+
+FTNT (Fortinet Inc.)  [Score: +4.0]
+  Price: $163.04  Day Chg: +4.35%
+  52W H/L: $163.34 / $73.55  Range: 99.7%
+  EMA20: $148.53  SMA50: $128.32  SMA200: $None
+  RSI(14): 70.0  ATR(14): $6.01  Vol Ratio: 0.15
+  MACD: 7.91  Signal: 7.83  Hist: 7.91 (BULL)
+  20D Slope: +8.93%
+  P/E: 63.2
+
+NOW (ServiceNow Inc.)  [Score: +4.0]
+  Price: $107.19  Day Chg: +0.82%
+  52W H/L: $152.11 / $81.24  Range: 36.6%
+  EMA20: $101.98  SMA50: $100.23  SMA200: $None
+  RSI(14): 56.1  ATR(14): $5.2  Vol Ratio: 0.22
+  MACD: -0.28  Signal: -1.12  Hist: -0.28 (BULL)
+  20D Slope: -10.20%
+  P/E: 63.8
+
+GOOGL (Alphabet Inc.)  [Score: +3.0]
+  Price: $361.34  Day Chg: +0.40%
+  52W H/L: $408.37 / $271.95  Range: 65.5%
+  EMA20: $359.25  SMA50: $371.27  SMA200: $None
+  RSI(14): 51.0  ATR(14): $11.88  Vol Ratio: 0.14
+  MACD: -3.56  Signal: -4.55  Hist: -3.56 (BULL)
+  20D Slope: -2.86%
+  P/E: 27.6
+
+AMZN (Amazon.com)  [Score: +3.0]
+  Price: $243.41  Day Chg: +0.30%
+  52W H/L: $278.56 / $196.0  Range: 57.4%
+  EMA20: $242.26  SMA50: $255.18  SMA200: $None
+  RSI(14): 53.8  ATR(14): $8.4  Vol Ratio: 0.12
+  MACD: -3.75  Signal: -4.99  Hist: -3.75 (BULL)
+  20D Slope: -4.09%
+  P/E: 31.7
+
+META (Meta Platforms)  [Score: +3.0]
+  Price: $587.55  Day Chg: +0.80%
+  52W H/L: $742.68 / $519.78  Range: 30.4%
+  EMA20: $580.29  SMA50: $603.08  SMA200: $None
+  RSI(14): 54.9  ATR(14): $23.14  Vol Ratio: 0.21
+  MACD: -6.71  Signal: -10.94  Hist: -6.71 (BULL)
+  20D Slope: -6.29%
+  P/E: 21.4
+
+TSLA (Tesla Inc.)  [Score: +3.0]
+  Price: $405.95  Day Chg: +3.18%
+  52W H/L: $454.3 / $337.24  Range: 58.7%
+  EMA20: $402.76  SMA50: $406.79  SMA200: $None
+  RSI(14): 49.8  ATR(14): $18.78  Vol Ratio: 0.26
+  MACD: -1.15  Signal: -2.85  Hist: -1.15 (BULL)
+  20D Slope: -2.99%
+  P/E: 369.1
+
+CRM (Salesforce Inc.)  [Score: +3.0]
+  Price: $164.03  Day Chg: -1.25%
+  52W H/L: $266.47 / $146.32  Range: 14.7%
+  EMA20: $163.66  SMA50: $173.56  SMA200: $None
+  RSI(14): 47.9  ATR(14): $5.93  Vol Ratio: 0.13
+  MACD: -4.47  Signal: -5.80  Hist: -4.47 (BULL)
+  20D Slope: -12.87%
+  P/E: 19.0
+
+PANW (Palo Alto Networks)  [Score: +3.0]
+  Price: $366.39  Day Chg: +5.27%
+  52W H/L: $368.17 / $139.57  Range: 99.2%
+  EMA20: $306.01  SMA50: $255.14  SMA200: $None
+  RSI(14): 86.7  ATR(14): $14.04  Vol Ratio: 0.27
+  MACD: 26.56  Signal: 20.78  Hist: 26.56 (BULL)
+  20D Slope: +31.20%
+  P/E: 318.6
+
+CRWD (CrowdStrike)  [Score: +3.0]
+  Price: $208.68  Day Chg: +7.58%
+  52W H/L: $209.49 / $85.68  Range: 99.3%
+  EMA20: $178.94  SMA50: $157.0  SMA200: $None
+  RSI(14): 85.6  ATR(14): $8.73  Vol Ratio: 0.25
+  MACD: 10.22  Signal: 8.01  Hist: 10.22 (BULL)
+  20D Slope: +16.08%
+  P/E: 133.6
+
+MU (Micron Technology)  [Score: +2.0]
+  Price: $1011.14  Day Chg: +3.65%
+  52W H/L: $1255.0 / $311.49  Range: 74.2%
+  EMA20: $1035.58  SMA50: $862.56  SMA200: $None
+  RSI(14): 51.5  ATR(14): $105.98  Vol Ratio: 0.19
+  MACD: 54.90  Signal: 79.17  Hist: 54.90 (BEAR)
+  20D Slope: +1.52%
+  P/E: 22.9
+
+LRCX (Lam Research)  [Score: +2.0]
+  Price: $362.26  Day Chg: +3.09%
+  52W H/L: $438.5 / $193.94  Range: 68.8%
+  EMA20: $369.57  SMA50: $322.85  SMA200: $None
+  RSI(14): 49.3  ATR(14): $30.72  Vol Ratio: 0.15
+  MACD: 17.93  Signal: 22.79  Hist: 17.93 (BEAR)
+  20D Slope: +7.76%
+  P/E: 68.2
+
+KLAC (KLA Corp.)  [Score: +2.0]
+  Price: $239.74  Day Chg: +1.78%
+  52W H/L: $307.37 / $128.17  Range: 62.3%
+  EMA20: $244.08  SMA50: $209.9  SMA200: $None
+  RSI(14): 46.8  ATR(14): $22.24  Vol Ratio: 0.15
+  MACD: 14.64  Signal: 17.29  Hist: 14.64 (BEAR)
+  20D Slope: +12.50%
+  P/E: 67.9
+
+MSFT (Microsoft Corp.)  [Score: +1.0]
+  Price: $384.01  Day Chg: -1.66%
+  52W H/L: $487.53 / $349.2  Range: 25.2%
+  EMA20: $386.31  SMA50: $406.26  SMA200: $None
+  RSI(14): 47.3  ATR(14): $13.15  Vol Ratio: 0.16
+  MACD: -8.78  Signal: -10.43  Hist: -8.78 (BULL)
+  20D Slope: -10.29%
+  P/E: 22.9
+
+NFLX (Netflix Inc.)  [Score: +1.0]
+  Price: $76.33  Day Chg: -1.70%
+  52W H/L: $108.95 / $70.86  Range: 14.4%
+  EMA20: $77.1  SMA50: $83.78  SMA200: $None
+  RSI(14): 42.2  ATR(14): $2.8  Vol Ratio: 0.19
+  MACD: -2.91  Signal: -3.43  Hist: -2.91 (BULL)
+  20D Slope: -6.41%
+  P/E: 24.6
+
+CDNS (Cadence Design)  [Score: +1.0]
+  Price: $377.13  Day Chg: +1.07%
+  52W H/L: $416.69 / $262.75  Range: 74.3%
+  EMA20: $378.43  SMA50: $368.45  SMA200: $None
+  RSI(14): 44.4  ATR(14): $13.57  Vol Ratio: 0.11
+  MACD: 1.08  Signal: 3.69  Hist: 1.08 (BEAR)
+  20D Slope: -8.39%
+  P/E: 87.9
+
+MRVL (Marvell Technology)  [Score: +1.0]
+  Price: $258.0  Day Chg: +5.18%
+  52W H/L: $329.88 / $70.65  Range: 72.3%
+  EMA20: $268.2  SMA50: $225.64  SMA200: $None
+  RSI(14): 45.5  ATR(14): $27.63  Vol Ratio: 0.12
+  MACD: 10.76  Signal: 18.73  Hist: 10.76 (BEAR)
+  20D Slope: -18.47%
+  P/E: 88.4
+
+NVDA (NVIDIA Corp.)  [Score: +0.0]
+  Price: $196.44  Day Chg: +0.83%
+  52W H/L: $236.26 / $164.08  Range: 44.8%
+  EMA20: $202.12  SMA50: $209.53  SMA200: $None
+  RSI(14): 41.9  ATR(14): $6.33  Vol Ratio: 0.17
+  MACD: -4.02  Signal: -3.23  Hist: -4.02 (BEAR)
+  20D Slope: -10.16%
+  P/E: 30.1
+
+AVGO (Broadcom Inc.)  [Score: +0.0]
+  Price: $379.14  Day Chg: +5.19%
+  52W H/L: $494.22 / $289.5  Range: 43.8%
+  EMA20: $385.56  SMA50: $408.03  SMA200: $None
+  RSI(14): 49.3  ATR(14): $16.51  Vol Ratio: 0.2
+  MACD: -10.64  Signal: -9.44  Hist: -10.64 (BEAR)
+  20D Slope: -9.35%
+  P/E: 63.0
+
+SNPS (Synopsys Inc.)  [Score: +0.0]
+  Price: $442.84  Day Chg: +1.30%
+  52W H/L: $539.48 / $379.5  Range: 39.6%
+  EMA20: $458.72  SMA50: $482.43  SMA200: $None
+  RSI(14): 43.9  ATR(14): $16.59  Vol Ratio: 0.1
+  MACD: -9.89  Signal: -8.74  Hist: -9.89 (BEAR)
+  20D Slope: -10.44%
+  P/E: 101.3
+
+QCOM (Qualcomm Inc.)  [Score: -1.0]
+  Price: $187.04  Day Chg: +6.12%
+  52W H/L: $258.96 / $121.54  Range: 47.7%
+  EMA20: $199.85  SMA50: $203.07  SMA200: $None
+  RSI(14): 38.3  ATR(14): $15.16  Vol Ratio: 0.17
+  MACD: -6.86  Signal: -2.57  Hist: -6.86 (BEAR)
+  20D Slope: -22.89%
+  P/E: 20.1
+
+======================================================================
+TOP SWING SETUPS (sorted by composite score)
+======================================================================
+  AAPL: Score=+5.0 | RSI=63.3 | MACD=BULL | EMA20, SMA50 | 20D Slope=+0.10%
+  AMD: Score=+4.0 | RSI=58.0 | MACD=BEAR | EMA20, SMA50 | 20D Slope=+8.42%
+  AMAT: Score=+4.0 | RSI=54.1 | MACD=BEAR | EMA20, SMA50 | 20D Slope=+21.46%
+  FTNT: Score=+4.0 | RSI=70.0 | MACD=BULL | EMA20, SMA50 | 20D Slope=+8.93%
+  NOW: Score=+4.0 | RSI=56.1 | MACD=BULL | EMA20, SMA50 | 20D Slope=-10.20%
+  GOOGL: Score=+3.0 | RSI=51.0 | MACD=BULL | EMA20 | 20D Slope=-2.86%
+  AMZN: Score=+3.0 | RSI=53.8 | MACD=BULL | EMA20 | 20D Slope=-4.09%
+  META: Score=+3.0 | RSI=54.9 | MACD=BULL | EMA20 | 20D Slope=-6.29%
+  TSLA: Score=+3.0 | RSI=49.8 | MACD=BULL | EMA20 | 20D Slope=-2.99%
+  CRM: Score=+3.0 | RSI=47.9 | MACD=BULL | EMA20 | 20D Slope=-12.87%
+Traceback (most recent call last):
+  File "/opt/data/handbook/swing_scan.py", line 188, in <module>
+    EOF
+NameError: name 'EOF' is not defined

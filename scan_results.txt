@@ -1,0 +1,14 @@
+QQQ: close=722.82 (2026-07-06), 20ema=719.82, 50sma=709.88, 200sma=649.61, ATR14=17.23, RSI14=50.7, vol20=53802015, above20=True, above50=True, above200=True, pct_52wk=88.0%
+SPY: close=751.28 (2026-07-06), 20ema=739.93, 50sma=736.75, 200sma=701.70, ATR14=10.44, RSI14=57.1, vol20=64676370, above20=True, above50=True, above200=True, pct_52wk=95.0%
+NVDA: close=195.55 (2026-07-06), 20ema=202.33, 50sma=209.66, 200sma=194.81, ATR14=6.34, RSI14=40.9, vol20=154251780, above20=False, above50=False, above200=True, pct_52wk=43.0%
+ASML: close=1825.07 (2026-07-06), 20ema=1828.80, 50sma=1654.65, 200sma=1494.42, ATR14=100.62, RSI14=48.1, vol20=2393870, above20=False, above50=True, above200=True, pct_52wk=79.4%
+PEP: close=143.29 (2026-07-06), 20ema=142.12, 50sma=146.26, 200sma=150.91, ATR14=3.49, RSI14=48.4, vol20=10281630, above20=True, above50=False, above200=False, pct_52wk=27.1%
+TSLA: close=419.77 (2026-07-06), 20ema=399.22, 50sma=407.07, 200sma=404.09, ATR14=19.73, RSI14=54.0, vol20=50415505, above20=True, above50=True, above200=True, pct_52wk=72.1%
+MSFT: close=386.74 (2026-07-06), 20ema=384.89, 50sma=406.31, 200sma=408.42, ATR14=13.15, RSI14=48.3, vol20=49277215, above20=True, above50=False, above200=False, pct_52wk=26.4%
+GOOGL: close=366.46 (2026-07-06), 20ema=358.25, 50sma=371.37, 200sma=338.18, ATR14=12.18, RSI14=53.8, vol20=37448890, above20=True, above50=False, above200=True, pct_52wk=72.2%
+META: close=600.29 (2026-07-06), 20ema=575.17, 50sma=603.33, 200sma=623.91, ATR14=23.56, RSI14=57.4, vol20=19510270, above20=True, above50=False, above200=False, pct_52wk=35.4%
+AAPL: close=312.66 (2026-07-06), 20ema=294.87, 50sma=294.25, 200sma=273.97, ATR14=8.92, RSI14=63.8, vol20=69557140, above20=True, above50=True, above200=True, pct_52wk=96.3%
+
+VIX: close=15.90 on 2026-07-07
+SPY: close=751.28 on 2026-07-06
+HYG/IEF ratio: 84.81

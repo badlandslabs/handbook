@@ -121,6 +121,8 @@
   - [S-457 · Agent Checkpoint & Rollback Engineering](stacks/s457-agent-checkpoint-rollback-engineering.md)
   - [S-459 · Cross-Session Memory Poisoning](stacks/s459-cross-session-memory-poisoning.md)
   - [S-462 · Agentic Prompt Caching: Cache-Aware Agent Loop Design](stacks/s462-agentic-prompt-caching.md)
+  - [S-463 · Multi-Agent Cost Coordination Architecture](stacks/s463-multi-agent-cost-coordination-architecture.md)
+  - [S-464 · KV-Snapshot Sharing for Multi-Agent Inference](stacks/s464-kv-snapshot-sharing-multi-agent-inference.md)
   - [S-201 · MCP Server Security Hardening](stacks/s201-mcp-server-security-hardening.md)
   - [S-202 · LLM-as-Judge Evaluation Harness](stacks/s202-llm-as-judge-harness.md)
   - [S-203 · Inference Engine Selection](stacks/s203-inference-engine-selection.md)
@@ -286,7 +288,14 @@
   - [S-761 · The God Agent Anti-Pattern and the Multi-Agent Decision Matrix](stacks/s761-the-god-agent-anti-pattern-and-the-multi-agent-decision-matrix.md)
   - [S-762 · The Cost Convergence: Multi-Agent Parallelization as Cheaper Than It Looks](stacks/s762-the-cost-convergence-multi-agent-parallelization-as-cheaper-than-it-looks.md)
   - [S-763 · MCP Tool Description Poisoning: The Attack Your Trusted Tools Deliver](stacks/s763-mcp-tool-description-poisoning-the-attack-your-trusted-tools-deliver.md)
+  - [S-773 · The Fixed Token Overhead Problem](stacks/s773-the-fixed-token-overhead-problem.md)
   - [S-767 · The Tool-Call Hallucination Plateau](workspace/s767-tool-call-hallucination-plateau.md)
+  - [S-776 · The Entropy Principle: Why Agent Systems Degrade Without External Triggers](stacks/s776-the-entropy-principle-why-agent-systems-degrade-without-external-triggers.md)
+  - [S-779 · MCP Tool-Level RBAC: The Least-Privilege Enforcement Layer](stacks/s779-mcp-tool-level-rbac-the-least-privilege-enforcement-layer.md)
+  - [S-781 · The Eval Estimator Spectrum: Why Your 97% Is Really a 34%](stacks/s781-the-eval-estimator-spectrum.md)
+  - [S-785 · Sub-Agent Result Accountability in Fan-Out Pipelines](stacks/s785-sub-agent-result-accountability-in-fan-out-pipelines.md)
+  - [S-787 · Invisible Model Drift: The Silent Provider Update Pattern](stacks/s787-invisible-model-drift-the-silent-provider-update-pattern.md)
+  - [S-789 · The A2UI Protocol: The Missing User-Facing Layer](stacks/s789-the-a2ui-protocol-the-missing-user-facing-layer.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
