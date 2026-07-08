@@ -60,6 +60,7 @@
 || I-085 | The Eval Estimator Spectrum: pass^k vs pass@k — Why 97% Is Really 34% | pass-at-k, pass-power-k, eval-estimator, reliability-metric, benchmark-gap, majority-vote, compound-reliability, stochastic-agent, eval-benchmark, swebench, pass1-vs-passk, sampling-variance, estimator-selection, production-reliability | 9 | 9 | 10 | 9 | 9 | **9.20** | WRITTEN — S-781 | 2026-07-07 | 2026-07-07 |
 | I-085 | The Eval Estimator Spectrum: pass^k vs pass@k — Why 97% Is Really 34% | pass-at-k, pass-power-k, eval-estimator, reliability-metric, benchmark-gap, majority-vote, compound-reliability, stochastic-agent, eval-benchmark, swebench, pass1-vs-passk, sampling-variance, estimator-selection, production-reliability | 9 | 9 | 10 | 9 | 9 | **9.20** | WRITTEN — S-781 | 2026-07-07 | 2026-07-07 |
 | I-086 | A2UI Protocol: The Missing User-Facing Layer | a2ui, agent-to-user, structured-events, component-protocol, declarative-ui, three-layer-stack, mcp-a2a-a2ui, agent-protocol, streaming-ui, bidirectional-agent, google-a2ui, ag-ui, copilotkit, component-catalog, trust-boundary | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-789 | 2026-07-08 | 2026-07-08 |
+| I-087 | ASI08: Cascading Failures in Multi-Agent Systems | ASI08, cascade-failure, multi-agent, trust-chain, propagation, planner-executor, feedback-loop, transitive-trust, auto-deploy, memory-poison-cascade, chain-circuit-breaker, span-eval, OASI08 | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — F-199 | 2026-07-08 | 2026-07-08 |
 | I-079 | Agentic Memory Confabulation: The Self-Reinforcing False Belief Problem | confabulation, self-reflection, reflexive-agent, reflexion, false-belief, trial-zero-probe, reality-monitoring, belief-state-drift, self-reinforcing, hallucination-vs-confabulation, reflective-memory, ALFWorld, arxiv-2605.29463, ICML-2026, arxiv-2604.16548, memory-security, memory-lifecycle, Dixit-Kamal-Oates | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-746 | 2026-07-07 | 2026-07-07 |
 | I-076 | Agent Drift in Multi-Agent Systems | agent-drift, semantic-drift, coordination-drift, behavioral-drift, ASI, Agent Stability Index, multi-agent-degradation, drift-detection, drift-mitigation, episodic-consolidation, behavioral-anchoring, drift-aware-routing, inter-agent-agreement, 12-dimension-metric | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-646 | 2026-07-05 | 2026-07-05 |
 | I-074 | Golden Trace Set Curation | golden-trace, curated-corpus, trace-grading, anchor-positive, anchor-negative, process-grade, outcome-grade, trace-versioning, eval-seed, regression-seed, training-data-seed, coverage-check | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-658 | 2026-07-05 | 2026-07-05 |
@@ -74,6 +75,13 @@
 | I-085 | Invisible Model Drift: Silent Provider Updates Breaking Production AI | invisible-model-drift, silent-update, provider-update, model-version, version-pin, behavioral-canary, output-schema-contract, cross-provider-parity, model-regression, provider-deprecation, drift-detection, shadow-routing, behavioral-probe, CI-gate, model-gitops | 9 | 10 | 9 | 9 | 7 | **8.70** | WRITTEN — S-787 | 2026-07-07 | 2026-07-07 |
 
 | I-091 | Agent Token Budget Enforcement: The Three-Layer Runaway Cost Pattern | token-budget, token-enforcement, budget-ceiling, accumulation-watchdog, kill-switch, cost-control, runaway-agent, cost-attribution, async-agent, spend-cap, dollar-budget, dynamic-max-tokens, shared-budget, redis-budget, graceful-degradation | 9 | 8 | 9 | 9 | 7 | **8.45** | WRITTEN — S-791 | 2026-07-08 | 2026-07-08 |
+| I-092 | Agent Secrets Rotation: Credential Lifetime as Blast-Radius Control | secret-rotation, credential-lifecycle, blast-radius, short-lived-credentials, credential-provisioner, vault, dynamic-secrets, MCP-credential-sprawl, static-key, key-expiry, emergency-revocation, blue-green-rotation, ephemeral-creds | 9 | 9 | 8 | 9 | 6 | **8.40** | WRITTEN — F-198 | 2026-07-08 | 2026-07-08 |
+| I-093 | Cross-Agent Trace Correlation: Reconstructing Causal Chains Across Delegation Boundaries | cross-agent-trace, observability, trace-correlation, causal-chain, delegation-boundary, fan-out-trace, entity-join, span-propagation, opentelemetry, MCP-context, A2A-trace, multi-agent-debugging, trace-fragmentation, cross-trace-entity | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-799 | 2026-07-08 | 2026-07-08 |
+| I-095 | The Untrusted Executor Pattern: LLM Output as Input to a Deterministic Policy Engine | untrusted-executor, policy-engine, LLM-untrusted, action-proposal, disposition, deterministic-guard, guard-agent, action-intercept, propose-dispose, execute-block-escalate, formal-policy, cedar, opa, rego, permission-boundary, authorization-layer, policy-as-code | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-804 | 2026-07-08 | 2026-07-08 |
+|| I-093 | Agentic Query Planning: The Agent Decides How to Retrieve | query-planning, retrieval-strategy, intent-classification, tool-selection, query-rewriting, query-decomposition, multi-hop, agentic-rag, adaptive-retrieval, vocabulary-mismatch, retrieval-router, strategy-selection, BM25, hybrid-search | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-794 | 2026-07-08 | 2026-07-08 |
+|| I-094 | Agent State Checkpointing and Transactional Rollback | checkpoint, rollback, compensating-action, durable-execution, event-ledger, immutable-log, transaction-safety, state-recovery, pre-commit-checkpoint, idempotency, langgraph-checkpoint, temporal, recovery-path, tamper-evident, compound-failure, side-effect-recovery | 9 | 8 | 9 | 10 | 8 | **9.00** | WRITTEN — S-796 | 2026-07-08 | 2026-07-08 |
+|| I-095 | The MCP Event-Injection Surface: Event Logs as Agent Delivery Vectors | mcp-event-injection, event-log-injection, sentry-injection, agentjack, dsn-discovery, agentjacking, logging-trojan, event-retrieval, mcp-security, observability-pipeline, read-only-dsn, capability-enumeration, mcp-proxy, event-sanitization, event-surface, trojan-log | 10 | 10 | 9 | 10 | 9 | **9.75** | WRITTEN — S-798 | 2026-07-08 | 2026-07-08 |
+|| I-096 | The Confidence Gap: When Agents Say "I Don't Know" Then Act Anyway | confidence-calibration, uncertainty-quantification, AUQ, spiral-of-hallucination, verbalized-confidence, epistemic-error, self-assessment, calibration-gap, dual-process-UQ, UAM-UAR, confidence-threshold, stakes-escalation, token-probability, constitutional-calibration, high-stakes-deferral | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-807 | 2026-07-08 | 2026-07-08 |
 ## Pattern Log
 
 || Pattern | Description | Supporting Idea IDs | Notes |
@@ -140,6 +148,7 @@
 | Agent Framework RCE: Prompts as Shells | Semantic Kernel CVEs (CVE-2026-25592 CVSS 10.0, CVE-2026-26030) demonstrated that prompt injection escalates to host-level RCE when frameworks expose I/O functions as callable kernel functions without sandboxing. The attack chain: indirect injection (malicious doc) → LLM generates function call → framework interprets and executes host I/O (file download via eval()) → host compromise. Existing security entries cover content-layer defenses (F-04 guardrails, F-194 AgentJacking, S-763 tool description poisoning) but none cover framework-level RCE via legitimate function exposure. Pattern: (1) capability audit / least privilege on exposed functions, (2) output interpretation boundaries — HITL gate for high-stakes calls, (3) patch management with 24hr SLA for CVSS 9+, (4) retrieval input sanitization for vector store attacks. Microsoft Security Blog (May 7 2026); BreakMyAgent (May 14 2026); Red Hat CVE-2026-26030. | I-082 | Distinct from F-194 (AgentJacking — MCP response trust), F-04 (content-layer guardrails), S-763 (tool description poisoning — metadata/schemabuild-time). This covers framework-internal function exposure as RCE vector — architectural, not content-level. |
 |
 | Token Accumulation Is Invisible Until It Is Catastrophic | Most cost management focuses on per-call optimization (model routing, caching, prompt compression). But in agentic systems the real danger is accumulation — 30 model calls at $0.01 each with no visibility looks fine individually and disastrous in aggregate. The solution is cross-call budget tracking in a durable store, with a task-level kill switch that no single call can bypass. This is orthogonal to per-call optimization: even the most efficient agent needs a ceiling. | I-091 | Cloudchipr AI agent cost management (Apr 2026); AIMadeTools cost tracking guide (Apr 2026); OpenEmpower production failures analysis (Jun 2026); GrowthAccelerationPartners runaway token costs (Jun 2026). Cross-ref: I-068 (Recovery Paradox — same root cause: budget exhaustion without visibility). |
+| Credential Lifetime Is Blast Radius — Rotation Caps What a Leak Can Expose | Static credentials are liabilities with open-ended expiry. Agent credential sprawl (I-077: 30 agents × 6 servers) makes manual rotation impossible. The insight: every credential should have a TTL proportional to its blast radius, enforced by a provisioner layer that injects short-lived tokens at session start. This separates credential lifecycle (infrastructure) from agent context (LLM). The Railway database-deletion incident (2026) exemplifies the failure: a staging-context agent reached production via an unscoped, never-rotated static token. Rotation does not prevent leaks — it limits them to the rotation window. | I-092 | Gravity Fast agent secrets rotation guide (Jun 2026); Descope credential management best practices (May 2026); S-663 (MCP credential sprawl), S-572 (credentials in context), F-10 (agent identity). |
 ## Deduplication Index
 
 agentic-plan-caching → I-063
@@ -234,9 +243,22 @@ compensation → I-001, I-032
 | emergent-consensus → I-082 |
 | R0-hallucination → I-082 |
 
+rag → I-093
+retrieval-strategy → I-093
+query-planning → I-093
+intent-classification → I-093
+query-rewriting → I-093
+query-decomposition → I-093, I-057
+agentic-rag → I-093, I-057
+adaptive-retrieval → I-093
+vocabulary-mismatch → I-093
+retrieval-router → I-093
+strategy-selection → I-093
+BM25 → I-093
+hybrid-search → I-093
+tool-selection → I-014, I-093
 routing →
 memory →
-rag →
 tracing →
 synthetic-data →
 fine-tuning →
@@ -580,6 +602,16 @@ runaway-cost → I-091
 dynamic-max-tokens → I-091
 shared-budget-tracker → I-091
 cost-circuit-breaker-agent → I-091
+guard-agent → I-095
+action-intercept → I-095
+propose-dispose → I-095
+deterministic-guard → I-095
+untrusted-executor → I-095
+LLM-untrusted → I-095
+policy-engine → I-095
+execute-block-escalate → I-095
+cedar → I-095
+authorization-layer → I-095
 graceful-degradation-budget → I-091
 
 ||| 2026-07-08 | I-086 | WRITTEN — S-789 | A2UI Protocol: The Missing User-Facing Layer — research: A2UI v0.8 spec (github.com/a2ui-project/a2ui); A2UI Composer (a2ui-composer.ag-ui.com); A2A Protocol blog three-layer stack article (AgentMarketCap, Apr 2026); A2UI atoui.org landing page; DEV.to A2UI guide (Jun 2026). Deduplication: S-12 covers streaming/SSE delivery (raw token transport), S-14 covers A2A (agent-agent), S-10 covers MCP (agent-tool). None covers structured agent-to-user communication with declarative component rendering. A2UI completes the three-layer stack reference architecture. Novel angle: component catalog as the safe HTML alternative — agents emit typed component descriptors, clients render with their own widgets, eliminating the HTML injection surface entirely while enabling rich interactive UIs. Distinguishes from S-12 (transport only) and S-197 (MCP+A2A two-layer model that A2UI extends to three). |
@@ -589,6 +621,11 @@ graceful-degradation-budget → I-091
 ||| 2026-07-07 | I-084 | WRITTEN — S-464 | KV-Snapshot Sharing for Multi-Agent Inference — all 83 prior ideas WRITTEN; fresh research cycle. Key sources: Towards Data Science "Prefill Once, Fan Out" (Jun 2026) on KV-snapshot fan-out; arXiv:2604.03143 TokenDance (Apr 2026) on collective KV cache sharing across multi-agent pipelines; NVIDIA Dynamo docs on KV-indexer and prefix-based routing; General Compute blog on disaggregated prefill/decode. Deduplication: S-08 covers semantic prompt caching (server-side), S-462 covers agent-loop-aware prompt caching (scaffolding layer), S-243 covers agentic inference cost stratification (economics). None cover the KV-layer shared registry with copy-on-write fork for sub-agent spawning. This is the architectural layer below: compute-once, fork-KV, serve fast. Pattern: prefill deduplication compounds at agent depth — 50 sub-agents × shared 4k prefix = 40-60% wasted tokens without this pattern. Pattern name: "KV Fan-Out". |
 
 ## Recent Decisions
+
+| 2026-07-08 | S-807 — The Confidence Gap: When Agents Say "I Don't Know" Then Act Anyway | Chose over: (1) Synthetic Data Generation Pipeline — partially covered by S-194; (2) Agent Tracing/Observability Stack — already covered by S-196 (OTel GenAI Conventions) and S-209 (Agent Production Observability); (3) Fine-Tuning Infrastructure — too ops-heavy, specificity too low for handbook entry. Confidence calibration is a complete coverage gap — zero existing entries on AUQ, calibration-gap, verbalized-confidence-decoupling, or epistemic-error-propagation. Backed by Salesforce AI Research arXiv:2601.15703 (Dual-Process AUQ), SWE-bench-Pro 73%/35% gap figures, and Zylos/CallSphere 2026 production studies. Connects to S-352 (compensation keys), S-439 (confident false success), S-781 (eval estimator), S-803 (failure recovery). Composite score 9.50. |
+| | | DUPLICATE KILL: "Agent Framework Abstraction Leakage" — covered by S-231 (simplicity principle) and S-260 (stack stratification). |
+| | | DUPLICATE KILL: "Multi-Agent Conflict/Negotiation" — covered by S-05 (multi-agent patterns) and S-770 (orchestration taxonomy). |
+| | | DUPLICATE KILL: "Agent Capability Discovery" — covered by S-74 (capability registry), S-14 (A2A), and S-183 (tool description compression). |
 
 | 2026-07-08 | S-791 — Agent Token Budget Enforcement | Chose this over: Async Task Execution Model (lower composite score 8.05 vs 8.45), LLM Gateway Pattern (7.45), Synthetic Data for Evals (7.4). I-068 (Recovery Paradox) covers the failure mode; S-791 provides the concrete enforcement architecture. Existing S-99 (task economics) and S-95 (retry cost) cover adjacent territory but neither addresses accumulation across turns. Research confirmed 4 independent sources reporting runaway cost as a top-3 production failure in 2026. |
 | | | DUPLICATE KILL: "LLM Router Pattern" — already covered by S-06 (Model Routing). The router itself is well-documented; what was missing was the budget enforcement layer on top, which is what S-791 adds. |
@@ -644,8 +681,8 @@ t |
 ## Meta
 
 - Created: 2026-07-02
-- Last Updated: 2026-07-07 (run: +I-082 / S-771 — Collective Hallucination: The Network Amplification Problem)
-- Total ideas discovered: 82
+- Last Updated: 2026-07-08 (run: +I-096 / S-807 — The Confidence Gap: When Agents Say "I Don't Know" Then Act Anyway)
+- Total ideas discovered: 96
 - Total patterns distilled: 9
 
 | I-030 | Untrusted Content Ingestion Gate | content-sanitization, indirect-prompt-injection, trust-boundary, document-security, content-boundary, ingestion-layer, CVE-2026-2256, EchoLeak, data-exfiltration, defense-in-depth | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-389 | 2026-07-02 | 2026-07-02 |

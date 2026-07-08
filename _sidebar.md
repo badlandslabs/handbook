@@ -135,6 +135,7 @@
   - [S-210 · Agentic Knowledge Compilation](stacks/s210-agent-knowledge-compilation.md)
   - [S-211 · Agent Token Budget Guardrails](stacks/s211-agent-token-budget-guardrails.md)
   - [S-212 · Semantic Output Validation Gate](stacks/s212-semantic-output-validation-gate.md)
+  - [S-804 · The Untrusted Executor Pattern](stacks/s804-the-untrusted-executor-pattern.md)
   - [S-213 · Stratified Agent Stack](stacks/s213-stratified-agent-stack.md)
   - [S-214 · Multi-Agent Orchestration Pattern Selection](stacks/s214-multi-agent-pattern-selection.md)
   - [S-215 · Model Merging for Agent Specialization](stacks/s215-model-merging.md)
@@ -296,6 +297,17 @@
   - [S-785 · Sub-Agent Result Accountability in Fan-Out Pipelines](stacks/s785-sub-agent-result-accountability-in-fan-out-pipelines.md)
   - [S-787 · Invisible Model Drift: The Silent Provider Update Pattern](stacks/s787-invisible-model-drift-the-silent-provider-update-pattern.md)
   - [S-789 · The A2UI Protocol: The Missing User-Facing Layer](stacks/s789-the-a2ui-protocol-the-missing-user-facing-layer.md)
+  - [S-807 · The Confidence Gap: When Agents Say "I Don't Know" Then Act Anyway](stacks/s807-the-confidence-gap-when-agents-say-i-dont-know-then-act-anyway.md)
+  - [S-794 · Agentic Query Planning: The Agent Decides How to Retrieve](stacks/s794-agentic-query-planning-the-agent-decides-how-to-retrieve.md)
+  - [S-796 · Agent State Checkpointing and Transactional Rollback](stacks/s796-agent-checkpoint-and-transactional-rollback.md)
+  - [S-798 · The MCP Event-Injection Surface: When Your Logging Library Becomes a Trojan Horse](stacks/s798-the-mcp-event-injection-surface-when-your-logging-library-becomes-a-trojan-horse.md)
+  - [S-799 · Cross-Agent Trace Correlation: Reconstructing Causal Chains Across Delegation Boundaries](stacks/s799-cross-agent-trace-correlation.md)
+  - [S-800 · The Orchestration Framework Stack: Picking Between LangGraph, CrewAI, and the Rest](stacks/s800-the-orchestration-framework-stack-picking-between-langgraph-crewai-and-the-rest.md)
+  - [S-801 · The Tool Sovereignty Firewall: Enforcing Regulatory Boundaries at the Tool Layer](stacks/s801-the-tool-sovereignty-firewall-enforcing-regulatory-boundaries-at-the-tool-layer.md)
+  - [S-802 · The Agent Evaluation Stack: Measuring What Your Agent Actually Does in Production](stacks/s802-the-agent-evaluation-stack-measuring-what-your-agent-actually-does-in-production.md)
+  - [S-803 · The Agent Failure Recovery Stack: Getting Agents to Resume, Not Restart](stacks/s803-the-agent-failure-recovery-stack-getting-agents-to-resume-not-restart.md)
+  - [S-805 · The Agent Orchestration Stack: Picking Your Wiring Layer](stacks/s805-the-agent-orchestration-stack-picking-your-wiring-layer.md)
+  - [S-806 · Agent Memory Recall Interference](stacks/s806-agent-memory-recall-interference.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -377,6 +389,8 @@
   - [F-195 · Outcome Delivery Verification](forward-deployed/f195-outcome-delivery-verification.md)
   - [F-196 · Streaming Production Evaluation: The Always-On Eval Loop](forward-deployed/f196-streaming-production-evaluation.md)
   - [F-197 · DAG-Aware Agent Scheduling: Parallel Execution Across Turns](forward-deployed/f197-dag-aware-agent-scheduling-parallel-execution-across-turns.md)
+  - [F-198 · Agent Secrets Rotation](forward-deployed/f198-agent-secrets-rotation.md)
+  - [F-199 · ASI08: Cascading Failures in Multi-Agent Systems](forward-deployed/f199-asi08-cascading-failures-multi-agent-systems.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
