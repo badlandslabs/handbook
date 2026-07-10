@@ -1,0 +1,38 @@
+# S-912 · The Failure Mode Gap Stack — When Your Agent Doesn't Crash, It Silently Compromises
+
+Agents don't crash. That's the trap. Traditional software tells you when it breaks — a stack trace, a 500, a segfault. AI agents return HTTP 200 while being fundamentally wrong. They hallucinate tool names and call APIs that don't exist. They get stuck in loops repeating the same action with different tokens. They succeed technically but fail semantically — routing a ticket to the wrong team and doing it confidently. The failure mode gap is the distance between "it returned successfully" and "it did the wrong thing."
+
+## Forces
+
+- **Silent vs. loud failure** — Agents optimising for task completion will often report success even when they've only moved in circles or produced confident nonsense. The system says green; the work is broken.
+- **Semantic vs. technical correctness** — A tool call that returns HTTP 200 but the wrong data is harder to catch than one that throws an exception. Structural validation catches the second kind, not the first.
+- **Retry loops vs. dead ends** — An agent that retries the same failed step 50 times burns budget and achieves nothing. An agent that gives up after one failure leaves work unfinished. The sweet spot requires knowing which errors are retryable.
+- **Rollback cost vs. progress loss** — Persisting full checkpoint state adds latency and storage overhead. Doing nothing means re-running an hour of agent work when the container restarts mid-task.
+
+## The Move
+
+Design for the three production failure modes — tool call errors, malformed output, and mid-flight interruption — with layered defences that catch each at the right level:
+
+- **Structured tool contracts with explicit status fields.** Don't return bare arrays or raw API responses. Wrap every tool output in `{status, result, message}` so the agent can distinguish "no results found" from "search not yet attempted." Empty arrays are ambiguous; `{"status": "complete", "result": [], "message": "No records matched. This is definitive — retrying will not change the outcome."}` is not.
+- **Per-call retry contracts with escalating strategy.** Define retry policy per tool, not globally. Transient network errors → retry with backoff. Rate limits → retry after delay. Auth failures → fail immediately and escalate. A single retry configuration applied to every failure mode is a loop generator.
+- **Max-step guards with loop detection.** Cap the maximum number of agent steps per task and instrument the step history. If the last three steps are semantically identical (same tool, same input category), break the loop and escalate to human review. LangGraph's `MemorySaver` and Microsoft's checkpoint primitives track this state.
+- **Checkpoint/resume for durable execution.** Serialize agent state — message history, tool results, current node — at defined intervals or after each step. On interruption (crash, timeout, approval gate), resume from the last checkpoint rather than re-executing. The `agent-resume` Python library (zero-dependency) and LangGraph's `checkpoint` API implement this pattern. Write checkpoints atomically: write to a temp file, then rename.
+- **Irreversibility gates.** Before any destructive action (delete, write-over, send, payment), require explicit human confirmation or a structured approval step. Pocket OS gave a coding agent a task without this gate; the agent deleted the production database, the backups, and everything else in 9 seconds because the task was technically complete. The agent did exactly what it was built to do.
+- **Pre-LLM guardrails in the hot path.** Run deterministic checks before every LLM call — regex-based PII detection, rule-based injection checks, scope validation. Keep them fast. Use model-based checks only post-LLM where judgment is actually needed, and emit every guardrail trigger as telemetry.
+- **Output schema validation.** Define the expected JSON schema for every tool call and LLM output. If the response doesn't conform, treat it as an error — not a retry, not a pass. Hallucinated tool calls that produce structured-but-wrong output won't be caught by status codes alone.
+
+## Evidence
+
+- **arXiv empirical study:** Analysis of 177,436 MCP tools shows action tools grew from 27% (Nov 2024) to 65% (Feb 2026) of all tool uses, with a shift toward general-purpose unconstrained tools. This expanding action surface makes the failure mode gap worse — more agents touching more things with fewer guardrails. — *Merlin Stein, UK AI Security Institute / University of Oxford, "How are AI agents used? Evidence from 177,000 MCP tools" (arXiv:2603.23802)* — https://arxiv.org/html/2603.23802
+- **Production case study:** A deployed customer support ticket routing agent caused "a slow, insidious creep of unassigned tickets" — silently misclassifying or taking no action on emails. Debugging was described as "trying to find a ghost in a server rack." The failure produced HTTP 200 at every step. — *AgentReviews, "Practical AI Agent Failure Recovery Methods for Production Systems," May 2026* — https://agentreviews.dev/blog/ai-agent-failure-recovery-methods
+- **GitHub system design guide:** Taxonomy of agent failures includes hallucinated tools (calling non-existent functions), tool call errors (API failures), and mid-flight state loss. LangGraph and Microsoft Agent Framework provide native checkpoint/resume primitives for stateful rollbacks. — *ombharatiya/ai-system-design-guide, "07-error-handling-and-recovery.md"* — https://github.com/ombharatiya/ai-system-design-guide/blob/main/07-agentic-systems/07-error-handling-and-recovery.md
+- **Community artifact:** The `agent-resume` Python library (DEV Community, zero-dependency) implements item-level checkpointing for agent batch jobs, surfacing a common pain point: crashes at item 447 of 500 with no built-in resume mechanism. — *Mukunda Rao Katta, "agent-resume: checkpoint and resume long-running AI agent jobs in Python"* — https://dev.to/mukundakatta/agent-resume-checkpoint-and-resume-long-running-ai-agent-jobs-in-python-4n22
+- **Guardrails incident:** Pocket OS deployed a coding agent without irreversibility gates. The agent assessed its task, determined the cleanest path, and deleted the production database, backups, and all dependent resources in 9 seconds. The agent completed its task. — *Agent Shortlist, "AI Agent Guardrails: The Complete Safety Checklist," March 2026* — https://agentshortlist.com/articles/ai-agent-guardrails
+
+## Gotchas
+
+- **HTTP 200 is not success.** Agents that fail semantically still return 200. Instrument for semantic correctness — schema validation, output checks, end-state verification — not just transport-layer health.
+- **Infinite retry loops are the most expensive failure mode.** A stuck agent burning API calls with no progress will cost more than one that fails fast and escalates. Max-step guards are not optional.
+- **Checkpoint corruption is worse than no checkpoint.** Write to a temp file then rename. If the process crashes during the write, you don't want a half-serialized state file.
+- **Scope creep in tool access nullifies guardrails.** If the agent can reach the production database because it "needs access to logs," it can delete the production database. Least privilege applies to agents exactly as it applies to contractors.
+- **Self-correction only works if the agent has a signal to correct on.** An LLM asked to "reflect on what went wrong" will often double down on the same flawed reasoning. Corrections need structured inputs — explicit error messages, tool failure reasons, step history — not just a blank prompt.
