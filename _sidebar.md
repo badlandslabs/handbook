@@ -74,6 +74,7 @@
   - [S-914 · The Observability Trap — When Your Dashboard Watches Your Agent Burn $47,000](stacks/s914-the-observability-trap-stack-when-your-dashboard-watches-your-agent-burn-47k.md)
   - [S-917 · The Capability Erasure Stack — When Self-Improvement Becomes Self-Destruction](stacks/s917-the-capability-erasure-stack-when-self-improvement-becomes-self-destruction.md)
   - [S-918 · The A2A Trust Gap — When Agents Talk to Strangers Without Proving Who They Are](stacks/s918-the-a2a-trust-gap.md)
+  - [S-996 · The Harness Matters More Stack — When Your Model Isn't the Problem](stacks/s996-the-harness-matters-more-stack-when-your-model-isnt-the-problem.md)
   - [S-891 · The Visual Builder Attack Surface — When Your No-Code AI Platform Becomes the Entry Point](stacks/s891-the-visual-builder-attack-surface-stack-when-your-no-code-ai-platform-becomes-the-entry-point.md)
   - [S-16 · Prompting](stacks/s16-prompting.md)
   - [S-17 · Embeddings](stacks/s17-embeddings.md)
