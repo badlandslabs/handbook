@@ -1,0 +1,34 @@
+# S-1019 · The Three-Pillar Agent Observability Stack: When You Can't Answer "Why Did My Agent Do That?"
+
+Your production agent works. It logs no errors. It responds in under 2 seconds. Then a user reports it sent a support ticket to the wrong team, argued with a customer, and silently hallucinated a refund policy — all within the same hour. You have no trace, no eval score, and no way to reconstruct what happened. This is the statefulness observability gap: traditional metrics tell you the agent ran, not why it chose what it chose.
+
+## Forces
+
+- **Standard APM fails at agent scale.** HTTP status codes, latency histograms, and error rate dashboards answer "what happened" for microservices. For agents, the failure is probabilistic and causal — a wrong answer emerges from a chain of non-deterministic decisions that no single span captures.
+- **Agents accumulate mutable state.** Context windows are dynamic buffers: what the agent retrieved, what it remembered from prior turns, which tool it called and why — all of it shapes every subsequent decision. Without capturing the full trajectory, you're debugging blind.
+- **Three separate signals are needed but rarely deployed together.** Tracing captures the execution path. Evals quantify output quality. Debug surfaces the root cause. Teams usually have one of the three and wonder why it isn't enough.
+- **SaaS tracing platforms create cost exposure at scale.** Per-trace billing means 100 req/s at ~50KB per trace produces tens of thousands of dollars in monthly platform fees. Sampling is essential but non-trivial to calibrate.
+
+## The Move
+
+Layer three observability primitives that answer different questions, wired through OpenTelemetry as the common backbone so any backend can consume them:
+
+- **Pillar 1 — Distributed Tracing (answers: "what happened?"):** Instrument every LLM call, tool invocation, memory read/write, and routing decision as a span in a causal chain. OpenTelemetry GenAI semantic conventions (stable as of GenAI semconv 1.29+, 2026) define the vocabulary: `genai.*` attributes for model name/provider/token counts, `genai_llm.responses` for output, `genai.tool.*` for tool calls. LangChain has first-class OTel instrumentation built in. The trace must include the full prompt context at each step — not just the final call.
+- **Pillar 2 — Evaluation Engineering (answers: "how good was it?"):** Run structured evals on every significant trajectory, not just on final outputs. Common eval categories: faithfulness (did it hallucinate from retrieved context?), answer relevance (does the response address the query?), tool-call accuracy (did it invoke the right tool with the right parameters?), and safety/s refusal patterns. LLM-based evaluators (G-evals) scale better than human annotation; deterministic checks (unit tests, regex patterns) catch regressions faster. Langfuse supports evaluation runs with comparison views; Arize Phoenix provides open-source RAG evaluation suites; Braintrust surfaces patterns across traces with automated scoring.
+- **Pillar 3 — Debug Surface (answers: "why did it fail?"):** Export traces to a queryable debug interface. LangSmith gives LangGraph-first trace visualization; Langfuse gives open-source self-hostable query UI; Arize Phoenix gives OpenTelemetry-native dashboarding with UMAP/HDBSCAN clustering to surface prompt/response clusters that share failure modes. The critical feature is temporal replay: reconstruct the full decision chain for any session, including memory state at each step.
+
+**Wiring it together:** OTel Python SDK → LangChain instrumentation → OTel Collector → [Langfuse / Arize Phoenix / custom] backend. Self-host Langfuse or Phoenix to avoid per-trace SaaS pricing at scale. Apply adaptive sampling: trace everything for a baseline window (first 1,000 traces), then sample intelligently — always trace errors and outliers, sample 10-20% of successes.
+
+## Evidence
+
+- **Benchmarking article — Three-pillar framework:** QubitTool's agent observability engineering guide (2026-05-21) codifies this as the standard architecture: Distributed Tracing + Evaluation Engineering + Debug, with production-ready code examples using OTel, LangSmith, LangFuse, and Arize Phoenix. — [QubitTool Tech Blog](https://qubittool.com/blog/agent-observability-engineering)
+- **OTel standard confirmation:** OpenTelemetry's GenAI semantic conventions reached stable status (GenAI semconv 1.29+) in 2026, defining standard attribute names for LLM calls, tool invocations, and memory operations across all OTel-native platforms. — [Zylos Research, April 2026](https://zylos.ai/en/research/2026-04-29-agent-observability-production-debugging)
+- **Enterprise adoption data:** 57% of organizations now run AI agents in production (2026), but only ~15% have observability today vs. Gartner's prediction of 50% by 2028. LangSmith processes traces from 400+ companies; Langfuse has 22,000+ GitHub stars and 5,000+ Discord members; Arize Phoenix crossed 10,000 GitHub stars in June 2026 with 2.4M+ monthly installs. — [Agile Leadership Day India comparison, June 2026](https://agileleadershipdayindia.org/blogs/ai-agent-observability-opentelemetry/langfuse-vs-arize-phoenix-vs-langsmith.html); [Arize Phoenix 10K stars post, June 2026](https://arize.com/blog/phoenix-10k/)
+- **Tamper-evident audit trail for regulated environments:** AgentLens — an open-source MCP-native observability platform — demonstrates SHA-256 hash-chained, append-only event logs for EU AI Act Article 12 compliance, with every LLM call, tool invocation, and approval decision captured in a queryable audit trail. — [GitHub: agentkitai/agentlens](https://github.com/amitpaz1/agentlens)
+
+## Gotchas
+
+- **Sampling destroys evidence.** Aggressive head-based sampling (trace only the first N requests) almost certainly drops your worst incidents. Always use tail-based sampling: buffer traces, then export 100% of errors/latency outliers plus a representative sample of successes.
+- **Tracing without evals tells you the path, not whether the destination was right.** Many teams instrument traces and still can't answer "was this response accurate?" because they never ran an eval against ground truth or reference answers.
+- **SaaS per-trace pricing is a budget surprise at production scale.** A single agent session with 30 tool calls, full context history, and retrieved documents can consume 50KB+ per trace. At 100 req/s, that's ~15GB/day. Price-check before committing to a proprietary SaaS tracing platform.
+- **Context window state is ephemeral.** If your observability layer doesn't capture the full prompt state at each step (not just the final compiled prompt), you can't replay a session accurately. The LLM call span alone without the intermediate reasoning steps is insufficient for root cause.
