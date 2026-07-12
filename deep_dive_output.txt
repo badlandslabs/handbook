@@ -1,0 +1,265 @@
+Deep-dive analysis date: 2026-07-08
+======================================================================
+
+======================================================================
+DEEP DIVE: NET
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $268.83
+    Avg Volume: 4.5M
+
+  VALUATION:
+    Market Cap: $95.4B
+    P/E (TTM): N/A
+    P/E (Forward): 170.3
+    EPS (TTM): $-0.24
+    EPS (Fwd): $1.58
+    Target Price: $246.07
+    Upside to Target: -8.5%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 33.5%
+    Beta: 1.67
+    Inst. Ownership: N/A
+    Short Float: 3.2%
+    Div Yield: N/A
+    Analyst Rec: buy
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +9.60%
+    10d Return: +19.51%
+    20d Return: +8.49%
+    60d Return: +60.99%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -36.76%
+    Current Drawdown from Peak: -1.40%
+
+  KEY PRICE LEVELS:
+    60d High: $276.82 | 60d Low: $164.05
+    20d SMA: $235.10 | 50d SMA: $227.53
+    Distance from 60d High: -2.9%
+    ATR(14): $12.17 ($4.5% of price)
+    Volatility Z-score (vs 20d): -0.94
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+DEEP DIVE: META
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $615.58
+    Avg Volume: 17.2M
+
+  VALUATION:
+    Market Cap: $1.56T
+    P/E (TTM): 22.4
+    P/E (Forward): 16.7
+    EPS (TTM): $27.52
+    EPS (Fwd): $36.83
+    Target Price: $828.17
+    Upside to Target: +34.5%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 33.1%
+    Beta: 1.25
+    Inst. Ownership: N/A
+    Short Float: 1.4%
+    Div Yield: 34.00%
+    Analyst Rec: strong_buy
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +9.28%
+    10d Return: +9.49%
+    20d Return: +5.25%
+    60d Return: -2.18%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -33.30%
+    Current Drawdown from Peak: -21.82%
+
+  KEY PRICE LEVELS:
+    60d High: $690.88 | 60d Low: $540.18
+    20d SMA: $576.33 | 50d SMA: $602.47
+    Distance from 60d High: -10.9%
+    ATR(14): $22.86 ($3.7% of price)
+    Volatility Z-score (vs 20d): 1.15
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+DEEP DIVE: CRWD
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $194.62
+    Avg Volume: 13.5M
+
+  VALUATION:
+    Market Cap: $198.2B
+    P/E (TTM): N/A
+    P/E (Forward): 124.6
+    EPS (TTM): $-0.04
+    EPS (Fwd): $1.56
+    Target Price: $182.28
+    Upside to Target: -6.3%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 25.6%
+    Beta: 1.24
+    Inst. Ownership: N/A
+    Short Float: 3.1%
+    Div Yield: N/A
+    Analyst Rec: buy
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +2.01%
+    10d Return: +14.33%
+    20d Return: +18.17%
+    60d Return: +105.39%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -37.18%
+    Current Drawdown from Peak: -2.39%
+
+  KEY PRICE LEVELS:
+    60d High: $209.50 | 60d Low: $91.12
+    20d SMA: $176.32 | 50d SMA: $158.47
+    Distance from 60d High: -7.1%
+    ATR(14): $8.88 ($4.6% of price)
+    Volatility Z-score (vs 20d): -0.42
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+DEEP DIVE: FTNT
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $158.67
+    Avg Volume: 6.5M
+
+  VALUATION:
+    Market Cap: $116.2B
+    P/E (TTM): 61.3
+    P/E (Forward): 46.3
+    EPS (TTM): $2.59
+    EPS (Fwd): $3.43
+    Target Price: $113.89
+    Upside to Target: -28.2%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 20.1%
+    Beta: 1.09
+    Inst. Ownership: N/A
+    Short Float: 3.1%
+    Div Yield: N/A
+    Analyst Rec: hold
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +3.29%
+    10d Return: +7.21%
+    20d Return: +10.93%
+    60d Return: +106.87%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -30.90%
+    Current Drawdown from Peak: -2.27%
+
+  KEY PRICE LEVELS:
+    60d High: $163.57 | 60d Low: $76.01
+    20d SMA: $149.11 | 50d SMA: $129.83
+    Distance from 60d High: -3.0%
+    ATR(14): $6.17 ($3.9% of price)
+    Volatility Z-score (vs 20d): 0.14
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+DEEP DIVE: ADP
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $245.60
+    Avg Volume: 3.0M
+
+  VALUATION:
+    Market Cap: $98.2B
+    P/E (TTM): 22.9
+    P/E (Forward): 20.1
+    EPS (TTM): $10.71
+    EPS (Fwd): $12.20
+    Target Price: $247.60
+    Upside to Target: +0.8%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 7.0%
+    Beta: 0.84
+    Inst. Ownership: N/A
+    Short Float: 4.5%
+    Div Yield: 277.00%
+    Analyst Rec: hold
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +9.67%
+    10d Return: +11.38%
+    20d Return: +8.02%
+    60d Return: +31.08%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -38.07%
+    Current Drawdown from Peak: -18.82%
+
+  KEY PRICE LEVELS:
+    60d High: $248.42 | 60d Low: $186.74
+    20d SMA: $226.28 | 50d SMA: $219.34
+    Distance from 60d High: -1.1%
+    ATR(14): $6.65 ($2.7% of price)
+    Volatility Z-score (vs 20d): 1.57
+    NOTE: Elevated volatility — use tighter position sizing
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+DEEP DIVE: PAYX
+======================================================================
+
+  PRICE & VOLUME:
+    Close: $108.12
+    Avg Volume: 3.4M
+
+  VALUATION:
+    Market Cap: $38.4B
+    P/E (TTM): 21.5
+    P/E (Forward): 16.9
+    EPS (TTM): $5.02
+    EPS (Fwd): $6.39
+    Target Price: $106.57
+    Upside to Target: -1.4%
+
+  FUNDAMENTALS:
+    Rev Growth (YoY): 12.5%
+    Beta: N/A
+    Inst. Ownership: N/A
+    Short Float: 6.5%
+    Div Yield: 440.00%
+    Analyst Rec: hold
+
+  MOMENTUM PROFILE (Daily, 1Y):
+    5d Return: +9.96%
+    10d Return: +10.34%
+    20d Return: +9.30%
+    60d Return: +27.98%
+
+  DRAWDOWN ANALYSIS:
+    Max Drawdown (1Y): -41.01%
+    Current Drawdown from Peak: -24.51%
+
+  KEY PRICE LEVELS:
+    60d High: $109.73 | 60d Low: $84.36
+    20d SMA: $100.24 | 50d SMA: $96.42
+    Distance from 60d High: -1.5%
+    ATR(14): $3.59 ($3.3% of price)
+    Volatility Z-score (vs 20d): 1.95
+    NOTE: Elevated volatility — use tighter position sizing
+  ERROR: 'numpy.float64' object has no attribute 'iloc'
+
+======================================================================
+Analysis complete.
