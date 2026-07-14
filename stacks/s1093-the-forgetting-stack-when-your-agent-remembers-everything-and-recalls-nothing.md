@@ -1,0 +1,38 @@
+# S-1093 · The Forgetting Stack — When Your Agent Remembers Everything and Recalls Nothing
+
+Your agent is two weeks into production. It holds 80,000 tokens of conversation history, 12,000 extracted facts, and a vector index of every document it has ever seen. A user asks about the refund policy change from last Tuesday. The agent cites the old policy — the one that was updated six days ago. Every fact is still in memory. Nothing was evicted. The recall retrieved the strongest semantic match, not the most recent one. The agent is drowning in its own past.
+
+This is the agent memory problem: persistence is solved, but recall quality is not. As memory accumulates, retrieval degrades because the agent must suppress irrelevant context — a problem storage cannot solve.
+
+## Forces
+
+- **Context windows grew but the state problem didn't go away.** GPT-5.5's 2M-token context doesn't solve the agent state problem — it just moved the ceiling. Long context still degrades in the middle (the "lost in the middle" problem), and a 500K-token context is expensive to fill on every turn. Teams that assumed "bigger window = memory solved" are rebuilding their memory layers in production.
+- **Every memory system ships without a forgetting policy.** Mem0, Letta, Zep, and every custom vector-store-backed agent starts with full persistence. Nobody ships eviction logic first — it's always added after the first incident. "An agent that remembers everything is an agent that recalls badly." — Mem0, May 2026 — [Mem0 Blog](https://mem0.ai/blog/memory-eviction-and-forgetting-in-ai-agents)
+- **Four memory surfaces, four different eviction profiles.** Treating memory as a single bucket — vector store + retrieval — ignores that working memory, episodic events, semantic facts, and procedural instructions have fundamentally different decay rates. A refund policy fact and a "user prefers Python" preference need different TTLs, retrieval triggers, and update semantics.
+- **Extraction amplifies noise.** The standard Mem0-pattern approach — extract a fact on every turn, write to vector store — floods the memory with jokes, typos, contextless statements, and stale facts that were correct once. The retrieval surface grows faster than useful recall density.
+- **Temporal contradictions break agents silently.** An agent stores "refund policy is 60 days" in session 3, the policy changes to 30 days in session 12, and the agent surfaces the old fact confidently in session 20. Vector similarity retrieval doesn't know which fact is current. — [BestAIWeb](https://www.bestaiweb.ai/how-to-build-a-persistent-memory-layer-for-ai-agents-with-mem0-letta-and-zep-in-2026)
+
+## The Move
+
+The production memory stack is a tiered system with an explicit eviction policy. Treat forgetting as a recall-quality intervention, not a storage constraint.
+
+- **Tier 1 — Working memory (always in context):** System prompt + recent turns + active task state. This is the LLM's actual workspace. Keep it under 20% of context to leave room for reasoning. Ingest this from a fast checkpoint store (Redis or PostgreSQL), not from vector retrieval.
+- **Tier 2 — Episodic memory (timestamped events):** What happened in specific past sessions, retrieved by recency + relevance. Use an episodic store with time-indexed retrieval (Zep's Graphiti, Letta's block API, or a timestamped Postgres table). Trigger retrieval on session resumption or when the task references past work.
+- **Tier 3 — Semantic memory (extracted facts with TTL):** Individual facts, preferences, and learned information extracted from episodes. Each fact gets a TTL appropriate to its type: short TTL for policy facts, medium for preferences, long for identity. Store with provenance (which session, which turn). Zep's temporal knowledge graph tracks fact evolution — it knows when "refund policy = 60 days" was superseded by "refund policy = 30 days."
+- **Tier 4 — Procedural memory (how the agent works):** System prompt, tool descriptions, learned heuristics. Rarely updated. Store as versioned documents. Re-eval agents when this layer changes.
+- **Forgetting is active.** Implement importance-based eviction: memories decay in strength over time (exponential decay, 3–7 day half-life for episodic, longer for semantic), strengthen on recall (spaced repetition pattern), and get evicted before being loaded into working memory when the recall set exceeds a budget. Hippo, a biologically-inspired memory system from Show HN (Jun 2026), implements this explicitly: "The secret to good memory isn't remembering more. It's knowing what to forget." — [HN](https://news.ycombinator.com/item?id=47667672)
+- **Build the eviction policy before the retrieval policy.** The retrieval surface is bounded by what you choose to keep. Start with aggressive TTLs and expand only when you have evidence that useful facts are being evicted.
+
+## Evidence
+
+- **Mem0 (55k+ GitHub stars, $24M raised):** The most widely deployed memory layer. Core insight: "Stored every turn as memory" is the failure mode — it drowns useful facts in tool errors and small talk. Solution: define what counts as a memory in Step 2, let the extractor reject the rest. — [Mem0 Blog](https://mem0.ai/blog/memory-eviction-and-forgetting-in-ai-agents)
+- **Zep / Graphiti (20k+ Graphiti stars, arXiv paper with 234 citations):** Temporal knowledge graph architecture. Outperforms MemGPT on the Deep Memory Retrieval (DMR) benchmark. Key differentiator: tracks how facts change over time, resolving contradictions by surfacing the current version. "Enterprise applications require temporal reasoning — facts change, and the memory system must know when." — [arXiv:2501.13956](https://arxiv.org/abs/2501.13956)
+- **Letta (22k+ GitHub stars, $10M seed):** Agent-controlled memory management. The agent decides what to remember, what to consolidate, and when to retrieve — not a passive store. Philosophy: "In Letta's model, the agent itself decides what to remember, what to forget, and when to retrieve. The tradeoff is explicit overhead." — [FuturePicker](https://futurepicker.com/en/ai-agent-memory-systems-letta-mem0-zep-2026-en/)
+- **Framework landscape (2026):** By mid-2026, Mem0, Letta, and Zep collectively had ~97k GitHub stars and $35M in venture funding within two years. The catalyst: "context windows scaled faster than models' ability to maintain useful state." — [FuturePicker](https://futurepicker.com/en/ai-agent-memory-systems-letta-mem0-zep-2026-en/)
+
+## Gotchas
+
+- **Semantic retrieval doesn't know time.** A vector store returns the most similar fact, not the most recent fact. For anything that changes (policies, prices, availability), you need a temporal dimension in your storage schema — either Zep's knowledge graph or a timestamp + version column in Postgres.
+- **Setting TTL to "never" is the default and it's wrong.** Every fact type needs a different expiry window. Policy facts should be short (1–7 days) and re-confirmed on task start. Preferences can be longer. Learned procedures can be nearly permanent. "No TTL on extracted facts: stale preferences and outdated policies stay in recall forever." — [BestAIWeb](https://www.bestaiweb.ai/how-to-build-a-persistent-memory-layer-for-ai-agents-with-mem0-letta-and-zep-in-2026)
+- **Tenant isolation on the storage key is not optional.** If user A's fact gets recalled in user B's session, that's a privacy incident. Lock the identity scope first, before implementing any other memory feature.
+- **Checkpointing != memory.** Saving agent state to Redis for crash recovery is not the same as memory. The working memory checkpoint lets you resume a task; it doesn't let the agent know what it learned in session 3 when working on an unrelated task in session 20.
