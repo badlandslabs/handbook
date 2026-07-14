@@ -1,0 +1,35 @@
+# S-1080 · The USB-C-for-AI Stack — When Every Tool Integration Becomes a One-Time Build
+
+Your agent needs to talk to GitHub, Slack, Postgres, and your internal CRM. You write four custom integrations. Six months later you swap the LLM provider. Three of the four integrations break because they were coupled to the old model's tool-calling schema. You rewrite them. This is the N×M problem — custom integrations for every combination of model and tool, multiplying maintenance debt every time either side changes. The Model Context Protocol (MCP) is the emerging solution: build one MCP server per tool, and every MCP-compliant agent can use it without custom code.
+
+## Forces
+
+- **The N×M integration explosion.** With M models and N tools, naive integration requires M×N bespoke connections. Every provider swap or tool addition touches the entire matrix.
+- **Tool-calling schemas vary across providers.** OpenAI function calling, Anthropic tool use, Google function declarations, and custom formats are not interchangeable. A direct integration to one provider is locked to it.
+- **Fleet management tool calls dominate production usage.** In enterprise deployments, commands like "list instances," "check health," and "get status" — not complex reasoning — account for the majority of MCP tool invocations. The protocol's value is immediate even for mundane operations.
+- **Security and observability gaps in MCP are emerging concerns.** MCP doesn't natively provide much observability, and some MCP security threats (tool permission escalation, prompt injection via tool responses) are being actively discussed in the community.
+
+## The move
+
+Build one MCP server per external resource — not per model. Every MCP-compliant agent (Claude, GPT, Gemini, Codex, or local model) can then use the server without custom code.
+
+- **Use remote MCP servers for SaaS tools with official support.** AWS (3,900+ servers), Atlassian (3,700), Linear (3,400), GitLab (2,800), Stripe (1,900), Shopify (1,800), and Snowflake (1,100) all have official or community MCP servers. Deploy these behind an MCP gateway for central access control, logging, and credential management.
+- **Use local MCP servers for filesystem, databases, and internal APIs.** Local servers run in-process and don't expose credentials over the network — better for security-sensitive resources.
+- **Combine MCP with A2A (Agent-to-Agent Protocol) for multi-agent systems.** MCP handles model-to-tool communication. A2A handles inter-agent task delegation and status sharing. Organizations using both protocols report 40–60% faster workflow development than single-protocol approaches.
+- **Gate all MCP tool calls behind permission checks.** Every tool invocation should be validated against the source system's access controls — not just the LLM's output. This is what separates a pilot agent from a production agent.
+- **Log every tool call with input, output, duration, and error state.** MCP's lack of native observability means you must build this yourself. Treat tool-call telemetry as first-class production metrics.
+- **For browser automation specifically, use ABP (Agent Browser Protocol) over Playwright MCP.** ABP freezes JavaScript and rendering between each agent action, capturing a synchronized screenshot and structured event summary. It scores 90.5% on Online Mind2Web (85.51% hard tasks) vs Playwright MCP, with 2× lower token usage, 2× faster runs, and 2× fewer tool calls. ~100ms overhead per action.
+
+## Evidence
+
+- **AWS Blog:** Amazon's evaluation framework for agentic systems uses a four-step automated workflow (task decomposition → trajectory tracing → multi-dimensional metrics → human-in-the-loop validation). HITL is "indispensable particularly for high-stakes decision scenarios" — providing ground truth labels for golden datasets and calibrating LLM-as-a-judge against human preferences. Production monitoring tracks real-world performance across diverse user behaviors and edge cases not represented in pre-deployment tests. — [aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons](https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon)
+- **MCP Adoption Data (MCP Manager / industry surveys):** As of 2026, MCP SDKs hit 97M+ monthly downloads (up from ~100K at launch in Nov 2024). 13,230+ public MCP servers exist. 78% of enterprise AI teams have MCP-backed agents in production. 28% of Fortune 500 companies run MCP servers. Anthropic donated the protocol to the Linux Foundation's Agentic AI Foundation in December 2025. — [mcpmanager.ai/blog/mcp-adoption-statistics](https://mcpmanager.ai/blog/mcp-adoption-statistics) and [andrew.ooo](https://andrew.ooo/answers/mcp-model-context-protocol-enterprise-adoption-july-2026)
+- **HN Show HN / GitHub (Agent Browser Protocol):** theredsix built a Chromium fork with MCP baked directly into the browser engine. The "freeze-then-capture" pattern — freezing JS execution after every agent action, capturing the resulting page state — solves the core browser-agent failure mode of reasoning from stale page state. 90.53% on Online Mind2Web benchmark. — [github.com/theredsix/agent-browser-protocol](https://github.com/theredsix/agent-browser-protocol) + [HN thread](https://news.ycombinator.com/item?id=47336171)
+- **Production Agent Case Studies (ampcome / neo4j):** Only ~5% of enterprise AI agents reach production — the 95% that die do so between the impressive demo and compliance review. Production requirements: governance (every action permission-checked), observability (every step, tool call, and error logged), and SLA reliability. A port logistics agent in production surfaces terminal exceptions in seconds rather than at shift-change — the agent's job is exception surfacing, not optimization invention. — [ampcome.com/post/ai-agents-in-production-examples](https://www.ampcome.com/post/ai-agents-in-production-examples)
+
+## Gotchas
+
+- **MCP doesn't handle inter-agent orchestration — it's for tool access, not task delegation.** Trying to force multi-agent workflows through MCP alone creates unnecessary complexity. Use A2A for agent-to-agent communication; reserve MCP for model-to-tool.
+- **MCP remote servers require credential management.** Remote servers expose credentials over the network. An MCP gateway is the standard mitigation — it centralizes auth, provides audit logs, and enforces rate limits. Don't deploy remote MCP servers without it.
+- **The "USB-C" analogy breaks at the protocol level.** MCP standardizes the connection interface but not the tool's behavior. Two GitHub MCP servers may implement different subsets of the GitHub API. Verify the specific capabilities your agents need before assuming a server covers them.
+- **Browser automation with Playwright MCP has higher token overhead than ABP.** Playwright sends DOM snapshots that ABP's freeze-and-capture approach avoids. For production browser agents, ABP's 2× token savings is significant at scale.
