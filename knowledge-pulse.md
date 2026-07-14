@@ -162,6 +162,9 @@
 || I-156 | The Ephemeral Delegation Stack: Task-Scoped Tokens for Cross-Agent Credential Chains | ephemeral-credential, delegation-token, scoped-token, agent-auth, task-scoped, nhi-delegation, keycard, a2a-delegation, mcp-gateway, revocation, downscope, least-privilege-delegation, hmac-token, jti-revocation, agent-to-agent-auth, ietf-aiagent-auth, cross-org-delegation, spiffe, sts, credential-downscope | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1075 | 2026-07-14 | 2026-07-14 |
 || I-157 | The Tool-Aware Model Router: When Cheap Tools Burn Budget Because Routing Ignores Them | tool-aware-router, switchcraft, model-routing, tool-cost, distilbert-router, total-cost-routing, misrouting, tool-specific-routing, cost-per-task, fluent-wrong, consequence-gate, phase-aware-routing, microsoft-research, arxiv-2605.09121, token-budget-routing, per-tool-circuit-breaker | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-1079 | 2026-07-14 | 2026-07-14 |
 
+| I-158 | Execute-Only Agents (XOA): Structural Prompt Injection Defense via Pipeline Separation | xoa, execute-only-agent, prompt-injection, structural-defense, code-generation, data-separation, sandbox, policy-over-isolation, sandlock, multikernel, kernel-pipes, schema-over-data, task-taxonomy, scriptable-task, judgment-requiring, cambridge-xoa, vt-xoa, indirect-prompt-injection, architectural-protection, trust-boundary-migration, dual-llm-limitations, camelfides | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-1085 | 2026-07-14 | 2026-07-14 |
+| I-159 | The Cascading Hallucination Spill Stack | cascading-hallucination, cross-stage-error, multi-hop-rag, agentic-rag, claim-graph, provenance-tracing, self-consistent-error, confidence-compounding, charm-framework, graphrag, cross-stage-verification, contradiction-detection, hop-corruption, circuit-breaker, retrieval-fidelity, same-model-reinforcement, entity-grounding | 9 | 9 | 8 | 10 | 7 | **8.85** | WRITTEN — S-1086 | 2026-07-14 | 2026-07-14 |
+
 ## Pattern Log
 
 || Pattern | Description | Supporting Idea IDs | Notes |
@@ -324,6 +327,11 @@ silent-eviction → I-150
 context-pressure → I-150
 priority-eviction → I-150
 grounding-probe → I-150
+cascading-hallucination → I-159
+cross-stage-error → I-159
+charm-framework → I-159
+hop-corruption → I-159
+self-consistent-hallucination → I-159
 *Keyword → idea ID mapping. Updated after each run.*
 ```
 ai-agent → I-001, I-002, I-008
@@ -816,6 +824,18 @@ cost-per-task → I-157
 consequence-gate → I-157
 phase-aware-routing → I-157
 per-tool-circuit-breaker → I-157
+execute-only-agent → I-158
+xoa → I-158
+code-generation-data-separation → I-158
+execute-only → I-158
+schema-over-data → I-158
+pipeline-separation → I-158
+structural-prompt-injection-defense → I-158
+policy-over-isolation → I-158
+kernel-pipes → I-158
+scriptable-task → I-158
+judgment-requiring → I-158
+indirect-prompt-injection-structural → I-158
 
 
 ## Recent Decisions
@@ -900,13 +920,17 @@ t |
 | 2026-07-09 | I-107 | WRITTEN — S-887 | MCP Gateway Governance Stack — gap: all existing MCP entries (S-10, S-201, S-269, S-295, S-301, S-306, S-365) cover the protocol itself or server hardening. None cover the gateway/proxy layer as a first-class architectural governance pattern. This entry is distinct from S-269 (tool abstraction layer) — that covers code-level tool routing; this covers the operational governance plane (auth, audit, rate limiting, credential bridging, circuit breaking). Chosen over: (1) Multi-Tenant Agent Isolation via Namespaces (covered by S-327 and S-574, less novel). (2) Agent Evaluation Harness Architecture (S-835 covers eval; S-209 covers observability — no fresh angle). (3) Context Window Arithmetic / Token Budget per Task Type (covered by S-103, S-107, S-114, S-123). Composite 9.30. Sources: AWS MCP Gateway & Registry (Jun 2026), Kong MCP Gateway guide, Paperclipped enterprise guide (Feb 2026). |
 | 2026-07-10 | I-110 | WRITTEN — S-893 | Architectural Debt of Composition Stack — gap: multi-agent eval and observability covered (S-209, S-249, S-302, S-888), multi-agent orchestration patterns covered (S-05, S-318, S-242), circuit breakers and sandboxing covered (S-204, S-370). No entry covers the core thesis: that composition multiplies uncertainty at unvalidated handoff boundaries, and that improving individual agents doesn't improve system-level reliability. O'Reilly Radar (Feb 2026) introduced this as architectural debt of composition. Chosen over: (1) Agentic Failure Taxonomy — too abstract, no concrete move. (2) Golden Trace Regression — covered by S-888. (3) Multi-Agent Contract Schema — too narrow. Composite 8.60. Sources: O'Reilly Radar "Hidden Cost of Agentic Failure" (Koenigstein, Feb 2026); Wikimolt "Multi-Agent Fa |
 
-| 2026-07-10 | I-086 | WRITTEN — S-894 | Tool Schema Contract Stack — gap: S-883 covers MCP schema drift detection (when tool shapes diverge from cached definitions). S-887 covers MCP gateway governance (who calls which tool). Neither covers the missing contract versioning layer between agent and tool — pinning the schema contract, classifying change types, gating updates through a review pipeline, and detecting semantic breaks that bypass protocol-level checks. The three-break taxonomy (schema / semantic / language) is novel and directly actionable. I-035 (MCP Schema Contracts, S-427) covers the core problem; S-894 extends it with the operational stack (contract pipeline, behavioral regression, language break detection via semantic similarity). Chosen over: (1) Tool Poisoning / MCP Supply Chain CVEs — covered by F-182. (2) Agent Tool Versioning general patterns — narrower than the MCP-specific contract approach. Composite 8.60. Sources: mcp-contracts (github.com/mcp-contracts, Feb 2026), arXiv:2605.10481 (Li et al., May 2026), Exasol Agent Control Plane (Jun 2026), agentpatterns.ai Constraint Drift (Jun 2026), Medium "Evolvable MCP" (Jun 2026).
+Deduplication: S-06 (Model Routing) covers generic model tier routing (nano/mid/frontier by difficulty). S-362 (Budget-Aware Agents) covers cost as behavioral dimension. Neither covers tool-specific routing, total-cost-per-task (model + tool tokens), consequence-gating critical tools, misrouting detection, or re-routing on uncertainty. Composite 9.50. Chosen over: Agent-Native CI/CD (A2A protocol overlaps with S-1040/S-1042), Synthetic RL Pipeline (S-1028 covers trajectory degeneration, S-194 covers synthetic data gen pipeline), A2UI Protocol (S-1040/S-1042 cover MCP+A2A interop). All had lower composite scores or existing coverage.
+
+Deduplication: S-1065 (Inter-Agent Trust Escalation) covers authorization across agent hops; S-1050 (Tool-Response Poisoning) covers poisoned MCP server returns; S-1069 (Threat-Model Sandbox) covers subprocess isolation. None cover the architectural separation of code generation from data access. Composite 9.20. Chosen over: Platform Credential Boundary (I-155, composite 9.05, S-1083), Synthetic RL Pipeline (S-1028 trajectory degeneration overlaps, S-194 synthetic data gen), A2UI Protocol (S-1040/S-1042 MCP+A2A interop). |
+
+| 2026-07-14 | I-159 | WRITTEN — S-1086 | The Cascading Hallucination Spill Stack — research: CHARM Framework (arXiv:2606.04435, Saroj Mishra, June 3, 2026): output-level hallucination detectors catch <20% of cascaded errors in multi-hop agentic RAG; consistency-based detectors fail because cascaded errors are internally consistent with corrupted premises; same-model hallucination is self-reinforcing across hops. Key finding: multi-hop reasoning accuracy 16.7% → 56.2% (3.4x) with GraphRAG entity grounding (Microsoft). Cross-stage monitoring between hops (not just post-hoc) is the critical intervention point. Deduplication: S-100 (Agentic RAG) covers routing and chaining; S-1028 (Synthetic Trajectory Degeneration) covers self-reinforcing errors in fine-tuning; S-459 (Cross-Session Memory Poisoning) covers persistent false beliefs from injection. None cover cross-stage error propagation in multi-hop reasoning chains, claim-level provenance tracing, or the mechanism by which cascaded hallucination compounds confidence across hops. Composite 8.85. Chosen over: Silent Agent Failures (covered partially by S-914 Observability Trap + S-525 Trace vs Eval), Agent Trust Calibration (covered by Bounded Autonomy frameworks in I-002/S-355), Cascading Context Corruption (related but distinct — corruption propagates from agent state, not from retrieved chunks). |
 
 ## Meta
 
 - Created: 2026-07-02
-- Last Updated: 2026-07-12 (run: +I-089 / S-1000 — Structural Agent Governance Stack)
-- Total ideas discovered: 125
+- Last Updated: 2026-07-14 (run: +I-159 / S-1086 — Cascading Hallucination Spill Stack)
+- Total ideas discovered: 159
 - Total patterns distilled: 9
 
 | I-030 | Untrusted Content Ingestion Gate | content-sanitization, indirect-prompt-injection, trust-boundary, document-security, content-boundary, ingestion-layer, CVE-2026-2256, EchoLeak, data-exfiltration, defense-in-depth | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-389 | 2026-07-02 | 2026-07-02 |
@@ -968,8 +992,9 @@ t |
 || I-089 | The First-Attempt Architecture: <25% Single-Pass Success Is an Architectural Problem | first-attempt, single-pass-success, grounding, pre-action-state-read, post-action-verification, assumed-state-inventory, confidence-gated-deferral, pre-write-read, state-confirmation, APEX-Agents, compounding-failure, grounding-failure, verified-then-complete, assumption-audit, architecture-not-model | 10 | 10 | 9 | 10 | 9 | **9.80** | WRITTEN — S-984 | 2026-07-12 | 2026-07-12 |
 | I-145 | The Context Lifecycle Stack: Active Curation Against Context Rot | context-lifecycle, context-rot, signal-class, semantic-compression, context-isolation, staleness-tracking, multi-agent-context, turn-tagging, compression-checkpoint, context-aging, freshness-threshold, write-select-compress-isolate, tianpan-co | 9 | 9 | 8 | 9 | 9 | **8.83** | WRITTEN — S-1063 | 2026-07-13 | 2026-07-13 |
 | I-154 | Agent Distillation Stack: Frontier Model Behavior → Specialized Student Agent | agent-distillation, teacher-student, model-compression, trajectory-distillation, cot-policy-alignment, action-consistency-loss, curriculum-learning, behavior-collapse, synthetic-trajectories, frontier-cost, specialized-agent, distil-72b-7b, zylos-research, perea-ai, sadi, score-approach, shadow-deploy | 9 | 10 | 9 | 9 | 9 | **9.15** | WRITTEN — S-1073 | 2026-07-13 | 2026-07-13 |
+| I-155 | The Platform Credential Boundary: Cloud Metadata Service as the Back-Channel Past Your RBAC | platform-credential, metadata-service, IMDS, P4SA, vertex-agent-engine, cloud-credential-harvest, GCP, AWS, Azure, platform-identity, back-channel, scoped-tool-access, token-harvest, vpc-service-controls, metadata-block, IAM-impersonation, cloud-execution-context, blast-radius, credential-boundary, least-privilege-platform | 10 | 10 | 9 | 10 | 9 | **9.65** | WRITTEN — S-1083 | 2026-07-14 | 2026-07-14 |
 
-|||| Pattern |
+||||| Pattern |
 |||---------|-------------|---------------------|-------|
 ||| Agent Drift Is Monotonic Unless Actively Countered | LLM-based multi-agent systems exhibit progressive behavioral degradation (semantic drift, coordination drift, behavioral drift) over extended interactions — without any parameter changes. Standard monitoring misses this because it tracks errors, crashes, and latency, not behavioral trajectory. Detection requires the Agent Stability Index (ASI) computed over trajectory similarity, reasoning pathway consistency, outcome rates, and tool-sequence entropy. Mitigation: episodic memory consolidation with behavioral anchoring, drift-aware task routing, and periodic golden-eval scoring. The critical insight: drift is multiplicative across multi-agent pipelines (not additive), so a 3-agent system with mild individual drift can fail in ways none exhibit in isolation. | I-144 | arXiv:2601.04170 (Rath, Jan 2026); Paperclipped production field report (Mar 2026); Dynatrace Perform 2026; IDFS tiered forgetting. | | Schema poisoning (S-743) and attestation (S-968) address the connect-time attack surface — but tool responses arrive at runtime with no equivalent guard. The poisoning guard (ToolCatalogPoisoningGuard) is structurally distinct: it operates on response data, not schema metadata, and intercepts before LLM context injection. The four-vector taxonomy (response injection, description drift, schema update, capability escalation) closes the loop that S-743 opens. | I-088 | OWASP MCP Tool Poisoning; CVE-2025-54136 TrueFoundry; Beam MCP security 2026; kingy.ai MCP agent security. |
 ||| Connect-Time Trust ≠ Runtime Trust | Every byte that reaches the model carries the same authority weight. Reviewing tool descriptions at onboarding is necessary but not sufficient — the server's responses are unvetted. This is a structural property of all tool-augmented LLMs, not just MCP. The pattern applies wherever tool output enters the context window. | I-088 | TrueFoundry structural vulnerability analysis; OWASP LLM01/LLM05 classification. |

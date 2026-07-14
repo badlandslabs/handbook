@@ -398,6 +398,11 @@
   - [S-1073 · The Agent Distillation Stack — When Your Frontier Agent Becomes Your Production Cost](stacks/s1073-the-agent-distillation-stack-when-your-frontier-agent-becomes-your-production-cost.md)
   - [S-1075 · The Ephemeral Delegation Stack — When Your Agent Hands Its Credentials to a Stranger](stacks/s1075-the-ephemeral-delegation-stack-when-your-agent-hands-its-credentials-to-a-stranger.md)
   - [S-1079 · The Tool-Aware Model Router — When Cheap Tools Burn Budget Because Routing Ignores Them](stacks/s1079-the-tool-aware-model-router-when-cheap-tools-burn-budget-because-routing-ignores-them.md)
+  - [S-1080 · The Agent Cost Forecaster Stack — When Your Budget Meets Stochastic Execution](stacks/s1080-the-agent-cost-forecaster-stack-when-your-budget-meets-stochastic-execution.md)
+  - [S-1083 · The Platform Credential Boundary — When Your Agent Has a Secret Second Identity on the Cloud Platform](stacks/s1083-the-platform-credential-boundary-when-your-agent-has-a-secret-second-identity-on-the-cloud-platform.md)
+  - [S-1084 · The Tool Catalog Antipattern — When Giving Your Agent Every Tool Hurts Reliability](stacks/s1084-the-tool-catalog-antipattern-when-giving-your-agent-every-tool-hurts-reliability.md)
+  - [S-1085 · The Execute-Only Agent Stack — When Your LLM Generates Code and Should Never See the Data It Runs On](stacks/s1085-the-execute-only-agent-stack-when-your-llm-generates-code-and-should-never-see-the-data-it-runs-on.md)
+  - [S-1086 · The Cascading Hallucination Spill Stack — When a 95% Confidence Error Becomes Ground Truth](stacks/s1086-the-cascading-hallucination-spill-stack-when-a-95-confidence-error-becomes-ground-truth.md)
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
