@@ -1,113 +1,173 @@
-Data fetch date: 2026-07-08
-============================================================
+=== NASDAQ SWING SCAN | 2026-07-15 10:34:45 UTC ===
+Market Context: PRE-MARKET (~6:31 AM ET) | NYSE/NASDAQ open 9:30 AM ET
 
-## INDEX / MACRO REGIME ##
+Loading data...
+  OK  QQQ      134 rows  |  Last close: $711.74
+  OK  SPY      134 rows  |  Last close: $749.17
+  OK  IWM      134 rows  |  Last close: $293.48
+  OK  ^VIX     135 rows  |  Last close: $17.16
+  OK  ^TNX     134 rows  |  Last close: $4.61
+  OK  AAPL     134 rows  |  Last close: $317.31
+  OK  MSFT     134 rows  |  Last close: $390.99
+  OK  GOOGL    134 rows  |  Last close: $352.51
+  OK  AMZN     134 rows  |  Last close: $247.31
+  OK  META     135 rows  |  Last close: $661.04
+  OK  NVDA     134 rows  |  Last close: $203.53
+  OK  TSLA     134 rows  |  Last close: $394.76
+  OK  AVGO     134 rows  |  Last close: $384.05
+  OK  COST     134 rows  |  Last close: $926.43
+  OK  NFLX     134 rows  |  Last close: $73.83
+  OK  AMD      134 rows  |  Last close: $534.39
+  OK  QCOM     134 rows  |  Last close: $183.98
+  OK  TXN      134 rows  |  Last close: $298.57
+  OK  MU       134 rows  |  Last close: $937.00
+  OK  AMAT     134 rows  |  Last close: $575.39
 
-  QQQ: $709.43
-    SMA20: $720.08 | SMA50: $711.06 | SMA200: $nan
-    RSI(14): 47.2 | MACD Hist: -2.42
-    ATR(14): $16.84 | 20d Slope: -0.8%
-    52wk High: $747.83 | 52wk Low: $554.99
-    Above SMA200: False
+Loaded 20 tickers
 
-  SPY: $747.71
-    SMA20: $740.53 | SMA50: $737.57 | SMA200: $nan
-    RSI(14): 55.3 | MACD Hist: 0.45
-    ATR(14): $9.81 | 20d Slope: 1.4%
-    52wk High: $758.45 | 52wk Low: $627.66
-    Above SMA200: False
+=================================================================
+STAGE 1A — MACRO REGIME (INDEX ANALYSIS)
+=================================================================
 
-  IWM: $296.19
-    SMA20: $294.18 | SMA50: $286.97 | SMA200: $nan
-    RSI(14): 55.3 | MACD Hist: -0.37
-    ATR(14): $4.95 | 20d Slope: 4.5%
-    52wk High: $302.72 | 52wk Low: $238.12
-    Above SMA200: False
+QQQ  |  Close: $711.74  |  EMA20: $719.09  |  EMA50: $705.80  |  SMA200: $nan
+        RSI(14): 41.3  [NEUTRAL]  |  MACD hist: -1.5878  |  ATR14: $16.07
+        Structure: RANGE  |  Above EMA20: False  |  Above 200SMA: None
 
-  VIX:
-    17.5 (20d range: 15.5 - 23.3)
+SPY  |  Close: $749.17  |  EMA20: $744.94  |  EMA50: $735.19  |  SMA200: $nan
+        RSI(14): 53.7  [NEUTRAL]  |  MACD hist: 0.6944  |  ATR14: $9.41
+        Structure: RANGE  |  Above EMA20: True  |  Above 200SMA: None
 
-  REGIME ASSESSMENT:
-    MACRO REGIME: BEAR
-    VIX Level: 17.5 (MODERATE - NEUTRAL)
+IWM  |  Close: $293.48  |  EMA20: $294.85  |  EMA50: $288.08  |  SMA200: $nan
+        RSI(14): 41.2  [NEUTRAL]  |  MACD hist: -0.9856  |  ATR14: $4.65
+        Structure: HH_HL  |  Above EMA20: False  |  Above 200SMA: None
 
-## NASDAQ 100 COMPONENT SCAN ##
-Scanning tickers...
+^VIX  |  Close: $17.16  |  EMA20: $16.94  |  EMA50: $17.71  |  SMA200: $nan
+        RSI(14): 49.5  [NEUTRAL]  |  MACD hist: -0.1175  |  ATR14: $1.89
+        Structure: LH_LL  |  Above EMA20: True  |  Above 200SMA: None
 
-  Top Scored Candidates (top 10):
-  Ticker      Price    RSI    MACD    5d%   20d%  52wk%  Score
-  ------------------------------------------------------------
-  NET      $ 268.83   67.7   2.707  +9.6%  +8.5%    97%     13
-  META     $ 615.58   57.5   6.694  +9.3%  +5.3%    89%     12
-  CRWD     $ 194.62   68.5   1.623  +2.0% +18.2%    93%     12
-  FTNT     $ 158.67   65.8   0.103  +3.3% +10.9%    97%     12
-  REGN     $ 676.23   65.9   8.098  +8.5% +10.6%    87%     12
-  ADP      $ 245.60   69.5   2.224  +9.7%  +8.0%    99%     12
-  PAYX     $ 108.12   67.9   0.798 +10.0%  +9.3%    99%     12
-  AAPL     $ 310.66   60.7   2.156  +7.4%  +3.0%    98%     11
-  GOOGL    $ 367.03   54.0   2.105  +2.7%  +1.0%    90%      9
-  AMZN     $ 245.98   51.6   1.792  +3.2%  +0.3%    88%      9
+^TNX  |  Close: $4.61  |  EMA20: $4.50  |  EMA50: $4.46  |  SMA200: $nan
+        RSI(14): 61.2  [NEUTRAL]  |  MACD hist: 0.0173  |  ATR14: $0.05
+        Structure: LH_LL  |  Above EMA20: True  |  Above 200SMA: None
 
-## UPCOMING EARNINGS (14-Day Window) ##
-Note: yfinance earnings dates are often stale/approximate
-Checking major tech earnings calendar...
+VIX: 17.16  |  High volatility (>25) = BEAR signal: False
+TNX (10Y yield): 4.61%
 
-## TOP SWING TRADE SETUPS ##
+*** MACRO REGIME: BULL  (bull=5, bear=0) ***
 
-  === SETUP #1: NET ===
-    Price: $268.83
-    52-Week Range: $164.05 - $276.82 (97% of high)
-    SMA20: $235.10 | SMA50: $227.53 | SMA200: N/A
-    RSI(14): 67.7
-    MACD Histogram: 2.7066
-    ATR(14): $12.17
-    5-Day Slope: +9.60% | 20-Day Slope: +8.49%
-    Volume Ratio (today/20d avg): 1.77x
-    --- TACTICAL ORDER ---
-    Direction: LONG
-    Entry: Buy Limit @ $268.83 (or Buy Stop @ $270.05)
-    Stop Loss: $250.57 (-$18.26 = 1.5x ATR)
-    T1 (Partial): $305.35 (+2.0R, +36.52)
-    T2 (Final): $323.61 (+3.0R, +54.78)
-    Risk/Reward T1: 1:2.0 | T2: 1:3.0
-    Position Size: Risk 5% of portfolio per trade
+=================================================================
+STAGE 1B — SWING CANDIDATE SCAN (NASDAQ 100 LEADERS)
+=================================================================
 
-  === SETUP #2: META ===
-    Price: $615.58
-    52-Week Range: $540.18 - $690.88 (89% of high)
-    SMA20: $576.33 | SMA50: $602.47 | SMA200: N/A
-    RSI(14): 57.5
-    MACD Histogram: 6.6938
-    ATR(14): $22.86
-    5-Day Slope: +9.28% | 20-Day Slope: +5.25%
-    Volume Ratio (today/20d avg): 0.98x
-    --- TACTICAL ORDER ---
-    Direction: LONG
-    Entry: Buy Limit @ $615.58 (or Buy Stop @ $617.87)
-    Stop Loss: $581.28 (-$34.30 = 1.5x ATR)
-    T1 (Partial): $684.18 (+2.0R, +68.59)
-    T2 (Final): $718.47 (+3.0R, +102.89)
-    Risk/Reward T1: 1:2.0 | T2: 1:3.0
-    Position Size: Risk 5% of portfolio per trade
+AAPL   | $317.31 | ATR$9.12(2.9%) | RSI=63.7[NEUTRAL] | MACD=2.673 | RANGE | >EMA20=True | >EMA50=True | >200=None | Vol=0.67x
+MSFT   | $390.99 | ATR$12.32(3.2%) | RSI=62.7[NEUTRAL] | MACD=2.783 | LH_LL | >EMA20=True | >EMA50=False | >200=None | Vol=0.61x
+GOOGL  | $352.51 | ATR$10.06(2.9%) | RSI=52.4[NEUTRAL] | MACD=0.590 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.46x
+AMZN   | $247.31 | ATR$7.57(3.1%) | RSI=67.8[NEUTRAL] | MACD=1.780 | LH_LL | >EMA20=True | >EMA50=True | >200=None | Vol=0.56x
+META   | $661.04 | ATR$27.64(4.2%) | RSI=70.0[NEUTRAL] | MACD=11.649 | RANGE | >EMA20=True | >EMA50=True | >200=None | Vol=0.82x
+NVDA   | $203.53 | ATR$6.92(3.4%) | RSI=45.4[NEUTRAL] | MACD=1.198 | LH_LL | >EMA20=True | >EMA50=False | >200=None | Vol=0.84x
+TSLA   | $394.76 | ATR$19.89(5.0%) | RSI=47.3[NEUTRAL] | MACD=0.381 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.72x
+AVGO   | $384.05 | ATR$15.16(3.9%) | RSI=46.8[NEUTRAL] | MACD=3.033 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.74x
+COST   | $926.43 | ATR$20.28(2.2%) | RSI=42.1[NEUTRAL] | MACD=-1.209 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.87x
+NFLX   | $73.83 | ATR$2.48(3.4%) | RSI=52.6[NEUTRAL] | MACD=0.472 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.70x
+AMD    | $534.39 | ATR$38.41(7.2%) | RSI=47.3[NEUTRAL] | MACD=-3.573 | HH_HL | >EMA20=True | >EMA50=True | >200=None | Vol=0.77x
+QCOM   | $183.98 | ATR$12.44(6.8%) | RSI=28.8[OVERSOLD] | MACD=-1.135 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.64x
+TXN    | $298.57 | ATR$16.39(5.5%) | RSI=37.4[NEUTRAL] | MACD=-0.305 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.76x
+MU     | $937.00 | ATR$97.99(10.5%) | RSI=32.3[NEUTRAL] | MACD=-28.801 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.68x
+AMAT   | $575.39 | ATR$54.86(9.5%) | RSI=43.7[NEUTRAL] | MACD=-12.819 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.59x
 
-  === SETUP #3: CRWD ===
-    Price: $194.62
-    52-Week Range: $91.12 - $209.50 (93% of high)
-    SMA20: $176.32 | SMA50: $158.47 | SMA200: N/A
-    RSI(14): 68.5
-    MACD Histogram: 1.6232
-    ATR(14): $8.88
-    5-Day Slope: +2.01% | 20-Day Slope: +18.17%
-    Volume Ratio (today/20d avg): 0.79x
-    --- TACTICAL ORDER ---
-    Direction: LONG
-    Entry: Buy Limit @ $194.62 (or Buy Stop @ $195.51)
-    Stop Loss: $181.31 (-$13.31 = 1.5x ATR)
-    T1 (Partial): $221.25 (+2.0R, +26.63)
-    T2 (Final): $234.56 (+3.0R, +39.94)
-    Risk/Reward T1: 1:2.0 | T2: 1:3.0
-    Position Size: Risk 5% of portfolio per trade
+=================================================================
+SWING SCORE RANKING  (Directional Bias: LONG preferred in BULL/TRANSITIONAL)
+=================================================================
 
-============================================================
-Scan completed: 2026-07-08
-NOTE: All prices are end-of-day/delayed. Intraday may vary.
+Rank  Ticker   Score      Close   ATR%    RSI   Struct   Vol
+------------------------------------------------------------
+1     AMD      91      $ 534.39   7.2%  47.3    HH_HL 0.77x
+2     AAPL     78      $ 317.31   2.9%  63.7    RANGE 0.67x
+3     AMAT     76      $ 575.39   9.5%  43.7    HH_HL 0.59x
+4     AMZN     73      $ 247.31   3.1%  67.8    LH_LL 0.56x
+5     META     68      $ 661.04   4.2%  70.0    RANGE 0.82x
+6     NVDA     68      $ 203.53   3.4%  45.4    LH_LL 0.84x
+7     MU       68      $ 937.00  10.5%  32.3    HH_HL 0.68x
+8     TXN      60      $ 298.57   5.5%  37.4    HH_HL 0.76x
+9     MSFT     58      $ 390.99   3.2%  62.7    LH_LL 0.61x
+10    GOOGL    53      $ 352.51   2.9%  52.4    LH_LL 0.46x
+
+=================================================================
+STAGE 4 — TOP 3 SWING TRADE SETUPS (Actionable Blueprints)
+=================================================================
+
+────────────────────────────────────────────────────────────
+  #1  TICKER: AMD  |  Score: 91/100  |  Direction: LONG
+────────────────────────────────────────────────────────────
+  ENTRY PRICE:      $534.39  (Today's close or tomorrow's open)
+  STOP LOSS:        $476.78  (Risk: $57.61 = 10.8% of entry)
+  T1 PARTIAL EXIT:  $611.21  |  R:R = 1.3:1  (sell 40% of position)
+  T2 TARGET:         $649.62  |  R:R = 2.0:1  (sell 30% of position)
+  T3 TARGET:         $688.03  |  R:R = 2.7:1  (sell remaining 30%)
+  ATR14:             $38.41  (2.9% of price)
+  
+  ORDER TYPE:       Buy Limit @ $534.39 (await pullback to entry on open)
+  ALT ENTRY:        Buy Stop @ $543.99 (breakout confirmation)
+  POSITION SIZE:    26 shares = $13,894 (13.9% of $100K portfolio)
+  MAX RISK:         $1,500 (1.5% of portfolio)
+  
+  KEY TECHNICALS:
+    RSI(14):        47.3  [NEUTRAL]
+    MACD Hist:      -3.5735  |  Bullish cross=False
+    Structure:      HH_HL  |  >EMA20=True  >EMA50=True  >200SMA=None
+    Vol ratio:      0.77x  (surge=False)
+  
+  INVALUATION: Exit immediately if AMD closes below $476.78
+  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+
+────────────────────────────────────────────────────────────
+  #2  TICKER: AAPL  |  Score: 78/100  |  Direction: LONG
+────────────────────────────────────────────────────────────
+  ENTRY PRICE:      $317.31  (Today's close or tomorrow's open)
+  STOP LOSS:        $303.63  (Risk: $13.68 = 4.3% of entry)
+  T1 PARTIAL EXIT:  $335.56  |  R:R = 1.3:1  (sell 40% of position)
+  T2 TARGET:         $344.68  |  R:R = 2.0:1  (sell 30% of position)
+  T3 TARGET:         $353.80  |  R:R = 2.7:1  (sell remaining 30%)
+  ATR14:             $9.12  (2.9% of price)
+  
+  ORDER TYPE:       Buy Limit @ $317.31 (await pullback to entry on open)
+  ALT ENTRY:        Buy Stop @ $319.59 (breakout confirmation)
+  POSITION SIZE:    109 shares = $34,587 (34.6% of $100K portfolio)
+  MAX RISK:         $1,500 (1.5% of portfolio)
+  
+  KEY TECHNICALS:
+    RSI(14):        63.7  [NEUTRAL]
+    MACD Hist:      2.6728  |  Bullish cross=False
+    Structure:      RANGE  |  >EMA20=True  >EMA50=True  >200SMA=None
+    Vol ratio:      0.67x  (surge=False)
+  
+  INVALUATION: Exit immediately if AAPL closes below $303.63
+  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+
+────────────────────────────────────────────────────────────
+  #3  TICKER: AMAT  |  Score: 76/100  |  Direction: LONG
+────────────────────────────────────────────────────────────
+  ENTRY PRICE:      $575.39  (Today's close or tomorrow's open)
+  STOP LOSS:        $493.10  (Risk: $82.29 = 14.3% of entry)
+  T1 PARTIAL EXIT:  $685.11  |  R:R = 1.3:1  (sell 40% of position)
+  T2 TARGET:         $739.97  |  R:R = 2.0:1  (sell 30% of position)
+  T3 TARGET:         $794.82  |  R:R = 2.7:1  (sell remaining 30%)
+  ATR14:             $54.86  (2.9% of price)
+  
+  ORDER TYPE:       Buy Limit @ $575.39 (await pullback to entry on open)
+  ALT ENTRY:        Buy Stop @ $589.10 (breakout confirmation)
+  POSITION SIZE:    18 shares = $10,357 (10.4% of $100K portfolio)
+  MAX RISK:         $1,500 (1.5% of portfolio)
+  
+  KEY TECHNICALS:
+    RSI(14):        43.7  [NEUTRAL]
+    MACD Hist:      -12.8189  |  Bullish cross=False
+    Structure:      HH_HL  |  >EMA20=False  >EMA50=True  >200SMA=None
+    Vol ratio:      0.59x  (surge=False)
+  
+  INVALUATION: Exit immediately if AMAT closes below $493.10
+  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+
+=================================================================
+=== SCAN COMPLETE ===
+Data as of: 2026-07-14 (yesterday's close — pre-market July 15, 2026)
+Market regime: BULL
