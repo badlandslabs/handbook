@@ -1,0 +1,36 @@
+# S-1177 · The Harness-Is-the-Model Stack — When Frontier Models Cluster Within 1 Point and All the Leverage Is in the Scaffolding
+
+You're evaluating a new model for your coding agent. You run it through your eval pipeline and get 79.4% on SWE-bench Verified. You check the other models your team evaluated — they scored 79.1%, 80.2%, 80.0%, and 79.8%. You're spending weeks on model selection for a 1.1-point spread. You're looking at the wrong problem.
+
+## Forces
+
+- **Models have converged, scaffolds haven't.** Six frontier models now score within 0.8 points of each other on SWE-bench Verified (Claude Opus 4.6: 80.8%, Gemini 3.1 Pro: 80.6%, Anthropic M2.5: 80.2%, GPT-5.4: ~80.0%, Sonnet 4.6: 79.6%). But the same model running through different scaffolds swings 22+ points on SWE-bench Pro. Model selection is a 1-point lottery; scaffold engineering is a 22-point lever.
+- **The harness is part of the agent, not a neutral observer.** Tool format, retry logic, context window management, execution time limits, and error recovery strategies are not hyperparameters — they're the agent's nervous system. Two teams running identical models with different scaffolds produce categorically different results.
+- **Benchmark scores reflect the harness as much as the model.** SWE-bench Verified was broken because models trained on it. SWE-agent's 100-line scaffold achieves >74% on SWE-bench Verified with Qwen3.5-27B (no fine-tuning) — matching or beating frameworks with 10,000+ lines. Fujitsu Research used test-time scaling (TTS@8) on the same scaffold to hit 74.8%. The score is a product of Model × Harness, not Model alone.
+- **Eval engineering is now as important as prompt engineering.** A single discovered harness change on edit-tool format improved coding-agent performance from 6.7% to 68.3% on SWE-bench Pro — with the model unchanged. 74% of production agents in 2025-2026 still rely on human-in-the-loop evaluation rather than standardized benchmarks, meaning most teams are flying blind on their actual differentiator.
+
+## The Move
+
+Treat the agent scaffold as a first-class engineering artifact with the same rigor you'd apply to the model itself.
+
+- **Design the edit-tool interface for your agent's failure mode, not the benchmark default.** The difference between a patch-based edit tool (Codex), exact search-and-replace (Claude Code), and a fuzzy replacement model (OpenCode) is not cosmetic — it determines whether the agent can recover from a misaligned edit. Pick based on your codebase's characteristics, not benchmark popularity.
+- **Instrument trajectory-level metrics, not just outcome scores.** A task-completion pass/fail tells you nothing about whether the agent reached the answer through a reasonable path. Track: steps-to-solution, token cost per task, tool call sequences, retry rates per tool, and context window utilization. These are the signals that predict production behavior.
+- **Run pass@k, not pass@1.** With stochastic agents, a single run is unreliable. At minimum, report pass@5 or pass@10 to account for the variance that compounds over long trajectories. Most teams using pass@1 are measuring noise, not signal.
+- **Build a private, production-grounded benchmark.** Public benchmarks saturate and contaminate. The strongest signal comes from evals built from your actual engineering work — Ramp built a private SWE-bench from their backend to get a contamination-free read on how coding agents handle Ramp-specific patterns. Even a 20-task private eval from your production failures beats a 500-task public leaderboard.
+- **Treat harness changes as the primary optimization loop.** Before tuning the model, tune the scaffold: adjust tool formats, add error recovery paths, tighten context selection, and change retry strategies. Measure the delta. If your scaffold change produces a larger improvement than switching models, the scaffold is your bottleneck.
+- **Use LLM-as-judge with calibration, not as ground truth.** An LLM judge should target 0.80+ Spearman correlation with human judgment before deployment. Validate it against your human-labeled eval set quarterly — model drift and prompt drift both degrade judge quality silently.
+
+## Evidence
+
+- **Blog post (Particula Tech, March 2026):** Six frontier models cluster within 0.8 points on SWE-bench Verified; scaffolding changes alone produce 22+ point swings on SWE-bench Pro — [https://particula.tech/blog/agent-scaffolding-beats-model-upgrades-swe-bench](https://particula.tech/blog/agent-scaffolding-beats-model-upgrades-swe-bench)
+- **GitHub README (SWE-agent/mini-swe-agent, 2025):** 100-line scaffold achieves >74% on SWE-bench Verified with Qwen3.5-27B; Fujitsu Research extended it to 74.8% using TTS@8 — [https://github.com/SWE-agent/mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent)
+- **GitHub repository (yaoyi1222/edit-tool-bench, 2026):** Edit-tool format experiments on SWE-bench Pro show that changing only the edit-tool interface (patch-based vs. exact string-replace vs. fuzzy replacement) produces large swings in pass rate and token usage with the same model — [https://github.com/yaoyi1222/edit-tool-bench](https://github.com/yaoyi1222/edit-tool-bench)
+- **Research post (Galileo Labs, February 2026):** 74% of production agents in 2025-2026 rely on human-in-the-loop evaluation rather than standardized benchmarks; eval frameworks must integrate into CI/CD with commit, scheduled, and event-driven triggers — [https://galileo.ai/blog/agent-evaluation-framework-metrics-rubrics-benchmarks](https://galileo.ai/blog/agent-evaluation-framework-metrics-rubrics-benchmarks)
+- **Engineering post (Ramp Labs, 2025):** Ramp built a private SWE-bench from their own backend code to get contamination-free, production-grounded measurement of how coding agents handle their specific engineering patterns — [https://labs.ramp.com/swebench](https://labs.ramp.com/swebench)
+
+## Gotchas
+
+- **Chasing the next model release wastes the highest-leverage variable.** If scaffolding produces 22-point swings and model upgrades produce 1-point swings, the engineering hours go where the leverage is. Teams that build private production benchmarks and iterate on their harness systematically will outperform teams that benchmark-hop.
+- **Output-only scoring misses catastrophic trajectories.** An agent that reaches the correct answer by calling 47 tools with 6 retries and 3 duplicate API calls looks like a success in pass/fail evaluation. In production, it costs 15x more and risks duplicate side effects. You need trajectory scoring, not just outcome scoring.
+- **Harness improvements don't transfer across task types.** A scaffold optimized for SWE-bench coding tasks will not generalize to a customer support agent or a data pipeline agent. The harness is domain-specific by design — treat each agent type as requiring its own scaffold engineering discipline.
+- **Eval quality compounds asymmetrically.** A bad eval produces bad decisions at scale. If your eval suite has a 37% lab-to-production gap (as reported across production agent projects), you're shipping agents that pass internal testing and fail in users' hands. Invest in eval fidelity proportional to the cost of agent failures.
