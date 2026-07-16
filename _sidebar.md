@@ -441,6 +441,10 @@
   - [S-1179 · The Reasoning-Planning Gap — When Your Agent Reasons Well but Plans Poorly](stacks/s1179-the-reasoning-planning-gap-when-your-agent-reasons-well-but-plans-poorly.md)
   - [S-1180 · The Cost of Silence — When Your Agent Fails Without Telling You](stacks/s1180-the-cost-of-silence-when-your-agent-fails-without-telling-you.md)
   - [S-1181 · The Agentic Gateway Stack — When Your Fleet Runs But Nobody Owns the Flow](stacks/s1181-the-agentic-gateway-stack-when-your-fleet-runs-but-nobody-owns-the-flow.md)
+  - [S-1186 · The Eval Infrastructure Attack Surface — When Your Agent Is Grading Its Own Homework](stacks/s1186-the-eval-infrastructure-attack-surface-when-your-agent-is-grading-its-own-homework.md)
+  - [S-1187 · The Orchestration Stacking Stack — When You're Not Sure If You Need a Framework or a Graph or Both](stacks/s1187-the-orchestration-stacking-stack-when-youre-not-sure-if-you-need-a-framework-or-a-graph-or-both.md)
+  - [S-1188 · The A2A Authorization Island — When Every Agent Is Its Own Security Perimeter](stacks/s1188-the-a2a-authorization-island-when-every-agent-is-its-own-security-perimeter.md)
+  - [S-1189 · The Memory Integrity Gate — When Your Agent's Memory Starts Lying to Itself](stacks/s1189-the-memory-integrity-gate-when-your-agents-memory-starts-lying-to-itself.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
