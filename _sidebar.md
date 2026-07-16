@@ -439,6 +439,8 @@
   - [S-1171 · The Claim Provenance Stack — When One False Claim Becomes Team Consensus in 3 Rounds](stacks/s1171-the-claim-provenance-stack-when-one-false-claim-becomes-team-consensus-in-3-rounds.md)
   - [S-1177 · The Semantic Tool Router — When Your Agent Sends 200 Tool Schemas to Call One Function](stacks/s1177-the-semantic-tool-router-when-your-agent-sends-200-tool-schemas-to-call-one-function.md)
   - [S-1179 · The Reasoning-Planning Gap — When Your Agent Reasons Well but Plans Poorly](stacks/s1179-the-reasoning-planning-gap-when-your-agent-reasons-well-but-plans-poorly.md)
+  - [S-1180 · The Cost of Silence — When Your Agent Fails Without Telling You](stacks/s1180-the-cost-of-silence-when-your-agent-fails-without-telling-you.md)
+  - [S-1181 · The Agentic Gateway Stack — When Your Fleet Runs But Nobody Owns the Flow](stacks/s1181-the-agentic-gateway-stack-when-your-fleet-runs-but-nobody-owns-the-flow.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
