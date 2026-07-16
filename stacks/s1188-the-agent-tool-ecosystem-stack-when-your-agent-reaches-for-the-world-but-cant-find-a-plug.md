@@ -1,0 +1,34 @@
+# S-1188 · The Agent Tool Ecosystem Stack — When Your Agent Reaches for the World but Can't Find a Plug
+
+You've built a capable agent. It reasons well, plans adequately, and recovers from failures. Then you try to give it real work — browse the web, run code, query your database, send an email — and you hit a wall of bespoke integrations. One-off API wrappers, fragile HTTP tool definitions, and tool schemas that the LLM either ignores or misuses. This is the tool ecosystem problem: not that tools are hard to build in isolation, but that connecting agents to the world — reliably, at scale, across providers — requires design patterns that most teams improvise and pay for later.
+
+## Forces
+
+- **Tool proliferation outpaces tool quality.** Teams add tools reactively. Each new integration gets its own ad-hoc schema, error handling, and auth pattern. Within months the agent has 40 tools it can technically call but can't reliably use.
+- **Function calling adds structure but kills flexibility.** Structured tool schemas (JSON Schema with types, enums, descriptions) improve reliability — but they also constrain the agent's ability to compose tools creatively. A former Manus backend lead wrote in r/LocalLLaMA that after two years of agent development, he abandoned function calling entirely in favor of a Unix-style single-tool pattern: the agent receives a text stream and decides action-by-action, no schema required.
+- **Browser automation is the highest-stakes, lowest-reliability tool.** Click-simulation approaches (DOM parsing + element clicking) are brittle: dynamic IDs, loading states, and stale screenshots make agents fail mid-task. The industry is splitting between better vision models and fundamentally different browser protocols.
+- **Token cost scales with tool complexity.** Every tool call includes its schema, docstring, and result in the context. Verbose tool definitions — common in early designs — silently multiply token costs. The MCP code-execution pattern (Anthropic's approach of letting the agent write code to interact with tools rather than making direct calls) reduced input tokens 78.5% in benchmark tests while maintaining 100% success rate.
+
+## The Move
+
+**Design tools as contracts with explicit capability boundaries, not as wrappers around existing systems.**
+
+- **Lean, idempotent schemas over rich, stateful interfaces.** Keep tool descriptions under 200 words. Specify what the tool returns, not how it works internally. Make every tool safe to call twice — if the agent retries after a network blip, the second call should not make things worse.
+- **Expose tools the way MCP intends — as resources, not scripts.** Instead of `navigate_to_url_and_click_button(url, button_text)`, decompose: `get_page_state(url)`, `click_element(selector)`, `submit_form(form_id, data)`. Small, composable tools let the agent mix and match. Large, procedural tools make the agent brittle and the schema unreadable.
+- **Use MCP as the standard transport layer.** Anthropic, OpenAI, Google, and Microsoft all support it. MCP servers can be local (filesystem, database) or remote (HTTP, Streamable HTTP, SSE). The OpenAI Agents SDK explicitly describes it as "USB-C for AI applications" — the value is in the pluggable ecosystem, not any single server.
+- **For browser tasks, prefer semantic tool exposure over click simulation.** The webagents.md spec proposes that websites expose a machine-readable manifest of available functions — analogous to robots.txt for tools. Until that standard is broadly adopted, prefer Browser Use's DOM understanding approach (105K GitHub stars, #1 on Odysseys benchmark at 87.4% accuracy) over raw Selenium/WebDriver scripts.
+- **Separate tool selection from tool execution in observability.** Log what the agent chose, what it passed, what came back, and whether the result satisfied the intent. Tool-level tracing (as in Browser Use's debug views or Weave) is the difference between knowing your agent failed and knowing where it failed.
+- **Gate tool access by risk level.** Not all tools are equal: `search_web` is low-risk, `send_email` is medium, `transfer_funds` is high. Use human-in-the-loop checkpoints for high-risk tools regardless of how confident the agent seems. A trading agent on Solana that burned funds taught its builder that "tool calling discipline matters more than the reasoning model."
+
+## Evidence
+
+- **Anthropic's engineering guide on building effective agents** codifies the "augmented LLM" definition: an LLM hooked to tools, memory, and data — and finds that consistently, the most successful implementations use simple, composable patterns rather than complex frameworks. The guide is explicit: agents should use tools when the task genuinely requires dynamic, multi-step processes; for everything else, a workflow with pre-defined paths is more reliable. — [Anthropic Engineering](https://www.anthropic.com/engineering/building-effective-agents)
+- **Browser Use repo** (105K stars, 11.5K forks, MIT) achieves #1 on the Odysseys benchmark at 87.4% average accuracy, outperforming OpenAI, Anthropic, Google, and Microsoft computer-use agents. The key architectural decision: rather than parsing DOM elements and simulating clicks, Browser Use uses AI-native page understanding — the agent reasons about page content semantically, not positionally. — [github.com/browser-use/browser-use](https://github.com/browser-use/browser-use)
+- **Agent Browser Protocol** (Show HN, March 2026) addresses the "stale state" problem: browser-agent failures are usually not model misunderstanding but stale page state. ABP freezes JavaScript execution + virtual time after each agent action, captures the resulting state, and returns a structured summary — eliminating the race condition between agent reasoning and page rendering. — [HN discussion](https://news.ycombinator.com/item?id=47336171), [repo](https://github.com/theredsix/agent-browser-protocol)
+
+## Gotchas
+
+- **Verbose tool descriptions silently inflate token cost.** A 500-word tool docstring gets injected into context on every call. Keep schemas minimal; push documentation to a separate lookup.
+- **Tool naming affects model behavior.** Generic names like `process_data` confuse agents about when to call a tool versus reasoning directly. Name tools after their capability: `get_current_weather(city)` not `query_external_service(query)`.
+- **Unauthenticated tools in demos become security incidents in production.** Browser tools that can navigate anywhere, code interpreters with filesystem access, API tools without rate limiting — these are acceptable in isolation but become attack surfaces when chained. Audit tool blast radius, not individual tool safety.
+- **The agent will misuse a tool if the schema allows it.** If a tool takes an optional `force=true` parameter that skips confirmation prompts, the agent will use it under pressure. Design tools that make the safe path the default path.
