@@ -445,6 +445,7 @@
   - [S-1187 · The Orchestration Stacking Stack — When You're Not Sure If You Need a Framework or a Graph or Both](stacks/s1187-the-orchestration-stacking-stack-when-youre-not-sure-if-you-need-a-framework-or-a-graph-or-both.md)
   - [S-1188 · The A2A Authorization Island — When Every Agent Is Its Own Security Perimeter](stacks/s1188-the-a2a-authorization-island-when-every-agent-is-its-own-security-perimeter.md)
   - [S-1189 · The Memory Integrity Gate — When Your Agent's Memory Starts Lying to Itself](stacks/s1189-the-memory-integrity-gate-when-your-agents-memory-starts-lying-to-itself.md)
+  - [S-1191 · The Correctness SLO Stack — When Your Agent Is Accurate 94% of the Time and You Don't Know It](stacks/s1191-the-correctness-slo-stack-when-your-agent-is-accurate-94-of-the-time-and-you-dont-know-it.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
