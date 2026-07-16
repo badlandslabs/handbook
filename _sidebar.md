@@ -446,6 +446,17 @@
   - [S-1188 · The A2A Authorization Island — When Every Agent Is Its Own Security Perimeter](stacks/s1188-the-a2a-authorization-island-when-every-agent-is-its-own-security-perimeter.md)
   - [S-1189 · The Memory Integrity Gate — When Your Agent's Memory Starts Lying to Itself](stacks/s1189-the-memory-integrity-gate-when-your-agents-memory-starts-lying-to-itself.md)
   - [S-1191 · The Correctness SLO Stack — When Your Agent Is Accurate 94% of the Time and You Don't Know It](stacks/s1191-the-correctness-slo-stack-when-your-agent-is-accurate-94-of-the-time-and-you-dont-know-it.md)
+  - [S-1192 · The Five-Layer Caching Stack — When Your Agent Pays Full Price for a Plan It Already Ran](stacks/s1192-the-five-layer-caching-stack-when-your-agent-pays-full-price-for-a-plan-it-already-ran.md)
+  - [S-1194 · The Maker-Checker Agent Architecture — When Your Agent Can Act But Should Verify First](stacks/s1194-the-maker-checker-agent-architecture-when-your-agent-can-act-but-should-verify-first.md)
+  - [S-1195 · The Orchestration Spectrum — When You're Not Sure If You Need a Chain, a Router, or a Loop](stacks/s1195-the-orchestration-spectrum-stack-when-youre-not-sure-if-you-need-a-chain-a-router-or-a-loop.md)
+  - [S-1196 · The Agent Catalog Plane — When You Can't Govern, Discover, or Trust an Agent You Don't Know Exists](stacks/s1196-the-agent-catalog-plane-when-you-cant-govern-discover-or-trust-an-agent-you-dont-know-exists.md)
+  - [S-1197 · The Schema-Pass, Semantic-Fail Stack — When Your Agent Returns Valid JSON with the Wrong Answer](stacks/s1197-the-schema-pass-semantic-fail-stack-when-your-agent-returns-valid-json-with-the-wrong-answer.md)
+  - [S-1198 · The Thinking Token Blind Spot — When Your Reasoning Model's Inner Monologue Costs More Than Your Entire App](stacks/s1198-the-thinking-token-blind-spot-stack-when-your-reasoning-models-inner-monologue-costs-more-than-your-entire-app.md)
+  - [S-1200 · The Context Window Cliff — When Your Agent Falls Off a Million-Token Wall Mid-Task](stacks/s1200-the-context-window-cliff-when-your-agent-falls-off-a-million-token-wall-mid-task.md)
+  - [S-1201 · The Agent Failure Recovery Stack — When Your Agent Silently Loops Forever and Bills You for Every Attempt](stacks/s1201-the-agent-failure-recovery-stack-when-your-agent-silently-loops-forever-and-bills-you-for-every-attempt.md)
+  - [S-1205 · The Agent Orchestration Stack — When You're Not Sure If You Need One Agent or Twenty](stacks/s1205-the-agent-orchestration-stack-when-youre-not-sure-if-you-need-one-agent-or-twenty.md)
+  - [S-1206 · The Slopsquatting Defense Stack — When Your Agent Registers a Malicious Package You Never Approved](stacks/s1206-the-slopsquatting-defense-stack-when-your-agent-registers-a-malicious-package-you-never-approved.md)
+  - [S-1219 · The MCP Migration Stack — When Your Stateless Agent Is Still Holding Session State](stacks/s1219-the-mcp-migration-stack-when-your-stateless-agent-is-still-holding-session-state.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
