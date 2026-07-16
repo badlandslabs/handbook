@@ -436,6 +436,9 @@
   - [S-1164 · Agent Hash-Chained Audit Trail: The Immutable Ledger Pattern](stacks/s1164-agent-hash-chained-audit-trail-the-immutable-ledger-pattern.md)
   - [S-1168 · The Append-Only Cost Ledger — When You Can't Tell Who Spent What in Your Agent Fleet](stacks/s1168-the-append-only-cost-ledger-when-you-cant-tell-who-spent-what-in-your-agent-fleet.md)
   - [S-1170 · The Five Identity Layers — When Your AI Agent Acts as Everyone and Nobody at Once](stacks/s1170-the-five-identity-layers-when-your-ai-agent-acts-as-everyone-and-nobody-at-once.md)
+  - [S-1171 · The Claim Provenance Stack — When One False Claim Becomes Team Consensus in 3 Rounds](stacks/s1171-the-claim-provenance-stack-when-one-false-claim-becomes-team-consensus-in-3-rounds.md)
+  - [S-1177 · The Semantic Tool Router — When Your Agent Sends 200 Tool Schemas to Call One Function](stacks/s1177-the-semantic-tool-router-when-your-agent-sends-200-tool-schemas-to-call-one-function.md)
+  - [S-1179 · The Reasoning-Planning Gap — When Your Agent Reasons Well but Plans Poorly](stacks/s1179-the-reasoning-planning-gap-when-your-agent-reasons-well-but-plans-poorly.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
