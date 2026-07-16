@@ -430,6 +430,13 @@
   - [S-1150 · The Three-Layer Evals Stack — When Your Agent Succeeds but Not the Way You Expected](stacks/s1150-the-three-layer-evals-stack-when-your-agent-succeeds-but-not-the-way-you-expected.md)
   - [S-1151 · The Behavioral Telemetry Stack — When Your Agent Returns 200 OK and a Wrong Answer](stacks/s1151-the-behavioral-telemetry-stack-when-your-agent-returns-200-ok-and-a-wrong-answer.md)
   - [S-1153 · The MCP Description Shadow — When Connecting a Tool Silently Rewrites Your Agent](stacks/s1153-the-mcp-description-shadow-when-connecting-a-tool-silently-rewrites-your-agent.md)
+  - [S-1155 · The Credential Lifetime Gate Stack — When Your Agent Holds a Permanent Key It Should Hold a Temporary One](stacks/s1155-the-credential-lifetime-gate-stack-when-your-agent-holds-a-permanent-key-it-should-hold-a-temporary-one.md)
+  - [S-1158 · The Action Confirmation Hallucination Stack — When Your Agent Succeeded and Didn't](stacks/s1158-the-action-confirmation-hallucination-stack-when-your-agent-succeeded-and-didnt.md)
+  - [S-1160 · The Agent-Native CI/CD Stack — When Your Code Passes Tests and Your Agent Still Breaks Production](stacks/s1160-the-agent-native-cicd-stack-when-your-code-passes-tests-and-your-agent-still-breaks-production.md)
+  - [S-1164 · Agent Hash-Chained Audit Trail: The Immutable Ledger Pattern](stacks/s1164-agent-hash-chained-audit-trail-the-immutable-ledger-pattern.md)
+  - [S-1168 · The Append-Only Cost Ledger — When You Can't Tell Who Spent What in Your Agent Fleet](stacks/s1168-the-append-only-cost-ledger-when-you-cant-tell-who-spent-what-in-your-agent-fleet.md)
+  - [S-1170 · The Five Identity Layers — When Your AI Agent Acts as Everyone and Nobody at Once](stacks/s1170-the-five-identity-layers-when-your-ai-agent-acts-as-everyone-and-nobody-at-once.md)
+
 - **Book of the Workspace**
   - [Overview](workspace/)
   - [W-01 · AI Dev Environment](workspace/w01-ai-dev-environment.md)
