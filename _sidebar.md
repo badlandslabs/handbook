@@ -460,6 +460,18 @@
   - [S-1238 · The Authorization Gap — When Your AI Agent Holds Keys It Shouldn't Use](stacks/s1238-the-authorization-gap-when-your-ai-agent-holds-keys-it-shouldnt-use.md)
   - [S-1239 · The Runtime Verification Loop — When Your Agent Scores 97% and Walks Straight into the Wrong Answer](stacks/s1239-the-runtime-verification-loop-when-your-agent-scores-97-percent-and-walks-straight-into-the-wrong-answer.md)
   - [S-1240 · The Reliability Multiplication Law — When 95% Per-Step Accuracy Means 36% Task Completion](stacks/s1240-the-reliability-multiplication-law-when-95-percent-per-step-accuracy-means-36-percent-task-completion.md)
+  - [S-1241 · The Long-Horizon Collapse — When Your Agent Slowly Falls Apart Over Hours, Not Seconds](stacks/s1241-the-long-horizon-collapse-when-your-agent-slowly-falls-apart-over-hours-not-seconds.md)
+  - [S-1242 · The Grounded Self-Correction Stack — When Intrinsic Self-Critique Lets Your Agent Retry Its Way to Success](stacks/s1242-the-grounded-self-correction-stack-when-intrinsic-self-critique-lets-your-agent-retry-its-way-to-success.md)
+  - [S-1243 · The Token Budget Stack — When Your Agent Spends More Than Your Engineer](stacks/s1243-the-token-budget-stack-when-your-agent-spends-more-than-your-engineer.md)
+  - [S-1244 · The Context Fill Cliff — When Your Agent Runs Great at Message 5 and Terrible at Message 50](stacks/s1244-the-context-fill-cliff-when-your-agent-runs-great-at-message-5-and-terrible-at-message-50.md)
+  - [S-1245 · The Eval Gap — When Your Agent Passes Every Test and Still Fails in Production](stacks/s1245-the-eval-gap-when-your-agent-passes-every-test-and-still-fails-in-production.md)
+  - [S-1246 · The Cascading Specification Failure Stack — When Your Multi-Agent System Is Correct at Every Step and Wrong in Aggregate](stacks/s1246-the-cascading-specification-failure-stack-when-your-multi-agent-system-is-correct-at-every-step-and-wrong-in-aggregate.md)
+  - [S-1247 · The Durable Execution Stack — When LangGraph Meets Temporal and Your Agent Stops Dying Halfway Through](stacks/s1247-the-durable-execution-stack-when-langgraph-meets-temporal-and-your-agent-stops-dying-halfway-through.md)
+  - [S-1253 · The Tool Interface Stack — When Your Agent Has No Hands](stacks/s1253-the-tool-interface-stack-when-your-agent-has-no-hands.md)
+  - [S-1254 · The MCP Registry Discovery Collapse — When Your Tool Catalog Costs 55K Tokens Before the Conversation Starts](stacks/s1254-the-mcp-registry-discovery-collapse-when-your-tool-catalog-costs-55k-tokens-before-the-conversation-starts.md)
+  - [S-1255 · The Agent Memory Stack — When Your Agent Forgets What It Already Knows](stacks/s1255-the-agent-memory-stack-when-your-agent-forgets-what-it-already-knows.md)
+  - [S-1256 · The Scope Attenuation Stack — When Your Agent Escalates Its Own Permissions and Nobody Knew It Could](stacks/s1256-the-scope-attenuation-stack-when-your-agent-escalates-its-own-permissions-and-nobody-knew-it-could.md)
+  - [S-1258 · The Schema-Pass, Semantic-Fail Stack — When Your Agent Returns Valid JSON with Wrong Answers](stacks/s1258-the-schema-pass-semantic-fail-stack-when-your-agent-returns-valid-json-with-wrong-answers.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
