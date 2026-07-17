@@ -1,173 +1,313 @@
-=== NASDAQ SWING SCAN | 2026-07-15 10:34:45 UTC ===
-Market Context: PRE-MARKET (~6:31 AM ET) | NYSE/NASDAQ open 9:30 AM ET
+======================================================================
+STAGE 1: MACRO MARKET REGIME & INDEX ANALYSIS
+======================================================================
 
-Loading data...
-  OK  QQQ      134 rows  |  Last close: $711.74
-  OK  SPY      134 rows  |  Last close: $749.17
-  OK  IWM      134 rows  |  Last close: $293.48
-  OK  ^VIX     135 rows  |  Last close: $17.16
-  OK  ^TNX     134 rows  |  Last close: $4.61
-  OK  AAPL     134 rows  |  Last close: $317.31
-  OK  MSFT     134 rows  |  Last close: $390.99
-  OK  GOOGL    134 rows  |  Last close: $352.51
-  OK  AMZN     134 rows  |  Last close: $247.31
-  OK  META     135 rows  |  Last close: $661.04
-  OK  NVDA     134 rows  |  Last close: $203.53
-  OK  TSLA     134 rows  |  Last close: $394.76
-  OK  AVGO     134 rows  |  Last close: $384.05
-  OK  COST     134 rows  |  Last close: $926.43
-  OK  NFLX     134 rows  |  Last close: $73.83
-  OK  AMD      134 rows  |  Last close: $534.39
-  OK  QCOM     134 rows  |  Last close: $183.98
-  OK  TXN      134 rows  |  Last close: $298.57
-  OK  MU       134 rows  |  Last close: $937.00
-  OK  AMAT     134 rows  |  Last close: $575.39
+QQQ (Nasdaq-100)
+  Price=711.17 | RSI(14)=48.0 | ATR(14)=14.11
+  SMA20=719.89 | SMA50=718.33 
+  Trend: 20sma=BELOW, 50sma=BELOW, 200sma=True
+  50 SMA direction: RISING | 200 SMA direction: RISING
 
-Loaded 20 tickers
+SPY (S&P 500)
+  Price=752.86 | RSI(14)=65.4 | ATR(14)=8.21
+  SMA20=744.92 | SMA50=742.85 
+  Trend: 20sma=ABOVE, 50sma=ABOVE, 200sma=True
+  50 SMA direction: RISING | 200 SMA direction: RISING
 
-=================================================================
-STAGE 1A — MACRO REGIME (INDEX ANALYSIS)
-=================================================================
+IWM (Russell 2000)
+  Price=296.99 | RSI(14)=46.0 | ATR(14)=4.12
+  SMA20=296.66 | SMA50=289.72 
+  Trend: 20sma=ABOVE, 50sma=ABOVE, 200sma=True
+  50 SMA direction: RISING | 200 SMA direction: RISING
 
-QQQ  |  Close: $711.74  |  EMA20: $719.09  |  EMA50: $705.80  |  SMA200: $nan
-        RSI(14): 41.3  [NEUTRAL]  |  MACD hist: -1.5878  |  ATR14: $16.07
-        Structure: RANGE  |  Above EMA20: False  |  Above 200SMA: None
+^VIX (Volatility Index)
+  Price=16.36 | RSI(14)=38.6 | ATR(14)=1.56
+  SMA20=16.98 | SMA50=17.29 
+  Trend: 20sma=BELOW, 50sma=BELOW, 200sma=False
+  50 SMA direction: FALLING | 200 SMA direction: RISING
 
-SPY  |  Close: $749.17  |  EMA20: $744.94  |  EMA50: $735.19  |  SMA200: $nan
-        RSI(14): 53.7  [NEUTRAL]  |  MACD hist: 0.6944  |  ATR14: $9.41
-        Structure: RANGE  |  Above EMA20: True  |  Above 200SMA: None
+>>> MACRO REGIME: BULL
+>>> VIX: 16.36 (MODERATE VOL)
+>>> Bull signal count: 3
 
-IWM  |  Close: $293.48  |  EMA20: $294.85  |  EMA50: $288.08  |  SMA200: $nan
-        RSI(14): 41.2  [NEUTRAL]  |  MACD hist: -0.9856  |  ATR14: $4.65
-        Structure: HH_HL  |  Above EMA20: False  |  Above 200SMA: None
+======================================================================
+STAGE 2: TICKER SCAN - TOP NASDAQ 100 COMPONENTS
+======================================================================
 
-^VIX  |  Close: $17.16  |  EMA20: $16.94  |  EMA50: $17.71  |  SMA200: $nan
-        RSI(14): 49.5  [NEUTRAL]  |  MACD hist: -0.1175  |  ATR14: $1.89
-        Structure: LH_LL  |  Above EMA20: True  |  Above 200SMA: None
+NVDA (AI/GPU leader) | Score: 3
+  Price=207.87 | RSI=60.9 | ATR%=3.3%
+  SMA20=202.24 (+2.8%) | SMA50=209.69 (-0.9%)
+  MACD=BULLISH | VolRatio=0.13x | Mom5d=-1.5% | Mom20d=+1.6%
+  % of 52w High=nan% | Bias=bullish
 
-^TNX  |  Close: $4.61  |  EMA20: $4.50  |  EMA50: $4.46  |  SMA200: $nan
-        RSI(14): 61.2  [NEUTRAL]  |  MACD hist: 0.0173  |  ATR14: $0.05
-        Structure: LH_LL  |  Above EMA20: True  |  Above 200SMA: None
+MSFT (Cloud/AI) | Score: 3
+  Price=393.47 | RSI=74.1 | ATR%=3.0%
+  SMA20=380.03 (+3.5%) | SMA50=401.49 (-2.0%)
+  MACD=BULLISH | VolRatio=0.11x | Mom5d=+2.2% | Mom20d=+3.8%
+  % of 52w High=nan% | Bias=bullish
 
-VIX: 17.16  |  High volatility (>25) = BEAR signal: False
-TNX (10Y yield): 4.61%
+AAPL (Hardware/Ecosystem) | Score: 4
+  Price=329.42 | RSI=89.3 | ATR%=2.6%
+  SMA20=303.44 (+8.6%) | SMA50=301.56 (+9.2%)
+  MACD=BULLISH | VolRatio=0.16x | Mom5d=+4.5% | Mom20d=+11.3%
+  % of 52w High=nan% | Bias=neutral
 
-*** MACRO REGIME: BULL  (bull=5, bear=0) ***
+AMZN (Cloud/E-commerce) | Score: 5
+  Price=253.46 | RSI=82.1 | ATR%=2.9%
+  SMA20=241.75 (+4.8%) | SMA50=252.73 (+0.3%)
+  MACD=BULLISH | VolRatio=0.10x | Mom5d=+3.3% | Mom20d=+6.7%
+  % of 52w High=nan% | Bias=bullish
 
-=================================================================
-STAGE 1B — SWING CANDIDATE SCAN (NASDAQ 100 LEADERS)
-=================================================================
+GOOGL (AI/Search) | Score: 4
+  Price=369.79 | RSI=68.0 | ATR%=2.7%
+  SMA20=357.52 (+3.4%) | SMA50=371.62 (-0.5%)
+  MACD=BULLISH | VolRatio=0.14x | Mom5d=+3.5% | Mom20d=+1.6%
+  % of 52w High=nan% | Bias=bullish
 
-AAPL   | $317.31 | ATR$9.12(2.9%) | RSI=63.7[NEUTRAL] | MACD=2.673 | RANGE | >EMA20=True | >EMA50=True | >200=None | Vol=0.67x
-MSFT   | $390.99 | ATR$12.32(3.2%) | RSI=62.7[NEUTRAL] | MACD=2.783 | LH_LL | >EMA20=True | >EMA50=False | >200=None | Vol=0.61x
-GOOGL  | $352.51 | ATR$10.06(2.9%) | RSI=52.4[NEUTRAL] | MACD=0.590 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.46x
-AMZN   | $247.31 | ATR$7.57(3.1%) | RSI=67.8[NEUTRAL] | MACD=1.780 | LH_LL | >EMA20=True | >EMA50=True | >200=None | Vol=0.56x
-META   | $661.04 | ATR$27.64(4.2%) | RSI=70.0[NEUTRAL] | MACD=11.649 | RANGE | >EMA20=True | >EMA50=True | >200=None | Vol=0.82x
-NVDA   | $203.53 | ATR$6.92(3.4%) | RSI=45.4[NEUTRAL] | MACD=1.198 | LH_LL | >EMA20=True | >EMA50=False | >200=None | Vol=0.84x
-TSLA   | $394.76 | ATR$19.89(5.0%) | RSI=47.3[NEUTRAL] | MACD=0.381 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.72x
-AVGO   | $384.05 | ATR$15.16(3.9%) | RSI=46.8[NEUTRAL] | MACD=3.033 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.74x
-COST   | $926.43 | ATR$20.28(2.2%) | RSI=42.1[NEUTRAL] | MACD=-1.209 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.87x
-NFLX   | $73.83 | ATR$2.48(3.4%) | RSI=52.6[NEUTRAL] | MACD=0.472 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.70x
-AMD    | $534.39 | ATR$38.41(7.2%) | RSI=47.3[NEUTRAL] | MACD=-3.573 | HH_HL | >EMA20=True | >EMA50=True | >200=None | Vol=0.77x
-QCOM   | $183.98 | ATR$12.44(6.8%) | RSI=28.8[OVERSOLD] | MACD=-1.135 | LH_LL | >EMA20=False | >EMA50=False | >200=None | Vol=0.64x
-TXN    | $298.57 | ATR$16.39(5.5%) | RSI=37.4[NEUTRAL] | MACD=-0.305 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.76x
-MU     | $937.00 | ATR$97.99(10.5%) | RSI=32.3[NEUTRAL] | MACD=-28.801 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.68x
-AMAT   | $575.39 | ATR$54.86(9.5%) | RSI=43.7[NEUTRAL] | MACD=-12.819 | HH_HL | >EMA20=False | >EMA50=True | >200=None | Vol=0.59x
+META (Social AI) | Score: 5
+  Price=670.42 | RSI=74.6 | ATR%=4.3%
+  SMA20=601.63 (+11.4%) | SMA50=603.52 (+11.1%)
+  MACD=BULLISH | VolRatio=0.13x | Mom5d=+0.2% | Mom20d=+18.1%
+  % of 52w High=nan% | Bias=bullish
 
-=================================================================
-SWING SCORE RANKING  (Directional Bias: LONG preferred in BULL/TRANSITIONAL)
-=================================================================
+TSLA (EV/Auto) | Score: 3
+  Price=389.89 | RSI=54.4 | ATR%=4.9%
+  SMA20=398.57 (-2.2%) | SMA50=409.95 (-4.9%)
+  MACD=BEARISH | VolRatio=0.16x | Mom5d=-4.4% | Mom20d=-1.6%
+  % of 52w High=nan% | Bias=bullish
 
-Rank  Ticker   Score      Close   ATR%    RSI   Struct   Vol
-------------------------------------------------------------
-1     AMD      91      $ 534.39   7.2%  47.3    HH_HL 0.77x
-2     AAPL     78      $ 317.31   2.9%  63.7    RANGE 0.67x
-3     AMAT     76      $ 575.39   9.5%  43.7    HH_HL 0.59x
-4     AMZN     73      $ 247.31   3.1%  67.8    LH_LL 0.56x
-5     META     68      $ 661.04   4.2%  70.0    RANGE 0.82x
-6     NVDA     68      $ 203.53   3.4%  45.4    LH_LL 0.84x
-7     MU       68      $ 937.00  10.5%  32.3    HH_HL 0.68x
-8     TXN      60      $ 298.57   5.5%  37.4    HH_HL 0.76x
-9     MSFT     58      $ 390.99   3.2%  62.7    LH_LL 0.61x
-10    GOOGL    53      $ 352.51   2.9%  52.4    LH_LL 0.46x
+AVGO (AI semis) | Score: 4
+  Price=383.83 | RSI=51.9 | ATR%=3.9%
+  SMA20=383.35 (+0.1%) | SMA50=403.84 (-5.0%)
+  MACD=BULLISH | VolRatio=0.11x | Mom5d=-4.0% | Mom20d=-2.2%
+  % of 52w High=nan% | Bias=bullish
 
-=================================================================
-STAGE 4 — TOP 3 SWING TRADE SETUPS (Actionable Blueprints)
-=================================================================
+AMD (AI/Gaming) | Score: 3
+  Price=514.61 | RSI=47.2 | ATR%=7.5%
+  SMA20=534.54 (-3.7%) | SMA50=496.55 (+3.6%)
+  MACD=BEARISH | VolRatio=0.17x | Mom5d=-7.8% | Mom20d=+0.4%
+  % of 52w High=nan% | Bias=bullish
 
-────────────────────────────────────────────────────────────
-  #1  TICKER: AMD  |  Score: 91/100  |  Direction: LONG
-────────────────────────────────────────────────────────────
-  ENTRY PRICE:      $534.39  (Today's close or tomorrow's open)
-  STOP LOSS:        $476.78  (Risk: $57.61 = 10.8% of entry)
-  T1 PARTIAL EXIT:  $611.21  |  R:R = 1.3:1  (sell 40% of position)
-  T2 TARGET:         $649.62  |  R:R = 2.0:1  (sell 30% of position)
-  T3 TARGET:         $688.03  |  R:R = 2.7:1  (sell remaining 30%)
-  ATR14:             $38.41  (2.9% of price)
+QCOM (Mobile/AI chips) | Score: 0
+  Price=171.37 | RSI=26.1 | ATR%=5.9%
+  SMA20=191.81 (-10.7%) | SMA50=207.09 (-17.3%)
+  MACD=BEARISH | VolRatio=0.10x | Mom5d=-9.4% | Mom20d=-19.5%
+  % of 52w High=nan% | Bias=neutral
+
+MU (Memory/HBM) | Score: 1
+  Price=875.95 | RSI=21.8 | ATR%=9.1%
+  SMA20=1034.17 (-15.3%) | SMA50=929.85 (-5.8%)
+  MACD=BEARISH | VolRatio=0.21x | Mom5d=-10.6% | Mom20d=-16.0%
+  % of 52w High=nan% | Bias=bullish
+
+AMAT (Semiconductor equipment) | Score: 3
+  Price=585.00 | RSI=40.2 | ATR%=8.7%
+  SMA20=611.80 (-4.4%) | SMA50=523.59 (+11.7%)
+  MACD=BEARISH | VolRatio=0.10x | Mom5d=-2.9% | Mom20d=-1.3%
+  % of 52w High=nan% | Bias=bullish
+
+NFLX (Streaming) | Score: 3
+  Price=73.28 | RSI=56.8 | ATR%=3.4%
+  SMA20=74.23 (-1.3%) | SMA50=80.92 (-9.4%)
+  MACD=BULLISH | VolRatio=0.13x | Mom5d=-0.1% | Mom20d=-4.8%
+  % of 52w High=nan% | Bias=neutral
+
+CRM (CRM/AI) | Score: 3
+  Price=168.23 | RSI=70.1 | ATR%=3.9%
+  SMA20=160.86 (+4.6%) | SMA50=171.58 (-2.0%)
+  MACD=BULLISH | VolRatio=0.08x | Mom5d=+3.0% | Mom20d=+8.5%
+  % of 52w High=nan% | Bias=bullish
+
+ORCL (Cloud/AI DB) | Score: 1
+  Price=127.41 | RSI=24.5 | ATR%=5.2%
+  SMA20=148.29 (-14.1%) | SMA50=179.33 (-29.0%)
+  MACD=BEARISH | VolRatio=0.23x | Mom5d=-9.4% | Mom20d=-30.3%
+  % of 52w High=nan% | Bias=bullish
+
+ADBE (Creative/AI tools) | Score: 3
+  Price=224.20 | RSI=76.3 | ATR%=3.8%
+  SMA20=211.28 (+6.1%) | SMA50=230.72 (-2.8%)
+  MACD=BULLISH | VolRatio=0.08x | Mom5d=+0.3% | Mom20d=+14.2%
+  % of 52w High=nan% | Bias=bullish
+
+INTU (FinTech/Tax) | Score: 3
+  Price=281.42 | RSI=66.1 | ATR%=4.5%
+  SMA20=269.87 (+4.3%) | SMA50=310.46 (-9.4%)
+  MACD=BULLISH | VolRatio=0.06x | Mom5d=+2.3% | Mom20d=+5.0%
+  % of 52w High=nan% | Bias=neutral
+
+PANW (Cybersecurity) | Score: 5
+  Price=355.69 | RSI=68.5 | ATR%=5.2%
+  SMA20=323.76 (+9.9%) | SMA50=280.42 (+26.8%)
+  MACD=BEARISH | VolRatio=0.11x | Mom5d=+9.1% | Mom20d=+26.1%
+  % of 52w High=nan% | Bias=bullish
+
+SNPS (EDA/AI chips) | Score: 1
+  Price=419.74 | RSI=29.1 | ATR%=3.6%
+  SMA20=445.43 (-5.8%) | SMA50=473.91 (-11.4%)
+  MACD=BEARISH | VolRatio=0.08x | Mom5d=-5.8% | Mom20d=-9.1%
+  % of 52w High=nan% | Bias=bullish
+
+CRWD (Cybersecurity cloud) | Score: 6
+  Price=203.77 | RSI=69.6 | ATR%=5.6%
+  SMA20=186.89 (+9.0%) | SMA50=170.29 (+19.7%)
+  MACD=BULLISH | VolRatio=0.12x | Mom5d=+8.9% | Mom20d=+19.3%
+  % of 52w High=nan% | Bias=bullish
+
+LRCX (Semiconductor equipment) | Score: 2
+  Price=332.83 | RSI=36.9 | ATR%=8.9%
+  SMA20=367.20 (-9.4%) | SMA50=335.60 (-0.8%)
+  MACD=BEARISH | VolRatio=0.10x | Mom5d=-5.0% | Mom20d=-11.1%
+  % of 52w High=nan% | Bias=bullish
+
+KLAC (Semiconductor equipment) | Score: 3
+  Price=226.10 | RSI=41.3 | ATR%=9.4%
+  SMA20=243.85 (-7.3%) | SMA50=216.91 (+4.2%)
+  MACD=BEARISH | VolRatio=0.08x | Mom5d=-2.3% | Mom20d=-5.3%
+  % of 52w High=nan% | Bias=bullish
+
+======================================================================
+STAGE 3: TOP 3 SWING SETUP RANKING
+======================================================================
+
+1. CRWD | Score=6 | Price=203.77 | RSI=69.6
+   ATR=$11.42 (5.6%) | SMA50=ABOVE | MACD=BULL
+
+2. AMZN | Score=5 | Price=253.46 | RSI=82.1
+   ATR=$7.30 (2.9%) | SMA50=ABOVE | MACD=BULL
+
+3. META | Score=5 | Price=670.42 | RSI=74.6
+   ATR=$28.70 (4.3%) | SMA50=ABOVE | MACD=BULL
+
+4. PANW | Score=5 | Price=355.69 | RSI=68.5
+   ATR=$18.57 (5.2%) | SMA50=ABOVE | MACD=BEAR
+
+5. AAPL | Score=4 | Price=329.42 | RSI=89.3
+   ATR=$8.43 (2.6%) | SMA50=ABOVE | MACD=BULL
+
+======================================================================
+STAGE 4: TACTICAL ORDER BLUEPRINTS
+======================================================================
+
+============================================================
+SYMBOL: CRWD (Cybersecurity cloud)
+============================================================
+  DIRECTION: LONG
+  CURRENT PRICE: $203.77
+  SETUP RATIONALE: BULLISH bias with Cybersecurity cloud. RSI in 
+    OVERBOUGHT zone (69.6). MACD CONFIRMS. 
+    Price ABOVE 50 SMA (+19.7%). 
   
-  ORDER TYPE:       Buy Limit @ $534.39 (await pullback to entry on open)
-  ALT ENTRY:        Buy Stop @ $543.99 (breakout confirmation)
-  POSITION SIZE:    26 shares = $13,894 (13.9% of $100K portfolio)
-  MAX RISK:         $1,500 (1.5% of portfolio)
+  ORDER EXECUTION:
+    Entry Type: BUY LIMIT @ $203.77
+    Stop Loss:  $186.64 (risk: $17.13 = 8.4%)
+    T1 Target: $238.04 (16.8% | 2:1 R:R)
+    T2 Target: $255.17 (25.2% | 3:1 R:R)
+    Invalidation: Close below $197.66 = ABORT
   
-  KEY TECHNICALS:
-    RSI(14):        47.3  [NEUTRAL]
-    MACD Hist:      -3.5735  |  Bullish cross=False
-    Structure:      HH_HL  |  >EMA20=True  >EMA50=True  >200SMA=None
-    Vol ratio:      0.77x  (surge=False)
+  POSITION SIZING (2% risk on $100K acct):
+    Risk per share: $17.13
+    Max position: 100 shares
+    Total cost: $20377
+    Max risk: $1713
   
-  INVALUATION: Exit immediately if AMD closes below $476.78
-  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+  DYNAMIC RISK MANAGEMENT:
+    - After T1 hit (2:1): Move stop to BREAKEVEN
+    - After T2 hit: Trail by 50% of remaining ATR
+    - RSI > 75 on any day: Reduce by 25% regardless
+  
+  HOLDING WINDOW: 2-14 days
+  MACRO ALIGNMENT: ALIGNED
+  INTERNAL SCORE: 6/10
 
-────────────────────────────────────────────────────────────
-  #2  TICKER: AAPL  |  Score: 78/100  |  Direction: LONG
-────────────────────────────────────────────────────────────
-  ENTRY PRICE:      $317.31  (Today's close or tomorrow's open)
-  STOP LOSS:        $303.63  (Risk: $13.68 = 4.3% of entry)
-  T1 PARTIAL EXIT:  $335.56  |  R:R = 1.3:1  (sell 40% of position)
-  T2 TARGET:         $344.68  |  R:R = 2.0:1  (sell 30% of position)
-  T3 TARGET:         $353.80  |  R:R = 2.7:1  (sell remaining 30%)
-  ATR14:             $9.12  (2.9% of price)
+============================================================
+SYMBOL: AMZN (Cloud/E-commerce)
+============================================================
+  DIRECTION: LONG
+  CURRENT PRICE: $253.46
+  SETUP RATIONALE: BULLISH bias with Cloud/E-commerce. RSI in 
+    OVERBOUGHT zone (82.1). MACD CONFIRMS. 
+    Price ABOVE 50 SMA (+0.3%). 
   
-  ORDER TYPE:       Buy Limit @ $317.31 (await pullback to entry on open)
-  ALT ENTRY:        Buy Stop @ $319.59 (breakout confirmation)
-  POSITION SIZE:    109 shares = $34,587 (34.6% of $100K portfolio)
-  MAX RISK:         $1,500 (1.5% of portfolio)
+  ORDER EXECUTION:
+    Entry Type: BUY LIMIT @ $253.46
+    Stop Loss:  $242.51 (risk: $10.95 = 4.3%)
+    T1 Target: $275.37 (8.6% | 2:1 R:R)
+    T2 Target: $286.32 (13.0% | 3:1 R:R)
+    Invalidation: Close below $245.86 = ABORT
   
-  KEY TECHNICALS:
-    RSI(14):        63.7  [NEUTRAL]
-    MACD Hist:      2.6728  |  Bullish cross=False
-    Structure:      RANGE  |  >EMA20=True  >EMA50=True  >200SMA=None
-    Vol ratio:      0.67x  (surge=False)
+  POSITION SIZING (2% risk on $100K acct):
+    Risk per share: $10.95
+    Max position: 100 shares
+    Total cost: $25346
+    Max risk: $1095
   
-  INVALUATION: Exit immediately if AAPL closes below $303.63
-  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+  DYNAMIC RISK MANAGEMENT:
+    - After T1 hit (2:1): Move stop to BREAKEVEN
+    - After T2 hit: Trail by 50% of remaining ATR
+    - RSI > 75 on any day: Reduce by 25% regardless
+  
+  HOLDING WINDOW: 2-14 days
+  MACRO ALIGNMENT: ALIGNED
+  INTERNAL SCORE: 5/10
 
-────────────────────────────────────────────────────────────
-  #3  TICKER: AMAT  |  Score: 76/100  |  Direction: LONG
-────────────────────────────────────────────────────────────
-  ENTRY PRICE:      $575.39  (Today's close or tomorrow's open)
-  STOP LOSS:        $493.10  (Risk: $82.29 = 14.3% of entry)
-  T1 PARTIAL EXIT:  $685.11  |  R:R = 1.3:1  (sell 40% of position)
-  T2 TARGET:         $739.97  |  R:R = 2.0:1  (sell 30% of position)
-  T3 TARGET:         $794.82  |  R:R = 2.7:1  (sell remaining 30%)
-  ATR14:             $54.86  (2.9% of price)
+============================================================
+SYMBOL: META (Social AI)
+============================================================
+  DIRECTION: LONG
+  CURRENT PRICE: $670.42
+  SETUP RATIONALE: BULLISH bias with Social AI. RSI in 
+    OVERBOUGHT zone (74.6). MACD CONFIRMS. 
+    Price ABOVE 50 SMA (+11.1%). 
   
-  ORDER TYPE:       Buy Limit @ $575.39 (await pullback to entry on open)
-  ALT ENTRY:        Buy Stop @ $589.10 (breakout confirmation)
-  POSITION SIZE:    18 shares = $10,357 (10.4% of $100K portfolio)
-  MAX RISK:         $1,500 (1.5% of portfolio)
+  ORDER EXECUTION:
+    Entry Type: BUY LIMIT @ $670.42
+    Stop Loss:  $627.37 (risk: $43.05 = 6.4%)
+    T1 Target: $756.51 (12.8% | 2:1 R:R)
+    T2 Target: $799.56 (19.3% | 3:1 R:R)
+    Invalidation: Close below $650.31 = ABORT
   
-  KEY TECHNICALS:
-    RSI(14):        43.7  [NEUTRAL]
-    MACD Hist:      -12.8189  |  Bullish cross=False
-    Structure:      HH_HL  |  >EMA20=False  >EMA50=True  >200SMA=None
-    Vol ratio:      0.59x  (surge=False)
+  POSITION SIZING (2% risk on $100K acct):
+    Risk per share: $43.05
+    Max position: 46 shares
+    Total cost: $30839
+    Max risk: $1980
   
-  INVALUATION: Exit immediately if AMAT closes below $493.10
-  TIME WINDOW:     Hold 2-10 trading days; exit on or before T2 or structure break
+  DYNAMIC RISK MANAGEMENT:
+    - After T1 hit (2:1): Move stop to BREAKEVEN
+    - After T2 hit: Trail by 50% of remaining ATR
+    - RSI > 75 on any day: Reduce by 25% regardless
+  
+  HOLDING WINDOW: 2-14 days
+  MACRO ALIGNMENT: ALIGNED
+  INTERNAL SCORE: 5/10
 
-=================================================================
+======================================================================
+COGNITIVE CRITIQUE & RISK FACTORS
+======================================================================
+
+CRWD BEAR CASE:
+  1. Macro: If BULL regime deteriorates, all momentum plays suffer
+  2. RSI: At 69.6 - overbought pressure limits upside
+  3. Invalidation: If closes below $170.29 (50 SMA), thesis is WRONG
+  4. Vol: ATR of $11.42 (5.6% of price) = HIGH volatility
+  5. If market dumps >2% on any day: Exit ALL positions immediately
+
+AMZN BEAR CASE:
+  1. Macro: If BULL regime deteriorates, all momentum plays suffer
+  2. RSI: At 82.1 - overbought pressure limits upside
+  3. Invalidation: If closes below $252.73 (50 SMA), thesis is WRONG
+  4. Vol: ATR of $7.30 (2.9% of price) = MODERATE volatility
+  5. If market dumps >2% on any day: Exit ALL positions immediately
+
+META BEAR CASE:
+  1. Macro: If BULL regime deteriorates, all momentum plays suffer
+  2. RSI: At 74.6 - overbought pressure limits upside
+  3. Invalidation: If closes below $603.52 (50 SMA), thesis is WRONG
+  4. Vol: ATR of $28.70 (4.3% of price) = HIGH volatility
+  5. If market dumps >2% on any day: Exit ALL positions immediately
+
 === SCAN COMPLETE ===
-Data as of: 2026-07-14 (yesterday's close — pre-market July 15, 2026)
-Market regime: BULL
+Timestamp: 2026-07-16 14:06:45
+Market Regime: BULL
+VIX: 16.36

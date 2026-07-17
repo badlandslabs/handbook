@@ -1,0 +1,43 @@
+======================================================================
+  NASDAQ SWING TRADE ADVISORY  |  2026-07-13 10:45 UTC
+======================================================================
+
+MARKET REGIME: TRANSITIONAL
+
+QQQ: $725.510009765625 | RSI=52.9 | ATR%=2.1% | mom20=+1.3%
+SPY: $754.9500122070312 | RSI=59.5 | ATR%=1.2% | mom20=+2.6%
+IWM: $295.989990234375 | RSI=53.9 | ATR%=1.8% | mom20=+2.2%
+VIX: $16.299999237060547 | RSI=47.1 | mom20=-7.8%
+
+============================================================
+  AAPL | Score=+52 | Regime=TRANSITIONAL
+============================================================
+  Price: $315.32 | ATR: $8.08 (2.6%)
+  Entry: BUY LIMIT 1.5% below (pullback)
+  SL: $303.20 | T1: $339.56 | T2: $351.68
+  R:R: 1:2 / 1:3
+  Shares: 165 | Risk: 2.0%
+  Bull: Rising 20d slope, Strong RSI=63.0, Strong 20d mom +6.7%
+  Bear: 
+
+============================================================
+  META | Score=+52 | Regime=TRANSITIONAL
+============================================================
+  Price: $669.21 | ATR: $25.94 (3.9%)
+  Entry: BUY LIMIT 1.5% below (pullback)
+  SL: $630.31 | T1: $747.02 | T2: $785.92
+  R:R: 1:2 / 1:3
+  Shares: 51 | Risk: 2.0%
+  Bull: Rising 20d slope, Strong 20d mom +17.8%, Volume 2.0x
+  Bear: 
+
+============================================================
+  PAYX | Score=+52 | Regime=TRANSITIONAL
+============================================================
+  Price: $107.54 | ATR: $3.16 (2.9%)
+  Entry: BUY LIMIT 1.5% below (pullback)
+  SL: $102.80 | T1: $117.01 | T2: $121.75
+  R:R: 1:2 / 1:3
+  Shares: 422 | Risk: 2.0%
+  Bull: Rising 20d slope, Strong RSI=65.0, Strong 20d mom +8.3%
+  Bear: 

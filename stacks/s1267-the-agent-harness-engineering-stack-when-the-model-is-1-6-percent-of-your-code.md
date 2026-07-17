@@ -1,4 +1,4 @@
-# S-1266 · The Agent Harness Engineering Stack
+# S-1267 · The Agent Harness Engineering Stack
 
 When your agent works in demos but fails in production — not because the model is wrong, but because nobody engineered the control layer around it.
 
