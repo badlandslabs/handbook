@@ -457,6 +457,9 @@
   - [S-1205 · The Agent Orchestration Stack — When You're Not Sure If You Need One Agent or Twenty](stacks/s1205-the-agent-orchestration-stack-when-youre-not-sure-if-you-need-one-agent-or-twenty.md)
   - [S-1206 · The Slopsquatting Defense Stack — When Your Agent Registers a Malicious Package You Never Approved](stacks/s1206-the-slopsquatting-defense-stack-when-your-agent-registers-a-malicious-package-you-never-approved.md)
   - [S-1219 · The MCP Migration Stack — When Your Stateless Agent Is Still Holding Session State](stacks/s1219-the-mcp-migration-stack-when-your-stateless-agent-is-still-holding-session-state.md)
+  - [S-1238 · The Authorization Gap — When Your AI Agent Holds Keys It Shouldn't Use](stacks/s1238-the-authorization-gap-when-your-ai-agent-holds-keys-it-shouldnt-use.md)
+  - [S-1239 · The Runtime Verification Loop — When Your Agent Scores 97% and Walks Straight into the Wrong Answer](stacks/s1239-the-runtime-verification-loop-when-your-agent-scores-97-percent-and-walks-straight-into-the-wrong-answer.md)
+  - [S-1240 · The Reliability Multiplication Law — When 95% Per-Step Accuracy Means 36% Task Completion](stacks/s1240-the-reliability-multiplication-law-when-95-percent-per-step-accuracy-means-36-percent-task-completion.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
