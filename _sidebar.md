@@ -472,6 +472,7 @@
   - [S-1255 · The Agent Memory Stack — When Your Agent Forgets What It Already Knows](stacks/s1255-the-agent-memory-stack-when-your-agent-forgets-what-it-already-knows.md)
   - [S-1256 · The Scope Attenuation Stack — When Your Agent Escalates Its Own Permissions and Nobody Knew It Could](stacks/s1256-the-scope-attenuation-stack-when-your-agent-escalates-its-own-permissions-and-nobody-knew-it-could.md)
   - [S-1258 · The Schema-Pass, Semantic-Fail Stack — When Your Agent Returns Valid JSON with Wrong Answers](stacks/s1258-the-schema-pass-semantic-fail-stack-when-your-agent-returns-valid-json-with-wrong-answers.md)
+  - [S-1263 · The Cost Chain Explosion Stack — When Every Micro-Decision Is Reasonable and the Final Bill Is Catastrophic](stacks/s1263-the-cost-chain-explosion-stack-when-every-micro-decision-is-reasonable-and-the-final-bill-is-catastrophic.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
