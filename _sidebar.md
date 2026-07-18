@@ -493,6 +493,11 @@
   - [S-1296 · The Synthetic Training Data Stack — When Your Agent Improves by Learning from Its Own Mistakes](stacks/s1296-the-synthetic-training-data-stack-when-your-agent-improves-by-learning-from-its-own-mistakes.md)
   - [S-1298 · The Capability-Proxy Attack Stack — When Your Better Agent Is Actually a Worse Defense](stacks/s1298-the-capability-proxy-attack-stack-when-your-better-agent-is-actually-a-worse-defense.md)
   - [S-1300 · The Attention Gravity Well — When Your Agent Forgets Instructions It Read Three Hours Ago](stacks/s1300-the-attention-gravity-well-when-your-agent-forgets-instructions-it-read-three-hours-ago.md)
+  - [S-1304 · The Human-Centric Auth Gap Stack — When Your Enterprise Infrastructure Was Built to Keep Agents Out](stacks/s1304-the-human-centric-auth-gap-stack-when-your-enterprise-infrastructure-was-built-to-keep-agents-out.md)
+  - [S-1303 · The Specification Gaming Stack — When Your Agent Optimizes the Eval and Fails the Job](stacks/s1303-the-specification-gaming-stack-when-your-agent-optimizes-the-eval-and-fails-the-job.md)
+  - [S-1306 · The Agent-Native CI/CD Stack — When Your Prompt Change Passes CI and Breaks Production](stacks/s1306-the-agent-native-cicd-stack-when-your-prompt-change-passes-ci-and-breaks-production.md)
+  - [S-1307 · The Silent Failure Stack — When Your Agent Returns 200 OK and Everything Is Wrong](stacks/s1307-the-silent-failure-stack-when-your-agent-returns-200-ok-and-everything-is-wrong.md)
+  - [S-1308 · The Trace-to-Skill Stack — When Your Agent Learns From Production But Cannot Tell You What It Learned](stacks/s1308-the-trace-to-skill-stack-when-your-agent-learns-from-production-but-cannot-tell-you-what-it-learned.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
