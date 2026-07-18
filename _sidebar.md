@@ -488,6 +488,11 @@
   - [S-1277 · The MCP Observability Gap Stack — When Your APM Shows Green but Your Agent Is Silently Failing](stacks/s1277-the-mcp-observability-gap-stack-when-your-apm-shows-green-but-your-agent-is-silently-failing.md)
   - [S-1279 · The Protocol Governance Gap — When Your Agents Can Talk But Can't Govern](stacks/s1279-the-protocol-governance-gap-when-your-agents-can-talk-but-cant-govern.md)
   - [S-1282 · The Trace Refinery — When Production Traces Are Refined Into Training Signal, Not Poured Directly Into Weights](stacks/s1282-the-trace-refinery-when-production-traces-are-refined-into-training-signal-not-poured-directly-into-weights.md)
+  - [S-1288 · The Saga Compensation Stack — When Your Multi-Agent Workflow Partially Succeeds and Leaves the Database Wrong](stacks/s1288-the-saga-compensation-stack-when-your-multi-agent-workflow-partially-succeeds-and-leaves-the-database-wrong.md)
+  - [S-1293 · The Action Hallucination Stack — When Your Agent Says It Did Something It Didn't](stacks/s1293-the-action-hallucination-stack-when-your-agent-says-it-did-something-it-didnt.md)
+  - [S-1296 · The Synthetic Training Data Stack — When Your Agent Improves by Learning from Its Own Mistakes](stacks/s1296-the-synthetic-training-data-stack-when-your-agent-improves-by-learning-from-its-own-mistakes.md)
+  - [S-1298 · The Capability-Proxy Attack Stack — When Your Better Agent Is Actually a Worse Defense](stacks/s1298-the-capability-proxy-attack-stack-when-your-better-agent-is-actually-a-worse-defense.md)
+  - [S-1300 · The Attention Gravity Well — When Your Agent Forgets Instructions It Read Three Hours Ago](stacks/s1300-the-attention-gravity-well-when-your-agent-forgets-instructions-it-read-three-hours-ago.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
