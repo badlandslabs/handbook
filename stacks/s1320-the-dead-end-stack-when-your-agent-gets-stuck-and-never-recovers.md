@@ -1,4 +1,4 @@
-# S-1319 · The Dead End Stack — When Your Agent Gets Stuck and Never Recovers
+# S-1320 · The Dead End Stack — When Your Agent Gets Stuck and Never Recovers
 
 Your agent entered a loop 40 minutes ago. It keeps trying the same failing API call, burning tokens, holding a connection, and producing nothing. Nobody set a max iterations cap. Nobody added a circuit breaker. Nobody taught it to say "I can't do this." The agent is still going, and it will be going when you check tomorrow morning — and the morning after.
 
