@@ -475,6 +475,16 @@
   - [S-1263 · The Cost Chain Explosion Stack — When Every Micro-Decision Is Reasonable and the Final Bill Is Catastrophic](stacks/s1263-the-cost-chain-explosion-stack-when-every-micro-decision-is-reasonable-and-the-final-bill-is-catastrophic.md)
   - [S-1265 · The Agent Kill Switch Stack — When Your Agent Is Breaking Things and Nobody Can Stop It](stacks/s1265-the-agent-kill-switch-stack-when-your-agent-is-breaking-things-and-nobody-can-stop-it.md)
   - [S-1266 · The Agent Governance Void Stack — When Your Agent Runs Before the Rules Exist](stacks/s1266-the-agent-governance-void-stack-when-your-agent-runs-before-the-rules-exist.md)
+  - [S-1270 · The Intent Staleness Stack — When Your Agent Locks Onto What You Wanted, Not What You Want](stacks/s1270-the-intent-staleness-stack-when-your-agent-locks-onto-what-you-wanted-not-what-you-want.md)
+  - [S-1268 · The Agent Longevity Stack — When Your Agent Is Fine on Monday and Broken by Friday](stacks/s1268-the-agent-longevity-stack-when-your-agent-is-fine-on-monday-and-broken-by-friday.md)
+  - [S-1271 · The Agent Evals Stack — When Your Benchmark Says Pass and Your Users Say Broken](stacks/s1271-the-agent-evals-stack-when-your-benchmark-says-pass-and-your-users-say-broken.md)
+  - [S-1272 · The Per-Turn Semantic Classifier Stack — When You Can't Wait Until the End to Know If You've Already Failed](stacks/s1272-the-per-turn-semantic-classifier-stack-when-you-cant-wait-until-the-end-to-know-if-youve-already-failed.md)
+  - [S-1273 · The Browser as First-Class Tool Stack — When Your Agent Needs to See and Click](stacks/s1273-the-browser-as-first-class-tool-stack-when-your-agent-needs-to-see-and-click.md)
+  - [S-1274 · The Cascading Specification Failure Stack — When Every Agent Is Correct in Isolation and Wrong in Aggregate](stacks/s1274-the-cascading-specification-failure-stack-when-every-agent-is-correct-in-isolation-and-wrong-in-aggregate.md)
+  - [S-1275 · The Context Window Cliff Stack — When Your Agent Forgets Mid-Task and Keeps Going Anyway](stacks/s1275-the-context-window-cliff-stack-when-your-agent-forgets-mid-task-and-keeps-going-anyway.md)
+  - [S-1274b · The Ephemeral Credential Vending Stack — When Your Agent Shares a Credential with Another Agent and Nobody Owns the Key](stacks/s1274-the-ephemeral-credential-vending-stack-when-your-agent-shares-a-credential-with-another-agent-and-nobody-owns-the-key.md)
+  - [S-1276 · The Infrastructure-First Agent Stack — When You Build the Model First and the System Last](stacks/s1276-the-infrastructure-first-agent-stack-when-you-build-the-model-first-and-the-system-last.md)
+  - [S-1277 · The MCP Observability Gap Stack — When Your APM Shows Green but Your Agent Is Silently Failing](stacks/s1277-the-mcp-observability-gap-stack-when-your-apm-shows-green-but-your-agent-is-silently-failing.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
