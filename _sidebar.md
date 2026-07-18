@@ -473,6 +473,7 @@
   - [S-1256 · The Scope Attenuation Stack — When Your Agent Escalates Its Own Permissions and Nobody Knew It Could](stacks/s1256-the-scope-attenuation-stack-when-your-agent-escalates-its-own-permissions-and-nobody-knew-it-could.md)
   - [S-1258 · The Schema-Pass, Semantic-Fail Stack — When Your Agent Returns Valid JSON with Wrong Answers](stacks/s1258-the-schema-pass-semantic-fail-stack-when-your-agent-returns-valid-json-with-wrong-answers.md)
   - [S-1263 · The Cost Chain Explosion Stack — When Every Micro-Decision Is Reasonable and the Final Bill Is Catastrophic](stacks/s1263-the-cost-chain-explosion-stack-when-every-micro-decision-is-reasonable-and-the-final-bill-is-catastrophic.md)
+  - [S-1264 · The Context Scope Covenant — When Your Coding Agent Sends the Whole Repo to the Cloud](stacks/s1264-the-context-scope-covenant-when-your-coding-agent-sends-the-whole-repo-to-the-cloud.md)
   - [S-1265 · The Agent Kill Switch Stack — When Your Agent Is Breaking Things and Nobody Can Stop It](stacks/s1265-the-agent-kill-switch-stack-when-your-agent-is-breaking-things-and-nobody-can-stop-it.md)
   - [S-1266 · The Agent Governance Void Stack — When Your Agent Runs Before the Rules Exist](stacks/s1266-the-agent-governance-void-stack-when-your-agent-runs-before-the-rules-exist.md)
   - [S-1270 · The Intent Staleness Stack — When Your Agent Locks Onto What You Wanted, Not What You Want](stacks/s1270-the-intent-staleness-stack-when-your-agent-locks-onto-what-you-wanted-not-what-you-want.md)
@@ -485,6 +486,8 @@
   - [S-1274b · The Ephemeral Credential Vending Stack — When Your Agent Shares a Credential with Another Agent and Nobody Owns the Key](stacks/s1274-the-ephemeral-credential-vending-stack-when-your-agent-shares-a-credential-with-another-agent-and-nobody-owns-the-key.md)
   - [S-1276 · The Infrastructure-First Agent Stack — When You Build the Model First and the System Last](stacks/s1276-the-infrastructure-first-agent-stack-when-you-build-the-model-first-and-the-system-last.md)
   - [S-1277 · The MCP Observability Gap Stack — When Your APM Shows Green but Your Agent Is Silently Failing](stacks/s1277-the-mcp-observability-gap-stack-when-your-apm-shows-green-but-your-agent-is-silently-failing.md)
+  - [S-1279 · The Protocol Governance Gap — When Your Agents Can Talk But Can't Govern](stacks/s1279-the-protocol-governance-gap-when-your-agents-can-talk-but-cant-govern.md)
+  - [S-1282 · The Trace Refinery — When Production Traces Are Refined Into Training Signal, Not Poured Directly Into Weights](stacks/s1282-the-trace-refinery-when-production-traces-are-refined-into-training-signal-not-poured-directly-into-weights.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
