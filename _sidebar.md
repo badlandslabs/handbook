@@ -502,6 +502,7 @@
   - [S-1310 · The Trust Calibration Spectrum — When Your Agent Is Overtrusted and Under-Supervised](stacks/s1310-the-trust-calibration-spectrum-when-your-agent-is-overtrusted-and-under-supervised.md)
   - [S-1318 · The Ephemeral Identity Stack — When Your Agent Wears the Master Key](stacks/s1318-the-ephemeral-identity-stack-when-your-agent-wears-the-master-key.md)
   - [S-1319 · The Tool-Call Interception Stack — When Your Agent Framework Hands the Keys Before You Can Say No](stacks/s1319-the-tool-call-interception-stack-when-your-agent-framework-hands-the-keys-before-you-can-say-no.md)
+  - [S-1321 · The Frozen Endpoint Problem — When Your Model Endpoint Changes Without a Version Bump](stacks/s1321-the-frozen-endpoint-problem-when-your-model-endpoint-changes-without-a-version-bump.md)
   - [S-1312 · The Frontier Compression Stack — When Your General-Purpose Agent Is Too Expensive for Its Own Good](stacks/s1312-the-frontier-compression-stack-when-your-general-purpose-agent-is-too-expensive-for-its-own-good.md)
 
 - **Book of the Workspace**
