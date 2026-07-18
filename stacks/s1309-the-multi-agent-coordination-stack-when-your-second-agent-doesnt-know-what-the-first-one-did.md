@@ -1,0 +1,40 @@
+# S-1309 · The Multi-Agent Coordination Stack — When Your Second Agent Doesn't Know What the First One Did
+
+Your agent pipeline worked perfectly in the notebook: a researcher fetches data, a writer synthesizes it, an editor polishes the output. In production, the researcher returns JSON, the writer receives garbage, and the editor outputs nothing. Nobody can trace which agent failed because nobody logged the handoff. This is the multi-agent coordination problem: the moment you add a second agent, you inherit an entirely new class of failures around context sharing, partial execution, and observability gaps that no single-agent system ever faces.
+
+## Forces
+
+- **Context is not shared by default.** Each agent operates inside its own context window. The researcher's output must be explicitly passed to the writer — and if that pass fails, the writer has no idea what happened upstream. Context inconsistency, not pattern choice, is the primary reason multi-agent orchestration fails in production.
+- **Frameworks have conflicting philosophies.** LangGraph gives you deterministic control flow with full state inspection — you define every edge. CrewAI gives you autonomous agents that delegate to each other — faster to set up, harder to debug mid-run. Choosing the wrong framework for your coordination needs means fighting the tool instead of using it.
+- **Token costs scale superlinearly.** Every agent carries its own system prompt, and the shared context grows with each handoff. A 5-agent pipeline where each agent sees the full conversation history costs dramatically more than 5 separate single-agent calls — yet cutting context short is the most common cause of agent amnesia mid-pipeline.
+- **Partial failures cascade.** When one agent in a pipeline crashes, times out, or produces malformed output, downstream agents must either fail gracefully or work with corrupted state. Most pipelines do neither — they produce plausible-looking garbage and log a 200 OK.
+- **Observability lags behind the architecture.** Single-agent traces are hard enough. Multi-agent traces require correlating spans across agent boundaries, which most observability tools don't support out of the box.
+
+## The Move
+
+**Start with supervisor/worker, not peer-to-peer.** The most reliable multi-agent pattern: one orchestrator agent owns the flow, dispatches tasks to specialized workers, and aggregates results. Peer-to-peer (agents hand off freely) creates context-sharing nightmares that are hard to debug. Hierarchical (multi-level supervisors) is appropriate only when you need parallel sub-tasks with independent failure domains.
+
+**Treat a shared context layer as the persistent state store.** Don't rely on any agent's internal memory to carry state between steps. Use an external store — a database, Redis, or a shared file — as the "working memory" that every agent reads from and writes to. The agent's append-only message log IS its state. Persist it. This enables crash recovery and session resumption without re-running completed work.
+
+**Implement per-agent step limits and circuit breakers.** Each agent should have a max steps budget (typically 5–15 for a single agent in a pipeline). The supervisor should have an overall pipeline timeout. If any agent exceeds its budget, the supervisor routes to a fallback path rather than letting the agent loop indefinitely. This is the single most effective production hardening for multi-agent systems.
+
+**Design hierarchical fallbacks for every handoff.** If agent B (the writer) fails, what happens to the researcher's output? The pattern: agent A always writes its output to shared storage before the handoff is considered complete. If B fails, a recovery path can re-instantiate B with A's output still intact. Never pass data through in-memory state that dies with the agent process.
+
+**Use structured artifacts — not prose — for inter-agent data passing.** JSON blobs with explicit schemas for outputs. The writer agent should receive `{"topic": "...", "findings": [...], "sources": [...]}` as structured data, not a prose paragraph from the researcher's response. This makes validation possible and prevents downstream agents from misinterpreting context.
+
+**Log every handoff with a trace ID.** Attach a `pipeline_run_id` to every agent invocation and store it with the output. When the pipeline produces garbage, you need to replay the full trace: which agent ran when, with what input, and what it returned. Without trace-correlated logging, this takes hours. With it, it takes minutes.
+
+## Evidence
+
+- **HN Ask thread (real practitioners):** An "Ask HN" thread on multi-agent orchestration in production (3 months ago, news.ycombinator.com/item?id=47660705) surfaced consistent patterns: stateless pipelines break when prospects reference prior context, teams solve this by passing the entire conversation thread through each agent's context; observability via structured logging (not just LLM calls) is the most commonly cited gap; cron/webhook hybrid execution is the dominant deployment pattern for production agent pipelines.
+- **Agentika production survey:** LangChain's 2025 production survey shows simple chains handle 80% of production use cases; only 12% use full multi-agent systems — but those 12% handle the highest-complexity tasks. The key finding: "start with the simplest orchestration that could work. Most teams over-engineer with agents when a chain would do." (agentika.uk/blog/llm-orchestration-patterns.html, February 2026)
+- **Atlan enterprise guide:** "Context inconsistency, not pattern choice, is the primary reason multi-agent orchestration fails in production. Agent memory is transient; the shared context layer is the persistent state store across multi-agent pipeline steps." The guide recommends the A2A protocol (now under Linux Foundation) as the open standard for cross-vendor agent communication. (atlan.com/know/multi-agent-system-orchestration/, April 2026)
+- **LangGraph vs CrewAI comparison:** Imperialis.tech's production benchmarking found: LangGraph offers full state inspection at low abstraction cost (you control every call); CrewAI is higher-level via role-based agents but has limited mid-run visibility. The practical takeaway: LangGraph for deterministic pipelines where failure modes must be explicit; CrewAI for exploratory workflows where agent autonomy adds value. Token efficiency strongly favors LangGraph because you control exactly what context each agent sees. (imperialis.tech/en/blog/multi-agent-systems-langgraph-crewai-autogen-production, March 2026)
+
+## Gotchas
+
+- **LangGraph's flexibility is a double-edged sword.** Full control over execution graphs means you're responsible for handling every edge case, retry logic, and state update yourself. Teams often over-engineer when a simpler CrewAI setup would suffice.
+- **CrewAI's autonomous delegation is hard to observe mid-run.** When agents decide their own handoffs, you lose the ability to predict the execution path. For production pipelines where predictability matters, this autonomy is a liability until you've built strong observability.
+- **Token costs in multi-agent pipelines are invisible until the bill arrives.** Each agent re-including shared context on every call compounds fast. Budget monitoring per pipeline run is not optional — it's the only way to catch runaway context growth before it becomes a production incident.
+- **Context inconsistency between agents is the default, not the exception.** What the researcher agent "knew" about the task drifts from what the writer agent actually receives, especially under latency or partial failures. Structured schemas for inter-agent artifacts are the mitigation, not a nice-to-have.
+- **Testing multi-agent systems is harder than testing single agents.** Agentic loops introduce non-determinism that makes traditional unit tests insufficient. The production teams doing this well run end-to-end integration tests against a staging environment with realistic data — not just prompt-level assertions.
