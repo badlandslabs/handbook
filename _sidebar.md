@@ -498,6 +498,11 @@
   - [S-1306 · The Agent-Native CI/CD Stack — When Your Prompt Change Passes CI and Breaks Production](stacks/s1306-the-agent-native-cicd-stack-when-your-prompt-change-passes-ci-and-breaks-production.md)
   - [S-1307 · The Silent Failure Stack — When Your Agent Returns 200 OK and Everything Is Wrong](stacks/s1307-the-silent-failure-stack-when-your-agent-returns-200-ok-and-everything-is-wrong.md)
   - [S-1308 · The Trace-to-Skill Stack — When Your Agent Learns From Production But Cannot Tell You What It Learned](stacks/s1308-the-trace-to-skill-stack-when-your-agent-learns-from-production-but-cannot-tell-you-what-it-learned.md)
+  - [S-1309 · The Multi-Agent Coordination Stack — When Your Second Agent Doesn't Know What the First One Did](stacks/s1309-the-multi-agent-coordination-stack-when-your-second-agent-doesnt-know-what-the-first-one-did.md)
+  - [S-1310 · The Trust Calibration Spectrum — When Your Agent Is Overtrusted and Under-Supervised](stacks/s1310-the-trust-calibration-spectrum-when-your-agent-is-overtrusted-and-under-supervised.md)
+  - [S-1318 · The Ephemeral Identity Stack — When Your Agent Wears the Master Key](stacks/s1318-the-ephemeral-identity-stack-when-your-agent-wears-the-master-key.md)
+  - [S-1319 · The Tool-Call Interception Stack — When Your Agent Framework Hands the Keys Before You Can Say No](stacks/s1319-the-tool-call-interception-stack-when-your-agent-framework-hands-the-keys-before-you-can-say-no.md)
+  - [S-1312 · The Frontier Compression Stack — When Your General-Purpose Agent Is Too Expensive for Its Own Good](stacks/s1312-the-frontier-compression-stack-when-your-general-purpose-agent-is-too-expensive-for-its-own-good.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
