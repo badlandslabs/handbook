@@ -517,6 +517,13 @@
   - [S-1363 · The Agent Drift Stack — When Your Agent Scores Perfect but Quietly Becomes a Different System](stacks/s1363-the-agent-drift-stack-when-your-agent-scores-perfect-but-quietly-becomes-a-different-system.md)
   - [S-1364 · The Agent Card Signature Stack — When Your Agent Trusts an Unsigned Business Card](stacks/s1364-the-agent-card-signature-stack-when-your-agent-trusts-an-unsigned-business-card.md)
   - [S-1365 · The ADI Stack — When Your Agent Is Owned Through a Metadata Field It Trusted](stacks/s1365-the-adi-stack-when-your-agent-is-owned-through-a-metadata-field-it-trusted.md)
+  - [S-1391 · The MCP Gateway Registry Stack — When Your Agent Tool Sprawl Becomes a Security Nightmare](stacks/s1391-the-mcp-gateway-registry-stack-when-your-agent-tool-sprawl-becomes-a-security-nightmare.md)
+  - [S-1392 · The Calibration Gap Stack — When Your Agent Says It's Sure but It's Not](stacks/s1392-the-calibration-gap-stack-when-your-agent-says-its-sure-but-its-not.md)
+  - [S-1400 · The Pre-Execution Policy Gate — When Your Guardrails Fire Too Late to Matter](stacks/s1400-the-pre-execution-policy-gate-when-your-guardrails-fire-too-late-to-matter.md)
+  - [S-1403 · The Temporal Blindspot — When Your Agent Lives in Yesterday](stacks/s1403-the-temporal-blindspot-when-your-agent-lives-in-yesterday.md)
+  - [S-1406 · The Tool Chaining Failure Stack — When Your Agent Succeeds at Each Step and Fails at the Goal](stacks/s1406-the-tool-chaining-failure-stack-when-your-agent-succeeds-at-each-step-and-fails-at-the-goal.md)
+  - [S-1410 · The Agent Distillation Stack — When Your Frontier Teacher Agent Costs a Fortune and You Need a Student](stacks/s1410-the-agent-distillation-stack-when-your-frontier-teacher-agent-costs-a-fortune-and-you-need-a-student.md)
+  - [S-1417 · The Experience Compression Spectrum — When Your Agent Has Memory and Skills but No Theory of How They're Related](stacks/s1417-the-experience-compression-spectrum-when-your-agent-has-memory-and-skills-but-no-theory-of-how-theyre-related.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -618,4 +625,21 @@
   - [R-13 · Agent Trajectory Synthesis](frontier/r13-agent-trajectory-synthesis.md)
   - [R-14 · Agent Memory Controller](frontier/r14-agent-memory-controller.md)
   - [R-15 · Domain Agent Lightweight Fine-Tuning](frontier/r15-domain-agent-lightweight-fine-tuning.md)
-- [Contributing](CONTRIBUTING.md)
+- [Contributing](CONTRIBUTING.md)  - [S-1367] 
+  - [S-1374] 
+  - [S-1376] 
+  - [S-1382] 
+  - [S-1385] 
+  - [S-1386] 
+  - [S-1408] The Action Hallucination Stack — When Your Agent Succeeds and Does the Wrong Thing
+  - [S-1417] 
+
+
+  - [S-1388 · The A2A Context Fidelity Stack — When Your Agent Hands Off a Task and the Receiver Loses the Thread](stacks/s1388-the-a2a-context-fidelity-stack-when-your-agent-hands-off-a-task-and-the-receiver-loses-the-thread.md)
+  - [S-1388 · The NHI Lifecycle Stack — When Your Agent Has an Identity But No One Is Managing It](stacks/s1388-the-nhi-lifecycle-stack-when-your-agent-has-an-identity-but-no-one-is-managing-it.md)
+  - [S-1389 · The Reliability Compounding Stack — When Your Multi-Agent Pipeline Fails 65% of the Time](stacks/s1389-the-reliability-compounding-stack-when-your-multi-agent-pipeline-fails-65-percent-of-the-time.md)
+  - [S-1391 · The MCP Gateway Registry Stack — When Your Agent Tool Sprawl Becomes a Security Nightmare](stacks/s1391-the-mcp-gateway-registry-stack-when-your-agent-tool-sprawl-becomes-a-security-nightmare.md)
+  - [S-1394 · The Pre-Execution Token Budget Stack — When Your Agent Is Already Over Budget Before It Starts](stacks/s1394-the-pre-execution-token-budget-stack-when-your-agent-is-already-over-budget-before-it-starts.md)
+  - [S-1403 · The Temporal Blindspot — When Your Agent Lives in Yesterday](stacks/s1403-the-temporal-blindspot-when-your-agent-lives-in-yesterday.md)
+  - [S-1412 · The OWASP MCP Top 10 Stack — When Your Agent Framework Has Ten Critical Risks Nobody Is Tracking](stacks/s1412-the-owasp-mcp-top-10-stack-when-your-agent-framework-has-ten-critical-risks-nobody-is-tracking.md)
+

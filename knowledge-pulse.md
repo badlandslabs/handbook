@@ -223,6 +223,27 @@
 | I-257 | The Protocol Gap Stack: Three Missing MCP Primitives — Identity, Budget, and Error Semantics | mcp, protocol-gap, identity-propagation, adaptive-tool-budgeting, structured-error, serf, atba, cabp, mcp-gateway, arxiv-2603.13417, protocol-standardization, production-readiness | 9 | 10 | 9 | 9 | 9 | **9.35** | WRITTEN — S-1369 | 2026-07-19 | 2026-07-19 |
 | I-145 | The Context Lifecycle Stack: Active Curation Against Context Rot |
 
+
+| I-273 |  | skill-composition, tool-selection, capability-routing, workflow-inference, prompt-engineering | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1367 | 2026-07-20 | 2026-07-20 |
+| I-274 |  | streaming, event-protocol, progress-signal, user-experience, streaming-protocol, agent-UX, sse | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1374 | 2026-07-20 | 2026-07-20 |
+| I-275 |  | concurrency-control, race-condition, parallel-agents, state-corruption, advisory-lock, consensus | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1376 | 2026-07-20 | 2026-07-20 |
+| I-276 |  | agentic-commerce, financial-guardrail, purchase-authorization, commerce-protocol, cost-limit, monetary-action | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1382 | 2026-07-20 | 2026-07-20 |
+| I-277 |  | decision-provenance, audit-log, EU-AI-Act, explainability, agent-accountability, regulatory-compliance | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1385 | 2026-07-20 | 2026-07-20 |
+| I-278 |  | benchmark-saturation, eval-gap, swe-bench, production-eval, benchmark-paradox | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1386 | 2026-07-20 | 2026-07-20 |
+| I-279 | The Action Hallucination Stack — When Your Agent Succeeds and Does the Wrong Thing | action-hallucination, silent-failure, state-divergence, execution-divergence, tool-call-fidelity | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1408 | 2026-07-20 | 2026-07-20 |
+| I-280 |  | experience-compression, skill-memory, procedural-knowledge, episodic-memory, knowledge-representation | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1417 | 2026-07-20 | 2026-07-20 |
+
+
+
+
+
+| I-281 | The A2A Context Fidelity Stack — When Your Agent Hands Off a Task and the Receiver Loses the Thread | a2a, context-fidelity, agent-handoff, context-loss, protocol-fidelity, inter-agent-communication | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1388 | 2026-07-20 | 2026-07-20 |
+| I-282 | The NHI Lifecycle Stack — When Your Agent Has an Identity But No One Is Managing It | a2a, context-fidelity, agent-handoff, context-loss, protocol-fidelity, inter-agent-communication | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1388 | 2026-07-20 | 2026-07-20 |
+| I-283 | The Reliability Compounding Stack — When Your Multi-Agent Pipeline Fails 65% of the Time | reliability-compounding, multi-agent, pipeline-failure, failure-mode, compounding-accuracy | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1389 | 2026-07-20 | 2026-07-20 |
+| I-284 | The MCP Gateway Registry Stack — When Your Agent Tool Sprawl Becomes a Security Nightmare | mcp-gateway, tool-registry, tool-sprawl, security-nightmare, mcp-server-discovery, tool-policy | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1391 | 2026-07-20 | 2026-07-20 |
+| I-285 | The Pre-Execution Token Budget Stack — When Your Agent Is Already Over Budget Before It Starts | pre-execution-budget, token-budget, cost-estimation, runtime-cost, cost-guardrail | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1394 | 2026-07-20 | 2026-07-20 |
+| I-286 | The Temporal Blindspot — When Your Agent Lives in Yesterday | temporal-blindspot, time-awareness, temporal-context, date-drift, stale-context | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1403 | 2026-07-20 | 2026-07-20 |
+| I-287 | The OWASP MCP Top 10 Stack — When Your Agent Framework Has Ten Critical Risks Nobody Is Tracking | owasp-mcp-top-10, mcp-security, vulnerability-taxonomy, mcp-risk, security-framework | 8 | 8 | 8 | 8 | 8 | **8.00** | WRITTEN — S-1412 | 2026-07-20 | 2026-07-20 |
 | I-250 | Action Hallucination: Three-Taxonomy of Execution Divergence | Tool-call action hallucination has three distinct types: (1) tool-call fabrication — the agent generates a tool call in output that never reaches the execution layer (malformed JSON, truncation, missing tool); (2) silent failure masking — the tool fails (429/504/permission) but the agent recovers without acknowledging the failure; (3) state divergence — the tool succeeds but the agent's model of the resulting state diverges from reality (stale reads, concurrent modifications). Detection requires a three-way diff: intent logging (before execution) × execution logging (actual dispatch) × state verification (after side effects). Type 2 accounts for compounding accuracy drops: 95%/step → ~60% at 10 steps per Dynatrace Perform 2026, with tool call failure rates of 3-15% in production per Maxim's Analysis. Type 1 is invisible to APM (HTTP 200 even on fabrication). Type 3 requires explicit read-back verification after every state-mutating tool call. Cross-links: S-1012 (failure recovery — Type 2 surfaces as a recovery gap); S-1281 (golden traces — intent logging connects to trace collection); S-1018 (component attribution — attribution worsens when root cause is action hallucination). | I-250 | Paperclipped.de "AI Agent Production Issues 2026" (June 2026); Gobii.ai "How to Run AI Agents Safely in Production" (Jan 28, 2026); Dynatrace Perform 2026 (accuracy compounding figure). Pattern is novel: S-1012 covers failure recovery mechanics, not the hallucination taxonomy. |
 ||| Kill Switch as Three-Layer Containment Stack | Agent incident containment requires three independent layers: soft gate (in-process feature flag, <1ms), hard kill (execution context severance, no deployment required), and blast radius containment (compensating actions for all tool calls made in session). The counter-intuitive insight: stopping the agent process is the least useful layer — the audit trail dies and compensating actions still need to run. The most valuable layer is blast radius containment, which most teams don't implement until after their first incident. EU AI Act Article 14 (human oversight) and Article 9 (risk management) both mandate documented halt capability for high-risk autonomous agents by August 2, 2026. | I-250 | niuexa.ai AI Agent Incident Response Runbook (Q2 2026); ValueStreamAI AI Incident Response Runbook (May 17, 2026, MTTD 4.5 days); OpenClaw Agent Incident Response Playbook (March 26, 2026). |
 ||| Context Fill Cliff | Agent quality degrades at predictable, measurable context-fill thresholds: 60–70% = measurable degradation begins, 85–90% = critical. The advertised context window is not the usable window — a 200K window delivers ~70K of working memory due to attention architecture and "lost in the middle" effects. Three philosophically incompatible compaction strategies: Claude Code three-layer precision forgetting (preserves cache prefixes, 90% cost reduction), Codex CLI all-or-nothing handoff memo (clean but loses state), OpenCode stepped governance (auditable, complex). Compaction strategy is an architectural choice with measurable quality and cost consequences. | I-246 | Zylos Research (2026-05-05), Blake Crosley/MSR-Salesforce (arXiv:2505.06120), AgentMarketCap (Apr 2026). |
@@ -1260,7 +1281,23 @@ Deduplication: S-1065 (Inter-Agent Trust Escalation) covers authorization across
 ## Meta
 
 - Created: 2026-07-02
+- Last Updated: 2026-07-20 (run: +7 orphaned stacks from partial run, S-1388–S-1412)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +8 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
+- Last Updated: 2026-07-20 (run: +0 orphaned entries registered)
 - Last Updated: 2026-07-19 (run: +I-262 / S-1333 — The Synchronization Boundary)
+- Total ideas discovered: 497
+- Total ideas discovered: 490
+- Total ideas discovered: 490
+- Total ideas discovered: 490
+- Total ideas discovered: 490
+- Total ideas discovered: 490
+- Total ideas discovered: 490
+- Total ideas discovered: 490
 - Total ideas discovered: 262
 - Total patterns distilled: 11
 
