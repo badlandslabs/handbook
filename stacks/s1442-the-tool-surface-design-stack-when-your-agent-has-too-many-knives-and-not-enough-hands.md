@@ -1,0 +1,34 @@
+# S-1442 · The Tool Surface Design Stack — When Your Agent Has Too Many Knives and Not Enough Hands
+
+The problem is not giving your agent tools. The problem is deciding which tools, how many, and how they interact. Give an agent one tool and it can't reach the task. Give it fifty and it spends half its reasoning tokens deciding which knife to reach for — a problem Anthropic documented as consuming 85% of token budget on large tool sets before any work begins. Tool surface design is the discipline of matching tool richness to task complexity without drowning the agent in choice.
+
+## Forces
+
+- **Token budget collapse.** Every tool definition — name, description, parameters, examples — lives in the context window. A single MCP server can consume 8K-50K tokens before the agent has done anything. At hundreds of tools, the agent is mostly reasoning about tools, not tasks.
+- **Tool selection errors compound.** Chip Huyen quantified the compounding failure problem: a 95%-accurate single step drops to 60% at 10 steps and 0.6% at 100. More tools mean more steps, which means exponentially more failure modes.
+- **Rich tools beat many tools.** A single `grep` tool that handles regex, file globbing, and context lines outperforms five specialized search tools that each need their own error handling and edge-case logic. But over-rich tools hide complexity and make failure diagnosis harder.
+- **The MCP proliferation trap.** Model Context Protocol has become the de facto tool integration standard — Microsoft Agent Framework, Claude Code, and 200+ server implementations by 2026. But adopting MCP doesn't solve tool surface design; it just makes it easier to add more tools you shouldn't have added.
+
+## The Move
+
+**Design the tool surface from the task backward, not the capability forward.**
+
+- **Start with the minimum viable tool set for the actual job.** Claude Code ships 8 tools: Read, Write, Edit, Bash, Grep, Glob, Task (subagent), TodoWrite. That's it. No web search, no RAG, no embeddings. Florian Bruniaux's analysis of Claude Code's architecture confirms: Anthropic replaced RAG and vector search with grep-based search because grep outperforms embeddings for codebase navigation at lower complexity. Source: *How Claude Code Works: Architecture & Internals*, cc.bruniaux.com, verified Feb 2026.
+- **Use tool discovery on-demand, not tool catalog at startup.** Anthropic's November 2025 Advanced Tool Use beta introduced a Tool Search Tool that lets agents query a tool registry dynamically. Token cost dropped 85% versus loading all tool definitions upfront. Accuracy improved because the agent sees only relevant tools, not all tools. Source: *Introducing Advanced Tool Use on the Claude Developer Platform*, anthropic.com/engineering, Nov 2025.
+- **Batch related operations into single tools.** Rather than separate `create_file`, `read_file`, `delete_file` tools, a single file tool with an `operation: create|read|delete` parameter reduces tool count and gives the agent clearer intent. The LangChain benchmarking on relational data tasks showed that agents perform better with fewer, more capable tools that bundle related operations. Source: *Benchmarking Agent Tool Use*, langchain.com/blog, Dec 2023.
+- **Sandbox everything that executes.** Code interpreters, bash shells, browser automation — all must run in restricted environments. Anthropic's Computer Use demo runs in VMs with minimal privileges, no sensitive data, domain allowlists, and human confirmation gates for financial or consent-requiring actions. Source: *claude-quickstarts/computer-use-demo*, github.com/anthropics, 2025.
+- **Give agents tool use examples, not just descriptions.** Anthropic's Tool Use Examples feature — providing sample invocations with inputs and outputs — improved accuracy from 72% to 90% in their benchmarks. A description tells the agent what a tool does; an example shows how it behaves in context. Source: *Introducing Advanced Tool Use*, anthropic.com/engineering, Nov 2025.
+- **Programmatic tool calling for deterministic chains.** Anthropic's programmatic tool calling lets developers embed tool orchestration in code rather than prompting the model to chain calls. This reduced token overhead 37% and cut latency for multi-step pipelines where the sequence is known. Source: *Programmatic Tool Calling*, anthropic.com/engineering, Nov 2025.
+
+## Evidence
+
+- **HN "Components of a Coding Agent":** 300-point HN thread (Sebastian Raschka's article) surfaced debate between spec-driven vs. chat-driven agents. Key finding: spec-driven agents that define tool scope upfront avoid the "loop where the agent starts to uncover broader understanding" — a symptom of tool surface ambiguity. Commenters noted that "chat → spec → code is much more the future" than unbounded tool environments. — [HN thread, id=47638810](https://news.ycombinator.com/item?id=47638810)
+- **Frigade Show HN:** A browser-based agent that reverse-engineers authenticated web apps by intercepting the app's own API calls, converting them into MCP-equivalent tools automatically. The creator identified three alternatives — computer use (too brittle, burns tokens), MCP servers (not universally available), and API specs (no auth handling) — and rejected all three in favor of automatic tool generation. 96 HN points, 40 comments. — [HN thread, id=48847834](https://news.ycombinator.com/item?id=48847834)
+- **Matt Palmer's 200-line coding agent:** Demonstrated that a functional web-enabled coding agent requires only three tool categories — file operations, web search, bash execution — implemented in ~200 lines. The only external dependency is the Anthropic SDK. This is the minimal viable tool surface: three categories, one tool per category. — [mattpalmer.io, Aug 2025](https://mattpalmer.io/posts/2025/08/coding-agent-in-200-lines/)
+
+## Gotchas
+
+- **Tool descriptions that sound good but misdirect.** Vague or marketing-flavored tool descriptions cause agents to use the wrong tool for the right-sounding reason. Descriptions must state preconditions, failure modes, and side effects — not just what the tool does.
+- **Loading every MCP server at startup.** With 200+ MCP servers available, it's tempting to connect everything. But Anthropic's advanced tool use research shows this approach collapses at scale — agents spend more tokens on tool selection than task execution.
+- **Assuming more tools = more capable agent.** LangChain's benchmarks showed that adding tool variety without reducing trajectory length actually degrades performance — agents find more ways to fail. Reduce step count before adding tools.
+- **No sandbox boundaries for execution tools.** Bash and code interpreter tools without resource limits, network restrictions, or timeout guards can exhaust containers, exfiltrate data, or run indefinitely. Every execution tool needs a corresponding enforcement layer.
