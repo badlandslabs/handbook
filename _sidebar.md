@@ -533,6 +533,8 @@
   - [S-1433 · The Confidence-Gated Autonomy Stack — When Your Agent Decides It Knows Best and It Doesn't](stacks/s1433-the-confidence-gated-autonomy-stack-when-your-agent-decides-it-knows-best-and-it-doesnt.md)
   - [S-1434 · The Agent SOC2 Audit Stack — When Your Auditor Asks Who Did What and When](stacks/s1434-the-agent-soc2-audit-stack-when-your-auditor-asks-who-did-what-and-when.md)
   - [S-1438 · The Execution-Reasoning Correlation Stack — When Your Trace Shows What But Not Why](stacks/s1438-the-execution-reasoning-correlation-stack-when-your-trace-shows-what-but-not-why.md)
+  - [S-1439 · The Self-Bounding Agent Stack — When Your Recovery Logic Costs More Than the Bug](stacks/s1439-the-self-bounding-agent-stack-when-your-recovery-logic-costs-more-than-the-bug.md)
+  - [S-1440 · The Boundary Tracing Stack — When Your Agent Trace Is Faithful But Your Security Team Is Blind](stacks/s1440-the-boundary-tracing-stack-when-your-agent-trace-is-faithful-but-your-security-team-is-blind.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
