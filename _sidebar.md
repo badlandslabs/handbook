@@ -535,6 +535,7 @@
   - [S-1438 · The Execution-Reasoning Correlation Stack — When Your Trace Shows What But Not Why](stacks/s1438-the-execution-reasoning-correlation-stack-when-your-trace-shows-what-but-not-why.md)
   - [S-1439 · The Self-Bounding Agent Stack — When Your Recovery Logic Costs More Than the Bug](stacks/s1439-the-self-bounding-agent-stack-when-your-recovery-logic-costs-more-than-the-bug.md)
   - [S-1440 · The Boundary Tracing Stack — When Your Agent Trace Is Faithful But Your Security Team Is Blind](stacks/s1440-the-boundary-tracing-stack-when-your-agent-trace-is-faithful-but-your-security-team-is-blind.md)
+  - [S-1446 · The NHI Perimeter — When Your Agent Runs on a Shared API Key and You Can't Revoke It](stacks/s1446-the-nhi-perimeter-stack-when-your-agent-runs-on-a-shared-api-key-and-you-cant-revoke-it.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
