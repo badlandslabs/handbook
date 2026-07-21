@@ -524,6 +524,12 @@
   - [S-1406 · The Tool Chaining Failure Stack — When Your Agent Succeeds at Each Step and Fails at the Goal](stacks/s1406-the-tool-chaining-failure-stack-when-your-agent-succeeds-at-each-step-and-fails-at-the-goal.md)
   - [S-1410 · The Agent Distillation Stack — When Your Frontier Teacher Agent Costs a Fortune and You Need a Student](stacks/s1410-the-agent-distillation-stack-when-your-frontier-teacher-agent-costs-a-fortune-and-you-need-a-student.md)
   - [S-1417 · The Experience Compression Spectrum — When Your Agent Has Memory and Skills but No Theory of How They're Related](stacks/s1417-the-experience-compression-spectrum-when-your-agent-has-memory-and-skills-but-no-theory-of-how-theyre-related.md)
+  - [S-1420 · The Knowledge Cutoff Blindness Stack — When Your Agent Knows Today Better Than Your Model Does](stacks/s1420-the-knowledge-cutoff-blindness-stack-when-your-agent-knows-today-better-than-your-model-does.md)
+  - [S-1423 · The A2A Protocol Stack — When Your Agents Need to Collaborate on Tasks They Didn't Plan](stacks/s1423-the-a2a-protocol-stack-when-your-agents-need-to-collaborate-on-tasks-they-didnt-plan.md)
+  - [S-1426 · The MCP Tool Poisoning Stack — When Your Tool Metadata Is the Attack Vector](stacks/s1426-the-mcp-tool-poisoning-stack-when-your-tool-metadata-is-the-attack-vector.md)
+  - [S-1428 · The Agent Secrets Sprawl Stack — When Your AI Coding Agent Leaked 28M Credentials](stacks/s1428-the-agent-secrets-sprawl-stack-when-your-ai-coding-agent-leaked-28m-credentials.md)
+  - [S-1430 · The Memory Quality-Gated Eviction Stack — When Your Memory Grows to Infinity and Your Agent Gets Dumber](stacks/s1430-the-memory-quality-gated-eviction-stack-when-your-memory-grows-to-infinity-and-your-agent-gets-dumber.md)
+  - [S-1432 · The Context Lifecycle Stack — When Your Agent Starts Forgetting Plans It Wrote Twenty Steps Ago](stacks/s1432-the-context-lifecycle-stack-when-your-agent-starts-forgotting-plans-it-wrote-twenty-steps-ago.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
