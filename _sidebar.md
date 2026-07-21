@@ -536,6 +536,10 @@
   - [S-1439 · The Self-Bounding Agent Stack — When Your Recovery Logic Costs More Than the Bug](stacks/s1439-the-self-bounding-agent-stack-when-your-recovery-logic-costs-more-than-the-bug.md)
   - [S-1440 · The Boundary Tracing Stack — When Your Agent Trace Is Faithful But Your Security Team Is Blind](stacks/s1440-the-boundary-tracing-stack-when-your-agent-trace-is-faithful-but-your-security-team-is-blind.md)
   - [S-1446 · The NHI Perimeter — When Your Agent Runs on a Shared API Key and You Can't Revoke It](stacks/s1446-the-nhi-perimeter-stack-when-your-agent-runs-on-a-shared-api-key-and-you-cant-revoke-it.md)
+  - [S-1449 · The Self-Referential Collapse — When Your Agent Becomes Its Own Ground Truth](stacks/s1449-the-self-referential-collapse-stack-when-your-agent-becomes-its-own-ground-truth.md)
+  - [S-1453 · The Excessive Agency Stack — When Your Agent Has Permission But No Proportion](stacks/s1453-the-excessive-agency-stack-when-your-agent-has-permission-but-no-proportion.md)
+  - [S-1455 · The Eval Distribution Drift Stack — When Your Measurement Instrument Degrades Before Your Agent Does](stacks/s1455-the-eval-distribution-drift-stack-when-your-measurement-instrument-degrades-before-your-agent-does.md)
+  - [S-1457 · The Synthetic Trajectory Pipeline Stack — When You Train an Agent Without a Single Human-Labeled Example](stacks/s1457-the-synthetic-trajectory-pipeline-stack-when-you-train-an-agent-without-a-single-human-labeled-example.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)

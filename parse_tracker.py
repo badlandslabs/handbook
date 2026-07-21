@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
-with open('/opt/data/handbook/knowledge-pulse.md') as f:
-    lines = f.readlines()
+import re, sys
 
-all_statuses = {}
-for l in lines:
-    s = l.strip()
-    if s.startswith('| I-'):
-        cols = s.split('|')
-        status = cols[10].strip() if len(cols) > 10 else '(empty)'
-        all_statuses[status] = all_statuses.get(status, 0) + 1
+with open('/opt/data/handbook/knowledge-pulse.md', 'r') as f:
+    content = f.read()
 
-print('Status distribution:')
-for status, count in sorted(all_statuses.items(), key=lambda x: -x[1]):
-    print(f'  {status}: {count}')
+# Parse pending ideas (no WRITTEN/DUPLICATE, have composite score)
+lines = content.split('\n')
+pending = []
+
+for line in lines:
+    if '| I-' in line and 'WRITTEN' not in line and 'DUPLICATE' not in line:
+        m = re.search(r'\| (I-\d+) \|', line)
+        s = re.search(r'\*\*([\d.]+)\*\*', line)
+        if m and s:
+            parts = line.split('|')
+            idea_id = m.group(1)
+            score = float(s.group(1))
+            title = parts[2].strip() if len(parts) > 2 else 'N/A'
+            # Check it's not header
+            if idea_id.startswith('I-'):
+                pending.append((idea_id, title, score))
+
+pending.sort(key=lambda x: x[2], reverse=True)
+print(f'Total pending: {len(pending)}')
+for idea_id, title, score in pending:
+    print(f'{idea_id} | {score:.2f} | {title[:80]}')
