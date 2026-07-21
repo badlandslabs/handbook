@@ -530,6 +530,9 @@
   - [S-1428 · The Agent Secrets Sprawl Stack — When Your AI Coding Agent Leaked 28M Credentials](stacks/s1428-the-agent-secrets-sprawl-stack-when-your-ai-coding-agent-leaked-28m-credentials.md)
   - [S-1430 · The Memory Quality-Gated Eviction Stack — When Your Memory Grows to Infinity and Your Agent Gets Dumber](stacks/s1430-the-memory-quality-gated-eviction-stack-when-your-memory-grows-to-infinity-and-your-agent-gets-dumber.md)
   - [S-1432 · The Context Lifecycle Stack — When Your Agent Starts Forgetting Plans It Wrote Twenty Steps Ago](stacks/s1432-the-context-lifecycle-stack-when-your-agent-starts-forgotting-plans-it-wrote-twenty-steps-ago.md)
+  - [S-1433 · The Confidence-Gated Autonomy Stack — When Your Agent Decides It Knows Best and It Doesn't](stacks/s1433-the-confidence-gated-autonomy-stack-when-your-agent-decides-it-knows-best-and-it-doesnt.md)
+  - [S-1434 · The Agent SOC2 Audit Stack — When Your Auditor Asks Who Did What and When](stacks/s1434-the-agent-soc2-audit-stack-when-your-auditor-asks-who-did-what-and-when.md)
+  - [S-1438 · The Execution-Reasoning Correlation Stack — When Your Trace Shows What But Not Why](stacks/s1438-the-execution-reasoning-correlation-stack-when-your-trace-shows-what-but-not-why.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
