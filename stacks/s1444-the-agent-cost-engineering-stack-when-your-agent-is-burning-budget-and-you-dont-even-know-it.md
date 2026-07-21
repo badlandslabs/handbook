@@ -1,0 +1,32 @@
+# S-1444 · The Agent Cost Engineering Stack — When Your Agent Is Burning Budget and You Don't Even Know It
+
+The moment your agent moves from demo to production, it starts making 3–10x more LLM calls than a chatbot — each one re-sending your entire conversation history, each tool call appending to context, each retry doubling the invoice. The median agentic workflow costs 10–50x more per task than a well-optimized version, and most teams discover this only after a runaway loop incident. Cost engineering is the discipline of making agent spend predictable, recoverable, and enforceable before it becomes a $47,000 surprise on a weekend credit card bill.
+
+## Forces
+
+- **Quadratic context growth.** A 10-turn agent task does not cost 10x a single call — it costs ~50x. Each turn re-sends the full accumulated context, and each generated output token triggers reads across the full KV cache. By 50,000 tokens, cache reads dominate the invoice, not the actual work tokens. This is not obvious from any individual API call receipt.
+- **Recovery is real but unclaimed.** Zylos Research quantified that 60–85% of agent spend is recoverable through prompt caching, model routing, and hard budget enforcement. The gap between what teams pay and what they should pay is mostly undiscovered waste — not necessary cost.
+- **Alerts ≠ enforcement.** Teams monitor spend and set Slack alerts. Alerts require a human to act. When an agent loops at 2am, no one is watching. The teams that survive production agent deployment have circuit breakers, not alert channels.
+- **First incidents are inevitable.** Runaway agent loops have cost teams from $15 in 10 minutes to $47,000 over 11 days. This is not a tail risk for large enterprises — it's a near-certain first deployment event. The teams that learn from it after one $200 incident are the lucky ones.
+
+## The move
+
+Design cost control as a first-class architectural layer, not an afterthought. The stack has four layers — in priority order:
+
+- **Per-session budget circuit breakers.** Set a hard dollar limit per agent session and wire it into the LLM call wrapper. When the session hits its cap, the wrapper raises an exception — no API call is made, no alert is sent. Tools: `AgentBudget` (open-source Python SDK, Apache-2.0) wraps any LLM client with `init()`/`teardown()` scoped per-thread, supports `wrap_client()` for drop-in mode, and includes `finalization_reserve` and `would_exceed()` checks. Cost is recorded even on early stream breaks. Position: "ulimit for AI agents."
+- **Gateway-level policy enforcement.** Route all agent traffic through a gateway proxy that enforces rate limits, budget caps, and circuit breakers per-agent, not per-session. `AgentGateway` (open-source Node.js, MIT) sits between agent fleets and LLM providers (Claude, OpenAI, etc.), providing a live WebSocket dashboard, per-agent cost visibility, budget trackers, circuit breakers on failing providers, and an audit logger. Use case: multi-agent fleets where one agent's runaway behavior threatens the shared API budget.
+- **Dynamic model routing by task complexity.** Route simple tasks to cheap models (Gemini Flash at $0.10/$0.40 per 1M tokens; GPT-4o mini at $0.15/$0.60) and reserve premium models (Claude Opus 4.5 at $5/$25; GPT-4o at $2.50/$10) for tasks requiring them. Zylos Research recommends a 3-tier classifier: simple (keyword/regex) → moderate (embeddings + threshold) → complex (LLM-judged). Cost savings: 40–70% for routing-correct tasks.
+- **Context compression on turn boundaries.** Summarize or truncate conversation history before re-sending on each agent turn. This is the most direct lever against quadratic growth. Practical approach: retain last N turns + a compressed summary of earlier turns. Truncate tool call outputs to keep only the results that matter for the next decision, not the full verbose response.
+
+## Evidence
+
+- **Research report:** Enterprise AI operational costs averaged $85,521/month in 2025; model API spend grew from $3.5B to $8.4B (late 2024 to mid-2025). First runaway loop incidents ranged from $15 (10 minutes) to $47,000 (11 days). — [Zylos Research, 2026-05-02](https://zylos.ai/research/2026-05-02-ai-agent-cost-engineering-token-economics/)
+- **HN practitioner post:** A founder & CTO spent $638 on AI coding agents in 6 weeks (200+ requests/day, 7 models tried). Claude 4.5 Sonnet Thinking cost $0.02–$0.06 per request depending on context size. Claude consumed 85% of budget despite attempts to switch. Annual projection: $5,500+. Key complaint: "50k tokens of exploration waste before finding a solution expressible in 5k." — [Hacker News, "I spent $638 on AI coding agents in 6 weeks"](https://news.ycombinator.com/item?id=45914307)
+- **HN technical thread:** Cache read costs dominate past ~50,000 tokens in a conversation. KV cache is not free even when hot in VRAM — routing decisions, eviction policies, and cache slot management all have real cost. A conversation's costs become "cache reads dominated" before the useful work tokens do. — [Hacker News, "Expensively Quadratic: The LLM Agent Cost Curve"](https://news.ycombinator.com/item?id=47000034)
+
+## Gotchas
+
+- **Monitoring spend is not controlling it.** A dashboard that shows you spent $800 today tells you nothing you can act on at 2am. The circuit breaker pattern — automatic enforcement at the call wrapper or gateway level — is what actually prevents runaway bills. Alerts are a post-mortem tool.
+- **Streaming responses undercount cost.** Naive implementations record cost only after a complete stream. If a user breaks out of a stream early or the stream ends incompletely, cost silently goes unrecorded. `AgentBudget` v0.4+ auto-injects `stream_options={"include_usage": True}` for OpenAI-compatible endpoints and records cost on early break.
+- **Per-request isolation matters in concurrent deployments.** If multiple agent sessions share a single budget counter without per-request isolation, a teardown on one session can decrement the budget for another active session. Session state must be scoped per-thread and per-async-task, not global.
+- **Routing models correctly is harder than it sounds.** A router trained once will drift as model quality changes. Routing errors — sending a complex task to a cheap model that fails, then retrying with an expensive one — can net negative cost savings. Treat routing as a contextual bandit problem with online feedback, not a static rule engine.
