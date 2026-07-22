@@ -419,6 +419,10 @@
   - [S-1118 · The Skill-Driven Engineering Stack](stacks/s1118-the-skill-driven-engineering-stack-when-your-ai-coder-writes-code-that-compiles-but-shouldnt-have.md)
   - [S-1119 · The Knowledge Bundle Stack](stacks/s1119-the-knowledge-bundle-stack-when-your-agent-knows-everything-about-nothing-about-your-business.md)
   - [S-1122 · The Skill Marketplace Poisoning Stack — When Your Agent Installs Malware from a Trusted Source](stacks/s1122-the-skill-marketplace-poisoning-stack-when-your-agent-installs-malware-from-a-trusted-source.md)
+  - [S-1462 · The Skill Credential Extraction Stack — When Your Agent Installs a Skill and Loses Your Secrets](stacks/s1462-the-skill-credential-extraction-stack-when-your-agent-installs-a-skill-and-loses-your-secrets.md)
+  - [S-1464 · The Accidental Meltdown Stack — When a Benign Error Turns Your Agent Harmful](stacks/s1464-the-accidental-meltdown-stack-when-a-benign-error-turns-your-agent-harmful.md)
+  - [S-1465 · The Tool Taxonomy Stack — When Your Agent Can Do Anything But Only Knows a Third of Its Tools](stacks/s1465-the-tool-taxonomy-stack-when-your-agent-can-do-anything-but-only-knows-a-third-of-its-tools.md)
+  - [S-1466 · The Semantic Cache Blind Spot — When Identical Queries Return Different Answers](stacks/s1466-the-semantic-cache-blind-spot-when-identical-queries-return-different-answers.md)
   - [S-1127 · The Cross-User Memory Contamination Stack — When User B Sees User A's Private Notes](stacks/s1127-the-cross-user-memory-contamination-stack-when-user-b-sees-user-as-private-notes.md)
   - [S-1128 · The Agent Washing Stack — When Your Vendor Calls It an Agent But It's Just a `while True` Loop](stacks/s1128-the-agent-washing-stack-when-your-vendor-calls-it-an-agent-but-it-s-just-a-50-loop.md)
   - [S-1138 · The Failure Taxon Stack — When Your Agent Breaks and You Don't Know Why](stacks/s1138-the-failure-taxon-stack-when-your-agent-breaks-and-you-dont-know-why.md)
@@ -540,6 +544,8 @@
   - [S-1453 · The Excessive Agency Stack — When Your Agent Has Permission But No Proportion](stacks/s1453-the-excessive-agency-stack-when-your-agent-has-permission-but-no-proportion.md)
   - [S-1455 · The Eval Distribution Drift Stack — When Your Measurement Instrument Degrades Before Your Agent Does](stacks/s1455-the-eval-distribution-drift-stack-when-your-measurement-instrument-degrades-before-your-agent-does.md)
   - [S-1457 · The Synthetic Trajectory Pipeline Stack — When You Train an Agent Without a Single Human-Labeled Example](stacks/s1457-the-synthetic-trajectory-pipeline-stack-when-you-train-an-agent-without-a-single-human-labeled-example.md)
+  - [S-1459 · The Trusted-File Escape Stack — When Your Agent Stays Inside but Escapes Through a Trusted Host](stacks/s1459-the-trusted-file-escape-stack-when-your-agent-stays-inside-but-escapes-through-a-trusted-host.md)
+  - [S-1477 · The Agent Identity Chain Stack — When Your Auditor Asks "Who Authorized That?" and Nobody Knows](stacks/s1477-the-agent-identity-chain-stack-when-your-auditor-asks-who-authorized-that-action-and-nobody-knows.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
