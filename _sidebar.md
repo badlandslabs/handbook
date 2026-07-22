@@ -546,6 +546,9 @@
   - [S-1457 · The Synthetic Trajectory Pipeline Stack — When You Train an Agent Without a Single Human-Labeled Example](stacks/s1457-the-synthetic-trajectory-pipeline-stack-when-you-train-an-agent-without-a-single-human-labeled-example.md)
   - [S-1459 · The Trusted-File Escape Stack — When Your Agent Stays Inside but Escapes Through a Trusted Host](stacks/s1459-the-trusted-file-escape-stack-when-your-agent-stays-inside-but-escapes-through-a-trusted-host.md)
   - [S-1477 · The Agent Identity Chain Stack — When Your Auditor Asks "Who Authorized That?" and Nobody Knows](stacks/s1477-the-agent-identity-chain-stack-when-your-auditor-asks-who-authorized-that-action-and-nobody-knows.md)
+  - [S-1478 · The MCP Tool Catalog Stack — When Your Agent Has Tools But No Standard](stacks/s1478-the-mcp-tool-catalog-stack-when-your-agent-has-tools-but-no-standard.md)
+  - [S-1479 · The Intelligence Entropy Stack — When Your Agent Breaks Without Being Attacked](stacks/s1479-the-intelligence-entropy-stack-when-your-agent-breaks-without-being-attacked.md)
+  - [S-1484 · The Automation Illusion — When You Bolt an Agent onto a Process Designed for a Human](stacks/s1484-the-automation-illusion-stack-when-you-bolt-an-agent-onto-a-process-designed-for-a-human.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
