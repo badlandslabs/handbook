@@ -491,7 +491,7 @@ llm →
 evaluation → I-008
 reliability → I-001, I-002, I-008, I-032
 cost →
-mcp →
+mcp → I-2031
 multi-agent → I-001, I-003
 sandbox →
 guardrails → I-002
@@ -592,6 +592,15 @@ token-budget → I-005
 cost-per-outcome → I-005
 agent-economics → I-003, I-005
 context-accumulation → I-003, I-005
+mcp-2026-rc → I-2031
+mcp-apps → I-2031
+sep-1865 → I-2031
+skill-primitive → I-2031
+smcp → I-2031
+stateless-transport → I-2031
+extensions-framework → I-2031
+oauth-oidc → I-2031
+mcp-gateway → I-2031
 mcp-supply-chain → I-006
 schema-drift → I-035
 mcp-schema-drift → I-035
@@ -1315,6 +1324,7 @@ Deduplication: S-1065 (Inter-Agent Trust Escalation) covers authorization across
 | 2026-07-16 | I-187 | WRITTEN — S-1170 | The Five Identity Layers — highest composite 8.85 (all 186 prior ideas WRITTEN). Fresh research: Scalekit 5-layer identity pattern (March 2026, scalekit.com/blog/access-control-multi-tenant-ai-agents); Systemshardening.com 5 session isolation failure modes (June 2026, systemshardening.com/articles/ai-landscape/ai-agent-session-isolation). Real incident: shared GitHub OAuth token with no tenant boundary caused cross-channel issue creation after 3 months in production. Deduplication: I-077 (S-663, MCP Credential Provisioning) covers tool-level credential lifecycle; I-108 (S-88x, MCP Ambient Authority) covers least-privilege tool chains; I-183 (S-1155, NHI Lifetime-Bound Credentials) covers credential TTL/ephemeral patterns. None cover the five-identity-layer framework as first-class architectural concern for multi-tenant agent platforms. Novel angle: parameter injection is a config bug, not an attack — scope parameters must come from verified config, never prompt content. Cross-links: S-663, S-88x, S-1168. |
 
 || 2026-07-14 | I-159 | WRITTEN — S-1086 | The Cascading Hallucination Spill Stack — research: CHARM Framework (arXiv:2606.04435, Saroj Mishra, June 3, 2026): output-level hallucination detectors catch <20% of cascaded errors in multi-hop agentic RAG; consistency-based detectors fail because cascaded errors are internally consistent with corrupted premises; same-model hallucination is self-reinforcing across hops. Key finding: multi-hop reasoning accuracy 16.7% → 56.2% (3.4x) with GraphRAG entity grounding (Microsoft). Cross-stage monitoring between hops (not just post-hoc) is the critical intervention point. Deduplication: S-100 (Agentic RAG) covers routing and chaining; S-1028 (Synthetic Trajectory Degeneration) covers self-reinforcing errors in fine-tuning; S-459 (Cross-Session Memory Poisoning) covers persistent false beliefs from injection. None cover cross-stage error propagation in multi-hop reasoning chains, claim-level provenance tracing, or the mechanism by which cascaded hallucination compounds confidence across hops. Composite 8.85. Chosen over: Silent Agent Failures (covered partially by S-914 Observability Trap + S-525 Trace vs Eval), Agent Trust Calibration (covered by Bounded Autonomy frameworks in I-002/S-355), Cascading Context Corruption (related but distinct — corruption propagates from agent state, not from retrieved chunks). |
+|| 2026-07-22 | I-2031 | WRITTEN — S-1489 | The Stateless MCP Stack — composite 9.45. Tracker exhausted (all prior ideas WRITTEN). Fresh research: MCP 2026-07-28 RC dropped today (stateless transport, MCP Apps SEP-1865, Extensions framework, OAuth 2.1 alignment). Session-id elimination unblocks horizontal scaling without Redis session store. MCP Apps (SEP-1865) introduces skill primitive + embedded HTML rendering inside AI host. Authorization hardened with structured identity propagation. SMCP paper (arXiv:2602.01129, Feb 2026) adds Trusted Component Registry, PDP/PEP policy engine. Distinct from S-625 (MCP security bill): S-625 covers threat taxonomy; this covers the protocol-level architectural shift to stateless + new capabilities. |
 
 ||| 2026-07-18 | I-253 | WRITTEN — S-1264 | The Context Scope Covenant — composite 9.65. Highest-scoring non-duplicate idea. Primary source: cereblab wire-level analysis of grok 0.2.93 (July 2026, GitHub gist dc9a40bc26120f4540e4e09b75ffb547) confirmed entire git repos and unredacted .env files transmitted to Google Cloud Storage. Multiple corroborating sources: BrevFeed cluster #2083 (silent fix post-disclosure), WindFlash daily report 2026-07-13, INS Security April 2026 (MCP CRM exfiltration, 4,000 queries in 3 hours), hoop.dev June 2026 (read-only API key insufficient). Deduplication: S-1006 covers toolbelt permissions but not vendor transmission scope; S-1050 covers tool response poisoning (inbound); no existing entry covers the outbound data minimization problem for coding agents. Key pattern: context minimization must be enforced at the tool layer, not in the agent prompt. Standard DLP/SIEM miss LLM API payloads. The enforcer must be external to the agent. Chosen over: Multi-agent state consistency (covered by S-986), Agent FinOps observability (partially covered by S-997), OWASP agentic Top 10 governance (covered by S-1000). |
 ## Meta
@@ -1486,6 +1496,7 @@ agentic-rollback → I-254
 | I-2028 | The Excessive Agency Stack: Permission ≠ Proportion | excessive-agency, permission-proportion, blast-radius, scope-alignment, destructive-tool-tier, intent-carry-through, environment-routing, surprise-destruction, cursor-deleted-db, backup-deletion, tiered-tool-classification, scope-alignment-test, giskard-ai, pocketos-2026, nist-ai-rmf, action-tier | 10 | 9 | 10 | 9 | 9 | **9.40** | WRITTEN — S-1453 | 2026-07-21 | 2026-07-21 |
 | I-2029 | The Intelligence Entropy Stack: S(t) = S₀ · e^αt — Agents Break Without Being Attacked | intelligence-entropy, silent-failure, entropy-principle, exponential-decay, entropy-coefficient-alpha, entropy-budget, interaction-round-budget, complexity-budget, physical-gate, memory-gate, pig-engine, ade-protocol, irreversible-protection-principle, checkpoint-reset, entropy-measurement, trajectory-consistency, state-divergence, disorder-compounding, liu-2026, arxiv-2606.08162 | 10 | 10 | 10 | 10 | 9 | **9.75** | WRITTEN — S-1479 | 2026-07-22 | 2026-07-22 |
 | I-2030 | The Automation Illusion Stack: When You Bolt an Agent onto a Process Designed for a Human | automation-illusion, process-redesign, automation-first, pilot-failure, human-workflow-automation, enterprise-automation, process-debt, scale-failure, deloitte-ai-institute, stanford-digital-economy, automation-vs-agentic, social-contract-process, implicit-context, institutional-knowledge, henry-ford, 60-percent-failure, 73-percent-automation-fail | 10 | 10 | 9 | 9 | 8 | **9.30** | WRITTEN — S-1484 | 2026-07-22 | 2026-07-22 |
+| I-2031 | The Stateless MCP Stack: When Your Load Balancer Hates Your Agent | mcp, stateless-transport, session-ids, mcp-2026-rc, horizontal-scaling, mcp-apps, sep-1865, skill-primitive, oauth-oidc, mcp-gateway, extensions-framework, protocol-version, smcp, trusted-component-registry, policy-engine | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1489 | 2026-07-22 | 2026-07-22 |
 
 action-hallucination → I-046, I-250
 tool-call-fabrication → I-250

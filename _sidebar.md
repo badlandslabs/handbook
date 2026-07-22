@@ -549,6 +549,8 @@
   - [S-1478 · The MCP Tool Catalog Stack — When Your Agent Has Tools But No Standard](stacks/s1478-the-mcp-tool-catalog-stack-when-your-agent-has-tools-but-no-standard.md)
   - [S-1479 · The Intelligence Entropy Stack — When Your Agent Breaks Without Being Attacked](stacks/s1479-the-intelligence-entropy-stack-when-your-agent-breaks-without-being-attacked.md)
   - [S-1484 · The Automation Illusion — When You Bolt an Agent onto a Process Designed for a Human](stacks/s1484-the-automation-illusion-stack-when-you-bolt-an-agent-onto-a-process-designed-for-a-human.md)
+  - [S-1486 · The Persona Anchor Stack — When Your Agent Gradually Forgets Who It Is](stacks/s1486-the-persona-anchor-stack-when-your-agent-gradually-forgets-who-it-is.md)
+  - [S-1489 · The Stateless MCP Stack — When Your Load Balancer Hates Your Agent](stacks/s1489-the-stateless-mcp-stack-when-your-load-balancer-hates-your-agent.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
