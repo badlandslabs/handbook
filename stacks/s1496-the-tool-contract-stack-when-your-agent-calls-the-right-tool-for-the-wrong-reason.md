@@ -1,4 +1,4 @@
-# S-1495 · The Tool-Contract Stack — When Your Agent Calls the Right Tool for the Wrong Reason
+# S-1496 · The Tool-Contract Stack — When Your Agent Calls the Right Tool for the Wrong Reason
 
 You wire up 10 tools. The agent picks the wrong one, or the right one with invented parameters, or calls a tool that doesn't exist. You add more descriptions, more examples. It gets marginally better but still fails in production. The tool infrastructure was never the problem. The tool contract — the way the agent understands what each tool does, when to use it, and what counts as a valid call — was underspecified from the start.
 
