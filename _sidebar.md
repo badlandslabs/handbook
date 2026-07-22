@@ -555,6 +555,7 @@
   - [S-1493 · The Recovery Ownership Stack — When an Agent Fails But Nobody Knows Who Retries](stacks/s1493-the-recovery-ownership-stack-when-an-agent-fails-but-nobody-knows-who-retries.md)
   - [S-1494 · The Guardian Agent Identity Stack — When Your Agent Operates Without Accountability and Your IAM Team Doesn't Know It Exists](stacks/s1494-the-guardian-agent-identity-stack-when-your-agent-operates-without-accountability-and-your-iam-team-doesnt-know-it-exists.md)
   - [S-1495 · The Agentic Compilation Stack — When Continuous Reasoning Costs More Than Continuous Execution](stacks/s1495-the-agentic-compilation-stack-when-continuous-reasoning-costs-more-than-continuous-execution.md)
+  - [S-1497 · The Lucky Recovery Stack — When Your Agent Gets Credit for a Wrong Path](stacks/s1497-the-lucky-recovery-stack-when-your-agent-gets-credit-for-a-wrong-path.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
