@@ -551,6 +551,10 @@
   - [S-1484 · The Automation Illusion — When You Bolt an Agent onto a Process Designed for a Human](stacks/s1484-the-automation-illusion-stack-when-you-bolt-an-agent-onto-a-process-designed-for-a-human.md)
   - [S-1486 · The Persona Anchor Stack — When Your Agent Gradually Forgets Who It Is](stacks/s1486-the-persona-anchor-stack-when-your-agent-gradually-forgets-who-it-is.md)
   - [S-1489 · The Stateless MCP Stack — When Your Load Balancer Hates Your Agent](stacks/s1489-the-stateless-mcp-stack-when-your-load-balancer-hates-your-agent.md)
+  - [S-1490 · The Fault Propagation Chain — When One Agent Bug Becomes a System-Wide Incident](stacks/s1490-the-fault-propagation-chain-when-one-agent-bug-becomes-a-system-wide-incident.md)
+  - [S-1493 · The Recovery Ownership Stack — When an Agent Fails But Nobody Knows Who Retries](stacks/s1493-the-recovery-ownership-stack-when-an-agent-fails-but-nobody-knows-who-retries.md)
+  - [S-1494 · The Guardian Agent Identity Stack — When Your Agent Operates Without Accountability and Your IAM Team Doesn't Know It Exists](stacks/s1494-the-guardian-agent-identity-stack-when-your-agent-operates-without-accountability-and-your-iam-team-doesnt-know-it-exists.md)
+  - [S-1495 · The Agentic Compilation Stack — When Continuous Reasoning Costs More Than Continuous Execution](stacks/s1495-the-agentic-compilation-stack-when-continuous-reasoning-costs-more-than-continuous-execution.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
