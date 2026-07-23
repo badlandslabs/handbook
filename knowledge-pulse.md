@@ -1546,6 +1546,7 @@ checkpoint-vs-durable → I-2037
 langgraph-plugin → I-2037
 temporalio-langgraph → I-2037
 | I-2038 | The Intelligence Entropy Stack: When Your Agent Degrades for No Reason You Can Measure | intelligence-entropy, entropy-principle, silent-failure, PIG-engine, ADE-protocol, 6-layer-taxonomy, entropy-growth-model, channel-fracture, cognitive-framework-lag, knowledge-fragmentation, entropy-measurement, entropy-compounding, S(t)=S0e, arxiv-2606.08162, dexing-liu-2026 | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-1546 | 2026-07-23 | 2026-07-23 |
+| I-3000 | The Plan Object Stack: Cross-Session Plan Durability as First-Class Architecture | plan-object, plan-durability, plan-versioning, plan-state-machine, plan-integrity, plan-checksum, cross-session-plan, goal-persistence, plan-checkpoint, plan-artifact, intention-format, plan-seal, plan-resume, agentic-planning, agentralabs-agentic-planning, goal-drift, plan-lifecycle, plan-validation, plan-lock, plan-revision-log | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-1550 | 2026-07-23 | 2026-07-23 |
 entropy-growth-model → I-2038
 S(t)=S0eαt → I-2038
 PIG-engine → I-2038
@@ -1559,6 +1560,24 @@ knowledge-fragmentation → I-2038
 data-consistency-decay → I-2038
 behavioral-drift → I-2038
 entropy-principle → I-2038
+plan-object → I-3000
+plan-durability → I-3000
+plan-versioning → I-3000
+plan-state-machine → I-3000
+plan-integrity → I-3000
+plan-checksum → I-3000
+cross-session-plan → I-3000
+goal-persistence → I-3000
+plan-checkpoint → I-3000
+plan-artifact → I-3000
+plan-lifecycle → I-3000
+plan-lock → I-3000
+plan-revision-log → I-3000
+agentic-planning → I-3000
+agentralabs-agentic-planning → I-3000
+intention-format → I-3000
+plan-seal → I-3000
+plan-resume → I-3000
 ## Deduplication Index
 tool-call-fabrication → I-250
 silent-failure-masking → I-250
@@ -1872,10 +1891,43 @@ hidden-cost → I-298
 agentic-finops → I-298
 output-token-billing → I-298
 observability-stack → I-299
-|||||||
+otel-genai-conventions → I-299
+genai-otel → I-299
+opentelemetry-genai → I-299
+span-taxonomy → I-299
+agent-span → I-299
+generation-span → I-299
+tool-span → I-299
+gen_ai.* → I-299
+W3C-trace-context → I-299
+a2a-trace → I-299
+mcp-tracing → I-299
+trace-context-propagation → I-299
+distributed-tracing → I-299
+otel-collector → I-299
+langfuse → I-299
+arize-phoenix → I-299
+langsmith → I-299
+helicone → I-299
+traceloop → I-299
+openllmetry → I-299
+span-abstraction → I-299
+semantic-conventions → I-299
+reasoning-token-tax → I-298
+thinking-token-cost → I-298
+extended-thinking-cost → I-298
+chain-of-thought-billing → I-298
+token-budget → I-298
+hidden-cost → I-298
+agentic-finops → I-298
+output-token-billing → I-298
+observability-stack → I-299
+||||||||
 1660||||| 2026-07-21 | I-294 |
-|
-| 2026-07-22 | I-2029 | WRITTEN — S-1472 | The Compounding Reliability Stack — composite 9.25. Tracker exhausted. Fresh research: AgentMarketCap (Apr 2026) accuracy decay table (95%→36% at 20 steps), Revonex Labs (May 2026) 0.85^10 = 19.7%, LensHQ (May 2026) formalization via Lusser's Law. Core finding: Lusser's Law applies to agentic workflows. Step-level gains translate to workflow-level gains at exponential discount. Four-pattern mitigation stack: (1) chain shortening first (merge, conditional steps), (2) interstep verification gates (narrow-scope judge before high-stakes transitions), (3) fork-join N-version agents (3x cost → 99%+ reliability on critical steps, verified C(3,2)·0.95²·0.05 + C(3,3)·0.95³ = 99.28%), (4) reliability circuit breaker with rolling success projection. Deduplication: S-964 covers compounding calibration (confidence trust downstream, RLHF degradation); this covers architectural mitigation. S-1027 covers scaffold loop detection; this covers proactive reliability design. |
+
+| 2026-07-22 | I-2029 | WRITTEN — S-1472 | The Compounding Reliability Stack — composite 9.25. Tracker exhausted. Fresh research: AgentMarketCap (Apr 2026) accuracy decay table (95%→36% at 20 steps), Revonex Labs (May 2026) 0.85^10 = 19.7%, LensHQ (May 2026) formalization via Lusser's Law. Core finding: Lusser's Law applies to agentic workflows. Step-level gains translate to workflow-level gains at exponential discount. Four-pattern mitigation stack: (1) chain shortening first (merge, conditional steps), (2) interstep verification gates (narrow-scope judge before high-stakes transitions), (3) fork-join N-version agents (3x cost → 99%+ reliability on critical steps, verified C(3,2)·0.95²·0.05 + C(3,3)·0.95³ = 99.28%), (4) reliability circuit breaker with rolling success projection. Deduplication: S-964 covers compounding calibration (confidence trust downstream, RLHF degradation); this covers architectural mitigation. S-1027 covers scaffold loop detection; this covers reliability compounding. |
+
+| 2026-07-23 | I-3000 | WRITTEN — S-1550 | The Plan Object Stack — composite 9.10. Tracker exhausted (all 268 prior ideas WRITTEN or DUPLICATE). Fresh research: AgentraLabs `agentic-planning` (MIT, Mar 2026, github.com/agentralabs/agentic-planning) — persistent intention infrastructure with goals, decisions, commitments, and plan objects as versioned Rust structs with integrity signing; Zylos Research (Apr 3, 2026) on goal persistence and goal drift in long-horizon agents; Zylos Research (Apr 5, 2026) on memory architectures distinguishing episodic/semantic/procedural; Anthropic's multi-agent research system (ByteByteGo, Apr 2026) checkpoints plan state at context boundaries; Anthropic 2026 State of AI Agents Report (57% of orgs deploy agents for multi-stage workflows). Core finding: plans are context-time objects that die with context — they need the same durability engineering as any other persistent artifact: versioned schema, integrity checksum, state machine lifecycle (DRAFT→VALIDATED→LOCKED→EXECUTING→COMPLETED), and a cross-session loader. The PlanObject schema maps to AgentraLabs' `Intention` format (goal + decisions + commitments + reasoning). Distinct from S-1432 (context eviction within sessions), S-1542 (cross-session memory/facts), S-1424 (plan generation), and S-1000 (plan verification gate) — this covers plan as durable artifact with versioning and integrity, not any single concern. Deduplication: cost-attribution patterns (I-298, I-299) cover token accounting but not plan durability; scope-drift/goal-drift (I-013, I-102, I-103) cover goal drift as a behavioral failure but not plan-as-durable-artifact as an architectural pattern. |
 
 | 2026-07-22 | I-296 | The Lucky Recovery Stack: Mining Production Traces for Masked Failures | lucky-recovery, masked-failure, trajectory-mining, eval-seed, production-trace, wrong-path-correct-answer, lucky-success, eval-staleness, eval-decay, seed-expansion, trajectory-classifier, masked-regression, failure-mode-mining, eval-dataset, trace-to-test, lucky-path, wrong-tool-correct-outcome, wrong-arg-correct-outcome | 8 | 9 | 9 | 8 | 8 | **8.45** | WRITTEN — S-1497 | 2026-07-22 | 2026-07-22 |
 

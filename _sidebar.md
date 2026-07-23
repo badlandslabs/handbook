@@ -690,5 +690,6 @@
   - [S-1545 · The Agent Evaluation Stack — When Your Benchmarks Lie and Your Team Is Flying Blind](stacks/s1545-the-agent-evaluation-stack-when-your-benchmarks-lie-and-your-team-is-flying-blind.md)
   - [S-1546 · The Intelligence Entropy Stack — When Your Agent Degrades for No Reason You Can Measure](stacks/s1546-the-intelligence-entropy-stack-when-your-agent-degrades-for-no-reason-you-can-measure.md)
   - [S-1548 · The Reasoning Token Tax Stack — When Your Agent Quietly Spends 9× What You Budgeted](stacks/s1548-the-reasoning-token-tax-stack-when-your-agent-quietly-spends-9x-what-you-budgeted.md)
+  - [S-1550 · The Plan Object Stack — When Your Agent Loses the Plan Between Sessions](stacks/s1550-the-plan-object-stack-when-your-agent-loses-the-plan-between-sessions.md)
 
   - [S-1536 · The Durable Execution Stack — When LangGraph Gives You the Agent and Temporal Gives You the Guarantee](stacks/s1536-the-durable-execution-stack-when-langgraph-gives-you-the-agent-and-temporal-gives-you-the-guarantee.md)
