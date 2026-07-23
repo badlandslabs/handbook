@@ -1,0 +1,55 @@
+# S-1532 · The Failure Governor Stack — When Your Agent Runs Forever and Your Cloud Bill Quadruples
+
+Your agent doesn't crash when it fails — it quietly burns. The most expensive production incidents with AI agents look nothing like errors: no exception trace, no 500, no crash dump. Two agents enter a conversation loop and your bill goes $127 → $18,400 over four weeks. A coding agent hits a dead-end state and retries the same failed operation 400 times. The agent looks fine. The invoice does not.
+
+## Forces
+
+- **Failure modes in agents are silent.** Traditional software surfaces bugs through crashes or error codes. Agents fail through wrong answers that look right, loops that never terminate, and dead ends that produce HTTP 200. You don't get a signal — you get a number.
+- **The production-to-test gap in failure handling is enormous.** LLM systems have error modes that neither unit tests nor staging environments can reproduce reliably: model confidence after prior failures, tool-call sequences that branch into new error states, and multi-turn traps that only activate after 20+ steps.
+- **Cascading failures across agent chains are the dominant production failure mode.** A rate-limit error on one agent step triggers retries across the chain — not just that step. Per-call retry limits without chain-level containment allow failures to amplify. Monte Carlo simulation of 100,000+ multi-agent trials found cascading failure rates increase with chain length — and longer chains (6+ agents) had the highest failure rates *and* benefited most from adaptive protections (85% reduction vs. 50% for 2-agent chains).
+- **Observability is a prerequisite that teams skip.** L4 Study (FSE 2025, arXiv:2503.20263) analyzing 428 real LLM training failures: 89.9% required manual log analysis, averaging 34.7 hours to diagnose. Dead-end states, infinite loops, and soft failures (wrong format, HTTP 200) leave no automated trace. You cannot govern failures you cannot see.
+
+## The Move
+
+The core technique: layer failure governors — independent mechanisms that each target a specific failure mode. No single governor handles everything; the stack is the point.
+
+**Layer 1 — Iteration Guards (prevent infinite loops before they start)**
+- Hard step cap: set a `max_steps` or `max_iterations` on the agent loop. Most framework defaults are 50-100; useful starting point is 20-30 for single-step, 10-15 for multi-agent chains.
+- Conversation-length monitor: track message/turn count within each session. Flag or halt at a threshold (e.g., 40 messages in a single session).
+- Semantic loop detection: exact-repeat detection catches identical consecutive outputs; fuzzy-repeat (Jaccard + Levenshtein + noise denoising) catches near-duplicates. Track information gain per step — repetition *with* progress is fine; repetition *without* is a loop.
+- State stasis guard: detect when the meaningful state (not just output) has stopped changing for N consecutive steps. An agent that keeps producing different text but modifying the same variables is in a loop.
+
+**Layer 2 — Budget Governors (make runaway agents expensive to run, not cheap to ignore)**
+- Per-session cost ceiling: track tokens spent per session, halt at a dollar threshold (e.g., $5-20 depending on task type). This is the single most cost-effective guard — the $47K LangChain loop would have been capped at the cost ceiling on day one.
+- Rate-limit circuit breaker: when N% of calls within a time window return rate-limit errors, open the circuit and fail-fast rather than retry-drown. Share this state across the agent chain — a 429 on agent step 3 must affect the retry budget of agent step 4.
+- Temporal circuit breaker: if the chain's P95 latency exceeds 2x the baseline, open the circuit. Tail latency failures are a leading indicator of cascade.
+
+**Layer 3 — Recovery Handlers (when a step fails, recover intelligently)**
+- Exponential backoff with jitter: standard retry logic with base delay doubling and random jitter (0.5–1.5× multiplier). Cloudflare Agents SDK and Strands Agents SDK both default to this. Key: cap total retry time, not just retry count.
+- Fallback model or prompt: on repeated failures, switch to a smaller/faster model or a simplified prompt path. The goal is degraded-but-functional, not perfect-or-nothing.
+- Checkpoint/resume: save agent state (conversation history, tool results, external state) at each step. On failure, resume from the last checkpoint rather than restarting from scratch. Optio's K8s-based agent orchestrator does this — agents self-heal on CI failures, merge conflicts, or reviewer change requests by resuming from the last good state.
+
+**Layer 4 — Dead-End Recovery (the hardest failure mode)**
+- Chesterton's Fence for agents: do not modify an object until you understand how it ended up in its current state. Track per-object state history before making changes. This specifically addresses the unstable bug wall pattern in coding agents: fixing one bug produces a second, fixing the second regresses the first. Ilya Sutskever cited this as a canonical LLM failure at simple human tasks.
+- Safety states: add explicit non-transitioning states (UPDATE_NEEDED, NEEDS_HUMAN_REVIEW, ESCALATE) that the agent can enter — but also outbound transitions *from* those states. The common mistake is adding the safety state without the escape hatch, creating a new dead end.
+- Human-in-the-loop checkpoint: for high-stakes tasks, require human approval at decision boundaries. Optio enforces this for PR merges; AgentBudget enforces it for budget threshold crossings.
+
+## Evidence
+
+- **HN Ask HN:** "How do you prevent retry cascades in LLM systems?" — practitioner hit a 429 from their provider, had per-call retry limits but no chain-level containment, causing cascading failures. Asks about shared circuit breaker state, per-minute cost ceilings, and token-based vs. retry-count-based limits. — [HN, amabito, ~Feb 2026](https://news.ycombinator.com/item?id=47087398)
+- **Engineering post / Reddit:** "We Spent $47,000 Running AI Agents in Production" — 4-agent LangChain A2A market research system. Two agents entered an infinite conversation loop undetected for 11 days. Cost growth: $127 → $891 → $6,240 → $18,400 → $47K total. Root causes: no iteration cap, no budget guard, no conversation-length check. — [Towards AI, Kusireddy, Oct 2025](https://pub.towardsai.net/we-spent-47-000-running-ai-agents-in-production-heres-what-nobody-tells-you-about-a2a-and-mcp-5f845848de33)
+- **GitHub research repo:** "Circuit Breaker Patterns for Multi-Agent LLM Systems" — Monte Carlo simulation (100,000+ trials) of circuit breaker strategies. ADAPTIVE_CB (dynamic thresholds + chain-length optimization) achieved ~75% cascading failure reduction vs. ~7% for SIMPLE_CB. Performance scales with chain length: 50% reduction at 2-agent chains, 85% at 6-agent chains. — [hamley241/circuit-breaker-agents, Apache-2.0, 2026](https://github.com/hamley241/circuit-breaker-agents)
+- **GitHub tool:** LoopBuster — framework-agnostic anti-dead-loop library (93 stars, MIT, 2026). Four detection strategies: ExactRepeat, FuzzyRepeat, CycleDetection, OutputStagnation. Includes StateStasisGuard for meaningful-state-change detection. Zero hard dependencies, supports LangGraph, LangChain, CrewAI, AutoGen. — [liuchunwei732-cmyk/loopbuster](https://github.com/liuchunwei732-cmyk/loopbuster)
+- **Engineering post:** "Preventing agent doom loops with per-object reasoning traces" — Mohamed Moustafa (Nov 2025). Documents the unstable bug wall pattern: coding agents hit a state where fixing one bug regresses a prior one. Solution: track per-object state history before modifications. Cites Ilya Sutskever. — [blog.0xmmo.co](https://blog.0xmmo.co/2025/11/27/preventing-agent-doom-loops)
+- **HN Show HN:** "Optio – Orchestrate AI coding agents in K8s" — K8s-based agent orchestration. Self-healing: auto-resume on CI failures, merge conflicts, or reviewer change requests. Agents run in isolated K8s pods per repo. PR monitoring every 30s. Human-in-the-loop at merge checkpoints. — [HN, jawiggins, Apr 2026, 88 pts / 60 comments](https://news.ycombinator.com/item?id=47520220)
+- **SDK documentation:** Cloudflare Agents SDK — default 3 retries with jittered exponential backoff per task. No built-in circuit breaker; each task exhausts its own retry budget independently (cascading failure risk noted). Strands Agents SDK — similar defaults, plus `planning_replan_on_stall` (3 consecutive failures before replan) and `final_response_after_failure` (attempt final recovery before giving up). — [developers.cloudflare.com](https://developers.cloudflare.com/agents/runtime/execution/retries/), [strandsagents.com](https://strandsagents.com/docs/user-guide/concepts/agents/retry-strategies)
+- **HN Show HN:** "AgentCircuit – Circuit breaker for AI agent functions" — one decorator to add loop detection, auto-repair, output validation, and budget control to any AI agent. Zero config, no server, no database. Supports LangGraph, LangChain, CrewAI, AutoGen. — [HN, simranmultani, Feb 2026](https://news.ycombinator.com/item?id=46899775)
+- **Blog:** "Error Handling in AI Agents: Circuit Breakers, Retry & Recovery" — Preporato (May 2026). Agentic AI errors span traditional types (syntax errors → invalid JSON, runtime errors → tool failures) plus new categories: confident reasoning errors returning HTTP 200, semantically failed tool calls (wrong format, action succeeded but goal not reached), and cascade failure chains across multi-step workflows. — [preporato.com](https://preporato.com/blog/error-handling-resilience-patterns-agentic-ai-systems)
+
+## Gotchas
+
+- **Setting max_retries is not enough.** Per-call retry limits without chain-level containment allow retry amplification: each step exhausts its budget, but the failure cascades downstream. You need shared state for circuit breaking across the agent chain.
+- **Iteration caps without budget caps leave a gap.** An agent that stops at 30 steps may have burned $400 in the process. Budget ceilings and step caps address different failure modes — use both.
+- **Dead-end states in state machines are easier to create than escape from.** When adding safety states (NEEDS_HUMAN_REVIEW, UPDATE_NEEDED) to prevent loops, always add the outbound transitions at the same time. Teams consistently add the safety state, skip the escape hatch, and create a new class of failure.
+- **Soft failures are invisible without trace-level observability.** The agent returns HTTP 200 but the tool call was semantically wrong (right format, wrong action). Without step-level trace logging, you cannot detect this class of failure. L4 Study data confirms: 89.9% of LLM system failures require manual log analysis to diagnose.
+- **The adaptive circuit breaker advantage compounds with scale.** Monte Carlo data shows ADAPTIVE_CB performs better on longer chains — exactly the scenarios where teams are least likely to add explicit failure handling. If you're building multi-agent chains, circuit breaker investment is highest-value precisely when you think you don't need it.
