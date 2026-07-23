@@ -556,6 +556,8 @@
   - [S-1494 · The Guardian Agent Identity Stack — When Your Agent Operates Without Accountability and Your IAM Team Doesn't Know It Exists](stacks/s1494-the-guardian-agent-identity-stack-when-your-agent-operates-without-accountability-and-your-iam-team-doesnt-know-it-exists.md)
   - [S-1495 · The Agentic Compilation Stack — When Continuous Reasoning Costs More Than Continuous Execution](stacks/s1495-the-agentic-compilation-stack-when-continuous-reasoning-costs-more-than-continuous-execution.md)
   - [S-1497 · The Lucky Recovery Stack — When Your Agent Gets Credit for a Wrong Path](stacks/s1497-the-lucky-recovery-stack-when-your-agent-gets-credit-for-a-wrong-path.md)
+  - [S-1500 · The Memory Identity Gap Stack — When Your Agent Follows a Forged Reasoning Chain It Believes Is Its Own](stacks/s1500-the-memory-identity-gap-stack-when-your-agent-follows-a-forged-reasoning-chain-it-believes-is-its-own.md)
+  - [S-1505 · The Graph Engineering Stack — When Your Multi-Agent System Is a Programmable Topology](stacks/s1505-the-graph-engineering-stack-when-your-multi-agent-system-is-a-programmable-topology.md)
 
 - **Book of the Workspace**
   - [Overview](workspace/)
@@ -675,3 +677,17 @@
   - [S-1403 · The Temporal Blindspot — When Your Agent Lives in Yesterday](stacks/s1403-the-temporal-blindspot-when-your-agent-lives-in-yesterday.md)
   - [S-1412 · The OWASP MCP Top 10 Stack — When Your Agent Framework Has Ten Critical Risks Nobody Is Tracking](stacks/s1412-the-owasp-mcp-top-10-stack-when-your-agent-framework-has-ten-critical-risks-nobody-is-tracking.md)
 
+
+  - [S-1509 · The Oracle Problem Stack — When You Cannot Tell If Your Agent Is Right](stacks/s1509-the-oracle-problem-stack-when-you-cannot-tell-if-your-agent-is-right.md)
+  - [S-1516 · The Agent Kill Switch Stack — When Your Agent Is Running Wild and Nobody Can Stop It](stacks/s1516-the-agent-kill-switch-stack-when-your-agent-is-running-wild-and-nobody-can-stop-it.md)
+  - [S-1517 · The Compromised MCP Server Stack — When the Tool You Trusted Becomes the Attack Surface](stacks/s1517-the-compromised-mcp-server-stack-when-the-tool-you-trusted-becomes-the-attack-surface.md)
+  - [S-1525 · The Reliability Surface Stack — When Your Single Pass Rate Is the Wrong Number](stacks/s1525-the-reliability-surface-stack-when-your-single-pass-rate-is-the-wrong-number.md)
+  - [S-1526 · The Judge Calibration Stack — When Your LLM Judge Is Just Another Source of Noise](stacks/s1526-the-judge-calibration-stack-when-your-llm-judge-is-just-another-source-of-noise.md)
+  - [S-1527 · The Effect Outbox Stack — When Your Agent Acts Before You Approve](stacks/s1527-the-effect-outbox-stack-when-your-agent-acts-before-you-approve.md)
+  - [S-1534 · The Reliability Decomposition Stack — When Your Verification Loop Is Not Your Biggest Lever](stacks/s1534-the-reliability-decomposition-stack-when-your-verification-loop-is-not-your-biggest-lever.md)
+  - [S-1540 · The Agent Latency Budget Stack — When Your Benchmarks Lie and Your Users Feel It](stacks/s1540-the-agent-latency-budget-stack-when-your-benchmarks-lie-and-your-users-feel-it.md)
+  - [S-1544 · The Guardrail Asymmetry Stack — When Your Safety Systems Arm the Attacker and Disarm Your Defenders](stacks/s1544-the-guardrail-asymmetry-stack-when-your-safety-systems-arm-the-attacker-and-disarm-your-defenders.md)
+  - [S-1545 · The Agent Evaluation Stack — When Your Benchmarks Lie and Your Team Is Flying Blind](stacks/s1545-the-agent-evaluation-stack-when-your-benchmarks-lie-and-your-team-is-flying-blind.md)
+  - [S-1546 · The Intelligence Entropy Stack — When Your Agent Degrades for No Reason You Can Measure](stacks/s1546-the-intelligence-entropy-stack-when-your-agent-degrades-for-no-reason-you-can-measure.md)
+
+  - [S-1536 · The Durable Execution Stack — When LangGraph Gives You the Agent and Temporal Gives You the Guarantee](stacks/s1536-the-durable-execution-stack-when-langgraph-gives-you-the-agent-and-temporal-gives-you-the-guarantee.md)
