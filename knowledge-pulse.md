@@ -1218,7 +1218,8 @@ feedback-loop-velocity → I-271
 | 60-percent-failure → I-2030 |
 | 73-percent-automation-fail → I-2030 |
 || I-296 | The Memory Identity Gap Stack: When Your Agent Follows a Forged Reasoning Chain It Believes Is Its Own | memory-identity-gap, reasoning-chain-forgery, memory-store-attack, farma-attack, adversarial-memory, reasoning-store-poisoning, agent-self-deception, provenance-attribution, cot-integrity, memory-provenance-chain, S-820, S-1189, S-1050, arxiv-2607.05029 | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-1500 | 2026-07-22 | 2026-07-22 |
-| I-297 | The Agent Kill Switch Stack: When Your Agent Is Running Wild and Nobody Can Stop It | kill-switch, emergency-stop, agent-shutdown, capability-envelope, graceful-drain, process-isolation, signal-handling, token-revocation, session-revocation, eu-ai-act-article14, iso-42001, nist-ai-rmf, human-oversight, autonomous-control, run-away-agent, infrastructure-enforcement, agent-governance, compliance-2026 | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1516 | 2026-07-23 | 2026-07-23 |
+|| I-297 | The Agent Kill Switch Stack: When Your Agent Is Running Wild and Nobody Can Stop It | kill-switch, emergency-stop, agent-shutdown, capability-envelope, graceful-drain, process-isolation, signal-handling, token-revocation, session-revocation, eu-ai-act-article14, iso-42001, nist-ai-rmf, human-oversight, autonomous-control, run-away-agent, infrastructure-enforcement, agent-governance, compliance-2026 | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1516 | 2026-07-23 | 2026-07-23 |
+|| I-298 | The Reasoning Token Tax Stack: When Your Agent Quietly Spends 9× What You Budgeted | reasoning-token-tax, thinking-token-cost, extended-thinking-cost, chain-of-thought-billing, inference-cost-multiplier, token-budget, cost-observability, agentic-finops, hidden-cost, output-token-billing, reasoning-model-cost, agent-cost-engineering | 9 | 9 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1548 | 2026-07-23 | 2026-07-23 |
 | 2026-07-23 | I-298 | WRITTEN — S-1530 | The Agent Autonomy Tier Stack — composite 9.50. Tracker exhausted (all prior 263 ideas WRITTEN or DUPLICATE). Fresh research: EU AI Act full enforcement activates August 2, 2026 (€35M or 7% global turnover penalties). 78% of organizations have not taken meaningful compliance steps (Responsible AI Labs, Apr 2026). 82% of enterprises have AI agents their security teams didn't know existed (Zylos, May 2026). Key gap: no existing handbook entry maps agent autonomy levels (T0–T4) to EU AI Act risk tiers and engineering obligations. Existing entries (S-1458 Policy Kernel, S-1059 Graduated Autonomy) reference EU AI Act but don't provide the regulatory tier decision tree or conformity folder structure. S-1530 bridges that: 5-tier decision tree from T0 (advisory) to T4 (critical) with Article 9/14/50 obligations per tier, minimum viable `conformity/` folder structure, interruptible agent pattern, and post-market monitoring signals. Sources: ExecLayer EU AI Act Agent Compliance Guide (Apr 2026), Responsible AI Labs August 2026 Countdown (Apr 2026), Zylos AI Agent Governance Research (May 2026).
 ## Recent Decisions
 | 2026-07-23 | I-2038 | WRITTEN — S-1546 | The Intelligence Entropy Stack — composite 9.80. Tracker exhausted (all 299 prior ideas WRITTEN or DUPLICATE). Fresh research: Liu, arXiv:2606.08162 (Jun 2026) — "Silent Failure in LLM Agent Systems: The Entropy Principle." 40,000+ controlled trials + 100,000+ production interactions demonstrate monotonic entropy growth S(t) = S₀·e^(αt) with no external trigger required. Five failure categories with measured frequencies: Channel Fracture (31.2%), Cognitive Framework Lag (22.8%), Data Consistency Decay (18.4%), Knowledge Fragmentation (15.7%), Behavioral Drift (12.0%). PIG (Physical Integrity Gate) Engine + ADE (Agent Delivery Engineering) protocol suite as the entropy countermeasure. Core finding: Intelligence Entropy is a physical constraint, not a bug — entropy management must be a first-class architectural concern across all 6 lifecycle layers. Deduplication: S-1015 (stability gradient) covers stochasticity and behavioral variance as entropy proxy but not the formal S(t) model, 6-layer taxonomy, or PIG+ADE framework. S-1022 (multi-agent drift), S-1062 (production drift), S-1111 (horizon breakpoints), S-1261 (confidence calibration), S-1331 (epistemic memory), S-1321 (frozen endpoint) all touch individual entropy manifestations but none provide the unified formal framework with empirical measurement methodology. I-2038 distills the full Entropy Principle into a practical engineering stack.
@@ -1831,6 +1832,14 @@ traceloop → I-299
 openllmetry → I-299
 span-abstraction → I-299
 semantic-conventions → I-299
+reasoning-token-tax → I-298
+thinking-token-cost → I-298
+extended-thinking-cost → I-298
+chain-of-thought-billing → I-298
+token-budget → I-298
+hidden-cost → I-298
+agentic-finops → I-298
+output-token-billing → I-298
 observability-stack → I-299
 otel-genai-conventions → I-299
 genai-otel → I-299
@@ -1854,6 +1863,14 @@ traceloop → I-299
 openllmetry → I-299
 span-abstraction → I-299
 semantic-conventions → I-299
+reasoning-token-tax → I-298
+thinking-token-cost → I-298
+extended-thinking-cost → I-298
+chain-of-thought-billing → I-298
+token-budget → I-298
+hidden-cost → I-298
+agentic-finops → I-298
+output-token-billing → I-298
 observability-stack → I-299
 |||||||
 1660||||| 2026-07-21 | I-294 |
@@ -1870,3 +1887,5 @@ observability-stack → I-299
 
 
 | 2026-07-23 | I-297 | WRITTEN — S-1516 | The Agent Kill Switch Stack — composite 9.45. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: EU AI Act Article 14 (effective August 2, 2026) requires human oversight and emergency stop capability for high-risk autonomous agents; Gheware DevOps AI Blog (updated June 21, 2026) documents the enterprise governance gap; OWASP ASI Top 10 includes kill-switch as a required control. Core finding: process-group `SIGKILL` isolation is the only reliable kill mechanism (cannot be caught/blocked by agent); capability envelope + graceful drain + token revocation form the complete four-layer stack. S-1000 (Structural Governance) covers prompt-based guardrails; S-1453 (Excessive Agency) covers least-privilege scoping; neither covers infrastructure-layer emergency stop patterns. EU AI Act deadline creates hard production urgency. Pattern: agent governance is shifting from advisory (prompt guardrails) to enforceable (infrastructure-layer controls with regulatory backing).
+
+| 2026-07-23 | I-298 | WRITTEN — S-1548 | The Reasoning Token Tax Stack — composite 8.85. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: AgentMarketCap (April 24, 2026) reported 2.3x–8.7x hidden thinking token multipliers across Claude Opus 4.6, o3, and Gemini 2.5 Flash on coding agent tasks. The tax is per-call: thinking tokens billed as output tokens at output rates. In agentic pipelines (10-20 calls), compounding means visible-token budgets understate real cost by 10-80x. Deduplication: S-08 (Prompt Caching) covers input token efficiency; S-1472 (Compounding Reliability) covers reliability compounding; neither covers the billing asymmetry of extended thinking tokens as output-cost multipliers. The gap is hidden multiplier = thinking_tokens / visible_output_tokens, exposed by API metadata. Pattern: the unit economics of agentic inference are fundamentally different from single-call chatbots — thinking token tax is the dominant cost dimension. Cross-links to S-1158 (Adaptive Compute), S-1239 (Runtime Verification), S-1472 (Compounding Reliability) for compounding interaction. |

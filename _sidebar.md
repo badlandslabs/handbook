@@ -689,5 +689,6 @@
   - [S-1544 · The Guardrail Asymmetry Stack — When Your Safety Systems Arm the Attacker and Disarm Your Defenders](stacks/s1544-the-guardrail-asymmetry-stack-when-your-safety-systems-arm-the-attacker-and-disarm-your-defenders.md)
   - [S-1545 · The Agent Evaluation Stack — When Your Benchmarks Lie and Your Team Is Flying Blind](stacks/s1545-the-agent-evaluation-stack-when-your-benchmarks-lie-and-your-team-is-flying-blind.md)
   - [S-1546 · The Intelligence Entropy Stack — When Your Agent Degrades for No Reason You Can Measure](stacks/s1546-the-intelligence-entropy-stack-when-your-agent-degrades-for-no-reason-you-can-measure.md)
+  - [S-1548 · The Reasoning Token Tax Stack — When Your Agent Quietly Spends 9× What You Budgeted](stacks/s1548-the-reasoning-token-tax-stack-when-your-agent-quietly-spends-9x-what-you-budgeted.md)
 
   - [S-1536 · The Durable Execution Stack — When LangGraph Gives You the Agent and Temporal Gives You the Guarantee](stacks/s1536-the-durable-execution-stack-when-langgraph-gives-you-the-agent-and-temporal-gives-you-the-guarantee.md)
