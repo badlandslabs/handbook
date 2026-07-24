@@ -698,5 +698,7 @@
   - [S-1568 · The Execution Boundary Stack — When Your Sandboxed Agent Runs Arbitrary Code Without Leaving](stacks/s1568-the-execution-boundary-stack-when-your-sandboxed-agent-runs-arbitrary-code-without-leaving.md)
   - [S-1569 · The Agent RL Training Infrastructure Stack — When Your Agent Gets Better at Everything and Worse at the One Thing That Matters](stacks/s1569-the-agent-rl-training-infrastructure-stack-when-your-agent-gets-better-at-everything-and-worse-at-the-one-thing-that-matters.md)
   - [S-1566 · The Continuous Evaluation Pipeline Stack — When Your Agent Isn't as Good as It Was Last Tuesday](stacks/s1566-the-continuous-evaluation-pipeline-stack-when-your-agent-isnt-as-good-as-it-was-last-tuesday.md)
+  - [S-1571 · The Economic Firewall Stack — When Your Agent Runs for 11 Days and Burns $47,000](stacks/s1571-the-economic-firewall-stack-when-your-agent-runs-for-11-days-and-burns-47000-dollars.md)
+  - [S-1573 · The Sandbox Gap Stack — When Your Agent Has Full System Access Through a Hole Your Prompt Guardrails Cannot Close](stacks/s1573-the-sandbox-gap-stack-when-your-agent-has-full-system-access-through-a-hole-your-prompt-guardrails-cannot-close.md)
 
   - [S-1536]

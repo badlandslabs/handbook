@@ -2041,11 +2041,56 @@ agentic-ci → I-3005
 | 2026-07-23 | I-298 | WRITTEN — S-1548 | The Reasoning Token Tax Stack — composite 8.85. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: AgentMarketCap (April 24, 2026) reported 2.3x–8.7x hidden thinking token multipliers across Claude Opus 4.6, o3, and Gemini 2.5 Flash on coding agent tasks. The tax is per-call: thinking tokens billed as output tokens at output rates. In agentic pipelines (10-20 calls), compounding means visible-token budgets understate real cost by 10-80x. Deduplication: S-08 (Prompt Caching) covers input token efficiency; S-1472 (Compounding Reliability) covers reliability compounding; neither covers the billing asymmetry of extended thinking tokens as output-cost multipliers. The gap is hidden multiplier = thinking_tokens / visible_output_tokens, exposed by API metadata. Pattern: the unit economics of agentic inference are fundamentally different from single-call chatbots — thinking token tax is the dominant cost dimension. Cross-links to S-1158 (Adaptive Compute), S-1239 (Runtime Verification), S-1472 (Compounding Reliability) for compounding interaction. |
 
 | I-3007 | The Agent RL Training Infrastructure Stack: When Your Agent Gets Better at Everything and Worse at the One Thing That Matters | agent-rl, rlvr, agent-training, reward-hacking, distribution-collapse, environment-parity, process-reward, outcome-reward, rubric-design, synthetic-trajectories, agent-fine-tuning, agent-rft, reward-signal, curriculum, graduated-rollout, agent-curriculum | 9 | 10 | 9 | 9 | 8 | **9.00** | WRITTEN — S-1569 | 2026-07-24 | 2026-07-24 |
+|| I-3008 | The Economic Firewall Stack: When Your Agent Runs for 11 Days and Burns $47,000 | economic-firewall, cost-enforcement, token-budget, spend-ceiling, budget-enforcement, runaway-agent, cost-control, pre-flight-check, budget-decomposition, hierarchical-budget, agent-finops, spend-governance, partial-result, circuit-breaker, hard-cap, per-task-budget, per-session-budget, cost-estimation, cost-prediction, spend-alert, enforcement-gateway | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-1571 | 2026-07-24 | 2026-07-24 |
+|| I-3009 | The Sandbox Gap Stack: When Your Agent Has Full System Access Through a Hole Your Prompt Guardrails Cannot Close | sandbox-gap, container-isolation, microvm, firecracker, kata-containers, code-execution, sandbox-escape, container-escape, blast-radius, privilege-escalation, cloud-credential-theft, docker-socket, metadata-endpoint, mcp-server-rce, dns-exfiltration, defense-in-depth, least-privilege, gvisor, hardened-container, workload-identity, agent-security, OWASP-LLM08, sandbox-bypass, capability-scoping | 10 | 9 | 10 | 9 | 8 | **9.35** | WRITTEN — S-1573 | 2026-07-24 | 2026-07-24 |
+
+economic-firewall → I-3008
+cost-enforcement → I-3008
+token-budget → I-3008
+spend-ceiling → I-3008
+budget-enforcement → I-3008
+runaway-agent → I-3008
+cost-control → I-3008
+pre-flight-check → I-3008
+budget-decomposition → I-3008
+hierarchical-budget → I-3008
+agent-finops → I-3008
+spend-governance → I-3008
+partial-result → I-3008
+circuit-breaker → I-3008
+hard-cap → I-3008
+per-task-budget → I-3008
+per-session-budget → I-3008
+cost-estimation → I-3008
+cost-prediction → I-3008
+spend-alert → I-3008
+enforcement-gateway → I-3008
+sandbox-gap → I-3009
+container-isolation → I-3009
+microvm → I-3009
+firecracker → I-3009
+sandbox-escape → I-3009
+container-escape → I-3009
+blast-radius → I-3009
+cloud-credential-theft → I-3009
+docker-socket → I-3009
+metadata-endpoint → I-3009
+gvisor → I-3009
+hardened-container → I-3009
+workload-identity → I-3009
+agent-security → I-3009, I-3002
+OWASP-LLM08 → I-3009
+sandbox-bypass → I-3009
+capability-scoping → I-3009
 
 ## Pattern Log
 
 - *2026-07-24* — **RLVR Infrastructure Compounding**: RL post-training is the dominant production optimization vector for agents in 2026 (OpenAI Agent RFT: 5-23% accuracy gains, Scale AI Agent-RLVR: 9.4%→22.4% SWE-Bench). The failure mode isn't the training itself — it's the infrastructure around it: environment parity gaps, single-signal reward design, distribution collapse in recursive self-training, and missing graduated deployment gates. This is the first entry to unify all four layers as a coherent engineering stack.
+- *2026-07-24* — **Economic Firewall Principle**: Autonomous agents need cost enforcement, not cost monitoring. The distinction is architectural: monitoring tells you what went wrong after the spend; enforcement stops the call before it burns budget. The right primitive is a pre-flight check at the gateway layer — estimate → compare → block/allow — with hierarchical budget decomposition (team → service → agent → task) and partial-result semantics on ceiling hit. Three documented incidents validate the pattern: $47K LangChain 11-day loop (Waxell, Apr 2026), DN42 network scanning agent runaway (HN, Jun 2026), AgentBudget OSS project (github.com/AgentBudget/agentbudget). Connected ideas: I-3008.
+- *2026-07-24* — **The Last Untrusted Code Boundary**: Agent sandbox escapes are bypasses, not breakouts. The agent uses legitimate capabilities — a file reader, a shell tool, a cloud API client — for unanticipated ends. Prompt guardrails and policy kernels operate above this boundary. The sandbox is the only layer below it. Defense requires four layers: capability scoping (least-privilege tool config) → hardened containers (cap-drop ALL, non-root, read-only, noexec tmpfs) → microVM isolation (Firecracker, Kata) → network perimeter (block 169.254.169.254, workload identity). Six documented attack families: tool misuse escalation, Docker socket exposure, cloud credential theft, MCP server RCE, DNS exfiltration, supply chain via package install. Six CVEs: CVE-2025-59528 (CVSS 10.0), CVE-2024-21626 (runc, CVSS 8.6), CVE-2026-61447, CVE-2026-54769, CVE-2026-57572, CVE-2026-59726. Sysdig documented first autonomous LLM extortion operation (2026).
 
 ## Recent Decisions
 
-| 2026-07-24 | I-3007 | WRITTEN — S-1569 | Composite 9.00. Idea: Agent RL Training Infrastructure. Research: OpenAI Agent RFT platform (InfoQ, 2026), Scale AI Agent-RLVR (arXiv:2506.11425), reward hacking taxonomy (arXiv:2604.13602), multi-agent production patterns (beam.ai Jul 2026). Deduplication: S-1028 (trajectory degeneration) and S-1236 (rubric-gated pipeline) cover adjacent ground — this entry bridges them with a unified four-layer RLVR infrastructure stack (environment parity → reward signal architecture → distribution health → graduated deployment). S-1237 (trajectory ground truth) also related. Coverage gap confirmed: no single entry covers all four layers together. Timeliness confirmed: RL-based agent training is the primary production optimization lever in 2026 per multiple sources. Next candidate: RLVR environment simulation (sandbox-to-prod parity engineering) or agent compensation-key design for RLVR trajectories.
+| 2026-07-24 | I-3007 | WRITTEN — S-1569 | Composite 9.00. Idea: Agent RL Training Infrastructure. Research: OpenAI Agent RFT platform (InfoQ, 2026), Scale AI Agent-RLVR (arXiv:2506.11425), reward hacking taxonomy (arXiv:2604.13602), multi-agent production patterns (beam.ai Jul 2026). Deduplication: S-1028 (trajectory degeneration) and S-1236 (rubric-gated pipeline) cover adjacent ground — this entry bridges them with a unified four-layer RLVR infrastructure stack (environment parity → reward signal architecture → distribution health → graduated deployment). S-1237 (trajectory ground truth) also related. Coverage gap confirmed: no single entry covers all four layers together. Timeliness confirmed: RL-based agent training is the primary production optimization lever in 2026 per multiple sources. Next candidate: RLVR environment simulation (sandbox-to-prod parity engineering) or agent compensation-key design for RLVR trajectories. |
+| 2026-07-24 | I-3008 | WRITTEN — S-1570 | Composite 9.25. Idea: Agent Economic Firewall. Research: Waxell $47K LangChain loop (Apr 2026), DN42 agent scanning runaway (HN, Jun 2026), AgentBudget OSS (github.com/AgentBudget/agentbudget). Core insight: cost monitoring vs cost enforcement — the architectural distinction between post-hoc visibility and pre-flight blocking. Hierarchical budget decomposition, partial-result semantics, enforcement gateway patterns. Timeliness: EU AI Act (Aug 2026) requires financial controls for autonomous systems. Coverage gap: no prior entry covers cost enforcement architecture specifically for agents. |
+| 2026-07-24 | I-3009 | WRITTEN — S-1573 | Composite 9.35. Idea: Agent Sandbox Gap. Research: Context Guard "LLM Sandbox Escapes" (Jun 25, 2026), OpenLegion "AI Agent Sandboxing" (Jun 2026), BeyondScale "AI Agent Sandboxing Enterprise Guide" (Apr 22, 2026), Northflank "Code Execution for Autonomous Agents" (Mar 3, 2026), Zylos Research "AI Agent Sandbox & Isolation" (Feb 21, 2026). CVEs: CVE-2025-59528 (CVSS 10.0), CVE-2024-21626 (runc fd leak, CVSS 8.6), CVE-2026-61447, CVE-2026-54769, CVE-2026-57572, CVE-2026-59726. Sysdig documented first extortion operation run end-to-end by an autonomous LLM agent (2026). Core finding: sandbox escapes in agentic systems bypass rather than break containment — agents use legitimate capabilities for unanticipated ends. Four-layer defense stack: capability scoping → hardened containers → microVM isolation → network perimeter. Coverage gap: partial overlap with S-1458 (policy kernel) and S-1555 (MCP shift-left) but no dedicated isolation-technology comparison entry. Pattern: the last untrusted code boundary. Next candidate: autonomous agent liability frameworks, or multi-agent consensus failure patterns. |
