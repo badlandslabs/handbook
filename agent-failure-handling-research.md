@@ -196,3 +196,333 @@ Agents are deployed because they handle multi-step tasks autonomously. But produ
 
 20. Hacker News — "Show HN: Agent-triage – diagnosis of agent failures from production traces" (Jun 2026)  
     https://news.ycombinator.com/item?id=47334775
+
+---
+
+## ADDITIONAL PRIMARY SOURCES (July 2026 research run)
+
+### SDK-Level Error Handling
+
+**Anthropic Python SDK** - Retry Configuration
+Source: GitHub Discussion #1341
+URL: https://github.com/anthropics/anthropic-sdk-python/discussions/1341
+miaoquai.com practitioners: retry with exponential backoff, fallback models, tool failure handling,
+state consistency cleanup. SDK: max_retries=3 (default 2), timeout=60.0.
+
+**Cloudflare Agents SDK** - Built-in Retries
+URL: https://developers.cloudflare.com/agents/runtime/execution/retries/
+Default: 3 retries with jittered exponential backoff. NOTE: No circuit breaker.
+Each task exhausts its own retry budget independently.
+
+**Strands Agents SDK** - Retry Strategies
+URL: https://strandsagents.com/docs/user-guide/concepts/agents/retry-strategies
+Rate limits, service unavailability, timeouts: auto-retried with exponential backoff.
+Configurable via Agent.retryStrategy parameter.
+
+### HTTP Status Code Taxonomy
+
+URL: https://claudeimplementation.com/blog/claude-error-handling-retry-patterns
+Retryable: 429 (Rate Limited), 500 (Server Error), 529 (API Overloaded)
+NOT retryable: 400, 401, 403, 404
+
+### Circuit Breaker Libraries
+
+**agentguard-llm** (PyPI: agentguard) - Production-grade fault tolerance
+URL: https://github.com/maheshmakvana/agentguard-llm
+"AI agents fail at 91%+ rates in production. agentguard stops that."
+Zero hard deps. Works with LangChain, AutoGen, CrewAI, or custom pipelines.
+
+**agentguard (rigvedrs)** - Circuit Breaker Guide
+URL: https://rigvedrs.github.io/agentguard/guides/circuit-breaker
+Trip threshold: 5 consecutive failures -> breaker opens for 30s.
+Alternative: gt 30% error rate in 10min -> stop agent.
+Policy modes: CLOSED (requeues) vs OPEN (allow with bypass signals).
+
+**Medium** - Resilience Circuit Breakers for Agentic AI
+URL: https://medium.com/40michael.hannecke/resilience-circuit-breakers-for-agentic-ai-cc7075101486
+Safety Alignment CBs (inference safety) vs Operational Resilience CBs (component failures).
+State machine: CLOSED - OPEN - HALF_OPEN.
+
+### Browser Agent Loop Guards
+
+**browser-use/views.py** - Production loop guard configuration
+URL: https://github.com/browser-use/browser-use/blob/main/browser_use/agent/views.py
+- planning_replan_on_stall: 3 consecutive failures before replan nudge
+- planning_exploration_limit: 5 steps without plan before nudge
+- step_timeout: 180s, llm_timeout: 60s
+- final_response_after_failure: attempt final recovery before giving up
+
+**oh-bug.com** - Computer-Use Agent Browser Automation
+URL: https://www.oh-bug.com/posts/computer-use-agent-browser-automation-production/
+"Model decides next step. Human-written executor constrains actions, validates state,
+and leaves evidence." Four layers: Observation, Decision, Execution, Validation.
+
+### Loop Detection Libraries
+
+**LoopBuster** (93 stars, MIT, 2026-05-30)
+URL: https://github.com/liuchunwei732-cmyk/loopbuster
+4 strategies: ExactRepeat, FuzzyRepeat (Jaccard + Levenshtein + noise denoising),
+CycleDetection, OutputStagnation. Zero hard deps, framework-agnostic.
+Also: StateStasisGuard for meaningful-state-change detection.
+
+### Checkpoint and Resume
+
+**LangGraph Checkpointing** (GA v1.0, October 2025)
+URL: https://github.com/langchain-ai/langgraph/blob/main/libs/checkpoint/README.md
+MemorySaver (dev) and PostgresSaver (prod with connection pooling).
+interrupt() pauses graph, saves state. Resume via Command(resume=...).
+Source: https://dev.to/focused_dot_io/langgraph-error-handling-patterns-for-production-ai-agents-33p7
+
+**Neel Mishra Blog**
+URL: https://neelmishra.github.io/blog/mlops/llm-agents/agent-error-handling.html
+"Store checkpoints in Redis or a database, not in-memory. Agent processes can crash
+or be restarted by container orchestrators. External state stores ensure recovery."
+
+**agent-persist** - Checkpoint across restarts
+URL: https://github.com/dabit3/agent-persist
+
+**OneUptime** - Dapr Checkpointing
+URL: https://oneuptime.com/blog/post/2026-03-31-dapr-agents-checkpoint-resume/view
+Dapr state management for distributed agent checkpoint/resume.
+
+### Multi-Agent Failure Distribution
+
+**zylos.ai Research**
+URL: https://zylos.ai/zh/research/2026-05-06-agent-self-healing-failure-recovery
+Galileo 2025: Specification failures ~42%, Coordination breakdowns ~37%,
+Resource exhaustion ~12%, Security violations ~9%.
+
+**CrewAI vs LangGraph** (bswen.com)
+URL: https://docs.bswen.com/blog/2026-04-17-agent-timeout-failure-recovery/
+LangGraph checkpointing more mature than CrewAI. CrewAI: max_iterations only, no native checkpoint.
+
+### Timeout Fixes
+
+**markaicode.com** - Fix LangChain Agent Timeout Errors
+URL: https://markaicode.com/errors/ai-automation-timeout-fix
+"82% of agent failures in LangChain 0.3.x were caused by DEFAULT TIMEOUTS."
+LangChain issue: https://github.com/langchain-ai/langchain/issues/12452
+Recommended: max_execution_time=120 for tool-heavy agents.
+
+**bswen.com** - Agent Timeout and Failure Recovery
+URL: https://docs.bswen.com/blog/2026-04-17-agent-timeout-failure-recovery/
+"Timeout and failure recovery are not optional features - they are survival requirements."
+Cascade problem: Agent A timeout -> B blocked -> C blocked.
+Solutions: per-agent timeout walls, checkpoint on timeout, cascade notification.
+
+### Community Discussions
+
+**Reddit r/AI_Agents**
+URL: https://www.reddit.com/r/AI_Agents/comments/1qnavt9/the_infinite_loop_fear_is_real_how_are_you/
+"Most agent frameworks give you great tools for acting, but very few tools for restraint."
+Practitioners: max step budgets, token budget walls, cost alerts, structured output validation.
+
+**Hacker News** threads:
+- Why agents fail in prod: news.ycombinator.com/item?id=46450307
+- What broke evaluating agent: news.ycombinator.com/item?id=47416033
+
+### OpenHelm - Error Handling Quantified
+
+URL: https://openhelm.ai/blog/error-handling-reliability-patterns-production-ai-agents
+"Proper error handling increased agent reliability from 87% to 99.2% (14x fewer failures)."
+Retry: 1s, 2s, 4s, 8s (max 3-5), 30% jitter, 60s cap.
+"Do not fail closed on everything. Model API down: try fallback. Auth failure: escalate."
+
+---
+
+*Sources from July 2026 research run. All quotes from primary source content.*
+
+---
+
+## NEWLY RESEARCHED SOURCES (July 2026 supplementary)
+
+### Hacker News Threads
+
+**1. "Show HN: LoopGain – Stop agent loops with control theory, not max_iterations"**
+- Author: `fitz2882`
+- Date: July 2026 (1 day ago at time of search)
+- URL: https://news.ycombinator.com/item?id=48919562
+- Points: 30 | Comments: 12
+- Summary: Open-source library replacing fixed `max_iterations` caps with control-theoretic termination policy using loop-gain (Aβ) bands + best-so-far rollback. 92.8% less API spend vs. `max_iter=20`, ~15× faster, quality preserved. Adapters for LangGraph, CrewAI, AutoGen, LangChain, OpenAI Agents, Claude Agent SDK.
+- Repo: https://github.com/loopgain-ai/loopgain (Apache-2.0, ~101 stars)
+
+**2. "Ask HN: How do you prevent retry cascades in LLM systems?"**
+- Author: `amabito`
+- Date: ~5 months ago (Feb 2026)
+- URL: https://news.ycombinator.com/item?id=47087398
+- Summary: Author ran into retry amplification issue: provider returned 429s, per-call retry limits were in place but no containment mechanism, leading to cascading failures. Asks about chain-level retry budgets, shared circuit breaker state, per-minute cost ceilings, cost-based limits (tokens/$) vs. retry count.
+- Discussion focus: Preventing retry amplification across multi-call agent chains.
+
+**3. "Show HN: AgentCircuit – Circuit breaker for AI agent functions"**
+- Author: `simranmultani`
+- Date: ~5 months ago (Feb 2026)
+- URL: https://news.ycombinator.com/item?id=46899775
+- Points: 1 | Comments: 1
+- Summary: One decorator to make any AI agent reliable. Loop detection, auto-repair, output validation, budget control. Zero config, no server, no database. Supported: LangGraph, LangChain, CrewAI, AutoGen.
+- Repo: https://github.com/simranmultani197/AgentCircuit (MIT, ~5 stars)
+
+**4. "Ask HN: How do you prevent MCP agents from looping in production?"**
+- Author: (unknown — thread content summarized in search results)
+- Date: ~4 months ago (Mar 2026)
+- URL: https://news.ycombinator.com/item?id=47331249
+- Summary: Author building with MCP, starting to run agents with more autonomy (multiple tools, longer sessions, less human oversight). Currently using hard iteration limits which feels like a blunt instrument. Asking what others do for production MCP agents.
+
+**5. "Show HN: AgentFuse – A local circuit breaker to prevent $500 OpenAI bills"**
+- Author: `abdulbasitali`
+- Date: ~6 months ago (Jan 2026)
+- URL: https://news.ycombinator.com/item?id=46404312
+- Points: 3 | Comments: 3
+- Summary: Author fell asleep while a script was running, agent got stuck in a loop, woke up to drained OpenAI credit balance. Built a lightweight local circuit breaker as alternative to heavy enterprise proxies or cloud dashboards.
+- Repo: https://github.com/AbdulBasitA/agent-fuse (MIT, pip install `agent-fuse`)
+
+**6. "Show HN: AgentGuard – Auto-kill AI agents before they burn through your budget"**
+- Author: (HN user, npm package `agent-guard`)
+- Date: ~10 months ago (Sep 2025)
+- URL: https://news.ycombinator.com/item?id=44742710
+- Summary: npm package that monitors AI API costs in real-time and auto-terminates processes when budget limit is reached. Monkey-patches HTTP libraries to detect AI API calls and calculates costs. Only supports OpenAI and Anthropic APIs. Noted limitation: cost calculations are estimates.
+
+**7. "Ask HN: How are you testing AI agents before shipping to production?"** (contains cascade failure discussion)
+- Author: `rolifromhermes`
+- Date: ~4 months ago (Mar 2026)
+- URL: https://news.ycombinator.com/item?id=47325105
+- Summary: Lists failure modes including: "Cascade failures — tool call #1 fails, agent keeps going, by the time a human sees the result 3 calls have compounded the error." Also: data integration drift (deprecated endpoints), authorization confusion (cached context bleeds between users). 50+ test cases across categories.
+
+**8. "The unreasonable effectiveness of an LLM agent loop with tool use"** (HN discussion)
+- URL: https://news.ycombinator.com/item?id=43998472
+- Notable comment by `CuriouslyC`: "The main problem with agents is that they aren't reflecting on their own performance and pausing their own execution to ask a human for help aggressively enough. Agents can run on for 20+ iterations in many cases successfully, but also will need hand holding after every iteration in some cases. They're a lot like a human in that regard, but we haven't been building that reflection and self awareness into them so far, so it's like a junior that doesn't realize when they're over their depth and should get help."
+
+**9. "Show HN: Agent framework that generates its own topology and evolves at runtime"**
+- Author: `vincentjiang`
+- Date: ~5 months ago (Feb 2026)
+- URL: https://news.ycombinator.com/item?id=46979781
+- Points: 107 | Comments: 35
+- Summary: Agent framework that generates/changes its own topology at runtime. HN discussion touched on failure modes of dynamic topology — harder to reason about where loops can form.
+
+**10. "Show HN: Optio – Orchestrate AI coding agents in K8s to go from ticket to PR"**
+- Author: `jawiggins`
+- Date: ~3 months ago (Apr 2026)
+- URL: https://news.ycombinator.com/item?id=47520220
+- Points: 88 | Comments: 60
+- Summary: K8s orchestration for AI coding agents. Discussion touched on agent reliability, failure handling, and human-in-the-loop checkpoints.
+
+---
+
+### GitHub Repositories
+
+**1. hamley241/circuit-breaker-agents**
+- URL: https://github.com/hamley241/circuit-breaker-agents
+- License: Apache-2.0 | Created: 2026-03-30
+- Stars: 0 | Forks: 0
+- **Summary:** Monte Carlo validation (100,000+ trials) of circuit breaker patterns for multi-agent LLM systems. Results:
+  - SIMPLE_CB: ~7% cascading failure reduction
+  - AI_CB (4-state reasoning-aware): ~48% reduction
+  - ADAPTIVE_CB (dynamic thresholds + chain-length optimization): **~75% reduction**
+- Key finding: Adaptive circuit breakers outperform simple ones significantly in multi-agent chains.
+
+**2. hailports/self-healing-agent**
+- URL: https://github.com/hailports/self-healing-agent
+- License: MIT | Created: 2026-06-28
+- Stars: 0 | Forks: 0 | **Python 3.9+ | Zero dependencies (stdlib only)**
+- **Summary:** Tiny reference loop for autonomous AI agents with: retries, circuit breakers, watchdogs, checkpoint/resume, budget governor. Provider-agnostic via single `generate(system, messages) -> str` method. Runs offline with no API keys. All reliability components independently testable.
+- Failure patterns addressed: rate limits, flaky APIs, hung requests, processes dying.
+
+**3. T4n17/CrewAI-Retry-After-Failure-Patch**
+- URL: https://github.com/T4n17/CrewAI-Retry-After-Failure-Patch
+- License: MIT | Created: 2025-07-30
+- Stars: 1 | Forks: 0
+- **Summary:** Community patch for CrewAI Task class implementing retry-on-failure. In standard CrewAI, task failure due to exception (e.g., API rate limit) leaves crew in broken state. This patch adds configurable retry attempts before giving up.
+
+**4. vectara/awesome-agent-failures**
+- URL: https://github.com/vectara/awesome-agent-failures
+- License: Apache-2.0 | Created: 2025-08-20
+- Stars: **190** | Forks: 17
+- **Summary:** Community-curated collection of AI agent failure modes and battle-tested solutions. Top failure modes documented:
+  - Tool Hallucination: tool output incorrect → agent makes decisions on false info
+  - Response Hallucination: agent combines tool outputs into factually inconsistent response
+  - Infinite Loops: agent keeps repeating actions (26+ reports in dataset)
+  - State Confusion: agent operates on wrong target or leaves workflow in incorrect state
+  - Premature Submission: agent submits incomplete artifact before workflow is done
+  - Retry/No-Progress Loop: repeated retries with no adaptation (26 reports)
+- Also documents [Agent0 Issue #1011](https://github.com/agent0ai/agent-zero/issues/1011): agent stuck in repeat loop after tool hangs, with 9 comments and linked PR #1781.
+
+**5. huggingface/smolagents — Timeout Fix PR #2003**
+- URL: https://github.com/huggingface/smolagents/pull/2003
+- Title: "fix: add timeout to web search tools to prevent indefinite hangs"
+- Author: `giulio-leone`
+- **Summary:** PR adding timeouts to web search tools in smolagents. Prevents indefinite hangs — a concrete example of the timeout-gap problem in agent tool execution.
+
+**6. microsoft/autogen — Discussion #6200 (Retry Mechanism)**
+- URL: https://github.com/microsoft/autogen/discussions/6200
+- Author: `Yuva-raj-18`
+- Date: 2025-04-04
+- Category: feature-suggestions
+- **Summary:** Request for automatic retry when agent returns empty response. Discussion of retry design for AutoGen .NET. Root concern: agent returning empty response randomly with SemanticKernelAgentAdapter — why does it happen + how to handle it.
+
+**7. langchain-ai/langgraph — Issue #6170 (Robust Node Error Handling)**
+- URL: https://github.com/langchain-ai/langgraph/issues/6170
+- Author: `sydney-runkle` (LangGraph maintainer)
+- Created: 2025-09-19 | State: open | Comments: 8
+- **Summary:** LangGraph maintainer-labeled issue for scoping "more robust error handling for nodes" — described as needing "some sort of hooks or middleware" and "awesome docs." Tagged as enhancement, internal. Frequently requested feature.
+
+**8. langchain-ai/langgraph — Fault Tolerance Documentation**
+- Source: https://www.langchain.com/blog/fault-tolerance-in-langgraph
+- Authors: Quanzheng Long, Sydney Runkle
+- Published: June 4, 2026
+- **Summary:** LangGraph's three fault tolerance primitives:
+  1. **RetryPolicy**: Automatic retries with backoff/jitter for transient errors. Attached directly to nodes via `add_node`.
+  2. **TimeoutPolicy**: Wall-clock or progress-based cap on node attempts.
+  3. **error_handler**: Runs after retries exhausted, with failure context.
+- Key insight: LangGraph models agents as discrete graph steps → unified place to handle all failure types.
+- Also: DeepWiki docs at https://deepwiki.com/langchain-ai/langgraph/3.8-error-handling-and-retry-policies
+
+---
+
+### Notable Blog/Article Sources
+
+**1. "How to Handle Agent Timeout and Failure Recovery in Multi-Agent Systems"**
+- Source: docs.bswen.com
+- URL: https://docs.bswen.com/blog/2026-04-17-agent-timeout-failure-recovery/
+- **Summary:** Practical comparison of CrewAI vs LangGraph approaches to circuit breakers, retry logic, and error handling. LangGraph checkpointing more mature. CrewAI: `max_iterations` only, no native checkpoint. Key quote: "Timeout and failure recovery are not optional features — they are survival requirements." Cascade problem: Agent A timeout → B blocked → C blocked. Solutions: per-agent timeout walls, checkpoint on timeout, cascade notification.
+
+**2. "Graceful Degradation — How AI Agents Handle Failing Services"**
+- URL: https://kangclaw.github.io/posts/graceful-degradation-ai-agents
+- Published: February 20, 2026
+- **Summary:** Philosophy: "Degrade, don't die." Multiple live examples:
+  - Search: primary API fails → backup search provider
+  - Notifications: push fails → queue for retry → fallback to email
+  - Memory: vector search times out → keyword fallback
+  - Voice: primary TTS fails → alternative TTS
+- Key principle: silent fallback preferred over error messages when possible.
+
+**3. "Infinite Loop / Stuck Agent" Failure Mode Reference**
+- URL: https://reputagent.com/failures/infinite-loop
+- **Summary:** Structured failure mode catalog entry:
+  - Detection: repeated identical/near-identical actions, increasing resource consumption, no task progress, circular reasoning in logs
+  - Root causes: missing termination conditions, inadequate error handling, poor state tracking, lack of progress metrics
+  - Mitigation: explicit termination criteria, progress tracking, watchdog timers, budget caps
+
+**4. "500 AI Agent Repos: Infinite Loops the Most Common Bug"**
+- URL: https://aiproductivity.ai/news/ai-agent-repos-infinite-loop-bugs-research/
+- **Summary:** Security audit of 500 open-source AI agent codebases. Key finding: one consistent flaw across nearly all — no exit conditions. "Developers build the loop; they skip the stop."
+
+**5. "The expensive part of an AI agent failure is usually the retry loop"**
+- URL: https://dev.to/keesan/the-expensive-part-of-an-ai-agent-failure-is-usually-the-retry-loop-245b
+- **Summary:** Author experienced three errors that took down staging cluster. Key insight: retry loops are where the real cost accumulates — both in API spend and in cascading downstream failures.
+
+---
+
+### ArXiv Papers Referenced in HN/Community Discussions
+
+**"Operational Hallucination and Safety Drift in AI Agents"**
+- URL: https://arxiv.org/abs/2607.18367
+- **Summary:** Empirically characterizes two observed failure modes across state-of-the-art LLMs:
+  - **Safety Drift**: gradual erosion of declared safety intent → constraint-violating actions
+  - **Operational Hallucination**: persistent repetitive tool calls
+
+**"Hallucination as Context Drift: Synchronization Protocols for Multi-Agent LLM Systems"**
+- URL: https://arxiv.org/abs/2606.21666
+- **Summary:** Multi-agent LLM systems produce hallucinated outputs not explained by model deficiencies alone — significant class of failures arises from **context drift**: divergence of internal knowledge states between concurrent agents. Proposes synchronization protocols.
+
+---
+
+*All URLs verified via web search and extraction. Dates approximated from relative search results. Stars/forks as of July 2026 search time.*

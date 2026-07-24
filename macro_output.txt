@@ -1,0 +1,28 @@
+=== VIX / FEAR INDEX ===
+  VIX: 18.19  (high=18.32, low=17.32)
+
+=== CREDIT SPREAD (RISK SENTIMENT) ===
+  HYG: 79.52  LQD: 106.67
+  HYG/LQD ratio: 0.7455
+
+=== DOLLAR INDEX ===
+$DXY: possibly delisted; no price data found  (period=5d)
+
+=== 20Y TREASURY (TLT) ===
+  TLT: 83.44  5d change: -0.9%
+
+=== SMALL CAP BREADTH (IWM/SPY) ===
+  Ratio 20d: 4.0463 -> 3.9308  FALLING
+
+=== SECTOR ROTATION (20d vs SPY) ===
+  XLK (Tech): -1.5% (20d)
+  XLY (Disc): -0.9% (20d)
+  XLU (Utils): +0.9% (20d)
+
+=== UPGRADES / DOWNGRADES (last 7 days) ===
+  AAPL: N/A  action=N/A
+  NVDA: N/A  action=N/A
+  META: N/A  action=N/A
+  AMD: N/A  action=N/A
+  AVGO: N/A  action=N/A
+  AMZN: N/A  action=N/A

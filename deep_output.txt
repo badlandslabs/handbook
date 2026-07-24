@@ -1,48 +1,270 @@
-DEEP DIVE — 2026-07-08 14:36:21 UTC
 
-═══ TXN ═══
-  Price:         $301.87
-  RSI(14):       48.7  (NEUTRAL-SOFT)
-  Stochastic K:  44.8
-  ATR(14):       $16.51  (5.5% of price)
-  ATR% of 52wHi: 50%
-  Gap today:     +2.92%
-  5d return:     +1.3%  |  10d: -0.8%  |  20d: +3.8%
-  Vol ratio:     0.15  (avg 20d vol = 10089042)
-  HH/HL Struct:  NO — no clear structure
-  MACD Hist:      -1.4291  |  Crossed bullish: False
-ERROR on TXN: 'NoneType' object has no attribute 'iloc'
-═══ HOOD ═══
-  Price:         $111.40
-  RSI(14):       62.4  (NEUTRAL)
-  Stochastic K:  68.3
-  ATR(14):       $7.07  (6.3% of price)
-  ATR% of 52wHi: 50%
-  Gap today:     -1.33%
-  5d return:     +11.1%  |  10d: +7.9%  |  20d: +31.0%
-  Vol ratio:     0.16  (avg 20d vol = 32622368)
-  HH/HL Struct:  NO — no clear structure
-  MACD Hist:      0.8669  |  Crossed bullish: False
-ERROR on HOOD: 'NoneType' object has no attribute 'iloc'
-═══ META ═══
-  Price:         $602.97
-  RSI(14):       50.6  (NEUTRAL-SOFT)
-  Stochastic K:  71.3
-  ATR(14):       $22.98  (3.8% of price)
-  ATR% of 52wHi: 50%
-  Gap today:     -2.05%
-  5d return:     +7.0%  |  10d: +7.3%  |  20d: +3.1%
-  Vol ratio:     0.17  (avg 20d vol = 18112269)
-  HH/HL Struct:  YES — bullish structure
-  MACD Hist:      6.7166  |  Crossed bullish: False
-ERROR on META: 'NoneType' object has no attribute 'iloc'
-─── QQQ REGIME CONTEXT ──
-  QQQ: $706.76  RSI:42.6  MA20:718.44  MA50:711.93
-  5d:-4.0%  20d:-1.2%  ATR%:2.3%
-  Regime: BEAR
-  Note: QQQ RSI 42.6 + negative 5d/20d returns = BEAR classification (tech underperforming SPY)
+======================================================================
+  AAPL  -- DEEP DIVE
+======================================================================
+  PRICE: $325.89
+  5D: -0.5%   10D: +4.0%   20D: +10.7%
+  SMA20: $310.06  ABOVE
+  SMA50: $304.89  ABOVE
+  SMA200: N/A
+  RSI(14): 61.6  NEUTRAL
+  MACD: 8.714  signal: 7.116  hist: 1.598  BULLISH
+  ATR(14): $7.82  (2.4% of price)
+  VOL RATIO: 0.60x avg
+  BB Lower: $274.30  BB Upper: $345.83
+  Position in BB range: 72% 
 
-  SPY regime: BULL (RSI 46, near 52w highs)
-  IWM regime: BULL (RSI 52, strong small-cap)
-  => MARKET SPLIT: Broad market BULL but NASDAQ TECH BEAR (QQQ -4% in 5 days)
-  => FAVOR: Defensive rotation (XLV, XLF) and short-term mean-reversion on beaten tech
+  FIBONACCI (swing: $264.83 -- $334.99):
+    23.6%: $281.38
+    38.2%: $291.63
+    50.0%: $299.91
+    61.8%: $308.19
+    78.6%: $319.97
+
+  RESISTANCE levels (nearest 3): ['$333.71', '$334.68', '$334.99']
+  SUPPORT levels (nearest 3):    ['$279.85', '$274.21', '$273.75']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  NVDA  -- DEEP DIVE
+======================================================================
+  PRICE: $212.06
+  5D: -0.2%   10D: +3.9%   20D: +6.0%
+  SMA20: $202.29  ABOVE
+  SMA50: $209.59  ABOVE
+  SMA200: N/A
+  RSI(14): 62.5  NEUTRAL
+  MACD: 0.751  signal: -0.341  hist: 1.092  BULLISH
+  ATR(14): $7.21  (3.4% of price)
+  VOL RATIO: 1.01x avg
+  BB Lower: $189.46  BB Upper: $215.12
+  Position in BB range: 88% (near upper band)
+
+  FIBONACCI (swing: $189.80 -- $236.26):
+    23.6%: $200.77
+    38.2%: $207.55
+    50.0%: $213.03
+    61.8%: $218.52
+    78.6%: $226.32
+
+  RESISTANCE levels (nearest 3): ['$212.55', '$213.81', '$214.39']
+  SUPPORT levels (nearest 3):    ['$191.22', '$191.14', '$189.80']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  META  -- DEEP DIVE
+======================================================================
+  PRICE: $627.17
+  5D: -7.9%   10D: +4.0%   20D: +11.6%
+  SMA20: $615.93  ABOVE
+  SMA50: $605.82  ABOVE
+  SMA200: N/A
+  RSI(14): 44.7  NEUTRAL
+  MACD: 15.387  signal: 13.986  hist: 1.400  BULLISH
+  ATR(14): $24.24  (3.9% of price)
+  VOL RATIO: 0.56x avg
+  BB Lower: $528.52  BB Upper: $703.34
+  Position in BB range: 56% 
+
+  FIBONACCI (swing: $540.18 -- $686.08):
+    23.6%: $574.61
+    38.2%: $595.91
+    50.0%: $613.13
+    61.8%: $630.35
+    78.6%: $654.86
+
+  RESISTANCE levels (nearest 3): ['$677.86', '$681.90', '$686.08']
+  SUPPORT levels (nearest 3):    ['$551.43', '$540.40', '$540.18']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  AMD  -- DEEP DIVE
+======================================================================
+  PRICE: $552.33
+  5D: +4.4%   10D: +6.7%   20D: +6.2%
+  SMA20: $532.59  ABOVE
+  SMA50: $505.39  ABOVE
+  SMA200: N/A
+  RSI(14): 59.9  NEUTRAL
+  MACD: 8.154  signal: 11.132  hist: -2.978  BEARISH
+  ATR(14): $30.94  (5.6% of price)
+  VOL RATIO: 0.88x avg
+  BB Lower: $489.89  BB Upper: $575.30
+  Position in BB range: 73% 
+
+  FIBONACCI (swing: $310.00 -- $584.73):
+    23.6%: $374.84
+    38.2%: $414.95
+    50.0%: $447.36
+    61.8%: $479.78
+    78.6%: $525.94
+
+  RESISTANCE levels (nearest 3): ['$572.50', '$574.20', '$584.73']
+  SUPPORT levels (nearest 3):    ['$495.35', '$491.80', '$460.21']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  AMZN  -- DEEP DIVE
+======================================================================
+  PRICE: $244.85
+  5D: -4.0%   10D: +0.5%   20D: +4.6%
+  SMA20: $243.61  ABOVE
+  SMA50: $250.60  BELOW
+  SMA200: N/A
+  RSI(14): 45.2  NEUTRAL
+  MACD: 0.558  signal: -0.159  hist: 0.717  BULLISH
+  ATR(14): $6.05  (2.5% of price)
+  VOL RATIO: 0.61x avg
+  BB Lower: $230.51  BB Upper: $256.71
+  Position in BB range: 55% 
+
+  FIBONACCI (swing: $225.55 -- $278.56):
+    23.6%: $238.06
+    38.2%: $245.80
+    50.0%: $252.06
+    61.8%: $258.31
+    78.6%: $267.22
+
+  RESISTANCE levels (nearest 3): ['$252.89', '$256.48', '$258.08']
+  SUPPORT levels (nearest 3):    ['$232.95', '$226.13', '$225.55']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  ORCL  -- DEEP DIVE
+======================================================================
+  PRICE: $125.84
+  5D: -5.0%   10D: -10.1%   20D: -23.5%
+  SMA20: $137.88  BELOW
+  SMA50: $173.93  BELOW
+  SMA200: N/A
+  RSI(14): 35.0  NEUTRAL
+  MACD: -14.064  signal: -14.305  hist: 0.241  BULLISH
+  ATR(14): $6.27  (5.0% of price)
+  VOL RATIO: 0.53x avg
+  BB Lower: $117.64  BB Upper: $158.12
+  Position in BB range: 20% (near lower band)
+
+  FIBONACCI (swing: $120.03 -- $249.38):
+    23.6%: $150.56
+    38.2%: $169.44
+    50.0%: $184.71
+    61.8%: $199.97
+    78.6%: $221.70
+
+  RESISTANCE levels (nearest 3): ['$153.96', '$157.07', '$165.18']
+  SUPPORT levels (nearest 3):    ['$122.21', '$121.50', '$120.03']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  MSFT  -- DEEP DIVE
+======================================================================
+  PRICE: $390.34
+  5D: -1.3%   10D: +1.8%   20D: +4.4%
+  SMA20: $384.64  ABOVE
+  SMA50: $400.18  BELOW
+  SMA200: N/A
+  RSI(14): 48.2  NEUTRAL
+  MACD: 0.430  signal: -1.940  hist: 2.370  BULLISH
+  ATR(14): $9.77  (2.5% of price)
+  VOL RATIO: 0.64x avg
+  BB Lower: $359.51  BB Upper: $409.77
+  Position in BB range: 61% 
+
+  FIBONACCI (swing: $349.20 -- $466.32):
+    23.6%: $376.84
+    38.2%: $393.94
+    50.0%: $407.76
+    61.8%: $421.58
+    78.6%: $441.26
+
+  RESISTANCE levels (nearest 3): ['$401.47', '$403.18', '$405.99']
+  SUPPORT levels (nearest 3):    ['$359.90', '$355.43', '$349.20']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  QQQ  -- DEEP DIVE
+======================================================================
+  PRICE: $705.35
+  5D: -1.7%   10D: -0.9%   20D: -1.2%
+  SMA20: $714.25  BELOW
+  SMA50: $718.73  BELOW
+  SMA200: N/A
+  RSI(14): 44.9  NEUTRAL
+  MACD: -3.265  signal: -1.089  hist: -2.176  BEARISH
+  ATR(14): $10.93  (1.5% of price)
+  VOL RATIO: 0.60x avg
+  BB Lower: $693.67  BB Upper: $734.84
+  Position in BB range: 28% 
+
+  FIBONACCI (swing: $653.09 -- $747.83):
+    23.6%: $675.45
+    38.2%: $689.28
+    50.0%: $700.46
+    61.8%: $711.64
+    78.6%: $727.55
+
+  RESISTANCE levels (nearest 3): ['$730.83', '$731.92', '$737.62']
+  SUPPORT levels (nearest 3):    ['$700.91', '$695.51', '$686.76']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A
+
+======================================================================
+  SPY  -- DEEP DIVE
+======================================================================
+  PRICE: $747.41
+  5D: -1.0%   10D: +0.3%   20D: +1.9%
+  SMA20: $745.67  ABOVE
+  SMA50: $744.04  ABOVE
+  SMA200: N/A
+  RSI(14): 50.2  NEUTRAL
+  MACD: 2.113  signal: 2.783  hist: -0.669  BEARISH
+  ATR(14): $6.23  (0.8% of price)
+  VOL RATIO: 0.67x avg
+  BB Lower: $731.67  BB Upper: $759.68
+  Position in BB range: 56% 
+
+  FIBONACCI (swing: $706.55 -- $758.45):
+    23.6%: $718.80
+    38.2%: $726.37
+    50.0%: $732.50
+    61.8%: $738.62
+    78.6%: $747.34
+
+  RESISTANCE levels (nearest 3): ['$754.57', '$755.42', '$755.58']
+  SUPPORT levels (nearest 3):    ['$730.84', '$729.60', '$716.58']
+
+  RECENT NEWS:
+    [N/A] N/A
+    [N/A] N/A
+    [N/A] N/A

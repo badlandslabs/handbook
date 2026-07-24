@@ -1,141 +1,67 @@
-=== MACRO REGIME ===
-SPY: $754.26 | SMA20=744.99 | SMA50=742.88 | SMA200=693.03 | RSI=60.8 | ATR=8.21 | Above200=True | 52wPos=100%
-QQQ: $712.14 | SMA20=719.93 | SMA50=718.35 | SMA200=639.06 | RSI=44.5 | ATR=14.11 | Above200=True | 52wPos=85%
-IWM: $296.87 | SMA20=296.66 | SMA50=289.71 | SMA200=262.15 | RSI=54.4 | ATR=4.17 | Above200=True | 52wPos=98%
-^VIX: $15.90 | SMA20=16.95 | SMA50=17.28 | SMA200=18.67 | RSI=45.0 | ATR=1.56 | Above200=False | 52wPos=16%
+Fetching market data...
+  QQQ... OK  price=705.35  RSI=44.9  score=1
+  SPY... OK  price=747.41  RSI=50.2  score=6
+  IWM... OK  price=293.79  RSI=45.3  score=4
+  AAPL... OK  price=325.89  RSI=61.6  score=7
+  MSFT... OK  price=390.34  RSI=48.2  score=4
+  NVDA... OK  price=212.06  RSI=62.5  score=6
+  GOOGL... OK  price=342.09  RSI=35.2  score=0
+  AMZN... OK  price=244.85  RSI=45.2  score=5
+  META... OK  price=627.17  RSI=44.7  score=6
+  TSLA... OK  price=374.01  RSI=36.1  score=0
+  AMD... OK  price=552.33  RSI=59.9  score=6
+  AVGO... OK  price=396.81  RSI=60.7  score=4
+  NFLX... OK  price=68.53  RSI=28.9  score=-1
+  CRM... OK  price=163.00  RSI=40.5  score=2
+  ORCL... OK  price=125.84  RSI=35.0  score=3
+  ADBE... OK  price=218.36  RSI=40.5  score=2
+  QCOM... OK  price=175.63  RSI=41.4  score=1
+  INTC... OK  price=102.62  RSI=43.0  score=1
+  PANW... OK  price=335.28  RSI=45.5  score=4
+  SNOW... OK  price=267.80  RSI=53.5  score=6
+  DDOG... OK  price=245.77  RSI=36.0  score=3
+  MU... OK  price=959.48  RSI=52.6  score=3
+  LRCX... OK  price=319.29  RSI=40.8  score=1
+  KLAC... OK  price=214.69  RSI=41.1  score=1
+  AMAT... OK  price=553.92  RSI=44.4  score=2
 
-=== TOP CANDIDATE DEEP DIVE ===
+25/25 tickers fetched.
 
-CRWD: $205.27
-  RSI=64.5 | ATR14=11.42 (5.6% of price)
-  SMA20=186.96 | SMA50=170.32 | SMA200=N/A
-  BB: Lower=159.90 Upper=214.03 Pos=84%
-  MACD=10.108 Signal=9.393 | BULL+
-  Returns: 5d=+3.5% | 10d=+6.3% | 20d=+20.8%
-  Nearest S: $108.89 | Nearest R: $215.53
-  Swing Highs (recent): [np.float64(116.98750305175781), np.float64(115.92250061035156)]
-  Swing Lows (recent): [np.float64(108.13749694824219), np.float64(108.88999938964844)]
-  Above SMA20: True | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Earnings Date': [datetime.date(2026, 9, 1)], 'Earnings High': 0.2975, 'Earnings Low': 0.29, 'Earnings Average': 0.29206, 'Revenue High': 1450170000, 'Revenue Low': 1438600000, 'Revenue Average': 1440295020}
+====================================================================================================
+TICKER     PRICE    SMA20    SMA50   SMA200   RSI  MACD  VOLx  ATR% SCORE TREND             5D%   10D%
+====================================================================================================
+AAPL      325.89   310.06   304.89   283.24  61.6  BULL  0.60  2.40     7 BULL             -0.5    4.0
+SPY       747.41   745.67   744.04   711.91  50.2  BEAR  0.67  0.83     6 BULL             -1.0    0.3
+NVDA      212.06   202.29   209.59   198.70  62.5  BULL  1.01  3.40     6 BULL             -0.2    3.9
+META      627.17   615.93   605.82   616.98  44.7  BULL  0.56  3.86     6 BULL             -7.9    4.0
+AMD       552.33   532.59   505.39   373.27  59.9  BEAR  0.88  5.60     6 BULL              4.4    6.7
+SNOW      267.80   260.69   230.50   192.13  53.5  BEAR  0.53  4.65     6 BULL             -1.5    2.5
+AMZN      244.85   243.61   250.60   239.66  45.2  BULL  0.61  2.47     5 TRANSITIONAL     -4.0    0.5
+IWM       293.79   296.48   290.56   275.23  45.3  BEAR  0.85  1.32     4 BULL             -0.7    0.1
+MSFT      390.34   384.64   400.18   398.52  48.2  BULL  0.64  2.50     4 BEAR             -1.3    1.8
+AVGO      396.81   380.73   400.45   377.22  60.7  BULL  0.72  3.50     4 TRANSITIONAL      0.6    2.1
+PANW      335.28   335.55   292.64   227.22  45.5  BEAR  0.86  5.59     4 BULL             -5.3    4.6
+ORCL      125.84   137.88   173.93   165.64  35.0 XOVER  0.53  4.98     3 BEAR             -5.0  -10.1
+DDOG      245.77   254.86   237.83   179.67  36.0  BEAR  0.89  5.56     3 BULL             -7.1   -5.9
+MU        959.48   993.29   948.29   687.87  52.6  BEAR  0.62  6.30     3 BULL              6.1    1.1
+CRM       163.00   164.44   170.54   178.41  40.5  BULL  0.96  3.82     2 BEAR             -2.4   -2.1
+ADBE      218.36   218.52   228.98   240.25  40.5  BULL  0.73  3.91     2 BEAR             -2.8   -1.2
+AMAT      553.92   597.48   532.92   449.95  44.4  BEAR  0.44  6.53     2 BULL             -4.4   -2.9
+QQQ       705.35   714.25   718.73   666.97  44.9  BEAR  0.60  1.55     1 TRANSITIONAL     -1.7   -0.9
+QCOM      175.63   183.08   204.95   171.86  41.4  BEAR  0.45  4.43     1 TRANSITIONAL     -1.3   -5.9
+INTC      102.62   114.39   116.42    87.58  43.0  BEAR  0.74  6.38     1 TRANSITIONAL     -0.4   -6.9
+LRCX      319.29   352.47   337.54   287.40  40.8  BEAR  0.50  6.53     1 TRANSITIONAL     -4.8   -4.2
+KLAC      214.69   235.54   219.49   189.00  41.1  BEAR  0.66  6.60     1 TRANSITIONAL     -4.4   -2.9
+GOOGL     342.09   354.77   367.39   344.10  35.2  BEAR  1.15  2.83     0 BEAR             -7.8   -5.5
+TSLA      374.01   394.62   407.47   395.85  36.1  BEAR  0.77  4.23     0 BEAR             -5.2   -5.1
+NFLX       68.53    72.97    79.38    87.18  28.9  BEAR  0.87  3.30    -1 BEAR             -7.0   -9.3
 
-PANW: $355.99
-  RSI=66.9 | ATR14=18.69 (5.3% of price)
-  SMA20=323.77 | SMA50=280.42 | SMA200=N/A
-  BB: Lower=270.01 Upper=377.54 Pos=80%
-  MACD=20.993 Signal=21.473 | BEAR-
-  Returns: 5d=+5.2% | 10d=+1.1% | 20d=+27.2%
-  Nearest S: $179.19 | Nearest R: $373.79
-  Swing Highs (recent): [np.float64(187.27000427246094), np.float64(186.0), np.float64(181.52000427246094)]
-  Swing Lows (recent): [np.float64(173.11000061035156), np.float64(179.19000244140625)]
-  Above SMA20: True | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Earnings Date': [datetime.date(2026, 8, 18)], 'Earnings High': 1.08, 'Earnings Low': 0.96, 'Earnings Average': 0.97763, 'Revenue High': 3368000000, 'Revenue Low': 3346000000, 'Revenue Average': 3351771170}
+====================================================================================================
+HIGH VOLUME + NEAR BREAKOUT SCANNER (vol > 1.5x avg AND near 20d high)
+====================================================================================================
+TICKER     PRICE  20dHIGH   20dLOW  nrHIGH%   nrLOW%  VOLx SCORE
+----------------------------------------------------------------------------------------------------
 
-NVDA: $208.76
-  RSI=56.4 | ATR14=6.90 (3.3% of price)
-  SMA20=202.28 | SMA50=209.71 | SMA200=N/A
-  BB: Lower=189.65 Upper=214.92 Pos=76%
-  MACD=0.362 Signal=-1.458 | BULL+
-  Returns: 5d=+2.9% | 10d=+5.7% | 20d=+0.7%
-  Nearest S: $196.99 | Nearest R: $216.58
-  Swing Highs (recent): [np.float64(236.26463268418732), np.float64(216.5775789683675)]
-  Swing Lows (recent): [np.float64(194.51329562325486), np.float64(196.99041179336916)]
-  Above SMA20: True | Above SMA50: False | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 6, 26), 'Ex-Dividend Date': datetime.date(2026, 6, 4), 'Earnings Date': [datetime.date(2026, 8, 26)], 'Earnings High': 2.6, 'Earnings Low': 2.03128, 'Earnings Average': 2.09366, 'Revenue High': 96655000000, 'Revenue Low': 90302000000, 'Revenue Average': 91742027460}
-
-AMAT: $576.53
-  RSI=45.0 | ATR14=51.38 (8.9% of price)
-  SMA20=611.37 | SMA50=523.42 | SMA200=N/A
-  BB: Lower=526.00 Upper=696.75 Pos=30%
-  MACD=14.010 Signal=23.351 | BEAR-
-  Returns: 5d=-2.1% | 10d=-11.4% | 20d=+1.5%
-  Nearest S: $416.04 | Nearest R: $605.36
-  Swing Highs (recent): [np.float64(447.8932189343369), np.float64(447.8932033467162), np.float64(419.97788159832663)]
-  Swing Lows (recent): [np.float64(376.60182450734004), np.float64(416.04277497255976)]
-  Above SMA20: False | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 9, 10), 'Ex-Dividend Date': datetime.date(2026, 8, 20), 'Earnings Date': [datetime.date(2026, 8, 13)], 'Earnings High': 3.56, 'Earnings Low': 3.17, 'Earnings Average': 3.38874, 'Revenue High': 9200000000, 'Revenue Low': 8949000000, 'Revenue Average': 9006637960}
-
-FAST: $46.65
-  RSI=50.8 | ATR14=1.42 (3.0% of price)
-  SMA20=46.71 | SMA50=45.58 | SMA200=N/A
-  BB: Lower=44.77 Upper=48.64 Pos=48%
-  MACD=0.144 Signal=0.369 | BEAR-
-  Returns: 5d=+0.6% | 10d=-2.3% | 20d=+1.3%
-  Nearest S: $44.39 | Nearest R: $48.98
-  Swing Highs (recent): [np.float64(45.79597499183388), np.float64(45.63999938964844), np.float64(45.4900016784668)]
-  Swing Lows (recent): [np.float64(43.619998931884766), np.float64(44.220001220703125), np.float64(44.39344545079839)]
-  Above SMA20: False | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 5, 26), 'Ex-Dividend Date': datetime.date(2026, 7, 28), 'Earnings Date': [datetime.date(2026, 10, 14)], 'Earnings High': 0.35, 'Earnings Low': 0.33, 'Earnings Average': 0.33425, 'Revenue High': 2450000000, 'Revenue Low': 2362000000, 'Revenue Average': 2417611330}
-
-TSLA: $393.77
-  RSI=44.6 | ATR14=19.01 (4.8% of price)
-  SMA20=398.76 | SMA50=410.02 | SMA200=N/A
-  BB: Lower=370.93 Upper=426.60 Pos=41%
-  MACD=-2.282 Signal=-1.305 | BEAR-
-  Returns: 5d=-3.1% | 10d=-7.4% | 20d=-2.7%
-  Nearest S: $384.02 | Nearest R: $453.40
-  Swing Highs (recent): [np.float64(453.3999938964844)]
-  Swing Lows (recent): [np.float64(364.0199890136719), np.float64(368.1700134277344), np.float64(384.0199890136719)]
-  Above SMA20: False | Above SMA50: False | Above SMA200: N/A
-  Earnings cal: {'Earnings Date': [datetime.date(2026, 7, 22)], 'Earnings High': 0.74, 'Earnings Low': 0.31, 'Earnings Average': 0.5353, 'Revenue High': 29273000000, 'Revenue Low': 23146000000, 'Revenue Average': 26285149440}
-
-AAPL: $330.82
-  RSI=79.2 | ATR14=8.43 (2.5% of price)
-  SMA20=303.51 | SMA50=301.59 | SMA200=N/A
-  BB: Lower=273.59 Upper=333.42 Pos=96%
-  MACD=7.639 Signal=4.954 | BULL+
-  Returns: 5d=+4.6% | 10d=+12.4% | 20d=+10.6%
-  Nearest S: $265.16 | Nearest R: $347.36
-  Swing Highs (recent): [np.float64(303.20001220703125), np.float64(286.95561044034525), np.float64(275.5161566987003)]
-  Swing Lows (recent): [np.float64(264.8260075108844), np.float64(265.1557075406741)]
-  Above SMA20: True | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 5, 14), 'Ex-Dividend Date': datetime.date(2026, 5, 11), 'Earnings Date': [datetime.date(2026, 7, 30)], 'Earnings High': 1.99, 'Earnings Low': 1.83, 'Earnings Average': 1.89396, 'Revenue High': 112168000000, 'Revenue Low': 107501000000, 'Revenue Average': 108890141050}
-
-META: $680.02
-  RSI=73.4 | ATR14=28.70 (4.2% of price)
-  SMA20=602.11 | SMA50=603.71 | SMA200=N/A
-  BB: Lower=511.61 Upper=692.60 Pos=93%
-  MACD=20.743 Signal=10.303 | BULL+
-  Returns: 5d=+7.7% | 10d=+10.9% | 20d=+13.3%
-  Nearest S: $652.45 | Nearest R: $681.87
-  Swing Highs (recent): [np.float64(681.8680504402118), np.float64(624.4012480600104), np.float64(623.152441138389)]
-  Swing Lows (recent): [np.float64(592.0512559095129), np.float64(597.5461564796674), np.float64(599.4444385151393)]
-  Above SMA20: True | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 6, 25), 'Ex-Dividend Date': datetime.date(2026, 6, 15), 'Earnings Date': [datetime.date(2026, 7, 29)], 'Earnings High': 8.55, 'Earnings Low': 6.8, 'Earnings Average': 7.49333, 'Revenue High': 62812000000, 'Revenue Low': 59132000000, 'Revenue Average': 60241316740}
-
-AVGO: $382.99
-  RSI=47.4 | ATR14=15.05 (3.9% of price)
-  SMA20=383.31 | SMA50=403.82 | SMA200=N/A
-  BB: Lower=358.15 Upper=408.46 Pos=49%
-  MACD=-3.236 Signal=-5.665 | BULL+
-  Returns: 5d=-4.5% | 10d=+3.7% | 20d=+1.8%
-  Nearest S: $363.84 | Nearest R: $428.63
-  Swing Highs (recent): [np.float64(441.6609780428996), np.float64(436.98837956106627), np.float64(428.63161720765004)]
-  Swing Lows (recent): [np.float64(393.9465185989584), np.float64(394.0263738242293), np.float64(404.1603342331478)]
-  Above SMA20: False | Above SMA50: False | Above SMA200: N/A
-  Earnings cal: {'Dividend Date': datetime.date(2026, 6, 30), 'Ex-Dividend Date': datetime.date(2026, 6, 22), 'Earnings Date': [datetime.date(2026, 9, 3)], 'Earnings High': 3.33, 'Earnings Low': 3.08, 'Earnings Average': 3.23823, 'Revenue High': 29687000000, 'Revenue Low': 29195000000, 'Revenue Average': 29435187950}
-
-AMD: $512.26
-  RSI=42.7 | ATR14=38.62 (7.5% of price)
-  SMA20=534.42 | SMA50=496.50 | SMA200=N/A
-  BB: Lower=499.12 Upper=569.72 Pos=19%
-  MACD=11.442 Signal=16.177 | BEAR-
-  Returns: 5d=-6.3% | 10d=-5.3% | 20d=+1.0%
-  Nearest S: $310.00 | Nearest R: $537.87
-  Swing Highs (recent): [np.float64(469.2200012207031), np.float64(362.7900085449219), np.float64(352.989990234375)]
-  Swing Lows (recent): [np.float64(310.0)]
-  Above SMA20: False | Above SMA50: True | Above SMA200: N/A
-  Earnings cal: {'Ex-Dividend Date': datetime.date(1995, 4, 27), 'Earnings Date': [datetime.date(2026, 8, 4)], 'Earnings High': 1.74, 'Earnings Low': 1.48, 'Earnings Average': 1.60678, 'Revenue High': 11640000000, 'Revenue Low': 11096000000, 'Revenue Average': 11297769900}
-
-=== SECTOR ROTATION ===
-  XLK (Tech): -3.83% | vs SPY: -5.89%
-  XLF (Financials): +5.27% | vs SPY: +3.21%
-  XLV (Healthcare): +7.60% | vs SPY: +5.54%
-  XLY (Consumer Disc): +2.43% | vs SPY: +0.37%
-  XLP (Staples): +1.91% | vs SPY: -0.15%
-  XLE (Energy): +5.00% | vs SPY: +2.94%
-  XLC (Comm): +4.33% | vs SPY: +2.27%
-  XLI (Industrials): +0.66% | vs SPY: -1.40%
-  XLB (Materials): -2.18% | vs SPY: -4.24%
-  XLRE (Real Estate): +3.66% | vs SPY: +1.60%
-
-=== SCAN COMPLETE ===
+====================================================================================================
+DATA AS OF: 2026-07-22
+====================================================================================================

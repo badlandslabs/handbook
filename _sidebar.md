@@ -691,5 +691,12 @@
   - [S-1546 · The Intelligence Entropy Stack — When Your Agent Degrades for No Reason You Can Measure](stacks/s1546-the-intelligence-entropy-stack-when-your-agent-degrades-for-no-reason-you-can-measure.md)
   - [S-1548 · The Reasoning Token Tax Stack — When Your Agent Quietly Spends 9× What You Budgeted](stacks/s1548-the-reasoning-token-tax-stack-when-your-agent-quietly-spends-9x-what-you-budgeted.md)
   - [S-1550 · The Plan Object Stack — When Your Agent Loses the Plan Between Sessions](stacks/s1550-the-plan-object-stack-when-your-agent-loses-the-plan-between-sessions.md)
+  - [S-1557 · The MCP Server Security Eval Stack — When Your Tool Catalog Is Your Attack Surface](stacks/s1557-the-mcp-server-security-eval-stack-when-your-tool-catalog-is-your-attack-surface.md)
+  - [S-1558 · The Multi-Agent Reliability Divide Stack — When Adding Agents Makes Your System Less Reliable](stacks/s1558-the-multi-agent-reliability-divide-stack-when-adding-agents-makes-your-system-less-reliable.md)
+  - [S-1559 · The Structured Debate Stack — When Your Multi-Agent Panel Confidently Agrees on Wrong Answers](stacks/s1559-the-structured-debate-stack-when-your-multi-agent-panel-confidently-agrees-on-wrong-answers.md)
+  - [S-1560 · The Adversarial Surface Stack — When Your Agent Secures Every Input But Leaves Its Own Infrastructure Wide Open](stacks/s1560-the-adversarial-surface-stack-when-your-agent-secures-every-input-but-leaves-its-own-infrastructure-wide-open.md)
+  - [S-1568 · The Execution Boundary Stack — When Your Sandboxed Agent Runs Arbitrary Code Without Leaving](stacks/s1568-the-execution-boundary-stack-when-your-sandboxed-agent-runs-arbitrary-code-without-leaving.md)
+  - [S-1569 · The Agent RL Training Infrastructure Stack — When Your Agent Gets Better at Everything and Worse at the One Thing That Matters](stacks/s1569-the-agent-rl-training-infrastructure-stack-when-your-agent-gets-better-at-everything-and-worse-at-the-one-thing-that-matters.md)
+  - [S-1566 · The Continuous Evaluation Pipeline Stack — When Your Agent Isn't as Good as It Was Last Tuesday](stacks/s1566-the-continuous-evaluation-pipeline-stack-when-your-agent-isnt-as-good-as-it-was-last-tuesday.md)
 
-  - [S-1536 · The Durable Execution Stack — When LangGraph Gives You the Agent and Temporal Gives You the Guarantee](stacks/s1536-the-durable-execution-stack-when-langgraph-gives-you-the-agent-and-temporal-gives-you-the-guarantee.md)
+  - [S-1536]

@@ -1217,7 +1217,16 @@ feedback-loop-velocity → I-271
 | institutional-knowledge → I-2030 |
 | 60-percent-failure → I-2030 |
 | 73-percent-automation-fail → I-2030 |
-|| I-296 | The Memory Identity Gap Stack: When Your Agent Follows a Forged Reasoning Chain It Believes Is Its Own | memory-identity-gap, reasoning-chain-forgery, memory-store-attack, farma-attack, adversarial-memory, reasoning-store-poisoning, agent-self-deception, provenance-attribution, cot-integrity, memory-provenance-chain, S-820, S-1189, S-1050, arxiv-2607.05029 | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-1500 | 2026-07-22 | 2026-07-22 |
+| structured-debate → I-3003 |
+| multi-agent-consensus → I-3003 |
+| confidence-weighted-voting → I-3003 |
+| sealed-cross-examination → I-3003 |
+| independent-thesis → I-3003 |
+| byzantine-consensus → I-3003 |
+| llm-debate → I-3003 |
+| inter-agent-consensus → I-3003 |
+| debate-protocol → I-3003 |
+||||||
 || I-297 | The Agent Kill Switch Stack: When Your Agent Is Running Wild and Nobody Can Stop It | kill-switch, emergency-stop, agent-shutdown, capability-envelope, graceful-drain, process-isolation, signal-handling, token-revocation, session-revocation, eu-ai-act-article14, iso-42001, nist-ai-rmf, human-oversight, autonomous-control, run-away-agent, infrastructure-enforcement, agent-governance, compliance-2026 | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1516 | 2026-07-23 | 2026-07-23 |
 || I-298 | The Reasoning Token Tax Stack: When Your Agent Quietly Spends 9× What You Budgeted | reasoning-token-tax, thinking-token-cost, extended-thinking-cost, chain-of-thought-billing, inference-cost-multiplier, token-budget, cost-observability, agentic-finops, hidden-cost, output-token-billing, reasoning-model-cost, agent-cost-engineering | 9 | 9 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1548 | 2026-07-23 | 2026-07-23 |
 | 2026-07-23 | I-298 | WRITTEN — S-1530 | The Agent Autonomy Tier Stack — composite 9.50. Tracker exhausted (all prior 263 ideas WRITTEN or DUPLICATE). Fresh research: EU AI Act full enforcement activates August 2, 2026 (€35M or 7% global turnover penalties). 78% of organizations have not taken meaningful compliance steps (Responsible AI Labs, Apr 2026). 82% of enterprises have AI agents their security teams didn't know existed (Zylos, May 2026). Key gap: no existing handbook entry maps agent autonomy levels (T0–T4) to EU AI Act risk tiers and engineering obligations. Existing entries (S-1458 Policy Kernel, S-1059 Graduated Autonomy) reference EU AI Act but don't provide the regulatory tier decision tree or conformity folder structure. S-1530 bridges that: 5-tier decision tree from T0 (advisory) to T4 (critical) with Article 9/14/50 obligations per tier, minimum viable `conformity/` folder structure, interruptible agent pattern, and post-market monitoring signals. Sources: ExecLayer EU AI Act Agent Compliance Guide (Apr 2026), Responsible AI Labs August 2026 Countdown (Apr 2026), Zylos AI Agent Governance Research (May 2026).
@@ -1546,7 +1555,11 @@ checkpoint-vs-durable → I-2037
 langgraph-plugin → I-2037
 temporalio-langgraph → I-2037
 | I-2038 | The Intelligence Entropy Stack: When Your Agent Degrades for No Reason You Can Measure | intelligence-entropy, entropy-principle, silent-failure, PIG-engine, ADE-protocol, 6-layer-taxonomy, entropy-growth-model, channel-fracture, cognitive-framework-lag, knowledge-fragmentation, entropy-measurement, entropy-compounding, S(t)=S0e, arxiv-2606.08162, dexing-liu-2026 | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-1546 | 2026-07-23 | 2026-07-23 |
-| I-3000 | The Plan Object Stack: Cross-Session Plan Durability as First-Class Architecture | plan-object, plan-durability, plan-versioning, plan-state-machine, plan-integrity, plan-checksum, cross-session-plan, goal-persistence, plan-checkpoint, plan-artifact, intention-format, plan-seal, plan-resume, agentic-planning, agentralabs-agentic-planning, goal-drift, plan-lifecycle, plan-validation, plan-lock, plan-revision-log | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-1550 | 2026-07-23 | 2026-07-23 |
+|| I-3001 | The AI-BOM Stack: When Your Agent Supply Chain Has No Ingredient Label | ai-bom, ai-bill-of-materials, aibom, ai-supply-chain, ai-inventory, model-registry, agent-registry, cisco-aibom, owasp-aibom, aibom-dev, ai-component-inventory, cyclonedx, spdx-ai, eu-ai-act, nist-ai-rmf, iso-42001, drift-detection, ai-sbom, mcp-inventory, tool-inventory, prompt-inventory | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-1552 | 2026-07-23 | 2026-07-23 |
+|| I-3002 | The Intent-Driven Memory Routing Stack: When Your Agent Retrieves Everything and Finds Nothing | intent-driven-memory, memory-routing, query-type-routing, memflow, intent-classifier, memory-orchestration, retrieval-tier, procedural-memory, factual-memory, conversational-memory, intent-routing, memory-pipeline, arxiv-2605.03312 | 8 | 9 | 9 | 9 | 8 | **8.70** | WRITTEN — S-465 | 2026-07-23 | 2026-07-23 |
+| I-3003 | The Structured Debate Stack: When Your Multi-Agent Panel Confidently Agrees on Wrong Answers | structured-debate, multi-agent-consensus, cross-examination, confidence-weighted-voting, debate-protocol, independent-thesis, sealed-arguments, byzantine-consensus, llm-debate, inter-agent-consensus, confidence-calibration, zylos-2026, pbft-inspired, debate-aggregation | 8 | 9 | 9 | 8 | 7 | **8.35** | WRITTEN — S-1559 | 2026-07-23 | 2026-07-23 |
+| I-3004 | The Long-Session Coherence Collapse: When Your Agent Knows Less Turn by Turn | long-session-coherence, coherence-collapse, multi-turn-degradation, 39-percent-drop, lost-in-middle-bias, rolling-eviction, reasoning-coherence-fragment, session-staleness, context-degradation, state-summarization, ground-truth-file, multi-agent-desync, msr-salesforce-2026, tianpan-2026, blake-crosley, fresh-context-iteration, coherence-probe, integrity-probe | 9 | 10 | 9 | 9 | 9 | **9.30** | WRITTEN — S-1564 | 2026-07-24 | 2026-07-24 |
+| I-3000 | The Plan Object Stack: Cross-Session Plan Durability as First-Class Architecture
 entropy-growth-model → I-2038
 S(t)=S0eαt → I-2038
 PIG-engine → I-2038
@@ -1923,9 +1936,31 @@ agentic-finops → I-298
 output-token-billing → I-298
 observability-stack → I-299
 ||||||||
+| 2026-07-23 | I-3001 | WRITTEN — S-1552 | The AI-BOM Stack — composite 9.00. Tracker exhausted (all 270 prior ideas WRITTEN or DUPLICATE). Fresh research: Cisco AI BOM (cisco-ai-defense/aibom, Apache-2.0, 98 stars, 77 commits) — source-code/container/cloud scanning for models, agents, MCP servers, prompts, guardrails; OWASP AIBOM Generator (genai.owasp.org, Dec 2025, moved to OWASP Dec 2025) — CycloneDX/SPDX output for HuggingFace models; AIBOM.dev bulk GitHub scanning with drift detection; DefenseClaw AI BoM (Fordel Studios, 2026) for MCP configurations and agent capability mappings; Cycode State of Production AI 2026; Wiz AI-BOM Academy; Enzai AI System Inventory for Governance (Jul 2026). Core finding: AI-BOM is a multi-layer artifact (models, data, tools/MCP, prompts/guardrails, agents) that closes the gap between "what we think is running" and "what is actually running." Tooling is available and production-ready. Regulatory mandates: EU AI Act Art. 71, NIST AI RMF, ISO/IEC 42001. Deduplication: S-1196 (Agent Catalog Plane) covers agent discovery and metadata — this covers the AI-specific supply chain component layer including model versions, datasets, tool configs, and prompt templates. S-941 (Agent Audit Chain) covers audit logging — AI-BOM provides the component inventory that audit chains need to reconstruct. This is the AI supply chain transparency layer that neither catalog plane nor audit chain individually covers. |
+
+ai-bom → I-3001
+ai-bill-of-materials → I-3001
+aibom → I-3001
+ai-supply-chain → I-3001
+ai-inventory → I-3001
+ai-component-inventory → I-3001
+ai-sbom → I-3001
+ai-bom-cyclonedx → I-3001
+ai-bom-spdx → I-3001
+model-registry → I-3001
+agent-registry → I-3001
+mcp-inventory → I-3001
+tool-inventory → I-3001
+prompt-inventory → I-3001
+owasp-aibom → I-3001
+cisco-aibom → I-3001
+ai-bom-drift → I-3001
+ai-bom-gate → I-3001
+|||||||||
 1660||||| 2026-07-21 | I-294 |
 
-| 2026-07-22 | I-2029 | WRITTEN — S-1472 | The Compounding Reliability Stack — composite 9.25. Tracker exhausted. Fresh research: AgentMarketCap (Apr 2026) accuracy decay table (95%→36% at 20 steps), Revonex Labs (May 2026) 0.85^10 = 19.7%, LensHQ (May 2026) formalization via Lusser's Law. Core finding: Lusser's Law applies to agentic workflows. Step-level gains translate to workflow-level gains at exponential discount. Four-pattern mitigation stack: (1) chain shortening first (merge, conditional steps), (2) interstep verification gates (narrow-scope judge before high-stakes transitions), (3) fork-join N-version agents (3x cost → 99%+ reliability on critical steps, verified C(3,2)·0.95²·0.05 + C(3,3)·0.95³ = 99.28%), (4) reliability circuit breaker with rolling success projection. Deduplication: S-964 covers compounding calibration (confidence trust downstream, RLHF degradation); this covers architectural mitigation. S-1027 covers scaffold loop detection; this covers reliability compounding. |
+- [S-2029] The Compounding Reliability Stack — composite 9.25. Tracker exhausted. Fresh research: AgentMarketCap (Apr 2026) accuracy decay table (95%→36% at 20 steps), Revonex Labs (May 2026) 0.85^10 = 19.7%, LensHQ (May 2026) formalization via Lusser's Law. Core finding: Lusser's Law applies to agentic workflows. Step-level gains translate to workflow-level gains at exponential discount. Four-pattern mitigation stack: (1) chain shortening first (merge, conditional steps), (2) interstep verification gates (narrow-scope judge before high-stakes transitions), (3) fork-join N-version agents (3x cost → 99%+ reliability on critical steps, verified C(3,2)·0.95²·0.05 + C(3,3)·0.95³ = 99.28%), (4) reliability circuit breaker with rolling success projection. Deduplication: S-964 covers compounding calibration (confidence trust downstream, RLHF degradation); this covers architectural mitigation via chain design, verification gates, N-version agents, and circuit breakers.
+- [S-3005] The Continuous Evaluation Pipeline Stack — composite 9.40. Tracker exhausted (I-001 through I-3004 all WRITTEN or DUPLICATE). Fresh research: AgentStatus 30-day study (Apr 2026) — 6,200+ agents, 88% experienced correctness drift within 30 days; Gartner projection — 40% of enterprise AI failures by 2028 trace to inadequate evaluation; Zylos Research (Apr 2026) — longitudinal evaluation as the missing dimension in agentic CI; Stanford/Berkeley empirical — GPT-4 task accuracy dropped 84%→51% between Mar–Jun 2023 with no version change; Datadog 2026 State of AI Engineering — 40% of production AI failures are semantic (HTTP 200 + wrong answer); Anthropic eval methodology — graduated capability evals becoming regression gates; Arthur (Jun 2026) — production failures as highest-fidelity test data. Core finding: benchmarks answer "is the agent good?" while ignoring "is it still as good as it was?" The four-stage pipeline closes this gap: (1) automatic trace capture from production with outcome labels, (2) failure-to-test pipeline that deduplicates and labels regression candidates, (3) CI gate with segmented behavioral SLOs, (4) automated alert + rollback with golden version set. Deduplication: S-706 (provider-side drift), S-1022 (coordination drift), S-1033 (behavioral versioning), S-1005 (AI SRE), S-1014 (production eval simplicity) — all cover dimensions of agent quality but none covers the specific feedback-loop architecture from production trace → regression test → CI gate → automated rollback as an integrated pipeline.
 
 | 2026-07-23 | I-3000 | WRITTEN — S-1550 | The Plan Object Stack — composite 9.10. Tracker exhausted (all 268 prior ideas WRITTEN or DUPLICATE). Fresh research: AgentraLabs `agentic-planning` (MIT, Mar 2026, github.com/agentralabs/agentic-planning) — persistent intention infrastructure with goals, decisions, commitments, and plan objects as versioned Rust structs with integrity signing; Zylos Research (Apr 3, 2026) on goal persistence and goal drift in long-horizon agents; Zylos Research (Apr 5, 2026) on memory architectures distinguishing episodic/semantic/procedural; Anthropic's multi-agent research system (ByteByteGo, Apr 2026) checkpoints plan state at context boundaries; Anthropic 2026 State of AI Agents Report (57% of orgs deploy agents for multi-stage workflows). Core finding: plans are context-time objects that die with context — they need the same durability engineering as any other persistent artifact: versioned schema, integrity checksum, state machine lifecycle (DRAFT→VALIDATED→LOCKED→EXECUTING→COMPLETED), and a cross-session loader. The PlanObject schema maps to AgentraLabs' `Intention` format (goal + decisions + commitments + reasoning). Distinct from S-1432 (context eviction within sessions), S-1542 (cross-session memory/facts), S-1424 (plan generation), and S-1000 (plan verification gate) — this covers plan as durable artifact with versioning and integrity, not any single concern. Deduplication: cost-attribution patterns (I-298, I-299) cover token accounting but not plan durability; scope-drift/goal-drift (I-013, I-102, I-103) cover goal drift as a behavioral failure but not plan-as-durable-artifact as an architectural pattern. |
 
@@ -1938,6 +1973,79 @@ observability-stack → I-299
 || I-2032 | The Guardian Agent NHI Identity Stack: 4-Axis Identity Governance for Autonomous Agents | guardian-agent, NHI, non-human-identity, identity-governance, IAM-gap, agent-credential, four-axis-model, identity-attestation, ephemeral-credential, behavioral-deviation, revocation-cascade, EU-AI-Act, ISO-42001, guardian-layer, autonomous-control | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-1494 | 2026-07-22 | 2026-07-22 |
 
 
-| 2026-07-23 | I-297 | WRITTEN — S-1516 | The Agent Kill Switch Stack — composite 9.45. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: EU AI Act Article 14 (effective August 2, 2026) requires human oversight and emergency stop capability for high-risk autonomous agents; Gheware DevOps AI Blog (updated June 21, 2026) documents the enterprise governance gap; OWASP ASI Top 10 includes kill-switch as a required control. Core finding: process-group `SIGKILL` isolation is the only reliable kill mechanism (cannot be caught/blocked by agent); capability envelope + graceful drain + token revocation form the complete four-layer stack. S-1000 (Structural Governance) covers prompt-based guardrails; S-1453 (Excessive Agency) covers least-privilege scoping; neither covers infrastructure-layer emergency stop patterns. EU AI Act deadline creates hard production urgency. Pattern: agent governance is shifting from advisory (prompt guardrails) to enforceable (infrastructure-layer controls with regulatory backing).
+| 2026-07-23 | I-297 | WRITTEN — S-1516 | The Agent Kill Switch Stack — composite 9.45. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: EU AI Act Article 14 (effective August 2, 2026) requires human oversight and emergency stop capability for high-risk autonomous agents; Gheware DevOps AI Blog (updated June 21, 2026) documents the enterprise governance gap; OWASP ASI Top 10 includes kill-switch as a required control. Core finding: process-group `SIGKILL` isolation is the only reliable kill mechanism (cannot be caught/blocked by agent); capability envelope + graceful drain + token revocation form the complete four-layer stack. S-1000 (Structural Governance) covers prompt-based guardrails; S-1453 (Excessive Agency) covers least-privileze scoping; neither covers infrastructure-layer emergency stop patterns. EU AI Act deadline creates hard production urgency. Pattern: agent governance is shifting from advisory (prompt guardrails) to enforceable (infrastructure-layer) controls.
+
+adversarial-surface → I-3002
+trust-graph → I-3002
+attack-surface → I-3002
+trust-boundary → I-3002
+tool-poisoning → I-3002
+rug-pull → I-3002
+tool-shadowing → I-3002
+invisible-context → I-3002
+indirect-injection → I-3002
+response-poison → I-3002
+cross-server-taint → I-3002
+mcp-poisoning → I-3002
+supply-chain → I-3002
+provenance → I-3002
+tool-attestation → I-3002
+schema-signing → I-3002
+policy-gate → I-3002
+tool-execution-gate → I-3002
+adversarial-testing → I-3002
+red-team → I-3002
+agent-red-team → I-3002
+fault-injection → I-3002
+trust-coverage → I-3002
+invariant-labs → I-3002
+msft-red-team → I-3002
+owasp-asi → I-3002
+long-session-coherence → I-3004
+coherence-collapse → I-3004
+multi-turn-degradation → I-3004
+39-percent-drop → I-3004
+lost-in-middle-bias → I-3004
+rolling-eviction → I-3004
+reasoning-coherence-fragment → I-3004
+session-staleness → I-3004
+context-degradation → I-3004
+state-summarization → I-3004
+ground-truth-file → I-3004
+multi-agent-desync → I-3004
+fresh-context-iteration → I-3004
+coherence-probe → I-3004
+integrity-probe → I-3004
+continuous-eval → I-3005
+eval-pipeline → I-3005
+regression-gate → I-3005
+behavioral-slo → I-3005
+production-trace → I-3005
+trace-to-test → I-3005
+failure-to-test → I-3005
+ci-cd-agent → I-3005
+eval-gate → I-3005
+golden-dataset → I-3005
+behavioral-alert → I-3005
+automated-rollback → I-3005
+agentic-ci → I-3005
+
+| I-3002 | The Adversarial Surface Stack: Systematically Hardening Every Trust Boundary an Agent Crosses at Runtime | adversarial-surface, trust-graph, attack-surface, trust-boundary, tool-poisoning, rug-pull, tool-shadowing, invisible-context, indirect-injection, response-poison, cross-server-taint, mcp-poisoning, supply-chain, provenance, tool-attestation, schema-signing, policy-gate, tool-execution-gate, adversarial-testing, red-team, agent-red-team, fault-injection, trust-coverage, invariant-labs, msft-red-team, owasp-asi | 9 | 10 | 9 | 10 | 8 | **9.10** | WRITTEN — S-1560 | 2026-07-24 | 2026-07-24 |
+| I-3005 | The Continuous Evaluation Pipeline Stack: From Static Benchmark to Behavioral SLO | continuous-eval, eval-pipeline, regression-gate, behavioral-slo, production-trace, trace-to-test, failure-to-test, longitudinal-eval, ci-cd-agent, eval-gate, regression-suite, production-failure, golden-dataset, behavioral-alert, automated-rollback, graduated-eval, capability-graduate, eval-slo, behavioral-drift, agent-health-signal, trace-capture, agentic-ci | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-1566 | 2026-07-24 | 2026-07-24 |
+| I-3006 | The Typed Handoff Protocol Stack: When Your Multi-Agent System Succeeds at Every Step and Fails at Every Handoff | typed-handoff, handoff-protocol, inter-agent, context-loss, handoff-contract, typed-contract, schema-enforcement, MAST, multi-agent-boundary, inter-agent-misalignment, handoff-schema, handoff-log, agent-delegation, context-preservation, multi-agent-pipeline, agentpatterns, mast-taxonomy, semantic-kernel-handoff, anthropic-handoff | 9 | 9 | 9 | 9 | 8 | **8.75** | WRITTEN — S-1567 | 2026-07-24 | 2026-07-24 |handoff-protocol → I-3006typed-handoff → I-3006handoff-contract → I-3006typed-contract → I-3006schema-enforcement → I-3006inter-agent-misalignment → I-3006handoff-schema → I-3006handoff-log → I-3006context-preservation → I-3006multi-agent-pipeline → I-3006mast-taxonomy → I-3006agentpatterns → I-3006semantic-kernel-handoff → I-3006anthropic-handoff → I-3006
+
+
+|||||| 2026-07-24
+||| 2026-07-24 | I-3002 | WRITTEN — S-1560 | The Adversarial Surface Stack — composite 9.10. Tracker exhausted (I-001 through I-3001 all WRITTEN or DUPLICATE; last run was 2026-07-23 with I-3001/AI-BOM). Fresh research: Invariant Labs (May 2026) — 5.5% of public MCP servers contain poisoned metadata (supply chain attack via tool descriptions, not user input); OX Security disclosure (May 2026) — tool poisoning bypasses all input-side defenses; BeyondScale MCP Tool Poisoning Enterprise Defense Playbook (May 2026) — four distinct attack patterns: rug pull, tool shadowing, invisible-context poisoning, cross-server taint; Microsoft AI Red Team Taxonomy v2.0 (June 2026) — 7 new failure categories, empirical from 12 months of red team engagements; OWASP ASI Top 10 (ASI02: Inter-Agent Trust Escalation, ASI10: System Prompt Leakage). Core insight: the adversarial surface of agentic systems is configuration metadata, not user input. Input-side defenses (WAF, prompt injection detectors) cannot see tool poisoning attacks that arrive at session startup via MCP server manifests. Five attack patterns require dedicated testing: rug pull, tool shadowing, invisible context, response poisoning, cross-server taint. Pattern: agent security is shifting from input-centric to infrastructure-centric — the attack surface lives in tool definitions, MCP manifests, and execution policy, not in user messages. Deduplication: S-902 (scaffold supply chain) covers skill/plugin poisoning, not tool metadata poisoning; S-1050 (tool-response poisoning) covers runtime response payloads, not static metadata; S-1234 (MCP tool supply chain) covers description-vs-code gap, not the adversarial testing methodology; S-1557 (MCP server security eval) covers eval stack, not the trust graph + adversarial probe pattern. This entry covers the complete adversarial surface methodology (trust graph mapping, adversarial probe suite, provenance enforcement, execution gate).
 
 | 2026-07-23 | I-298 | WRITTEN — S-1548 | The Reasoning Token Tax Stack — composite 8.85. Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: AgentMarketCap (April 24, 2026) reported 2.3x–8.7x hidden thinking token multipliers across Claude Opus 4.6, o3, and Gemini 2.5 Flash on coding agent tasks. The tax is per-call: thinking tokens billed as output tokens at output rates. In agentic pipelines (10-20 calls), compounding means visible-token budgets understate real cost by 10-80x. Deduplication: S-08 (Prompt Caching) covers input token efficiency; S-1472 (Compounding Reliability) covers reliability compounding; neither covers the billing asymmetry of extended thinking tokens as output-cost multipliers. The gap is hidden multiplier = thinking_tokens / visible_output_tokens, exposed by API metadata. Pattern: the unit economics of agentic inference are fundamentally different from single-call chatbots — thinking token tax is the dominant cost dimension. Cross-links to S-1158 (Adaptive Compute), S-1239 (Runtime Verification), S-1472 (Compounding Reliability) for compounding interaction. |
+
+| I-3007 | The Agent RL Training Infrastructure Stack: When Your Agent Gets Better at Everything and Worse at the One Thing That Matters | agent-rl, rlvr, agent-training, reward-hacking, distribution-collapse, environment-parity, process-reward, outcome-reward, rubric-design, synthetic-trajectories, agent-fine-tuning, agent-rft, reward-signal, curriculum, graduated-rollout, agent-curriculum | 9 | 10 | 9 | 9 | 8 | **9.00** | WRITTEN — S-1569 | 2026-07-24 | 2026-07-24 |
+
+## Pattern Log
+
+- *2026-07-24* — **RLVR Infrastructure Compounding**: RL post-training is the dominant production optimization vector for agents in 2026 (OpenAI Agent RFT: 5-23% accuracy gains, Scale AI Agent-RLVR: 9.4%→22.4% SWE-Bench). The failure mode isn't the training itself — it's the infrastructure around it: environment parity gaps, single-signal reward design, distribution collapse in recursive self-training, and missing graduated deployment gates. This is the first entry to unify all four layers as a coherent engineering stack.
+
+## Recent Decisions
+
+| 2026-07-24 | I-3007 | WRITTEN — S-1569 | Composite 9.00. Idea: Agent RL Training Infrastructure. Research: OpenAI Agent RFT platform (InfoQ, 2026), Scale AI Agent-RLVR (arXiv:2506.11425), reward hacking taxonomy (arXiv:2604.13602), multi-agent production patterns (beam.ai Jul 2026). Deduplication: S-1028 (trajectory degeneration) and S-1236 (rubric-gated pipeline) cover adjacent ground — this entry bridges them with a unified four-layer RLVR infrastructure stack (environment parity → reward signal architecture → distribution health → graduated deployment). S-1237 (trajectory ground truth) also related. Coverage gap confirmed: no single entry covers all four layers together. Timeliness confirmed: RL-based agent training is the primary production optimization lever in 2026 per multiple sources. Next candidate: RLVR environment simulation (sandbox-to-prod parity engineering) or agent compensation-key design for RLVR trajectories.

@@ -1,405 +1,188 @@
-#!/usr/bin/env python3
-"""
-NASDAQ Swing Trade Scanner - July 17, 2026
-Scans QQQ, SPY, and top NASDAQ 100 components for swing trade setups.
-"""
-
-import json
+import yfinance as yf
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
 
-import pandas as pd
-import numpy as np
-import yfinance as yf
-from datetime import datetime, timedelta
-import sys
+today = datetime.now().strftime('%Y-%m-%d')
 
-# ─── CONFIG ───────────────────────────────────────────────────────────────────
-SCAN_DATE = datetime(2026, 7, 17)
-SCAN_TIME = "14:00 ET"
-PERIOD_1Y  = "1y"   # for long-term MA context
-PERIOD_6M  = "6mo"  # for intermediate trend
-PERIOD_3M  = "3mo"  # for recent momentum
-INTERVAL   = "1d"
+TICKERS = ['QQQ', 'SPY', 'IWM',
+           'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA',
+           'AMD', 'AVGO', 'NFLX', 'CRM', 'ORCL', 'ADBE', 'QCOM', 'INTC',
+           'PANW', 'SNOW', 'DDOG', 'MU', 'LRCX', 'KLAC', 'AMAT']
 
-TOP_NASDAQ100 = [
-    "AAPL","MSFT","NVDA","GOOGL","AMZN","META","AVGO","TSLA","ADBE","ORCL",
-    "CRM","AMD","QCOM","INTC","TXN","AMAT","LRCX","MU","NOW","PANW",
-    "NFLX","INTU","PYPL","BKNG","ISRG","ODFL","CHTR","REGN","VRTX","GILD",
-    "SNPS","CDNS","MRVL","KLAC","SNOW","DDOG","TEAM","WDAY","ZS","CRWD",
-]
-
-# ─── HELPERS ──────────────────────────────────────────────────────────────────
-
-def sma(series, length):
-    return series.rolling(length).mean()
-
-def ema(series, length):
-    return series.ewm(span=length, adjust=False).mean()
-
-def atr(high, low, close, length=14):
-    tr = pd.concat([
-        high - low,
-        (high - close.shift(1)).abs(),
-        (low - close.shift(1)).abs()
-    ], axis=1).max(axis=1)
-    return tr.rolling(length).mean()
-
-def rsi(close, length=14):
-    delta = close.diff()
-    gain = delta.where(delta > 0, 0)
-    loss = (-delta).where(delta < 0, 0)
-    avg_gain = gain.ewm(alpha=1/length, adjust=False).mean()
-    avg_loss = loss.ewm(alpha=1/length, adjust=False).mean()
-    rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
-
-def macd(close, fast=12, slow=26, signal=9):
-    ema_fast = close.ewm(span=fast, adjust=False).mean()
-    ema_slow = close.ewm(span=slow, adjust=False).mean()
-    macd_line = ema_fast - ema_slow
-    signal_line = macd_line.ewm(span=signal, adjust=False).mean()
-    hist = macd_line - signal_line
-    return macd_line, signal_line, hist
-
-def fetch_data(ticker, period=PERIOD_1Y, interval=INTERVAL):
+def fetch_data(ticker, period='5mo'):
     try:
-        data = yf.download(ticker, period=period, interval=interval, progress=False, auto_adjust=True)
-        if data.empty:
-            return None
-        data.columns = [c.lower() for c in data.columns]
-        data['volume'] = data.get('volume', pd.Series([0]*len(data)))
-        data['adj close'] = data.get('adj close', data['close'])
-        return data
+        t = yf.Ticker(ticker)
+        df = t.history(period=period, auto_adjust=True)
+        return df
     except Exception as e:
         return None
 
-def analyze_ticker(ticker, data):
-    if data is None or len(data) < 60:
+def compute_indicators(df):
+    df = df.copy()
+    df['sma20'] = df['Close'].rolling(20).mean()
+    df['sma50'] = df['Close'].rolling(50).mean()
+    df['sma200'] = df['Close'].rolling(200).mean()
+    df['ema20'] = df['Close'].ewm(span=20).mean()
+    df['ema50'] = df['Close'].ewm(span=50).mean()
+
+    delta = df['Close'].diff()
+    gain = delta.clip(lower=0).ewm(alpha=2/14).mean()
+    loss = (-delta.clip(upper=0)).ewm(alpha=2/14).mean()
+    rs = gain / loss.replace(0, np.nan)
+    df['rsi'] = 100 - (100 / (1 + rs))
+
+    exp1 = df['Close'].ewm(span=12).mean()
+    exp2 = df['Close'].ewm(span=26).mean()
+    df['macd'] = exp1 - exp2
+    df['macd_signal'] = df['macd'].ewm(span=9).mean()
+    df['macd_hist'] = df['macd'] - df['macd_signal']
+
+    df['atr'] = (df['High'] - df['Low']).rolling(14).mean()
+    df['volume_sma20'] = df['Volume'].rolling(20).mean()
+    df['vol_ratio'] = df['Volume'] / df['volume_sma20']
+    df['daily_return'] = df['Close'].pct_change()
+    df['volatility_20'] = df['daily_return'].rolling(20).std() * np.sqrt(252)
+
+    return df
+
+def analyze_ticker(ticker):
+    df = fetch_data(ticker)
+    if df is None or len(df) < 60:
         return None
 
-    close = data['close']
-    high  = data['high']
-    low   = data['low']
-    volume = data['volume']
+    df = compute_indicators(df)
 
-    # ── MAs ──
-    ma20  = ema(close, 20)
-    ma50  = sma(close, 50)
-    ma200 = sma(close, 200)
-    current_price = close.iloc[-1]
+    # Fill sma200/sma50 if insufficient history
+    for col in ['sma200', 'sma50', 'sma20']:
+        if col not in df.columns or df[col].isna().all():
+            df[col] = df['Close'].rolling(min({'sma200': 200, 'sma50': 50, 'sma20': 20}[col], len(df))).mean()
 
-    # ── Indicators ──
-    data['atr'] = atr(high, low, close, 14)
-    data['rsi'] = rsi(close, 14)
-    macd_line, signal_line, hist = macd(close)
-    data['macd_line'] = macd_line
-    data['macd_signal'] = signal_line
-    data['macd_hist'] = hist
+    cur = df.iloc[-1]
+    prev = df.iloc[-2] if len(df) >= 2 else cur
 
-    current_rsi = data['rsi'].iloc[-1]
-    current_atr = data['atr'].iloc[-1]
-    current_macd_hist = data['macd_hist'].iloc[-1]
-    prev_macd_hist = data['macd_hist'].iloc[-2]
-    current_macd_line = data['macd_line'].iloc[-1]
-    current_macd_signal = data['macd_signal'].iloc[-1]
+    price = cur['Close']
 
-    # ── Volume ──
-    avg_vol_20 = volume.rolling(20).mean().iloc[-1]
-    today_vol = volume.iloc[-1]
-    vol_ratio = today_vol / avg_vol_20 if avg_vol_20 > 0 else 1
+    above_200sma = price > cur['sma200'] if not pd.isna(cur['sma200']) else None
+    above_50sma = price > cur['sma50'] if not pd.isna(cur['sma50']) else None
+    above_20sma = price > cur['sma20'] if not pd.isna(cur['sma20']) else None
 
-    # ── Recent range ──
-    high_20d  = high.tail(20).max()
-    low_20d   = low.tail(20).min()
-    high_5d   = high.tail(5).max()
-    low_5d    = low.tail(5).min()
-
-    # ── Market structure ──
-    # Higher High / Higher Low in last 20 days
-    last_20_closes = close.tail(20)
-    last_20_highs = high.tail(20)
-    last_20_lows  = low.tail(20)
-
-    # Identify swing highs/lows in last 20 days
-    hh = last_20_highs.max()
-    hlc = last_20_lows.max()  # higher low candidate
-
-    # Recent momentum (5-day return)
-    ret_5d  = (close.iloc[-1] / close.iloc[-6] - 1) * 100 if len(close) > 6 else 0
-    ret_10d = (close.iloc[-1] / close.iloc[-11] - 1) * 100 if len(close) > 11 else 0
-    ret_20d = (close.iloc[-1] / close.iloc[-21] - 1) * 100 if len(close) > 21 else 0
-
-    # ── Regime ──
-    above_ma20  = current_price > ma20.iloc[-1]
-    above_ma50  = current_price > ma50.iloc[-1]
-    above_ma200 = current_price > ma200.iloc[-1] if len(close) >= 200 and not pd.isna(ma200.iloc[-1]) else True
-    ma20_above_ma50 = ma20.iloc[-1] > ma50.iloc[-1]
-    ma50_above_ma200 = ma50.iloc[-1] > ma200.iloc[-1] if len(close) >= 200 and not pd.isna(ma200.iloc[-1]) else True
-
-    # Bullish: price above MA50, MA50 above MA200
-    # Bearish: price below MA50, MA50 below MA200
-    # Transitional: mixed
-    if above_ma200 and above_ma50 and above_ma20:
-        regime = "BULL"
-    elif not above_ma200 and not above_ma50 and not above_ma20:
-        regime = "BEAR"
+    if above_200sma and above_50sma:
+        trend = 'BULL'
+    elif not above_200sma and not above_50sma:
+        trend = 'BEAR'
     else:
-        regime = "TRANSITIONAL"
+        trend = 'TRANSITIONAL'
 
-    # ── MACD ──
-    macd_bullish = current_macd_line > current_macd_signal
-    macd_x_up = prev_macd_hist < 0 and current_macd_hist > 0  # crossed up
-    macd_x_dn = prev_macd_hist > 0 and current_macd_hist < 0  # crossed down
+    rsi_val = cur['rsi'] if not pd.isna(cur['rsi']) else 50.0
+    macd_bullish = cur['macd'] > cur['macd_signal'] if not (pd.isna(cur['macd']) or pd.isna(cur['macd_signal'])) else False
+    macd_cross_recent = (prev['macd'] <= prev['macd_signal']) and (cur['macd'] > cur['macd_signal']) if len(df) >= 2 else False
 
-    # ── Bollinger Bands ──
-    bb_mid = sma(close, 20).iloc[-1]
-    bb_std = close.tail(20).std()
-    bb_upper = bb_mid + 2 * bb_std
-    bb_lower = bb_mid - 2 * bb_std
-    bb_width = (bb_upper - bb_lower) / bb_mid * 100
+    vol_ratio = float(cur['vol_ratio']) if not pd.isna(cur['vol_ratio']) else 1.0
+    high_vol = vol_ratio > 1.5
+    atr = float(cur['atr']) if not pd.isna(cur['atr']) else price * 0.02
+    risk_pct = (atr / price) * 100
 
-    # ── Gap Analysis ──
-    prev_close = close.iloc[-2]
-    gap_pct = (current_price - prev_close) / prev_close * 100
-    gap_up = gap_pct > 1.0
-    gap_dn = gap_pct < -1.0
+    # Slope of 20 SMA
+    sma20_series = df['sma20'].dropna()
+    slope_20 = 0.0
+    if len(sma20_series) >= 11:
+        slope_20 = (sma20_series.iloc[-1] - sma20_series.iloc[-11]) / sma20_series.iloc[-11] * 100
+
+    # Momentum score
+    score = 0
+    if above_20sma: score += 1
+    if above_50sma: score += 1
+    if above_200sma: score += 1
+    if 45 < rsi_val < 70: score += 1
+    if rsi_val < 35: score -= 1
+    if rsi_val > 75: score -= 1
+    if macd_bullish: score += 1
+    if macd_cross_recent: score += 2
+    if high_vol: score += 1
+    if slope_20 > 0.5: score += 1
+    if above_20sma and above_50sma and above_200sma: score += 1
+
+    ret_5d = float((price / df['Close'].iloc[-6] - 1) * 100) if len(df) > 5 else 0.0
+    ret_10d = float((price / df['Close'].iloc[-11] - 1) * 100) if len(df) > 10 else 0.0
+    ret_20d = float((price / df['Close'].iloc[-21] - 1) * 100) if len(df) > 20 else 0.0
+
+    # Recent high/low context
+    high_20 = df['High'].tail(20).max()
+    low_20 = df['Low'].tail(20).min()
+    near_high = (price / high_20 - 1) * 100 if high_20 > 0 else 0
+    near_low = (price / low_20 - 1) * 100 if low_20 > 0 else 0
 
     return {
         'ticker': ticker,
-        'price': current_price,
-        'atr': current_atr,
-        'atr_pct': current_atr / current_price * 100,
-        'rsi': current_rsi,
-        'ma20': ma20.iloc[-1],
-        'ma50': ma50.iloc[-1],
-        'ma200': ma200.iloc[-1] if len(close) >= 200 and not pd.isna(ma200.iloc[-1]) else None,
-        'above_ma20': above_ma20,
-        'above_ma50': above_ma50,
-        'above_ma200': above_ma200,
-        'ma20_above_ma50': ma20_above_ma50,
-        'ma50_above_ma200': ma50_above_ma200,
+        'price': float(price),
+        'sma20': float(cur['sma20']) if not pd.isna(cur['sma20']) else None,
+        'sma50': float(cur['sma50']) if not pd.isna(cur['sma50']) else None,
+        'sma200': float(cur['sma200']) if not pd.isna(cur['sma200']) else None,
+        'rsi': float(rsi_val),
         'macd_bullish': macd_bullish,
-        'macd_x_up': macd_x_up,
-        'macd_x_dn': macd_x_dn,
-        'macd_hist': current_macd_hist,
-        'macd_hist_prev': prev_macd_hist,
+        'macd_cross': macd_cross_recent,
         'vol_ratio': vol_ratio,
-        'avg_vol_20': avg_vol_20,
-        'high_20d': high_20d,
-        'low_20d': low_20d,
-        'high_5d': high_5d,
-        'low_5d': low_5d,
-        'close_5d_ago': close.iloc[-6] if len(close) > 6 else None,
+        'atr': float(atr),
+        'risk_pct': float(risk_pct),
+        'above_200sma': above_200sma,
+        'above_50sma': above_50sma,
+        'above_20sma': above_20sma,
+        'trend': trend,
+        'score': score,
+        'slope_20': float(slope_20),
         'ret_5d': ret_5d,
         'ret_10d': ret_10d,
         'ret_20d': ret_20d,
-        'regime': regime,
-        'bb_upper': bb_upper,
-        'bb_mid': bb_mid,
-        'bb_lower': bb_lower,
-        'bb_width': bb_width,
-        'gap_pct': gap_pct,
-        'gap_up': gap_up,
-        'gap_dn': gap_dn,
-        'prev_close': prev_close,
+        'high_vol': high_vol,
+        'high_20': float(high_20),
+        'low_20': float(low_20),
+        'near_high_pct': float(near_high),
+        'near_low_pct': float(near_low),
+        'volume': int(cur['Volume']) if not pd.isna(cur['Volume']) else 0,
+        'date': str(cur.name.date()) if hasattr(cur.name, 'date') else today,
     }
 
-def score_setup(a):
-    """Score a ticker 0-100 for swing trade quality."""
-    if a is None:
-        return -999
+# ─── FETCH ALL ─────────────────────────────────────────────────────────────
+print("Fetching market data...")
+results = {}
+for t in TICKERS:
+    print(f"  {t}...", end=' ', flush=True)
+    r = analyze_ticker(t)
+    if r:
+        results[t] = r
+        print(f"OK  price={r['price']:.2f}  RSI={r['rsi']:.1f}  score={r['score']}")
+    else:
+        print(f"FAILED (insufficient data)")
 
-    score = 50  # baseline
+print(f"\n{len(results)}/{len(TICKERS)} tickers fetched.\n")
 
-    # Trend alignment (0-20)
-    if a['above_ma20'] and a['above_ma50'] and a['above_ma200']:
-        score += 15
-    elif a['above_ma20'] and a['above_ma50']:
-        score += 8
-    elif not a['above_ma20'] and not a['above_ma50'] and not a['above_ma200']:
-        score -= 10
+# ─── SUMMARY TABLE ───────────────────────────────────────────────────────────
+print("="*100)
+hdr = f"{'TICKER':<7} {'PRICE':>8} {'SMA20':>8} {'SMA50':>8} {'SMA200':>8} {'RSI':>5} {'MACD':>5} {'VOLx':>5} {'ATR%':>5} {'SCORE':>5} {'TREND':<14} {'5D%':>6} {'10D%':>6}"
+print(hdr)
+print("="*100)
 
-    # RSI (0-15): optimal 40-60 for long entry, 30-50 for best upside room
-    rsi = a['rsi']
-    if 40 <= rsi <= 60:
-        score += 10  # neutral zone — room to run
-    elif 30 <= rsi < 40:
-        score += 5   # slightly oversold, recovery potential
-    elif rsi > 70:
-        score -= 8   # overbought — less upside room, more risk
-    elif rsi < 30:
-        score -= 5
+sorted_results = sorted(results.items(), key=lambda x: x[1]['score'], reverse=True)
+for ticker, r in sorted_results:
+    macd_sym = "XOVER" if r['macd_cross'] else ("BULL" if r['macd_bullish'] else "BEAR")
+    print(f"{ticker:<7} {r['price']:>8.2f} {r['sma20'] if r['sma20'] else 0:>8.2f} {r['sma50'] if r['sma50'] else 0:>8.2f} "
+          f"{r['sma200'] if r['sma200'] else 0:>8.2f} {r['rsi']:>5.1f} {macd_sym:>5} "
+          f"{r['vol_ratio']:>5.2f} {r['risk_pct']:>5.2f} {r['score']:>5} {r['trend']:<14} {r['ret_5d']:>6.1f} {r['ret_10d']:>6.1f}")
 
-    # MACD momentum (0-15)
-    if a['macd_x_up']:
-        score += 12
-    elif a['macd_bullish'] and a['macd_hist'] > 0:
-        score += 8
-    elif a['macd_bullish'] and a['macd_hist'] > a['macd_hist_prev']:
-        score += 5
-    elif a['macd_x_dn']:
-        score -= 10
+print()
+print("="*100)
+print("HIGH VOLUME + NEAR BREAKOUT SCANNER (vol > 1.5x avg AND near 20d high)")
+print("="*100)
+print(f"{'TICKER':<7} {'PRICE':>8} {'20dHIGH':>8} {'20dLOW':>8} {'nrHIGH%':>8} {'nrLOW%':>8} {'VOLx':>5} {'SCORE':>5}")
+print("-"*100)
+for ticker, r in sorted_results:
+    if r['high_vol'] and r['near_high_pct'] > -3.0:
+        print(f"{ticker:<7} {r['price']:>8.2f} {r['high_20']:>8.2f} {r['low_20']:>8.2f} {r['near_high_pct']:>8.1f} {r['near_low_pct']:>8.1f} {r['vol_ratio']:>5.2f} {r['score']:>5}")
 
-    # Recent momentum (0-10)
-    if a['ret_5d'] > 3:
-        score += 5
-    elif a['ret_5d'] < -3:
-        score -= 5
-
-    # Volume confirmation (0-10)
-    if a['vol_ratio'] > 1.5:
-        score += 8
-    elif a['vol_ratio'] > 1.2:
-        score += 4
-
-    # Gap fill potential (0-10)
-    if a['gap_up'] and a['rsi'] < 70:
-        score += 6  # gap continuation potential
-    elif a['gap_dn']:
-        score -= 6
-
-    return round(score, 1)
-
-# ─── MAIN SCAN ────────────────────────────────────────────────────────────────
-
-print("=" * 70)
-print(f"NASDAQ SWING TRADE SCANNER — {SCAN_DATE.strftime('%B %d, %Y')} @ {SCAN_TIME}")
-print("=" * 70)
-
-# 1. Fetch broad market
-print("\n[1/4] Fetching broad market data (QQQ, SPY, IWM, VIX proxy)...")
-market_tickers = ['QQQ', 'SPY', 'IWM', '^VIX', 'DXY']
-market_data = {}
-for t in market_tickers:
-    d = fetch_data(t, period=PERIOD_6M)
-    market_data[t] = d
-    print(f"  {t}: {'OK' if d is not None else 'FAILED'} ({len(d) if d is not None else 0} rows)")
-
-# 2. Analyze broad market
-market_results = {}
-for t, d in market_data.items():
-    if d is not None:
-        market_results[t] = analyze_ticker(t, d)
-
-# 3. Fetch top NASDAQ 100 components
-print(f"\n[2/4] Fetching {len(TOP_NASDAQ100)} NASDAQ-linked tickers...")
-ticker_data = {}
-batch_size = 10
-for i in range(0, len(TOP_NASDAQ100), batch_size):
-    batch = TOP_NASDAQ100[i:i+batch_size]
-    for ticker in batch:
-        d = fetch_data(ticker, period=PERIOD_6M)
-        ticker_data[ticker] = d
-        sys.stdout.write(f"  {ticker} ")
-        sys.stdout.flush()
-    print("")
-
-print(f"\n[3/4] Analyzing {len(ticker_data)} tickers...")
-results = []
-for ticker, data in ticker_data.items():
-    a = analyze_ticker(ticker, data)
-    if a:
-        a['score'] = score_setup(a)
-        results.append(a)
-
-results.sort(key=lambda x: x['score'], reverse=True)
-
-print(f"\n[4/4] Scoring and ranking top setups...")
-
-# ─── OUTPUT ──────────────────────────────────────────────────────────────────
-
-print("\n" + "=" * 70)
-print("TOP 10 SCORED SETUPS")
-print("=" * 70)
-print(f"{'Ticker':<8} {'Price':>9} {'RSI':>6} {'MACD':>6} {'Score':>6} {'Regime':>12} {'5D%':>7} {'VolRatio':>8}")
-print("-" * 70)
-for r in results[:10]:
-    macd_dir = "▲" if r['macd_bullish'] else "▼"
-    print(f"{r['ticker']:<8} ${r['price']:>8.2f} {r['rsi']:>6.1f} {macd_dir:>6} {r['score']:>6.1f} {r['regime']:>12} {r['ret_5d']:>7.2f}% {r['vol_ratio']:>8.2f}x")
-
-# ─── BROAD MARKET REGIME ──────────────────────────────────────────────────────
-print("\n" + "=" * 70)
-print("BROAD MARKET REGIME ANALYSIS")
-print("=" * 70)
-
-for t, a in market_results.items():
-    if a:
-        regime_icon = "🟢" if a['regime'] == 'BULL' else ("🔴" if a['regime'] == 'BEAR' else "🟡")
-        print(f"\n{t}: ${a['price']:.2f}")
-        print(f"  Regime: {regime_icon} {a['regime']}")
-        print(f"  RSI: {a['rsi']:.1f} | MACD Hist: {a['macd_hist']:.3f} | 5D Return: {a['ret_5d']:.2f}%")
-        print(f"  MA20: ${a['ma20']:.2f} | MA50: ${a['ma50']:.2f} | MA200: ${a['ma200'] if a['ma200'] else 'N/A'}")
-        print(f"  Above MA20: {a['above_ma20']} | Above MA50: {a['above_ma50']} | Above MA200: {a['above_ma200']}")
-        print(f"  ATR: ${a['atr']:.2f} ({a['atr_pct']:.2f}% of price)")
-
-# ─── TOP 3 DEEP DIVE ─────────────────────────────────────────────────────────
-print("\n" + "=" * 70)
-print("TOP 3 SWING TRADE SETUPS — DEEP DIVE")
-print("=" * 70)
-
-top3 = results[:3]
-for i, a in enumerate(top3, 1):
-    print(f"\n{'─'*70}")
-    print(f"SETUP #{i}: {a['ticker']}  |  Score: {a['score']}/100")
-    print(f"{'─'*70}")
-    print(f"  Current Price:    ${a['price']:.2f}")
-    print(f"  5-Day Return:     {a['ret_5d']:+.2f}%")
-    print(f"  10-Day Return:    {a['ret_10d']:+.2f}%")
-    print(f"  20-Day Return:    {a['ret_20d']:+.2f}%")
-    print(f"  ATR (14):         ${a['atr']:.2f} ({a['atr_pct']:.2f}% of price)")
-    print(f"  RSI (14):         {a['rsi']:.1f}")
-    print(f"  MACD Histogram:   {a['macd_hist']:.4f} (prev: {a['macd_hist_prev']:.4f})")
-    print(f"  MACD Crossover:   {'▲ CROSSED UP' if a['macd_x_up'] else '▼ CROSSED DOWN' if a['macd_x_dn'] else 'no cross today'}")
-    print(f"  Volume Ratio:     {a['vol_ratio']:.2f}x 20-day avg")
-    print(f"  Regime:           {a['regime']}")
-    print(f"  Gap Today:        {a['gap_pct']:+.2f}%")
-    print(f"  Bollinger Width:  {a['bb_width']:.2f}% (upper=${a['bb_upper']:.2f}, mid=${a['bb_mid']:.2f}, lower=${a['bb_lower']:.2f})")
-    print(f"  20D High:         ${a['high_20d']:.2f} | 20D Low: ${a['low_20d']:.2f}")
-    print(f"  5D High:          ${a['high_5d']:.2f} | 5D Low: ${a['low_5d']:.2f}")
-
-    # ── Trade metrics ──
-    risk_pct = a['atr_pct'] * 1.5  # 1.5 ATR stop
-    stop_price = a['price'] * (1 - risk_pct/100)
-
-    # T1: 2:1 R:R, T2: 3:1 R:R
-    risk_amount = a['price'] - stop_price
-    t1 = a['price'] + risk_amount * 2.0
-    t2 = a['price'] + risk_amount * 3.0
-
-    # Dynamic stop (trailing): move stop to breakeven + 0.5 ATR when price reaches T1
-    be_stop = a['price'] + risk_amount * 0.5
-
-    print(f"\n  ── TACTICAL ORDER BLUEPRINT ──")
-    print(f"  Direction:         LONG" if a['above_ma20'] and a['regime'] != 'BEAR' else "  Direction:         SHORT" if not a['above_ma20'] and a['regime'] == 'BEAR' else "  Direction:         WATCH")
-    print(f"  Entry Type:       Buy Limit @ ${a['price']:.2f} (or market on pullback)")
-    print(f"  Stop Loss:        ${stop_price:.2f} (1.5 ATR = {risk_pct:.2f}% risk)")
-    print(f"  Risk/Share:       ${risk_amount:.2f}")
-    print(f"  T1 (2:1):         ${t1:.2f} (+{risk_amount*2:.2f}/share, {((t1/a['price'])-1)*100:.2f}%)")
-    print(f"  T2 (3:1):         ${t2:.2f} (+{risk_amount*3:.2f}/share, {((t2/a['price'])-1)*100:.2f}%)")
-    print(f"  Trailing Stop:    Move SL to ${be_stop:.2f} (breakeven + 0.5 ATR) when T1 hit")
-    print(f"  Position Size:    Risk 1-2% of portfolio per trade")
-    print(f"  Holding Window:   2-10 trading days (exit at T1 or T2, whichever first)")
-
-    # Invalidation
-    inv_price = a['low_20d'] if a['above_ma20'] else a['high_20d']
-    print(f"  Invalidation:     Price closes below ${inv_price:.2f} (20-day low) = thesis killed")
-
-# ─── JSON EXPORT ─────────────────────────────────────────────────────────────
-export = {
-    'scan_date': SCAN_DATE.strftime('%Y-%m-%d'),
-    'scan_time': SCAN_TIME,
-    'broad_market': {t: {k: round(v,4) if isinstance(v, float) else v
-                        for k,v in a.items() if k not in ['bb_upper','bb_mid','bb_lower','high_20d','low_20d','high_5d','low_5d']}
-                     for t, a in market_results.items() if a},
-    'ranked_setups': [
-        {k: round(v,4) if isinstance(v, float) else v
-         for k,v in r.items() if k not in ['bb_upper','bb_mid','bb_lower','high_20d','low_20d','high_5d','low_5d']}
-        for r in results[:10]
-    ]
-}
-
-with open('/opt/data/handbook/swing_scan_results.json', 'w') as f:
-    json.dump(export, f, indent=2, default=str)
-
-print(f"\n✓ Results exported to /opt/data/handbook/swing_scan_results.json")
+print()
+print("="*100)
+print(f"DATA AS OF: {results.get('QQQ', {}).get('date', today)}")
+print("="*100)
