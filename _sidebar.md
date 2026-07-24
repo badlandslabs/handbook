@@ -699,6 +699,16 @@
   - [S-1569 · The Agent RL Training Infrastructure Stack — When Your Agent Gets Better at Everything and Worse at the One Thing That Matters](stacks/s1569-the-agent-rl-training-infrastructure-stack-when-your-agent-gets-better-at-everything-and-worse-at-the-one-thing-that-matters.md)
   - [S-1566 · The Continuous Evaluation Pipeline Stack — When Your Agent Isn't as Good as It Was Last Tuesday](stacks/s1566-the-continuous-evaluation-pipeline-stack-when-your-agent-isnt-as-good-as-it-was-last-tuesday.md)
   - [S-1571 · The Economic Firewall Stack — When Your Agent Runs for 11 Days and Burns $47,000](stacks/s1571-the-economic-firewall-stack-when-your-agent-runs-for-11-days-and-burns-47000-dollars.md)
+  - [S-1575 · The Memory Pointer Pattern — When Your Tool Outputs Cost More Than Your Model](stacks/s1575-the-memory-pointer-pattern-when-your-tool-outputs-cost-more-than-your-model.md)
+  - [S-1581 · The SLO Blind Spot Stack — When Your Agent Score Is 87% and Nobody Can Tell You Why](stacks/s1581-the-slo-blind-spot-stack-when-your-agent-score-is-87-percent-and-nobody-can-tell-you-why.md)
+  - [S-1572 · The Brain-Hands Session Stack — When Your Agent Is a Pet, Not a Cattle](stacks/s1572-the-brain-hands-session-stack-when-your-agent-is-a-pet-not-a-cattle.md)
   - [S-1573 · The Sandbox Gap Stack — When Your Agent Has Full System Access Through a Hole Your Prompt Guardrails Cannot Close](stacks/s1573-the-sandbox-gap-stack-when-your-agent-has-full-system-access-through-a-hole-your-prompt-guardrails-cannot-close.md)
+  - [S-1577 · The NHI Lifecycle Governance Stack — When Your Agent Has No Departure Date and Your IGA System Doesn't Know It Exists](stacks/s1577-the-nhi-lifecycle-governance-stack-when-your-agent-has-no-departure-date-and-your-iga-system-doesnt-know-it-exists.md)
+  - [S-1586 · The Metamorphic Oracle Stack — When Your Agent Test Has No Ground Truth but Production Cannot Wait](stacks/s1586-the-metamorphic-oracle-stack-when-your-agent-test-has-no-ground-truth-but-production-cannot-wait.md)
+  - [S-1587 · The Stealth Memory Injection Stack — When a Single Email Replants Your Agent's Entire Worldview](stacks/s1587-the-stealth-memory-injection-stack-when-a-single-email-replants-your-agents-entire-worldview.md)
+  - [S-1592 · The Policy-on-Paths Stack — When Every Single Action Is Permitted and the Trajectory Is a Violation](stacks/s1592-the-policy-on-paths-stack-when-every-single-action-is-permitted-and-the-trajectory-is-a-violation.md)
+  - [S-1593 · The Orchestrator-as-Gatekeeper Stack — When Your Multi-Agent System Has No Boss](stacks/s1593-the-orchestrator-as-gatekeeper-stack-when-your-multi-agent-system-has-no-boss.md)
+  - [S-1594 · The Proposal Gate Stack — When Your Agent Knows What It Wants but Hasn't Asked If It Should](stacks/s1594-the-proposal-gate-stack-when-your-agent-knows-what-it-wants-but-hasnt-asked-if-it-should.md)
+  - [S-1596 · The Directive Conflict Stack — When Your Agent Has Two Bosses and They Don't Agree](stacks/s1596-the-directive-conflict-stack-when-your-agent-has-two-bosses-and-they-dont-agree.md)
 
   - [S-1536]
