@@ -710,5 +710,6 @@
   - [S-1593 · The Orchestrator-as-Gatekeeper Stack — When Your Multi-Agent System Has No Boss](stacks/s1593-the-orchestrator-as-gatekeeper-stack-when-your-multi-agent-system-has-no-boss.md)
   - [S-1594 · The Proposal Gate Stack — When Your Agent Knows What It Wants but Hasn't Asked If It Should](stacks/s1594-the-proposal-gate-stack-when-your-agent-knows-what-it-wants-but-hasnt-asked-if-it-should.md)
   - [S-1596 · The Directive Conflict Stack — When Your Agent Has Two Bosses and They Don't Agree](stacks/s1596-the-directive-conflict-stack-when-your-agent-has-two-bosses-and-they-dont-agree.md)
+  - [S-1603 · The A2A Task Lifecycle Stack — When Your Agent Hands Off Work and Loses Contact](stacks/s1603-the-a2a-task-lifecycle-stack-when-your-agent-hands-off-work-and-loses-contact.md)
 
   - [S-1536]
