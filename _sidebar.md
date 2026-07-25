@@ -661,6 +661,7 @@
   - [R-14 · Agent Memory Controller](frontier/r14-agent-memory-controller.md)
   - [R-15 · Domain Agent Lightweight Fine-Tuning](frontier/r15-domain-agent-lightweight-fine-tuning.md)
   - [R-16 · Agent Harness Sensitivity](frontier/r16-agent-harness-sensitivity.md)
+  - [R-17 · Behavioral Regression Detection](frontier/r17-the-behavioral-regression-detection-stack-when-your-agent-test-suite-is-green-but-your-users-are-not.md)
 - [Contributing](CONTRIBUTING.md)  - [S-1367] 
   - [S-1374] 
   - [S-1376] 
@@ -721,6 +722,15 @@
   - [S-1620 · The Type-Safe Agent Framework Stack — When Your Agent Codebase Looks Like Python but Your Team Writes TypeScript](stacks/s1620-the-type-safe-agent-framework-stack-when-your-agent-codebase-looks-like-python-but-your-team-writes-typescript.md)
   - [S-1621 · The Production Eval Loop Stack — When You Ship Agents and Hope for the Best](stacks/s1621-the-production-eval-loop-stack-when-you-ship-agents-and-hope-for-the-best.md)
   - [S-1622 · The Confidence Calibration Stack — When Your Agent Is Wrong but Sounds Certain](stacks/s1622-the-confidence-calibration-stack-when-your-agent-is-wrong-but-sounds-certain.md)
+  - [S-1628 · The Multi-Agent Fault Injection Stack — When Your Agent System Looks Robust But Has 11 Silent Failure Modes](stacks/s1628-the-multi-agent-fault-injection-stack-when-your-agent-system-looks-robust-but-has-11-silent-failure-modes.md)
+  - [S-1629 · The Inference Collapse Stack — When Your Agent Chains an Inference to a Fact to Ground Truth](stacks/s1629-the-inference-collapse-stack-when-your-agent-chains-an-inference-to-a-fact-to-ground-truth.md)
+  - [S-1631 · The Memory Laundering Stack — When Memory Compression Cleans Adversarial Content but Preserves Its Harm](stacks/s1631-the-memory-laundering-stack-when-memory-compression-cleans-adversarial-content-but-preserves-its-harm.md)
+  - [S-1631 · The Structural Signal Masking Stack — When Your Task-Level Metrics Are Lying to You](stacks/s1631-the-structural-signal-masking-stack-when-your-task-level-metrics-are-lying-to-you.md)
   - [S-1624 · The Agent FinOps Stack — When Your Dashboard Shows Green But Your Credit Card Burns](stacks/s1624-the-agent-finops-stack-when-your-dashboard-shows-green-but-your-credit-card-burns.md)
-
-  - [S-1536]
+  - [S-1636 · The Interruptible Agent Stack — When Your Agent Crashes Halfway and Starts Over](stacks/s1636-the-interruptible-agent-stack-when-your-agent-crashes-halfway-and-starts-over.md)
+  - [S-1637 · The Execution Trace Attribution Stack — When Your Agent Fails Silently and You Can't Find the Responsible Step](stacks/s1637-the-execution-trace-attribution-stack-when-your-agent-fails-silently-and-you-cant-find-the-responsible-step.md)
+  - [S-1638 · The Probabilistic Test Stack — When Your Agent Works in the Demo but Fails in Production](stacks/s1638-the-probabilistic-test-stack-when-your-agent-works-in-the-demo-but-fails-in-production.md)
+  - [S-1639 · The Canonical Action Gap Stack — When You Can't Tell What Your Agent Actually Did](stacks/s1639-the-canonical-action-gap-stack-when-you-cant-tell-what-your-agent-actually-did.md)
+  - [S-1641 · The Capability Binding Stack — When Your Agent Promises Capabilities It Can't Deliver](stacks/s1641-the-capability-binding-stack-when-your-agent-promises-capabilities-it-cant-deliver.md)
+  - [S-1646 · The Judge Calibration Stack — When Your Eval Suite Is Green but Your Judge Is Lying to You](stacks/s1646-the-judge-calibration-stack-when-your-eval-suite-is-green-but-your-judge-is-lying-to-you.md)
+  - [S-1647 · The Token Cost Compounding Stack — When Your Agent's First Step Costs 10× More Than You Planned](stacks/s1647-the-token-cost-compounding-stack-when-your-agents-first-step-costs-10x-more-than-you-planned.md)
