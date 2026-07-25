@@ -660,6 +660,7 @@
   - [R-13 · Agent Trajectory Synthesis](frontier/r13-agent-trajectory-synthesis.md)
   - [R-14 · Agent Memory Controller](frontier/r14-agent-memory-controller.md)
   - [R-15 · Domain Agent Lightweight Fine-Tuning](frontier/r15-domain-agent-lightweight-fine-tuning.md)
+  - [R-16 · Agent Harness Sensitivity](frontier/r16-agent-harness-sensitivity.md)
 - [Contributing](CONTRIBUTING.md)  - [S-1367] 
   - [S-1374] 
   - [S-1376] 
@@ -713,5 +714,13 @@
   - [S-1596 · The Directive Conflict Stack — When Your Agent Has Two Bosses and They Don't Agree](stacks/s1596-the-directive-conflict-stack-when-your-agent-has-two-bosses-and-they-dont-agree.md)
   - [S-1603 · The A2A Task Lifecycle Stack — When Your Agent Hands Off Work and Loses Contact](stacks/s1603-the-a2a-task-lifecycle-stack-when-your-agent-hands-off-work-and-loses-contact.md)
   - [S-1605 · The Agent Disagreement Resolution Stack — When Your Multi-Agent Panel Ratifies the Wrong Answer](stacks/s1605-the-agent-disagreement-resolution-stack-when-your-multi-agent-panel-ratifies-the-wrong-answer.md)
+  - [S-1613 · The Multi-Agent Handoff Eval Stack — When Every Agent Passes Its Test But Your System Fails](stacks/s1613-the-multi-agent-handoff-eval-stack-when-every-agent-passes-its-test-but-your-system-fails.md)
+  - [S-1614 · The Agentic Failure Gate Stack — When Your Agent Doesn't Crash But Spends 35 Minutes Doing Nothing Wrong](stacks/s1614-the-agentic-failure-gate-stack-when-your-agent-doesnt-crash-but-spends-35-minutes-doing-nothing-wrong.md)
+  - [S-1615 · The Effect Reconciliation Stack — When Your Agent Computed Everything But Nobody Received Anything](stacks/s1615-the-effect-reconciliation-stack-when-your-agent-computed-everything-but-nobody-received-anything.md)
+  - [S-1618 · The Execution Authority Separation Stack — When Your Agent Decides to Act But Has No Authorization](stacks/s1618-the-execution-authority-separation-stack-when-your-agent-decides-to-act-but-has-no-authorization.md)
+  - [S-1620 · The Type-Safe Agent Framework Stack — When Your Agent Codebase Looks Like Python but Your Team Writes TypeScript](stacks/s1620-the-type-safe-agent-framework-stack-when-your-agent-codebase-looks-like-python-but-your-team-writes-typescript.md)
+  - [S-1621 · The Production Eval Loop Stack — When You Ship Agents and Hope for the Best](stacks/s1621-the-production-eval-loop-stack-when-you-ship-agents-and-hope-for-the-best.md)
+  - [S-1622 · The Confidence Calibration Stack — When Your Agent Is Wrong but Sounds Certain](stacks/s1622-the-confidence-calibration-stack-when-your-agent-is-wrong-but-sounds-certain.md)
+  - [S-1624 · The Agent FinOps Stack — When Your Dashboard Shows Green But Your Credit Card Burns](stacks/s1624-the-agent-finops-stack-when-your-dashboard-shows-green-but-your-credit-card-burns.md)
 
   - [S-1536]
