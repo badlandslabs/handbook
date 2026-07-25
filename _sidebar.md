@@ -641,6 +641,7 @@
   - [F-197 · DAG-Aware Agent Scheduling: Parallel Execution Across Turns](forward-deployed/f197-dag-aware-agent-scheduling-parallel-execution-across-turns.md)
   - [F-198 · Agent Secrets Rotation](forward-deployed/f198-agent-secrets-rotation.md)
   - [F-199 · ASI08: Cascading Failures in Multi-Agent Systems](forward-deployed/f199-asi08-cascading-failures-multi-agent-systems.md)
+  - [F-200 · The Permission Guard Stack](forward-deployed/f200-the-permission-guard-stack-when-your-agent-does-exactly-what-it-was-designed-to-do-and-wreaks-havoc.md)
 
 - **Book of the Frontier**
   - [Overview](frontier/)
@@ -711,5 +712,6 @@
   - [S-1594 · The Proposal Gate Stack — When Your Agent Knows What It Wants but Hasn't Asked If It Should](stacks/s1594-the-proposal-gate-stack-when-your-agent-knows-what-it-wants-but-hasnt-asked-if-it-should.md)
   - [S-1596 · The Directive Conflict Stack — When Your Agent Has Two Bosses and They Don't Agree](stacks/s1596-the-directive-conflict-stack-when-your-agent-has-two-bosses-and-they-dont-agree.md)
   - [S-1603 · The A2A Task Lifecycle Stack — When Your Agent Hands Off Work and Loses Contact](stacks/s1603-the-a2a-task-lifecycle-stack-when-your-agent-hands-off-work-and-loses-contact.md)
+  - [S-1605 · The Agent Disagreement Resolution Stack — When Your Multi-Agent Panel Ratifies the Wrong Answer](stacks/s1605-the-agent-disagreement-resolution-stack-when-your-multi-agent-panel-ratifies-the-wrong-answer.md)
 
   - [S-1536]
