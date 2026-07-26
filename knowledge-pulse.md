@@ -2306,10 +2306,36 @@ traceloop → I-3028
 agentops → I-3028
 span-correlation → I-3028
 gen-ai-attributes → I-3028
+semantic-conventions-genai → I-3028
+v1.42 → I-3028
+genai-events → I-3028
+conversation-id → I-3028
+trace-context → I-3028
+opentelemetry-genai → I-3028
+instruction-privilege → I-3030
+privilege-separation → I-3030
+instruction-hierarchy → I-3030
+spotlighting → I-3030
+delimit-mark-encode → I-3030
+trust-boundary → I-3030
+prompt-injection → I-3030
+least-agency → I-3030
+OWASP-ASI → I-3030
+ASI01 → I-3030
+ASI02 → I-3030
+ASI03 → I-3030
+semantic-noise → I-3031
+context-pollution → I-3031
+signal-noise-ratio → I-3031
+definitional-conflict → I-3031
+observation-masking → I-3031
+content-quality → I-3031
+conflict-detection → I-3031
+Grok3-noise-sensitivity → I-3031
+inter-agent-trust → I-3030
+Microsoft-Spotlighting → I-3030
+
 ## Recent Decisions
-
-- *2026-07-26* — **I-3030 — GenAI Observability Trace Stack (S-1658) — Composite 8.80**: Tracker exhausted (3029 prior ideas WRITTEN or DUPLICATE). Fresh research: Vera ex Machina (Jun 2026) on OpenTelemetry GenAI semconv v1.42.0 (Jun 12 — conventions moved to dedicated repo github.com/open-telemetry/semantic-conventions-genai), Genαi on 5 agent span operations, AIMultiple July 2026 benchmark (LangSmith ~0% overhead vs 5-40% for others), Zylos Research (Apr 2026) on production debugging epistemology. Deduplication: S-1001/S-1003/S-1005 cover eval, failure recovery, and AI SRE detection via traces — but none covers the actual observability infrastructure (GenAI semconv, span taxonomy, cross-agent correlation, backend selection). This is the missing connective entry.
-
 - *2026-07-25* — **I-3027 — Tool Interface Stack (S-1650) — Composite 9.60**: Tracker exhausted (all 3026 prior ideas WRITTEN or DUPLICATE). Fresh research: Guo et al., arXiv:2602.20426v2 (Intuit AI Research, Apr 2026) — "Learning to Rewrite Tool Descriptions for Reliable LLM-Agent Tool Use." Core finding: tool descriptions are written for humans who fill in gaps contextually; agents cannot do this and resolve ambiguities by guessing. Paper demonstrates that interface quality is a primary bottleneck — rewriting descriptions from human-readable summaries to machine-readable contracts lifts tool selection accuracy substantially. Supporting data: BuildMVPFast analysis shows 67.6% of agent tokens are tool-response tokens, making tool efficiency the highest-leverage optimization target in agent pipelines. Supporting data: Step Finance (Jan 2026) $27-30M unauthorized transfer incident traces to tool call misrouting. Deduplication: S-989 covers tool surface management and selection at catalog scale; S-03 covers tool use basics; S-1023 covers recovery from tool-call failures; S-1057 covers tool call hallucination. Novel angle: tool description as interface contract — specific rewrites (concrete inputs, enumerated params, explicit NOT-DO boundaries, named parameters for disambiguation) as first-class engineering artifacts with version control and selection-accuracy SLAs.
 
 
@@ -2337,6 +2363,8 @@ gen-ai-attributes → I-3028
 | I-3030 | The GenAI Observability Trace Stack — When Your Agent Does Something and Nobody Knows Why | observability, opentelemetry, genai-semconv, agent-trace, langfuse, traceloop, agentops, span-correlation, gen-ai-attributes, agentic-monitoring, langsmith, honeycomb, arize, genai-events, conversation-id, trace-context, genai.*-attributes, semantic-conventions-genai, v1.42 | 9 | 9 | 9 | 8 | 9 | **8.80** | WRITTEN — S-1658 | 2026-07-26 | 2026-07-26 |
 | I-3025 | The Context Rot Stack — When Your Agent Gets Dumber Mid-Workflow | context-rot, context-drift, forgetting, performance-degradation, context-management, context-engineering, agent-amnesia, forrester-65pct | 7 | 8 | 8 | 8 | 7 | **7.55** | DUPLICATE — overlaps S-1000 (context exhaustion) and S-1656 (agent drift) | 2026-07-25 | 2026-07-26 |
 | I-3026 | The Agentic Sandbox Stack — When Your Agent's Tool Call Becomes Your Security Incident | sandboxing, microvm, gvisor, firecracker, wasm, kubernetes-agent-sandbox, OWASP-ASI, agent-security, cve-2025-59528 | 7 | 6 | 8 | 9 | 5 | **6.95** | DUPLICATE — overlaps S-1069 (threat-model-driven sandbox) | 2026-07-25 | 2026-07-26 |
+|| I-3030 | The Instruction Privilege Stack — When Your Agent Treats a Prompt Injection as Authoritative | instruction-privilege, privilege-separation, instruction-hierarchy, spotlighting, delimit-mark-encode, trust-boundary, prompt-injection, least-agency, OWASP-ASI, ASI01, ASI02, ASI03, inter-agent-trust, Microsoft-Spotlighting, seahop-ai-threat-atlas | 10 | 10 | 9 | 10 | 9 | **9.20** | WRITTEN — S-1659 | 2026-07-26 | 2026-07-26 |
+| I-3031 | The Semantic Noise Stack — When Your Agent Has Enough Tokens But Not Enough Signal | semantic-noise, context-pollution, signal-noise-ratio, definitional-conflict, temporal-decay, schema-drift, observation-masking, content-quality, retrieval-quality, context-engineering, context-validation, staleness, conflict-detection, Grok3-noise-sensitivity, arxiv-2505.18761 | 8 | 8 | 9 | 9 | 7 | **8.45** | WRITTEN — S-1660 | 2026-07-26 | 2026-07-26 |
 | I-3029 | The Agent Drift Stack — When Your Agent Was Brilliant at Step 10 and Confused by Step 30 | agent-drift, behavioral-degradation, goal-drift, role-drift, plan-decay, hallucination-cascade, tool-use-drift, context-divergence-score, CDS, TACT, SSVP, provenance-tagging, re-anchoring, reanchor, multi-agent-coherence, behavioral-collapse | 9 | 9 | 9 | 9 | 9 | **9.05** | WRITTEN — S-1656 | 2026-07-26 | 2026-07-26 |
 | I-3027 | The Tool Interface Stack — When Your Tool Description Works for Humans but Not for Agents | tool-description-quality, tool-interface, tool-schema-rewrite, LLM-tool-interface, tool-description-ambiguity, trace-free-plus, arxiv-2602.20426, tool-selection-accuracy, tool-contract | 9 | 9 | 9 | 9 | 8 | **9.60** | WRITTEN — S-1650 | 2026-07-25 | 2026-07-25 |
 
@@ -2356,6 +2384,8 @@ tTesting OWASP T5 analysis (cascading hallucination as deliberate attack vector)
 | I-3029 | The Stale Amplification Stack — When Caching Makes Wrong Answers Faster | cache-staleness, stale-amplification, context-caching, content-hash-key, semantic-freshness, cache-invalidation, cache-governance, TTL-invalidation, attestation, fast-wrong-answer, cached-wrong-policy, oracle-blog, atlan-cache, appscale-context-rot | 9 | 10 | 9 | 9 | 7 | **9.05** | WRITTEN — S-1654 | 2026-07-26 | 2026-07-26 |
 
 ## Pattern Log
+
+- *2026-07-26* — **Trust Boundary Migration**: As agents evolved from read-only chat interfaces to act-on-behalf systems with MCP tool access, the security trust boundary migrated from the network perimeter into the context window. Instruction Privilege Separation is the architectural response — enforcing a strict ordering (operator policy > system prompt > user input > tool output > retrieved content) at the enforcement layer, not inside the prompt. Spotlighting techniques (delimiting, data marking, encoding) isolate untrusted content; privilege enforcement (pre-flight checks, output filtering, inter-agent privilege tags) prevent escalation. Related: OWASP ASI Top 10 v2.01 (Jun 2026) surfaces this as foundational — all ten attack classes exploit the absence of this boundary inside the context window.
 
 - *2026-07-26* — **Stale Amplification**: Caching accelerates both correct and incorrect content equally. The 90% cost reduction from prompt caching applies to stale cached policies as readily as fresh ones — and delivers them at the same speed, eliminating the latency warning that might otherwise flag the problem. The fix requires content-hash-based cache keys (content-change invalidation, not just TTL), semantic freshness attestation for high-stakes actions, and cache-aware trace logging with age flags. Sources: Oracle blog (Feb 2026), Atlan blog (Apr 2026), AppScale context rot post (Apr 2026).
 
