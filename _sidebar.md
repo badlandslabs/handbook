@@ -734,3 +734,8 @@
   - [S-1641 · The Capability Binding Stack — When Your Agent Promises Capabilities It Can't Deliver](stacks/s1641-the-capability-binding-stack-when-your-agent-promises-capabilities-it-cant-deliver.md)
   - [S-1646 · The Judge Calibration Stack — When Your Eval Suite Is Green but Your Judge Is Lying to You](stacks/s1646-the-judge-calibration-stack-when-your-eval-suite-is-green-but-your-judge-is-lying-to-you.md)
   - [S-1647 · The Token Cost Compounding Stack — When Your Agent's First Step Costs 10× More Than You Planned](stacks/s1647-the-token-cost-compounding-stack-when-your-agents-first-step-costs-10x-more-than-you-planned.md)
+  - [S-1652 · The Least Agency Stack — When Your Agent Doesn't Need to Be a Superuser](stacks/s1652-the-least-agency-stack-when-your-agent-doesnt-need-to-be-a-superuser.md)
+  - [S-1654 · The Stale Amplification Stack — When Caching Makes Wrong Answers Faster](stacks/s1654-the-stale-amplification-stack-when-caching-makes-wrong-answers-faster.md)
+  - [S-1656 · The Agent Drift Stack — When Your Agent Was Brilliant at Step 10 and Confused by Step 30](stacks/s1656-the-agent-drift-stack-when-your-agent-was-brilliant-at-step-10-and-confused-by-step-30.md)
+  - [S-1657 · The Orchestration Pattern Selection Stack — When the Architecture You Picked Defines What Your Agents Can and Can't Do](stacks/s1657-the-orchestration-pattern-selection-stack-when-the-architecture-you-picked-defines-what-your-agents-can-and-cant-do.md)
+  - [S-1658 · The GenAI Observability Trace Stack — When Your Agent Does Something and Nobody Knows Why](stacks/s1658-the-genai-observability-trace-stack-when-your-agent-does-something-and-nobody-knows-why.md)
