@@ -16,3 +16,4 @@ Research, model landscape, and the open questions. These entries cover what's ha
 | [R-08](r08-inference-time-compute-scaling.md) | Inference-Time Compute Scaling | Spend more at query time, not training time |
 | [R-09](r09-long-context-models.md) | Long-Context Models | 1M tokens is standard now — here's what changed and what didn't |
 | [R-10](r10-speculative-decoding.md) | Speculative Decoding | Draft K tokens cheap; verify all K in one parallel pass; 2–3× faster at zero quality loss |
+| [R-18](r18-why-agents-fail-to-stop-infinite-agentic-loops.md) | Infinite Agentic Loops | Agents don't crash — they keep going. A formal taxonomy of 6 loop failure types and IAL-Scan detection |
