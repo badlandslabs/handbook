@@ -2419,7 +2419,21 @@ Kata-containers → I-3037
 hostile-agent → I-3037
 self-migrating-agent → I-3037
 agentic-threat-tracker → I-3037
-||| I-3035
+observation-freshness → I-3038
+version-identity → I-3038
+concurrency-failure → I-3038
+stale-observation → I-3038
+observe-decide-act → I-3038
+precondition-header → I-3038
+version-conflict → I-3038
+optimistic-locking → I-3038
+resource-version → I-3038
+freshness-window → I-3038
+pre-commit-revalidation → I-3038
+implicit-conflict → I-3038
+STALE → I-3038
+rokoss21 → I-3038
+|||| I-3035
 || I-3036 | The Framework-RCE Stack — When Your Agent Framework Becomes a Code Execution Gateway | framework-RCE, CVE-2026-26030, CVE-2026-25592, semantic-kernel, indirect-prompt-injection, eval-injection, path-traversal, plugin-security, code-execution, agent-framework, CVSS-9.8, CVSS-9.9, InMemoryVectorStore, SessionsPythonPlugin, Microsoft-Defender, agent-security, model-output-untrusted | 10 | 10 | 10 | 10 | 9 | **9.90** | WRITTEN — S-1699 | 2026-07-26 | 2026-07-26 |
 || I-3037 | The Conformance Convergence Stack — When Your Agent Is Right on the Outcome But Wrong in the Method | conformance-convergence, CCS, runtime-conformance, six-dimension, compound-fault-chain, formal-verification, required-supported-invariant, tool-fidelity, context-integrity, output-structural, behavioral-policy, temporal-constraints, semantic-contract, Correctover, ccs-v1, zenodo-21234580, governance-vacuum, self-healing, fault-chain, idempotency-violation, EU-AI-Act-14, runtime-verification, conformance-sidecar, CCS-integration-kit | 10 | 10 | 9 | 10 | 9 | **9.70** | WRITTEN — S-1700 | 2026-07-27 | 2026-07-27 |
 
@@ -2484,6 +2498,7 @@ tTesting OWASP T5 analysis (cascading hallucination as deliberate attack vector)
 | I-3029 | The Stale Amplification Stack — When Caching Makes Wrong Answers Faster | cache-staleness, stale-amplification, context-caching, content-hash-key, semantic-freshness, cache-invalidation, cache-governance, TTL-invalidation, attestation, fast-wrong-answer, cached-wrong-policy, oracle-blog, atlan-cache, appscale-context-rot | 9 | 10 | 9 | 9 | 7 | **9.05** | WRITTEN — S-1654 | 2026-07-26 | 2026-07-26 |
 | I-3030 | The Escalation Architecture Stack — When Your Agent Hits the Wall and Nobody Is There | hitl, human-in-the-loop, escalation, approval-gate, risk-stratification, context-preservation, audit-log, capability-router, tiered-escalation, await-human, approval-queue, veto, hard-stop, operator-routing | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-1682 | 2026-07-26 | 2026-07-26 |
 | I-3037 | The Agent Co-option Stack — When Your Evaluation Framework Becomes Your Attack Surface | agent-cooption, autonomous-breach, eval-environment, hostile-agent, ExploitGym, agent-as-attacker, runtime-interception, AARM, credential-boundary, kata-containers, unidirectional-comm, behavioral-monitoring, CSA-agentic-breach, Hugging-Face-breach, agent-hostile-takeover, self-migrating-agent, 17000-actions, credential-harvest, lateral-movement, privilege-escalation, agentic-threat-tracker | 10 | 10 | 10 | 10 | 9 | **9.95** | WRITTEN — S-1703 | 2026-07-27 | 2026-07-27 |
+| I-3038 | The Observation Freshness Stack — When Your Agent Decides on a World That No Longer Exists | observation-freshness, version-identity, concurrency-failure, stale-observation, observe-decide-act, precondition-header, version-conflict, optimistic-locking, resource-version, freshness-window, pre-commit-revalidation, implicit-conflict, STALE, rokoss21 | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1705 | 2026-07-27 | 2026-07-27 |
 
 ## Pattern Log
 

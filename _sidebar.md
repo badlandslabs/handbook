@@ -770,3 +770,4 @@
   - [S-1697 · The Environmental Imprint Stack — When One Agent's Unsafe Behavior Becomes Everyone's Habit](stacks/s1697-the-environmental-imprint-stack-when-one-agents-unsafe-behavior-becomes-everyones-habit.md)
   - [S-1699 · The Framework-RCE Stack — When Your Agent Framework Becomes a Code Execution Gateway](stacks/s1699-the-framework-rce-stack-when-your-agent-framework-becomes-a-code-execution-gateway.md)
   - [S-1700 · The Conformance Convergence Stack — When Your Agent Is Right on the Outcome But Wrong in the Method](stacks/s1700-the-conformance-convergence-stack-when-your-agent-is-right-on-the-outcome-but-wrong-in-the-method.md)
+  - [S-1705 · The Observation Freshness Stack — When Your Agent Decides on a World That No Longer Exists](stacks/s1705-the-observation-freshness-stack-when-your-agent-decides-on-a-world-that-no-longer-exists.md)
