@@ -36,3 +36,7 @@ The memory stack is a layered hierarchy, not a single component. Each layer serv
 - **Memory files are an attack surface, not just storage.** Any untrusted content that reaches a memory file can persist and attack future sessions. Validate memory file contents before injection; consider read-only memory layers for externally-sourced content.
 - **The benchmark winner (filesystem) doesn't mean skip memory infrastructure.** Letta's finding is that *agent capability* drives the 74% score, not the storage mechanism. An agent that knows how to search files effectively will outperform a bad agent with a knowledge graph. Invest in both the agent's memory behavior and the infrastructure.
 - **Fact decay is real.** "User prefers dark mode" and "User prefers light mode" can both surface from a vector search unless your framework reconciles contradictions. Zep's temporal knowledge graph addresses this; simple stores do not.
+
+## Receipt
+
+> Verified 2026-07-27 — Letta blog (Aug 12, 2025): GPT-4o-mini agents with filesystem storage achieved 74.0% on LoCoMo vs. Mem0 graph at 68.5% — agent capability matters more than retrieval mechanism. Engram MCP tools confirmed on GitHub tstockham96/engram. arXiv 2607.14611 (Gadgil et al., UW, submitted Jul 16, 2026): malicious payloads planted in memory files persist across sessions and successfully attack future agent interactions on Claude (Anthropic) and ChatGPT (OpenAI) systems. Code example is illustrative; not benchmarked against live Letta or Mem0 deployment.
