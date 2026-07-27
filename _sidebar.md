@@ -776,4 +776,5 @@
   - [S-1712 · The Ghost Memory Stack — When Your Agent Knows Everything and Acts on Nothing](stacks/s1712-the-ghost-memory-stack-when-your-agent-knows-everything-and-acts-on-nothing.md)
   - [S-1713 · The Tool Catalogue Stack — When Your Agent Has Nothing to Work With](stacks/s1713-the-tool-catalogue-stack-when-your-agent-has-nothing-to-work-with.md)
   - [S-1714 · The Scope Creep Attack Stack — When Your MCP Tool Slowly Becomes a Privilege Escalation Engine](stacks/s1714-the-scope-creep-attack-stack-when-your-mcp-tool-slowly-becomes-a-privilege-escalation-engine.md)
+  - [S-1722 · The Delegation Gap Stack — When Your A2A Agent Hands Off a Task and Its Credentials](stacks/s1722-the-delegation-gap-stack-when-your-a2a-agent-hands-off-a-task-and-its-credentials.md)
   - [S-1716 · The Egress Boundary Stack — When Your Sandbox Leaks Through the Proxy](stacks/s1716-the-egress-boundary-stack-when-your-sandbox-leaks-through-the-proxy.md)
