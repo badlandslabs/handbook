@@ -1,0 +1,36 @@
+# S-1717 · The Tiered Memory Stack — When Your Agent Acts Like It Met You Yesterday
+
+Your coding agent cloned and re-indexed the same repository for the third time this week. It re-learned your preference for Python over Go from a conversation two months ago — and then forgot it again by Friday. It produces correct results. It also treats every session as its first. You need an architecture that lets the agent carry what matters across runs without drowning it in noise.
+
+The 2025–2026 agentic field converged on a three-tier memory taxonomy borrowed from cognitive science: episodic (what happened), semantic (what it means), and procedural (how to act). The divergence is in the storage backends, retrieval strategies, and the governance layer that determines what gets remembered, what gets forgotten, and who controls the archive.
+
+## Forces
+
+- **Context windows are finite and expensive.** Passing a full conversation history to every LLM call costs 91% more latency than selective retrieval (p95: 17.12s vs 1.44s per the Mem0 benchmark on arXiv 2504.19413). You cannot stuff your way to memory.
+- **Retrieval quality ≠ retrieval mechanism complexity.** Letta agents using plain filesystem writes achieved 74.0% on the LoCoMo memory benchmark — beating specialized vector-store memory libraries. The agent's ability to manage context matters more than the storage backend.
+- **The three tiers demand different storage trade-offs.** Episodic memory (conversation logs, tool traces) wants chronological writes and temporal retrieval. Semantic memory (facts, preferences) wants structured queries and relationship traversal. Procedural memory (workflows, policies) wants versioned, immutable templates. One storage substrate rarely serves all three well.
+- **Memory governance is orthogonal to retrieval performance.** Atlan's analysis (April 2026) identifies this clearly: accuracy/latency and governance/freshness are independent axes. You can have fast, accurate retrieval with zero governance — and that becomes a compliance problem at scale.
+
+## The move
+
+Implement a tiered memory architecture with three distinct layers, each using the simplest storage that works at your scale:
+
+- **Working memory (session scope):** Pass the last N turns directly in the context window. No retrieval needed. This is your agent's short-term "what we just discussed." Most agents already do this.
+- **Episodic memory (persistent, chronological):** Store conversation logs, tool-call traces, and task outcomes in append-only files or an event store. Retrieve by recency and topic. The goal is "what did we do last time on this kind of task?" — not semantic inference. Files work fine at team scale; switch to an event store when you need structured replay across thousands of sessions.
+- **Semantic memory (persistent, queryable):** Extract facts, preferences, constraints, and decisions from episodic logs at session end (the "reflect" pattern). Store in a structured format — a JSON store, SQLite, or a key-value layer with a search index. This is "what do I know about this user/project/domain?" LLM-based extraction at write time beats sophisticated retrieval at read time. This is the core insight from MindCache's 6-month retrospective: **intelligence belongs at ingestion, not retrieval.**
+- **Procedural memory (immutable templates):** Versioned, frozen instructions and workflows that survive across sessions and agent updates. Think CLAUDE.md files, agentic system prompts, and policy documents. These are read at session start, not retrieved dynamically.
+- **Retrieval at session start:** On wake-up, load the relevant episodic + semantic memory fragments for the current user/project context, then inject them into the working memory window. The agent should not have to retrieve mid-task — pre-populate so it starts capable, not empty.
+
+## Evidence
+
+- **Letta benchmark (August 2025):** Agents using `gpt-4o-mini` with plain filesystem writes for conversation history scored **74.0% on the LoCoMo memory retrieval benchmark** — outperforming specialized memory tools. Concludes that agent capability in managing context outweighs retrieval mechanism complexity. — [Letta Blog](https://www.letta.com/blog/benchmarking-ai-agent-memory)
+- **Mem0 arXiv paper (2025):** Evaluated dense natural language memory (Mem0) and graph-based memory extension (Mem0^g) against full-context, standard RAG, and OpenAI Memory. Mem0^g achieved a **J Score of 68.44%**, **26% relative improvement over OpenAI Memory** (LLM-as-Judge), and **91% lower p95 latency** than full-context (1.44s vs 17.12s). Concludes structured extraction and update beats both flat retrieval and unlimited context. — [arXiv:2504.19413](https://ar5iv.labs.arxiv.org/html/2504.19413)
+- **MindCache 6-month retrospective (Reddit/LocalLLaMA, 2025):** Built an agentic memory system specifically to fix vector search failures. Core finding: standard vector retrieval matches query keywords while missing critical constraints buried in old sessions. Example: a query about mattress brands retrieves past mattress conversations but misses a 3-month-old constraint: "warranty is the only thing I care about." Fix: shift relationship mapping to ingestion time so structural context is explicit at retrieval time. — [r/LocalLLM post](https://www.reddit.com/r/LocalLLM/comments/1v32f49/i_spent_6_months_building_an_agentic_memory/)
+- **Atlan agent memory architecture analysis (April 2026):** Identifies five distinct architecture patterns from zero-infrastructure to enterprise context layer. Finds most production deployments compose working memory + external retrieval + an enterprise context layer. Key insight: larger context windows don't resolve governance problems — accuracy/latency and governance/freshness are independent axes. — [Atlan](https://atlan.com/know/agent-memory-architectures)
+
+## Gotchas
+
+- **Equating memory with RAG.** Vector similarity search over conversation chunks is not memory — it's retrieval over a flat representation. It misses relationships, temporal ordering, and implicit constraints. If your agent "knows" facts but can't explain where they came from or when they were updated, you have retrieval, not memory.
+- **Storing everything.** Naive approaches that write every turn to memory create noise that degrades retrieval quality. The reflect pattern (extract meaningful facts at session end, discard raw logs) is the practical fix — MindCache's ingestion-time intelligence insight validates this from a retrieval-angle too.
+- **Treating memory as append-only forever.** Memory needs a decay mechanism. Facts become stale; preferences evolve; old task context is noise. Without forgetting, your agent's context window fills with historical cruft and its "memory" actively misleads. The cognitive science parallel is real — even humans don't store everything forever.
+- **The filesystem baseline.** Letta's 74% benchmark is a floor, not a ceiling. At team scale (10+ concurrent agents, 100+ sessions/week), unstructured files hit fragmentation, concurrent-write conflicts, and retrieval latency at scale. Know when to migrate: if your agent spends more than 5 seconds loading memory at session start, your storage backend is the bottleneck.
