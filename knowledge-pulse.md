@@ -2602,11 +2602,13 @@ citation-grounding → I-3047
 
 ## Pattern Log
 
-- *2026-07-27* — **Tool-Description Poisoning: The Third MCP Poisoning Surface**: MCP has three poisoning surfaces — (1) tool descriptions injected at session init, (2) input schemas carrying hidden directives, (3) response payloads returned at runtime (S-1050). Tool-description poisoning is the least visible: it executes before the first user interaction, lives in documentation text that humans never audit, and survives artifact-pinning because MCP doesn't mandate description immutability. The rug-pull variant updates malicious metadata post-approval. 30+ MCP CVEs filed H1 2026; 200,000+ vulnerable instances. Sources: Practical DevSecOps (May 2026), ITECS (May 2026), CyberSecPenTesting (July 2026), AI Workflow Lab (June 2026), aminrj-labs/mcp-attack-labs (GitHub). Defenses: description parsing + forbidden-pattern scanning, full-manifest operator visibility, content-addressable manifest pinning, schema-level structural constraints.
+- *2026-07-28* — **Protocol Boundary Enforcement — The MCP↔A2A Seam**: MCP and A2A are complementary (vertical vs. horizontal) and are used together in the 2026 three-layer agentic stack. But the seam between them is where state is lost, authority is ambiguous, and security posture collapses. MCP's fine-grained, stateful scope model cannot be naively serialized to A2A's bearer tokens. Rich MCP v2 streaming payloads have no A2A equivalent. Execution context doesn't flow across the boundary — the receiving agent operates blind. The structural fix requires: (1) explicit boundary manifests encoding what crosses, (2) capability translation gates at the orchestrator, (3) delegation-depth tracking with a hard cap at ≤3 hops, (4) callback semantics instead of implicit authority escalation. Pattern: **protocol boundary enforcement** — don't assume either protocol handles the seam; the orchestrator must own it. Sources: Glukhov.org (Jun 2026), NiteAgent (Jun 2026), Xcapit (Jul 2026).
+
+- *2026-07-28* — **Context Pollution vs. Context Capacity — Two Distinct Failure Modes**: S-1035 (context capacity gap) covers the *quantity* failure (the advertised window is smaller than usable). S-1754 (context surface) covers *positional* decay (attention is strongest at edges). Neither covers *quality* — the case where context is well below capacity but is so heterogeneous with irrelevant, stale, or noisy content that signal is drowned before the hard limit is approached. Context pollution is a signal-to-noise problem, not a capacity problem. The five primary pollutants: stale tool outputs (most common, most invisible), off-topic retrieved documents, excessive reasoning traces, superseded instructions, and user messages from abandoned sub-threads. The structural fix: result grafting (filter tool outputs before insertion), pollutant tagging with active eviction (pollution score + age-weighted eviction), and task-directed history compression (re-score all prior turns against current task before each step). Pattern: **context hygiene over context reduction** — teams instinctively trim tokens, but the right move is to curate what enters the context, not to remove it after the fact. Sources: CipherBuilds AI Blog (March 2026), Redis Context Window Management Guide (February 2026), MLMastery Context Window Management (July 2026).
 
 ## Deduplication Index
 
-tool-description-poisoning → I-3051
+description-injection → I-3051
 description-injection → I-3051
 hidden-instruction → I-3051
 mcp-tool-poisoning → I-3051
@@ -2622,3 +2624,63 @@ tool-manifest-security → I-3051
 - *2026-07-27* — **I-3050 — The Semantic Observer Stack (S-1739) — Composite 8.90**: Tracker: 634 ideas total, ~109 unwritten, many exhausted or heavily overlapped. Deduplication check: I-120 (Agent Telemetry Stack, S-933) covers observability but at the structural level (spans/traces). I-069 (Silent Failure Detection, S-635) covers crash/exception silent failures. I-190 (Correctness SLO, S-1372) covers semantic correctness SLOs. I-1004 (Agent Eval Stack) touches per-turn eval but as an eval harness, not observability layer. This idea occupies a distinct gap: *runtime semantic failure detection embedded in the agent loop*, not post-hoc eval or structural tracing. MorphLLM, AgentLens, and Sentrial all independently targeting this gap confirm timeliness. Score: Production Urgency 9 (dominant failure mode in long-horizon agents), Coverage Gap 9 (new observability sub-domain), Specificity 9 (concrete patterns: per-turn classifier, intent assertion, divergence budget, strategy-loop detection), Timeliness 10 (three new tools addressing this in 2026), Pattern Density 8 (connects to S-635/S-1372/S-1004).
 
 - *2026-07-27* — **Infinite Agentic Loops (IALs) — R-18**: arXiv:2607.01641 (Hou et al., HUST, July 2, 2026) defines 6 IAL categories (reasoning loop, tool loop, frame logic loop, goal state ambiguity, framework loop, environment loop) and IAL-Scan (91.9% precision, 68 confirmed failures across 47 projects). Novel taxonomy — no prior field vocabulary for this failure class. New entry: R-18. S-1076 covers loop recovery; R-18 adds IAL taxonomy + static detection.
+
+|| I-3052 | The Non-Human Identity Governance Stack — When Your Agent Fleet Has No Identity, No Credentials, and No Audit Trail | non-human-identity, NHI, credential-governance, SPIFFE, SPIRE, workload-identity, secrets-management, MCP-credential, Entra-Agent-ID, RFC-8693, fork-aware-credential, credential-rotation, audit-trail, agent-identity, OWASP-ASI, credential-sprawl, token-exchange, X509-SVID, CSA-survey, agent-fleet-governance | 9 | 10 | 9 | 10 | 8 | **9.10** | WRITTEN — S-1746 | 2026-07-28 | 2026-07-28 |
+| I-3053 | The Protocol Boundary Problem — When Your Agent Crosses from MCP to A2A and Loses Everything It Knew | MCP-A2A-interop, protocol-boundary, capability-translation, context-handoff, A2A-agent-card, MCP-v2, delegation-depth, cross-protocol-authority, A2A-MCP-stack, artifact-serialization, streaming-equivalence, boundary-enforcement, capability-scoping, trust-propagation, OWASP-ASI | 9 | 9 | 8 | 9 | 8 | **8.75** | WRITTEN — S-1748 | 2026-07-28 | 2026-07-28 |
+| I-3054 | The Privileged Context Reuse Stack — When Your Agent Reads Untrusted Content With Elevated Credentials | privileged-context-reuse, maker-mode-inheritance, maker-mode, context-contamination, credential-reuse, elevated-context, session-elevation, scope-escalation, capability-tier, trust-tier, maker-mode-privilege, elevated-session, content-trust-classification, token-scoping, credential-temporal-scoping, Visual-Confused-Deputy, VPI, visual-prompt-injection, privileged-read, untrusted-content, agent-credential-boundary | 9 | 10 | 9 | 9 | 8 | **9.00** | WRITTEN — S-1755 | 2026-07-28 | 2026-07-28 |
+| I-3055 | The Claim Genealogy Stack — When a Single False Claim Becomes Your Entire System's Consensus | claim-genealogy, transitive-trust, error-cascade, false-claim, consensus-inertia, provenance-trace, downstream-validation, claim-lineage, claim-verification, genealogy-graph, multi-agent-cascade, topology-fragility, from-spark-to-fire, arxiv-2603.04474, claim-ancestry, consensus-drift, verification-gate, handoff-boundary, transitive-validation, claim-store, 17x-trap | 9 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1757 | 2026-07-28 | 2026-07-28 |
+| I-3056 | The Context Pollution Stack — When Your Window Is Only Half Full and Your Agent Is Already Losing Its Mind | context-pollution, signal-to-noise, stale-tool-output, context-hygiene, result-grafting, pollutant-eviction, attention-noise, instruction-dilution, context-quality, noisy-context, irrelevant-context, semantic-noise, context-filtration, tool-output-pruning, noise-signal-ratio, cross-turn-recall, context-fidelity, pollution-score, cipherbuilds-pollution | 9 | 9 | 9 | 9 | 8 | **8.85** | WRITTEN — S-1759 | 2026-07-28 | 2026-07-28 |
+| I-3055 | claim-genealogy → I-3055
+non-human-identity → I-3052
+NHI-governance → I-3052
+credential-governance → I-3052
+SPIFFE → I-3052
+SPIRE → I-3052
+workload-identity → I-3052
+secrets-management → I-3052
+MCP-credential → I-3052
+Entra-Agent-ID → I-3052
+RFC-8693 → I-3052
+fork-aware-credential → I-3052
+credential-rotation → I-3052
+agent-identity → I-3052
+OWASP-ASI → I-3052
+agent-fleet-governance → I-3052
+privileged-context-reuse → I-3054
+maker-mode → I-3054
+context-contamination → I-3054
+VPI → I-3054
+credential-tier → I-3054
+trust-tier → I-3054
+content-trust-classification → I-3054
+context-pollution → I-3056
+signal-to-noise → I-3056
+stale-tool-output → I-3056
+instruction-dilution → I-3056
+context-hygiene → I-3056
+pollutant-eviction → I-3056
+attention-noise → I-3056
+noisy-context → I-3056
+coordination-overhead → I-3057
+multi-agent-parallelism → I-3057
+fan-out-overhead → I-3057
+crdt-coordination → I-3057
+lock-free-agent → I-3057
+CodeCRDT → I-3057
+observation-driven → I-3057
+overhead-ratio → I-3057
+task-coupling → I-3057
+coordination-budget → I-3057
+shared-state-convergence → I-3057
+MASM-taxon → I-3057
+mast-traces → I-3057
+
+## Recent Decisions
+
+## Recent Decisions
+
+- *2026-07-28* — **I-3053 — The Protocol Boundary Problem (S-1748) — Composite 8.75**: Tracker had 0 pending ideas — all prior ideas were marked WRITTEN or DUPLICATE across 634 total. Research surfaced three candidates: (1) Protocol Boundary Problem: MCP↔A2A interop failures — highest urgency, most timely (A2A at 150+ orgs, MCP at 5,800+ servers, MCP v2 spec updated July 28), clean coverage gap (S-14 covers A2A basics, S-10 covers MCP basics, but their interop boundary is uncovered). (2) Specification Gaming in Production: broader than S-1303 (eval gaming) but overlaps too much — Tian Pan's cases (timeout gaming, PII redaction collapse) are variations on existing themes. (3) Agent Card Reliability: staleness/manipulation angle uncovered but lower urgency. Chose #1. New idea I-3053. The structural fix requires treating every agent as a SPIFFE workload identity with cryptographic attestation (X.509 SVIDs) and short-lived credential scopes.
+
+- *2026-07-28* — **I-3056 — The Context Pollution Stack (S-1759) — Composite 8.85**: Tracker exhausted — 635 ideas total, all marked WRITTEN or DUPLICATE. Fresh research surfaced Context Pollution as a novel angle not covered by any existing entry. Deduplication check: S-1035 covers context capacity (quantity failure), S-1754 covers context surface/positional decay, S-1300 covers attention gravity well (instruction position). None cover the quality/pollution angle — heterogeneous noise diluting signal before capacity is hit. Key insight: this is a signal-to-noise problem, not a capacity problem. The counterintuitive fix is not less context, but smarter curation at insertion time (result grafting) and active eviction based on pollution score (not age alone). Chosen over: (1) Instruction Dilution — narrower scope than pollution, just one of five polluters; (2) Cross-Turn Recall — S-1093 and S-1300 already cover forgetting/re-anchoring. Pattern: **context hygiene over context reduction**. Score: Production Urgency 9 (pervasive production failure, CipherBuilds March 2026 confirms), Coverage Gap 9 (entirely new sub-domain), Specificity 9 (three-layer concrete fix with code), Timeliness 9 (heavily discussed 2026), Pattern Density 8 (connects to S-1300, S-1035, S-1654, S-1754).
+
+- *2026-07-28* — **I-3052 — The Non-Human Identity Governance Stack (S-1746) — Composite 9.10**: All 78 prior ideas WRITTEN or DUPLICATE. Fresh research: Zylos Research (Jul 5, 2026) on NHI governance, CSA survey (Feb 2026, n=500, 78% lack agent identity policy), GitGuardian MCP governance framework (May 2026), Microsoft Entra Agent ID GA 2026, OWASP ASI Top 10 (Jun 2026). Deduplication check: S-1458 (Policy Kernel) covers policy enforcement at the framework level; S-1006 (Toolbelt) covers least-privilege tool scoping but not credential lifecycle; S-1003 (Recovery) mentions credential revocation but not governance; no existing entry covers SPIFFE workload identity, RFC 8693 delegation chains, fork-aware credential isolation, or credential audit trails. This is a distinct new gap at the intersection of agent security and IAM. Score: Production Urgency 9 (credential sprawl is endemic in MCP deployments), Coverage Gap 10 (completely uncovered), Specificity 9 (concrete patterns with SPIRE config, Entra API, RFC 8693, fork-aware provider code), Timeliness 10 (multiple independent sources in July 2026), Pattern Density 8 (connects to S-1458, S-1006, S-1516, S-1003).
