@@ -324,3 +324,117 @@ Human review output feeds back into improving Tiers 1 and 2 over time.
 ---
 
 All claims trace to cited primary sources. Statistics and specific findings come from the named sources above.
+
+
+---
+
+## Source: OpenAI Harness Engineering — Agent Eval in Practice
+
+**URL:** https://openai.com/index/harness-engineering/
+**Date:** February 11, 2026
+**Type:** Company engineering post
+
+### How OpenAI Evaluates Codex Agents
+
+OpenAI built an internal product entirely with Codex agents (0 manually-written lines of code) and documented their eval approach:
+
+1. **Intent specification** — Human engineers define what "done" looks like for a task
+2. **Environment design** — Codex agents operate in defined environments with clear success criteria
+3. **Feedback loops** — Agents iterate until task criteria are satisfied
+4. **Telemetry-driven evaluation** — Logs, metrics, and spans monitor application performance
+5. **Bug reproduction** — Isolated development environments allow agents to reproduce and fix bugs
+
+### Key Insight: "Benchmarks Are Lying"
+
+> "So either the benchmarks are lying or we are measuring the wrong thing. And I think its the second one."
+
+OpenAI position: what matters for agents is the **harness** (infrastructure wrapping the model), not the model alone.
+
+### Metrics
+
+- ~1 million lines of code written entirely by Codex agents
+- ~1,500 pull requests merged
+- **3.5 PRs per engineer per day** average throughput
+- Built in approximately **1/10th the time** of hand-written code
+- Throughput *increased* as team grew from 3 to 7 engineers
+
+---
+
+## Source: GAIA Benchmark — General AI Assistants
+
+**URL:** https://huggingface.co/gaia-benchmark | https://ai.meta.com/research/publications/gaia-a-benchmark-for-general-ai-assistants
+**Date:** Published November 2023; leaderboard updated through 2025
+**Type:** Academic benchmark / Meta AI
+
+| Metric | Value |
+|--------|-------|
+| Number of tasks | 466 real-world questions |
+| Task nature | Multi-step, requiring web search + reasoning + factuality |
+| Evaluation | Human-verified ground truth answers |
+| Best-in-class (2025) | >90% accuracy |
+| Distinction from MMLU | Tests tool use + multi-step reasoning, not knowledge recall |
+
+GAIA was the first widely-adopted benchmark explicitly designed to measure agents. Questions require using multiple tools in sequence.
+
+---
+
+## Source: WebArena & OSWorld — Computer Use Benchmarks
+
+**URL:** https://engineersofai.com/docs/agentic-ai/computer-use-agents/benchmarks-webarena-osworld
+
+### WebArena
+
+| Metric | Value |
+|--------|-------|
+| Tasks | 812 web automation tasks |
+| Launch | 2023 |
+| Best-in-class (2023) | ~15% success rate |
+| Task types | GitLab issue management, e-commerce, forum posting, multi-page navigation |
+
+The 15% result in 2023 was dismissed as poor, but tasks require navigating multiple pages, reading content, making decisions, and taking multi-step actions without a single mistake.
+
+### OSWorld
+
+Tests agents on full OS tasks: file manipulation, software installation, application use across real Linux/Windows/macOS environments. Considered one of the most challenging agent benchmarks.
+
+---
+
+## Source: Enterprise Agentic AI Benchmark — 5.5B Tokens of Lessons
+
+**URL:** https://arxiv.org/abs/2511.08042
+**Date:** Submitted November 11, 2025
+**Type:** arXiv preprint
+
+Key findings from 5.5 billion tokens of enterprise agentic evaluations:
+- Training data contamination makes traditional LLM benchmarks unreliable for agentic measurement
+- Agentic capabilities (multi-step tool use, decision-making) not captured by existing benchmarks
+- Proposes enterprise metrics: **task completion rate**, **tool call accuracy**, **context utilization efficiency**, **failure recovery rate**
+
+Recommendation: enterprise teams need in-house eval suites reflecting actual deployment scenarios.
+
+---
+
+## Source: AgentCompass — Post-Deployment Agentic Workflow Evaluation
+
+**URL:** https://arxiv.org/abs/2509.14647
+**Date:** Submitted September 2025
+
+AgentCompass: "the first evaluation framework designed specifically for post-deployment monitoring and debugging of agentic workflows." Addresses the operational challenge of monitoring agent behavior over time in live systems.
+
+---
+
+## Source: Hierarchy of Agentic Capabilities — Realistic RL Environments
+
+**URL:** https://arxiv.org/html/2601.09032v1
+**Type:** arXiv preprint (2026)
+
+Proposed capability hierarchy for agents on realistic RL environments:
+
+| Level | Capability | Benchmark Examples |
+|-------|-----------|-------------------|
+| 1 | Single-step tool use | MMMU, MMLU |
+| 2 | Multi-step reasoning | GAIA |
+| 3 | Web/computer interaction | WebArena, OSWorld |
+| 4 | Long-horizon planning | AgentCompass, custom RL |
+| 5 | Multi-agent collaboration | Co-Scientist, Anthropic multi-agent |
+

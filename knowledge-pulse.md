@@ -2598,8 +2598,22 @@ market-report-accuracy → I-3047
 citation-grounding → I-3047
 
 | I-3050 | The Semantic Observer Stack — When Your Traces Are Green But Your Agent Is Failing | semantic-observability, per-turn-classifier, semantic-failure, green-trace-failure, agent-semantic-layer, intent-assertion, divergence-signal, loop-detection-semantic, goal-drift, observability-gap, structural-vs-semantic, morphllm, agentlens, sentrial, yc-w26, per-turn-eval, semantic-span, trace-semantic-gap | 9 | 9 | 9 | 10 | 8 | **8.90** | WRITTEN — S-1739 | 2026-07-27 | 2026-07-27 |
+| I-3051 | The Tool-Description Poisoning Stack — When Your MCP Server Ships Instructions Inside Its Metadata | tool-description-poisoning, mcp-security, tool-metadata-injection, description-injection, rug-pull, tool-manifest, mcp-tool-poisoning, init-stage-attack, hidden-instruction, invariant-labs, trail-of-bits, mcp-cve-2026, 200k-vulnerable-instances, description-scanning, manifest-pinning, tool-scope-constraint, description-verification | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-1744 | 2026-07-27 | 2026-07-27 |
 
 ## Pattern Log
+
+- *2026-07-27* — **Tool-Description Poisoning: The Third MCP Poisoning Surface**: MCP has three poisoning surfaces — (1) tool descriptions injected at session init, (2) input schemas carrying hidden directives, (3) response payloads returned at runtime (S-1050). Tool-description poisoning is the least visible: it executes before the first user interaction, lives in documentation text that humans never audit, and survives artifact-pinning because MCP doesn't mandate description immutability. The rug-pull variant updates malicious metadata post-approval. 30+ MCP CVEs filed H1 2026; 200,000+ vulnerable instances. Sources: Practical DevSecOps (May 2026), ITECS (May 2026), CyberSecPenTesting (July 2026), AI Workflow Lab (June 2026), aminrj-labs/mcp-attack-labs (GitHub). Defenses: description parsing + forbidden-pattern scanning, full-manifest operator visibility, content-addressable manifest pinning, schema-level structural constraints.
+
+## Deduplication Index
+
+tool-description-poisoning → I-3051
+description-injection → I-3051
+hidden-instruction → I-3051
+mcp-tool-poisoning → I-3051
+init-stage-poisoning → I-3051
+rug-pull-mcp → I-3051
+manifest-pin → I-3051
+tool-manifest-security → I-3051
 
 - *2026-07-27* — **Semantic Observability Gap Pattern**: Standard OTEL tracing captures mechanical telemetry (latency, HTTP status, token count) but is blind to semantic failure — the agent that loops, drifts, or pursues wrong sub-goals while every span returns 200. The fix requires a per-turn semantic classifier (intent assertion vs. observed behavior) at <90ms latency, plus a divergence budget that halts the session when cumulative semantic drift exceeds threshold. Sources: MorphLLM (morphllm.com/agent-observability), AgentLens (HN Show HN 2026), Sentrial (YC W26), AI Navigate (June 2026 handoff failures analysis).
 

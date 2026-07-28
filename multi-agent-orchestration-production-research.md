@@ -233,3 +233,187 @@ Across every source, one failure recurs: **inter-agent context loss at handoffs*
 14. Agile Infoways — "Multi-Agent Systems for Enterprise" (May 2026) — https://www.agileinfoways.com/blog/multi-agent-systems-enterprise
 15. MACGPU — "Multi-Agent AI Architecture in Production" (Jun 2026) — https://macgpu.com/en/blog/2026-0622-multi-agent-ai-architecture-production-guide.html
 16. Brunelli Stefano — "Lessons Learned from Building Real-World Multi-Agent Systems" (Mar 2025) — https://medium.com/@brunelli.stefano.eu/lessons-learned-from-building-real-world-multi-agent-systems-32a4d5f06fbb
+
+
+---
+
+## Finding N+2: OpenAI Harness Engineering — Agents as First-Class Engineers
+
+**Source:** ["Harness engineering: leveraging Codex in an agent-first world"](https://openai.com/index/harness-engineering/), OpenAI Engineering, published February 11, 2026.
+**Author:** Ryan Lopopolo, Member of the Technical Staff
+
+### The Experiment
+
+OpenAI conducted a 5-month experiment: building an internal beta product with **0 lines of manually-written code**. The product has internal daily users and external alpha testers. Every line of code (application logic, tests, CI configuration, documentation, observability, internal tooling) was written by Codex.
+
+**Key metrics:**
+- ~1 million lines of code across application + infrastructure
+- ~1,500 pull requests merged
+- **3.5 PRs per engineer per day** average throughput (vs. industry typical 0.5-1)
+- Built in approximately **1/10th the time** of hand-written code
+- Throughput *increased* as team grew from 3 to 7 engineers
+
+### Architecture Patterns
+
+1. **Humans steer. Agents execute.** — Human engineers design environments, specify intent, and build feedback loops. Codex agents do the execution.
+2. **The harness is the product.** — What differentiates success is the infrastructure wrapping the model: feedback mechanisms, environment design, observability, and intent specification.
+3. **Multi-agent by default** — The team used multiple Codex agents operating on the same codebase simultaneously, requiring careful design of what each agent can see and do.
+4. **Iteration compounds** — Throughput increased as the team grew because agents improved at working in the environment over time.
+
+### Failure Patterns Observed
+
+- Agents struggling with edge cases that humans would handle instinctively
+- Feedback loops that were too loose led to wasted computation
+- Environment design choices had outsized impact on agent reliability
+- Intent specification being the highest-leverage human activity
+
+---
+
+## Finding N+3: DeepMind Co-Scientist — Tournament Evolution Multi-Agent
+
+**Source:** ["Co-Scientist: A multi-agent AI partner to accelerate research"](https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/), Google DeepMind Blog, published May 19, 2026.
+**Paper:** https://arxiv.org/abs/2502.18864
+
+### Architecture
+
+Co-Scientist is built on **Gemini** and uses a multi-agent system with specialized roles:
+
+| Agent | Role |
+|-------|------|
+| **Generate** | Proposes initial hypotheses |
+| **Critique** | Evaluates and challenges hypotheses |
+| **Refine** | Improves surviving hypotheses |
+| **Rank** | Orders hypotheses by novelty and feasibility |
+| **Meta-Review** | Synthesizes across all agents |
+
+### Key Mechanism: Tournament Evolution
+
+Hypotheses compete in a tournament structure:
+1. Generate agent produces N candidate hypotheses
+2. Critique agent evaluates each, identifying weaknesses
+3. Refine agent improves hypotheses based on critique
+4. Rank agent orders survivors
+5. Top candidates enter the next generation
+6. Process repeats for multiple rounds (test-time compute scaling)
+
+### Design Choices
+
+- **Asynchronous task execution framework** for flexible compute scaling — each agent can run independently
+- **Self-improving hypotheses** — quality improves with iteration, not just model capability
+- **Test-time compute scaling** — more rounds of debate/refinement improve output quality
+- **Domain adaptation** — Co-Scientist was applied to life sciences (drug discovery, genomics, materials science) and validated with expert human researchers
+
+### Results
+
+Published in Nature (May 2026). In biomedical research tasks, Co-Scientist generated hypotheses rated by expert scientists as novel and scientifically valuable.
+
+### Availability
+
+- Individual researchers: Hypothesis Generation via Gemini for Science (rolling out)
+- Enterprise: Daiichi Sankyo, Bayer Crop Science, US National Laboratories via Genesis Mission
+
+### Safety Research Context
+
+Google DeepMind also announced a **0M multi-agent safety research fund** (June 2026, in partnership with Schmidt Sciences, ARIA, Cooperative AI Foundation, Google.org) to study risks from millions of interacting AI agents — including coordinated misinformation, economic disruption, and emergent multi-agent behaviors.
+
+URL: https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research
+
+
+
+---
+
+## Finding N+4: OpenAI Economic Research — Agents Transforming Work
+
+**Source:** ["How agents are transforming work"](https://openai.com/index/how-agents-are-transforming-work/), OpenAI Economic Research, published June 25, 2026.
+**Key Link:** [Research Paper PDF](https://cdn.openai.com/pdf/5d1e1489-21c0-43e4-9d42-f87efdbf0082/the-shift-to-agentic-ai-evidence-from-codex.pdf)
+
+### Core Finding
+
+> "Agentic AI changes the unit of knowledge work from single interactions to delegated, long-horizon tasks."
+
+Chatbot interactions are short and self-contained. Agents operate independently for minutes or hours while orchestrating tool calls, interacting with environments, and iterating toward solutions.
+
+### Internal Adoption Metrics
+
+| Metric | Before Aug 2025 | After |
+|--------|-----------------|-------|
+| Codex share of weekly output tokens | <10% | **99.8%** |
+| Default AI tool | ChatGPT | Codex |
+| User base | Technical teams | All departments incl. Legal, Recruiting |
+
+### Economic Research Conclusions
+
+- AI agents could create **$2.9 trillion in economic value by 2030** (U.S. alone)
+- Codex economic potential measured as frontier for autonomous software engineering
+- Shift from "AI as assistant" (answering questions) to "AI as agent" (executing delegated long-horizon tasks)
+
+---
+
+## Finding N+5: DeepMind AI Control Roadmap — Securing Agent Systems
+
+**Source:** ["Securing the future of AI agents"](https://deepmind.google/blog/securing-the-future-of-ai-agents/), Google DeepMind Blog, published June 18, 2026.
+**Authors:** Rohin Shah and Four Flynn
+**Technical Paper:** [AI Control Roadmap PDF](https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/gdm-ai-control-roadmap.pdf)
+
+### Core Framework: AI Control
+
+A defense-in-depth approach for advanced AI agents combining:
+
+1. **Traditional safeguards** — sandboxing, endpoint security, prompt injection resistance
+2. **Model alignment** — training AI to be inherently safe and helpful
+
+### Key Threat: Collusion
+
+> "The monitor intentionally not flagging suspicious behaviour"
+
+When multiple agents operate together, they may engage in **collusion** — coordinated behavior that bypasses safety checks. The paper references research on training fork models for honesty, monitoring internal model activations for deceptive intent, and managing risks of trusted-untrusted agent interaction.
+
+### The AI Control Layers
+
+| Layer | Mechanism | Purpose |
+|-------|-----------|---------|
+| Individual agent | Alignment + sandboxing | Safe baseline behavior |
+| Multi-agent systems | Cross-agent monitoring | Detect collusion and coordination failures |
+| Ecosystem | Defender empowerment + resilience | Systemic safety |
+
+### Security Considerations for Agentic Systems
+
+- **Prompt injection** via untrusted inputs (web content, user messages) is a primary attack vector
+- **Capability elicitation** — agents that perform well on benchmarks may behave differently in deployment
+- **Emergent behaviors** in multi-agent systems that don't appear in single-agent evaluation
+
+### Related: 0M Multi-Agent Safety Fund
+
+URL: https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research
+DeepMind + Schmidt Sciences + ARIA + Cooperative AI Foundation + Google.org announced a $10M funding pool for multi-agent safety research (June 2026). Focus areas: coordinated fraud, economic disruption, emergent multi-agent behaviors, systemic risks from millions of interacting agents.
+
+
+
+### TRAIT&R — Taxonomy of Rogue AI Tactics and Routines
+
+Building on the MITRE ATT&CK framework, DeepMind defines three threat categories for AI agents:
+
+| Category | Description | Examples |
+|----------|-------------|----------|
+| **Loss of control** | Agent bypasses monitoring, creates unauthorized deployments, prevents safeguards | Rogue internal deployments, disabling oversight |
+| **Work sabotage** | Agent intentionally/unintentionally compromises research, software, security work | Flawed alignment research, backdoored code |
+| **Direct harm** | Agent damages critical assets, exfiltrates information | Data exfiltration, critical asset destruction |
+
+### Control Invariants
+
+Two defensive invariants must be maintained at all times:
+
+1. **Detection** — Misaligned intent or actions are detected
+2. **Prevention & Response** — Attacks cannot succeed undetected
+
+### 15 Operational Mitigations
+
+DeepMind's framework includes 15 specific mitigations covering:
+- Tool invocation constraints
+- Resource caps
+- Audit logging
+- Cross-agent monitoring
+- Environment hardening
+- Access controls and blocking mechanisms
+
+Full paper: https://arxiv.org/html/2607.13087
