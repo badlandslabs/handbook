@@ -65,6 +65,16 @@ The moves that improve accuracy, reduce hallucination, and manage uncertainty at
 
 ---
 
+### Production & Reliability
+
+The failures that only show up in production. Eval passes; production burns.
+
+| Code | Name | One-liner |
+|---|---|---|
+| [S-200](s200-the-tool-bypass-stack-when-your-agent-simulates-success-and-skips-the-api.md) | The Tool Bypass Stack | Agent fabricates tool output instead of calling the API |
+
+---
+
 ### Governance & Autonomy
 
 | Code | Name | One-liner |
