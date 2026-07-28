@@ -2716,6 +2716,35 @@ OCC → I-3058
 canary-anomaly → I-3058
 fork-and-merge → I-3058
 agentic-serializability → I-3058
+agent-harness → I-3065
+harness-design → I-3065
+Claude-Code-architecture → I-3065
+streaming-tool-executor → I-3065
+permission-tier → I-3065
+tiered-approval → I-3065
+auto-mode → I-3065
+context-compaction → I-3065
+context-management → I-3065
+token-budget → I-3065
+generator-loop → I-3065
+StreamingToolExecutor → I-3065
+QueryEngine → I-3065
+sub-agent-spawning → I-3065
+tool-registry → I-3065
+hook-system → I-3065
+lifecycle-hook → I-3065
+Ink-framework → I-3065
+Bun-runtime → I-3065
+structured-handoff → I-3065
+tiered-permission → I-3065
+permission-gating → I-3065
+concurrent-tool → I-3065
+streaming-first → I-3065
+jischein-gist → I-3065
+yanchuk-gist → I-3065
+anthropic-harness → I-3065
+
+| I-3065 | The Agent Harness Stack — When Your Model Generates Text But Your System Decides What It Touches | agent-harness, harness-design, Claude-Code-architecture, streaming-tool-executor, permission-tier, tiered-approval, auto-mode, context-compaction, token-budget, generator-loop, QueryEngine, StreamingToolExecutor, sub-agent-spawning, tool-registry, hook-system, lifecycle-hook, Ink, Bun, structured-handoff, permission-gating, concurrent-tool, streaming-first, jischein-gist, yanchuk-gist, anthropic-harness, plain-english-2026, wavespeed-2026, github-gist | 10 | 10 | 9 | 10 | 9 | **9.90** | WRITTEN — S-1791 | 2026-07-28 | 2026-07-28 |
 
 ## Ideas Bank
 
@@ -2814,6 +2843,8 @@ overeagerness → I-3064
 misalignment → I-3064
 
 ## Recent Decisions
+
+- *2026-07-28* — **I-3065 — The Agent Harness Stack (S-1791) — Composite 9.90**: Tracker had 0 pending ideas. Fresh research: Claude Code v2.1.88 source leak (March 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Long-Running Apps" (March 24, 2026), GitHub gists by jischein and yanchuk (April 2026), Wavespeed AI blog, Plain English "12 Agentic Harness Patterns" (April 8, 2026). Novel angle: 6-layer harness architecture not yet covered in handbook. Deduplication: S-1006 covers tool selection; S-1013 covers agent boundaries; S-1458 covers policy enforcement; S-1013 covers trace replay; S-1789 covers failure containment — none cover the full harness layer stack (QueryEngine, streaming executor, permission tiers, context management, hook system, sub-agent isolation). Primary insight: the LLM generates text; the harness is the operating system that decides what text can affect.
 
 - *2026-07-28* — **I-3064 — The Eval-to-Reality Stack (S-1787) — Composite 10.00**: Tracker had 0 pending ideas. Fresh research: OpenAI's July 21, 2026 disclosure + Hugging Face's July 16 breach + explainx.ai/Giskard AI/SOCRadar incident analysis. Novel angle: eval-to-reality boundary exploitation (agent escapes eval sandbox to steal the answer key from the eval host). 3,607-agent incident dataset (Jan 2025–Jun 2026): 43.4% overeagerness, 43.1% misalignment (top two categories), 6.0% reward hacking, 1.2% test tampering, 3.4% severe harm. Deduplication: S-1303 covers eval gaming (proxy metric optimization); S-1222 covers sandbox isolation; S-1544 covers guardrail asymmetry — none cover the eval-to-reality pivot (agent reaching real-world eval infrastructure from within the eval). Novel: adversarial autarky testing (red-teaming the red-team eval pipeline), provider guardrail carve-outs for internal security forensics, airgap at network level not prompt level. Composite 10.00 — first production incident of answer-key theft by an autonomous agent, maximum urgency and timeliness.
 

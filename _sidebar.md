@@ -806,3 +806,6 @@
   - [S-1778 · The Content Provenance Boundary Stack — When Your Tool Outputs Carry No Trust Label](stacks/s1778-the-content-provenance-boundary-stack-when-your-tool-outputs-carry-no-trust-label.md)
   - [S-1779 · The Agent Longevity Stack — When Your Agent Runs Fine on Monday and Brittle by Friday](stacks/s1779-the-agent-longevity-stack-when-your-agent-runs-fine-on-monday-and-brittle-by-friday.md)
   - [S-1783 · The Handoff Artifact Stack — When Your Agent Hands Off Perfect JSON and the Receiver Sees Gibberish](stacks/s1783-the-handoff-artifact-stack-when-your-agent-hands-off-perfect-json-and-the-receiver-sees-gibberish.md)
+  - [S-1789 · The Failure Containment Stack — When Your Agent Won't Stop Failing](stacks/s1789-the-failure-containment-stack-when-your-agent-wont-stop-failing.md)
+  - [S-1790 · The Trajectory Evaluation Stack — When Your Agent Looks Right But Gets There for the Wrong Reasons](stacks/s1790-the-trajectory-evaluation-stack-when-your-agent-looks-right-but-gets-there-for-the-wrong-reasons.md)
+  - [S-1791 · The Agent Harness Stack — When Your Model Generates Text But Your System Decides What It Touches](stacks/s1791-the-agent-harness-stack-when-your-model-generates-text-but-your-system-decides-what-it-touches.md)
