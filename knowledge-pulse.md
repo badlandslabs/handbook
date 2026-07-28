@@ -2602,6 +2602,8 @@ citation-grounding → I-3047
 
 ## Pattern Log
 
+- *2026-07-28* — **Agentic Serializability / Concurrency Control**: Multi-agent systems with shared mutable state are vulnerable to race conditions that masquerade as hallucination — the agent reasons correctly from corrupted data and produces a confident, wrong answer. Production failure rates of 41–86% for concurrent multi-agent state corruption. Classical CC protocols (2PL, OCC) fail because agents are slow transactions (minutes vs. milliseconds), have opaque read sets, and suffer expensive aborts. The four-layer fix: optimistic locking (minimum viable), write partitioning (for role-based agents), DeliveryLog/S-Bus (HTTP middleware reconstructing read-sets from logs), and CoAgent fork-aware CC (fork on read, validate on commit). Core pattern: **agentic serializability** — shared agent state needs the same consistency guarantees as distributed databases. Sources: Tian Pan (Apr 2026), arXiv:2606.15376 (Lyu et al., SJTU, Jun 2026), arXiv:2605.17076 (May 2026), Ardua Labs R.004.
+
 - *2026-07-28* — **Protocol Boundary Enforcement — The MCP↔A2A Seam**: MCP and A2A are complementary (vertical vs. horizontal) and are used together in the 2026 three-layer agentic stack. But the seam between them is where state is lost, authority is ambiguous, and security posture collapses. MCP's fine-grained, stateful scope model cannot be naively serialized to A2A's bearer tokens. Rich MCP v2 streaming payloads have no A2A equivalent. Execution context doesn't flow across the boundary — the receiving agent operates blind. The structural fix requires: (1) explicit boundary manifests encoding what crosses, (2) capability translation gates at the orchestrator, (3) delegation-depth tracking with a hard cap at ≤3 hops, (4) callback semantics instead of implicit authority escalation. Pattern: **protocol boundary enforcement** — don't assume either protocol handles the seam; the orchestrator must own it. Sources: Glukhov.org (Jun 2026), NiteAgent (Jun 2026), Xcapit (Jul 2026).
 
 - *2026-07-28* — **Context Pollution vs. Context Capacity — Two Distinct Failure Modes**: S-1035 (context capacity gap) covers the *quantity* failure (the advertised window is smaller than usable). S-1754 (context surface) covers *positional* decay (attention is strongest at edges). Neither covers *quality* — the case where context is well below capacity but is so heterogeneous with irrelevant, stale, or noisy content that signal is drowned before the hard limit is approached. Context pollution is a signal-to-noise problem, not a capacity problem. The five primary pollutants: stale tool outputs (most common, most invisible), off-topic retrieved documents, excessive reasoning traces, superseded instructions, and user messages from abandoned sub-threads. The structural fix: result grafting (filter tool outputs before insertion), pollutant tagging with active eviction (pollution score + age-weighted eviction), and task-directed history compression (re-score all prior turns against current task before each step). Pattern: **context hygiene over context reduction** — teams instinctively trim tokens, but the right move is to curate what enters the context, not to remove it after the fact. Sources: CipherBuilds AI Blog (March 2026), Redis Context Window Management Guide (February 2026), MLMastery Context Window Management (July 2026).
@@ -2630,6 +2632,11 @@ tool-manifest-security → I-3051
 | I-3054 | The Privileged Context Reuse Stack — When Your Agent Reads Untrusted Content With Elevated Credentials | privileged-context-reuse, maker-mode-inheritance, maker-mode, context-contamination, credential-reuse, elevated-context, session-elevation, scope-escalation, capability-tier, trust-tier, maker-mode-privilege, elevated-session, content-trust-classification, token-scoping, credential-temporal-scoping, Visual-Confused-Deputy, VPI, visual-prompt-injection, privileged-read, untrusted-content, agent-credential-boundary | 9 | 10 | 9 | 9 | 8 | **9.00** | WRITTEN — S-1755 | 2026-07-28 | 2026-07-28 |
 | I-3055 | The Claim Genealogy Stack — When a Single False Claim Becomes Your Entire System's Consensus | claim-genealogy, transitive-trust, error-cascade, false-claim, consensus-inertia, provenance-trace, downstream-validation, claim-lineage, claim-verification, genealogy-graph, multi-agent-cascade, topology-fragility, from-spark-to-fire, arxiv-2603.04474, claim-ancestry, consensus-drift, verification-gate, handoff-boundary, transitive-validation, claim-store, 17x-trap | 9 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1757 | 2026-07-28 | 2026-07-28 |
 | I-3056 | The Context Pollution Stack — When Your Window Is Only Half Full and Your Agent Is Already Losing Its Mind | context-pollution, signal-to-noise, stale-tool-output, context-hygiene, result-grafting, pollutant-eviction, attention-noise, instruction-dilution, context-quality, noisy-context, irrelevant-context, semantic-noise, context-filtration, tool-output-pruning, noise-signal-ratio, cross-turn-recall, context-fidelity, pollution-score, cipherbuilds-pollution | 9 | 9 | 9 | 9 | 8 | **8.85** | WRITTEN — S-1759 | 2026-07-28 | 2026-07-28 |
+| I-3057 | The Non-Human Identity Stack — When Your Agent Lives on a Shared API Key | non-human-identity, NHI, SPIFFE, WIMSE, agent-identity, workload-identity, cryptographic-identity, SPIRE, SVID, X509, ephemeral-credential, delegated-token, IETF-WIMSE, CSA-AIMS, capability-scope, identity-broker, trust-on-first-use, agent-audit-trail, credential-lifecycle, shared-credential-problem | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1766 | 2026-07-28 | 2026-07-28 |
+| I-3058 | The Agentic Serializability Stack — When Your Concurrent Agents Produce Corrupted State and a Perfectly Confident Answer | serializability, concurrency-control, race-condition, concurrent-agent, read-modify-write, optimistic-lock, version-token, write-partitioning, DeliveryLog, S-Bus, CoAgent, fork-aware, serializable, last-write-wins, shared-state-corruption, structural-race, canary-anomaly, agentic-mutex, OCC, fork-validate, arxiv-2606.15376, arxiv-2605.17076, tianpan-2026 | 10 | 10 | 10 | 10 | 9 | **9.90** | WRITTEN — S-1770 | 2026-07-28 | 2026-07-28 |
+| I-3059 | The Capability Trust Layer Stack — When Your Agent Network Trusts Languages, Not Facts | capability-advertisement, capability-trust, agent-registry, A2A, MCP, market-for-lemons, asymmetric-information, capability-verification, skill-attestation, capability-drift, agent-discovery, trust-layer, reputation-ledger, Sybil-resistance, MI9-eval, MoltBridge, a2aregistry, capability-inflation, arxiv-2606.03034 | 8 | 10 | 8 | 9 | 8 | **8.65** | WRITTEN — S-1773 | 2026-07-28 | 2026-07-28 |
+| I-3060 | The Handoff Semantic Contract Stack — When Agents Hand Off Garbage in Perfect JSON | handoff-semantic-contract, inter-agent-contract, schema-negotiation, semantic-validation, cross-agent-output, handoff-fidelity, structured-contract, artifact-corruption, pipeline-contamination | 8 | 8 | 8 | 7 | 7 | **7.80** | PENDING | 2026-07-28 | 2026-07-28 |
+| I-3061 | The Reasoning Budget Control Stack — When Thinking Too Hard Costs Too Much | reasoning-budget, test-time-compute, thinking-budget, token-cap, reasoning-toggle, effort-control, inference-cost, chain-of-thought, cost-quality-tradeoff | 7 | 7 | 8 | 7 | 6 | **7.10** | PENDING | 2026-07-28 | 2026-07-28 |
 | I-3055 | claim-genealogy → I-3055
 non-human-identity → I-3052
 NHI-governance → I-3052
@@ -2674,10 +2681,63 @@ coordination-budget → I-3057
 shared-state-convergence → I-3057
 MASM-taxon → I-3057
 mast-traces → I-3057
+serializability → I-3058
+concurrency-control → I-3058
+race-condition → I-3058
+concurrent-agent → I-3058
+read-modify-write → I-3058
+optimistic-lock → I-3058
+version-token → I-3058
+write-partitioning → I-3058
+DeliveryLog → I-3058
+S-Bus → I-3058
+CoAgent → I-3058
+fork-aware → I-3058
+fork-validate → I-3058
+last-write-wins → I-3058
+shared-state-corruption → I-3058
+structural-race → I-3058
+agentic-mutex → I-3058
+OCC → I-3058
+canary-anomaly → I-3058
+fork-and-merge → I-3058
+agentic-serializability → I-3058
+
+## Ideas Bank
+
+| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+|----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+| I-3059 | The Context Hygiene Stack — When Your Agents Remember Things That Never Happened | context-hygiene, retrieval-layer, staleness, memory-contamination, cross-source-inconsistency, hallucination-propagation, multi-agent-context, context-pollution, pollutant-eviction, retrieval-freshness, handoff-manifest, context-isolation, enterprise-ai, venturebeat-2026, workos-memorygraft, etamp-attack, arxiv-2604 | 9 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1773 | 2026-07-28 | 2026-07-28 |
+
+## Deduplication Index
+
+context-hygiene → I-3059
+retrieval-layer → I-3059
+staleness → I-3059
+memory-contamination → I-3059
+cross-source-inconsistency → I-3059
+hallucination-propagation → I-3059
+multi-agent-context → I-3059
+context-pollution → I-3059
+pollutant-eviction → I-3059
+retrieval-freshness → I-3059
+handoff-manifest → I-3059
+context-isolation → I-3059
+memorygraft → I-3059
+minja → I-3059
+etamp → I-3059
+context-confusion → I-3059
+signal-to-noise-ratio → I-3059
+stale-context → I-3059
+context-layer → I-3059
+cross-agent-message-fidelity → I-3059
+context-compaction → I-3059
+memory-summarization-staleness → I-3059
 
 ## Recent Decisions
 
-## Recent Decisions
+- *2026-07-28* — **I-3059 — The Context Hygiene Stack (S-1773) — Composite 9.55**: Researched trending AI agent production failures (VentureBeat Jun 2026 context layer article, WorkOS MemoryGraft/MINJA Jun 2026, arXiv eTAMP 2604.02623v2, AppScale multi-agent pilots, Galileo eval). Five candidates evaluated: (1) Context Hygiene / Staleness: cross-source inconsistency + memory contamination + hallucination propagation — highest specificity (VentureBeat "different answers from same data"), confirmed fresh research (Jun/Jul 2026). (2) Agentic Mutex/OCC: same problem space as S-1770 serializability — merged. (3) Model Version Pinning: partially covered by existing eval entries. (4) Tool Poisoning: covered by S-1766 (non-human identity) and tracker I-3051 (MCP poisoning). Chose #1 as highest urgency + most novel combination. New draft file S-1773 written. Sidebar entry corrected from broken file.
+- *2026-07-28* — **I-3058 — The Agentic Serializability Stack (S-1770) — Composite 9.90**: Tracker had 0 pending ideas — all prior 637+ ideas marked WRITTEN or DUPLICATE. Research surfaced several candidates: (1) Agentic Serializability: concurrent read-modify-write races in multi-agent shared state — composite 9.90 (10/10/10/10/9), clean coverage gap (S-1013 covers boundary/disagreement but NOT concurrent writes; no entry covers race conditions, optimistic locking, DeliveryLog, or CoAgent), highest timeliness (three peer-reviewed papers in 2026: CoAgent Jun, S-Bus May, Tian Pan's production analysis Apr). (2) Model Version Pinning: urgency 9, partially covered by S-1000 (eval gap) and S-1005 (AI SRE) mention pinning. (3) Agentic Mutex: same problem space as #1 — merged. Chose #1. New idea I-3058.
 
 - *2026-07-28* — **I-3053 — The Protocol Boundary Problem (S-1748) — Composite 8.75**: Tracker had 0 pending ideas — all prior ideas were marked WRITTEN or DUPLICATE across 634 total. Research surfaced three candidates: (1) Protocol Boundary Problem: MCP↔A2A interop failures — highest urgency, most timely (A2A at 150+ orgs, MCP at 5,800+ servers, MCP v2 spec updated July 28), clean coverage gap (S-14 covers A2A basics, S-10 covers MCP basics, but their interop boundary is uncovered). (2) Specification Gaming in Production: broader than S-1303 (eval gaming) but overlaps too much — Tian Pan's cases (timeout gaming, PII redaction collapse) are variations on existing themes. (3) Agent Card Reliability: staleness/manipulation angle uncovered but lower urgency. Chose #1. New idea I-3053. The structural fix requires treating every agent as a SPIFFE workload identity with cryptographic attestation (X.509 SVIDs) and short-lived credential scopes.
 

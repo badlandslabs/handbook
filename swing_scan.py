@@ -1,188 +1,252 @@
+#!/usr/bin/env python3
 import yfinance as yf
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import warnings
 warnings.filterwarnings('ignore')
 
-today = datetime.now().strftime('%Y-%m-%d')
+now_et = datetime.now(timezone(timedelta(hours=-5)))
+print(f"Current ET: {now_et.strftime('%Y-%m-%d %H:%M:%S %Z')}")
+print(f"Trading hours: {'OPEN' if 9*60+30 <= now_et.hour*60+now_et.minute <= 16*60 else 'PRE/POST MARKET'}")
+print(f"Day: {now_et.strftime('%A')}")
+print()
 
-TICKERS = ['QQQ', 'SPY', 'IWM',
-           'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA',
-           'AMD', 'AVGO', 'NFLX', 'CRM', 'ORCL', 'ADBE', 'QCOM', 'INTC',
-           'PANW', 'SNOW', 'DDOG', 'MU', 'LRCX', 'KLAC', 'AMAT']
-
-def fetch_data(ticker, period='5mo'):
+# ── Stage 1: Core index data ──────────────────────────────────────────────────
+tickers_core = ['QQQ', 'SPY', 'IWM', '^VIX', 'TLT', 'GLD']
+data = {}
+for t in tickers_core:
     try:
-        t = yf.Ticker(ticker)
-        df = t.history(period=period, auto_adjust=True)
-        return df
+        tk = yf.Ticker(t)
+        hist = tk.history(period='6mo', interval='1d')
+        if len(hist) > 0:
+            data[t] = hist
+            last = hist['Close'].iloc[-1]
+            prev = hist['Close'].iloc[-2] if len(hist) > 1 else last
+            chg = (last - prev) / prev * 100
+            print(f"✓ {t}: {len(hist)} rows | Close: ${last:.2f} ({chg:+.2f}%)")
+        else:
+            print(f"✗ {t}: no data")
     except Exception as e:
-        return None
+        print(f"✗ {t}: {e}")
 
-def compute_indicators(df):
-    df = df.copy()
-    df['sma20'] = df['Close'].rolling(20).mean()
-    df['sma50'] = df['Close'].rolling(50).mean()
-    df['sma200'] = df['Close'].rolling(200).mean()
-    df['ema20'] = df['Close'].ewm(span=20).mean()
-    df['ema50'] = df['Close'].ewm(span=50).mean()
+print()
 
-    delta = df['Close'].diff()
-    gain = delta.clip(lower=0).ewm(alpha=2/14).mean()
-    loss = (-delta.clip(upper=0)).ewm(alpha=2/14).mean()
-    rs = gain / loss.replace(0, np.nan)
-    df['rsi'] = 100 - (100 / (1 + rs))
+# ── Compute regime indicators ─────────────────────────────────────────────────
+def regime(df, short=20, long=50, very_long=200):
+    close = df['Close']
+    sma20  = close.rolling(short).mean()
+    sma50  = close.rolling(long).mean()
+    sma200 = close.rolling(very_long).mean() if len(close) >= very_long else None
+    rsi14  = 100 - (100 / (1 + df['Close'].pct_change().rolling(14).apply(lambda x: x[x>0].sum()/(-x[x<0].sum()), raw=False)))
+    vol20  = df['Volume'].rolling(20).mean()
+    return sma20, sma50, sma200, rsi14, vol20
 
-    exp1 = df['Close'].ewm(span=12).mean()
-    exp2 = df['Close'].ewm(span=26).mean()
-    df['macd'] = exp1 - exp2
-    df['macd_signal'] = df['macd'].ewm(span=9).mean()
-    df['macd_hist'] = df['macd'] - df['macd_signal']
-
-    df['atr'] = (df['High'] - df['Low']).rolling(14).mean()
-    df['volume_sma20'] = df['Volume'].rolling(20).mean()
-    df['vol_ratio'] = df['Volume'] / df['volume_sma20']
-    df['daily_return'] = df['Close'].pct_change()
-    df['volatility_20'] = df['daily_return'].rolling(20).std() * np.sqrt(252)
-
-    return df
-
-def analyze_ticker(ticker):
-    df = fetch_data(ticker)
-    if df is None or len(df) < 60:
-        return None
-
-    df = compute_indicators(df)
-
-    # Fill sma200/sma50 if insufficient history
-    for col in ['sma200', 'sma50', 'sma20']:
-        if col not in df.columns or df[col].isna().all():
-            df[col] = df['Close'].rolling(min({'sma200': 200, 'sma50': 50, 'sma20': 20}[col], len(df))).mean()
-
-    cur = df.iloc[-1]
-    prev = df.iloc[-2] if len(df) >= 2 else cur
-
-    price = cur['Close']
-
-    above_200sma = price > cur['sma200'] if not pd.isna(cur['sma200']) else None
-    above_50sma = price > cur['sma50'] if not pd.isna(cur['sma50']) else None
-    above_20sma = price > cur['sma20'] if not pd.isna(cur['sma20']) else None
-
-    if above_200sma and above_50sma:
-        trend = 'BULL'
-    elif not above_200sma and not above_50sma:
-        trend = 'BEAR'
-    else:
-        trend = 'TRANSITIONAL'
-
-    rsi_val = cur['rsi'] if not pd.isna(cur['rsi']) else 50.0
-    macd_bullish = cur['macd'] > cur['macd_signal'] if not (pd.isna(cur['macd']) or pd.isna(cur['macd_signal'])) else False
-    macd_cross_recent = (prev['macd'] <= prev['macd_signal']) and (cur['macd'] > cur['macd_signal']) if len(df) >= 2 else False
-
-    vol_ratio = float(cur['vol_ratio']) if not pd.isna(cur['vol_ratio']) else 1.0
-    high_vol = vol_ratio > 1.5
-    atr = float(cur['atr']) if not pd.isna(cur['atr']) else price * 0.02
-    risk_pct = (atr / price) * 100
-
-    # Slope of 20 SMA
-    sma20_series = df['sma20'].dropna()
-    slope_20 = 0.0
-    if len(sma20_series) >= 11:
-        slope_20 = (sma20_series.iloc[-1] - sma20_series.iloc[-11]) / sma20_series.iloc[-11] * 100
-
-    # Momentum score
-    score = 0
-    if above_20sma: score += 1
-    if above_50sma: score += 1
-    if above_200sma: score += 1
-    if 45 < rsi_val < 70: score += 1
-    if rsi_val < 35: score -= 1
-    if rsi_val > 75: score -= 1
-    if macd_bullish: score += 1
-    if macd_cross_recent: score += 2
-    if high_vol: score += 1
-    if slope_20 > 0.5: score += 1
-    if above_20sma and above_50sma and above_200sma: score += 1
-
-    ret_5d = float((price / df['Close'].iloc[-6] - 1) * 100) if len(df) > 5 else 0.0
-    ret_10d = float((price / df['Close'].iloc[-11] - 1) * 100) if len(df) > 10 else 0.0
-    ret_20d = float((price / df['Close'].iloc[-21] - 1) * 100) if len(df) > 20 else 0.0
-
-    # Recent high/low context
-    high_20 = df['High'].tail(20).max()
-    low_20 = df['Low'].tail(20).min()
-    near_high = (price / high_20 - 1) * 100 if high_20 > 0 else 0
-    near_low = (price / low_20 - 1) * 100 if low_20 > 0 else 0
-
-    return {
-        'ticker': ticker,
-        'price': float(price),
-        'sma20': float(cur['sma20']) if not pd.isna(cur['sma20']) else None,
-        'sma50': float(cur['sma50']) if not pd.isna(cur['sma50']) else None,
-        'sma200': float(cur['sma200']) if not pd.isna(cur['sma200']) else None,
-        'rsi': float(rsi_val),
-        'macd_bullish': macd_bullish,
-        'macd_cross': macd_cross_recent,
-        'vol_ratio': vol_ratio,
-        'atr': float(atr),
-        'risk_pct': float(risk_pct),
-        'above_200sma': above_200sma,
-        'above_50sma': above_50sma,
-        'above_20sma': above_20sma,
-        'trend': trend,
-        'score': score,
-        'slope_20': float(slope_20),
-        'ret_5d': ret_5d,
-        'ret_10d': ret_10d,
-        'ret_20d': ret_20d,
-        'high_vol': high_vol,
-        'high_20': float(high_20),
-        'low_20': float(low_20),
-        'near_high_pct': float(near_high),
-        'near_low_pct': float(near_low),
-        'volume': int(cur['Volume']) if not pd.isna(cur['Volume']) else 0,
-        'date': str(cur.name.date()) if hasattr(cur.name, 'date') else today,
-    }
-
-# ─── FETCH ALL ─────────────────────────────────────────────────────────────
-print("Fetching market data...")
 results = {}
-for t in TICKERS:
-    print(f"  {t}...", end=' ', flush=True)
-    r = analyze_ticker(t)
-    if r:
-        results[t] = r
-        print(f"OK  price={r['price']:.2f}  RSI={r['rsi']:.1f}  score={r['score']}")
+for t, df in data.items():
+    if len(df) < 60:
+        continue
+    sma20, sma50, sma200, rsi14, _ = regime(df)
+    last_close = df['Close'].iloc[-1]
+    rsi = rsi14.iloc[-1]
+    sma200_val = sma200.iloc[-1] if sma200 is not None and not sma200.isna().all() else None
+    above_200 = (sma200_val < last_close) if sma200_val is not None else 'N/A'
+    trend = 'BULL' if sma20.iloc[-1] > sma50.iloc[-1] else 'BEAR'
+    results[t] = {
+        'close': last_close,
+        'sma20': sma20.iloc[-1],
+        'sma50': sma50.iloc[-1],
+        'sma200': sma200_val,
+        'rsi14': rsi,
+        'above_200': above_200,
+        'trend': trend,
+        'vol_avg20': df['Volume'].rolling(20).mean().iloc[-1],
+        'vol_today': df['Volume'].iloc[-1],
+        'atr14': (df['High'] - df['Low']).rolling(14).mean().iloc[-1],
+        'pct_below_52w': (df['Close'].max() - last_close) / df['Close'].max() * 100,
+        'pct_from_52w_high': (df['Close'].max() - last_close) / df['Close'].max() * 100,
+    }
+    sma200_str = f"${sma200_val:.2f}" if sma200_val is not None else 'N/A'
+    print(f"  {t}: price=${last_close:.2f} | SMA20=${sma20.iloc[-1]:.2f} | SMA50=${sma50.iloc[-1]:.2f} | SMA200={sma200_str} | RSI={rsi:.1f} | Above200={above_200} | {trend}")
+
+print()
+
+# ── Stage 2: NASDAQ 100 top components ───────────────────────────────────────
+nasdaq100 = ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AVGO', 'AMD',
+             'QCOM', 'TXN', 'NFLX', 'COST', 'INTU', 'AMAT', 'MU', 'BKNG', 'ADI',
+             'LRCX', 'PANW', 'KLAC', 'SNPS', 'CDNS', 'CRWD', 'ORLY', 'MAR', 'ABNB',
+             'NXPI', 'MRVL', 'FTNT', 'CTAS', 'CPRT', 'ROP', 'CSGP', 'FAST', 'AZNM']
+
+print(f"Fetching {len(nasdaq100)} NASDAQ 100 components...")
+comp_data = {}
+for t in nasdaq100:
+    try:
+        tk = yf.Ticker(t)
+        hist = tk.history(period='3mo', interval='1d')
+        if len(hist) > 30:
+            sma20, sma50, _, rsi14, _ = regime(hist)
+            last_close = hist['Close'].iloc[-1]
+            high52 = hist['High'].max()
+            low52 = hist['Low'].min()
+            vol20 = hist['Volume'].rolling(20).mean().iloc[-1]
+            vol_today = hist['Volume'].iloc[-1]
+            atr14 = (hist['High'] - hist['Low']).rolling(14).mean().iloc[-1]
+            rsi = rsi14.iloc[-1]
+            sma20_v = sma20.iloc[-1]
+            sma50_v = sma50.iloc[-1]
+            above_sma20 = last_close > sma20_v
+            above_sma50 = last_close > sma50_v
+            pct_from_high = (high52 - last_close) / high52 * 100
+            # 20-day momentum
+            mom20 = (last_close - hist['Close'].iloc[-21]) / hist['Close'].iloc[-21] * 100 if len(hist) > 21 else 0
+            comp_data[t] = {
+                'close': last_close,
+                'sma20': sma20_v,
+                'sma50': sma50_v,
+                'rsi14': rsi,
+                'vol_ratio': vol_today / vol20 if vol20 > 0 else 0,
+                'atr14': atr14,
+                'atr_pct': atr14 / last_close * 100,
+                'above_sma20': above_sma20,
+                'above_sma50': above_sma50,
+                'pct_from_high': pct_from_high,
+                'mom20': mom20,
+                'high52': high52,
+                'low52': low52,
+                'vol_today': vol_today,
+                'vol20': vol20,
+            }
+    except Exception as e:
+        pass
+
+print(f"Loaded data for {len(comp_data)} components")
+print()
+
+# ── Score setups ──────────────────────────────────────────────────────────────
+# Scoring rubric (higher = better for LONG):
+# - Above both SMAs: +2, above one: +1
+# - RSI 40-70 (sweet spot): +2, 30-40 or 70-80: +1, else 0
+# - Within 10% of 52w high: +2, 10-20%: +1, <20%: 0
+# - Positive 20d momentum: +2, negative: 0
+# - Volume > 1.2x avg: +1
+# - ATR% < 8% (liquid): +1
+
+scores = {}
+for t, d in comp_data.items():
+    s = 0
+    if d['above_sma20'] and d['above_sma50']:
+        s += 2
+    elif d['above_sma20']:
+        s += 1
+    rsi = d['rsi14']
+    if 40 <= rsi <= 65:
+        s += 2
+    elif 30 <= rsi < 40 or 65 < rsi <= 75:
+        s += 1
+    pct = d['pct_from_high']
+    if pct <= 10:
+        s += 2
+    elif pct <= 20:
+        s += 1
+    if d['mom20'] > 0:
+        s += 2
+    if d['vol_ratio'] > 1.2:
+        s += 1
+    if d['atr_pct'] < 8:
+        s += 1
+    scores[t] = s
+
+ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+print("=== TOP 10 SCORED SETUPS ===")
+for t, s in ranked[:10]:
+    d = comp_data[t]
+    print(f"  {t:6s} SCORE={s:2d} | Price=${d['close']:.2f} | RSI={d['rsi14']:.1f} | "
+          f"PctFromHigh={d['pct_from_high']:.1f}% | Mom20={d['mom20']:.1f}% | "
+          f"VolRatio={d['vol_ratio']:.2f}x | ATR%={d['atr_pct']:.1f}% | "
+          f"AboveSMA20={d['above_sma20']} | AboveSMA50={d['above_sma50']}")
+
+print()
+
+# ── Deep dive top 3 ────────────────────────────────────────────────────────────
+top3 = [t for t, s in ranked[:3]]
+for t in top3:
+    print(f"\n{'='*60}")
+    print(f"DEEP DIVE: {t}")
+    print(f"{'='*60}")
+    tk = yf.Ticker(t)
+    hist = tk.history(period='6mo', interval='1d')
+    news = tk.news
+    info = tk.info
+    
+    d = comp_data[t]
+    print(f"Price: ${d['close']:.2f}")
+    print(f"52W Range: ${d['low52']:.2f} – ${d['high52']:.2f}")
+    print(f"Distance from 52w High: {d['pct_from_high']:.1f}%")
+    print(f"20 SMA: ${d['sma20']:.2f} | 50 SMA: ${d['sma50']:.2f}")
+    print(f"RSI(14): {d['rsi14']:.1f}")
+    print(f"20-Day Momentum: {d['mom20']:.1f}%")
+    print(f"ATR(14): ${d['atr14']:.2f} ({d['atr_pct']:.1f}% of price)")
+    print(f"Volume Today: {d['vol_today']:,.0f} | 20D Avg: {d['vol20']:,.0f} | Ratio: {d['vol_ratio']:.2f}x")
+    print(f"Market Cap: ${info.get('marketCap', 'N/A'):,}" if isinstance(info.get('marketCap'), (int,float)) else f"Market Cap: {info.get('marketCap', 'N/A')}")
+    print(f"Sector: {info.get('sector', 'N/A')}")
+    print(f"Industry: {info.get('industry', 'N/A')}")
+    print(f"Beta: {info.get('beta', 'N/A')}")
+    print(f"P/E: {info.get('trailingPE', 'N/A'):.1f}" if isinstance(info.get('trailingPE'), float) else f"P/E: {info.get('trailingPE', 'N/A')}")
+    
+    # Key support/resistance from recent price action
+    recent = hist.tail(30)
+    supp = []
+    res = []
+    for _, row in recent.iterrows():
+        supp.append(row['Low'])
+        res.append(row['High'])
+    
+    print(f"\nRecent 30d Range: ${recent['Low'].min():.2f} – ${recent['High'].max():.2f}")
+    print(f"Recent 30d Avg Volume: {recent['Volume'].mean():,.0f}")
+    
+    # Compute swing levels
+    highs = hist['High'].tail(20)
+    lows = hist['Low'].tail(20)
+    print(f"20d Swing High: ${highs.max():.2f}")
+    print(f"20d Swing Low: ${lows.min():.2f}")
+    
+    # Recent news
+    if news:
+        print(f"\nRecent News ({len(news)} items):")
+        for n in news[:5]:
+            print(f"  - [{n.get('provider','')}] {n.get('title','')[:100]}")
     else:
-        print(f"FAILED (insufficient data)")
-
-print(f"\n{len(results)}/{len(TICKERS)} tickers fetched.\n")
-
-# ─── SUMMARY TABLE ───────────────────────────────────────────────────────────
-print("="*100)
-hdr = f"{'TICKER':<7} {'PRICE':>8} {'SMA20':>8} {'SMA50':>8} {'SMA200':>8} {'RSI':>5} {'MACD':>5} {'VOLx':>5} {'ATR%':>5} {'SCORE':>5} {'TREND':<14} {'5D%':>6} {'10D%':>6}"
-print(hdr)
-print("="*100)
-
-sorted_results = sorted(results.items(), key=lambda x: x[1]['score'], reverse=True)
-for ticker, r in sorted_results:
-    macd_sym = "XOVER" if r['macd_cross'] else ("BULL" if r['macd_bullish'] else "BEAR")
-    print(f"{ticker:<7} {r['price']:>8.2f} {r['sma20'] if r['sma20'] else 0:>8.2f} {r['sma50'] if r['sma50'] else 0:>8.2f} "
-          f"{r['sma200'] if r['sma200'] else 0:>8.2f} {r['rsi']:>5.1f} {macd_sym:>5} "
-          f"{r['vol_ratio']:>5.2f} {r['risk_pct']:>5.2f} {r['score']:>5} {r['trend']:<14} {r['ret_5d']:>6.1f} {r['ret_10d']:>6.1f}")
+        print("\nNo recent news available.")
+    
+    # Risk/Reward calc
+    entry = d['close']
+    stop = d['sma50'] if d['above_sma50'] else d['sma20'] * 0.97
+    risk = entry - stop
+    t1 = entry + risk * 2.5
+    t2 = entry + risk * 4.0
+    print(f"\n--- Risk/Reward ---")
+    print(f"Entry: ${entry:.2f}")
+    print(f"Stop:  ${stop:.2f} (risk ${risk:.2f}, {risk/entry*100:.1f}%)")
+    print(f"T1:    ${t1:.2f} ({risk*2.5/entry*100:.1f}% from entry, {risk*2.5/risk:.1f}:1)")
+    print(f"T2:    ${t2:.2f} ({risk*4.0/entry*100:.1f}% from entry, {risk*4.0/risk:.1f}:1)")
+    print(f"ATR-based stop: ${entry - d['atr14']*2:.2f} (2xATR)")
 
 print()
-print("="*100)
-print("HIGH VOLUME + NEAR BREAKOUT SCANNER (vol > 1.5x avg AND near 20d high)")
-print("="*100)
-print(f"{'TICKER':<7} {'PRICE':>8} {'20dHIGH':>8} {'20dLOW':>8} {'nrHIGH%':>8} {'nrLOW%':>8} {'VOLx':>5} {'SCORE':>5}")
-print("-"*100)
-for ticker, r in sorted_results:
-    if r['high_vol'] and r['near_high_pct'] > -3.0:
-        print(f"{ticker:<7} {r['price']:>8.2f} {r['high_20']:>8.2f} {r['low_20']:>8.2f} {r['near_high_pct']:>8.1f} {r['near_low_pct']:>8.1f} {r['vol_ratio']:>5.2f} {r['score']:>5}")
+
+# ── Market Regime Summary ──────────────────────────────────────────────────────
+print("="*60)
+print("MARKET REGIME SUMMARY")
+print("="*60)
+for t in ['QQQ', 'SPY', 'IWM']:
+    if t in results:
+        r = results[t]
+        regime_str = 'BULL' if r['above_200'] and r['trend']=='BULL' else ('BEAR' if r['above_200']==False and r['trend']=='BEAR' else 'TRANSITIONAL')
+        sma200_str = f"${r['sma200']:.2f}" if r['sma200'] is not None else 'N/A'
+        print(f"{t}: ${r['close']:.2f} | SMA20=${r['sma20']:.2f} | SMA50=${r['sma50']:.2f} | SMA200={sma200_str} | RSI={r['rsi14']:.1f} | Regime={regime_str}")
+
+if '^VIX' in data:
+    vix = data['^VIX']['Close'].iloc[-1]
+    print(f"VIX: {vix:.2f} ({'LOW VOL (bullish backdrop)' if vix < 18 else 'NORMAL' if vix < 25 else 'HIGH VOL (caution)'} regime)")
 
 print()
-print("="*100)
-print(f"DATA AS OF: {results.get('QQQ', {}).get('date', today)}")
-print("="*100)
+print(f"Scan completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
