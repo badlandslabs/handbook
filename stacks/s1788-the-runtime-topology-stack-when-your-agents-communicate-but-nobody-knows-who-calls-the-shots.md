@@ -1,0 +1,35 @@
+# S-1788 · The Runtime Topology Stack — When Your Agents Communicate but Nobody Knows Who Calls the Shots
+
+You've got multiple agents. They need to share state, call tools, handle failures, and produce a result. You reach for LangGraph because everyone does — but three months in you hit a wall when two agents need to send each other messages at the same time, or when one tool takes 45 seconds and freezes the whole graph. This is the runtime topology problem: not which framework you use, but how work flows through your system at runtime. The topology decision is the one that causes the most production incidents.
+
+## Forces
+
+- **Determinism vs. flexibility** — DAG-based orchestration (LangGraph) gives you checkpoints, replay, and human-in-the-loop interrupts, but hard-codes the control flow. Event-driven systems (async pub/sub) allow agents to react independently, but the execution path becomes invisible without explicit tracing.
+- **Latency isolation vs. simplicity** — Synchronous tool calls are easier to reason about; async decouples a slow search API from blocking your whole agent. But every async boundary is a place where state can get lost and a failure can go undetected.
+- **The "wrong topology" failure** — The single decision that causes the most production incidents in agent systems is choosing synchronous request-reply over modular event-driven pipelines, or vice versa. Choosing wrong means retrofitting a core architectural decision under load.
+- **State leakage across hops** — LangChain's original chains made it easy to lose context between LLM calls. LangGraph's checkpoints solve this for DAG-based flows, but actor-model and event-driven systems require explicit state management at every message boundary.
+
+## The Move
+
+The pattern that holds across 2025–2026 production systems: **decouple the planner from execution, route asynchronously, and checkpoint state at every persistence boundary.** The specific topology depends on your failure tolerance and latency requirements, but the underlying principle is the same:
+
+- **Separate orchestrator from executors.** The planner/ orchestrator agent runs on your most capable model and decides *what* happens. Tool executors run independently and report back. One slow API call shouldn't freeze the planner. Implement this with a message queue (NATS JetStream, Redis Streams, or a task queue like Celery) between planner and executors.
+- **Choose topology by failure shape.** For workflows where you need to replay from a failure point (ML pipelines, document processing, any multi-step task that might run 45+ minutes), use DAG-based with explicit checkpoints (LangGraph's thread/checkpoint system). For real-time reactive systems where agents need to respond to events independently, use event-driven with async pub/sub. For stateful agents with complex lifecycles and supervision requirements, use the actor model.
+- **Make every inter-service hop async.** Direct synchronous calls between agents are the source of cascading failures. Put every LLM call, tool invocation, and agent handoff behind an async boundary. This is how you get independent failure isolation and independent scaling.
+- **Make tool steps idempotent.** Retries are how you recover from crashes. If a tool step is not idempotent, instrument it with a deduplication key so a replay doesn't double-write.
+- **Use the layered API pattern.** AutoGen v0.4 (Feb 2025, rebuilt from scratch around the actor model) exposes AgentChat for quick multi-agent apps and Core for event pipelines — separating the "ship fast" path from the "scale robustly" path. LangGraph separates the graph definition from the runtime, letting you change one without rewriting the other.
+- **Instrument the control flow explicitly.** Whatever topology you choose, make the execution path observable: trace every state transition, log every routing decision, emit span events for every tool call. This is how you debug the "agent forgot the flight details between steps 2 and 3" problem.
+
+## Evidence
+
+- **Microsoft Research / AutoGen v0.4:** Rebuilt the entire framework from scratch in February 2025 around an asynchronous actor model. The team explicitly cited that the original conversation-based architecture caused deadlocks, state corruption, and scaling failures in production. Now uses layered APIs (AgentChat / Core) to separate quick prototyping from production event pipelines. — [Microsoft Research, February 2025](https://www.microsoft.com/en-us/research/articles/autogen-v0-4-reimagining-the-foundation-of-agentic-ai-for-scale-extensibility-and-robustness/)
+- **LangChain Engineering Blog ("Building LangGraph"):** LangGraph was designed specifically to solve the control and durability problem that LangChain's chains ignored. Used in production by LinkedIn, Uber, and Klarna. Key design insight: agents differ from traditional software in latency (seconds not ms), reliability (long-running tasks fail more), and non-determinism (requires checkpoints for rewind). — [LangChain Blog, September 2025](https://www.langchain.com/blog/building-langgraph)
+- **Ask HN — "How are you orchestrating multi-agent AI workflows in production?" (11 comments, 2025):** Practitioners reporting production usage include: a Node.js/Express + V8 isolate custom orchestrator ("absolute zero framework out there that's good enough for serious work"); LangGraph with agents running as parallel workers in git worktrees using Claude Code, Codex CLI, and Gemini CLI simultaneously; AGNO for minimalistic decoupling; one team managing their entire orchestration with an agent itself. Consistent theme: production teams are reaching for custom or lightweight solutions when frameworks impose too much structure. — [Hacker News, Ask HN thread](https://news.ycombinator.com/item?id=47660705)
+- **Show HN — AgentForge:** Multi-LLM orchestrator in ~15KB of Python code with 490+ automated tests. Positions itself as a lightweight alternative to LangChain (50+ deps, ~50 MB install) with token-aware rate limiting, prompt templates, and retry with backoff built in. Demonstrates that for a class of production use cases, the framework overhead of LangGraph/CrewAI is unjustified. — [GitHub / Hacker News](https://news.ycombinator.com/item?id=47056310)
+
+## Gotchas
+
+- **Event-driven doesn't mean "fire and forget."** Every async message needs a correlation ID, a timeout, and a dead-letter path. Without these, failures disappear silently.
+- **DAG-based checkpointing has a storage cost.** LangGraph's thread/checkpoint system can consume significant memory/DB storage for long-running workflows. Plan your retention policy before you hit 10,000 concurrent runs.
+- **AutoGen's v0.4 API is a clean break from v0.2/v0.3.** If you're on an older version, migration requires rewriting the agent definitions — the conversation-based API and the new actor-based API are architecturally incompatible.
+- **Human-in-the-loop interrupts only work in synchronous topologies.** If you go fully event-driven, you'll need to implement your own pause/resume mechanism (e.g., a signal channel) to support mid-workflow human approval.
