@@ -2649,7 +2649,7 @@ tool-manifest-security → I-3051
 | I-3058 | The Agentic Serializability Stack — When Your Concurrent Agents Produce Corrupted State and a Perfectly Confident Answer | serializability, concurrency-control, race-condition, concurrent-agent, read-modify-write, optimistic-lock, version-token, write-partitioning, DeliveryLog, S-Bus, CoAgent, fork-aware, serializable, last-write-wins, shared-state-corruption, structural-race, canary-anomaly, agentic-mutex, OCC, fork-validate, arxiv-2606.15376, arxiv-2605.17076, tianpan-2026 | 10 | 10 | 10 | 10 | 9 | **9.90** | WRITTEN — S-1770 | 2026-07-28 | 2026-07-28 |
 | I-3059 | The Capability Trust Layer Stack — When Your Agent Network Trusts Languages, Not Facts | capability-advertisement, capability-trust, agent-registry, A2A, MCP, market-for-lemons, asymmetric-information, capability-verification, skill-attestation, capability-drift, agent-discovery, trust-layer, reputation-ledger, Sybil-resistance, MI9-eval, MoltBridge, a2aregistry, capability-inflation, arxiv-2606.03034 | 8 | 10 | 8 | 9 | 8 | **8.65** | WRITTEN — S-1773 | 2026-07-28 | 2026-07-28 |
 | I-3060 | The Tool Bypass Stack — When Your Agent Simulates Success and Skips the API | tool-bypass, tool-execution-hallucination, tool-simulation, forged-output, call-path-verification, transport-receipt, provenance-nonce, semantic-completion-check, production-security, arxiv-2601, techrxiv-2026, safeguard-2026 | 9 | 9 | 10 | 10 | 9 | **9.50** | WRITTEN — S-200 | 2026-07-28 | 2026-07-28 |
-| I-3060 | The Handoff Semantic Contract Stack — When Agents Hand Off Garbage in Perfect JSON | handoff-semantic-contract, inter-agent-contract, schema-negotiation, semantic-validation, cross-agent-output, handoff-fidelity, structured-contract, artifact-corruption, pipeline-contamination | 8 | 8 | 8 | 7 | 7 | **7.80** | PENDING | 2026-07-28 | 2026-07-28 |
+| I-3060 | The Handoff Semantic Contract Stack — When Agents Hand Off Garbage in Perfect JSON | handoff-semantic-contract, inter-agent-contract, schema-negotiation, semantic-validation, cross-agent-output, handoff-fidelity, structured-contract, artifact-corruption, pipeline-contamination | 8 | 8 | 8 | 7 | 7 | **7.80** | DUPLICATE → S-1013 | 2026-07-28 | 2026-07-29 |
 | I-3061 | The Reasoning Budget Control Stack — When Thinking Too Hard Costs Too Much | reasoning-budget, test-time-compute, thinking-budget, token-cap, reasoning-toggle, effort-control, inference-cost, chain-of-thought, cost-quality-tradeoff | 7 | 7 | 8 | 7 | 6 | **7.10** | WRITTEN — S-1802 | 2026-07-28 | 2026-07-29 |
 | I-3055 | claim-genealogy → I-3055
 non-human-identity → I-3052
@@ -2864,6 +2864,11 @@ effort-control → I-3061
 overthinking → I-3061
 underthinking → I-3061
 inference-cost → I-3061
+handoff-semantic-contract → S-1013
+inter-agent-contract → S-1013
+schema-negotiation → S-1013
+handoff-fidelity → S-1013
+pipeline-contamination → S-1013
 
 ## Recent Decisions
 
