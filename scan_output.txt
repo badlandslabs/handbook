@@ -1,125 +1,231 @@
 ======================================================================
-INDEX ANALYSIS
+NASDAQ SWING TRADE SCAN — 2026-07-28 02:33 PM ET
 ======================================================================
 
-QQQ: $682.12
-  SMA20: $710.49 | SMA50: $717.24 | SMA200: $642.31
-  RSI14: 36.7 | ATR(14): $13.04 (1.9%)
-  5d: -2.0% | 10d: -4.2% | 20d: -3.5%
-  Trend: BEAR
-  MACD: BEARISH | MACD X-Up: False
-  20d High Dist: -7.4% | 20d Low Dist: 0.0%
-  BB Position: 2/100
+[1] FETCHING MACRO INDEX DATA...
+  QQQ: $670.47 (-1.71%)
+  SPY: $737.61 (-0.20%)
+  IWM: $290.62 (-0.78%)
+  ^VIX: $19.03 (+1.93%)
 
-SPY: $739.09
-  SMA20: $746.66 | SMA50: $744.08 | SMA200: $695.81
-  RSI14: 41.9 | ATR(14): $7.29 (1.0%)
-  5d: -0.4% | 10d: -1.3% | 20d: +1.4%
-  Trend: BEAR
-  MACD: BEARISH | MACD X-Up: False
-  20d High Dist: -2.1% | 20d Low Dist: 0.1%
-  BB Position: 13/100
+[2] INDEX ANALYSIS:
 
-IWM: $292.91
-  SMA20: $295.52 | SMA50: $291.11 | SMA200: $263.93
-  RSI14: 44.0 | ATR(14): $3.88 (1.3%)
-  5d: +0.2% | 10d: -0.2% | 20d: -2.3%
-  Trend: TRANSITIONAL
-  MACD: BEARISH | MACD X-Up: False
-  20d High Dist: -2.5% | 20d Low Dist: 0.6%
-  BB Position: 25/100
+  🟡 QQQ  |  Close: $670.47  |  Regime: TRANSITIONAL
+  MA20: $702.40  |  MA50: $716.27  |  MA200: N/A
+  RSI(14): 34.8  |  ATR(14): $13.24
+  20d High: $736.40 (-9.0%)  |  20d Low: $670.47 (+0.0%)
+
+  🟡 SPY  |  Close: $737.61  |  Regime: TRANSITIONAL
+  MA20: $743.88  |  MA50: $743.91  |  MA200: N/A
+  RSI(14): 44.2  |  ATR(14): $6.95
+  20d High: $754.95 (-2.3%)  |  20d Low: $737.61 (+0.0%)
+
+  🟡 IWM  |  Close: $290.62  |  Regime: TRANSITIONAL
+  MA20: $293.76  |  MA50: $291.25  |  MA200: N/A
+  RSI(14): 44.9  |  ATR(14): $3.68
+  20d High: $300.45 (-3.3%)  |  20d Low: $290.62 (+0.0%)
+
+  🟡 ^VIX  |  Close: $19.03  |  Regime: TRANSITIONAL
+  MA20: $17.52  |  MA50: $17.38  |  MA200: N/A
+  RSI(14): 56.3  |  ATR(14): $2.00
+  20d High: $19.03 (+0.0%)  |  20d Low: $15.03 (+26.6%)
+
+
+[3] SCANNING NASDAQ 100 COMPONENTS...
+  AAPL: $338.43 | RSI:68 | 20dHi:+0.0% | 5d:+3.3% | 20d:+20.1% | LongScore:7 | ShortScore:0
+  MSFT: $395.15 | RSI:53 | 20dHi:-1.8% | 5d:-0.7% | 20d:+7.2% | LongScore:6 | ShortScore:1
+  NVDA: $194.55 | RSI:41 | 20dHi:-8.4% | 5d:-6.1% | 20d:-0.2% | LongScore:1 | ShortScore:5
+  GOOGL: $327.83 | RSI:38 | 20dHi:-11.6% | 5d:-5.6% | 20d:-7.3% | LongScore:1 | ShortScore:5
+  AMZN: $228.81 | RSI:35 | 20dHi:-10.3% | 5d:-7.6% | 20d:-4.7% | LongScore:0 | ShortScore:5
+  META: $593.51 | RSI:43 | 20dHi:-12.9% | 5d:-7.8% | 20d:+5.5% | LongScore:3 | ShortScore:3
+  TSLA: $302.14 | RSI:26 | 20dHi:-29.0% | 5d:-20.3% | 20d:-26.6% | LongScore:0 | ShortScore:6
+  AMD: $448.48 | RSI:38 | 20dHi:-22.8% | 5d:-17.6% | 20d:-16.9% | LongScore:1 | ShortScore:6
+  AVGO: $375.55 | RSI:45 | 20dHi:-6.4% | 5d:-2.8% | 20d:+0.8% | LongScore:2 | ShortScore:4
+  ORCL: $115.43 | RSI:30 | 20dHi:-21.0% | 5d:-9.1% | 20d:-21.6% | LongScore:0 | ShortScore:6
+  CRM: $181.11 | RSI:61 | 20dHi:+0.0% | 5d:+6.5% | 20d:+14.7% | LongScore:8 | ShortScore:0
+  NFLX: $73.50 | RSI:50 | 20dHi:-5.3% | 5d:+7.0% | 20d:-0.4% | LongScore:3 | ShortScore:1
+  ADBE: $249.95 | RSI:64 | 20dHi:+0.0% | 5d:+10.0% | 20d:+21.1% | LongScore:8 | ShortScore:0
+  QCOM: $166.77 | RSI:38 | 20dHi:-12.7% | 5d:-3.9% | 20d:-11.6% | LongScore:1 | ShortScore:6
+  TXN: $276.95 | RSI:41 | 20dHi:-11.1% | 5d:-4.9% | 20d:-3.0% | LongScore:1 | ShortScore:5
+  INTU: $318.77 | RSI:64 | 20dHi:+0.0% | 5d:+9.9% | 20d:+20.2% | LongScore:8 | ShortScore:0
+  AMAT: $470.79 | RSI:37 | 20dHi:-34.9% | 5d:-16.6% | 20d:-32.2% | LongScore:1 | ShortScore:6
+  MU: $805.08 | RSI:39 | 20dHi:-30.2% | 5d:-17.1% | 20d:-29.7% | LongScore:1 | ShortScore:6
+  LRCX: $261.08 | RSI:33 | 20dHi:-39.8% | 5d:-18.9% | 20d:-36.5% | LongScore:0 | ShortScore:6
+  KLAC: $188.32 | RSI:37 | 20dHi:-37.6% | 5d:-13.4% | 20d:-32.4% | LongScore:1 | ShortScore:6
+  PANW: $311.48 | RSI:45 | 20dHi:-13.2% | 5d:-9.0% | 20d:-6.2% | LongScore:2 | ShortScore:3
+  SNPS: $387.40 | RSI:35 | 20dHi:-14.8% | 5d:-0.4% | 20d:-13.4% | LongScore:0 | ShortScore:5
+  CDNS: $344.25 | RSI:43 | 20dHi:-10.8% | 5d:-0.1% | 20d:-7.6% | LongScore:1 | ShortScore:2
+  ADI: $367.32 | RSI:40 | 20dHi:-7.5% | 5d:-1.4% | 20d:-5.1% | LongScore:1 | ShortScore:4
+  NXPI: $263.70 | RSI:40 | 20dHi:-9.8% | 5d:-1.3% | 20d:-4.8% | LongScore:1 | ShortScore:4
+  ON: $84.23 | RSI:38 | 20dHi:-13.9% | 5d:-7.5% | 20d:-4.9% | LongScore:1 | ShortScore:5
+  MRVL: $168.44 | RSI:33 | 20dHi:-43.4% | 5d:-19.0% | 20d:-39.3% | LongScore:0 | ShortScore:6
+  INTC: $84.17 | RSI:32 | 20dHi:-39.7% | 5d:-20.2% | 20d:-36.1% | LongScore:0 | ShortScore:6
+  CSCO: $114.08 | RSI:49 | 20dHi:-6.0% | 5d:+1.7% | 20d:-2.7% | LongScore:2 | ShortScore:3
+  PEP: $144.79 | RSI:60 | 20dHi:-0.1% | 5d:+7.3% | 20d:+4.4% | LongScore:7 | ShortScore:0
+  COST: $984.10 | RSI:56 | 20dHi:+0.0% | 5d:+6.1% | 20d:+4.1% | LongScore:6 | ShortScore:0
+  APP: $402.17 | RSI:36 | 20dHi:-28.8% | 5d:-6.2% | 20d:-19.4% | LongScore:1 | ShortScore:6
+  DDOG: $239.51 | RSI:45 | 20dHi:-11.5% | 5d:-6.0% | 20d:-3.6% | LongScore:1 | ShortScore:4
+  CRWD: $176.46 | RSI:42 | 20dHi:-16.3% | 5d:-7.7% | 20d:-5.0% | LongScore:1 | ShortScore:4
+  NET: $254.24 | RSI:47 | 20dHi:-9.8% | 5d:-6.6% | 20d:+4.3% | LongScore:3 | ShortScore:3
+  TEAM: $99.28 | RSI:59 | 20dHi:+0.0% | 5d:+9.6% | 20d:+25.3% | LongScore:8 | ShortScore:0
+  WDAY: $158.10 | RSI:65 | 20dHi:+0.0% | 5d:+12.0% | 20d:+27.9% | LongScore:8 | ShortScore:0
+  NOW: $109.88 | RSI:57 | 20dHi:-1.2% | 5d:+7.7% | 20d:+9.9% | LongScore:8 | ShortScore:0
+  ZS: $145.89 | RSI:53 | 20dHi:-4.1% | 5d:-1.9% | 20d:+6.0% | LongScore:6 | ShortScore:1
+  PLTR: $119.06 | RSI:41 | 20dHi:-11.7% | 5d:-10.3% | 20d:+2.9% | LongScore:2 | ShortScore:5
+
+
+[4] TOP SWING TRADE SETUPS (LONG):
+  CRM: Score=8 | Close=$181.11 | RSI=61 | ATR=$8.31 | 20dHi=+0.0% | Mom5=+6.5%
+  ADBE: Score=8 | Close=$249.95 | RSI=64 | ATR=$11.35 | 20dHi=+0.0% | Mom5=+10.0%
+  INTU: Score=8 | Close=$318.77 | RSI=64 | ATR=$14.72 | 20dHi=+0.0% | Mom5=+9.9%
+  TEAM: Score=8 | Close=$99.28 | RSI=59 | ATR=$7.15 | 20dHi=+0.0% | Mom5=+9.6%
+  WDAY: Score=8 | Close=$158.10 | RSI=65 | ATR=$9.12 | 20dHi=+0.0% | Mom5=+12.0%
+
+[5] TOP SWING TRADE SETUPS (SHORT):
+  TSLA: BearScore=6 | Close=$302.14 | RSI=26 | ATR=$16.13 | 20dLow=+0.0% | Mom5=-20.3%
+  AMD: BearScore=6 | Close=$448.48 | RSI=38 | ATR=$38.41 | 20dLow=+0.0% | Mom5=-17.6%
+  ORCL: BearScore=6 | Close=$115.43 | RSI=30 | ATR=$6.77 | 20dLow=+0.4% | Mom5=-9.1%
+  QCOM: BearScore=6 | Close=$166.77 | RSI=38 | ATR=$7.32 | 20dLow=+0.0% | Mom5=-3.9%
+  AMAT: BearScore=6 | Close=$470.79 | RSI=37 | ATR=$40.80 | 20dLow=+0.0% | Mom5=-16.6%
+
+
+[6] DEEP DIVE — TOP 3 LONG CANDIDATES:
+
+  =======================================================
+  CRM — DETAILED ANALYSIS
+  =======================================================
+  Close: $181.11 | ATR(14): $8.31
+  MA20: $167.95 | MA50: $170.43 | MA200: N/A
+  RSI: 60.7 (5d ago: 52.6)
+  20d High: $181.11 (+0.0% away)
+  20d Low: $156.66 (+15.6% away)
+  50d Low: $150.12
+  5d Momentum: +6.5% | 20d Momentum: +14.7%
+  Volume (today vs 20d avg): 0.35x
+  --- RISK PARAMETERS ---
+  Stop Loss: $164.49 (2 ATR, $16.62 risk)
+  T1 (1.5R): $206.05
+  T2 (2.5R): $233.06
+  Risk/Reward: 1:2.5 minimum
+  Approx shares (2% risk on $50K): 48 (~$8693 exposure)
+
+  =======================================================
+  ADBE — DETAILED ANALYSIS
+  =======================================================
+  Close: $249.95 | ATR(14): $11.35
+  MA20: $226.44 | MA50: $228.28 | MA200: N/A
+  RSI: 63.8 (5d ago: 52.5)
+  20d High: $249.95 (+0.0% away)
+  20d Low: $205.02 (+21.9% away)
+  50d Low: $193.41
+  5d Momentum: +10.0% | 20d Momentum: +21.1%
+  Volume (today vs 20d avg): 0.39x
+  --- RISK PARAMETERS ---
+  Stop Loss: $227.26 (2 ATR, $22.69 risk)
+  T1 (1.5R): $283.98
+  T2 (2.5R): $320.85
+  Risk/Reward: 1:2.5 minimum
+  Approx shares (2% risk on $50K): 35 (~$8748 exposure)
+
+  =======================================================
+  INTU — DETAILED ANALYSIS
+  =======================================================
+  Close: $318.77 | ATR(14): $14.72
+  MA20: $289.26 | MA50: $295.78 | MA200: N/A
+  RSI: 64.3 (5d ago: 51.9)
+  20d High: $318.77 (+0.0% away)
+  20d Low: $259.85 (+22.7% away)
+  50d Low: $253.95
+  5d Momentum: +9.9% | 20d Momentum: +20.2%
+  Volume (today vs 20d avg): 0.30x
+  --- RISK PARAMETERS ---
+  Stop Loss: $289.32 (2 ATR, $29.45 risk)
+  T1 (1.5R): $362.93
+  T2 (2.5R): $410.78
+  Risk/Reward: 1:2.5 minimum
+  Approx shares (2% risk on $50K): 27 (~$8607 exposure)
+
+
+[7] DEEP DIVE — TOP 3 SHORT CANDIDATES:
+
+  =======================================================
+  TSLA — DETAILED ANALYSIS
+  =======================================================
+  Close: $302.14 | ATR(14): $16.13
+  MA20: $365.26 | MA50: $397.01
+  RSI: 26.0
+  20d High: $425.30 (-29.0% away)
+  20d Low: $302.14 (+0.0% away)
+  5d Momentum: -20.3% | 20d Momentum: -26.6%
+  Volume (today vs 20d avg): 0.29x
+  --- SHORT RISK PARAMETERS ---
+  Stop Loss (above 32.27 ATR): $334.41
+  T1 (1.5R): $253.74
+  T2 (2.5R): $201.31
+  Risk/Reward: 1:2.5 minimum
+
+  =======================================================
+  AMD — DETAILED ANALYSIS
+  =======================================================
+  Close: $448.48 | ATR(14): $38.41
+  MA20: $517.39 | MA50: $509.45
+  RSI: 38.2
+  20d High: $580.91 (-22.8% away)
+  20d Low: $448.48 (+0.0% away)
+  5d Momentum: -17.6% | 20d Momentum: -16.9%
+  Volume (today vs 20d avg): 0.47x
+  --- SHORT RISK PARAMETERS ---
+  Stop Loss (above 76.82 ATR): $525.31
+  T1 (1.5R): $333.25
+  T2 (2.5R): $208.41
+  Risk/Reward: 1:2.5 minimum
+
+  =======================================================
+  ORCL — DETAILED ANALYSIS
+  =======================================================
+  Close: $115.43 | ATR(14): $6.77
+  MA20: $133.08 | MA50: $168.07
+  RSI: 30.4
+  20d High: $146.04 (-21.0% away)
+  20d Low: $114.99 (+0.4% away)
+  5d Momentum: -9.1% | 20d Momentum: -21.6%
+  Volume (today vs 20d avg): 0.19x
+  --- SHORT RISK PARAMETERS ---
+  Stop Loss (above 13.55 ATR): $128.98
+  T1 (1.5R): $95.11
+  T2 (2.5R): $73.10
+  Risk/Reward: 1:2.5 minimum
+
 
 ======================================================================
-NASDAQ 100 COMPONENT SCAN
+MACRO REGIME DETERMINATION: TRANSITIONAL
 ======================================================================
+  QQQ Close: $670.469970703125 | Regime: TRANSITIONAL
+  SPY Close: $737.6099853515625 | Regime: TRANSITIONAL
+  IWM Close: $290.625 | Regime: TRANSITIONAL
+  VIX: $19.030000686645508
 
-Scanned 40 tickers
-
-TOP SWING TRADE CANDIDATES (sorted by score):
-Ticker      Price    RSI  Score    SMA20    SMA50    10d%  ATR%   BB%  MACD Trend
--------------------------------------------------------------------------------------
-CRM      $ 173.60   53.2     13 $ 166.09 $ 170.15   +1.4%  4.6%    86%   XUP BULL
-TEAM     $  95.87   55.9     12 $  88.05 $  89.35   -0.3%  7.5%    85%   XUP BULL
-SNOW     $ 272.92   58.8     10 $ 265.90 $ 237.51   +1.6%  4.7%    77%  BEAR BULL
-MSFT     $ 389.10   50.2      9 $ 387.70 $ 398.77   -0.5%  2.9%    54%  BULL TRAN
-PANW     $ 317.32   41.8      9 $ 339.76 $ 298.83   -3.9%  5.2%     7%  BEAR TRAN
-PANW     $ 317.32   41.8      9 $ 339.76 $ 298.83   -3.9%  5.2%     7%  BEAR TRAN
-CRWD     $ 180.11   40.5      9 $ 193.57 $ 178.70   -4.2%  5.8%    10%  BEAR TRAN
-NET      $ 265.61   47.4      9 $ 264.50 $ 243.34   -1.5%  4.9%    52%  BEAR BULL
-WDAY     $ 147.54   53.0      9 $ 137.84 $ 133.35   +1.8%  6.0%    83%  BEAR BULL
-NOW      $ 105.56   44.2      9 $ 104.05 $ 104.49   -5.1%  6.1%    58%  BEAR BULL
-AMD      $ 494.95   45.7      8 $ 531.73 $ 509.47   -7.4%  7.4%    10%  BEAR BEAR
-AVGO     $ 383.22   55.0      8 $ 382.31 $ 398.35   -0.2%  4.1%    52%  BULL TRAN
-ADBE     $ 237.75   59.3      8 $ 222.64 $ 228.02   +3.1%  4.5%    90%  BULL BULL
-AMAT     $ 516.89   43.0      8 $ 584.09 $ 539.04  -10.2%  7.6%    18%  BEAR BEAR
-INTU     $ 303.91   62.7      8 $ 281.15 $ 296.93   +4.9%  4.7%    98%  BULL BULL
-ZS       $ 147.30   48.1      8 $ 145.55 $ 143.21   +3.9%  5.3%    60%  BEAR BULL
-ORCL     $ 119.90   33.2      7 $ 132.78 $ 169.66   -8.8%  5.6%    18%  BULL BEAR
-TXN      $ 279.41   41.8      7 $ 294.36 $ 300.37   -6.4%  4.7%    10%  BEAR BEAR
-NXPI     $ 267.67   42.6      7 $ 277.59 $ 294.90   -8.4%  4.6%    14%  BEAR BEAR
-SMCI     $  29.81   61.6      7 $  27.63 $  32.69   +7.8%  6.8%    77%  BULL TRAN
 
 ======================================================================
-DEEP DIVE: TOP 3 SWING TRADE SETUPS
+FINAL RECOMMENDATIONS SUMMARY
 ======================================================================
 
-============================================================
-  CRM — Swing Score: 13
-============================================================
-  Current Price: $173.60
-  SMA20: $166.09 | SMA50: $170.15
-  RSI(14): 53.2 | ATR(14): $8.05 (4.6%)
-  5d: -0.1% | 10d: +1.4% | 20d: +9.6%
-  Annualized Vol: 46.9%
-  BB Position: 86/100
-  MACD: BULLISH CROSSOVER
-  Volume Ratio: 1.4x 20d avg
-  20d Range: $154.07 — $176.95
-  Fib Levels: 38.2%: $162.81 | 61.8%: $168.21 | 78.6%: $172.05
-  --- RISK/REWARD ---
-  Stop Loss: $157.49 (9.3% risk)
-  T1 (3:1 R/R): $197.76 (+13.9%)
-  T2 (6:1 R/R): $221.93 (+27.8%)
-  R/R Ratio: 3:1 minimum
+  Macro Regime: TRANSITIONAL
+  Long Candidates Found: 9
+  Short Candidates Found: 18
 
-============================================================
-  TEAM — Swing Score: 12
-============================================================
-  Current Price: $95.87
-  SMA20: $88.05 | SMA50: $89.35
-  RSI(14): 55.9 | ATR(14): $7.16 (7.5%)
-  5d: -0.6% | 10d: -0.3% | 20d: +21.8%
-  Annualized Vol: 83.3%
-  BB Position: 85/100
-  MACD: BULLISH CROSSOVER
-  Volume Ratio: 1.7x 20d avg
-  20d Range: $76.47 — $97.73
-  Fib Levels: 38.2%: $84.59 | 61.8%: $89.61 | 78.6%: $93.18
-  --- RISK/REWARD ---
-  Stop Loss: $81.54 (14.9% risk)
-  T1 (3:1 R/R): $117.37 (+22.4%)
-  T2 (6:1 R/R): $138.86 (+44.8%)
-  R/R Ratio: 3:1 minimum
+  TOP LONG SETUP: CRM
+    Score: 8 | Close: $181.11 | RSI: 61
+    Entry: $181.11 | Stop: $164.49 | T1: $206.05 | T2: $233.06
 
-============================================================
-  SNOW — Swing Score: 10
-============================================================
-  Current Price: $272.92
-  SMA20: $265.90 | SMA50: $237.51
-  RSI(14): 58.8 | ATR(14): $12.83 (4.7%)
-  5d: -0.5% | 10d: +1.6% | 20d: +9.6%
-  Annualized Vol: 25.0%
-  BB Position: 77/100
-  MACD: Bearish
-  Volume Ratio: 1.1x 20d avg
-  20d Range: $246.01 — $279.49
-  Fib Levels: 38.2%: $258.80 | 61.8%: $266.70 | 78.6%: $272.33
-  --- RISK/REWARD ---
-  Stop Loss: $247.26 (9.4% risk)
-  T1 (3:1 R/R): $311.40 (+14.1%)
-  T2 (6:1 R/R): $349.89 (+28.2%)
-  R/R Ratio: 3:1 minimum
+  RUNNER-UP LONG: ADBE
+    Score: 8 | Close: $249.95 | RSI: 64
+    Entry: $249.95 | Stop: $227.26 | T1: $283.98 | T2: $320.85
+
+  TOP SHORT SETUP: TSLA
+    BearScore: 6 | Close: $302.14 | RSI: 26
+    Entry: $302.14 | Stop: $334.41 | T1: $253.74 | T2: $201.31
 
 ======================================================================
-Scan completed: 2026-07-28 10:04:21
+SCAN COMPLETE
 ======================================================================
