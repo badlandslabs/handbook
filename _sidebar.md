@@ -817,3 +817,5 @@
   - [S-1798 · The Agent Evaluation Stack — When Your Unit Tests Pass But Production Fails](stacks/s1798-the-agent-evaluation-stack-when-your-unit-tests-pass-but-production-fails.md)
   - [S-1799 · The Response Hallucination Stack — When Your Agent Retrieves Truth and Reports Lies](stacks/s1799-the-response-hallucination-stack-when-your-agent-retrieves-truth-and-reports-lies.md)
   - [S-1800 · The MemFail Stack — When Your Memory System Fails but You Can't Tell Where](stacks/s1800-the-memfail-stack-when-your-memory-system-fails-but-you-cant-tell-where.md)
+  - [S-1801 · The Tool Definition Stack — When Your Agent Knows What to Do But Calls the Wrong Tool](stacks/s1801-the-tool-definition-stack-when-your-agent-knows-what-to-do-but-calls-the-wrong-tool.md)
+  - [S-1802 · The Reasoning Budget Stack — When Your Agent Thinks Too Hard and Bills Too Much](stacks/s1802-the-reasoning-budget-stack-when-your-agent-thinks-too-hard-and-bills-too-much.md)
