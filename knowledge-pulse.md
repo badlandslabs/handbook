@@ -3170,6 +3170,7 @@ model-procurement → I-3085
 ## Ideas Bank
 
 | I-3086 | The Overthinking Spiral — When Your Agent Reasons Itself Into Higher Costs and Lower Accuracy | overthinking, reasoning-budget, test-time-compute, chain-of-thought-length, reasoning-collapse, adaptive-compute, thinking-budget, inverted-u-accuracy, reasoning-spiral, circular-reasoning, cost-of-thinking, token-budget, reasoning-model, zylos-2026, niteagent-2026, adaptive-early-stop, overthink-detection, thinking-cap, cost-explosion, reasoning-model, ro1, r1, claude-thinking, deepseek-r1, o3 | 8 | 10 | 9 | 10 | 8 | **8.55** | WRITTEN — S-1882 | 2026-07-30 | 2026-07-30 |
+| I-3087 | The Function-Calling Attack Surface — When Tool Parameters Become an RCE Primitive | function-calling-attack, parameter-poisoning, indirect-injection, tool-param-rce, semantic-kernel-cve, cve-2026-25592, cve-2026-26030, framework-rce, parameter-provenance, tiered-function-registry, eval-injection, path-traversal-function, function-tiering, execution-layer-security, sandbox-bypass, tool-call-gate, microsoft-security-blog, sentinelone-cve, prompt-injection-rce, indirect-prompt-injection, parameter-source-tracking, capability-separation, ai-layer-untrusted, trusted-execution-boundary | 10 | 10 | 9 | 10 | 8 | **9.65** | WRITTEN — S-1884 | 2026-07-30 | 2026-07-30 |
 
 ## Deduplication Index
 
@@ -3187,6 +3188,25 @@ reasoning-spiral → I-3086
 overthink-detection → I-3086
 thinking-cap → I-3086
 reasoning-model → I-3086
+function-calling-attack → I-3087
+parameter-poisoning → I-3087
+indirect-injection → I-3087
+tool-param-rce → I-3087
+cve-2026-25592 → I-3087
+cve-2026-26030 → I-3087
+framework-rce → I-3087
+parameter-provenance → I-3087
+eval-injection → I-3087
+path-traversal-function → I-3087
+function-tiering → I-3087
+execution-layer-security → I-3087
+sandbox-bypass → I-3087
+tool-call-gate → I-3087
+indirect-prompt-injection → I-3087
+capability-separation → I-3087
+ai-layer-untrusted → I-3087
+parameter-source-tracking → I-3087
+trusted-execution-boundary → I-3087
 
 ## Pattern Log
 
@@ -3196,7 +3216,11 @@ reasoning-model → I-3086
 
 - *2026-07-30* — **I-3086 → S-1882 — The Overthinking Spiral — Composite 8.55**: Tracker exhausted (all 3085 prior ideas WRITTEN/DUPLICATE). Fresh research across 4 search vectors (reasoning budgets, inference scaling, agentic cost, multi-agent consensus). Two candidates ranked: (A) Multi-Agent Consensus (confidence-weighted Byzantine voting, Zylos Mar 2026) — gap: some coverage in S-1832 (consensus trap) and S-1142 (principal abandonment), pattern density lower; (B) The Overthinking Spiral — reasoning models amplify uncertainty into verbosity, inverted-U accuracy curve, invisible reasoning token cost, no dedicated entry. Chose B. Key sources: Zylos Research (2026-04-23) on inference-time compute scaling, NiteAgent (Jun 2026) on overthinking in test-time compute, Zhou et al. (2026) on optimal chain-of-thought length. Deduplication: S-114 covers static scratchpad budgets but not the adaptive/monitored overthinking detection case; S-1869 covers difficulty routing but not the internal reasoning trace cost problem; S-1303 covers budget spirals from loops, not from reasoning traces.
 
+- *2026-07-30* — **Function-Calling Attack Surface / Framework RCE via Parameter Poisoning**: Once an AI model is wired to function-calling, prompt injection escalates from content problem to code execution primitive. The attack vector: external data (documents, retrieved content, user uploads) carries instructions embedded in human-readable fields; the LLM reads them as tool output and passes them as parameters to privileged functions. The two 2026 Semantic Kernel CVEs (CVE-2026-25592 path traversal via DownloadFileAsync, CVE-2026-26030 code injection via InMemoryVectorStore eval) demonstrate this concretely: one retrieved document was enough to launch a process. Core pattern: AI models are not security boundaries — function-calling interfaces are. The fix is tiered function registries (TIER-3 functions block any parameter influenced by external data), parameter provenance tracking (trace every param to its source), and host-layer anomaly detection as last resort. Cross-links: S-1050 (tool-response poisoning — return value surface), S-1458 (policy kernel — enforce at framework level), S-1069 (threat-model sandbox), S-1017 (transitive framework — dependency inheritance). Distinct from: S-375 (prompt injection defense — focuses on input/guardrail layer, not the function-parameter execution layer).
+
 - *2026-07-30* — **I-3085 — The Scaffold-First Fallacy (S-1865) — Composite 9.00**: Ideas Bank was empty (all WRITTEN). Fresh research across 5 search vectors (agent reliability, MCP, context overflow, prompt injection, memory/RAG, evaluation, cost optimization) and 3 rounds of deduplication against 86 existing entries. Key finding: SWE-bench Pro data (2026) shows 22–36pp performance swings attributable purely to scaffold differences — exceeding frontier-tier gaps. Most entries cover eval gaps (10+ variants), context management (s02, s1000), cost optimization (s1176), and planning (s1027). Novel angle: the procurement decision framework — how to isolate harness contribution before spending on a model upgrade. Scaffold diagnostics, five primitives, and procurement filter. See also: s1027 (loop detection), s1133 (trajectory-first eval), s1000 (eval gap), s1220 (eval loop).
+
+- *2026-07-30* — **I-3087 → S-1884 — The Function-Calling Attack Surface — Composite 9.65**: Tracker exhausted (all 3086 prior ideas WRITTEN or DUPLICATE). Research identified Semantic Kernel CVE-2026-25592 (path traversal via DownloadFileAsync, CVSS critical) and CVE-2026-26030 (code injection via InMemoryVectorStore eval→RCE, CVSS 9.8) disclosed by Microsoft Security Blog (May 7, 2026). Chosen over: Agent Governance (covered by I-3075/S-1845 ACS intervention points), Trust Calibration (twin agents arXiv:2605.19838 — narrower research angle, lower production urgency), Tiered Oversight (organizational pattern, not an architectural stack). Core insight: this is not a prompt injection problem — the LLM behaves exactly as designed. The vulnerability is the absence of a parameter-provenance gate between the AI layer and the execution layer. Novel angle: function-calling as RCE primitive via parameter poisoning. Sources: Microsoft Security Blog (May 2026), SentinelOne CVE database, PointGuard AI, NVD. Deduplication: S-1017 (transitive framework) covers dependency inheritance, not the parameter-poisoning execution path; S-1050 (tool-response poisoning) covers return value poisoning, not function-parameter poisoning; S-1458 (policy kernel) covers authorization enforcement, not parameter-provenance tracking.
 
 - *2026-07-29* — **I-3069 — The Capability Proving Stack (S-1823) — Composite 9.40**: Ideas Bank was empty (all WRITTEN). Fresh research: OpenAI/Hugging Face sandbox escape incident (July 2026), HiddenLayer AI Threat Landscape Report 2026 (1-in-8 agentic security breaches), OWASP agentic AI security guidance. Research surfaced the capability-proving gap: existing entries cover static least-privilege enforcement (S-574, S-779), privilege drift over calendar time (S-1816), adversarial evaluation methodology (S-289), and structural governance (S-1000) — but none cover capability proving as a CI-gated, continuous practice that tests whether an agent *can* misuse a granted permission, not just whether it *should*. Novel angle: three-gate architecture (pre-deployment fingerprinting via adversarial triggers, capability contracts with prohibited-pattern enforcement, and post-upgrade re-proving as a CI gate). Related to S-1816 (privilege accumulation over time) and S-289 (red-teaming methodology), but distinct: capability proving is proactive/preventive and automated, while red-teaming is reactive/diagnostic.
 
