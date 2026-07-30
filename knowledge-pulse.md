@@ -3079,6 +3079,8 @@ h 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Lon
 | I-3082 | The Agent Runtime Middleware Stack — When Every Cross-Cutting Concern Scatters Across Your Agent Code
 ||| I-3084 | The Agent Protocol Stack — When MCP and A2A Do Different Jobs and Your Stack Mixes Them Up | MCP-A2A, protocol-composition, agent-protocol, protocol-layering, MCP-vs-A2A, A2A-MCP, protocol-boundary, agent-interop, tool-vs-agent, capability-access, collaboration-protocol, protocol-confusion, inter-agent-communication, multi-protocol | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1862 | 2026-07-30 | 2026-07-30 | | runtime-middleware, pre-handler, post-handler, callback-chain, ordered-handler, cross-cutting-concern, retry-pipeline, cost-cap, PII-redaction, policy-gate, tool-interceptor, model-interceptor, langchain-callbacks, google-adk, autogen-hooks, semantic-kernel-filters, Claude-Code-hooks, streaming-middleware, fail-closed, fail-open, middleware-ordering, interceptor-pipeline, zylos-2026, agentpatterns-middleware, atlan-guardrails | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1858 | 2026-07-30 | 2026-07-30 |
 
+| I-3085 | The Scaffold-First Fallacy — When a Model Upgrade Costs Less Than a Harness Fix | scaffold-first, harness-gap, bare-model-benchmark, SWE-bench-pro, agent-scaffolding, model-procurement, scaffold-vs-model, scaffolding-engineering, harness-diagnostics, GAIA-benchmark | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-1865 | 2026-07-30 | 2026-07-30 |
+
 handoff-contract → I-3079
 sequence-authorization → I-3080
 trajectory-authorization → I-3080
@@ -3157,7 +3159,16 @@ interceptor-pipeline → I-3082
 zylos-2026 → I-3082
 agentpatterns-middleware → I-3082
 atlan-guardrails → I-3082
+scaffold-first → I-3085
+scaffold-vs-model → I-3085
+harness-gap → I-3085
+bare-model-benchmark → I-3085
+SWE-bench-pro → I-3085
+agent-scaffolding → I-3085
+model-procurement → I-3085
 
+
+- *2026-07-30* — **I-3085 — The Scaffold-First Fallacy (S-1865) — Composite 9.00**: Ideas Bank was empty (all WRITTEN). Fresh research across 5 search vectors (agent reliability, MCP, context overflow, prompt injection, memory/RAG, evaluation, cost optimization) and 3 rounds of deduplication against 86 existing entries. Key finding: SWE-bench Pro data (2026) shows 22–36pp performance swings attributable purely to scaffold differences — exceeding frontier-tier gaps. Most entries cover eval gaps (10+ variants), context management (s02, s1000), cost optimization (s1176), and planning (s1027). Novel angle: the procurement decision framework — how to isolate harness contribution before spending on a model upgrade. Scaffold diagnostics, five primitives, and procurement filter. See also: s1027 (loop detection), s1133 (trajectory-first eval), s1000 (eval gap), s1220 (eval loop).
 
 - *2026-07-29* — **I-3069 — The Capability Proving Stack (S-1823) — Composite 9.40**: Ideas Bank was empty (all WRITTEN). Fresh research: OpenAI/Hugging Face sandbox escape incident (July 2026), HiddenLayer AI Threat Landscape Report 2026 (1-in-8 agentic security breaches), OWASP agentic AI security guidance. Research surfaced the capability-proving gap: existing entries cover static least-privilege enforcement (S-574, S-779), privilege drift over calendar time (S-1816), adversarial evaluation methodology (S-289), and structural governance (S-1000) — but none cover capability proving as a CI-gated, continuous practice that tests whether an agent *can* misuse a granted permission, not just whether it *should*. Novel angle: three-gate architecture (pre-deployment fingerprinting via adversarial triggers, capability contracts with prohibited-pattern enforcement, and post-upgrade re-proving as a CI gate). Related to S-1816 (privilege accumulation over time) and S-289 (red-teaming methodology), but distinct: capability proving is proactive/preventive and automated, while red-teaming is reactive/diagnostic.
 
