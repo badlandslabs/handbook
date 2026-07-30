@@ -2577,6 +2577,24 @@ I-3038 | The Observation Freshness Stack — When Your Agent Decides on a World 
 
 ## Pattern Log
 
+- *2026-07-30* — **Epistemic tier propagation**: Agents move through reasoning states (retrieved → inferred → assumed), but most frameworks treat all output as equally verified. Cascading context corruption (Tianpan, April 2026) is the failure mode when the assumption tier propagates as fact tier. Pattern: tag each belief with a tier + source_span + confidence; run epistemic checkpoint at every cross-boundary handoff. Confirmed novel — no existing entry covers the verified/inference/assumption tier model.
+
+- *2026-07-30* — **Agent sprawl observability**: Fleet sizes growing (YC 2026: median 37 agents/company). Problem shifts from "does my agent work?" to "can I see what my fleet is doing?" 1-in-20 production AI requests fail; 60% are silent (Datadog State of AI Engineering 2026). OpenTelemetry native span emission emerging in CrewAI v0.5, LangGraph. Cross-links: S-1847, S-1854.
+
+- *2026-07-29* — **Bounded cognitive state (agent memory frontier)**: Selective consolidation is solved (Mem0/Letta/Nexus, ECAI 2025). Frontier shifted to selective activation — which consolidated memories should be active in working memory? Memory poisoning cascade: corrupted entry → stored → surfaced → future contamination. Claude Skills #406. S-09 foundational but doesn't cover selective activation depth.
+
+- *2026-07-29* — **Prompt drift as a production anti-pattern**: Editing prod system prompt at 2am is a recognized failure mode. Eval-gated prompt promotion + immutable IDs + trace-stamped versions = standard stack (Future AGI, CallSphere, Lines & Circles all converging). Coverage gap: not yet in handbook. Consider S-18XX.
+
+- *2026-07-28* — **Schema entropy**: ~60% of production agent failures trace to tool versioning (Tianpan 2026). Tool schemas freeze while APIs evolve → silent semantic drift. Three-phase fix: runtime schema diffing, schema_version tagging, semantic canary probing. Distinct from S-1419 (output ambiguity), S-1631 (MCP ecosystem), S-1013 (boundary conflicts).
+
+- *2026-07-27* — **Orchestration failure = architectural**: Dominant production failure modes (cascading context corruption, deadlocks, silent state loss, runaway cost) are solved by architecture, not prompting (Zylos Research 2026). S-1008 confirmed as high-value cross-link anchor.
+
+- *2026-07-27* — **Per-call vs. per-trajectory authorization**: MCP stdio tools authorize individual calls; adversarial trajectories exploit the sequence. Behavioral profiling + cross-server trajectory monitoring = the gap. Distinct from S-574 (least privilege), S-779 (privilege drift).
+
+- *2026-07-27* — **Entropy as a leading production indicator**: Agent entropy (output variance, behavioral drift) precedes failure by weeks. Binary health metrics miss it. Pattern: entropy budget + entropy guardian + graceful degradation trigger.
+
+- *2026-07-27* — **Agent FinOps velocity**: Token cost velocity can exceed human review bandwidth by 10,000x. Single loop can consume $47K/hr. Gap between observability and enforcement = where budget burns. Pre-call budget gate + cost-per-outcome tracking.
+
 - *2026-07-27* — **Trajectory Divergence vs. Point-In-Time Eval**: Standard eval tests the agent's capability at a fixed input. Production tests the full loop across all steps, untrusted inputs, and trajectory space. A 97% eval pass rate is meaningless for trajectory integrity — the agent can have perfect capability and still diverge because a poisoned RAG retrieval, corrupted web search result, or subtle user redirection shifted its goal between steps 3 and 4. The structural fix: provenance-tag every inbound content so the exact input that caused divergence is traceable after the fact. Pattern: **eval trajectory coverage** — measure whether the agent stays on goal across all steps, not whether it performs correctly on one-step inputs. Key framing from arXiv:2511.04032 (IBM: silent failures in multi-agentic trajectories) and Microsoft Taxonomy of Failure Modes v2.0.
 
 - *2026-07-28* — **Agent Longevity / Temporal Capability Decay**: AI agents in production degrade over multi-day runs not because the model changes but because the operating environment poisons behavior. Documented: 85% accuracy at deploy → 60% by day 14 (AgentMarketCap, Apr 2026). Four compounding mechanisms: tool-call error accumulation (session state drifts from reality), context-window bloat (critical instructions pushed beyond attention window), prompt drift from real users (edge cases subtly reshape in-session behavior), and rate-limit back-pressure (retrieval degrades silently under concurrent load). Core pattern: **longitudinal eval loop** — measure agent quality as a time-series, not a point-in-time snapshot. Point-in-time benchmarks are blind to temporal degradation. Architectural fix: stateless session resumption with policy-based resets and sliding-window context. Sources: arXiv:2601.04170 (Rath, Jan 2026), Zylos Research (Apr 2026), Iron Mind (May 2026), AgentMarketCap (Apr 2026), Call IT Dev (Jun 2026).
@@ -3011,6 +3029,8 @@ arxiv-2607.04562 → I-3078
 
 ## Recent Decisions
 
+- *2026-07-30* — **I-3081 → S-1856 — The Belief State Boundary — Composite 9.20**: All tracker ideas exhausted (all WRITTEN or DUPLICATE). Fresh research identified the epistemic-gap problem: agents accumulate working beliefs through reasoning but no structural boundary separates "I retrieved this" from "I inferred this" from "I assumed this." The Belief State Boundary pattern (verified / inference / assumption tiers + epistemic checkpoint before cross-boundary handoffs) is novel and not covered by existing entries. S-1853 covers inter-agent handoff contracts but not the internal epistemic quality problem. S-1854 covers entropy/entropy guardian but not belief provenance. Sources: Tianpan.co "Cascading Context Corruption" (April 14, 2026), Claude Skills discussion #406 on agent memory frontier (July 2026), paperclipped.de enterprise production failure analysis (2026), Datadog State of AI Engineering 2026. Deduplication: no existing entry covers the epistemic tier model (verified/inference/assumption) or epistemic checkpoint pattern. Cross-links: S-1853 (handoff), S-1854 (silent failure), S-1847 (silent signal), S-1855 (cross-boundary safety).
+
 - *2026-07-30* — **I-3076 → S-1847 — The Silent-Signal Stack — Composite 9.25**: All tracker ideas exhausted (all WRITTEN or DUPLICATE). Fresh research identified the silent-signal problem as a gap not covered by existing entries (s1019 covers observability pillars, s1088 covers span-level tracing, s1166 covers cross-agent fragmentation, s1277 covers MCP observability gap — none address the specific 5-mode silent failure pattern: cron-success/no-delivery, tool-200/effect-missing, inbound-dropped, behavioral regression invisible to APM, and partial timeouts as success). Sources: pazi.ai (April 2026) on 5 silent failure modes; zylos.ai (April 2026) on agent observability and OpenTelemetry GenAI semconv reaching stable; arize.com (Jan 2026) on production failure field analysis; stackpulsar.com (June 2026) on reliability and CrewAI v0.5 observability; paxrel.com (March 2026) on tracing and logging. Novel angle: outcome assertion as first-class signal layer above APM, grader-over-traffic for behavioral regression detection, session phase attribution for bootstrap budget visibility.
 
 - *2026-07-29* — **I-3060 → S-1841 — The Execution Receipt Stack — Composite 7.80**: Tracker exhausted (8 unwritten ideas remaining, all scored ≤7.90). I-3060 (handoff semantic contracts) had been marked DUPLICATE→S-1013 but the overlap is partial — S-1013 covers state disagreement at boundaries, not execution proof or XAIP receipts. Fresh research: IETF draft-xkumakichi-xaip-receipts-03 (May 2026) defines signed execution receipts for agent tool calls; github.com/grapescribe/xaip-receipts has Python reference impl; Gravity Fast blog (May 2026) on 8 handoff contracts; Appropri8 on context handoff contracts (June 2026); ArkForge on MCP execution attestation gap. Novel angle: XAIP receipts (hashes, not values) + handoff semantic contracts + receipt chain for multi-step workflows. Related: S-1829 (attestation — identity proof), S-1013 (boundary — state disagreement), S-1325 (tool call verification loop). Nothing covered cryptographic proof of execution or tool call provenance.
@@ -3040,7 +3060,8 @@ h 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Lon
 ## Ideas Bank
 
 | I-3079 | The Handoff Contract Stack — When Your Agent Hands Off Confidence Without Evidence | handoff-contract, inter-agent-contract, provenance-artifact, attestation, gap-list, citation-verification, upstream-attestation, downstream-checklist, handoff-manifest, confidence-transfer, evidence-gap, multi-agent-quality, handoff-schema | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1853 | 2026-07-30 | 2026-07-30 |
-| I-3080 | The Sequence Authorization Gap — When Each Tool Call Is Authorized but the Chain Is an Attack | sequence-authorization, trajectory-authorization, per-call-vs-per-trajectory, cross-call-monitoring, behavioral-baseline, MCP-security, tool-chain-anomaly, cross-server-sequence, sequence-attack, per-trajectory-authz, tool-call-chain, post-access-monitoring, behavioral-profile, trajectory-state-machine, cross-server-trajectory | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1855 | 2026-07-30 | 2026-07-30 |
+|| I-3080 | The Sequence Authorization Gap — When Each Tool Call Is Authorized but the Chain Is an Attack | sequence-authorization, trajectory-authorization, per-call-vs-per-trajectory, cross-call-monitoring, behavioral-baseline, MCP-security, tool-chain-anomaly, cross-server-sequence, sequence-attack, per-trajectory-authz, tool-call-chain, post-access-monitoring, behavioral-profile, trajectory-state-machine, cross-server-trajectory | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1855 | 2026-07-30 | 2026-07-30 |
+|| I-3081 | The Belief State Boundary — When Your Agent Knows Something It Can't Prove | belief-state, epistemic-tier, verified-fact, working-inference, assumption-tracking, cross-boundary-handoff, cascade-corruption, inference-confidence, epistemic-checkpoint, provenance-gap, unverified-belief, downstream-contamination, source-span, tianpan-2026 | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1856 | 2026-07-30 | 2026-07-30 |
 
 handoff-contract → I-3079
 sequence-authorization → I-3080
@@ -3058,6 +3079,21 @@ post-access-monitoring → I-3080
 behavioral-profile → I-3080
 trajectory-state-machine → I-3080
 cross-server-trajectory → I-3080
+inter-agent-contract → I-3079
+belief-state → I-3081
+epistemic-tier → I-3081
+verified-fact → I-3081
+working-inference → I-3081
+assumption-tracking → I-3081
+cross-boundary-handoff → I-3081
+cascade-corruption → I-3081
+inference-confidence → I-3081
+epistemic-checkpoint → I-3081
+provenance-gap → I-3081
+downstream-contamination → I-3081
+source-span → I-3081
+tianpan-2026 → I-3081
+cascading-context-corruption → I-3081
 inter-agent-contract → I-3079
 provenance-artifact → I-3079
 attestation-block → I-3079

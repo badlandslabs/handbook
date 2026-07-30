@@ -827,6 +827,7 @@
   - [S-1849 · The Tool Schema Contract Stack — When Your Agent Calls Tools That Don't Exist in Reality](stacks/s1849-the-tool-schema-contract-stack-when-your-agent-calls-tools-that-dont-exist-in-reality.md)
   - [S-1853 · The Handoff Contract Stack — When Your Agent Hands Off Confidence Without Evidence](stacks/s1853-the-handoff-contract-stack-when-your-agent-hands-off-confidence-without-evidence.md)
   - [S-1855 · The Sequence Authorization Gap — When Each Tool Call Is Authorized but the Chain Is an Attack](stacks/s1855-the-sequence-authorization-gap-when-each-tool-call-is-authorized-but-the-chain-is-an-attack.md)
+  - [S-1856 · The Belief State Boundary — When Your Agent Knows Something It Can't Prove](stacks/s1856-the-belief-state-boundary-when-your-agent-knows-something-it-cant-prove.md)
   - [S-1854 · The Entropy Guardian Stack — When Your Agent Fails Silently and You Won't Know Until It's Too Late](stacks/s1854-the-entropy-guardian-stack-when-your-agent-fails-silently-and-you-wont-know-until-its-too-late.md)
   - [S-1842 · The Tiered Memory Stack — When Your Agent Knows Nothing About Yesterday](stacks/s1842-the-tiered-memory-stack-when-your-agent-knows-nothing-about-yesterday.md)
   - [S-1808 · The Agent Stability Index Stack — When Your Agent Is Drifting and Nobody Can Put a Number on It](stacks/s1808-the-agent-stability-index-stack-when-your-agent-is-drifting-and-nobody-can-put-a-number-on-it.md)
