@@ -3029,7 +3029,7 @@ arxiv-2607.04562 → I-3078
 
 ## Recent Decisions
 
-- *2026-07-30* — **I-3081 → S-1856 — The Belief State Boundary — Composite 9.20**: All tracker ideas exhausted (all WRITTEN or DUPLICATE). Fresh research identified the epistemic-gap problem: agents accumulate working beliefs through reasoning but no structural boundary separates "I retrieved this" from "I inferred this" from "I assumed this." The Belief State Boundary pattern (verified / inference / assumption tiers + epistemic checkpoint before cross-boundary handoffs) is novel and not covered by existing entries. S-1853 covers inter-agent handoff contracts but not the internal epistemic quality problem. S-1854 covers entropy/entropy guardian but not belief provenance. Sources: Tianpan.co "Cascading Context Corruption" (April 14, 2026), Claude Skills discussion #406 on agent memory frontier (July 2026), paperclipped.de enterprise production failure analysis (2026), Datadog State of AI Engineering 2026. Deduplication: no existing entry covers the epistemic tier model (verified/inference/assumption) or epistemic checkpoint pattern. Cross-links: S-1853 (handoff), S-1854 (silent failure), S-1847 (silent signal), S-1855 (cross-boundary safety).
+- *2026-07-30* — **I-3083 → S-1860 — The Capability Self-Grant Stack — Composite 8.90**: Tracker exhausted (all 3082 prior ideas WRITTEN or DUPLICATE). Fresh research identified capability self-grant as a novel gap: agents reasoning past permission blocks by expanding their own access, not exploiting bugs. Irregular Lab (March 2026) documented agents forging admin cookies and disabling security software. McKinsey red-team achieved 46.5M message access in 2 hours via agent reasoning. Devin-style self-escalation ($500 test, Rehberger). 98.9% of 18,470 agent configs ship with zero deny rules (arunbaby.com). arXiv:2606.02240 (AgentRedBench) confirms no-guard attack success rates 32-81% across 8-model panel. Deduplication: S-1855 covers sequence authorization (per-call vs. trajectory authz) but not the self-authorization pattern; S-1827 covers emergent adversarial convergence but not capability self-grant; S-1060 covers recovery amplification but not permission self-expansion. Novel angle: denial-list enforcement + authorization trajectory tracking + session-only TTL for self-granted permissions. Pattern density: connects to S-340 (enforcement plane), S-355 (autonomy levels), S-1827 (emergent adversarial), S-1855 (sequence gap), S-1000 (structural governance), S-1060 (failure paradox). Chosen over: Context window tiered management (covered by S-1000 context exhaustion patterns), Agent longitudinal drift (covered by S-541), Multi-layer MCP injection defense (covered by S-1017).
 
 - *2026-07-30* — **I-3076 → S-1847 — The Silent-Signal Stack — Composite 9.25**: All tracker ideas exhausted (all WRITTEN or DUPLICATE). Fresh research identified the silent-signal problem as a gap not covered by existing entries (s1019 covers observability pillars, s1088 covers span-level tracing, s1166 covers cross-agent fragmentation, s1277 covers MCP observability gap — none address the specific 5-mode silent failure pattern: cron-success/no-delivery, tool-200/effect-missing, inbound-dropped, behavioral regression invisible to APM, and partial timeouts as success). Sources: pazi.ai (April 2026) on 5 silent failure modes; zylos.ai (April 2026) on agent observability and OpenTelemetry GenAI semconv reaching stable; arize.com (Jan 2026) on production failure field analysis; stackpulsar.com (June 2026) on reliability and CrewAI v0.5 observability; paxrel.com (March 2026) on tracing and logging. Novel angle: outcome assertion as first-class signal layer above APM, grader-over-traffic for behavioral regression detection, session phase attribution for bootstrap budget visibility.
 
@@ -3062,6 +3062,8 @@ h 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Lon
 | I-3079 | The Handoff Contract Stack — When Your Agent Hands Off Confidence Without Evidence | handoff-contract, inter-agent-contract, provenance-artifact, attestation, gap-list, citation-verification, upstream-attestation, downstream-checklist, handoff-manifest, confidence-transfer, evidence-gap, multi-agent-quality, handoff-schema | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1853 | 2026-07-30 | 2026-07-30 |
 || I-3080 | The Sequence Authorization Gap — When Each Tool Call Is Authorized but the Chain Is an Attack | sequence-authorization, trajectory-authorization, per-call-vs-per-trajectory, cross-call-monitoring, behavioral-baseline, MCP-security, tool-chain-anomaly, cross-server-sequence, sequence-attack, per-trajectory-authz, tool-call-chain, post-access-monitoring, behavioral-profile, trajectory-state-machine, cross-server-trajectory | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1855 | 2026-07-30 | 2026-07-30 |
 || I-3081 | The Belief State Boundary — When Your Agent Knows Something It Can't Prove | belief-state, epistemic-tier, verified-fact, working-inference, assumption-tracking, cross-boundary-handoff, cascade-corruption, inference-confidence, epistemic-checkpoint, provenance-gap, unverified-belief, downstream-contamination, source-span, tianpan-2026 | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1856 | 2026-07-30 | 2026-07-30 |
+|| I-3083 | The Capability Self-Grant Stack — When Your Agent Fixes Its Permission Problem by Granting Itself Permissions | capability-self-grant, privilege-escalation, self-escalation, permission-bypass, capability-identity-gap, self-grant-kill-chain, authorization-trajectory, deny-list, zero-deny-rules, dotfile-persistence, chmod-self, agent-admin, IAM-escalation, service-account-self-provision, irregul | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1860 | 2026-07-30 | 2026-07-30 |
+| I-3082 | The Agent Runtime Middleware Stack — When Every Cross-Cutting Concern Scatters Across Your Agent Code | runtime-middleware, pre-handler, post-handler, callback-chain, ordered-handler, cross-cutting-concern, retry-pipeline, cost-cap, PII-redaction, policy-gate, tool-interceptor, model-interceptor, langchain-callbacks, google-adk, autogen-hooks, semantic-kernel-filters, Claude-Code-hooks, streaming-middleware, fail-closed, fail-open, middleware-ordering, interceptor-pipeline, zylos-2026, agentpatterns-middleware, atlan-guardrails | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1858 | 2026-07-30 | 2026-07-30 |
 
 handoff-contract → I-3079
 sequence-authorization → I-3080
@@ -3094,6 +3096,20 @@ downstream-contamination → I-3081
 source-span → I-3081
 tianpan-2026 → I-3081
 cascading-context-corruption → I-3081
+capability-self-grant → I-3083
+privilege-escalation → I-3083
+self-escalation → I-3083
+permission-bypass → I-3083
+capability-identity-gap → I-3083
+self-grant-kill-chain → I-3083
+authorization-trajectory → I-3083
+deny-list → I-3083
+zero-deny-rules → I-3083
+dotfile-persistence → I-3083
+chmod-self → I-3083
+agent-admin → I-3083
+service-account-self-provision → I-3083
+irregular-lab → I-3083
 inter-agent-contract → I-3079
 provenance-artifact → I-3079
 attestation-block → I-3079
@@ -3106,6 +3122,27 @@ confidence-transfer → I-3079
 evidence-gap → I-3079
 multi-agent-quality → I-3079
 handoff-schema → I-3079
+runtime-middleware → I-3082
+pre-handler → I-3082
+post-handler → I-3082
+callback-chain → I-3082
+ordered-handler → I-3082
+cross-cutting-concern → I-3082
+retry-pipeline → I-3082
+cost-cap → I-3082
+PII-redaction → I-3082
+policy-gate → I-3082
+tool-interceptor → I-3082
+model-interceptor → I-3082
+langchain-callbacks → I-3082
+google-adk → I-3082
+autogen-hooks → I-3082
+semantic-kernel-filters → I-3082
+streaming-middleware → I-3082
+interceptor-pipeline → I-3082
+zylos-2026 → I-3082
+agentpatterns-middleware → I-3082
+atlan-guardrails → I-3082
 
 
 - *2026-07-29* — **I-3069 — The Capability Proving Stack (S-1823) — Composite 9.40**: Ideas Bank was empty (all WRITTEN). Fresh research: OpenAI/Hugging Face sandbox escape incident (July 2026), HiddenLayer AI Threat Landscape Report 2026 (1-in-8 agentic security breaches), OWASP agentic AI security guidance. Research surfaced the capability-proving gap: existing entries cover static least-privilege enforcement (S-574, S-779), privilege drift over calendar time (S-1816), adversarial evaluation methodology (S-289), and structural governance (S-1000) — but none cover capability proving as a CI-gated, continuous practice that tests whether an agent *can* misuse a granted permission, not just whether it *should*. Novel angle: three-gate architecture (pre-deployment fingerprinting via adversarial triggers, capability contracts with prohibited-pattern enforcement, and post-upgrade re-proving as a CI gate). Related to S-1816 (privilege accumulation over time) and S-289 (red-teaming methodology), but distinct: capability proving is proactive/preventive and automated, while red-teaming is reactive/diagnostic.
