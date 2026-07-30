@@ -2573,6 +2573,7 @@ I-3038 | The Observation Freshness Stack — When Your Agent Decides on a World 
 | I-3066 | The Intelligence Cliff Stack — When Your Agent Crashes at Exactly the Wrong Token Count | intelligence-cliff, critical-threshold, abrupt-performance-collapse, long-context-degradation, non-linear-failure, lost-in-the-middle, context-cliff, token-threshold, arxiv-2601.15300, cliff-profiling, context-budget-guard, cliff-aware-monitoring, shadow-judge | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-1795 | 2026-07-29 | 2026-07-29 |
 | I-3074 | The Agentic FinOps Stack — When Your Agent Spends $400 to Find a Nickel | agentic-finops, token-governance, autonomous-budget, cost-enforcement, pre-execution-policy, fleet-budget, multiplicative-cost, cost-attribution, cost-compounding, token-cap, finops-x-2026, agentic-cost, autonomous-spend, cordum-2026, shshell-2026, finops-foundation-2026 | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1837 | 2026-07-29 | 2026-07-29 |
 | I-3076 | The Silent-Signal Stack — When Your Dashboard Says Green and Your Users Say Nothing Happened | silent-signal, silent-failure, delivery-assertion, effect-verification, inbound-monitor, behavioral-grader, grader-over-traffic, budget-tracker, timeout-surface, outcome-assertion, APM-gap, cron-success-vs-delivery, OTel-GenAI, genai-semconv, agentic-SRE, pazi-ai-silent-failure, zylos-observability, arize-agent-failures, stackpulsar-reliability, silent-behavioral-regression, paxrel-observability-2026, OpenTelemetry-GenAI-stable | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-1847 | 2026-07-30 | 2026-07-30 |
+| I-3077 | The Tool Schema Contract Stack — When Your Agent Calls Tools That Don't Exist in Reality | schema-contract, field-name-drift, type-coercion, required-field-inflation, enum-ghost, schema-mismatch, API-schema-model, tool-validation, schema-first, shadow-validation, schema-fingerprint, enum-live-injection, parameter-hallucination, schema-drift, MCP-schema, API-backend, tool-call-failure, silent-failure, production-tool-reliability | 8 | 9 | 9 | 8 | 8 | **8.45** | WRITTEN — S-1849 | 2026-07-30 | 2026-07-30 |
 
 ## Pattern Log
 
@@ -2633,7 +2634,9 @@ citation-grounding → I-3047
 
 ## Pattern Log
 
-- *2026-07-28* — **Agentic Serializability / Concurrency Control**: Multi-agent systems with shared mutable state are vulnerable to race conditions that masquerade as hallucination — the agent reasons correctly from corrupted data and produces a confident, wrong answer. Production failure rates of 41–86% for concurrent multi-agent state corruption. Classical CC protocols (2PL, OCC) fail because agents are slow transactions (minutes vs. milliseconds), have opaque read sets, and suffer expensive aborts. The four-layer fix: optimistic locking (minimum viable), write partitioning (for role-based agents), DeliveryLog/S-Bus (HTTP middleware reconstructing read-sets from logs), and CoAgent fork-aware CC (fork on read, validate on commit). Core pattern: **agentic serializability** — shared agent state needs the same consistency guarantees as distributed databases. Sources: Tian Pan (Apr 2026), arXiv:2606.15376 (Lyu et al., SJTU, Jun 2026), arXiv:2605.17076 (May 2026), Ardua Labs R.004.
+- *2026-07-30* — **Handoff Contract / Confidence-Without-Evidence**: When agents hand off work, confidence transfers but evidence does not. The upstream agent's output always looks correct — autoregressive decoding produces confident text whether it's verified or invented. The downstream agent has no mechanism to distinguish "generated and correct" from "generated and hallucinated." In multi-step pipelines, plausible wrong outputs compound at each handoff until the final result is confidently incorrect and no agent in the chain can detect it. The fix is a structured contract artifact with five fields: (1) output (the deliverable), (2) provenance (what tools/inputs were used, model version, self-assessed confidence), (3) attestation (what was explicitly verified vs. assumed), (4) gap list (what the downstream agent must re-verify), (5) schema version. This converts implicit upstream uncertainty into an explicit downstream checklist. Sources: Agentbrisk "Agent Handoff Patterns 2026" (Mar 2026), agentpatterns-ai handoff protocols (Jun 2026), production field reports on citation hallucination propagation. Related to: S-1851 (Heaviside Gate — verify-before-proceed), S-1773 (Context Hygiene — cross-agent staleness), S-1013 (Boundary Stack — state at handoff).
+
+ / Concurrency Control**: Multi-agent systems with shared mutable state are vulnerable to race conditions that masquerade as hallucination — the agent reasons correctly from corrupted data and produces a confident, wrong answer. Production failure rates of 41–86% for concurrent multi-agent state corruption. Classical CC protocols (2PL, OCC) fail because agents are slow transactions (minutes vs. milliseconds), have opaque read sets, and suffer expensive aborts. The four-layer fix: optimistic locking (minimum viable), write partitioning (for role-based agents), DeliveryLog/S-Bus (HTTP middleware reconstructing read-sets from logs), and CoAgent fork-aware CC (fork on read, validate on commit). Core pattern: **agentic serializability** — shared agent state needs the same consistency guarantees as distributed databases. Sources: Tian Pan (Apr 2026), arXiv:2606.15376 (Lyu et al., SJTU, Jun 2026), arXiv:2605.17076 (May 2026), Ardua Labs R.004.
 
 - *2026-07-28* — **Protocol Boundary Enforcement — The MCP↔A2A Seam**: MCP and A2A are complementary (vertical vs. horizontal) and are used together in the 2026 three-layer agentic stack. But the seam between them is where state is lost, authority is ambiguous, and security posture collapses. MCP's fine-grained, stateful scope model cannot be naively serialized to A2A's bearer tokens. Rich MCP v2 streaming payloads have no A2A equivalent. Execution context doesn't flow across the boundary — the receiving agent operates blind. The structural fix requires: (1) explicit boundary manifests encoding what crosses, (2) capability translation gates at the orchestrator, (3) delegation-depth tracking with a hard cap at ≤3 hops, (4) callback semantics instead of implicit authority escalation. Pattern: **protocol boundary enforcement** — don't assume either protocol handles the seam; the orchestrator must own it. Sources: Glukhov.org (Jun 2026), NiteAgent (Jun 2026), Xcapit (Jul 2026).
 
@@ -2993,6 +2996,18 @@ stackpulsar-reliability → I-3076
 paxrel-observability → I-3076
 OTel-GenAI → I-3076
 genai-semconv → I-3076
+heaviside-gate → I-3078
+predicate-gate → I-3078
+epistemic-entropy → I-3078
+false-completion-rate → I-3078
+proposer-verifier → I-3078
+HCRC → I-3078
+parallel-verification → I-3078
+honest-halt → I-3078
+state-divergence → I-3078
+CONTINUE-HALT → I-3078
+verification-first → I-3078
+arxiv-2607.04562 → I-3078
 
 ## Recent Decisions
 
@@ -3018,6 +3033,45 @@ h 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Lon
 
 - *2026-07-29* — **I-3067 — The MemFail Stack (S-1800) — Composite 9.15**: Tracker exhausted (all 3066 prior ideas WRITTEN or DUPLICATE). Fresh research: MemFail (arXiv:2605.26667, Garg/Kolhe/Song/Zhao, UC Berkeley, May 2026) — first systematic diagnostic benchmark for LLM memory systems. Core insight: memory systems decompose into 3 canonical operations (summarization, storage, retrieval) each with distinct failure modes. Existing benchmarks treat memory as black box; MemFail isolates per-operation failures (12 named failure modes across 3 ops). Deduplication: S-991 covers memory architecture foundations; S-999 covers cross-session memory patterns; S-1002 covers consolidation debt (symptom-level); S-3059 covers context hygiene/pollution. None decompose memory into the 3-op framework with targeted diagnostic probes. Novel angle: stop testing memory end-to-end, test each operation independently. Sources: arXiv:2605.26667 (full paper + MIT-licensed GitHub code + dataset on HuggingFace), The New Stack "Context Layer Bottleneck" (July 18, 2026), Redis Labs blog (July 2026), Digital Applied "Context Engineering Playbook" (May 2026, +39% lift from context editing + memory tiering). Pattern: **decompose before you tune — the operation that failed is not the one you're fixing**.
 
-- *2026-07-29* — **I-3068 — The Async Inference Queue Stack (S-1812) — Composite 9.35**: Tracker exhausted (all 3067 prior ideas WRITTEN or DUPLICATE). Fresh research: agent throughput is bottlenecked by synchronous inference architecture — 300ms per-request round-trip, RPM/TPM rate limits, and provider batch APIs (OpenAI Batch API with 50% cost reduction; Anthropic async endpoints) are underutilized because agents are built for synchronous request-response patterns. This entry covers the async inference queue pattern: SLA-tier routing (T1 sync vs T2 batch), rate-limited queue with batch windowing, provider batch API integration, and concurrency caps per model tier. Key benchmark: 1,000-request workload drops from 5 minutes (sync) to 6 seconds (async batch) with 50% cost reduction. Deduplication: S-1776 (parallel tool pipeline) covers tool-level parallelism within agent loops; S-1791 (agent harness) covers generator-loop architecture; S-06 (model routing) covers tier routing decisions — no existing entry covers the inference-layer queue/batch architecture for agents.
+- *2026-07-30* — **I-3080 → S-1855 — The Sequence Authorization Gap — Composite 8.90**: Tracker exhausted (all 3079 prior ideas WRITTEN or DUPLICATE). Fresh research identified post-access sequence monitoring as a gap not covered by existing entries. S-1050 covers tool-response poisoning (single-call surface), S-1062 covers supply chain/CVE (connect-time), S-1114 covers config-as-attack-surface. None cover the sequence-level gap: when each individual tool call is authorized but the chain across calls (e.g., read → LLM-summarize → external post) is not. Sources: agentlair.dev "MCP Security Vulnerabilities in 2026" (April 30, 2026) — confirmed three-step exfiltration pipeline passes every per-call check; InfoQ "Securing MCP in Production" (Nik Kale, July 29, 2026) — recommends behavioral baselines and trajectory-level monitoring as the structural fix; Adversa AI scan of 500+ MCP servers (March 2026) — 38% no auth, 43% exploitable via multi-step sequences. Pattern: **authorization surface must match trajectory scope, not call scope**. Chosen over: (1) MCP per-server resource isolation — narrower, operational not security; (2) adaptive reasoning effort routing — covered by S-1198 and related entries; (3) framework choice pattern — covered by S-999's framework caveat.
+
+- *2026-07-30* — **I-3079 → S-1853 — The Handoff Contract Stack — Composite 8.90**: Tracker exhausted (all 3078 prior ideas WRITTEN or DUPLICATE). Fresh research identified handoff contract as a gap across three angles: (1) Agentbrisk "Agent Handoff Patterns 2026" (March 2026) — 3 handoff models, failure points, and the core problem that confidence transfers but evidence does not. (2) agentpatterns-ai handoff protocols (June 2026) — preventing context loss at boundary transitions. (3) Multi-agent pipeline field reports — citation hallucination propagating across research→write→review chains is the most common "plausibly correct but wrong" failure mode. Deduplication: S-41 covers handoff patterns (compression decisions, cost); S-1013 covers boundary state disagreement; S-1314 covers pipeline collapse at handoffs; S-1773 mentions handoff manifests but in context-layer staleness context; none cover the structured contract-with-attestation pattern that makes implicit upstream verification explicit for the downstream agent. This is distinct: a signed artifact with provenance, attestation, and gap list — not just a context bundle.
+
+## Ideas Bank
+
+| I-3079 | The Handoff Contract Stack — When Your Agent Hands Off Confidence Without Evidence | handoff-contract, inter-agent-contract, provenance-artifact, attestation, gap-list, citation-verification, upstream-attestation, downstream-checklist, handoff-manifest, confidence-transfer, evidence-gap, multi-agent-quality, handoff-schema | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1853 | 2026-07-30 | 2026-07-30 |
+| I-3080 | The Sequence Authorization Gap — When Each Tool Call Is Authorized but the Chain Is an Attack | sequence-authorization, trajectory-authorization, per-call-vs-per-trajectory, cross-call-monitoring, behavioral-baseline, MCP-security, tool-chain-anomaly, cross-server-sequence, sequence-attack, per-trajectory-authz, tool-call-chain, post-access-monitoring, behavioral-profile, trajectory-state-machine, cross-server-trajectory | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1855 | 2026-07-30 | 2026-07-30 |
+
+handoff-contract → I-3079
+sequence-authorization → I-3080
+trajectory-authorization → I-3080
+per-call-vs-per-trajectory → I-3080
+cross-call-monitoring → I-3080
+behavioral-baseline → I-3080
+MCP-security → I-3080
+tool-chain-anomaly → I-3080
+cross-server-sequence → I-3080
+sequence-attack → I-3080
+per-trajectory-authz → I-3080
+tool-call-chain → I-3080
+post-access-monitoring → I-3080
+behavioral-profile → I-3080
+trajectory-state-machine → I-3080
+cross-server-trajectory → I-3080
+inter-agent-contract → I-3079
+provenance-artifact → I-3079
+attestation-block → I-3079
+gap-list → I-3079
+citation-verification → I-3079
+upstream-attestation → I-3079
+downstream-checklist → I-3079
+handoff-manifest → I-3079
+confidence-transfer → I-3079
+evidence-gap → I-3079
+multi-agent-quality → I-3079
+handoff-schema → I-3079
+
 
 - *2026-07-29* — **I-3069 — The Capability Proving Stack (S-1823) — Composite 9.40**: Ideas Bank was empty (all WRITTEN). Fresh research: OpenAI/Hugging Face sandbox escape incident (July 2026), HiddenLayer AI Threat Landscape Report 2026 (1-in-8 agentic security breaches), OWASP agentic AI security guidance. Research surfaced the capability-proving gap: existing entries cover static least-privilege enforcement (S-574, S-779), privilege drift over calendar time (S-1816), adversarial evaluation methodology (S-289), and structural governance (S-1000) — but none cover capability proving as a CI-gated, continuous practice that tests whether an agent *can* misuse a granted permission, not just whether it *should*. Novel angle: three-gate architecture (pre-deployment fingerprinting via adversarial triggers, capability contracts with prohibited-pattern enforcement, and post-upgrade re-proving as a CI gate). Related to S-1816 (privilege accumulation over time) and S-289 (red-teaming methodology), but distinct: capability proving is proactive/preventive and automated, while red-teaming is reactive/diagnostic.
+
+- *2026-07-30* — **I-3077 → S-1849 — The Tool Schema Contract Stack — Composite 8.45**: Tracker was exhausted (all 3066+ prior ideas WRITTEN or DUPLICATE). Fresh research: Presenc AI Tool-Calling Benchmarks 2026 (Berkeley BFCL, parameter-mismatch rates); meritshot.com March 2026 (four silent mismatch modes); Composio 2026 Integration Report (brittle API connectors as top-3 failure cause); qveris.ai (JSON Schema in function calling); CSA GitInject paper (arXiv:2606.09935, CI/CD prompt injection — DUPLICATE against S-375/S-453/S-1659); A2A trust gaps (DUPLICATE against S-14/S-918); compound failure math (DUPLICATE against S-1240); NHI governance (DUPLICATE against S-420/S-574/S-591). Selected: tool schema contract as distinct from S-427 (MCP schema drift — versioning within MCP) and S-406 (affordance design — tool selection/invention). This entry fills: API-schema-model contract triangle, four mismatch modes (field name drift, type coercion collapse, required field inflation, enum ghost values), and a mitigation stack (schema-first derivation from OpenAPI spec, shadow-mode validation before live calls, schema fingerprinting for drift detection, live enum injection). Sources: meritshot.com, presenc.ai, qveris.ai, composio.com, agentpatterns.ai, VoltAgent GitHub issue #1195.
