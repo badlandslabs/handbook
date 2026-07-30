@@ -2572,6 +2572,7 @@ I-3038 | The Observation Freshness Stack — When Your Agent Decides on a World 
 || I-3047 | The Attribution Receipt Failure Stack — When Your Agent Cites Ten Sources and None Exist | attribution-receipt, citation-fabrication, invented-citation, hallucination-attribution, provenance-chain, citation-verification-gate, external-grounding, verification-loop, missing-attribution, citation-object, passage-id-trace, URL-verification, quote-matching, open-ended-generation, market-report-accuracy, audit-log, citation-grounding | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1736 | 2026-07-27 | 2026-07-27 |
 | I-3066 | The Intelligence Cliff Stack — When Your Agent Crashes at Exactly the Wrong Token Count | intelligence-cliff, critical-threshold, abrupt-performance-collapse, long-context-degradation, non-linear-failure, lost-in-the-middle, context-cliff, token-threshold, arxiv-2601.15300, cliff-profiling, context-budget-guard, cliff-aware-monitoring, shadow-judge | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-1795 | 2026-07-29 | 2026-07-29 |
 | I-3074 | The Agentic FinOps Stack — When Your Agent Spends $400 to Find a Nickel | agentic-finops, token-governance, autonomous-budget, cost-enforcement, pre-execution-policy, fleet-budget, multiplicative-cost, cost-attribution, cost-compounding, token-cap, finops-x-2026, agentic-cost, autonomous-spend, cordum-2026, shshell-2026, finops-foundation-2026 | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1837 | 2026-07-29 | 2026-07-29 |
+| I-3076 | The Silent-Signal Stack — When Your Dashboard Says Green and Your Users Say Nothing Happened | silent-signal, silent-failure, delivery-assertion, effect-verification, inbound-monitor, behavioral-grader, grader-over-traffic, budget-tracker, timeout-surface, outcome-assertion, APM-gap, cron-success-vs-delivery, OTel-GenAI, genai-semconv, agentic-SRE, pazi-ai-silent-failure, zylos-observability, arize-agent-failures, stackpulsar-reliability, silent-behavioral-regression, paxrel-observability-2026, OpenTelemetry-GenAI-stable | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-1847 | 2026-07-30 | 2026-07-30 |
 
 ## Pattern Log
 
@@ -2781,6 +2782,8 @@ anthropic-harness → I-3065
 | I-3071 | The Attestation Stack — When Your Agent Claims to Be Something It Proves Nothing | agent-attestation, cryptographic-identity, DPoP, short-lived-token, workload-identity, attestation-authority, capability-claim, immutable-audit, EU-AI-Act, article-9, article-12, multi-agent-chain, attestation-chain, RFC-9449, SPIFFE, NHI, credential-binding | 9 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1829 | 2026-07-29 | 2026-07-29 |
 || I-3072 | The Agentic Serializability Stack — When Your Multi-Agent Parallel Pipeline Silently Corrupts Shared State | concurrency-control, serializability, race-condition, shared-state, multi-agent-parallel, CoAgent, MTPO, DeliveryLog, fork-aware, version-token, OCC, 2PL, optimistic-lock, read-modify-write, agentic-mutex, partial-ordering, advisory-notification, self-healing-conflict, race-masquerading-hallucination, ICML-2026 | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-1830 | 2026-07-29 | 2026-07-29 |
 | I-3073 | The Agentic Deployment Pipeline Stack — When You Change a Prompt and Production Breaks Two Weeks Later | agent-deploy-pipeline, prompt-git, artifact-versioning, eval-gate, canary-agent, shadow-deploy, behavioral-regression, silent-regression, prompt-rollback, agent-cicd, model-update-drift, deployment-pipeline, trajectory-eval-gate, golden-set, prompt-versioning, agentic-deployment, tutorialq-2026, agentci-2026, sentrial-2026, agentjig-2026 | 9 | 9 | 8 | 9 | 8 | **8.70** | WRITTEN — S-1836 | 2026-07-29 | 2026-07-29 |
+| I-3074 | The Authorization Propagation Stack — When Your Agent Delegates Across a Boundary and Authorization Invariants Break Silently | authorization-propagation, transitive-delegation, capability-envelope, aggregation-inference, temporal-validity, non-human-identity, NHI, scope-narrowing, delegation-chain, CSA-islands-of-agents, arxiv-2605.05440, phantom-data, credential-misuse, authorization-invariant, cross-boundary-auth, macaroon, biscuit-token | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-1843 | 2026-07-29 | 2026-07-29 |
+| I-3075 | The ACS Intervention-Point Stack — When Runtime Governance Lives in the Prompt | acs, agent-control-specification, intervention-point, stateless-policy, deterministic-verdict, fail-closed, runtime-governance, microsoft-agt, agent-governance-toolkit, policy-manifest, snapshot, allow-deny-transform, 8-point-intervention, pre-tool-call, post-tool-call, pre-model-call, post-model-call, agent-startup, agent-shutdown, pre-output, post-output, Rust-policy-engine, vendor-neutral, fail-closed-runtime, AGT-5.0, github-microsoft-agent-governance-toolkit, OWASP-ASI, MCPKernel-344, CUGA-2605.20874 | 9 | 9 | 9 | 10 | 9 | **9.40** | WRITTEN — S-1845 | 2026-07-30 | 2026-07-30 |
 
 ## Deduplication Index
 
@@ -2970,8 +2973,30 @@ silent-regression → I-3073
 prompt-rollback → I-3073
 agent-cicd → I-3073
 model-update-drift → I-3073
+silent-signal → I-3076
+silent-failure → I-3076
+delivery-assertion → I-3076
+effect-verification → I-3076
+inbound-monitor → I-3076
+behavioral-grader → I-3076
+grader-over-traffic → I-3076
+budget-tracker → I-3076
+timeout-surface → I-3076
+outcome-assertion → I-3076
+APM-gap → I-3076
+cron-success-vs-delivery → I-3076
+agentic-SRE → I-3076
+pazi-ai-silent-failure → I-3076
+zylos-observability → I-3076
+arize-agent-failures → I-3076
+stackpulsar-reliability → I-3076
+paxrel-observability → I-3076
+OTel-GenAI → I-3076
+genai-semconv → I-3076
 
 ## Recent Decisions
+
+- *2026-07-30* — **I-3076 → S-1847 — The Silent-Signal Stack — Composite 9.25**: All tracker ideas exhausted (all WRITTEN or DUPLICATE). Fresh research identified the silent-signal problem as a gap not covered by existing entries (s1019 covers observability pillars, s1088 covers span-level tracing, s1166 covers cross-agent fragmentation, s1277 covers MCP observability gap — none address the specific 5-mode silent failure pattern: cron-success/no-delivery, tool-200/effect-missing, inbound-dropped, behavioral regression invisible to APM, and partial timeouts as success). Sources: pazi.ai (April 2026) on 5 silent failure modes; zylos.ai (April 2026) on agent observability and OpenTelemetry GenAI semconv reaching stable; arize.com (Jan 2026) on production failure field analysis; stackpulsar.com (June 2026) on reliability and CrewAI v0.5 observability; paxrel.com (March 2026) on tracing and logging. Novel angle: outcome assertion as first-class signal layer above APM, grader-over-traffic for behavioral regression detection, session phase attribution for bootstrap budget visibility.
 
 - *2026-07-29* — **I-3060 → S-1841 — The Execution Receipt Stack — Composite 7.80**: Tracker exhausted (8 unwritten ideas remaining, all scored ≤7.90). I-3060 (handoff semantic contracts) had been marked DUPLICATE→S-1013 but the overlap is partial — S-1013 covers state disagreement at boundaries, not execution proof or XAIP receipts. Fresh research: IETF draft-xkumakichi-xaip-receipts-03 (May 2026) defines signed execution receipts for agent tool calls; github.com/grapescribe/xaip-receipts has Python reference impl; Gravity Fast blog (May 2026) on 8 handoff contracts; Appropri8 on context handoff contracts (June 2026); ArkForge on MCP execution attestation gap. Novel angle: XAIP receipts (hashes, not values) + handoff semantic contracts + receipt chain for multi-step workflows. Related: S-1829 (attestation — identity proof), S-1013 (boundary — state disagreement), S-1325 (tool call verification loop). Nothing covered cryptographic proof of execution or tool call provenance.
 h 31, 2026, 512K-line TypeScript), Anthropic Engineering "Harness Design for Long-Running Apps" (March 24, 2026), GitHub gists by jischein and yanchuk (April 2026), Wavespeed AI blog, Plain English "12 Agentic Harness Patterns" (April 8, 2026). Novel angle: 6-layer harness architecture not yet covered in handbook. Deduplication: S-1006 covers tool selection; S-1013 covers agent boundaries; S-1458 covers policy enforcement; S-1013 covers trace replay; S-1789 covers failure containment — none cover the full harness layer stack (QueryEngine, streaming executor, permission tiers, context management, hook system, sub-agent isolation). Primary insight: the LLM generates text; the harness is the operating system that decides what text can affect.
