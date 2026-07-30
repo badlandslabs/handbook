@@ -1,0 +1,165 @@
+AI AGENT FAILURE HANDLING RESEARCH - KEY EXCERPTS
+============================================================
+
+Source: Zylos AI Research
+URL: https://zylos.ai/en/research/2026-05-06-agent-self-healing-failure-recovery
+
+KEY QUOTE:
+Production AI agent systems fail in ways that traditional software does not. A conventional web service crashes and logs a stack trace. An agent may silently loop for 35 minutes, spawn redundant subprocesses that contend for shared resources, accumulate context until the model halts, or take an irreversible action before a human can intervene.
+
+FAILURE TAXONOMY:
+1. Semantic Errors - plausible but incorrect, no crash
+2. Architectural Failures - loops, deadlocks, resource contention
+3. Operational Incidents - tool failures, API errors
+4. Silent Quality Degradation - operates but quality drifts
+
+DEADLOCK EXAMPLE (verbatim):
+A context-monitor component repeatedly fired a new-session event at 6-minute intervals, each spawning a new memory-sync subagent. With no guard checking whether a sync was already running, multiple subagents competed for the same memory files, token budgets, and session state. Result: a 35-minute hang. Fix: a single check - is a sync task already running?
+
+THUNDERING HERD:
+When multiple agents simultaneously encounter the same failure (rate limit), naively retrying in parallel reproduces the rate limit. AWS research: exponential backoff with jitter reduces retry storms by 60-80% vs fixed-interval.
+
+SELF-HEALING PATTERNS:
+- Supervisor pattern: meta-agent monitors subagent health
+- Checkpoint/Resume: state machines serialize progress
+- Context overflow prevention: summarization triggers
+
+GRACEFUL DEGRADATION HIERARCHY:
+- Level 1: Full capability (primary model, all tools)
+- Level 2: Reduced model (fallback to smaller/cheaper model)
+- Level 3: Cached responses
+
+SILENT QUALITY DEGRADATION CAUSES:
+- Model drift
+- Prompt regression
+- Context contamination
+- Tool version drift
+
+============================================================
+Source: Agentbrisk
+URL: https://agentbrisk.com/blog/ai-agent-failure-modes-real-incidents/
+
+INCIDENT 1: Refund Agent Gave Away $1.2M (Q3 2025)
+- Agent issued refunds up to $500 without review
+- Cumulative unauthorized refunds reached $1.2M in 3 weeks
+- Root cause: per-transaction cap existed but no cumulative spend guard
+- Fix: cumulative refund caps per session, mandatory summary before high-value refunds
+
+INCIDENT 2: Coding Agent Pushed Broken Infrastructure (Jan 2026)
+- Agent removed PostgreSQL firewall rule it interpreted as drift
+- Rule had been manually added as emergency measure
+- Root cause: agent could not distinguish manual overrides from config drift
+- Fix: DO_NOT_REMOVE tagging convention, human approval for security group changes
+
+INCIDENT 3: Voice Agent Invented Cancellation Policy (mid-2025)
+- Agent told callers of non-existent 90-day money-back guarantee
+- Created $340K liability from 200+ customer refunds
+- Root cause: agent confabulated when no policy match existed
+- Fix: policy grounding database, I-dont-know is a valid response
+
+============================================================
+Source: Brandon Lincoln Hendricks
+URL: brandonlincolnhendricks.com/research/circuit-breaker-patterns-ai-agent-reliability
+
+CIRCUIT BREAKER FOR AI AGENTS:
+Automated safety valve that monitors service health and prevents cascading failures.
+
+THREE STATES:
+- CLOSED: requests pass through, failures counted
+- OPEN: requests blocked, immediate fallback response
+- HALF-OPEN: test requests after timeout to check recovery
+
+TRIP CONDITIONS:
+- Failure rate >50% over sliding window
+- Minimum N requests before evaluation (e.g., N=10)
+- Latency exceeds P99 threshold
+- N consecutive failures
+
+CIRCUIT BREAKER LOCATIONS:
+1. LLM API calls (provider outages, rate limits)
+2. External tool calls (tool API failures)
+3. Inter-agent communication (multi-agent chain failures)
+
+============================================================
+Source: HN Discussion
+URL: news.ycombinator.com/item?id=44712315 (128 pts, Jul 2025)
+
+KEY INSIGHT ON EVALUATIONS:
+Evals are vital for improving performance. Without them you dont know if you are moving the needle. Teams winging it without robust eval practices are not trustworthy.
+
+LLM-AS-JUDGE PROBLEM:
+LLMs have extreme confirmation bias - they rate outputs they are shown as good. Use human-labeled golden datasets for critical evaluations. LLM-as-judge is a supplement, not a replacement.
+
+OTHER HN INSIGHTS:
+- Idempotency is critical for safe retries
+- Full decision tree replay (not just final outputs)
+- Determinism: stochastic behavior is a debugging nightmare
+- Structured outputs: Pydantic/JSON mode instead of raw text parsing
+
+============================================================
+Source: HN Discussion
+URL: news.ycombinator.com/item?id=47358618 (multi-agent debugging)
+
+CORE PROBLEM:
+Once agents start calling tools, APIs, and other agents in chains, debugging failures becomes surprisingly hard. A single task involves multiple LLM calls, tool invocations, retries - difficult to trace failure origin.
+
+OBSERVABILITY STACK:
+OTEL and LGTM - works for latency and token counts. Breaks down for agent coordination debugging.
+
+AUTHORITY BOUNDARY PROBLEM:
+When a sub-agent makes wrong decision, it may be because orchestrator gave incomplete context. Tracing information loss requires full message chain visibility.
+
+PROPOSED SOLUTIONS:
+- Correlation IDs for each agent step
+- Full decision tree replay
+- Sagas pattern: each step independently compensable if later step fails
+- LLM callback hooks for human review at decision boundaries
+
+============================================================
+Source: Miaoquai
+URL: miaoquai.com/stories/cron-task-midnight-disaster.html
+
+CRON DISASTER:
+Wrote cron as * 8 * * * instead of 0 8 * * * - caused 60 executions per hour instead of 1. Combined with UTC timezone mismatch (server UTC-8, operator UTC+8), task ran at midnight local time.
+
+LESSON:
+Agent/scheduler does exactly what specified, not what was meant. Use human-readable cron descriptors, explicit timezones, rate limiting on task execution, dry-run mode before enabling.
+
+============================================================
+CROSS-REFERENCE SUMMARY
+
+PATTERN 1: Thundering Herd / Retry Storms
+Confirmed: Zylos + HN discussions
+Evidence: AWS research - jittered backoff reduces retry storms 60-80%
+Fix: Jittered exponential backoff + circuit breakers
+
+PATTERN 2: Silent Quality Degradation
+Confirmed: Zylos (taxonomy) + Agentbrisk Incident 3
+Evidence: No crash, progressive output drift
+Fix: Continuous eval suites, golden datasets, LLM-as-judge with guardrails
+
+PATTERN 3: Authorization/Scope Escalation
+Confirmed: Agentbrisk Incidents 1 and 2
+Evidence: Per-transaction caps but no cumulative limits; manual overrides indistinguishable
+Fix: Cumulative spending caps, immutable annotations (#DO_NOT_REMOVE), policy grounding DB
+
+PATTERN 4: Multi-Agent Coordination Failures
+Confirmed: Zylos (35-min hang) + HN authority boundary problem
+Evidence: Memory-sync subagent race condition
+Fix: Supervisor pattern, saga pattern, correlation ID tracing
+
+PATTERN 5: Context/State Accumulation
+Confirmed: Zylos (context overflow + contamination)
+Evidence: Progressive drift, no crash, incorrect context biases outputs
+Fix: Checkpoint/resume, context window monitoring, summarization triggers
+
+PATTERN 6: Literal Interpretation vs. Intent
+Confirmed: Miaoquai (cron) + Agentbrisk Incident 3
+Evidence: Agent does what specified, not what meant
+Fix: Policy grounding, human-readable specs, dry-run, HITL at decision boundaries
+
+============================================================
+RESEARCH COMPILED: July 30, 2026
+6 of 8 sources retrieved successfully
+URL 1 DEAD: app.build (Vercel 404)
+URL 3 JS-ONLY: preporato.com (requires JS rendering)

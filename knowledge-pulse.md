@@ -3167,6 +3167,34 @@ SWE-bench-pro → I-3085
 agent-scaffolding → I-3085
 model-procurement → I-3085
 
+## Ideas Bank
+
+| I-3086 | The Overthinking Spiral — When Your Agent Reasons Itself Into Higher Costs and Lower Accuracy | overthinking, reasoning-budget, test-time-compute, chain-of-thought-length, reasoning-collapse, adaptive-compute, thinking-budget, inverted-u-accuracy, reasoning-spiral, circular-reasoning, cost-of-thinking, token-budget, reasoning-model, zylos-2026, niteagent-2026, adaptive-early-stop, overthink-detection, thinking-cap, cost-explosion, reasoning-model, ro1, r1, claude-thinking, deepseek-r1, o3 | 8 | 10 | 9 | 10 | 8 | **8.55** | WRITTEN — S-1882 | 2026-07-30 | 2026-07-30 |
+
+## Deduplication Index
+
+overthinking → I-3086
+reasoning-budget → I-3086
+test-time-compute → I-3086
+chain-of-thought-length → I-3086
+reasoning-collapse → I-3086
+adaptive-compute → I-3086
+thinking-budget → I-3086
+inverted-u-accuracy → I-3086
+circular-reasoning → I-3086
+cost-of-thinking → I-3086
+reasoning-spiral → I-3086
+overthink-detection → I-3086
+thinking-cap → I-3086
+reasoning-model → I-3086
+
+## Pattern Log
+
+- *2026-07-30* — **Overthinking Spiral / Reasoning Budget Explosion**: Reasoning models (o1/o3/R1/Claude-thinking) are trained to expand uncertainty into extended reasoning traces. The counterintuitive finding: accuracy follows an inverted-U curve with chain-of-thought length (Zhou et al. 2026) — peak accuracy around 2,000–4,000 tokens, then degrades as the model revisits and revises correct intermediate conclusions. The invisible cost driver: reasoning tokens are often 70–90% of total token spend but don't appear in user-visible output, making them invisible to standard cost dashboards. The fix is explicit budget naming (treat thinking as a cost center), difficulty-based routing (only use reasoning models for tasks that actually need them), and adaptive early-stop via spiral detection (≥2 direction reversals on the same sub-question). Cross-links: S-114 (scratchpad budget — static vs. adaptive), S-1869 (difficulty routing), S-1303 (cost spiral — loops vs. reasoning traces).
+
+## Recent Decisions
+
+- *2026-07-30* — **I-3086 → S-1882 — The Overthinking Spiral — Composite 8.55**: Tracker exhausted (all 3085 prior ideas WRITTEN/DUPLICATE). Fresh research across 4 search vectors (reasoning budgets, inference scaling, agentic cost, multi-agent consensus). Two candidates ranked: (A) Multi-Agent Consensus (confidence-weighted Byzantine voting, Zylos Mar 2026) — gap: some coverage in S-1832 (consensus trap) and S-1142 (principal abandonment), pattern density lower; (B) The Overthinking Spiral — reasoning models amplify uncertainty into verbosity, inverted-U accuracy curve, invisible reasoning token cost, no dedicated entry. Chose B. Key sources: Zylos Research (2026-04-23) on inference-time compute scaling, NiteAgent (Jun 2026) on overthinking in test-time compute, Zhou et al. (2026) on optimal chain-of-thought length. Deduplication: S-114 covers static scratchpad budgets but not the adaptive/monitored overthinking detection case; S-1869 covers difficulty routing but not the internal reasoning trace cost problem; S-1303 covers budget spirals from loops, not from reasoning traces.
 
 - *2026-07-30* — **I-3085 — The Scaffold-First Fallacy (S-1865) — Composite 9.00**: Ideas Bank was empty (all WRITTEN). Fresh research across 5 search vectors (agent reliability, MCP, context overflow, prompt injection, memory/RAG, evaluation, cost optimization) and 3 rounds of deduplication against 86 existing entries. Key finding: SWE-bench Pro data (2026) shows 22–36pp performance swings attributable purely to scaffold differences — exceeding frontier-tier gaps. Most entries cover eval gaps (10+ variants), context management (s02, s1000), cost optimization (s1176), and planning (s1027). Novel angle: the procurement decision framework — how to isolate harness contribution before spending on a model upgrade. Scaffold diagnostics, five primitives, and procurement filter. See also: s1027 (loop detection), s1133 (trajectory-first eval), s1000 (eval gap), s1220 (eval loop).
 
