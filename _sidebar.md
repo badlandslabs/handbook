@@ -860,3 +860,4 @@
   - [S-1912 · The Latency-Quality Divorce Stack — When Your Agent SLA Is Green But Every Decision Is Wrong](stacks/s1912-the-latency-quality-divorce-stack-when-your-agent-sla-is-green-but-every-decision-is-wrong.md)
   - [S-1913 · The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist](stacks/s1913-the-phantom-invocation-stack-when-your-agent-calls-a-tool-that-doesnt-exist.md)
   - [S-1915 · The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing](stacks/s1915-the-tiered-forgetting-stack-when-your-agent-remembers-everything-and-knows-nothing.md)
+  - [S-1917 · The Trust Handoff Stack — When Your Sandboxed Agent Escapes Through a File It Was Allowed to Write](stacks/s1917-the-trust-handoff-stack-when-your-sandboxed-agent-escapes-through-a-file-it-was-allowed-to-write.md)

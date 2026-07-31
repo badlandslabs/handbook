@@ -3365,7 +3365,8 @@ rlhf-signal-sanitization → I-3096
 
 ## Ideas Bank
 
-| I-3097 | The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing | tiered-forgetting, memory-eviction, importance-scoring, hot-warm-cold-tier, semantic-importance, recency, temporal-validity, governance-pin, memory-prioritization, mem0, tiered-memory, forgetting-policy, importance-weighted-eviction, memory-prioritization, governance-constraint-pin, SSGM | 10 | 9 | 10 | 10 | 9 | **9.50** | WRITTEN — S-1915 | 2026-07-31 | 2026-07-31 |
+|| I-3097 | The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing | tiered-forgetting, memory-eviction, importance-scoring, hot-warm-cold-tier, semantic-importance, recency, temporal-validity, governance-pin, memory-prioritization, mem0, tiered-memory, forgetting-policy, importance-weighted-eviction, memory-prioritization, governance-constraint-pin, SSGM | 10 | 9 | 10 | 10 | 9 | **9.50** | WRITTEN — S-1915 | 2026-07-31 | 2026-07-31 |
+|| I-3098 | The Trust Handoff Stack — When Your Sandboxed Agent Escapes Through a File It Was Allowed to Write | trust-handoff, sandbox-escape, delayed-trust, hook-injection, config-injection, git-hooks, bubblewrap, settings.json, trust-boundary, write-provenance, cve-2026-48124, cve-2026-25725, pillar-security, csa-2026, gitpwned, interpreter-manipulation, dotfile-injection, entrypoint-injection, sandboxed-agent, trusted-tool, workspace-write, agent-write | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-1917 | 2026-07-31 | 2026-07-31 |
 
 ## Deduplication Index
 
@@ -3379,7 +3380,30 @@ hot-warm-cold-memory → I-3097
 memory-prioritization → I-3097
 governance-pin → I-3097
 temporal-validity-scoring → I-3097
+trust-handoff → I-3098
+sandbox-escape → I-3098
+delayed-trust → I-3098
+hook-injection → I-3098
+config-injection → I-3098
+git-hooks → I-3098
+bubblewrap → I-3098
+settings.json → I-3098
+trust-boundary → I-3098
+write-provenance → I-3098
+cve-2026-48124 → I-3098
+cve-2026-25725 → I-3098
+pillar-security → I-3098
+csa-2026 → I-3098
+gitpwned → I-3098
+interpreter-manipulation → I-3098
+dotfile-injection → I-3098
+entrypoint-injection → I-3098
+sandboxed-agent → I-3098
+trusted-tool → I-3098
+workspace-write → I-3098
+agent-write → I-3098
 
 ## Recent Decisions
 
-- *2026-07-31* — **I-3097 → S-1915 — Tiered Forgetting Stack — Composite 9.50**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Mem0 tiered memory architecture (mem0.ai/blog, Jul 2026); Ivezaj three-tier hot/warm/cold memory (ilirivezaj.com, Jun 2026); IDFS AI tiered forgetting (idfs.ai, May 2026); SSGM governance memory (arXiv:2603.11768, Mar 2026); Mem0 memory eviction (mem0.ai/blog, Jul 27, 2026); Anthropic Dreaming (May 2026, vendor-reported 6x task-completion lift). Core insight: flat memory is a retrieval antipattern — equal-weight storage means retrieval is dominated by keyword similarity, not utility. Tiered forgetting (hot/warm/cold with composite importance scoring: semantic_importance x 0.45 + recency x 0.25 + temporal_validity x 0.30) prevents importance-weighted starvation (S-1221) and governance decay (S-360). Deduplication: S-1030 (forgetting stack) covers the basic concept but lacks tier architecture and composite scoring. S-1020 (tiered memory) covers tiered storage but not eviction policy design. S-1221 (importance-weighted starvation) describes the problem this stack solves. S-360 (governance decay) — pinning constraints to hot tier is the fix. S-681 (context depletion monitoring) — the signal that eviction is needed. Rejected: governance decay itself (S-360 already covers, this is the memory-architecture fix), context compaction (covered by S-360), sandboxing (covered by F-110), human escalation (covered by S-938). Chose over: context rot (covered by S-360), agent tracing/debugging (covered by S-1013), per-task cost attribution (covered by F-199). Tiered forgetting is the sharpest gap: production hot (every agent with memory hits this at scale), coverage gap = 9 (S-1030/S-1020 exist but lack composite scoring + governance pinning), specificity = 10, timeliness = 10 (Mem0/Ivezaj/IDFS all July-Jun 2026), pattern density = 9 (connects to S-360, S-1221, S-1043, S-681).
+- *2026-07-31* — **I-3098 → S-1917 — The Trust Handoff Stack — Composite 9.80**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: CSA AI Safety Initiative "AI Coding Agent Sandbox Escapes: The Trust Handoff Flaw" (Pillar Security, 2026-07-22, CSA research note + PDF). Seven CVEs across four agents: Cursor CVE-2026-48124 (CVSS 8.5), Codex CLI GitPwned (CVSS 8.6), Claude Code CVE-2026-25725 (CVSS 7.7). Core insight: none of the escapes broke the sandbox directly — each exploited the gap between what the sandbox restricts (runtime agent actions) and what trusted tooling outside the sandbox later reads/executes (hook configs, settings.json, pyvenv.cfg, RC files, entry points). The agent writes a file the sandbox allows; a trusted tool outside the sandbox consumes it later. Deduplication: S-240 (MCP tool execution isolation) covers trusted tool exposure via MCP — complementary, not duplicate. S-200 (tool bypass) covers agent bypassing tool constraints — different attack surface. S-1035 (context capacity) touches file-based memory — no overlap. No existing entry covers agent-write → trusted-tool-execution trust handoff as a structural class. Primary source: CSA PDF fully extracted and cross-referenced against SentinelOne CVE-2026-25725 entry. The "persona drift" candidate (Tian Pan, Apr-May 2026) scored lower (8.8 composite) and S-1022 (agent drift) covers behavioral degradation broadly — persona drift is a subset.
+- *2026-07-31* — **I-3097 → S-1915 — Tiered Forgetting Stack — Composite 9.50**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Mem0 tiered memory architecture (mem0.ai/blog, Jul 2026); Ivezaj three-tier hot/warm/cold memory (ilirivezaj.com, Jun 2026); IDFS AI tiered forgetting (idfs.ai, May 2026); SSGM governance memory (arXiv:2603.11768, Mar 2026); Mem0 memory eviction (mem0.ai/blog, Jul 27, 2026); Anthropic Dreaming (May 2026, vendor-reported 6x task-completion lift). Core insight: flat memory is a retrieval antipattern for long-running agents. Importance-weighted eviction with hot/warm/cold tiers, governance constraint pinning, and SSGM semantic importance scoring provide production-grade forgetting that pure vector store can't. Deduplication: S-459 covers cross-session memory broadly; this fills the tiered-eviction + importance-scoring gap. S-420 (NHI lifecycle) touches memory but from the credential perspective, not the retrieval perspective.tern — equal-weight storage means retrieval is dominated by keyword similarity, not utility. Tiered forgetting (hot/warm/cold with composite importance scoring: semantic_importance x 0.45 + recency x 0.25 + temporal_validity x 0.30) prevents importance-weighted starvation (S-1221) and governance decay (S-360). Deduplication: S-1030 (forgetting stack) covers the basic concept but lacks tier architecture and composite scoring. S-1020 (tiered memory) covers tiered storage but not eviction policy design. S-1221 (importance-weighted starvation) describes the problem this stack solves. S-360 (governance decay) — pinning constraints to hot tier is the fix. S-681 (context depletion monitoring) — the signal that eviction is needed. Rejected: governance decay itself (S-360 already covers, this is the memory-architecture fix), context compaction (covered by S-360), sandboxing (covered by F-110), human escalation (covered by S-938). Chose over: context rot (covered by S-360), agent tracing/debugging (covered by S-1013), per-task cost attribution (covered by F-199). Tiered forgetting is the sharpest gap: production hot (every agent with memory hits this at scale), coverage gap = 9 (S-1030/S-1020 exist but lack composite scoring + governance pinning), specificity = 10, timeliness = 10 (Mem0/Ivezaj/IDFS all July-Jun 2026), pattern density = 9 (connects to S-360, S-1221, S-1043, S-681).
