@@ -869,3 +869,4 @@
   - [S-1930 · The Execution Sandbox Stack — When Your Agent Runs Untrusted Code With Root Access](stacks/s1930-the-execution-sandbox-stack-when-your-agent-runs-untrusted-code-with-root-access.md)
   - [S-1931 · The SAAR Stack — When Your LLM Router Switches Mid-Session and Breaks Everything](stacks/s1931-the-saar-stack-when-your-llm-router-switches-mid-session-and-breaks-everything.md)
   - [S-1933 · The MCP Preference Manipulation Stack — When Your Agent Always Picks the Attacker's Tool](stacks/s1933-the-mcp-preference-manipulation-stack-when-your-agent-always-picks-the-attackers-tool.md)
+  - [S-1935 · The Memory Transaction Protocol — When Writing to Memory Is Not the Same as Committing to a Belief](stacks/s1935-the-memory-transaction-protocol-when-writing-to-memory-is-not-the-same-as-committing-to-a-belief.md)

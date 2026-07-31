@@ -3508,3 +3508,36 @@ server-preference → I-3103
 ## Recent Decisions
 
 - *2026-07-31* — **I-3103 → S-1933 — The MCP Preference Manipulation Stack — Composite 9.85**: Tracker saturated (all 3102 prior ideas WRITTEN/DUPLICATE). Fresh research across 5 vectors: Wang et al. AAAI 2026 (arXiv:2505.11154v2) on MPMA with 100% ASR; CSA (2026-07-30) on sandbox containment failures; Studio Meyer (2026-07-25) on July 2026 agent escape incidents; Practical DevSecOps (2026) on MCP security vulnerabilities; Socradar (2025) on MPMA mitigation taxonomy. Five candidates evaluated: (A) MPMA/Preference Manipulation — zero handbook coverage, AAAI-published, 100% ASR, $200K+ economic damage, novel attack class distinct from response poisoning; (B) Render-Evasion via HTML Comments (Azure DevOps MCP flaw) — covered in S-453 (render-evasion) and S-1050 (response poisoning); (C) Agent Containment Benchmark — partially covered in existing sandbox/escape entries; (D) MPMA tooling normalization — covered by MPMA itself; (E) Supply chain attestation — covered by OWASP MCP Top 10 (S-1412). Chose A. MPMA is the highest-scoring candidate: unprecedented coverage gap (0 existing entries), highest composite score (9.85), most novel attack class (tool *selection* vs tool *response*), published in top-tier venue, immediate practitioner urgency (every MCP deployment is vulnerable).
+
+## Ideas Bank
+
+| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+| I-3104 | The Memory Transaction Protocol — Record-Commit Separation for Stateful Agent Memory | record-commit, belief-commit, memory-transaction, tentative-write, quarantine, belief-lifecycle, memory-corruption, state-integrity, MemTX, memory-state, provenance, memory-validation, staged-write, action-safe, memory-integrity | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-1935 | 2026-07-31 | 2026-07-31 |
+
+## Deduplication Index
+
+record-commit → I-3104
+belief-commit → I-3104
+memory-transaction → I-3104
+tentative-write → I-3104
+quarantine → I-3104
+belief-lifecycle → I-3104
+memory-corruption → I-3104
+state-integrity → I-3104
+MemTX → I-3104
+memory-state → I-3104
+provenance → I-3104
+memory-validation → I-3104
+staged-write → I-3104
+action-safe → I-3104
+memory-integrity → I-3104
+record-commit-separation → I-3104
+memory-belief-state → I-3104
+
+## Pattern Log
+
+- *2026-07-31* — **Record-Commit Separation**: Agent memory systems conflate recording an observation with committing a belief — same write operation, different reliability semantics. This pattern (observation ≠ belief, write ≠ commit) appears across: memory contamination (I-079/S-746 confabulation), memory integrity gate (S-1189), memory corruption (The Hard 70%, May 2026), state contamination (arXiv:2605.16746), MemTX transactional belief commit (arXiv:2607.23929, Jul 2026), and TOKI bitemporal operator algebra (arXiv:2606.06240). When a pattern appears across 6 independent papers/sources in 2026 alone, it is a genuine architectural class, not noise. Key pattern: memory write paths need explicit state machines, not raw store-and-retrieve.
+
+## Recent Decisions
+
+- *2026-07-31* — **I-3104 → S-1935 — The Memory Transaction Protocol — Composite 8.75**: Tracker saturated. 4-5 candidate ideas evaluated from research: (A) Record-Commit Separation/Memory Transaction Protocol — novel architectural pattern, MemTX (arXiv:2607.23929, Jul 2026) + The Hard 70% (May 2026) + arXiv:2605.16746 (May 2026) + TOKI (arXiv:2606.06240) independently confirm; distinct from S-1189 (memory integrity gate — covers evolution/distortion), S-1127 (cross-user contamination — covers principal isolation), I-079 (confabulation — covers self-generated false beliefs). This entry covers the transactional architecture that prevents all three. (B) ReliabilityBench/reliability under stress — covered by S-1005 (AI SRE), S-1015 (stability gradient), S-1174 (scaffold convergence). (C) LLM gateway patterns — covered by S-06, S-11, S-1079, S-1039. (D) Agent skills as engineering assets — covered by S-20, S-1118, S-1308, S-1367. Chose A: highest coverage gap (transactional memory architecture not yet written), strongest primary sources (4 independent papers), clearest pattern density (connects to S-1189, S-1052, S-1047).
