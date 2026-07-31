@@ -3292,6 +3292,7 @@ agent-delegation → I-3092
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 |I-3094 | The Retry Storm Stack — When Every Failed Tool Call Costs 200× More Than a Successful One | retry-storm, token-amplification, unbounded-retry, retry-cap, cost-compounding, idempotent-tool, event-sourced-state, checkpoint-resume, self-healing-agent, langgraph-checkpointer, temporal-workflow, agent-budget-governor, claudecode-incident, runaway-loop, cost-awareness, backoff-strategy, agentic-resilience | 10 | 9 | 9 | 10 | 8 | **9.55** | WRITTEN — S-1907 | 2026-07-31 | 2026-07-31 |
+|I-3095 | The Reasoning Store Becomes the Attack Surface — When Your Agent Remembers a Decision It Never Made | farma, forged-reasoning, reasoning-store, reasoning-trace, memory-poison, sentinel, evasive-language, self-referential-amplification, reasoning-guard, provenance-tagging, memory-write-gate, quintuple-layer-defense, arxiv-2607.05029, karamchandani-2026, penn-state, 100-percent-attack-success, zero-false-positive, cross-session-memory, agentic-security | 10 | 10 | 10 | 10 | 9 | **9.90** | WRITTEN — S-1909 | 2026-07-31 | 2026-07-31 |
 
 ## Deduplication Index
 
@@ -3305,6 +3306,28 @@ retry-budget → I-3094
 idempotent-retry → I-3094
 agent-cost-explosion → I-3094
 runaway-retry → I-3094
+farma → I-3095
+forged-reasoning → I-3095
+reasoning-store → I-3095
+reasoning-trace → I-3095
+sentinel → I-3095
+evasive-language → I-3095
+self-referential-amplification → I-3095
+reasoning-guard → I-3095
+provenance-tagging → I-3095
+memory-write-gate → I-3095
+quintuple-layer-defense → I-3095
+arxiv-2607.05029 → I-3095
+karamchandani-2026 → I-3095
+100-percent-attack-success → I-3095
+zero-false-positive → I-3095
+cross-session-memory → I-3095
+agentic-security → I-3095
+evasive-poison → I-3095
+reasoning-integrity → I-3095
+amplifying-rationale → I-3095
+forged-amplifying-rationale → I-3095
+reasoning-store-poison → I-3095
 
 ## Pattern Log
 
@@ -3313,3 +3336,10 @@ runaway-retry → I-3094
 ## Recent Decisions
 
 - *2026-07-31* — **I-3094 — The Retry Storm Stack (S-1907) — Composite 9.55**: Tracker saturated (all 635 prior ideas WRITTEN or DUPLICATE). Fresh research: Tian Pan "Retry Storm Problem in Agentic Systems" (Apr 2026, 200× token amplification factor vs 10× for microservices); AgentMarketCap "Self-Healing Agent Pipelines 2026" (Apr 2026, real incident 250K API calls); Agent Native "Checkpoint and Resume Pattern" (agentnative.dev, updated Jul 2026); hailports/self-healing-agent (GitHub, 200-line reference loop). Deduplication: S-1000 covers agent recovery/circuit breakers but focuses on the off-rails detection problem, not the retry cost amplification problem. The retry-storm angle is genuinely distinct — it reframes retry logic from a reliability mechanism into a cost compound, which no existing entry covers. Chosen over: (1) Checkpoint/Resume Stack — same research surface, less urgent (it's the fix, not the crisis); (2) Event-Sourced Agent Runtimes — more architectural, less visceral/cost-driven. The incident-driven framing (250K API calls, $155K/year exposure) makes retry storm the more impactful entry.
+
+
+- *2026-07-31* — **FARMA / Reasoning Store Poisoning — Composite 9.90**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Karamchandani et al. (arXiv:2607.05029, Jul 2026, Penn State). Core insight: all prior memory poisoning attacks target what the agent knows (facts, instructions); FARMA targets how the agent reasons — it plants forged reasoning traces asserting work was done, checks were passed, decisions were made. The agent follows its own fabricated logic. SENTINEL: 5-layer defense pipeline with Reasoning Guard scoring entries on 5 weighted signals. Results: 100% baseline attack success, SENTINEL reduces to 0% with zero false positives on 326 benign traces. Deduplication: S-641 (eTAMP) poisons content — complementary (eTAMP plants instructions, FARMA plants reasoning traces). S-820 covers four layers against ASI06 but no Reasoning Guard. S-459 covers cross-session memory poisoning broadly; this is the reasoning-trace subclass. No existing entry covers forged reasoning traces or SENTINEL defense pipeline.
+
+## Recent Decisions
+
+- *2026-07-31* — **I-3095 — The Reasoning Store Becomes the Attack Surface (S-1909) — Composite 9.90**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Karamchandani et al., "Your Agent's Memories Are Not Its Own: Forged Reasoning Attacks on LLM Agent Memory and Defenses" (arXiv:2607.05029, Jul 2026, Penn State). Core insight: all prior memory poisoning attacks target what the agent knows (facts, instructions); FARMA targets how the agent reasons — it plants forged reasoning traces asserting work was done, checks were passed, decisions were made. The agent follows its own fabricated logic. SENTINEL: 5-layer defense pipeline with Reasoning Guard scoring entries on 5 weighted signals (citation density, verification specificity, temporal consistency, source attribution, confidence calibration). Results: 100% baseline attack success rate, SENTINEL reduces to 0% with zero false positives on 326 benign traces. Deduplication: S-641 (eTAMP) poisons content via environment injection — complementary, not duplicate (eTAMP plants instructions, FARMA plants reasoning traces). S-820 covers four layers against ASI06 but does not include the Reasoning Guard / structural reasoning analysis layer. S-459 covers cross-session memory poisoning broadly; this is the reasoning-trace subclass with peer-reviewed attack and defense evidence. Prompt extraction (S-36, S-77) covers OWASP LLM07 system prompt leakage — different attack surface. No existing entry covers forged reasoning traces or SENTINEL defense pipeline. Chosen over: (1) Prompt Extraction Stack — covered by S-36/S-77; (2) EU AI Act August 2026 governance deadline — covered by S-444/S-941; (3) FARMA Codex CLI implementation — same research, less urgent.
