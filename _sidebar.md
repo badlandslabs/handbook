@@ -865,3 +865,7 @@
   - [S-1923 · The Loop Breaker Stack — When Your Agent Runs All Night Burning Tokens Doing Nothing](stacks/s1923-the-loop-breaker-stack-when-your-agent-runs-all-night-burning-tokens-doing-nothing.md)
   - [S-1924 · The Production Drift Gap Stack — When Your Agent Is Operating Normally and Falling Apart Simultaneously](stacks/s1924-the-production-drift-gap-stack-when-your-agent-is-operating-normally-and-falling-apart-simultaneously.md)
   - [S-1927 · The MCP Token Wall Stack — When Three Servers Consume 71% of Your Context Before Your Agent Does Anything](stacks/s1927-the-mcp-token-wall-stack-when-three-servers-consume-71-percent-of-your-context-before-your-agent-does-anything.md)
+  - [S-1928 · The Regression Budget Stack — When Your Agent Worked Last Tuesday and You Don't Know Why It Doesn't Today](stacks/s1928-the-regression-budget-stack-when-your-agent-worked-last-tuesday-and-you-dont-know-why-it-doesnt-today.md)
+  - [S-1930 · The Execution Sandbox Stack — When Your Agent Runs Untrusted Code With Root Access](stacks/s1930-the-execution-sandbox-stack-when-your-agent-runs-untrusted-code-with-root-access.md)
+  - [S-1931 · The SAAR Stack — When Your LLM Router Switches Mid-Session and Breaks Everything](stacks/s1931-the-saar-stack-when-your-llm-router-switches-mid-session-and-breaks-everything.md)
+  - [S-1933 · The MCP Preference Manipulation Stack — When Your Agent Always Picks the Attacker's Tool](stacks/s1933-the-mcp-preference-manipulation-stack-when-your-agent-always-picks-the-attackers-tool.md)

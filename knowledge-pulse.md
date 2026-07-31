@@ -3331,6 +3331,8 @@ reasoning-store-poison → I-3095
 
 ## Pattern Log
 
+- *2026-07-31* — **Routing unit reframe**: The failure mode isn't a bad routing algorithm — it's routing by the wrong unit. Single-turn routers treat each request as independent; agentic routing requires session-scoped decision-making. The unit shift from "request" to "session" changes every component: memory (session state), pricing (cache invalidation cost), safety (hard-lock boundaries), and recovery (replayable traces). Cross-links: S-06 (single-turn routing foundation), S-1920 (intra-agent router — wrong model within a session, not the harder problem of when switching is safe), S-1047 (failed session recovery — replayable traces parallel).
+
 - *2026-07-31* — **Retry Storm / Token Amplification**: Agent retries compound at 200× vs. 10× for microservice retries — because every retry re-sends the full conversation context. The counterintuitive fix: NOT exponential backoff (which delays the bill, not reduces it), but idempotent tool design + budget-aware retry caps + event-sourced state so recovery resumes from the last checkpoint, not from scratch. The central paradox: mechanisms designed to keep agents running (retry loops) are the mechanisms most likely to run them off a cliff. Real incident: 1,279 Claude Code sessions ran 50+ consecutive compaction failures, burning 250K API calls in one day (AgentMarketCap). Per-agent runaway exposure estimated at $155K/year without enforcement. Cross-links: S-1000 (agent recovery stack), S-1047 (agentic dead letter queue), S-1654 (stale amplification — same amplification logic, different axis).
 
 ## Recent Decisions
@@ -3346,6 +3348,7 @@ reasoning-store-poison → I-3095
 
 |I-3096 | The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist | phantom-invocation, phantom-tool, tool-hallucination, invented-tool-name, tool-registry, tool-not-found, nestful, tool-dispatch, tool-allowlist, tool-execution-receipt, nabaos, hmac-receipt, rlhf-signal, ncubelabs-2026, tianpan-2026, arxiv-2603.10060, function-registry, dynamic-tool, strict-registry, phantom-call-rate | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1913 | 2026-07-31 | 2026-07-31 |
 | I-3100 | The Premature Commitment Stack — When Your Agent Locks onto the First Peer and Stops Exploring | premature-commitment, premature-lock-in, myopic-exploration, polarized-routing, multi-agent-exploration, MACE, contextual-bandits, peer-capability, epsilon-greedy, routing-confidence, coordination-degradation, POSG, arxiv-2607.11250, Choi-2026, UW-Madison, downstream-regret, capability-model, exploration-budget, routing-audit, commitment-rollback, lock-in-pattern | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-1463 | 2026-07-31 | 2026-07-31 |
+| I-3101 | The Regression Budget Stack — When Your Agent Worked Last Tuesday and You Don't Know Why It Doesn't Today | regression-budget, longitudinal-eval, capability-trajectory, point-in-time-benchmark, regression-testing, drift-detection, eval-set-rot, production-feedback-loop, three-layer-eval, PAEF, arxiv-2605.01604, wilson-score, hold-go-decision, eval-flywheel, failed-production-to-test, regression-corpus, agent-regression, capability-regression, longitudinal-evaluation, production-eval-continuum, regression-threshold | 9 | 9 | 8 | 9 | 7 | **8.70** | WRITTEN — S-1928 | 2026-07-31 | 2026-07-31 |
 
 ## Deduplication Index
 
@@ -3381,8 +3384,10 @@ lock-in-pattern â I-3100
 
 || I-3097 | The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing | tiered-forgetting, memory-eviction, importance-scoring, hot-warm-cold-tier, semantic-importance, recency, temporal-validity, governance-pin, memory-prioritization, mem0, tiered-memory, forgetting-policy, importance-weighted-eviction, memory-prioritization, governance-constraint-pin, SSGM | 10 | 9 | 10 | 10 | 9 | **9.50** | WRITTEN — S-1915 | 2026-07-31 | 2026-07-31 |
 || I-3098 | The Trust Handoff Stack — When Your Sandboxed Agent Escapes Through a File It Was Allowed to Write | trust-handoff, sandbox-escape, delayed-trust, hook-injection, config-injection, git-hooks, bubblewrap, settings.json, trust-boundary, write-provenance, cve-2026-48124, cve-2026-25725, pillar-security, csa-2026, gitpwned, interpreter-manipulation, dotfile-injection, entrypoint-injection, sandboxed-agent, trusted-tool, workspace-write, agent-write | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-1917 | 2026-07-31 | 2026-07-31 |
+| I-3102 | The SAAR Stack — When Your LLM Router Switches Mid-Session and Breaks Everything | saar, session-aware-routing, session-routing, continuity-aware-routing, hard-lock-boundary, router-memory, prefix-cache-switch, switch-asymmetry, replayable-trace, vllm-semantic-router, agentic-routing, intra-agent-tier, model-switch-boundary, safe-reset-boundary, turn-classification, switch-pricing, agent-phase, session-phase | 9 | 10 | 9 | 10 | 8 | **8.80** | WRITTEN — S-1931 | 2026-07-31 | 2026-07-31 |
 ||| I-3099 | The Post-Scan Fetch Exploit — When Your Security Scanner Clears a Skill That Attacks at Runtime | post-scan-fetch, split-stream-obfuscation, dynamic-url-rewrite, runtime-fetch-exploit, fingerprint-drift, skill-behavioral-manifest, skillsieve, air-brand-landingpage, scanner-bypass-split, skill-marketplace-security, scanner-gap, url-fingerprinting, behavioral-manifest, skill-provenance, split-stream, whitespace-inflation, bytecode-hiding, document-archive-indirection | 9 | 10 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1919 | 2026-07-31 | 2026-07-31 |
 | I-3100 | The MCP Token Wall Stack — When Three MCP Servers Consume 71% of Your Context Before Your Agent Does Anything | mcp-token-wall, mcp-context-overhead, schema-eviction, lazy-tool-registration, context-budgeting, cli-first-schema, mcp-schema-drift, token-overhead, context-window, mcp-tax, schema-bloat, token-budget, mcp-discovery | 9 | 10 | 9 | 9 | 7 | **9.05** | WRITTEN — S-1927 | 2026-07-31 | 2026-07-31 |
+| I-3102 | The Execution Sandbox Stack — When Your Agent Runs Untrusted Code With Root Access | execution-sandbox, microvm, gvisor, firecracker, WASM, WASI, isolation-primitive, container-insufficient, runc-shared-kernel, sandboxing-taxonomy, boot-latency, capability-model, hardware-vm, kvm, user-space-kernel, e2b, code-execution-isolation, prompt-injection-rce, microsoft-2026, cisa-2026, owasp-asi-top-10, snowflake-cortex-escape, alibaba-cryptomining, fordell-studios, zylos-2026, isolation-tier | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-1930 | 2026-07-31 | 2026-07-31 |
 
 ## Deduplication Index
 
@@ -3437,9 +3442,69 @@ token-overhead → I-3100
 mcp-tax → I-3100
 schema-bloat → I-3100
 token-budget → I-3100
+regression-budget → I-3101
+longitudinal-eval → I-3101
+capability-trajectory → I-3101
+regression-testing → I-3101
+eval-set-rot → I-3101
+production-feedback-loop → I-3101
+three-layer-eval → I-3101
+PAEF → I-3101
+wilson-score → I-3101
+hold-go-decision → I-3101
+eval-flywheel → I-3101
+failed-production-to-test → I-3101
+regression-corpus → I-3101
+agent-regression → I-3101
+capability-regression → I-3101
+longitudinal-evaluation → I-3101
+production-eval-continuum → I-3101
+regression-threshold → I-3101
+saar → I-3102
+session-aware-routing → I-3102
+session-routing → I-3102
+continuity-aware-routing → I-3102
+hard-lock-boundary → I-3102
+router-memory → I-3102
+prefix-cache-switch → I-3102
+switch-asymmetry → I-3102
+replayable-trace → I-3102
+vllm-semantic-router → I-3102
+agentic-routing → I-3102
+intra-agent-tier → I-3102
+model-switch-boundary → I-3102
+safe-reset-boundary → I-3102
 
 ## Recent Decisions
 - *2026-07-31* — **I-3100 → S-1927 — The MCP Token Wall Stack — Composite 9.05**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Gheware DevOps blog (Mar 18, 2026) — 3 MCP servers consume 143k of 200k tokens (71.5%) at startup; CLI-first design cuts overhead 98% to under 2k tokens; Waxell tool call failures analysis (Jul 24, 2026) — tool-result truncation is the #1 agent production failure; Adaline Labs (May 16, 2026) — tool description is the most important engineering surface for agent tool selection. Core insight: MCP schema overhead is an architectural problem requiring architectural fixes (lazy registration + schema eviction + context budgeting). Deduplication: S-1913 (MCP Tax) covers context burning from verbose MCP usage — this entry covers the specific sub-problem of startup overhead from eager schema registration with actionable architectural solutions. S-1000 (context exhaustion) covers eviction mechanics — this entry covers prevention via budget architecture.
 
 - *2026-07-31* — **I-3098 → S-1917 — The Trust Handoff Stack — Composite 9.80**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: CSA AI Safety Initiative "AI Coding Agent Sandbox Escapes: The Trust Handoff Flaw" (Pillar Security, 2026-07-22, CSA research note + PDF). Seven CVEs across four agents: Cursor CVE-2026-48124 (CVSS 8.5), Codex CLI GitPwned (CVSS 8.6), Claude Code CVE-2026-25725 (CVSS 7.7). Core insight: none of the escapes broke the sandbox directly — each exploited the gap between what the sandbox restricts (runtime agent actions) and what trusted tooling outside the sandbox later reads/executes (hook configs, settings.json, pyvenv.cfg, RC files, entry points). The agent writes a file the sandbox allows; a trusted tool outside the sandbox consumes it later. Deduplication: S-240 (MCP tool execution isolation) covers trusted tool exposure via MCP — complementary, not duplicate. S-200 (tool bypass) covers agent bypassing tool constraints — different attack surface. S-1035 (context capacity) touches file-based memory — no overlap. No existing entry covers agent-write → trusted-tool-execution trust handoff as a structural class. Primary source: CSA PDF fully extracted and cross-referenced against SentinelOne CVE-2026-25725 entry. The "persona drift" candidate (Tian Pan, Apr-May 2026) scored lower (8.8 composite) and S-1022 (agent drift) covers behavioral degradation broadly — persona drift is a subset.
 - *2026-07-31* — **I-3097 → S-1915 — Tiered Forgetting Stack — Composite 9.50**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Mem0 tiered memory architecture (mem0.ai/blog, Jul 2026); Ivezaj three-tier hot/warm/cold memory (ilirivezaj.com, Jun 2026); IDFS AI tiered forgetting (idfs.ai, May 2026); SSGM governance memory (arXiv:2603.11768, Mar 2026); Mem0 memory eviction (mem0.ai/blog, Jul 27, 2026); Anthropic Dreaming (May 2026, vendor-reported 6x task-completion lift). Core insight: flat memory is a retrieval antipattern for long-running agents. Importance-weighted eviction with hot/warm/cold tiers, governance constraint pinning, and SSGM semantic importance scoring provide production-grade forgetting that pure vector store can't. Deduplication: S-459 covers cross-session memory broadly; this fills the tiered-eviction + importance-scoring gap. S-420 (NHI lifecycle) touches memory but from the credential perspective, not the retrieval perspective.tern — equal-weight storage means retrieval is dominated by keyword similarity, not utility. Tiered forgetting (hot/warm/cold with composite importance scoring: semantic_importance x 0.45 + recency x 0.25 + temporal_validity x 0.30) prevents importance-weighted starvation (S-1221) and governance decay (S-360). Deduplication: S-1030 (forgetting stack) covers the basic concept but lacks tier architecture and composite scoring. S-1020 (tiered memory) covers tiered storage but not eviction policy design. S-1221 (importance-weighted starvation) describes the problem this stack solves. S-360 (governance decay) — pinning constraints to hot tier is the fix. S-681 (context depletion monitoring) — the signal that eviction is needed. Rejected: governance decay itself (S-360 already covers, this is the memory-architecture fix), context compaction (covered by S-360), sandboxing (covered by F-110), human escalation (covered by S-938). Chose over: context rot (covered by S-360), agent tracing/debugging (covered by S-1013), per-task cost attribution (covered by F-199). Tiered forgetting is the sharpest gap: production hot (every agent with memory hits this at scale), coverage gap = 9 (S-1030/S-1020 exist but lack composite scoring + governance pinning), specificity = 10, timeliness = 10 (Mem0/Ivezaj/IDFS all July-Jun 2026), pattern density = 9 (connects to S-360, S-1221, S-1043, S-681).
+
+
+## Ideas Bank
+
+|| I-3103 | The MCP Preference Manipulation Stack — When Your Agent Always Picks the Attacker's Tool | mpma, preference-manipulation, tool-ranking-attack, mcp-security, dpma, gapma, tool-selection-bias, position-bias, description-inflation, tool-allowlisting, mcp-attestation, mcp-gateway, tool-description-normalization, aaa2026, wang-et-al, arxiv-2505.11154, economic-attack, mcp-ecosystem, server-preference, selection-manipulation, blind-tool-eval | 10 | 10 | 10 | 10 | 9 | **9.85** | WRITTEN — S-1933 | 2026-07-31 | 2026-07-31 |
+
+## Deduplication Index
+
+mpma → I-3103
+preference-manipulation → I-3103
+tool-ranking-attack → I-3103
+dpma → I-3103
+gapma → I-3103
+tool-selection-bias → I-3103
+position-bias → I-3103
+description-inflation → I-3103
+mcp-attestation → I-3103
+tool-description-normalization → I-3103
+selection-manipulation → I-3103
+server-preference → I-3103
+
+## Pattern Log
+
+- *2026-07-31* — **MCP trust is metadata-deep, not just code-deep**: MPMA (Wang et al., AAAI 2026) demonstrates that manipulating tool *descriptions*, *names*, *ordering*, and *examples* — not code — achieves 100% attack success rate. The MCP trust model assumes tool metadata is benign; it isn't. Defense must normalize metadata, not just audit code. This extends the poisoning attack surface from tool responses (S-1050, S-978) to tool selection itself. Cross-links: S-978 (tool catalog poisoning), S-1050 (tool response poisoning), S-1412 (OWASP MCP Top 10).
+
+## Recent Decisions
+
+- *2026-07-31* — **I-3103 → S-1933 — The MCP Preference Manipulation Stack — Composite 9.85**: Tracker saturated (all 3102 prior ideas WRITTEN/DUPLICATE). Fresh research across 5 vectors: Wang et al. AAAI 2026 (arXiv:2505.11154v2) on MPMA with 100% ASR; CSA (2026-07-30) on sandbox containment failures; Studio Meyer (2026-07-25) on July 2026 agent escape incidents; Practical DevSecOps (2026) on MCP security vulnerabilities; Socradar (2025) on MPMA mitigation taxonomy. Five candidates evaluated: (A) MPMA/Preference Manipulation — zero handbook coverage, AAAI-published, 100% ASR, $200K+ economic damage, novel attack class distinct from response poisoning; (B) Render-Evasion via HTML Comments (Azure DevOps MCP flaw) — covered in S-453 (render-evasion) and S-1050 (response poisoning); (C) Agent Containment Benchmark — partially covered in existing sandbox/escape entries; (D) MPMA tooling normalization — covered by MPMA itself; (E) Supply chain attestation — covered by OWASP MCP Top 10 (S-1412). Chose A. MPMA is the highest-scoring candidate: unprecedented coverage gap (0 existing entries), highest composite score (9.85), most novel attack class (tool *selection* vs tool *response*), published in top-tier venue, immediate practitioner urgency (every MCP deployment is vulnerable).
