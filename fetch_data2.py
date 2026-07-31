@@ -1,7 +1,7 @@
 import yfinance as yf
 import json
 
-tickers = ['SPY', 'SOFI', 'MSFT', 'META', 'NBIS', '^VIX']
+tickers = ['MSFT', 'META', 'NBIS', '^VIX', 'TLT', 'HYG']
 data = {}
 
 for t in tickers:

@@ -1,387 +1,286 @@
+#!/opt/hermes/.venv/bin/python3
 import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-import warnings
+import warnings, json, sys
 warnings.filterwarnings('ignore')
 
-print("="*70)
-print(f"NASDAQ SWING TRADE SCAN — {datetime.now().strftime('%Y-%m-%d %I:%M %p ET')}")
-print("="*70)
+print(f"=== START: {datetime.now().strftime('%H:%M:%S ET')} ===\n", flush=True)
 
-# ── Stage 1: Macro Index Data ────────────────────────────────────────────────
-indices = {
-    "QQQ": yf.Ticker("QQQ"),
-    "SPY": yf.Ticker("SPY"),
-    "IWM": yf.Ticker("IWM"),
-    "^VIX": yf.Ticker("^VIX"),
-}
-
-hist_range = "3mo"
-d1 = "1d"
-
-def fetch_index(ticker, period=hist_range, interval=d1):
+# ── INDICES ─────────────────────────────────────────────────────────────────
+indices = ['QQQ', 'SPY', 'IWM', 'VIX=X']
+idx_hist = {}
+for t in indices:
     try:
-        df = ticker.history(period=period, interval=interval)
-        return df
-    except:
-        return pd.DataFrame()
+        h = yf.Ticker(t).history(period='6mo', interval='1d')
+        idx_hist[t] = h
+        c = h['Close'].iloc[-1] if not h.empty else None
+        print(f"  {t}: n={len(h)}, last_close={c:.2f}" if c else f"  {t}: EMPTY", flush=True)
+    except Exception as e:
+        print(f"  {t}: ERROR {e}", flush=True)
 
-print("\n[1] FETCHING MACRO INDEX DATA...")
-index_data = {}
-for name, ticker in indices.items():
-    df = fetch_index(ticker)
-    if len(df) > 0:
-        index_data[name] = df
-        last = df['Close'].iloc[-1]
-        prev = df['Close'].iloc[-2] if len(df) > 1 else last
-        chg_pct = (last - prev) / prev * 100
-        print(f"  {name}: ${last:.2f} ({chg_pct:+.2f}%)")
-    else:
-        print(f"  {name}: FAILED TO FETCH")
+print(flush=True)
 
-# ── Technical helper functions ───────────────────────────────────────────────
-def sma(series, n): return series.rolling(n).mean()
-def ema(series, n): return series.ewm(span=n).mean()
-def calc_atr(df, n=14):
-    high = df['High']
-    low = df['Low']
-    close = df['Close']
-    tr = pd.concat([high - low, (high - close.shift()).abs(), (low - close.shift()).abs()], axis=1).max(axis=1)
-    return tr.rolling(n).mean()
-
-def calc_rsi(series, n=14):
-    delta = series.diff()
-    gain = delta.where(delta > 0, 0).ewm(alpha=1/n, adjust=False).mean()
-    loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/n, adjust=False).mean()
-    rs = gain / loss
-    return 100 - (100 / (1 + rs))
-
-def analyze_index(name, df):
-    close = df['Close']
-    rsi = calc_rsi(close)
-    atr14 = calc_atr(df)
-
-    last_close = close.iloc[-1]
-    last_ma20 = ema(close, 20).iloc[-1]
-    last_ma50 = sma(close, 50).iloc[-1]
-    try:
-        last_ma200 = sma(close, 200).iloc[-1]
-    except:
-        last_ma200 = np.nan
-    last_rsi = rsi.iloc[-1]
-    last_atr = atr14.iloc[-1]
-
-    # Regime
-    if last_close > last_ma200 and not np.isnan(last_ma200):
-        if len(close) > 10 and last_ma200 > sma(close, 200).shift(5).iloc[-1]:
-            regime = "BULL"
-        else:
-            regime = "TRANSITIONAL"
-    elif last_close < last_ma200 and not np.isnan(last_ma200):
-        if len(close) > 10 and last_ma200 < sma(close, 200).shift(5).iloc[-1]:
-            regime = "BEAR"
-        else:
-            regime = "TRANSITIONAL"
-    else:
-        regime = "TRANSITIONAL"
-
-    high20 = close.tail(20).max()
-    low20 = close.tail(20).min()
-    pct_high = (last_close - high20) / high20 * 100
-    pct_low = (last_close - low20) / low20 * 100
-
-    return {
-        "name": name,
-        "close": last_close,
-        "ma20": last_ma20,
-        "ma50": last_ma50,
-        "ma200": last_ma200,
-        "rsi": last_rsi,
-        "atr": last_atr,
-        "regime": regime,
-        "high20": high20,
-        "low20": low20,
-        "pct_to_high20": pct_high,
-        "pct_to_low20": pct_low,
-    }
+# ── COMPONENTS ──────────────────────────────────────────────────────────────
+comps = ['NVDA','AAPL','MSFT','GOOGL','AMZN','META','TSLA','AMD','AVGO',
+         'CRM','ADBE','NFLX','QCOM','AMAT','MU','LRCX','KLAC','PANW','SNPS',
+         'CRWD','ORCL','COST','TXN','BKNG','CMCSA','PYPL','INTU','MDLZ','ADP']
 
 results = {}
-for name, df in index_data.items():
-    if len(df) > 30:
-        results[name] = analyze_index(name, df)
-
-print("\n[2] INDEX ANALYSIS:")
-for name, r in results.items():
-    regime_mark = "🔴" if r['regime'] == "BEAR" else ("🟢" if r['regime'] == "BULL" else "🟡")
-    print(f"\n  {regime_mark} {name}  |  Close: ${r['close']:.2f}  |  Regime: {r['regime']}")
-    print(f"  MA20: ${r['ma20']:.2f}  |  MA50: ${r['ma50']:.2f}  |  MA200: ${r['ma200']:.2f}" if not np.isnan(r['ma200']) else f"  MA20: ${r['ma20']:.2f}  |  MA50: ${r['ma50']:.2f}  |  MA200: N/A")
-    print(f"  RSI(14): {r['rsi']:.1f}  |  ATR(14): ${r['atr']:.2f}")
-    print(f"  20d High: ${r['high20']:.2f} ({r['pct_to_high20']:+.1f}%)  |  20d Low: ${r['low20']:.2f} ({r['pct_to_low20']:+.1f}%)")
-
-# ── Stage 2: NASDAQ 100 Component Scan ─────────────────────────────────────
-print("\n\n[3] SCANNING NASDAQ 100 COMPONENTS...")
-
-tickers_to_scan = [
-    "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA", "AMD",
-    "AVGO", "ORCL", "CRM", "NFLX", "ADBE", "QCOM", "TXN", "INTU",
-    "AMAT", "MU", "LRCX", "KLAC", "PANW", "SNPS", "CDNS", "ADI",
-    "NXPI", "ON", "MRVL", "INTC", "CSCO", "PEP", "COST", "APP",
-    "DDOG", "CRWD", "NET", "TEAM", "WDAY", "NOW", "ZS", "PLTR",
-]
-
-scanned = {}
-for sym in tickers_to_scan:
+for t in comps:
     try:
-        t = yf.Ticker(sym)
-        df = t.history(period=hist_range, interval=d1)
-        if len(df) < 60:
-            print(f"  {sym}: INSUFFICIENT DATA ({len(df)} rows)")
-            continue
-
-        close = df['Close']
-        high20 = close.tail(20).max()
-        low20 = close.tail(20).min()
-        last_close = close.iloc[-1]
-
-        rsi_vals = calc_rsi(close)
-        rsi = rsi_vals.iloc[-1]
-
-        ma20 = ema(close, 20).iloc[-1]
-        ma50 = sma(close, 50).iloc[-1]
-        try:
-            ma200 = sma(close, 200).iloc[-1]
-        except:
-            ma200 = np.nan
-
-        atr14 = calc_atr(df).iloc[-1]
-
-        vol20 = df['Volume'].tail(20).mean()
-        vol_today = df['Volume'].iloc[-1]
-
-        pct_to_high = (last_close - high20) / high20 * 100
-        pct_to_low = (last_close - low20) / low20 * 100
-        mom5 = (close.iloc[-1] - close.iloc[-6]) / close.iloc[-6] * 100 if len(close) >= 6 else 0
-        mom20 = (close.iloc[-1] - close.iloc[-21]) / close.iloc[-21] * 100 if len(close) >= 21 else 0
-
-        score = 0
-        if last_close > ma20: score += 1
-        if last_close > ma50: score += 1
-        if not np.isnan(ma200) and last_close > ma200: score += 1
-        if pct_to_high > -5: score += 1
-        if pct_to_high > -2: score += 1
-        if 35 < rsi < 68: score += 1
-        if mom5 > 0: score += 1
-        if mom20 > 0: score += 1
-        if mom20 > 5: score += 1
-
-        bear_score = 0
-        if last_close < ma20: bear_score += 1
-        if last_close < ma50: bear_score += 1
-        if not np.isnan(ma200) and last_close < ma200: bear_score += 1
-        if pct_to_low < 5: bear_score += 1
-        if rsi < 42: bear_score += 1
-        if mom5 < -2: bear_score += 1
-        if mom20 < -8: bear_score += 1
-
-        vol_ratio = vol_today / vol20 if vol20 > 0 else 0
-
-        scanned[sym] = {
-            "close": last_close,
-            "rsi": rsi,
-            "ma20": ma20,
-            "ma50": ma50,
-            "ma200": ma200,
-            "atr14": atr14,
-            "pct_to_high20": pct_to_high,
-            "pct_to_low20": pct_to_low,
-            "mom5": mom5,
-            "mom20": mom20,
-            "vol_ratio": vol_ratio,
-            "score": score,
-            "bear_score": bear_score,
-            "above_ma20": last_close > ma20,
-            "above_ma50": last_close > ma50,
-            "above_ma200": not np.isnan(ma200) and last_close > ma200,
-        }
-        print(f"  {sym}: ${last_close:.2f} | RSI:{rsi:.0f} | 20dHi:{pct_to_high:+.1f}% | 5d:{mom5:+.1f}% | 20d:{mom20:+.1f}% | LongScore:{score} | ShortScore:{bear_score}")
+        tk = yf.Ticker(t)
+        h = tk.history(period='6mo', interval='1d')
+        info = tk.info
+        if not h.empty:
+            results[t] = {'hist': h, 'info': info}
+            print(f"  {t}: n={len(h)}, close={h['Close'].iloc[-1]:.2f}", flush=True)
+        else:
+            print(f"  {t}: no history", flush=True)
     except Exception as e:
-        print(f"  {sym}: ERROR — {e}")
+        print(f"  {t}: ERROR {str(e)[:50]}", flush=True)
 
-# ── Stage 3: Identify top setups ─────────────────────────────────────────────
-print("\n\n[4] TOP SWING TRADE SETUPS (LONG):")
-longs = sorted([(k,v) for k,v in scanned.items() if v['score'] >= 6 and v['above_ma20'] and v['above_ma50']], key=lambda x: x[1]['score'], reverse=True)
-for sym, d in longs[:5]:
-    print(f"  {sym}: Score={d['score']} | Close=${d['close']:.2f} | RSI={d['rsi']:.0f} | ATR=${d['atr14']:.2f} | 20dHi={d['pct_to_high20']:+.1f}% | Mom5={d['mom5']:+.1f}%")
+print(f"\n=== FETCH COMPLETE: {datetime.now().strftime('%H:%M:%S ET')} ===", flush=True)
 
-print("\n[5] TOP SWING TRADE SETUPS (SHORT):")
-shorts = sorted([(k,v) for k,v in scanned.items() if v['bear_score'] >= 5 and not v['above_ma20'] and not v['above_ma50']], key=lambda x: x[1]['bear_score'], reverse=True)
-for sym, d in shorts[:5]:
-    print(f"  {sym}: BearScore={d['bear_score']} | Close=${d['close']:.2f} | RSI={d['rsi']:.0f} | ATR=${d['atr14']:.2f} | 20dLow={d['pct_to_low20']:+.1f}% | Mom5={d['mom5']:+.1f}%")
+# ── ANALYSIS ─────────────────────────────────────────────────────────────────
+def compute_ta(df, name):
+    """Technical analysis on daily data."""
+    close = df['Close']
+    high = df['High']
+    low = df['Low']
+    vol = df['Volume']
+    
+    # Moving averages
+    sma20 = close.rolling(20).mean()
+    sma50 = close.rolling(50).mean()
+    sma200 = close.rolling(200).mean()
+    
+    # EMA
+    ema20 = close.ewm(20).mean()
+    
+    # RSI (14)
+    delta = close.diff()
+    gain = delta.where(delta > 0, 0).rolling(14).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(14).mean()
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+    
+    # MACD
+    ema12 = close.ewm(12).mean()
+    ema26 = close.ewm(26).mean()
+    macd = ema12 - ema26
+    signal = macd.ewm(9).mean()
+    hist = macd - signal
+    
+    # ATR (14)
+    tr = pd.concat([high - low, (high - close.shift(1)).abs(), (low - close.shift(1)).abs()], axis=1).max(axis=1)
+    atr = tr.rolling(14).mean()
+    
+    # Volume SMA
+    vol_sma20 = vol.rolling(20).mean()
+    
+    # Recent range
+    recent_high = high.rolling(20).max().iloc[-1]
+    recent_low = low.rolling(20).min().iloc[-1]
+    
+    cur = close.iloc[-1]
+    prev_close = close.iloc[-2] if len(close) > 1 else cur
+    
+    # Market structure
+    above_20 = cur > sma20.iloc[-1]
+    above_50 = cur > sma50.iloc[-1]
+    above_200 = cur > sma200.iloc[-1] if not sma200.isna().all() else False
+    trend_20 = sma20.iloc[-1] > sma20.iloc[-5] if len(sma20) >= 5 else False
+    
+    # 52w high / low
+    high_52w = high.rolling(252).max().iloc[-1]
+    low_52w = low.rolling(252).min().iloc[-1]
+    
+    # Momentum
+    mom5 = (cur / close.iloc[-6] - 1) * 100 if len(close) >= 6 else 0
+    mom20 = (cur / close.iloc[-21] - 1) * 100 if len(close) >= 21 else 0
+    
+    return {
+        'close': cur, 'prev_close': prev_close,
+        'sma20': sma20.iloc[-1], 'sma50': sma50.iloc[-1], 'sma200': sma200.iloc[-1],
+        'ema20': ema20.iloc[-1],
+        'rsi': rsi.iloc[-1],
+        'macd': macd.iloc[-1], 'signal': signal.iloc[-1], 'hist': hist.iloc[-1],
+        'atr': atr.iloc[-1],
+        'vol_avg': vol_sma20.iloc[-1], 'vol_today': vol.iloc[-1],
+        'above_20': above_20, 'above_50': above_50, 'above_200': above_200,
+        'trend_20': trend_20,
+        'high_52w': high_52w, 'low_52w': low_52w,
+        'recent_high': recent_high, 'recent_low': recent_low,
+        'mom5': mom5, 'mom20': mom20,
+        'pct_52w_range': (cur - low_52w) / (high_52w - low_52w) * 100 if (high_52w - low_52w) > 0 else 50,
+    }
 
-# ── Stage 4: Deep dive on top 3 candidates ───────────────────────────────────
-print("\n\n[6] DEEP DIVE — TOP 3 LONG CANDIDATES:")
-top_long = longs[:3] if longs else []
-
-for sym, base in top_long:
-    print(f"\n  {'='*55}")
-    print(f"  {sym} — DETAILED ANALYSIS")
-    print(f"  {'='*55}")
+# ── COMPUTE TA FOR ALL ──────────────────────────────────────────────────────
+analysis = {}
+for t, data in results.items():
     try:
-        t = yf.Ticker(sym)
-        df = t.history(period=hist_range, interval=d1)
-        df_4h = t.history(period="1mo", interval="1h") if False else None  # skip 4h for speed
-
-        close = df['Close']
-        high20 = close.tail(20).max()
-        low20 = close.tail(20).min()
-        low50 = close.tail(50).min()
-
-        rsi_vals = calc_rsi(close)
-        rsi = rsi_vals.iloc[-1]
-        rsi_5ago = rsi_vals.iloc[-6] if len(rsi_vals) >= 6 else rsi_vals.iloc[0]
-
-        ma20 = ema(close, 20).iloc[-1]
-        ma50 = sma(close, 50).iloc[-1]
-        try:
-            ma200 = sma(close, 200).iloc[-1]
-        except:
-            ma200 = np.nan
-
-        atr14 = calc_atr(df).iloc[-1]
-
-        # Recent 5-day structure
-        last5 = close.tail(5)
-        last10 = close.tail(10)
-
-        pct_to_high = (base['close'] - high20) / high20 * 100
-        pct_to_low = (base['close'] - low20) / low20 * 100
-
-        # Volume analysis
-        vol_avg = df['Volume'].tail(20).mean()
-        vol_today = df['Volume'].iloc[-1]
-        vol_surge = vol_today / vol_avg if vol_avg > 0 else 1
-
-        # Position sizing基准
-        risk_dollar = atr14 * 2.5  # 2.5 ATR risk
-        # assume $50K portfolio, 2% risk
-        portfolio_risk = 1000
-        shares = int(portfolio_risk / risk_dollar)
-        dollar_exp = shares * base['close']
-
-        # Support/resistance
-        print(f"  Close: ${base['close']:.2f} | ATR(14): ${atr14:.2f}")
-        print(f"  MA20: ${ma20:.2f} | MA50: ${ma50:.2f} | MA200: ${ma200:.2f}" if not np.isnan(ma200) else f"  MA20: ${ma20:.2f} | MA50: ${ma50:.2f} | MA200: N/A")
-        print(f"  RSI: {rsi:.1f} (5d ago: {rsi_5ago:.1f})")
-        print(f"  20d High: ${high20:.2f} ({pct_to_high:+.1f}% away)")
-        print(f"  20d Low: ${low20:.2f} ({pct_to_low:+.1f}% away)")
-        print(f"  50d Low: ${low50:.2f}")
-        print(f"  5d Momentum: {base['mom5']:+.1f}% | 20d Momentum: {base['mom20']:+.1f}%")
-        print(f"  Volume (today vs 20d avg): {vol_surge:.2f}x")
-        print(f"  --- RISK PARAMETERS ---")
-        print(f"  Stop Loss: ${base['close'] - atr14*2:.2f} (2 ATR, ${atr14*2:.2f} risk)")
-        print(f"  T1 (1.5R): ${base['close'] + atr14*3:.2f}")
-        print(f"  T2 (2.5R): ${base['close'] + atr14*6.25:.2f}")
-        print(f"  Risk/Reward: 1:2.5 minimum")
-        print(f"  Approx shares (2% risk on $50K): {shares} (~${dollar_exp:.0f} exposure)")
-
+        analysis[t] = compute_ta(data['hist'], t)
+        info = data['info']
+        analysis[t]['market_cap'] = info.get('marketCap', None)
+        analysis[t]['pe_ratio'] = info.get('trailingPE', None)
+        analysis[t]['fwd_pe'] = info.get('forwardPE', None)
+        analysis[t]['eps'] = info.get('trailingEps', None)
+        analysis[t]['recommendation'] = info.get('recommendationKey', 'N/A')
+        analysis[t]['target_mean'] = info.get('targetMeanPrice', None)
+        analysis[t]['analyst_count'] = info.get('numberOfAnalystOpinions', 0)
+        analysis[t]['50_day_avg'] = info.get('fiftyDayAverage', None)
+        analysis[t]['200_day_avg'] = info.get('twoHundredDayAverage', None)
+        analysis[t]['beta'] = info.get('beta', None)
+        analysis[t]['earnings_dates'] = info.get('earningsDates', [])
+        analysis[t]['dividend_yield'] = info.get('dividendYield', 0) or 0
     except Exception as e:
-        print(f"  Error: {e}")
+        print(f"  TA ERROR {t}: {e}", flush=True)
 
-print("\n\n[7] DEEP DIVE — TOP 3 SHORT CANDIDATES:")
-top_short = shorts[:3] if shorts else []
+# ── INDEX REGIME ANALYSIS ───────────────────────────────────────────────────
+print("\n=== REGIME ANALYSIS ===", flush=True)
+for t, h in idx_hist.items():
+    if not h.empty:
+        close = h['Close']
+        sma200 = close.rolling(200).mean()
+        cur = close.iloc[-1]
+        sma200_val = sma200.iloc[-1]
+        regime = "ABOVE_200SMA" if cur > sma200_val else "BELOW_200SMA"
+        print(f"  {t}: ${cur:.2f} | SMA200=${sma200_val:.2f} | Regime={regime}", flush=True)
+        # VIX specific
+        if t == 'VIX=X':
+            vix_val = cur
+            vol_regime = "HIGH_VOL" if vix_val > 25 else ("MODERATE" if vix_val > 15 else "LOW_VOL")
+            print(f"    VIX={vix_val:.2f} -> Vol Regime: {vol_regime}", flush=True)
 
-for sym, base in top_short:
-    print(f"\n  {'='*55}")
-    print(f"  {sym} — DETAILED ANALYSIS")
-    print(f"  {'='*55}")
-    try:
-        t = yf.Ticker(sym)
-        df = t.history(period=hist_range, interval=d1)
+# ── TOP SWING SCORE ─────────────────────────────────────────────────────────
+print("\n=== SWING SCORING ===", flush=True)
+scores = []
+for t, a in analysis.items():
+    score = 0
+    reasons = []
+    
+    rsi = a.get('rsi', 50)
+    mom5 = a.get('mom5', 0)
+    mom20 = a.get('mom20', 0)
+    close = a.get('close', 0)
+    atr = a.get('atr', close * 0.02)
+    pct_52w = a.get('pct_52w_range', 50)
+    above_20 = a.get('above_20', False)
+    above_50 = a.get('above_50', False)
+    above_200 = a.get('above_200', False)
+    hist_val = a.get('hist', 0)
+    vol_today = a.get('vol_today', 0)
+    vol_avg = a.get('vol_avg', 1)
+    target_mean = a.get('target_mean', None)
+    close_price = a.get('close', 0)
+    
+    # Bullish factors
+    if above_20: score += 2; reasons.append("Above 20 SMA")
+    if above_50: score += 2; reasons.append("Above 50 SMA")
+    if above_200: score += 2; reasons.append("Above 200 SMA")
+    if a.get('trend_20'): score += 1; reasons.append("20 SMA rising")
+    
+    # MACD bullish
+    if hist_val > 0 and a.get('macd', 0) > 0: score += 2; reasons.append("MACD bullish")
+    if a.get('macd', 0) > a.get('signal', 0): score += 1; reasons.append("MACD above signal")
+    
+    # RSI zone
+    if 40 < rsi < 60: score += 1; reasons.append("RSI neutral-healthy")
+    elif rsi < 35: score += 2; reasons.append("RSI oversold")
+    elif rsi > 70: score -= 1; reasons.append("RSI overbought (penalty)")
+    
+    # Momentum
+    if mom5 > 2: score += 1; reasons.append(f"+5d momentum {mom5:.1f}%")
+    if mom20 > 5: score += 1; reasons.append(f"+20d momentum {mom20:.1f}%")
+    elif mom20 < -5: score -= 1; reasons.append(f"-20d momentum {mom20:.1f}% (penalty)")
+    
+    # 52w position
+    if pct_52w > 80: score += 1; reasons.append(f"Near 52w HIGH ({pct_52w:.0f}%)")
+    elif pct_52w < 20: score += 1; reasons.append(f"Near 52w LOW ({pct_52w:.0f}%)")
+    
+    # Volume
+    if vol_today > vol_avg * 1.3: score += 1; reasons.append("Above-avg volume")
+    
+    # Upside to analyst target
+    if target_mean and close_price:
+        upside = (target_mean / close_price - 1) * 100
+        if upside > 15: score += 1; reasons.append(f"Analyst upside {upside:.0f}%")
+    
+    scores.append({
+        'ticker': t, 'score': score, 'reasons': reasons,
+        'close': close, 'rsi': rsi, 'mom5': mom5, 'mom20': mom20,
+        'atr': atr, 'pct_52w': pct_52w,
+        'above_20': above_20, 'above_50': above_50, 'above_200': above_200,
+        'macd_hist': hist_val,
+        'target_mean': target_mean,
+        'recommendation': a.get('recommendation', 'N/A'),
+        'beta': a.get('beta', None),
+        'market_cap': a.get('market_cap', None),
+        'pe_ratio': a.get('pe_ratio', None),
+        'earnings_dates': a.get('earnings_dates', []),
+        'vol_today': vol_today, 'vol_avg': vol_avg,
+    })
 
-        close = df['Close']
-        high20 = close.tail(20).max()
-        low20 = close.tail(20).min()
-        high50 = close.tail(50).max()
+scores_sorted = sorted(scores, key=lambda x: x['score'], reverse=True)
 
-        rsi_vals = calc_rsi(close)
-        rsi = rsi_vals.iloc[-1]
+print("\nTOP 10 SWING CANDIDATES (by composite score):", flush=True)
+for i, s in enumerate(scores_sorted[:10]):
+    print(f"  {i+1}. {s['ticker']:6s} | Score={s['score']:3d} | RSI={s['rsi']:.1f} | "
+          f"Mom5={s['mom5']:+.1f}% | Mom20={s['mom20']:+.1f}% | "
+          f"52w%={s['pct_52w']:.0f}% | Close=${s['close']:.2f} | "
+          f"ATR=${s['atr']:.2f}", flush=True)
+    print(f"       Reasons: {'; '.join(s['reasons'])}", flush=True)
 
-        ma20 = ema(close, 20).iloc[-1]
-        ma50 = sma(close, 50).iloc[-1]
-        try:
-            ma200 = sma(close, 200).iloc[-1]
-        except:
-            ma200 = np.nan
+# ── DETAILED TOP 3 ──────────────────────────────────────────────────────────
+print("\n=== TOP 3 DEEP DIVE ===", flush=True)
+for i, s in enumerate(scores_sorted[:3]):
+    t = s['ticker']
+    a = analysis[t]
+    h = results[t]['hist']
+    close = h['Close']
+    vol = h['Volume']
+    high = h['High']
+    low = h['Low']
+    
+    # Recent 5-day high/low
+    h5d = high.iloc[-5:].max()
+    l5d = low.iloc[-5:].max()
+    l5d_low = low.iloc[-5:].min()
+    
+    # ATR %
+    atr_pct = (a['atr'] / close.iloc[-1]) * 100
+    
+    # Gap analysis
+    prev_close = close.iloc[-2] if len(close) > 1 else close.iloc[-1]
+    gap = (close.iloc[-1] / prev_close - 1) * 100
+    
+    print(f"\n  {i+1}. {t}", flush=True)
+    print(f"     Price: ${close.iloc[-1]:.2f} | Gap: {gap:+.2f}%", flush=True)
+    print(f"     ATR: ${a['atr']:.2f} ({atr_pct:.1f}%) | 5D Range: ${l5d_low:.2f} - ${h5d:.2f}", flush=True)
+    print(f"     RSI(14): {a['rsi']:.1f} | MACD Hist: {a['hist']:.4f}", flush=True)
+    print(f"     SMA20: ${a['sma20']:.2f} | SMA50: ${a['sma50']:.2f} | SMA200: ${a['sma200']:.2f}", flush=True)
+    print(f"     Above 20/50/200: {s['above_20']}/{s['above_50']}/{s['above_200']}", flush=True)
+    print(f"     Beta: {s['beta']} | Market Cap: {s['market_cap']}", flush=True)
+    print(f"     Analyst Target: ${s['target_mean']:.2f}" if s['target_mean'] else "     Analyst Target: N/A", flush=True)
+    print(f"     Recommendation: {s['recommendation']}", flush=True)
+    print(f"     Earnings Dates: {s['earnings_dates']}", flush=True)
+    print(f"     Score={s['score']}: {'; '.join(s['reasons'])}", flush=True)
 
-        atr14 = calc_atr(df).iloc[-1]
+# ── SAVE RESULTS ────────────────────────────────────────────────────────────
+import json
+output = {
+    'timestamp': datetime.now().isoformat(),
+    'regime': {t: {'close': float(h['Close'].iloc[-1]), 'len': len(h)} 
+               for t, h in idx_hist.items() if not h.empty},
+    'scores': [{'ticker': s['ticker'], 'score': s['score'], 
+                'rsi': round(s['rsi'],1), 'mom5': round(s['mom5'],1),
+                'mom20': round(s['mom20'],1), 'close': round(s['close'],2),
+                'atr': round(s['atr'],2), 'reasons': s['reasons']}
+               for s in scores_sorted[:10]]
+}
+with open('/opt/data/handbook/swing_scan_results.json', 'w') as f:
+    json.dump(output, f, indent=2, default=str)
 
-        pct_to_high = (base['close'] - high20) / high20 * 100
-        pct_to_low = (base['close'] - low20) / low20 * 100
-
-        vol_avg = df['Volume'].tail(20).mean()
-        vol_today = df['Volume'].iloc[-1]
-        vol_surge = vol_today / vol_avg if vol_avg > 0 else 1
-
-        print(f"  Close: ${base['close']:.2f} | ATR(14): ${atr14:.2f}")
-        print(f"  MA20: ${ma20:.2f} | MA50: ${ma50:.2f} | MA200: ${ma200:.2f}" if not np.isnan(ma200) else f"  MA20: ${ma20:.2f} | MA50: ${ma50:.2f}")
-        print(f"  RSI: {rsi:.1f}")
-        print(f"  20d High: ${high20:.2f} ({pct_to_high:+.1f}% away)")
-        print(f"  20d Low: ${low20:.2f} ({pct_to_low:+.1f}% away)")
-        print(f"  5d Momentum: {base['mom5']:+.1f}% | 20d Momentum: {base['mom20']:+.1f}%")
-        print(f"  Volume (today vs 20d avg): {vol_surge:.2f}x")
-        print(f"  --- SHORT RISK PARAMETERS ---")
-        print(f"  Stop Loss (above {atr14*2:.2f} ATR): ${base['close'] + atr14*2:.2f}")
-        print(f"  T1 (1.5R): ${base['close'] - atr14*3:.2f}")
-        print(f"  T2 (2.5R): ${base['close'] - atr14*6.25:.2f}")
-        print(f"  Risk/Reward: 1:2.5 minimum")
-
-    except Exception as e:
-        print(f"  Error: {e}")
-
-# ── Macro regime summary ─────────────────────────────────────────────────────
-macro_regime = "TRANSITIONAL"
-if "QQQ" in results:
-    qqq_r = results["QQQ"]
-    if qqq_r['close'] > qqq_r['ma200']:
-        macro_regime = "BULL"
-    elif qqq_r['close'] < qqq_r['ma200']:
-        macro_regime = "BEAR"
-    else:
-        macro_regime = "TRANSITIONAL"
-
-print("\n\n" + "="*70)
-print(f"MACRO REGIME DETERMINATION: {macro_regime}")
-print("="*70)
-print(f"  QQQ Close: ${results.get('QQQ',{}).get('close','N/A')} | Regime: {results.get('QQQ',{}).get('regime','N/A')}")
-print(f"  SPY Close: ${results.get('SPY',{}).get('close','N/A')} | Regime: {results.get('SPY',{}).get('regime','N/A')}")
-print(f"  IWM Close: ${results.get('IWM',{}).get('close','N/A')} | Regime: {results.get('IWM',{}).get('regime','N/A')}")
-print(f"  VIX: ${results.get('^VIX',{}).get('close','N/A')}")
-
-# ── Final recommendations summary ────────────────────────────────────────────
-print("\n\n" + "="*70)
-print("FINAL RECOMMENDATIONS SUMMARY")
-print("="*70)
-print(f"\n  Macro Regime: {macro_regime}")
-print(f"  Long Candidates Found: {len(longs)}")
-print(f"  Short Candidates Found: {len(shorts)}")
-
-if longs:
-    print(f"\n  TOP LONG SETUP: {longs[0][0]}")
-    d = longs[0][1]
-    print(f"    Score: {d['score']} | Close: ${d['close']:.2f} | RSI: {d['rsi']:.0f}")
-    print(f"    Entry: ${d['close']:.2f} | Stop: ${d['close'] - d['atr14']*2:.2f} | T1: ${d['close'] + d['atr14']*3:.2f} | T2: ${d['close'] + d['atr14']*6.25:.2f}")
-if len(longs) > 1:
-    print(f"\n  RUNNER-UP LONG: {longs[1][0]}")
-    d = longs[1][1]
-    print(f"    Score: {d['score']} | Close: ${d['close']:.2f} | RSI: {d['rsi']:.0f}")
-    print(f"    Entry: ${d['close']:.2f} | Stop: ${d['close'] - d['atr14']*2:.2f} | T1: ${d['close'] + d['atr14']*3:.2f} | T2: ${d['close'] + d['atr14']*6.25:.2f}")
-if shorts:
-    print(f"\n  TOP SHORT SETUP: {shorts[0][0]}")
-    d = shorts[0][1]
-    print(f"    BearScore: {d['bear_score']} | Close: ${d['close']:.2f} | RSI: {d['rsi']:.0f}")
-    print(f"    Entry: ${d['close']:.2f} | Stop: ${d['close'] + d['atr14']*2:.2f} | T1: ${d['close'] - d['atr14']*3:.2f} | T2: ${d['close'] - d['atr14']*6.25:.2f}")
-
-print("\n" + "="*70)
-print("SCAN COMPLETE")
-print("="*70)
+print("\n=== ALL DONE ===", flush=True)

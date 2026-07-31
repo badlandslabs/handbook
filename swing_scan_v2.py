@@ -1,478 +1,115 @@
-#!/usr/bin/env python3
-"""
-NASDAQ Swing Trade Scanner — Real-time Multi-Dimensional Analysis
-Fetches live market data and outputs actionable swing trade advisories.
-"""
-
-import yfinance as yf
-import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
-import warnings
+#!/opt/hermes/.venv/bin/python3
+import yfinance as yf, warnings, pandas as pd, numpy as np
 warnings.filterwarnings('ignore')
 
-# ── Config ────────────────────────────────────────────────────────────────────
-TICKERS = {
-    'indices': ['QQQ', 'SPY', 'IWM', 'VIX'],
-    'nasdaq100': [
-        'AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AMD', 'AVGO',
-        'COST', 'NFLX', 'ADBE', 'CRM', 'ORCL', 'QCOM', 'TXN', 'INTC', 'AMAT',
-        'MU', 'LRCX', 'KLAC', 'PANW', 'SNPS', 'CDNS', 'MRVL', 'FTNT', 'HON',
-        'INTU', 'ADP', 'GILD', 'REGN', 'BIIB', 'MDLZ', 'KDP', 'NXPI', 'ADI',
-        'ON', 'FSLR', 'CTAS', 'PAYX', 'CPRT', 'ROST', 'SBUX', 'KHC', 'MELI',
-        'DDOG', 'SNOW', 'NET', 'CRWD', 'ZS', 'WDAY', 'TEAM', 'OKTA', 'DOCU',
-        'MRNA', 'EXC', 'AMT', 'PLD', 'EQIX', 'SPGI', 'CME', 'ICE'
-    ]
-}
-TODAY = datetime.utcnow()
-DATE_STR = TODAY.strftime('%Y-%m-%d %H:%M UTC')
-print(f"{'='*80}")
-print(f"  NASDAQ SWING TRADE SCANNER  |  {DATE_STR}")
-print(f"{'='*80}\n")
+def ta(h):
+    c, hi, lo, vol = h['Close'], h['High'], h['Low'], h['Volume']
+    n = len(c)
+    s20 = c.rolling(20).mean()
+    s50 = c.rolling(50).mean()
+    s200 = c.rolling(200).mean() if n >= 200 else c * np.nan
+    e12, e26 = c.ewm(12).mean(), c.ewm(26).mean()
+    macd, signal = e12 - e26, macd.ewm(9).mean()
+    d = c.diff()
+    gain = d.where(d > 0, 0).rolling(14).mean()
+    loss = (-d.where(d < 0, 0)).rolling(14).mean()
+    rsi = 100 - (100 / (1 + gain/loss))
+    tr = pd.concat([hi-lo, (hi-c.shift(1)).abs(), (lo-c.shift(1)).abs()], axis=1).max(axis=1)
+    atr = tr.rolling(14).mean()
+    bbm = c.rolling(20).mean()
+    bbs = c.rolling(20).std()
+    bbu, bbl = bbm + 2*bbs, bbm - 2*bbs
+    mom5 = (c / c.shift(5) - 1) * 100 if n >= 6 else c * 0
+    mom20 = (c / c.shift(20) - 1) * 100 if n >= 21 else c * 0
+    roll52 = min(n, 252)
+    l52 = lo.rolling(roll52).min()
+    h52 = hi.rolling(roll52).max()
+    return s20, s50, s200, macd, signal, rsi, atr, bbu, bbm, bbl, mom5, mom20, l52, h52
 
-# ── Helper: Fetch data with fallbacks ─────────────────────────────────────────
-def fetch(ticker, period='3mo', interval='1d', attempts=2):
-    for _ in range(attempts):
-        try:
-            t = yf.Ticker(ticker)
-            df = t.history(period=period, interval=interval, auto_adjust=True)
-            if df is not None and len(df) > 5:
-                return df
-        except Exception:
-            pass
-    return pd.DataFrame()
+# === REGIME ===
+print("=== REGIME ===")
+for nm, sym in [('QQQ','^QQQ'),('SPY','SPY'),('IWM','IWM')]:
+    h = yf.Ticker(sym).history(period='1y', interval='1d')
+    if h.empty: continue
+    c = h['Close'].iloc[-1]
+    s20, s50, s200, macd, signal, rsi, atr, bbu, bbm, bbl, mom5, mom20, l52, h52 = ta(h)
+    s200v = float(s200.iloc[-1]) if not s200.isna().iloc[-1] else None
+    regime = "BULL" if (s200v and c > s200v) else ("BEAR" if (s200v and c < s200v) else "TRANSITIONAL")
+    m5 = float(mom5.iloc[-1])
+    m20 = float(mom20.iloc[-1])
+    sv = f"${c:.2f} s200={'N/A' if s200v is None else f'${s200v:.2f}'} 5d={m5:+.1f}% 20d={m20:+.1f}% [{regime}]"
+    print(f"  {nm}: {sv}")
 
-def fetch_intraday(ticker, period='5d', interval='60m', attempts=2):
-    for _ in range(attempts):
-        try:
-            t = yf.Ticker(ticker)
-            df = t.history(period=period, interval=interval, auto_adjust=True)
-            if df is not None and len(df) > 10:
-                return df
-        except Exception:
-            pass
-    return pd.DataFrame()
+v = yf.Ticker('^VIX').history(period='5d', interval='1d')
+t = yf.Ticker('^TNX').history(period='5d', interval='1d')
+print(f"  VIX={v['Close'].iloc[-1]:.2f} | 10Y TNX={t['Close'].iloc[-1]:.4f}%")
 
-# ── TA Engine ─────────────────────────────────────────────────────────────────
-def compute_ta(df):
-    """Compute technical indicators on OHLCV data."""
-    if df.empty or len(df) < 50:
-        return {}
-    close = df['Close']
-    high = df['High']
-    low = df['Low']
-    volume = df['Volume']
+print("\n=== SECTORS ===")
+for sym in ['XLK','XLF','XLV','XLY','XLE']:
+    h = yf.Ticker(sym).history(period='60d', interval='1d')
+    if not h.empty:
+        c = h['Close'].iloc[-1]
+        m5 = (c / h['Close'].iloc[-6] - 1)*100 if len(h) >= 6 else 0
+        m20 = (c / h['Close'].iloc[-21] - 1)*100 if len(h) >= 21 else 0
+        print(f"  {sym}: ${c:.2f} 5d={m5:+.1f}% 20d={m20:+.1f}%")
 
-    # Moving averages
-    ma5  = close.rolling(5).mean()
-    ma20 = close.rolling(20).mean()
-    ma50 = close.rolling(50).mean()
-    ma200= close.rolling(200).mean()
-    ema20= close.ewm(20).mean()
+# === TOP CANDIDATES ===
+print("\n=== SWING SCAN RESULTS ===")
+for sym in ['ADBE', 'ADP', 'CRM', 'MSFT', 'AVGO', 'BKNG']:
+    h = yf.Ticker(sym).history(period='1y', interval='1d')
+    info = yf.Ticker(sym).info
+    if h.empty: continue
+    c = h['Close'].iloc[-1]
+    prev = h['Close'].iloc[-2] if len(h) > 1 else c
+    gap = (c/prev - 1)*100
+    s20, s50, s200, macd, signal, rsi, atr, bbu, bbm, bbl, mom5, mom20, l52, h52 = ta(h)
+    cur_atr = float(atr.iloc[-1])
+    cur_rsi = float(rsi.iloc[-1])
+    cur_macd = float(macd.iloc[-1])
+    cur_sig = float(signal.iloc[-1])
+    cur_hist = cur_macd - cur_sig
+    cur_s20 = float(s20.iloc[-1])
+    cur_s50 = float(s50.iloc[-1])
+    cur_s200v = float(s200.iloc[-1]) if not s200.isna().iloc[-1] else None
+    cur_bbu = float(bbu.iloc[-1])
+    cur_bbm = float(bbm.iloc[-1])
+    cur_bbl = float(bbl.iloc[-1])
+    cur_l52 = float(l52.iloc[-1])
+    cur_h52 = float(h52.iloc[-1])
+    pct52 = (c - cur_l52) / (cur_h52 - cur_l52) * 100
+    m5 = float(mom5.iloc[-1])
+    m20 = float(mom20.iloc[-1])
+    vol_t = int(h['Volume'].iloc[-1])
+    vol20 = int(h['Volume'].rolling(20).mean().iloc[-1])
+    h5 = float(h['High'].iloc[-5:].max())
+    l5 = float(h['Low'].iloc[-5:].min())
+    target = info.get('targetMeanPrice', None)
+    pe = info.get('trailingPE', None)
+    beta = info.get('beta', None)
+    rec = info.get('recommendationKey', 'N/A')
+    analyst_up = (target/c - 1)*100 if target else 0
+    f38 = cur_l52 + 0.382*(cur_h52 - cur_l52)
+    f61 = cur_l52 + 0.618*(cur_h52 - cur_l52)
+    f78 = cur_l52 + 0.786*(cur_h52 - cur_l52)
 
-    # RSI(14)
-    delta = close.diff()
-    gain = delta.clip(lower=0).ewm(alpha=1/14, min_periods=14).mean()
-    loss = (-delta.clip(upper=0)).ewm(alpha=1/14, min_periods=14).mean()
-    rs = gain / loss.replace(0, np.nan)
-    rsi = 100 - (100 / (1 + rs))
+    # Stop/target
+    stop_dist = cur_atr * 2
+    stop = c - stop_dist
+    t1 = c + stop_dist * 2
+    t2 = c + stop_dist * 3
+    rr = (t2 - c) / stop_dist
 
-    # MACD (12,26,9)
-    ema12 = close.ewm(12).mean()
-    ema26 = close.ewm(26).mean()
-    macd = ema12 - ema26
-    signal = macd.ewm(9).mean()
-    macd_hist = macd - signal
+    above_s20 = c > cur_s20
+    above_s50 = c > cur_s50
+    above_s200 = cur_s200v and c > cur_s200v
 
-    # ATR(14)
-    tr = pd.concat([high - low, (high - close.shift(1)).abs(), (low - close.shift(1)).abs()], axis=1).max(axis=1)
-    atr = tr.ewm(14).mean()
-
-    # ATR% (current price / ATR)
-    last = close.iloc[-1]
-    atr_pct = (atr.iloc[-1] / last) * 100 if last > 0 else 0
-
-    # Volume analysis
-    vol_20 = volume.rolling(20).mean()
-    vol_ratio = volume.iloc[-1] / vol_20.iloc[-1] if vol_20.iloc[-1] > 0 else 1
-
-    # Momentum (20-day % change)
-    mom20 = (close.iloc[-1] / close.iloc[-20] - 1) * 100 if len(close) >= 20 else 0
-
-    # 52w high / low
-    high52 = high.rolling(252).max().iloc[-1]
-    low52  = low.rolling(252).min().iloc[-1]
-
-    # Position relative to MAs
-    above_20 = last > ma20.iloc[-1]
-    above_50 = last > ma50.iloc[-1]
-    above_200= last > ma200.iloc[-1]
-
-    # Trend direction (20 vs 50 MA slope)
-    slope20 = (ma20.iloc[-1] - ma20.iloc[-5]) / ma20.iloc[-5] * 100 if len(ma20) >= 5 else 0
-    slope50 = (ma50.iloc[-1] - ma50.iloc[-10]) / ma50.iloc[-10] * 100 if len(ma50) >= 10 else 0
-
-    # RSI value
-    rsi_val = rsi.iloc[-1]
-
-    # MACD signal
-    macd_bullish = macd_hist.iloc[-1] > 0 and macd_hist.iloc[-2] <= 0
-    macd_bearish = macd_hist.iloc[-1] < 0 and macd_hist.iloc[-2] >= 0
-
-    return {
-        'last': last,
-        'atr': atr.iloc[-1],
-        'atr_pct': atr_pct,
-        'rsi': rsi_val,
-        'macd': macd.iloc[-1],
-        'macd_signal': signal.iloc[-1],
-        'macd_hist': macd_hist.iloc[-1],
-        'macd_bullish_cross': macd_bullish,
-        'macd_bearish_cross': macd_bearish,
-        'ma5': ma5.iloc[-1],
-        'ma20': ma20.iloc[-1],
-        'ma50': ma50.iloc[-1],
-        'ma200': ma200.iloc[-1],
-        'ema20': ema20.iloc[-1],
-        'above_20': above_20,
-        'above_50': above_50,
-        'above_200': above_200,
-        'mom20': mom20,
-        'slope20': slope20,
-        'slope50': slope50,
-        'vol_ratio': vol_ratio,
-        'vol_20': vol_20.iloc[-1],
-        'high52': high52,
-        'low52': low52,
-        'dist_high52': (last / high52 - 1) * 100,
-        'dist_low52': (last / low52 - 1) * 100,
-    }
-
-def score_setup(ta, name=''):
-    """Score a ticker 0-100 on swing trade setup quality."""
-    if not ta:
-        return -999, {}
-    s = 0
-    reasons_bull = []
-    reasons_bear = []
-
-    # Trend (max 25 pts)
-    if ta['above_200']:   s += 10
-    if ta['above_50']:    s += 8
-    if ta['above_20']:    s += 7
-    if ta['slope20'] > 0: s += 5
-    elif ta['slope20'] < -3: s -= 5
-
-    # Momentum (max 25 pts)
-    rsi = ta['rsi']
-    if 40 <= rsi <= 60:   s += 10  # neutral zone — room to run
-    elif 30 <= rsi < 40:  s += 15  # oversold bounce potential
-    elif 60 < rsi <= 70:  s += 8   # healthy momentum
-    elif rsi > 70:         s -= 5   # overbought — risk
-    elif rsi < 30:         s -= 10  # strong downtrend
-
-    if ta['mom20'] > 3:   s += 8
-    elif ta['mom20'] < -5: s -= 8
-
-    if ta['macd_bullish_cross']: s += 7
-    elif ta['macd_bearish_cross']: s -= 7
-    else:
-        if ta['macd_hist'] > 0: s += 3
-
-    # Volume (max 15 pts)
-    if ta['vol_ratio'] > 1.5: s += 8
-    elif ta['vol_ratio'] > 1.2: s += 4
-    elif ta['vol_ratio'] < 0.6: s -= 4
-
-    # Structure (max 20 pts)
-    dist = ta['dist_high52']
-    if dist < -15:   s += 12  # deep pullback → high upside runway
-    elif dist < -8:  s += 8
-    elif dist < -3:  s += 4
-    elif dist > 90:  s -= 5   # near 52w high — less room
-
-    # ATR% environment (max 15 pts)
-    atr = ta['atr_pct']
-    if 2.0 <= atr <= 4.0: s += 8   # ideal swing volatility
-    elif 1.5 <= atr < 2.0: s += 5
-    elif atr > 5.0: s += 6         # high volatility — bigger moves
-    elif atr < 1.0: s -= 5         # too tight — chop
-
-    # Build summary
-    if ta['above_200'] and ta['above_50']:
-        reasons_bull.append('Above key MAs (200+50)')
-    if ta['macd_bullish_cross']:
-        reasons_bull.append('MACD bullish cross')
-    if ta['rsi'] < 40:
-        reasons_bull.append(f'Oversold RSI={rsi:.1f} — bounce setup')
-    elif 40 <= ta['rsi'] <= 60:
-        reasons_bull.append(f'RSI={rsi:.1f} — neutral room to run')
-    if ta['vol_ratio'] > 1.5:
-        reasons_bull.append(f'Surge volume  {ta["vol_ratio"]:.1f}x avg')
-    if ta['dist_high52'] < -10:
-        reasons_bull.append(f'Deep pullback {ta["dist_high52"]:.1f}% from 52w high')
-    if ta['slope20'] > 1:
-        reasons_bull.append('Rising 20d slope')
-
-    if ta['rsi'] > 70:
-        reasons_bear.append(f'Overbought RSI={rsi:.1f}')
-    if ta['macd_bearish_cross']:
-        reasons_bear.append('MACD bearish cross')
-    if not ta['above_200']:
-        reasons_bear.append('Below 200 SMA — bear bias')
-    if ta['mom20'] < -5:
-        reasons_bear.append(f'Strong downtrend mom20={ta["mom20"]:.1f}%')
-
-    return s, {'bull': reasons_bull, 'bear': reasons_bear}
-
-# ── STAGE 1: Fetch all data ───────────────────────────────────────────────────
-print("Fetching index data...")
-idx_data = {}
-for sym in TICKERS['indices']:
-    df = fetch(sym)
-    ta = compute_ta(df)
-    idx_data[sym] = {'ta': ta, 'df': df}
-    print(f"  {sym}: {'OK' if ta else 'FAILED'}")
-
-print("\nFetching NASDAQ 100 component data...")
-comp_data = {}
-ok_count = 0
-fail_count = 0
-for sym in TICKERS['nasdaq100']:
-    df = fetch(sym)
-    ta = compute_ta(df)
-    if ta:
-        comp_data[sym] = {'ta': ta, 'df': df}
-        ok_count += 1
-    else:
-        fail_count += 1
-print(f"  Retrieved {ok_count} | Failed {fail_count}")
-
-# ── STAGE 2: Score everything ─────────────────────────────────────────────────
-print("\nScoring setups...")
-results = []
-for sym, data in comp_data.items():
-    score, details = score_setup(data['ta'], sym)
-    results.append({
-        'symbol': sym,
-        'score': score,
-        'ta': data['ta'],
-        'bull_case': details['bull'],
-        'bear_case': details['bear'],
-    })
-
-results.sort(key=lambda x: x['score'], reverse=True)
-top_long = [r for r in results if r['score'] > 0][:10]
-
-# ── STAGE 3: Macro regime analysis ────────────────────────────────────────────
-def regime_check(ta_dict):
-    """Determine market regime from index data."""
-    qqq = ta_dict.get('QQQ', {}).get('ta', {})
-    spy = ta_dict.get('SPY', {}).get('ta', {})
-    iwm = ta_dict.get('IWM', {}).get('ta', {})
-    vix = ta_dict.get('VIX', {}).get('ta', {})
-
-    if not all([qqq, spy, iwm, vix]):
-        return 'UNKNOWN', {}
-
-    vix_val = vix.get('last', 20)
-    qqq_above_200 = qqq.get('above_200', False)
-    qqq_above_50  = qqq.get('above_50', False)
-    spy_above_200 = spy.get('above_200', False)
-    spy_above_50  = spy.get('above_50', False)
-    iwm_above_50  = iwm.get('above_50', False)
-    iwm_mom       = iwm.get('mom20', 0)
-    qqq_mom       = qqq.get('mom20', 0)
-    qqq_rsi       = qqq.get('rsi', 50)
-    vix_rsi       = vix.get('rsi', 50)
-
-    # Count bullish signals
-    bull_count = sum([qqq_above_200, qqq_above_50, spy_above_200, spy_above_50, iwm_above_50])
-
-    if vix_val < 15 and bull_count >= 4 and qqq_mom > 0:
-        regime = 'BULL'
-    elif vix_val > 25 or (bull_count <= 2 and qqq_mom < -3):
-        regime = 'BEAR'
-    else:
-        regime = 'TRANSITIONAL'
-
-    return regime, {
-        'qqq': qqq, 'spy': spy, 'iwm': iwm, 'vix': vix,
-        'bull_count': bull_count
-    }
-
-regime, regime_ctx = regime_check(idx_data)
-
-# ── STAGE 4: Generate detailed output ─────────────────────────────────────────
-print(f"\n{'='*80}")
-print(f"MARKET REGIME: {regime}")
-print(f"{'='*80}\n")
-
-# Index summary
-print("── INDEX SNAPSHOT ──")
-for sym in TICKERS['indices']:
-    ta = idx_data.get(sym, {}).get('ta', {})
-    if ta:
-        vix_str = f"  VIX" if sym == 'VIX' else ""
-        rsi_emoji = "🔥" if ta['rsi'] > 65 else "🟢" if ta['rsi'] > 50 else "🔴"
-        print(f"  {sym:5s}: ${ta['last']:>10.2f}  RSI={ta['rsi']:5.1f}  ATR%={ta['atr_pct']:4.1f}%  "
-              f"20d={ta['mom20']:>+6.1f}%  {rsi_emoji}")
-
-# Top setups
-print(f"\n{'='*80}")
-print("TOP SWING TRADE SETUPS (sorted by score)")
-print(f"{'='*80}\n")
-
-for i, r in enumerate(top_long[:5], 1):
-    ta = r['ta']
-    print(f"#{i}  {r['symbol']:6s}  SCORE={r['score']:+.0f}")
-    print(f"     Price: ${ta['last']:.2f}  |  ATR: ${ta['atr']:.2f} ({ta['atr_pct']:.1f}%)")
-    print(f"     RSI: {ta['rsi']:.1f}  |  20d Mom: {ta['mom20']:.1f}%  |  Slope20: {ta['slope20']:.2f}%")
-    print(f"     MAs: above_200={ta['above_200']}  above_50={ta['above_50']}  above_20={ta['above_20']}")
-    print(f"     MACD hist: {ta['macd_hist']:.4f}  ({'BULL cross' if ta['macd_bullish_cross'] else 'no cross'})")
-    print(f"     Vol ratio: {ta['vol_ratio']:.2f}x  |  52w range: {ta['dist_high52']:.1f}% from high")
-    print(f"     🟢 Bull: {', '.join(r['bull_case']) if r['bull_case'] else 'N/A'}")
-    print(f"     🔴 Bear: {', '.join(r['bear_case']) if r['bear_case'] else 'N/A'}")
-    print()
-
-# ── STAGE 5: Build full advisory ──────────────────────────────────────────────
-print(f"\n{'='*80}")
-print("FULL SWING TRADE ADVISORY")
-print(f"{'='*80}\n")
-
-# Select top 3
-top3 = top_long[:3]
-
-# Compute risk/reward for each
-advisories = []
-for r in top3:
-    ta = r['ta']
-    price = ta['last']
-    atr = ta['atr']
-    atr_pct = ta['atr_pct']
-
-    # Stop loss: below recent support / -1.5 ATR
-    stop_dist = atr * 1.5
-    stop_loss = price - stop_dist
-    risk_per_share = price - stop_loss
-
-    # Targets based on structure
-    # T1: 2:1 R/R — partial take
-    t1_target = price + risk_per_share * 2.0
-    # T2: 3:1 R/R — full target
-    t2_target = price + risk_per_share * 3.0
-    # T3: Near 52w high if close
-    if ta['dist_high52'] > -20:
-        t3_target = price * 1.08  # 8% if near high
-    else:
-        t3_target = ta['high52']
-
-    rr_t1 = 2.0
-    rr_t2 = 3.0
-
-    # Entry type
-    if ta['rsi'] < 40:
-        entry_type = 'BUY LIMIT at current price (oversold bounce trigger)'
-        entry_price = price
-    elif ta['macd_bullish_cross']:
-        entry_type = 'BUY STOP-LIMIT 1-2% above current price (confirm MACD cross)'
-        entry_price = price * 1.015
-    else:
-        entry_type = 'BUY LIMIT 1-2% below current price (wait for pullback)'
-        entry_price = price * 0.985
-
-    advisories.append({
-        'symbol': r['symbol'],
-        'score': r['score'],
-        'price': price,
-        'entry_price': entry_price,
-        'entry_type': entry_type,
-        'stop_loss': stop_loss,
-        'atr': atr,
-        'atr_pct': atr_pct,
-        't1_target': t1_target,
-        't2_target': t2_target,
-        't3_target': t3_target,
-        'rr_t1': rr_t1,
-        'rr_t2': rr_t2,
-        'ta': ta,
-        'bull': r['bull_case'],
-        'bear': r['bear_case'],
-    })
-
-for adv in advisories:
-    ta = adv['ta']
-    print(f"{'='*60}")
-    print(f"  ADVISORY: {adv['symbol']}  |  Score: {adv['score']:+.0f}  |  Regime: {regime}")
-    print(f"{'='*60}")
-    print(f"  Current Price : ${adv['price']:.2f}")
-    print(f"  ATR           : ${adv['atr']:.2f} ({adv['atr_pct']:.1f}% of price)")
-    print(f"  Entry         : {adv['entry_type']}")
-    print(f"  Stop Loss     : ${adv['stop_loss']:.2f}  (risk ${adv['price'] - adv['stop_loss']:.2f} = {((adv['price'] - adv['stop_loss'])/adv['price'])*100:.1f}%)")
-    print(f"  T1 (2:1)      : ${adv['t1_target']:.2f}  (+{((adv['t1_target']-adv['price'])/adv['price'])*100:.1f}%)")
-    print(f"  T2 (3:1)      : ${adv['t2_target']:.2f}  (+{((adv['t2_target']-adv['price'])/adv['price'])*100:.1f}%)")
-    print(f"  T3 (near ATH) : ${adv['t3_target']:.2f}  (+{((adv['t3_target']-adv['price'])/adv['price'])*100:.1f}%)")
-    print(f"  ")
-    print(f"  Catalysts     : {', '.join(adv['bull']) if adv['bull'] else 'See TA summary'}")
-    print(f"  Bear risks    : {', '.join(adv['bear']) if adv['bear'] else 'Minimal'}")
-    print()
-
-# ── Position sizing guidance ──────────────────────────────────────────────────
-print(f"{'='*60}")
-print(f"  RISK MANAGEMENT & POSITION SIZING")
-print(f"{'='*60}")
-print(f"  Regime: {regime}")
-if regime == 'BULL':
-    print(f"  → Aggressive sizing OK: 3-5% risk per trade")
-    print(f"  → Use momentum entries; trail stops in your favor")
-elif regime == 'TRANSITIONAL':
-    print(f"  → Moderate sizing: 1.5-2.5% risk per trade")
-    print(f"  → Require 2+ confirmations before entry")
-else:
-    print(f"  → Defensive sizing: 1% risk per trade or avoid longs")
-
-print(f"  ")
-print(f"  Position sizing formula: Position Size = (Account * Risk%) / (Entry - Stop)")
-print(f"  Example: $100k account, 2% risk, $5 stock risk = $100k * 0.02 / $5 = $4,000 = ~800 shares")
-print(f"  ")
-print(f"  Trailing stop: Activate after T1 hit — move SL to breakeven + 0.5% buffer")
-print(f"  Time stop: Exit if no progress toward T1 within 10 trading days")
-print(f"  ")
-
-# ── Output summary table ──────────────────────────────────────────────────────
-print(f"\n{'='*80}")
-print("ADVISORY SUMMARY TABLE")
-print(f"{'='*80}")
-print(f"{'SYMBOL':8s} {'PRICE':>8s} {'ENTRY':>8s} {'STOP':>8s} {'T1':>8s} {'T2':>8s} {'R:R1':>5s} {'R:R2':>5s} {'SCORE':>5s}")
-print(f"{'-'*80}")
-for adv in advisories:
-    print(f"{adv['symbol']:8s} ${adv['price']:>7.2f} ${adv['entry_price']:>7.2f} "
-          f"${adv['stop_loss']:>7.2f} ${adv['t1_target']:>7.2f} ${adv['t2_target']:>7.2f} "
-          f"1:{adv['rr_t1']:.0f}   1:{adv['rr_t2']:.0f}   {adv['score']:+.0f}")
-
-print(f"\n{'='*80}")
-print(f"  Scan completed: {DATE_STR}")
-print(f"{'='*80}")
-
-# Save advisory
-with open('/opt/data/handbook/swing_advisory_live.txt', 'w') as f:
-    f.write(f"{'='*80}\n")
-    f.write(f"  NASDAQ SWING TRADE ADVISORY  |  {DATE_STR}\n")
-    f.write(f"{'='*80}\n\n")
-    f.write(f"MARKET REGIME: {regime}\n\n")
-    for sym in TICKERS['indices']:
-        ta = idx_data.get(sym, {}).get('ta', {})
-        if ta:
-            f.write(f"{sym}: ${ta['last']:.2f} | RSI={ta['rsi']:.1f} | ATR%={ta['atr_pct']:.1f}% | 20d={ta['mom20']:+.1f}%\n")
-    f.write(f"\n{'='*80}\n")
-    f.write("TOP ADVISORIES\n")
-    f.write(f"{'='*80}\n")
-    for i, adv in enumerate(advisories, 1):
-        f.write(f"\n#{i} {adv['symbol']} | Score={adv['score']:+.0f} | Regime={regime}\n")
-        f.write(f"   Entry: {adv['entry_type']}\n")
-        f.write(f"   SL: ${adv['stop_loss']:.2f} | T1: ${adv['t1_target']:.2f} | T2: ${adv['t2_target']:.2f}\n")
-        f.write(f"   R:R: 1:{adv['rr_t1']:.0f} / 1:{adv['rr_t2']:.0f}\n")
-        f.write(f"   Bull: {', '.join(adv['bull'])}\n")
-        f.write(f"   Bear: {', '.join(adv['bear'])}\n")
-
-print("\nAdvisory saved to /opt/data/handbook/swing_advisory_live.txt")
+    print(f"\n  {sym}: ${c:.2f} | Gap={gap:+.2f}%")
+    print(f"    MA: s20={cur_s20:.2f} s50={cur_s50:.2f} s200={str(round(cur_s200v,2)) if cur_s200v else 'N/A'}")
+    print(f"    RSI={cur_rsi:.1f} MACD={cur_macd:.3f} Sig={cur_sig:.3f} Hist={cur_hist:.4f}")
+    print(f"    ATR=${cur_atr:.2f} ({(cur_atr/c)*100:.1f}%) | BB: u={cur_bbu:.2f} m={cur_bbm:.2f} l={cur_bbl:.2f}")
+    print(f"    52w: {cur_l52:.2f}-{cur_h52:.2f} ({pct52:.0f}%) | Fib: 38={f38:.2f} 62={f61:.2f} 79={f78:.2f}")
+    print(f"    5d: ${l5:.2f}-${h5:.2f} | 5d_mom={m5:+.1f}% 20d_mom={m20:+.1f}%")
+    print(f"    Vol={vol_t:,} / {vol20:,} ({vol_t/vol20:.2f}x)")
+    print(f"    Target=${target} ({analyst_up:+.1f}%) | PE={pe} | Beta={beta} | Rec={rec}")
+    print(f"    Above 20/50/200: {above_s20}/{above_s50}/{above_s200}")
+    print(f"    >> ENTRY=${c:.2f} | STOP=${stop:.2f} (-{(stop_dist/c)*100:.1f}%) | T1=${t1:.2f} | T2=${t2:.2f} | R/R={rr:.1f}:1")

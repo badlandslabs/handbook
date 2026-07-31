@@ -861,3 +861,7 @@
   - [S-1913 · The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist](stacks/s1913-the-phantom-invocation-stack-when-your-agent-calls-a-tool-that-doesnt-exist.md)
   - [S-1915 · The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing](stacks/s1915-the-tiered-forgetting-stack-when-your-agent-remembers-everything-and-knows-nothing.md)
   - [S-1917 · The Trust Handoff Stack — When Your Sandboxed Agent Escapes Through a File It Was Allowed to Write](stacks/s1917-the-trust-handoff-stack-when-your-sandboxed-agent-escapes-through-a-file-it-was-allowed-to-write.md)
+  - [S-1922 · The Protocol Governance Gap — When Your Agent Fleet Can Coordinate But Not Govern](stacks/s1922-the-protocol-governance-gap-when-your-agent-fleet-can-coordinate-but-not-govern.md)
+  - [S-1923 · The Loop Breaker Stack — When Your Agent Runs All Night Burning Tokens Doing Nothing](stacks/s1923-the-loop-breaker-stack-when-your-agent-runs-all-night-burning-tokens-doing-nothing.md)
+  - [S-1924 · The Production Drift Gap Stack — When Your Agent Is Operating Normally and Falling Apart Simultaneously](stacks/s1924-the-production-drift-gap-stack-when-your-agent-is-operating-normally-and-falling-apart-simultaneously.md)
+  - [S-1927 · The MCP Token Wall Stack — When Three Servers Consume 71% of Your Context Before Your Agent Does Anything](stacks/s1927-the-mcp-token-wall-stack-when-three-servers-consume-71-percent-of-your-context-before-your-agent-does-anything.md)
