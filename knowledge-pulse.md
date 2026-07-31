@@ -3222,6 +3222,24 @@ six-dimension → I-3089
 git.agentic → I-3089
 AgentGit → I-3089
 prompt-git → I-3089
+governance-gap → I-3092
+protocol-governance → I-3092
+layer4-governance → I-3092
+delegation-chain → I-3092
+fleet-governance → I-3092
+requirements-toml → I-3092
+governance-manifest → I-3092
+collective-decision → I-3092
+six-dimension-taxonomy → I-3092
+arxiv-2606.31498 → I-3092
+protocol-ceiling → I-3092
+multi-agent-governance → I-3092
+enterprise-agent-governance → I-3092
+mcp-a2a-acp-governance → I-3092
+governance-proxy → I-3092
+agent-authority → I-3092
+delegation-constraint → I-3092
+agent-delegation → I-3092
 
 ## Pattern Log
 
@@ -3252,15 +3270,19 @@ prompt-git → I-3089
 - *2026-07-30* — **I-3084 — The Agent Protocol Stack (S-1862) — Composite 9.00**: Tracker exhausted (all 3083 prior ideas WRITTEN or DUPLICATE). Fresh research: MCP vs A2A vs ACP protocol landscape (Gravity Blog June 2026, Zylos Research Feb 2026, AgentMarketCap Apr 2026, arXiv:2606.12835). Key finding: ACP merged into A2A (Sep 2025, Linux Foundation), leaving a two-layer model — MCP for model-to-tool/capability access, A2A for agent-to-agent collaboration/negotiation. The handbook covers MCP basics (S-10), MCP schema drift (S-999), tool-response poisoning (S-1050), MCP config security (S-1114), and inter-agent handoff contracts (S-1853) — but none cover the comparative protocol selection decision or the compositional architecture of running both at the right boundaries. Core insight: MCP and A2A are not competitors; they operate at different layers of the communication stack. The failure pattern is not choosing the wrong protocol — it's deploying one protocol everywhere and losing the semantic distinctions between tool access and agent collaboration. Chosen over: (1) ACP historical analysis — ACP is deprecated, merged into A2A; (2) Protocol benchmark comparison — wrong framing, these are complementary layers not competing products; (3) ANP (Agent Network Protocol) — too early-stage and niche for a general handbook entry. Pattern: **protocol layering over protocol shopping**.
 
 | I-3091 | The Agentic RAG Evidence Desert — When Your Production RAG System Fails Where No One Has Proven Anything | agentic-rag, rag-failure-modes, evidence-desert, acl2026, trustnlp, orchestration-failures, retrieval-loops, plan-mismatch, trust-boundary, cross-agent-leak, garani-2026, 33-modes, 7-pipeline-stages, 8-orchestration-modes | 9 | 10 | 9 | 9 | 8 | **8.85** | WRITTEN — S-1894 | 2026-07-30 | 2026-07-30 |
+| I-3092 | The Governance Gap Stack — When Your Agent Protocols Coordinate but Can't Govern | governance-gap, protocol-governance, MCP-A2A-ACP, delegation-chain, fleet-governance, requirements-toml, governance-manifest, six-dimension, arxiv-2606.31498, codex-cli, collective-decision, multi-agent-governance, layer4-governance, enterprise-agent, Kang-Dipenegro-2026 | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-1900 | 2026-07-31 | 2026-07-31 |
 
 ## Recent Decisions
 
 | Date | Idea ID | Outcome | Rationale |
 |------|---------|---------|-----------|
 | 2026-07-30 | I-3091 | WRITTEN — S-1894 | Composite 8.85. Tracker nearly saturated (335/342 ideas WRITTEN). Fresh research: ACL TrustNLP 2026 (Garani, 10.18653/v1/2026.trustnlp-main.27) — first systematic taxonomy of 33 RAG failure modes across 7 pipeline stages. Critical finding: all 8 agentic orchestration failure modes have ZERO peer-reviewed empirical evidence. Deduplication: S-100 (Agentic RAG) covers the mechanics/patterns; this covers the failure taxonomy and evidence desert — complementary, not duplicate. S-07 (RAG) covers naive RAG failures. S-1889 (multi-run reliability) adjacent but not overlapping. No existing entry maps the 8 agentic RAG failure modes with provenance-tagging and loop-detection code. Chose over: MCP security CVEs (covered by S-1017, S-1000), structured output enforcement (covered by S-04), agent memory corruption (covered by S-1255). Agentic RAG evidence desert is the sharpest gap — production hot, coverage gap = 10, timeliness = 9. |
+| 2026-07-31 | I-3092 | WRITTEN — S-1900 | Composite 9.30. Tracker saturated (all 3091 prior ideas WRITTEN or DUPLICATE). Fresh research: Kang & Dipenegro (arXiv:2606.31498v1, June 30, 2026, DoiT International) — systematic analysis of five agent interoperability protocols (MCP, A2A, ACP, ANP, ERC-8004) against six-dimension governance taxonomy. Key finding: every protocol scores 0–2/12; zero support collective decision-making natively; governance is a missing architectural layer above transport/negotiation/trust. Codex CLI layered architecture (Vaughan, July 2026) provides the implementation pattern for a governance manifest layer. Deduplication: S-1040 covers MCP/A2A mechanics (tool access + agent handoff); S-1458 covers MCP policy kernel (single-framework enforcement); S-1845 covers ACS intervention points (runtime governance per-agent). None cover cross-protocol fleet governance, delegation chain problems, or the protocol-layer ceiling. Novel angle: four-layer stack model placing governance at Layer 4 above all protocols, with governance proxy as protocol interceptor. Chose over: MCP supply chain (covered S-1062), A2A trust gaps (covered S-1040/S-918), ANP/ERC-8004 comparison (too niche, same governance gap). |
 
 ## Pattern Log
 
 - *2026-07-31* — **Protocol as primary deadlock determinant**: DPBench proves deadlock rates are a function of protocol parameters, not model capability. Same model: 90% → 0% deadlock rate by changing protocol structure. Implication: deadlock prevention is a protocol design problem, not a model selection problem. Teams should benchmark orchestration protocols the same way they benchmark models. Cross-links: S-425 (coordination primitives), S-425 deadlock findings, S-1144 (orchestration schools), S-1891 (multi-run reliability).
+
+- *2026-07-31* — **The governance gap is the next systemic failure mode**: Kang & Dipenegro (arXiv:2606.31498v1, June 2026) prove that all five major agent interoperability protocols (MCP, A2A, ACP, ANP, ERC-8004) score 0–2/12 on a six-dimension governance taxonomy. The protocols coordinate; they do not govern. As enterprise agent fleets scale (12+ agents, 4+ teams, shared resources), the absence of a governance layer above protocols becomes the dominant failure mode — not model capability, not tool reliability, not prompt quality. The pattern is structural: coordination protocols and governance protocols operate at different architectural layers, and conflating them produces fleets with no enforcement of delegation constraints, no collective decision-making, and no recourse path. The fix is a governance manifest layer (requirements.toml) above protocol implementations, with a governance proxy that intercepts inter-agent messages against the policy layer. Cross-links: S-1040 (protocol mechanics), S-1458 (policy kernel), S-1845 (ACS intervention points).
 
 - *2026-07-30* — **Evidence desert as a production risk signal**: The ACL 2026 taxonomy reveals that the fastest-growing RAG deployment paradigm (agentic RAG) has the least empirical grounding. This is a structural inversion: practitioners face the highest-stakes failures in the least-studied domain. Pattern: when a failure mode has zero empirical evidence, treat it as a higher-priority risk signal, not a lower one — because the absence of evidence means no one has characterized failure boundaries yet. Cross-links: S-1893 (evals gap), R-18 (infinite loops), S-1889 (multi-run reliability).
