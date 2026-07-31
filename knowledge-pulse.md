@@ -3362,3 +3362,24 @@ rlhf-signal-sanitization → I-3096
 ## Recent Decisions
 
 - *2026-07-31* — **I-3096 — Phantom Invocation Stack (S-1913) — Composite 9.20**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Tian Pan "Phantom Tool Calls" (Apr 14, 2026, 28% NESTFUL full-sequence accuracy for GPT-4o); Ncubelabs incident (Mar 9, 2026, 600 phantom calls in one day from 20-agent fleet); Basu arXiv:2603.10060 NabaOS tool receipt framework (Mar 2026, 91% hallucination detection, <15ms overhead). Core insight: tool-name hallucination is distinct from tool-bypass (S-200) and tool-param errors (S-51). The model fabricates a function name that doesn't exist in the registry — syntactically valid, semantically plausible, schema-consistent — but never existed. Deduplication: S-200 (tool bypass, fabricated results) — complementary, not duplicate. S-19 (agent loop), S-03 (tool use), S-51 (schema design) — foundational context, no overlap. Rejected: GGUF RCE/CVE-2026-5760 (supply chain angle, not agent-pattern focus). Rejected: Retrieval Debt (S-591 already covers embedding drift). Chosen for: highest specificity score (10) among new candidates, distinct failure mode with clear 6-layer mitigation stack, grounded in real incidents and peer-reviewed research.
+
+## Ideas Bank
+
+| I-3097 | The Tiered Forgetting Stack — When Your Agent Remembers Everything and Knows Nothing | tiered-forgetting, memory-eviction, importance-scoring, hot-warm-cold-tier, semantic-importance, recency, temporal-validity, governance-pin, memory-prioritization, mem0, tiered-memory, forgetting-policy, importance-weighted-eviction, memory-prioritization, governance-constraint-pin, SSGM | 10 | 9 | 10 | 10 | 9 | **9.50** | WRITTEN — S-1915 | 2026-07-31 | 2026-07-31 |
+
+## Deduplication Index
+
+tiered-forgetting → I-3097
+importance-weighted-eviction → I-3097
+memory-eviction-tier → I-3097
+forgetting-policy → I-3097
+semantic-importance → I-3097
+temporal-validity → I-3097
+hot-warm-cold-memory → I-3097
+memory-prioritization → I-3097
+governance-pin → I-3097
+temporal-validity-scoring → I-3097
+
+## Recent Decisions
+
+- *2026-07-31* — **I-3097 → S-1915 — Tiered Forgetting Stack — Composite 9.50**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Mem0 tiered memory architecture (mem0.ai/blog, Jul 2026); Ivezaj three-tier hot/warm/cold memory (ilirivezaj.com, Jun 2026); IDFS AI tiered forgetting (idfs.ai, May 2026); SSGM governance memory (arXiv:2603.11768, Mar 2026); Mem0 memory eviction (mem0.ai/blog, Jul 27, 2026); Anthropic Dreaming (May 2026, vendor-reported 6x task-completion lift). Core insight: flat memory is a retrieval antipattern — equal-weight storage means retrieval is dominated by keyword similarity, not utility. Tiered forgetting (hot/warm/cold with composite importance scoring: semantic_importance x 0.45 + recency x 0.25 + temporal_validity x 0.30) prevents importance-weighted starvation (S-1221) and governance decay (S-360). Deduplication: S-1030 (forgetting stack) covers the basic concept but lacks tier architecture and composite scoring. S-1020 (tiered memory) covers tiered storage but not eviction policy design. S-1221 (importance-weighted starvation) describes the problem this stack solves. S-360 (governance decay) — pinning constraints to hot tier is the fix. S-681 (context depletion monitoring) — the signal that eviction is needed. Rejected: governance decay itself (S-360 already covers, this is the memory-architecture fix), context compaction (covered by S-360), sandboxing (covered by F-110), human escalation (covered by S-938). Chose over: context rot (covered by S-360), agent tracing/debugging (covered by S-1013), per-task cost attribution (covered by F-199). Tiered forgetting is the sharpest gap: production hot (every agent with memory hits this at scale), coverage gap = 9 (S-1030/S-1020 exist but lack composite scoring + governance pinning), specificity = 10, timeliness = 10 (Mem0/Ivezaj/IDFS all July-Jun 2026), pattern density = 9 (connects to S-360, S-1221, S-1043, S-681).
