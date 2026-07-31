@@ -857,3 +857,5 @@
   - [S-1904 · The Permission Ladder Stack — When Your Agent Is Authorized for More Than It Should Be](stacks/s1904-the-permission-ladder-stack-when-your-agent-is-authorized-for-more-than-it-should-be.md)
   - [S-1905 · The Stale Cache Stall — When Your Inference Engine Re-Computes the Same 62% Every Step](stacks/s1905-the-stale-cache-stall-when-your-inference-engine-re-computes-the-same-62-percent-every-step.md)
   - [S-1907 · The Retry Storm Stack — When Every Failed Tool Call Costs 200× More Than a Successful One](stacks/s1907-the-retry-storm-stack-when-every-failed-tool-call-costs-200-times-more-than-a-successful-one.md)
+  - [S-1912 · The Latency-Quality Divorce Stack — When Your Agent SLA Is Green But Every Decision Is Wrong](stacks/s1912-the-latency-quality-divorce-stack-when-your-agent-sla-is-green-but-every-decision-is-wrong.md)
+  - [S-1913 · The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist](stacks/s1913-the-phantom-invocation-stack-when-your-agent-calls-a-tool-that-doesnt-exist.md)

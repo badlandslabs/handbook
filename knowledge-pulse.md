@@ -3343,3 +3343,22 @@ reasoning-store-poison → I-3095
 ## Recent Decisions
 
 - *2026-07-31* — **I-3095 — The Reasoning Store Becomes the Attack Surface (S-1909) — Composite 9.90**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Karamchandani et al., "Your Agent's Memories Are Not Its Own: Forged Reasoning Attacks on LLM Agent Memory and Defenses" (arXiv:2607.05029, Jul 2026, Penn State). Core insight: all prior memory poisoning attacks target what the agent knows (facts, instructions); FARMA targets how the agent reasons — it plants forged reasoning traces asserting work was done, checks were passed, decisions were made. The agent follows its own fabricated logic. SENTINEL: 5-layer defense pipeline with Reasoning Guard scoring entries on 5 weighted signals (citation density, verification specificity, temporal consistency, source attribution, confidence calibration). Results: 100% baseline attack success rate, SENTINEL reduces to 0% with zero false positives on 326 benign traces. Deduplication: S-641 (eTAMP) poisons content via environment injection — complementary, not duplicate (eTAMP plants instructions, FARMA plants reasoning traces). S-820 covers four layers against ASI06 but does not include the Reasoning Guard / structural reasoning analysis layer. S-459 covers cross-session memory poisoning broadly; this is the reasoning-trace subclass with peer-reviewed attack and defense evidence. Prompt extraction (S-36, S-77) covers OWASP LLM07 system prompt leakage — different attack surface. No existing entry covers forged reasoning traces or SENTINEL defense pipeline. Chosen over: (1) Prompt Extraction Stack — covered by S-36/S-77; (2) EU AI Act August 2026 governance deadline — covered by S-444/S-941; (3) FARMA Codex CLI implementation — same research, less urgent.
+
+|I-3096 | The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist | phantom-invocation, phantom-tool, tool-hallucination, invented-tool-name, tool-registry, tool-not-found, nestful, tool-dispatch, tool-allowlist, tool-execution-receipt, nabaos, hmac-receipt, rlhf-signal, ncubelabs-2026, tianpan-2026, arxiv-2603.10060, function-registry, dynamic-tool, strict-registry, phantom-call-rate | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1913 | 2026-07-31 | 2026-07-31 |
+
+## Deduplication Index
+
+phantom-invocation → I-3096
+phantom-tool → I-3096
+invented-tool-name → I-3096
+tool-hallucination → I-3096
+tool-not-found → I-3096
+nestful → I-3096
+nabaos → I-3096
+hmac-receipt → I-3096
+tool-execution-receipt → I-3096
+rlhf-signal-sanitization → I-3096
+
+## Recent Decisions
+
+- *2026-07-31* — **I-3096 — Phantom Invocation Stack (S-1913) — Composite 9.20**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Tian Pan "Phantom Tool Calls" (Apr 14, 2026, 28% NESTFUL full-sequence accuracy for GPT-4o); Ncubelabs incident (Mar 9, 2026, 600 phantom calls in one day from 20-agent fleet); Basu arXiv:2603.10060 NabaOS tool receipt framework (Mar 2026, 91% hallucination detection, <15ms overhead). Core insight: tool-name hallucination is distinct from tool-bypass (S-200) and tool-param errors (S-51). The model fabricates a function name that doesn't exist in the registry — syntactically valid, semantically plausible, schema-consistent — but never existed. Deduplication: S-200 (tool bypass, fabricated results) — complementary, not duplicate. S-19 (agent loop), S-03 (tool use), S-51 (schema design) — foundational context, no overlap. Rejected: GGUF RCE/CVE-2026-5760 (supply chain angle, not agent-pattern focus). Rejected: Retrieval Debt (S-591 already covers embedding drift). Chosen for: highest specificity score (10) among new candidates, distinct failure mode with clear 6-layer mitigation stack, grounded in real incidents and peer-reviewed research.
