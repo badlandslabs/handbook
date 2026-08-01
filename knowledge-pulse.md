@@ -3485,6 +3485,7 @@ safe-reset-boundary → I-3102
 ## Ideas Bank
 
 || I-3103 | The MCP Preference Manipulation Stack — When Your Agent Always Picks the Attacker's Tool | mpma, preference-manipulation, tool-ranking-attack, mcp-security, dpma, gapma, tool-selection-bias, position-bias, description-inflation, tool-allowlisting, mcp-attestation, mcp-gateway, tool-description-normalization, aaa2026, wang-et-al, arxiv-2505.11154, economic-attack, mcp-ecosystem, server-preference, selection-manipulation, blind-tool-eval | 10 | 10 | 10 | 10 | 9 | **9.85** | WRITTEN — S-1933 | 2026-07-31 | 2026-07-31 |
+| I-3105 | The Agentic Observability Gap Stack — When Your Dashboard Is Green and Your Agent Isn't | observability-gap, otel, opentelemetry, mcp-tracing, span-instrumentation, trace-context, llm-as-judge-eval, token-budget-alert, agent-span, instrumented-agent-loop, agentic-APM, phoenix, langfuse, langsmith, agentic-sla, output-quality-eval, trace-propagation, w3c-trace-context, mcp-otel, semantic-conventions, reasoning-loop-observability | 9 | 8 | 8 | 10 | 9 | **8.85** | WRITTEN — S-1943 | 2026-08-01 | 2026-08-01 |
 
 ## Deduplication Index
 
@@ -3533,11 +3534,26 @@ action-safe → I-3104
 memory-integrity → I-3104
 record-commit-separation → I-3104
 memory-belief-state → I-3104
+observability-gap → I-3105
+otel → I-3105
+opentelemetry → I-3105
+mcp-tracing → I-3105
+span-instrumentation → I-3105
+llm-as-judge-eval → I-3105
+token-budget-alert → I-3105
+agent-span → I-3105
+agentic-APM → I-3105
+mcp-otel → I-3105
+w3c-trace-context → I-3105
+reasoning-loop-observability → I-3105
 
 ## Pattern Log
 
 - *2026-07-31* — **Record-Commit Separation**: Agent memory systems conflate recording an observation with committing a belief — same write operation, different reliability semantics. This pattern (observation ≠ belief, write ≠ commit) appears across: memory contamination (I-079/S-746 confabulation), memory integrity gate (S-1189), memory corruption (The Hard 70%, May 2026), state contamination (arXiv:2605.16746), MemTX transactional belief commit (arXiv:2607.23929, Jul 2026), and TOKI bitemporal operator algebra (arXiv:2606.06240). When a pattern appears across 6 independent papers/sources in 2026 alone, it is a genuine architectural class, not noise. Key pattern: memory write paths need explicit state machines, not raw store-and-retrieve.
 
+- *2026-08-01* — **Observability Layering / Semantic Instrument Gap**: Agentic systems expose a 70% observability blind spot vs traditional APM — the value is delivered inside the reasoning loop, not at the infrastructure boundary. The counterintuitive finding: standard APM dashboards (error rate, latency, throughput) are designed for deterministic software and stay flat when agents fail semantically. The fix is explicit instrumentation of the agent execution loop (OTel spans per step), MCP trace propagation (W3C Trace Context through tool calls), LLM-as-judge evaluation spans (semantic quality signals), and token budget alerting (reasoning loops are cost events, not reliability events). Cross-links: S-1941 (agentic SLA — SLA needs this infrastructure), S-1927 (MCP token wall — token burn is the cost signal this layer measures), S-1033 (behavioral version stack — trace history as agent version log). Sources: AgentMarketCap (Apr 2026), OpenTelemetry MCP semantic conventions (2026), MintMCP blog (Apr 2026), OWASP GenAI (2026).
+
 ## Recent Decisions
 
+- *2026-08-01* — **I-3105 → S-1943 — The Agentic Observability Gap Stack — Composite 8.85**: Tracker saturated (all prior 3104 ideas WRITTEN or DUPLICATE). Fresh research: AgentMarketCap "The MCP Observability Gap" (Apr 2026, 70% blind spot stat), OpenTelemetry MCP semantic conventions (2026), MintMCP blog on OTel for MCP (Apr 2026), OWASP GenAI Agentic Security (2026). Two candidates evaluated: (A) Agentic Observability Gap — covers the 70% semantic blind spot in standard APM, 4-layer OTel-based stack, distinct from S-1941 (SLA covers commitment/definition, not the infrastructure to measure it), S-1033 (behavioral versioning covers the what-changed problem, not the what-happened-in-reasoning problem), S-1927 (token wall covers context cost, this covers token burn as an operational signal). (B) A2A+MCP Protocol Convergence — covered by S-10 (MCP), S-14 (A2A), S-1458 (policy kernel), S-1008 (orchestration patterns). Chose A: highest production urgency (89% of teams lack this), novel coverage gap, high pattern density. S-1942 and S-1943 added to sidebar (both were missing).
 - *2026-07-31* — **I-3104 → S-1935 — The Memory Transaction Protocol — Composite 8.75**: Tracker saturated. 4-5 candidate ideas evaluated from research: (A) Record-Commit Separation/Memory Transaction Protocol — novel architectural pattern, MemTX (arXiv:2607.23929, Jul 2026) + The Hard 70% (May 2026) + arXiv:2605.16746 (May 2026) + TOKI (arXiv:2606.06240) independently confirm; distinct from S-1189 (memory integrity gate — covers evolution/distortion), S-1127 (cross-user contamination — covers principal isolation), I-079 (confabulation — covers self-generated false beliefs). This entry covers the transactional architecture that prevents all three. (B) ReliabilityBench/reliability under stress — covered by S-1005 (AI SRE), S-1015 (stability gradient), S-1174 (scaffold convergence). (C) LLM gateway patterns — covered by S-06, S-11, S-1079, S-1039. (D) Agent skills as engineering assets — covered by S-20, S-1118, S-1308, S-1367. Chose A: highest coverage gap (transactional memory architecture not yet written), strongest primary sources (4 independent papers), clearest pattern density (connects to S-1189, S-1052, S-1047).
