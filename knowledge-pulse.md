@@ -3714,3 +3714,39 @@ capability-verification → I-3112
 
 
 - *2026-08-01* — **I-3112 → S-1967 — The Skill Behavioral SBOM Stack — Composite 8.65**: Tracker saturated (all 3111 prior ideas WRITTEN or DUPLICATE). Fresh research: SkillFortify (arXiv:2603.00195, Feb 2026, Bhardwaj) — formal behavioral verification for agent skills, F1=96.95%, Precision=100%, 0% FPR, 540 skills across 13 attack types. Snyk ToxicSkills (Feb 2026) — 3,984 skills scanned, 36.82% flawed, 13.4% critical, 76+ confirmed malicious. CVE-2026-25253 (Jan 27, 2026) — first CVE for agentic AI system (CVSS 8.8), skill-level attack. OWASP AST10 v1.0 (2026) — A07 and A08 are undetectable without behavioral SBOM. Safeguard.sh (Jul 9, 2026) — unsigned skill artifacts repeat npm Shai-Hulud mistake. arXiv:2605.11770 (May 2026) — Behavioral Integrity Verification for AI Agent Skills. Deduplication: S-1960 covers AST10 overview but not behavioral SBOM + signing pipeline. S-1122/S-1462 cover the threat but not the defense framework. New angle: formal skill behavioral SBOM as the missing defense layer. Pattern: supply chain integrity for behavioral layer.
+
+| I-3114 | The Scaffold Spectrum Stack — When Your Agent Architecture Is Invisible and Untestable | scaffold-spectrum, scaffold-taxonomy, 12-dimensions, 3-layers, loop-primitive, control-primitive, ReAct, generate-test-repair, plan-execute, multi-attempt, tree-search, scaffold-composition, control-spectrum, resource-management, context-strategy, pointer-based, arxiv-2604.03515, rombaut-2026, huawei-canada, scaffolding-code, control-architecture, scaffold-audit, scaffold-gap, scaffold-is-the-model | 9 | 10 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1975 | 2026-08-01 | 2026-08-01 |
+
+scaffold-spectrum → I-3114
+scaffold-taxonomy → I-3114
+12-dimensions → I-3114
+three-layers → I-3114
+loop-primitive → I-3114
+control-primitive → I-3114
+ReAct → I-3114
+generate-test-repair → I-3114
+plan-execute → I-3114
+multi-attempt → I-3114
+tree-search → I-3114
+scaffold-composition → I-3114
+control-spectrum → I-3114
+resource-management → I-3114
+context-strategy → I-3114
+pointer-based → I-3114
+arxiv-2604.03515 → I-3114
+rombaut-2026 → I-3114
+huawei-canada → I-3114
+scaffolding-code → I-3114
+control-architecture → I-3114
+scaffold-audit → I-3114
+scaffold-gap → I-3114
+scaffold-is-the-model → I-3114
+spectrum-scaffold → I-3114
+loop-composition → I-3114
+context-compaction → I-3114
+source-code-taxonomy → I-3114
+12-dim-scaffold → I-3114
+
+## Recent Decisions
+
+- *2026-08-01* — **I-3114 → S-1975 — The Scaffold Spectrum Stack — Composite 8.90**: Tracker saturated (all 3113 prior ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2604.03515v1 (Rombaut, Huawei Canada, Apr 2026) — first source-code-level architectural taxonomy of 13 open-source coding agent scaffolds across 12 dimensions organized into 3 layers. arXiv:2511.22729 (IBM Research Brazil, Nov 2025) — pointer-based memory architecture for context overflow. AlphaEval cited scaffold gap of 11–15 point performance spread across scaffolds on the same model. Five candidate ideas evaluated: (A) Scaffold Spectrum — 12-dimension taxonomy from peer-reviewed source code analysis, novel to handbook, high specificity, directly actionable (scaffold audit protocol), distinct from S-1027 (loop detection), S-1336 (scaffold as model lever), S-1962 (compression fidelity). (B) Multi-Agent Deliberation/Consensus — partially covered by S-05 (multi-agent patterns), S-1113 (orchestration battlefield), no dedicated consensus architecture entry but too overlapping with existing MAS coverage. (C) Memory Pointer Architecture — arXiv:2511.22729 is solid but the technique is niche (large tool outputs in specific domains), lower timeliness than scaffold taxonomy. (D) Utility-Guided Orchestration — arXiv:2603.19896 is good but narrower (tool use efficiency only), less gap than scaffold spectrum. (E) Synthetic Training Data via Agentic Data Scientist — covered by S-1236 (rubric-gated pipeline), S-1037 (eval gap). Chose A: highest composite score, most novel coverage gap, peer-reviewed with reproducible methodology, directly actionable.

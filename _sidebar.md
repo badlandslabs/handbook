@@ -891,3 +891,4 @@
   - [S-1971 · The Schema Ontology Drift Stack — When Your Agent's World Model Is Out of Sync With Reality Before the First Token Runs](stacks/s1971-the-schema-ontology-drift-stack-when-your-agents-world-model-is-out-of-sync-with-reality-before-the-first-token-runs.md)
   - [S-1972 · The Untrusted Tool Output Stack — When Your MCP Server Returns More Than You Bargained For](stacks/s1972-the-untrusted-tool-output-stack-when-your-mcp-server-returns-more-than-you-bargained-for.md)
   - [S-1973 · The Premature Commitment Stack — When Your Multi-Agent System Locks Onto the First Peer and Stops Exploring](stacks/s1973-the-premature-commitment-stack-when-your-multi-agent-system-locks-onto-the-first-peer-and-stops-exploring.md)
+  - [S-1975 · The Scaffold Spectrum Stack — When Your Agent Architecture Is Invisible and Untestable](stacks/s1975-the-scaffold-spectrum-stack-when-your-agent-architecture-is-invisible-and-untestable.md)
