@@ -878,3 +878,5 @@
   - [S-1941 · The Agentic SLA Stack — When Your Agent Is in Production and You Have No Way to Measure It](stacks/s1941-the-agentic-sla-stack-when-your-agent-is-in-production-and-you-have-no-way-to-measure-it.md)
   - [S-1942 · The Agent Failure Recovery Stack — When Your Agent Completes Successfully and Everything Is Broken](stacks/s1942-the-agent-failure-recovery-stack-when-your-agent-completes-successfully-and-everything-is-broken.md)
   - [S-1943 · The Agentic Observability Gap Stack — When Your Dashboard Is Green and Your Agent Isn't](stacks/s1943-the-agentic-observability-gap-stack-when-your-dashboard-is-green-and-your-agent-isnt.md)
+  - [S-1945 · The Agent Drift Stack — When Your Agent Isn't Broken But It's Becoming Worse](stacks/s1945-the-agent-drift-stack-when-your-agent-isnt-broken-but-its-becoming-worse.md)
+  - [S-1947 · The Fail-Plausible Stack — When Your Agent Completes Successfully and Lies About It](stacks/s1947-the-fail-plausible-stack-when-your-agent-completes-successfully-and-lies-about-it.md)
