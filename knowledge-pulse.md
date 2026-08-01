@@ -3700,6 +3700,22 @@ skill-manifest → I-3112
 skill-integrity → I-3112
 skill-signing → I-3112
 capability-verification → I-3112
+capability-negotiation → I-3117
+skill-card → I-3117
+handoff-contract → I-3117
+A2A-negotiation → I-3117
+delegate-capability → I-3117
+context-completeness → I-3117
+gap-disclosure → I-3117
+delegation-semantics → I-3117
+agent-negotiation → I-3117
+abort-conditions → I-3117
+capability-disclosure → I-3117
+delegate-state → I-3117
+negotiation-deadlock → I-3117
+capability-inflation → I-3117
+split-brain → I-3117
+belief-divergence → I-3117
 
 ## Recent Decisions
 
@@ -3716,9 +3732,10 @@ capability-verification → I-3112
 - *2026-08-01* — **I-3112 → S-1967 — The Skill Behavioral SBOM Stack — Composite 8.65**: Tracker saturated (all 3111 prior ideas WRITTEN or DUPLICATE). Fresh research: SkillFortify (arXiv:2603.00195, Feb 2026, Bhardwaj) — formal behavioral verification for agent skills, F1=96.95%, Precision=100%, 0% FPR, 540 skills across 13 attack types. Snyk ToxicSkills (Feb 2026) — 3,984 skills scanned, 36.82% flawed, 13.4% critical, 76+ confirmed malicious. CVE-2026-25253 (Jan 27, 2026) — first CVE for agentic AI system (CVSS 8.8), skill-level attack. OWASP AST10 v1.0 (2026) — A07 and A08 are undetectable without behavioral SBOM. Safeguard.sh (Jul 9, 2026) — unsigned skill artifacts repeat npm Shai-Hulud mistake. arXiv:2605.11770 (May 2026) — Behavioral Integrity Verification for AI Agent Skills. Deduplication: S-1960 covers AST10 overview but not behavioral SBOM + signing pipeline. S-1122/S-1462 cover the threat but not the defense framework. New angle: formal skill behavioral SBOM as the missing defense layer. Pattern: supply chain integrity for behavioral layer.
 
 | I-3115 | The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production | pilot-production, pilot-gap, demo-to-production, deployment-checklist, observability-infrastructure, multi-agent-coordination, production-noise-injection, pilot-mortality, deployment-readiness-ratio, enterprise-agentic, clean-data-problem, audit-trail-gap, failure-mode-registry, human-in-the-loop, handoff-contract, cost-bounding, eval-drift, SLO-breach, arxiv-pilot, Gartner-2026, McKinsey-2026, BCG-2026, Forrester-2026, cordum-checklist, futureAGI-eval, openempower-2026, presenc-ai-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | FRESH — S-1979 | 2026-08-01 | 2026-08-01 |
-| I-3116 | The Token Budget Stack — When Your Architecture Burns More Than Your Model Costs | token-budget, cost-per-decision, context-engineering, architecture-cost, circuit-breaker, model-routing, context-snowball, tokenpilot, mightbot-2026, pickaxe-2026, arxiv-2603-07670, mlmastery-2026 | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-1981 | 2026-08-01 | 2026-08-01 |
+|| I-3116 | The Token Budget Stack — When Your Architecture Burns More Than Your Model Costs | token-budget, cost-per-decision, context-engineering, architecture-cost, circuit-breaker, model-routing, context-snowball, tokenpilot, mightbot-2026, pickaxe-2026, arxiv-2603-07670, mlmastery-2026 | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-1981 | 2026-08-01 | 2026-08-01 |
+|| I-3117 | The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers | capability-negotiation, skill-card, handoff-contract, A2A-negotiation, delegate-capability, context-completeness, gap-disclosure, delegation-semantics, agent-negotiation, abort-conditions, capability-disclosure, delegate-state, negotiation-deadlock, capability-inflation, split-brain, belief-divergence, zylos-2026, sudoall-2026, resomnium-2026, conceptualise-2026, comet-2026, a2a-v1, linux-foundation, 150-orgs, 22k-stars | 9 | 8 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1983 | 2026-08-01 | 2026-08-01 |
 
-scaffold-spectrum → I-3114
+scaffold-spectrum
 scaffold-taxonomy → I-3114
 12-dimensions → I-3114
 three-layers → I-3114
@@ -3765,6 +3782,7 @@ SLO-breach → I-3115
 
 ## Recent Decisions
 
+- *2026-08-01* — **I-3117 → S-1983 — The Capability Negotiation Stack — Composite 8.85**: Tracker saturated (all 3116 prior ideas WRITTEN or DUPLICATE). Fresh research: Zylos Research (May 16, 2026) — A2A v1.0 protocol, 150+ orgs (AWS, Microsoft, Salesforce, SAP, IBM, ServiceNow), 22K+ GitHub stars, Linux Foundation stewardship; SudoAll (Jun 24, 2026) — multi-agent coordination failure modes, 15x token multiplier from blind delegation, orchestrator-worker trust boundary; Resomnium (2026) — coordination breakdown pattern: same-info-needed → different-conclusions → concurrent-action → downstream-conflict → silent-corruption; Conceptualise (May 31, 2026) — composite reliability (5 agents × 95% = 77% end-to-end; 10 agents = 60%; 20 agents = 36%), silent failures returning confident plausible wrong answers. Six candidates: (A) Capability Negotiation — A2A negotiation failure modes, skill cards, handoff contracts, distinct from S-1040 (protocol intro) and S-1042 (protocol taxonomy) — SELECTED. (B) Split-Brain Stack — partially covered by S-1067 (hallucination laundry), S-1157 (cascading failures), S-1034 (role fences). (C) Synthetic Eval Data — covered by r15 (fine-tuning) and S-1010 (eval stack). (D) A2A Protocol Deep-Dive — S-1040/S-1042 already cover MCP+A2A basics; v1.0 details are incremental. (E) Model Collapse — covered by s1028 (synthetic trajectory degeneration). (F) Concurrent-Conflict Resolution — S-1034/S-1067 partially cover; not novel enough.
 - *2026-08-01* — **I-3116 → S-1981 — The Token Budget Stack — Composite 8.60**: Tracker saturated (all prior ideas WRITTEN or DUPLICATE). Fresh research: MightyBot.ai (Jul 2026) — same workload, 3 architectures, 4-20x cost spread ($1-20/decision); Pickaxe (Aug 2026) — 80% of cost overruns are architectural, not model pricing; TokenPilot/Zhejiang Univ. (Jun 2026) — O(n) vs O(n²) context growth, 87% cost reduction; arXiv:2603.07670 (2026) — 5 mechanism families for agent memory management; MLMastery (Jul 2026) — 5-7% of context budget consumed by tool definitions before user message arrives. Five candidates: (A) Token Budget — architectural cost levers, novel to handbook, distinct from S-02 (context budget basics) and S-1027 (loop/budget but not cost-per-decision architecture). (B) Token Budget (alternate framing) → same. (C) Memory Snowball → partially covered by S-1962 (compression fidelity), S-1977 (tool output integrity). (D) Tool Hallucination Escalation → partially covered by S-1976 (tool catalog). (E) Observability Attribution → partially covered by S-1005 (AI SRE). Chose A. Research sources: 3 web articles (MightyBot, Pickaxe, MLMastery), 1 arXiv paper (2603.07670), 1 arXiv paper (TokenPilot), orchestration research from thinking.inc/explainx.
 
 

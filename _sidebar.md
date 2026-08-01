@@ -896,3 +896,4 @@
   - [S-1976 · The Tool Catalog Stack — When Your Agent Has 30 Tools and Can't Decide Which One to Use](stacks/s1976-the-tool-catalog-stack-when-your-agent-has-30-tools-and-cant-decide-which-one-to-use.md)
   - [S-1978 · The Benchmark Faith Stack — When Your Agent Scores 80% on SWE-bench and Fails in Production](stacks/s1978-the-benchmark-faith-stack-when-your-agent-scores-80-on-swe-bench-and-fails-in-production.md)
   - [S-1979 · The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production](stacks/s1979-the-graveyard-stack-when-your-agent-pilot-dies-between-the-demo-and-production.md)
+  - [S-1983 · The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers](stacks/s1983-the-capability-negotiation-stack-when-your-agent-delegates-blindly-and-crosses-its-fingers.md)
