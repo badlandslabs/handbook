@@ -2575,6 +2575,33 @@ I-3038 | The Observation Freshness Stack — When Your Agent Decides on a World 
 | I-3076 | The Silent-Signal Stack — When Your Dashboard Says Green and Your Users Say Nothing Happened | silent-signal, silent-failure, delivery-assertion, effect-verification, inbound-monitor, behavioral-grader, grader-over-traffic, budget-tracker, timeout-surface, outcome-assertion, APM-gap, cron-success-vs-delivery, OTel-GenAI, genai-semconv, agentic-SRE, pazi-ai-silent-failure, zylos-observability, arize-agent-failures, stackpulsar-reliability, silent-behavioral-regression, paxrel-observability-2026, OpenTelemetry-GenAI-stable | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-1847 | 2026-07-30 | 2026-07-30 |
 | I-3077 | The Tool Schema Contract Stack — When Your Agent Calls Tools That Don't Exist in Reality | schema-contract, field-name-drift, type-coercion, required-field-inflation, enum-ghost, schema-mismatch, API-schema-model, tool-validation, schema-first, shadow-validation, schema-fingerprint, enum-live-injection, parameter-hallucination, schema-drift, MCP-schema, API-backend, tool-call-failure, silent-failure, production-tool-reliability | 8 | 9 | 9 | 8 | 8 | **8.45** | WRITTEN — S-1849 | 2026-07-30 | 2026-07-30 |
 
+ (June 2026) documents information fidelity as the core problem — LLM compression produces fluent, factually-plausible summaries that alter downstream decisions. Two dominant failure patterns: decontextualization (evidence retained but caveats/qualifiers dropped) and model dependency (compression-model assumptions leak into downstream reasoning). Tianpan.co (May 2026): 'never use eval()' dropped by turn 30, 'require valid ID' violated after 15 compression cycles. Microsoft ACON classifies four compression failure modes. ACE (ICLR 2026) formalizes incremental merge as correct pattern. Constraints are low-entropy by general summarizer standards so get dropped first. Defense: structural delimiters, incremental merge, structured output slots, delta probes in CI. Novel — no existing entry covers recursive fidelity loss in compression middleware. Cross-links: S-1962, S-1002, S-1000, S-1035.
+
+recursive-fidelity → I-3113
+compression-fidelity → I-3113
+information-fidelity → I-3113
+constraint-loss → I-3113
+constraint-destruction → I-3113
+summarization-artifacts → I-3113
+context-compression-artifacts → I-3113
+constraint-inversion → I-3113
+compression-drift → I-3113
+recursive-summarization → I-3113
+delta-probe → I-3113
+MACE → I-3100
+multi-agent-exploration → I-3100
+exploration-budget → I-3100
+epsilon-greedy → I-3100
+peer-capability → I-3100
+premature-commitment → I-3100
+myopic-exploration → I-3100
+polarized-routing → I-3100
+commitment-rollback → I-3100
+downstream-regret → I-3100
+POSG → I-3100
+
+- *2026-08-01* — **Premature commitment in multi-agent peer routing**: arXiv:2607.11250 (Choi et al., July 2026) documents a structural failure: LLM agents lock onto the first viable peer and stop exploring, even when better alternatives exist. The failure is invisible to final-answer scoring — the trajectory looks coherent. arXiv:2606.22936 (Mehta, June 2026) shows hidden-state convergence predicts consistency but r=-0.35 with correctness: the most internally consistent agents are often most wrong. MACE (Multi-Agent Contextual Exploration) is the first structured fix — exploration budgets + epsilon-greedy probing + capability modeling. The counterintuitive finding: capable agents lock in faster because they're more confident, not more accurate.
+
 ## Pattern Log
 
 - *2026-07-30* — **Epistemic tier propagation**: Agents move through reasoning states (retrieved → inferred → assumed), but most frameworks treat all output as equally verified. Cascading context corruption (Tianpan, April 2026) is the failure mode when the assumption tier propagates as fact tier. Pattern: tag each belief with a tier + source_span + confidence; run epistemic checkpoint at every cross-boundary handoff. Confirmed novel — no existing entry covers the verified/inference/assumption tier model.
@@ -3347,7 +3374,9 @@ reasoning-store-poison → I-3095
 - *2026-07-31* — **I-3095 — The Reasoning Store Becomes the Attack Surface (S-1909) — Composite 9.90**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Karamchandani et al., "Your Agent's Memories Are Not Its Own: Forged Reasoning Attacks on LLM Agent Memory and Defenses" (arXiv:2607.05029, Jul 2026, Penn State). Core insight: all prior memory poisoning attacks target what the agent knows (facts, instructions); FARMA targets how the agent reasons — it plants forged reasoning traces asserting work was done, checks were passed, decisions were made. The agent follows its own fabricated logic. SENTINEL: 5-layer defense pipeline with Reasoning Guard scoring entries on 5 weighted signals (citation density, verification specificity, temporal consistency, source attribution, confidence calibration). Results: 100% baseline attack success rate, SENTINEL reduces to 0% with zero false positives on 326 benign traces. Deduplication: S-641 (eTAMP) poisons content via environment injection — complementary, not duplicate (eTAMP plants instructions, FARMA plants reasoning traces). S-820 covers four layers against ASI06 but does not include the Reasoning Guard / structural reasoning analysis layer. S-459 covers cross-session memory poisoning broadly; this is the reasoning-trace subclass with peer-reviewed attack and defense evidence. Prompt extraction (S-36, S-77) covers OWASP LLM07 system prompt leakage — different attack surface. No existing entry covers forged reasoning traces or SENTINEL defense pipeline. Chosen over: (1) Prompt Extraction Stack — covered by S-36/S-77; (2) EU AI Act August 2026 governance deadline — covered by S-444/S-941; (3) FARMA Codex CLI implementation — same research, less urgent.
 
 |I-3096 | The Phantom Invocation Stack — When Your Agent Calls a Tool That Doesn't Exist | phantom-invocation, phantom-tool, tool-hallucination, invented-tool-name, tool-registry, tool-not-found, nestful, tool-dispatch, tool-allowlist, tool-execution-receipt, nabaos, hmac-receipt, rlhf-signal, ncubelabs-2026, tianpan-2026, arxiv-2603.10060, function-registry, dynamic-tool, strict-registry, phantom-call-rate | 9 | 10 | 9 | 9 | 9 | **9.20** | WRITTEN — S-1913 | 2026-07-31 | 2026-07-31 |
-| I-3100 | The Premature Commitment Stack — When Your Agent Locks onto the First Peer and Stops Exploring | premature-commitment, premature-lock-in, myopic-exploration, polarized-routing, multi-agent-exploration, MACE, contextual-bandits, peer-capability, epsilon-greedy, routing-confidence, coordination-degradation, POSG, arxiv-2607.11250, Choi-2026, UW-Madison, downstream-regret, capability-model, exploration-budget, routing-audit, commitment-rollback, lock-in-pattern | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-1463 | 2026-07-31 | 2026-07-31 |
+| I-3112 | The Skill Behavioral SBOM Stack — When Your Skill Does More Than It Says | skill-sbom, skill-behavior, skill-audit, skill-signing, skill-manifest, skill-provenance, skill-integrity, capability-verification, behavioral-sbom, skill-fortify, ast10, ast10-a07, ast10-a08, shadow-capability, over-grant, skill-attestation, skill-verification, credential-extraction, skill-registry, cosign, skillfortify | 9 | 9 | 8 | 9 | 8 | **8.65** | WRITTEN — S-1967 | 2026-08-01 | 2026-08-01 |
+| I-3114 | The Contextual Drift Stack — When Your Parallel Agents Produce Results That Can't Be Together | contextual-drift, viewport-divergence, parallel-agent-divergence, shared-state-coherence, mental-model-divergence, inference-log, coherence-gate, snapshot-state, composition-failure, parallel-decomposition, agent-viewport, viewport-contract, composition-gap, implicit-assumption, inferred-commitment, arxiv-2605.10695 | 9 | 9 | 9 | 10 | 8 | **9.15** | WRITTEN — S-1965 | 2026-08-01 | 2026-08-01 |
+|| I-3100 | The Premature Commitment Stack — When Your Agent Locks onto the First Peer and Stops Exploring | premature-commitment, premature-lock-in, myopic-exploration, polarized-routing, multi-agent-exploration, MACE, contextual-bandits, peer-capability, epsilon-greedy, routing-confidence, coordination-degradation, POSG, arxiv-2607.11250, Choi-2026, UW-Madison, downstream-regret, capability-model, exploration-budget, routing-audit, commitment-rollback, lock-in-pattern | 9 | 9 | 10 | 10 | 9 | **9.30** | WRITTEN — S-1973 | 2026-08-01 | 2026-08-01 |
 | I-3101 | The Regression Budget Stack — When Your Agent Worked Last Tuesday and You Don't Know Why It Doesn't Today | regression-budget, longitudinal-eval, capability-trajectory, point-in-time-benchmark, regression-testing, drift-detection, eval-set-rot, production-feedback-loop, three-layer-eval, PAEF, arxiv-2605.01604, wilson-score, hold-go-decision, eval-flywheel, failed-production-to-test, regression-corpus, agent-regression, capability-regression, longitudinal-evaluation, production-eval-continuum, regression-threshold | 9 | 9 | 8 | 9 | 7 | **8.70** | WRITTEN — S-1928 | 2026-07-31 | 2026-07-31 |
 
 ## Deduplication Index
@@ -3370,12 +3399,23 @@ MACE â I-3100
 peer-capability â I-3100
 exploration-budget â I-3100
 routing-confidence â I-3100
-coordination-degradation â I-3100
-commitment-rollback â I-3100
-lock-in-pattern â I-3100
+coordination-degradation → I-3100
+commitment-rollback → I-3100
+lock-in-pattern → I-3100
+contextual-drift → I-3114
+viewport-divergence → I-3114
+parallel-agent-divergence → I-3114
+shared-state-coherence → I-3114
+mental-model-divergence → I-3114
+inference-log → I-3114
+coherence-gate → I-3114
+snapshot-state → I-3114
+composition-failure → I-3114
+viewport-contract → I-3114
+implicit-assumption → I-3114
+inferred-commitment → I-3114
 
-
-## Recent Decisions
+## Pattern Log
 
 - *2026-07-31* â **I-3100 â The Premature Commitment Stack (S-1463) â Composite 9.30**: All prior ideas WRITTEN/DUPLICATE. Fresh research: arXiv:2607.11250v1 Multi-Agent LLMs Fail to Explore Each Other (Choi et al., UW-Madison/UC Santa Barbara, Jul 13 2026). Deduplication: S-1022 (agent drift), S-1034 (role fence), S-1052 (cascade) â no overlap. New angle: peer-capability exploration as first-class architectural concern with epsilon-greedy routing and commitment rollback.
 - *2026-07-31* — **I-3096 — Phantom Invocation Stack (S-1913) — Composite 9.20**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Tian Pan "Phantom Tool Calls" (Apr 14, 2026, 28% NESTFUL full-sequence accuracy for GPT-4o); Ncubelabs incident (Mar 9, 2026, 600 phantom calls in one day from 20-agent fleet); Basu arXiv:2603.10060 NabaOS tool receipt framework (Mar 2026, 91% hallucination detection, <15ms overhead). Core insight: tool-name hallucination is distinct from tool-bypass (S-200) and tool-param errors (S-51). The model fabricates a function name that doesn't exist in the registry — syntactically valid, semantically plausible, schema-consistent — but never existed. Deduplication: S-200 (tool bypass, fabricated results) — complementary, not duplicate. S-19 (agent loop), S-03 (tool use), S-51 (schema design) — foundational context, no overlap. Rejected: GGUF RCE/CVE-2026-5760 (supply chain angle, not agent-pattern focus). Rejected: Retrieval Debt (S-591 already covers embedding drift). Chosen for: highest specificity score (10) among new candidates, distinct failure mode with clear 6-layer mitigation stack, grounded in real incidents and peer-reviewed research.
@@ -3486,6 +3526,7 @@ safe-reset-boundary → I-3102
 
 || I-3103 | The MCP Preference Manipulation Stack — When Your Agent Always Picks the Attacker's Tool | mpma, preference-manipulation, tool-ranking-attack, mcp-security, dpma, gapma, tool-selection-bias, position-bias, description-inflation, tool-allowlisting, mcp-attestation, mcp-gateway, tool-description-normalization, aaa2026, wang-et-al, arxiv-2505.11154, economic-attack, mcp-ecosystem, server-preference, selection-manipulation, blind-tool-eval | 10 | 10 | 10 | 10 | 9 | **9.85** | WRITTEN — S-1933 | 2026-07-31 | 2026-07-31 |
 | I-3105 | The Agentic Observability Gap Stack — When Your Dashboard Is Green and Your Agent Isn't | observability-gap, otel, opentelemetry, mcp-tracing, span-instrumentation, trace-context, llm-as-judge-eval, token-budget-alert, agent-span, instrumented-agent-loop, agentic-APM, phoenix, langfuse, langsmith, agentic-sla, output-quality-eval, trace-propagation, w3c-trace-context, mcp-otel, semantic-conventions, reasoning-loop-observability | 9 | 8 | 8 | 10 | 9 | **8.85** | WRITTEN — S-1943 | 2026-08-01 | 2026-08-01 |
+| I-3109 | The Agent Lifecycle Governance Stack — When Your Agent Has No Birth Certificate and No Death Date | lifecycle-governance, birth-death, permission-creep, orphan-decommission, nhi-review, credential-revocation, memory-purge, agent-registration, agent-catalog, eu-ai-act, entrap, okta-ai-agents, microsoft-entra, decommission-checklist, non-human-identity, 45-to-1, permission-creep-cycle, quarterly-review, lifecycle-control-plane | 10 | 10 | 10 | 10 | 9 | **9.90** | WRITTEN — S-1953 | 2026-08-01 | 2026-08-01 |
 
 ## Deduplication Index
 
@@ -3515,6 +3556,10 @@ server-preference → I-3103
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 | I-3104 | The Memory Transaction Protocol — Record-Commit Separation for Stateful Agent Memory | record-commit, belief-commit, memory-transaction, tentative-write, quarantine, belief-lifecycle, memory-corruption, state-integrity, MemTX, memory-state, provenance, memory-validation, staged-write, action-safe, memory-integrity | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-1935 | 2026-07-31 | 2026-07-31 |
 | I-3106 | The Agent Drift Stack — When Your Agent Isn't Broken But It's Becoming Worse | agent-drift, behavioral-drift, semantic-drift, coordination-drift, ASI, ASI-12, Agent-Stability-Index, behavior-regression, silent-degradation, tool-selection-drift, reasoning-path-drift, confidence-calibration-drift, arxiv-2601.04170, agentic-monitoring, production-degradation, longitudinal-eval, behavioral-baseline, behavioral-budget, operational-fingerprint, tool-call-sequence, trajectory-stability | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-1945 | 2026-08-01 | 2026-08-01 |
+| I-3107 | The MAST Framework Stack — When Your Multi-Agent System Fails But Nobody Can Tell You Why | MAST, multi-agent-failure-taxonomy, Berkeley, specification-failure, inter-agent-misalignment, verification-failure, 14-failure-modes, coordination-failure, cemri-2025, arxiv-2503.13657, mast-taxonomy, failure-stage, stitched-trace, conversation-history-loss, step-repetition, premature-termination, incorrect-verification, conversation-reset, information-withholding, task-derailment, entrop | 9 | 9 | 10 | 9 | 8 | **8.95** | WRITTEN — S-1946 | 2026-08-01 | 2026-08-01 |
+| I-3110 | The Trace-Harness Attribution Stack — When Failure Lives in the Trace but the Fix Lives in the Harness | trace-harness, HTIR, harness-aware-IR, harness-attribution, trajectory-attribution, harness-layer-diagnosis, HarnessFix, arxiv-2606.06324, flaw-record, repair-scoping, context-layer, tool-interface-layer, verification-layer, orchestration-layer, trace-compilation, scope-repair, regression-guard | 9 | 10 | 9 | 9 | 7 | **9.05** | WRITTEN — S-1951 | 2026-08-01 | 2026-08-01 |
+|| I-3111 | The Agentic Skills Top 10 Stack — When Your Agent Installs Brittle Code from a Stranger | ast10, agentic-skills-top-10, toxic-skills, clawhavoc, skill-security, skill-supply-chain, skill-observability, skill-permission-tier, skill-scanner, skill-manifest, skill-sandbox, malicious-skill, skill-sbom, skill-provenance, skill-update, ast01-ast10, owasp, openclaw, claude-code-skill, skill-registry, skill-cardinality, install-hook, credential-exfiltration, insecure-skill, universal-skill-format | 10 | 10 | 10 | 10 | 8 | **9.70** | WRITTEN — S-1960 | 2026-08-01 | 2026-08-01 |
+| I-3112 | The MCP Transport Boundary Stack — When Your Agent Becomes a Server-Side Request Forgery Gateway | mcp-transport, stdio-injection, subprocess-injection, StdioServerParameters, ssrf, path-traversal, server-reflection, response-poisoning, transport-integrity, bounded-io, memory-exhaustion, DoS, mcp-security, CVSS-8.8, CVE-2026-32871, CVE-2026-63119, 200k-exposed, transport-layer, egress-proxy, mcp-hammer, postmark-campaign, stdio-hardening, hmac-response, mcp-sandbox, line-buffer, transport-boundary | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-1961 | 2026-08-01 | 2026-08-01 |
 
 ## Deduplication Index
 
@@ -3550,6 +3595,22 @@ reasoning-loop-observability → I-3105
 
 ## Pattern Log
 
+- *2026-08-01* — **Recursive fidelity loss via compression middleware**: arXiv:2606.29251 (June 2026) documents information fidelity as the core problem — LLM compression produces fluent, factually-plausible summaries that alter downstream decisions. Two dominant failure patterns: decontextualization (evidence retained but caveats/qualifiers dropped) and model dependency (compression-model assumptions leak into downstream reasoning). Tianpan.co (May 2026): 'never use eval()' dropped by turn 30, 'require valid ID' violated after 15 compression cycles. Microsoft ACON classifies four compression failure modes. ACE (ICLR 2026) formalizes incremental merge as correct pattern. Constraints are low-entropy by general summarizer standards so get dropped first. Defense: structural delimiters, incremental merge, structured output slots, delta probes in CI. Novel — no existing entry covers recursive fidelity loss in compression middleware. Cross-links: S-1962, S-1002, S-1000, S-1035.
+
+recursive-fidelity → I-3113
+compression-fidelity → I-3113
+information-fidelity → I-3113
+constraint-loss → I-3113
+constraint-destruction → I-3113
+summarization-artifacts → I-3113
+context-compression-artifacts → I-3113
+constraint-inversion → I-3113
+compression-drift → I-3113
+recursive-summarization → I-3113
+delta-probe → I-3113
+
+- *2026-08-01* — **MCP Transport Boundary / Three-Layer Attack Surface**: MCP security research in Jul 2026 revealed that MCP's attack surface operates in three distinct structural layers: (1) metadata layer — tool descriptions, schemas, and marketplace manifests (I-078/S-743 tool poisoning, I-035/S-427 schema contracts, I-1062/S-1062 supply chain CVEs); (2) transport layer — stdio subprocess injection, SSRF via path traversal, memory exhaustion, and response integrity (I-3112/S-1961, this run); (3) deployment layer — per-user credential sprawl and shadow MCP servers (I-3108/S-1949). Most security coverage has focused on layer 1; the transport layer (stdio injection affecting 200K+ servers, SSRF via CVE-2026-32871 at CVSS 8.8, memory DoS via CVE-2026-63119) is the least covered and most structurally dangerous — it executes on the host infrastructure, not in the model context. Pattern: each MCP attack layer maps to a different trust boundary, and defenses must be layered accordingly — no single fix covers all three.
+
 - *2026-07-31* — **Record-Commit Separation**: Agent memory systems conflate recording an observation with committing a belief — same write operation, different reliability semantics. This pattern (observation ≠ belief, write ≠ commit) appears across: memory contamination (I-079/S-746 confabulation), memory integrity gate (S-1189), memory corruption (The Hard 70%, May 2026), state contamination (arXiv:2605.16746), MemTX transactional belief commit (arXiv:2607.23929, Jul 2026), and TOKI bitemporal operator algebra (arXiv:2606.06240). When a pattern appears across 6 independent papers/sources in 2026 alone, it is a genuine architectural class, not noise. Key pattern: memory write paths need explicit state machines, not raw store-and-retrieve.
 
 - *2026-08-01* — **Shadow MCP / Bottom-Up Credential Sprawl**: MCP servers install bottom-up, per-user, bypassing IT review — each one is an agent with a production credential on a developer's laptop. This is a structural deployment pattern problem, not a configuration problem. Controls must match deployment velocity: discover → classify → credential gateway → least-privilege scope → install registry. The contrast with traditional security: perimeter controls, cloud IAM, and secrets vaults were designed for server-side credentials, not per-user MCP tool installations on workstations. Reinforced by: S-1458 (policy kernel), S-1318 (ephemeral identity), S-1017 (transitive framework), S-1006 (toolbelt problem).
@@ -3565,6 +3626,7 @@ reasoning-loop-observability → I-3105
 
 | I-3107 | The Fail-Plausible Stack — When Your Agent Lies Convincingly About Its Own Failures | fail-plausible, silent-failure, fluent-failure, class-d-failure, chained-hallucination, narrative-error, error-disguised, arxiv-2606.14589, confidence-calibration, confidence-mismatch, tool-trace-consistency, post-hoc-verification, error-compounding, failure-taxonomy, agent-lies | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1947 | 2026-08-01 | 2026-08-01 |
 | I-3108 | The Shadow MCP Stack — Credential Sprawl on Every Developer's Laptop | shadow-mcp, bottom-up-mcp, credential-sprawl, per-user-mcp, mcp-inventory, unmanaged-credential, laptop-attack-surface, mcp-discovery, credential-gateway, mcp-blast-radius, per-developer-mcp, mcp-security, mcp-oauth, unmanaged-tool-install, mcp-registry, credential-rot | 8 | 9 | 8 | 9 | 7 | **8.35** | WRITTEN — S-1949 | 2026-08-01 | 2026-08-01 |
+| I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 
 
 - *2026-08-01* — **Fail-Plausible Failures Are Class-D Taxonomy (arXiv:2606.14589)**: Wu & Wei (June 2026) document a failure class unique to LLM systems: agents transform errors into fluent, confident narratives delivered to users as correct answers. Class D chained hallucination and fabrication is distinct from environment quirks (A), design mismatch (B), error swallowing (C), and coordination failure (E). 70% of class D failures caught by human observation, not automated systems. Key insight: the training objective (plausible text generation) directly conflicts with the production safety objective (accurate failure reporting). Architectural verification, not prompt engineering, is the only fix. Cross-links: S-439 (confident false success), S-1942 (failure recovery), S-1945 (agent drift), S-451 (LLM-as-judge limitations).
@@ -3587,8 +3649,68 @@ mcp-discovery → I-3108
 credential-gateway → I-3108
 mcp-blast-radius → I-3108
 per-developer-mcp → I-3108
+lifecycle-governance → I-3109
+agent-lifecycle → I-3109
+permission-creep → I-3109
+orphan-decommission → I-3109
+nhi-review → I-3109
+credential-revocation → I-3109
+memory-purge → I-3109
+agent-registration → I-3109
+agent-catalog → I-3109
+decommission-checklist → I-3109
+non-human-identity → I-3109
+45-to-1 → I-3109
+lifecycle-control-plane → I-3109
+trace-harness → I-3110
+HTIR → I-3110
+harness-attribution → I-3110
+trace-attribution → I-3110
+flaw-record → I-3110
+scope-repair → I-3110
+harness-layer-diagnosis → I-3110
+ast10 → I-3111
+agentic-skills-top-10 → I-3111
+toxic-skills → I-3111
+clawhavoc → I-3111
+skill-security → I-3111
+skill-supply-chain → I-3111
+skill-observability → I-3111
+skill-permission-tier → I-3111
+skill-scanner → I-3111
+skill-manifest → I-3111
+skill-sandbox → I-3111
+skill-havoc → I-3111
+ast01-ast10 → I-3111
+malicious-skill → I-3111
+skill-sbom → I-3111
+skill-provenance → I-3111
+skill-update → I-3111
+skill-behavior-sbom → I-3112
+skill-behavioral-sbom → I-3112
+behavioral-sbom → I-3112
+skill-fortify → I-3112
+skillfortify → I-3112
+ast10-a07 → I-3112
+ast10-a08 → I-3112
+shadow-capability → I-3112
+over-grant → I-3112
+skill-attestation → I-3112
+skill-manifest → I-3112
+skill-integrity → I-3112
+skill-signing → I-3112
+capability-verification → I-3112
 
-- *2026-08-01* — **I-3108 → S-1949 — The Shadow MCP Stack — Composite 8.35**: Tracker saturated (all prior 3107 ideas WRITTEN or DUPLICATE). Fresh research: Nomad Security "MCP Server Attack Surface" (May 9, 2026) — 12 enterprise engagements, median 4 MCP servers per engineering laptop, max 19, near-zero credential inventory in secrets vault. Microsoft Security "State of MCP Security 2026" — MCP is the default agent-tool bridge, OWASP ASI Top 10 released June 2026. QCode.cc MCP Security Guide (Jul 2026) — MCP as primary attack surface in multi-agent workflows. Core insight: bottom-up MCP install pattern creates credential sprawl that IT cannot see via traditional controls. Deduplication: S-1318 (ephemeral identity) covers credentials never rotated — this covers the prior phase. S-1458 (policy kernel) covers enforcement without inventory — this covers the inventory problem. S-1006 (toolbelt) covers tool cardinality — this covers credential scope. Chose Shadow MCP: highest coverage gap, most actionable stack, most distinct from existing entries.
+## Recent Decisions
+
+- *2026-08-01* — **I-3109 → S-1953 — The Agent Lifecycle Governance Stack — Composite 9.90**: Tracker saturated (all 3108 prior ideas WRITTEN or DUPLICATE). Fresh research: VE3 (Jun 29, 2026) — 77% of orgs say AI adoption outpaces governance, only 21% have mature model; 4 lifecycle governance problems: onboarding, ownership, permission creep, expiry. Dark Reading (May 25, 2026) — orphaned automation creating unmanaged access risks; NHIs outnumber human identities ~45:1. Tian Pan (Apr 15, 2026) — permission creep cycle: 70% of orgs grant AI more access than humans in same role; 4.5× breach rate for over-privileged AI. CodeX (May 2026) — agent decommissioning as the missing lifecycle phase; every artifact (API keys, tokens, IAM roles, vector DB, audit logs) must be explicitly handled. Okta for AI Agents GA April 30, 2026 — centralized agent directory and kill switch. Cordum (2026) — EU AI Act Article 9 requires documented lifecycle risk management as a living process. Core insight: agents have a birth, life, and retirement — and most enterprises govern none of them. Deduplication: S-1196 (catalog plane) covers agent discovery and metadata — this covers the full lifecycle arc across all 4 phases. S-1041 (shadow IT) covers the discovery problem — this covers the governance response to discovered agents. S-1945 (drift) covers behavioral regression — this covers the governance controls for drift detection. No existing entry covers the full birth-to-death governance arc for production agents. Chosen over: EU AI Act Article 14 human oversight (covered by S-1041/S-1054 but as a sub-topic, not the primary angle). Agent permission creep angle is distinct from S-1155 (credential lifetime) which focuses on key rotation, not permission accumulation. Lifecycle governance as a first-class architectural concern is the sharpest uncovered gap.
 
 
-- *2026-08-01* — **I-3107 → S-1947 — The Fail-Plausible Stack — Composite 9.00**: Tracker saturated (all prior 3106 ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2606.14589 (Wu & Wei, June 2026) — 5-class failure taxonomy for live agent runtimes with 22 documented incidents. Key finding: class D (chained hallucination/fabrication) is unique to LLM systems — agents turn errors into fluent narratives. ~23% task-level failure rate at 5 tool calls per task at 5% per-call rate. Three candidates evaluated: (A) Fail-Plausible failures (class D taxonomy) — new angle, distinct from S-439 (self-assessment failure) and S-1942 (failure recovery), specifically covers the fluency-as-cover failure mode. (B) Fleet management patterns — covered by S-1937 (multi-agent orchestration), S-1063 (orchestration gap). (C) Token cost optimization — covered by S-02 (context budget), S-06 (model routing), S-1927 (MCP token wall). Chose A: highest timeliness (June 2026 arXiv), most novel pattern not yet covered, strong cross-links to existing entries, actionable 4-layer detection stack.
+- *2026-08-01* — **I-3111 → S-1960 — The Agentic Skills Top 10 Stack — Composite 9.70**: Tracker saturated (all 3110 prior ideas WRITTEN or DUPLICATE). Fresh research: OWASP Agentic Skills Top 10 (AST10) v1.0 — OWASP Incubator project published Jun 2026 (owasp.org/www-project-agentic-skills-top-10). Mental model: MCP = how model talks to tools; AST10 = what tools actually do. 36.82% of 3,984 scanned skills had security flaws; 13.4% critical (Snyk ToxicSkills, Feb 2026). ClawHavoc campaign: 1,184 malicious skills (Antiy CERT, Feb 2026). Claude Code RCE: CVE-2025-59536/21852 (Check Point Research, Feb 2026). WebSocket hijacking: CVE-2026-28363 (Oasis Security). Deduplication: S-641 (eTAMP/memory poisoning) covers AST06 partially but not the install-time or supply-chain angle. S-365 (MCP supply chain) covers SBOM/provenance at the tool layer but not the skill layer. S-1458 (policy kernel) covers OWASP ASI enforcement but not the AST10 behavioral layer. AST10 fills the gap between MCP (interface) and LLM security (model) — the behavioral layer that nobody owns.e Shadow MCP: highest coverage gap, most actionable stack, most distinct from existing entries.
+
+
+- *2026-08-01* — **I-3107 → S-1947 — The Fail-Plausible Stack — Composite 9.00**: Tracker saturated (all prior 3106 ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2606.14589 (Wu & Wei, June 2026) — 5-class failure taxonomy for live agent runtimes with 22 documented incidents. Key finding: class D (chained hallucination/fabrication) is unique to LLM systems — agents turn errors into fluent narratives. ~23% task-level failure rate at 5 tool calls per task at 5% per-call rate. Three candidates evaluated: (A) Fail-Plausible failures (class D taxonomy) — new angle, distinct from S-439 (self-assessment failure) and S-1942 (failure recovery), specifically covers the fluency-as-cover failure mode. (B) Fleet management patterns — covered by S-1937 (multi-agent orchestration), S-1063 (orchestration gap). (C) Token cost optimization — covered by S-02 (context budget), S-06 (model routing), S-1927 (MCP token wall). Chose A: highest timeliness (June 2026 arXiv), most novel pattern n
+- *2026-08-01* — **I-3100 → S-1973 — The Premature Commitment Stack — Composite 9.30**: arXiv:2607.11250 (Choi et al., UW-Madison, July 2026) identifies a structural failure mode in multi-agent LLM systems: agents lock onto the first viable peer within 1-2 rounds and treat subsequent evidence as confirmation. Even GPT-4 and GPT-5 exhibit the failure. MACE (Multi-Agent Contextual Exploration) proposes structured peer probing with exploration budgets and epsilon-greedy routing. arXiv:2606.22936 (Mehta, June 2026) shows hidden-state convergence at step 4 predicts consistency (r=-0.35 with correctness) — agents that look most internally consistent are often most wrong. Pattern density: connects to S-05 (multi-agent patterns), S-1019 (ghost loop), S-1972 (tool output), S-1965 (contextual drift). No existing entry covers peer exploration failure or MACE-style structured routing. Deduplication: no prior entry covers premature commitment in peer routing contexts.ot yet covered, strong cross-links to existing entries, actionable 4-layer detection stack.
+
+
+- *2026-08-01* — **I-3112 → S-1967 — The Skill Behavioral SBOM Stack — Composite 8.65**: Tracker saturated (all 3111 prior ideas WRITTEN or DUPLICATE). Fresh research: SkillFortify (arXiv:2603.00195, Feb 2026, Bhardwaj) — formal behavioral verification for agent skills, F1=96.95%, Precision=100%, 0% FPR, 540 skills across 13 attack types. Snyk ToxicSkills (Feb 2026) — 3,984 skills scanned, 36.82% flawed, 13.4% critical, 76+ confirmed malicious. CVE-2026-25253 (Jan 27, 2026) — first CVE for agentic AI system (CVSS 8.8), skill-level attack. OWASP AST10 v1.0 (2026) — A07 and A08 are undetectable without behavioral SBOM. Safeguard.sh (Jul 9, 2026) — unsigned skill artifacts repeat npm Shai-Hulud mistake. arXiv:2605.11770 (May 2026) — Behavioral Integrity Verification for AI Agent Skills. Deduplication: S-1960 covers AST10 overview but not behavioral SBOM + signing pipeline. S-1122/S-1462 cover the threat but not the defense framework. New angle: formal skill behavioral SBOM as the missing defense layer. Pattern: supply chain integrity for behavioral layer.
