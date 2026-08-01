@@ -3715,7 +3715,7 @@ capability-verification → I-3112
 
 - *2026-08-01* — **I-3112 → S-1967 — The Skill Behavioral SBOM Stack — Composite 8.65**: Tracker saturated (all 3111 prior ideas WRITTEN or DUPLICATE). Fresh research: SkillFortify (arXiv:2603.00195, Feb 2026, Bhardwaj) — formal behavioral verification for agent skills, F1=96.95%, Precision=100%, 0% FPR, 540 skills across 13 attack types. Snyk ToxicSkills (Feb 2026) — 3,984 skills scanned, 36.82% flawed, 13.4% critical, 76+ confirmed malicious. CVE-2026-25253 (Jan 27, 2026) — first CVE for agentic AI system (CVSS 8.8), skill-level attack. OWASP AST10 v1.0 (2026) — A07 and A08 are undetectable without behavioral SBOM. Safeguard.sh (Jul 9, 2026) — unsigned skill artifacts repeat npm Shai-Hulud mistake. arXiv:2605.11770 (May 2026) — Behavioral Integrity Verification for AI Agent Skills. Deduplication: S-1960 covers AST10 overview but not behavioral SBOM + signing pipeline. S-1122/S-1462 cover the threat but not the defense framework. New angle: formal skill behavioral SBOM as the missing defense layer. Pattern: supply chain integrity for behavioral layer.
 
-| I-3114 | The Scaffold Spectrum Stack — When Your Agent Architecture Is Invisible and Untestable | scaffold-spectrum, scaffold-taxonomy, 12-dimensions, 3-layers, loop-primitive, control-primitive, ReAct, generate-test-repair, plan-execute, multi-attempt, tree-search, scaffold-composition, control-spectrum, resource-management, context-strategy, pointer-based, arxiv-2604.03515, rombaut-2026, huawei-canada, scaffolding-code, control-architecture, scaffold-audit, scaffold-gap, scaffold-is-the-model | 9 | 10 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1975 | 2026-08-01 | 2026-08-01 |
+| I-3115 | The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production | pilot-production, pilot-gap, demo-to-production, deployment-checklist, observability-infrastructure, multi-agent-coordination, production-noise-injection, pilot-mortality, deployment-readiness-ratio, enterprise-agentic, clean-data-problem, audit-trail-gap, failure-mode-registry, human-in-the-loop, handoff-contract, cost-bounding, eval-drift, SLO-breach, arxiv-pilot, Gartner-2026, McKinsey-2026, BCG-2026, Forrester-2026, cordum-checklist, futureAGI-eval, openempower-2026, presenc-ai-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | FRESH — S-1979 | 2026-08-01 | 2026-08-01 |
 
 scaffold-spectrum → I-3114
 scaffold-taxonomy → I-3114
@@ -3746,7 +3746,24 @@ loop-composition → I-3114
 context-compaction → I-3114
 source-code-taxonomy → I-3114
 12-dim-scaffold → I-3114
+pilot-production → I-3115
+pilot-gap → I-3115
+demo-to-production → I-3115
+deployment-checklist → I-3115
+observability-infrastructure → I-3115
+production-noise-injection → I-3115
+pilot-mortality → I-3115
+deployment-readiness-ratio → I-3115
+enterprise-agentic → I-3115
+clean-data-problem → I-3115
+audit-trail-gap → I-3115
+failure-mode-registry → I-3115
+handoff-contract → I-3115
+eval-drift → I-3115
+SLO-breach → I-3115
 
 ## Recent Decisions
 
 - *2026-08-01* — **I-3114 → S-1975 — The Scaffold Spectrum Stack — Composite 8.90**: Tracker saturated (all 3113 prior ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2604.03515v1 (Rombaut, Huawei Canada, Apr 2026) — first source-code-level architectural taxonomy of 13 open-source coding agent scaffolds across 12 dimensions organized into 3 layers. arXiv:2511.22729 (IBM Research Brazil, Nov 2025) — pointer-based memory architecture for context overflow. AlphaEval cited scaffold gap of 11–15 point performance spread across scaffolds on the same model. Five candidate ideas evaluated: (A) Scaffold Spectrum — 12-dimension taxonomy from peer-reviewed source code analysis, novel to handbook, high specificity, directly actionable (scaffold audit protocol), distinct from S-1027 (loop detection), S-1336 (scaffold as model lever), S-1962 (compression fidelity). (B) Multi-Agent Deliberation/Consensus — partially covered by S-05 (multi-agent patterns), S-1113 (orchestration battlefield), no dedicated consensus architecture entry but too overlapping with existing MAS coverage. (C) Memory Pointer Architecture — arXiv:2511.22729 is solid but the technique is niche (large tool outputs in specific domains), lower timeliness than scaffold taxonomy. (D) Utility-Guided Orchestration — arXiv:2603.19896 is good but narrower (tool use efficiency only), less gap than scaffold spectrum. (E) Synthetic Training Data via Agentic Data Scientist — covered by S-1236 (rubric-gated pipeline), S-1037 (eval gap). Chose A: highest composite score, most novel coverage gap, peer-reviewed with reproducible methodology, directly actionable.
+
+- *2026-08-01* — **I-3115 → S-1979 — The Graveyard Stack — Composite 8.90**: Tracker saturated (all prior ideas WRITTEN or DUPLICATE). Fresh research: Presenc AI (May 2026) — pilot mortality rate, failure-mode decomposition (memory, tool error, hallucinated state, timeout). Gartner (2026) — 40% enterprise apps embed agents, >40% at risk of cancellation by 2027. S&P Global / McKinsey (2026) — 80% piloting, only 31% running in production. BCG / Forrester — 5.1-month median time-to-value. Paul Okhrem (Jul 2026) — 171% ROI on agents that reach production. Cordum (2026) — 20-control deployment checklist with hard/soft gates. Future AGI (2026) — 6 eval drift modes aging eval sets. Open Empower (Jun 2026) — production failure patterns: runaway loops, tool misuse, context exhaustion, hallucinated actions, cost explosions. LinesNCircles (2026) — 5-phase pilot-to-production deployment model. Pilot gaps: (1) clean-data assumption, (2) trust-without-proof, (3) capability vs resilience, (4) output vs outcome metrics, (5) coordination failures invisible in single-agent pilots. Novel angle: Deployment Readiness Ratio (DRR) as ship/no-ship gate. Explicit handoff contracts for multi-agent coordination. Production noise injection as first-class pilot engineering. Distinct from S-1978 (benchmark gap), S-1974 (confident failure), S-1976 (tool catalog). Composite 8.90.

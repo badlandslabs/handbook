@@ -891,4 +891,8 @@
   - [S-1971 · The Schema Ontology Drift Stack — When Your Agent's World Model Is Out of Sync With Reality Before the First Token Runs](stacks/s1971-the-schema-ontology-drift-stack-when-your-agents-world-model-is-out-of-sync-with-reality-before-the-first-token-runs.md)
   - [S-1972 · The Untrusted Tool Output Stack — When Your MCP Server Returns More Than You Bargained For](stacks/s1972-the-untrusted-tool-output-stack-when-your-mcp-server-returns-more-than-you-bargained-for.md)
   - [S-1973 · The Premature Commitment Stack — When Your Multi-Agent System Locks Onto the First Peer and Stops Exploring](stacks/s1973-the-premature-commitment-stack-when-your-multi-agent-system-locks-onto-the-first-peer-and-stops-exploring.md)
+  - [S-1974 · The Confident Failure Stack — When Your Agent Knows Something Went Wrong but Keeps Going Anyway](stacks/s1974-the-confident-failure-stack-when-your-agent-knows-something-went-wrong-but-keeps-going-anyway.md)
   - [S-1975 · The Scaffold Spectrum Stack — When Your Agent Architecture Is Invisible and Untestable](stacks/s1975-the-scaffold-spectrum-stack-when-your-agent-architecture-is-invisible-and-untestable.md)
+  - [S-1976 · The Tool Catalog Stack — When Your Agent Has 30 Tools and Can't Decide Which One to Use](stacks/s1976-the-tool-catalog-stack-when-your-agent-has-30-tools-and-cant-decide-which-one-to-use.md)
+  - [S-1978 · The Benchmark Faith Stack — When Your Agent Scores 80% on SWE-bench and Fails in Production](stacks/s1978-the-benchmark-faith-stack-when-your-agent-scores-80-on-swe-bench-and-fails-in-production.md)
+  - [S-1979 · The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production](stacks/s1979-the-graveyard-stack-when-your-agent-pilot-dies-between-the-demo-and-production.md)
