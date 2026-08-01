@@ -3746,6 +3746,7 @@ belief-divergence → I-3117
 || I-3116 | The Token Budget Stack — When Your Architecture Burns More Than Your Model Costs | token-budget, cost-per-decision, context-engineering, architecture-cost, circuit-breaker, model-routing, context-snowball, tokenpilot, mightbot-2026, pickaxe-2026, arxiv-2603-07670, mlmastery-2026 | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-1981 | 2026-08-01 | 2026-08-01 |
 | I-3117 | The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers | capability-negotiation, skill-card, handoff-contract, A2A-negotiation, delegate-capability, context-completeness, gap-disclosure, delegation-semantics, agent-negotiation, abort-conditions, capability-disclosure, delegate-state, negotiation-deadlock, capability-inflation, split-brain, belief-divergence, zylos-2026, sudoall-2026, resomnium-2026, conceptualise-2026, comet-2026, a2a-v1, linux-foundation, 150-orgs, 22k-stars | 9 | 8 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1983 | 2026-08-01 | 2026-08-01 |
 | I-3118 | The Cron Success Stack — When Your Agent Finished But Nobody Received Anything | cron-success, delivery-confirmation, partial-run, delivery-gap, framework-status, self-reported-success, delivery-reconciliation, idempotency-key, delivery-queue, recovery-queue, side-effect-confirmation, lastDeliveryStatus, temporal-activity, run-status, delivery-token, partial-alert, announcement-step, timeout-mid-run, cron-silent-failure, pazi-2026, mlflow-2026 | 10 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1988 | 2026-08-01 | 2026-08-01 |
+| I-3119 | The MCP 2.0 Stateless Stack — When Your Session-Bound Protocol Breaks at Scale | mcp-2, mcp-stateless, mcp2, stateless-protocol, session-elimination, mcp-migration, mcp-session, mcp-headers, mcp-method, traceparent, mcp-scale, mcp-load-balancer, mcp-oauth, sep-2468, mcp-apps, mcp-tasks, mcp-extensions, modelcontextprotocol, aaif-2026, mcp-blog, 2026-07-28 | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-1992 | 2026-08-01 | 2026-08-01 |
 | I-3119 | The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them | genai-semconv, otel-genai, semantic-convention, gen-ai-attribute, ai-span, model-tracing, token-attribution, vendor-neutral-tracing, framework-interop-trace, genai-operation, opentelemetry-convention, span-attribute, cross-framework-trace, observability-standard, gheware-2026, rockb-2026, baeseokjae-2026 | 9 | 9 | 8 | 8 | 7 | **8.50** | WRITTEN — S-1990 | 2026-08-01 | 2026-08-01 |
 | I-3116
 scaffold-spectrum
@@ -3809,8 +3810,29 @@ partial-alert → I-3118
 announcement-step → I-3118
 timeout-mid-run → I-3118
 cron-silent-failure → I-3118
+mcp-2 → I-3119
+mcp-stateless → I-3119
+mcp2 → I-3119
+stateless-protocol → I-3119
+session-elimination → I-3119
+mcp-migration → I-3119
+mcp-session → I-3119
+mcp-headers → I-3119
+mcp-method → I-3119
+traceparent → I-3119
+mcp-scale → I-3119
+mcp-load-balancer → I-3119
+mcp-oauth → I-3119
+sep-2468 → I-3119
+mcp-apps → I-3119
+mcp-tasks → I-3119
+mcp-extensions → I-3119
+mcp-2026 → I-3119
+aaif-2026 → I-3119
 
 ## Recent Decisions
+
+- *2026-08-01* — **I-3119 → S-1992 — The MCP 2.0 Stateless Stack — Composite 9.25**: MCP 2026-07-28 spec (RC locked May 21, final released July 28) is the largest protocol revision since MCP launch. Eliminates session affinity: no more `Mcp-Session-Id`, no `initialize` handshake, no sticky sessions. Remote servers now run behind plain round-robin load balancers. Sources: MCP blog (modelcontextprotocol.io/posts/2026-07-28-release-candidate/), BOVO Digital (stateless enterprise analysis), luismori.dev (migration guide), byteiota (breaking changes), AAIF blog. Deduplication: no prior handbook entry covers MCP at all — zero coverage gap. Alternatives considered: (A) MCP 2.0 auth hardening — covered as SEP-2468 within the same entry, too narrow to standalone; (B) OpenTelemetry GenAI semantic conventions — covered by S-1990; (C) ASSERT eval harness — too narrow, already covered by S-1980. Pattern: **protocol-version boundary** — when a widely-deployed protocol ships a breaking change, production teams must migrate within a bounded window or face silent incompatibility.
 
 - *2026-08-01* — **I-3117 → S-1983 — The Capability Negotiation Stack — Composite 8.85**: Tracker saturated (all 3116 prior ideas WRITTEN or DUPLICATE). Fresh research: Zylos Research (May 16, 2026) — A2A v1.0 protocol, 150+ orgs (AWS, Microsoft, Salesforce, SAP, IBM, ServiceNow), 22K+ GitHub stars, Linux Foundation stewardship; SudoAll (Jun 24, 2026) — multi-agent coordination failure modes, 15x token multiplier from blind delegation, orchestrator-worker trust boundary; Resomnium (2026) — coordination breakdown pattern: same-info-needed → different-conclusions → concurrent-action → downstream-conflict → silent-corruption; Conceptualise (May 31, 2026) — composite reliability (5 agents × 95% = 77% end-to-end; 10 agents = 60%; 20 agents = 36%), silent failures returning confident plausible wrong answers. Six candidates: (A) Capability Negotiation — A2A negotiation failure modes, skill cards, handoff contracts, distinct from S-1040 (protocol intro) and S-1042 (protocol taxonomy) — SELECTED. (B) Split-Brain Stack — partially covered by S-1067 (hallucination laundry), S-1157 (cascading failures), S-1034 (role fences). (C) Synthetic Eval Data — covered by r15 (fine-tuning) and S-1010 (eval stack). (D) A2A Protocol Deep-Dive — S-1040/S-1042 already cover MCP+A2A basics; v1.0 details are incremental. (E) Model Collapse — covered by s1028 (synthetic trajectory degeneration). (F) Concurrent-Conflict Resolution — S-1034/S-1067 partially cover; not novel enough.
 - *2026-08-01* — **I-3116 → S-1981 — The Token Budget Stack — Composite 8.60**: Tracker saturated (all prior ideas WRITTEN or DUPLICATE). Fresh research: MightyBot.ai (Jul 2026) — same workload, 3 architectures, 4-20x cost spread ($1-20/decision); Pickaxe (Aug 2026) — 80% of cost overruns are architectural, not model pricing; TokenPilot/Zhejiang Univ. (Jun 2026) — O(n) vs O(n²) context growth, 87% cost reduction; arXiv:2603.07670 (2026) — 5 mechanism families for agent memory management; MLMastery (Jul 2026) — 5-7% of context budget consumed by tool definitions before user message arrives. Five candidates: (A) Token Budget — architectural cost levers, novel to handbook, distinct from S-02 (context budget basics) and S-1027 (loop/budget but not cost-per-decision architecture). (B) Token Budget (alternate framing) → same. (C) Memory Snowball → partially covered by S-1962 (compression fidelity), S-1977 (tool output integrity). (D) Tool Hallucination Escalation → partially covered by S-1976 (tool catalog). (E) Observability Attribution → partially covered by S-1005 (AI SRE). Chose A. Research sources: 3 web articles (MightyBot, Pickaxe, MLMastery), 1 arXiv paper (2603.07670), 1 arXiv paper (TokenPilot), orchestration research from thinking.inc/explainx.

@@ -900,3 +900,4 @@
   - [S-1986 · The Registry Poisoning Stack — When Your Agent Connects to a Server That Exists Only to Intercept It](stacks/s1986-the-registry-poisoning-stack-when-your-agent-connects-to-a-server-that-exists-only-to-intercept-it.md)
   - [S-1988 · The Cron Success Stack — When Your Agent Finishes But Nobody Received Anything](stacks/s1988-the-cron-success-stack-when-your-agent-finishes-but-nobody-received-anything.md)
   - [S-1990 · The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them](stacks/s1990-the-genai-semantic-convention-stack-when-your-agent-traces-are-in-the-right-format-but-nobody-elses-tool-can-read-them.md)
+  - [S-1992 · The MCP 2.0 Stateless Stack — When Your Session-Bound Protocol Breaks at Scale](stacks/s1992-the-mcp-2-stateless-stack-when-your-session-bound-protocol-breaks-at-scale.md)
