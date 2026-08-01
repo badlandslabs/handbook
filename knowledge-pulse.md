@@ -2599,8 +2599,19 @@ polarized-routing → I-3100
 commitment-rollback → I-3100
 downstream-regret → I-3100
 POSG → I-3100
+genai-semconv → I-3119
+otel-genai → I-3119
+semantic-convention → I-3119
+gen-ai-attribute → I-3119
+ai-span → I-3119
+model-tracing → I-3119
+token-attribution → I-3119
+vendor-neutral-tracing → I-3119
+framework-interop-trace → I-3119
 
 - *2026-08-01* — **Premature commitment in multi-agent peer routing**: arXiv:2607.11250 (Choi et al., July 2026) documents a structural failure: LLM agents lock onto the first viable peer and stop exploring, even when better alternatives exist. The failure is invisible to final-answer scoring — the trajectory looks coherent. arXiv:2606.22936 (Mehta, June 2026) shows hidden-state convergence predicts consistency but r=-0.35 with correctness: the most internally consistent agents are often most wrong. MACE (Multi-Agent Contextual Exploration) is the first structured fix — exploration budgets + epsilon-greedy probing + capability modeling. The counterintuitive finding: capable agents lock in faster because they're more confident, not more accurate.
+
+- *2026-08-01* — **GenAI semantic convention adoption**: OpenTelemetry's GenAI conventions (2025-2026 stable) enable vendor-neutral, cross-framework span attribution for model calls, token counts, and tool invocations. The counterintuitive finding: the standard exists, is stable, and almost no one uses it — proprietary SDK tracing is still the default even though it creates walled observability gardens. Key pattern: "format vs. convention" gap (correct structure without shared meaning). Supports: "observability-as-first-class-span" pattern, "token-cost-as-attribution" pattern.
 
 ## Pattern Log
 
@@ -3731,10 +3742,12 @@ belief-divergence → I-3117
 
 - *2026-08-01* — **I-3112 → S-1967 — The Skill Behavioral SBOM Stack — Composite 8.65**: Tracker saturated (all 3111 prior ideas WRITTEN or DUPLICATE). Fresh research: SkillFortify (arXiv:2603.00195, Feb 2026, Bhardwaj) — formal behavioral verification for agent skills, F1=96.95%, Precision=100%, 0% FPR, 540 skills across 13 attack types. Snyk ToxicSkills (Feb 2026) — 3,984 skills scanned, 36.82% flawed, 13.4% critical, 76+ confirmed malicious. CVE-2026-25253 (Jan 27, 2026) — first CVE for agentic AI system (CVSS 8.8), skill-level attack. OWASP AST10 v1.0 (2026) — A07 and A08 are undetectable without behavioral SBOM. Safeguard.sh (Jul 9, 2026) — unsigned skill artifacts repeat npm Shai-Hulud mistake. arXiv:2605.11770 (May 2026) — Behavioral Integrity Verification for AI Agent Skills. Deduplication: S-1960 covers AST10 overview but not behavioral SBOM + signing pipeline. S-1122/S-1462 cover the threat but not the defense framework. New angle: formal skill behavioral SBOM as the missing defense layer. Pattern: supply chain integrity for behavioral layer.
 
-| I-3115 | The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production | pilot-production, pilot-gap, demo-to-production, deployment-checklist, observability-infrastructure, multi-agent-coordination, production-noise-injection, pilot-mortality, deployment-readiness-ratio, enterprise-agentic, clean-data-problem, audit-trail-gap, failure-mode-registry, human-in-the-loop, handoff-contract, cost-bounding, eval-drift, SLO-breach, arxiv-pilot, Gartner-2026, McKinsey-2026, BCG-2026, Forrester-2026, cordum-checklist, futureAGI-eval, openempower-2026, presenc-ai-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | FRESH — S-1979 | 2026-08-01 | 2026-08-01 |
+| I-3115 | The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production | pilot-production, pilot-gap, demo-to-production, deployment-checklist, observability-infrastructure, multi-agent-coordination, production-noise-injection, pilot-mortality, deployment-readiness-ratio, enterprise-agentic, clean-data-problem, audit-trail-gap, failure-mode-registry, human-in-the-loop, handoff-contract, cost-bounding, eval-drift, SLO-breach, arxiv-pilot, Gartner-2026, McKinsey-2026, BCG-2026, Forrester-2026, cordum-checklist, futureAGI-eval, openempower-2026, presenc-ai-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-1979 | 2026-08-01 | 2026-08-01 |
 || I-3116 | The Token Budget Stack — When Your Architecture Burns More Than Your Model Costs | token-budget, cost-per-decision, context-engineering, architecture-cost, circuit-breaker, model-routing, context-snowball, tokenpilot, mightbot-2026, pickaxe-2026, arxiv-2603-07670, mlmastery-2026 | 8 | 9 | 9 | 9 | 8 | **8.60** | WRITTEN — S-1981 | 2026-08-01 | 2026-08-01 |
-|| I-3117 | The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers | capability-negotiation, skill-card, handoff-contract, A2A-negotiation, delegate-capability, context-completeness, gap-disclosure, delegation-semantics, agent-negotiation, abort-conditions, capability-disclosure, delegate-state, negotiation-deadlock, capability-inflation, split-brain, belief-divergence, zylos-2026, sudoall-2026, resomnium-2026, conceptualise-2026, comet-2026, a2a-v1, linux-foundation, 150-orgs, 22k-stars | 9 | 8 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1983 | 2026-08-01 | 2026-08-01 |
-
+| I-3117 | The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers | capability-negotiation, skill-card, handoff-contract, A2A-negotiation, delegate-capability, context-completeness, gap-disclosure, delegation-semantics, agent-negotiation, abort-conditions, capability-disclosure, delegate-state, negotiation-deadlock, capability-inflation, split-brain, belief-divergence, zylos-2026, sudoall-2026, resomnium-2026, conceptualise-2026, comet-2026, a2a-v1, linux-foundation, 150-orgs, 22k-stars | 9 | 8 | 9 | 9 | 7 | **8.85** | WRITTEN — S-1983 | 2026-08-01 | 2026-08-01 |
+| I-3118 | The Cron Success Stack — When Your Agent Finished But Nobody Received Anything | cron-success, delivery-confirmation, partial-run, delivery-gap, framework-status, self-reported-success, delivery-reconciliation, idempotency-key, delivery-queue, recovery-queue, side-effect-confirmation, lastDeliveryStatus, temporal-activity, run-status, delivery-token, partial-alert, announcement-step, timeout-mid-run, cron-silent-failure, pazi-2026, mlflow-2026 | 10 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1988 | 2026-08-01 | 2026-08-01 |
+| I-3119 | The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them | genai-semconv, otel-genai, semantic-convention, gen-ai-attribute, ai-span, model-tracing, token-attribution, vendor-neutral-tracing, framework-interop-trace, genai-operation, opentelemetry-convention, span-attribute, cross-framework-trace, observability-standard, gheware-2026, rockb-2026, baeseokjae-2026 | 9 | 9 | 8 | 8 | 7 | **8.50** | WRITTEN — S-1990 | 2026-08-01 | 2026-08-01 |
+| I-3116
 scaffold-spectrum
 scaffold-taxonomy → I-3114
 12-dimensions → I-3114
@@ -3779,6 +3792,23 @@ failure-mode-registry → I-3115
 handoff-contract → I-3115
 eval-drift → I-3115
 SLO-breach → I-3115
+cron-success → I-3118
+delivery-confirmation → I-3118
+partial-run → I-3118
+delivery-gap → I-3118
+framework-status → I-3118
+self-reported-success → I-3118
+delivery-reconciliation → I-3118
+idempotency-key → I-3118
+delivery-queue → I-3118
+recovery-queue → I-3118
+side-effect-confirmation → I-3118
+lastDeliveryStatus → I-3118
+delivery-token → I-3118
+partial-alert → I-3118
+announcement-step → I-3118
+timeout-mid-run → I-3118
+cron-silent-failure → I-3118
 
 ## Recent Decisions
 
@@ -3789,3 +3819,5 @@ SLO-breach → I-3115
 - *2026-08-01* — **I-3114 → S-1975 — The Scaffold Spectrum Stack — Composite 8.90**: Tracker saturated (all 3113 prior ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2604.03515v1 (Rombaut, Huawei Canada, Apr 2026) — first source-code-level architectural taxonomy of 13 open-source coding agent scaffolds across 12 dimensions organized into 3 layers. arXiv:2511.22729 (IBM Research Brazil, Nov 2025) — pointer-based memory architecture for context overflow. AlphaEval cited scaffold gap of 11–15 point performance spread across scaffolds on the same model. Five candidate ideas evaluated: (A) Scaffold Spectrum — 12-dimension taxonomy from peer-reviewed source code analysis, novel to handbook, high specificity, directly actionable (scaffold audit protocol), distinct from S-1027 (loop detection), S-1336 (scaffold as model lever), S-1962 (compression fidelity). (B) Multi-Agent Deliberation/Consensus — partially covered by S-05 (multi-agent patterns), S-1113 (orchestration battlefield), no dedicated consensus architecture entry but too overlapping with existing MAS coverage. (C) Memory Pointer Architecture — arXiv:2511.22729 is solid but the technique is niche (large tool outputs in specific domains), lower timeliness than scaffold taxonomy. (D) Utility-Guided Orchestration — arXiv:2603.19896 is good but narrower (tool use efficiency only), less gap than scaffold spectrum. (E) Synthetic Training Data via Agentic Data Scientist — covered by S-1236 (rubric-gated pipeline), S-1037 (eval gap). Chose A: highest composite score, most novel coverage gap, peer-reviewed with reproducible methodology, directly actionable.
 
 - *2026-08-01* — **I-3115 → S-1979 — The Graveyard Stack — Composite 8.90**: Tracker saturated (all prior ideas WRITTEN or DUPLICATE). Fresh research: Presenc AI (May 2026) — pilot mortality rate, failure-mode decomposition (memory, tool error, hallucinated state, timeout). Gartner (2026) — 40% enterprise apps embed agents, >40% at risk of cancellation by 2027. S&P Global / McKinsey (2026) — 80% piloting, only 31% running in production. BCG / Forrester — 5.1-month median time-to-value. Paul Okhrem (Jul 2026) — 171% ROI on agents that reach production. Cordum (2026) — 20-control deployment checklist with hard/soft gates. Future AGI (2026) — 6 eval drift modes aging eval sets. Open Empower (Jun 2026) — production failure patterns: runaway loops, tool misuse, context exhaustion, hallucinated actions, cost explosions. LinesNCircles (2026) — 5-phase pilot-to-production deployment model. Pilot gaps: (1) clean-data assumption, (2) trust-without-proof, (3) capability vs resilience, (4) output vs outcome metrics, (5) coordination failures invisible in single-agent pilots. Novel angle: Deployment Readiness Ratio (DRR) as ship/no-ship gate. Explicit handoff contracts for multi-agent coordination. Production noise injection as first-class pilot engineering. Distinct from S-1978 (benchmark gap), S-1974 (confident failure), S-1976 (tool catalog). Composite 8.90.
+
+- *2026-08-01* — **I-3119 → S-1990 — The GenAI Semantic Convention Stack — Composite 8.50**: Tracker re-saturated after I-3118. Fresh research: Gheware (Apr 24, 2026) — OTel GenAI semconv 2026 stable, vendor-neutral standard; RockB (May 19, 2026) — GenAI semantic conventions from local Jaeger to production Grafana Cloud; Baeseokjae (2026) — GenAI span attributes for model names, token counts, tool invocations; Nango, PaxRel — agent observability patterns. Five candidates: (A) GenAI SemConv — OTel conventions for agent spans, enables cross-framework correlation and cost dashboards; (B) Agent Production Failures taxonomy — Gravity Fast (Jun 13, 2026) 7 failure classes, covered by S-990, S-1974, S-1978; (C) SWE-bench Pro gap — tianpan.co (Apr 9, 2026) benchmark saturation vs real capability, covered by S-1386, S-1978; (D) Prompt Injection Defense-in-Depth — covered by S-990; (E) Multi-Agent Composite Reliability — silent failure compounding, implied by S-1974. Chose A: highest coverage gap (zero entries address GenAI semconv specifically), most concrete with runnable Python, enables cross-framework observability, supports most existing entries (S-1019, S-1032, S-1064, S-1936).

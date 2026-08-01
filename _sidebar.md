@@ -897,3 +897,6 @@
   - [S-1978 · The Benchmark Faith Stack — When Your Agent Scores 80% on SWE-bench and Fails in Production](stacks/s1978-the-benchmark-faith-stack-when-your-agent-scores-80-on-swe-bench-and-fails-in-production.md)
   - [S-1979 · The Graveyard Stack — When Your Agent Pilot Dies Between the Demo and Production](stacks/s1979-the-graveyard-stack-when-your-agent-pilot-dies-between-the-demo-and-production.md)
   - [S-1983 · The Capability Negotiation Stack — When Your Agent Delegates Blindly and Crosses Its Fingers](stacks/s1983-the-capability-negotiation-stack-when-your-agent-delegates-blindly-and-crosses-its-fingers.md)
+  - [S-1986 · The Registry Poisoning Stack — When Your Agent Connects to a Server That Exists Only to Intercept It](stacks/s1986-the-registry-poisoning-stack-when-your-agent-connects-to-a-server-that-exists-only-to-intercept-it.md)
+  - [S-1988 · The Cron Success Stack — When Your Agent Finishes But Nobody Received Anything](stacks/s1988-the-cron-success-stack-when-your-agent-finishes-but-nobody-received-anything.md)
+  - [S-1990 · The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them](stacks/s1990-the-genai-semantic-convention-stack-when-your-agent-traces-are-in-the-right-format-but-nobody-elses-tool-can-read-them.md)
