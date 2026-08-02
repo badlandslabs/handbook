@@ -3806,11 +3806,14 @@ belief-divergence → I-3117
 | I-3121 | The AI Runtime Infrastructure Stack — When Your Agent Framework Runs But Your Agent Still Fails in Ways Nobody Planned For | ai-runtime-infrastructure, runtime-intervention, execution-layer, checkpoint-resume, runtime-policy, runtime-rollback, sandbox-runtime, harness-layer, execution-time-optimization, dapr-agents, agent-substrate, gemini-agent-runtime, inline-enforcement, episodic-checkpoint, background-monitor, span-injection, state-rollback, arxiv-2603.00495, cncf-dapr, augmentcode, agentnative | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1996 | 2026-08-02 | 2026-08-02 |
 | I-3122 | The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew | nhi-aggregation, credential-convergence, aggregate-attack-surface, multi-nhi-context, nhi-sprawl, credential-context-window, nhi-portfolio, non-human-identity, owasp-nhi-top10, credential-isolation, ephemeral-nhi, blast-radius-aggregation, nhi-governance, context-credential-guard, memory-credential-block, credential-per-task, session-nhi, credential-partition, github-token, database-credential, mcp-credential, iam-credential, slack-webhook, oauth-token, hardcoded-credential, credential-broker, zylos-2026, gitguardian-2026, gravitee-2026, csa-nhi, langgrinch-cve, owasp-nhi | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1999 | 2026-08-02 | 2026-08-02 |
 | I-3124 | The Agentic Memory Dial Stack — When Your Agent Becomes a Memory Hoarder and a Slime Mold Teaches It to Let Go | agentic-memory-dial, active-context-compression, autonomous-memory-management, context-bloat, sawtooth-context, focus-agent, physarum-polycephalum, slime-mold, agent-controlled-compression, self-initiated-pruning, knowledge-block, history-pruning, context-poisoning, lost-in-the-middle, append-only-failure, arxiv-2601.07190, verma-2026, autonomous-compression, memory-hoarding, token-reduction, context-compression | 9 | 9 | 9 | 9 | 8 | **8.75** | WRITTEN — S-2005 | 2026-08-02 | 2026-08-02 |
+| I-3133 | The Infra Blast-Radius Stack — When Your AI Agent Deleted Your Production Database in 9 Seconds | blast-radius, credential-scoping, destructive-action-gate, environment-isolation, infra-blast-radius, infra-fail, OWASP-ASI03, production-wipe, backup-co-location, least-privilege-tool-scope, credential-tiering, infra-isolation, production-database-delete, action-receipt, audit-trail, pocketos, replit | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-2046 | 2026-08-02 | 2026-08-02 |
 | I-3125 | The Token Spiral Stack — When Your Agent Isn't Broken, It's Just Expensive | token-spiral, semantic-convergence, cost-velocity, context-acceleration, spiral-detection, green-dashboard, runaway-agent, token-circuit-breaker, cost-attribution, convergence-check, semantic-loop, goal-progress, output-novelty, context-growth-rate, trustgate-2026, n1n-2026, openlegion-2026, velocity-2026, arxiv-2511.22729 | 10 | 9 | 10 | 9 | 9 | **9.45** | WRITTEN — S-2009 | 2026-08-02 | 2026-08-02 |
 
 || I-3126 | The A2A Implementation Stack — When Your Agent Can Call Tools But Not Talk to Peer Agents | A2A, agent-protocol, inter-agent, AgentCard, task-handoff, push-notifications, streaming, MCP+A2A, JWT-auth, multi-agent | 7 | 8 | 8 | 9 | 8 | **7.65** | WRITTEN — S-2014 | 2026-08-02 | 2026-08-02 |
 ||| I-3127 | The Indirect Injection Containment Stack — When Your RAG Pipeline Becomes Your Attack Vector | indirect-injection, prompt-injection, OWASP-LLM01, RAG-poisoning, trust-classification, provenance-gate, content-sanitization, defense-in-depth, injection-defense, tool-output-sanitization, least-privilege-tool-scope, context-contamination, agentic-security, OWASP-agentic-top10, LLM01-2026, context-window-injection, multi-agent-injection | 10 | 9 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2017 | 2026-08-02 | 2026-08-02 |
 ||| I-3129 | The Premature Commitment Stack — When Your Agent Locks In Too Early and Cannot Hear Better Options | premature-commitment, peer-routing, multi-agent-exploration, MACE, hidden-state-convergence, representational-commitment, exploration-budget, epsilon-greedy, myopic-routing, confident-wrong, arxiv-2607.11250, arxiv-2606.22936, peer-selection, capability-modeling | 9 | 10 | 9 | 10 | 9 | **8.80** | WRITTEN — S-2023 | 2026-08-02 | 2026-08-02 |
+| I-3130 | The Agentic Ransomware Stack — When Your Agent Becomes Your Worst Security Threat | agentic-ransomware, JADEPUFFER, autonomous-attack, AI-agent-attacker, langflow-cve, CVE-2025-3248, compound-failure-chain, machine-behavior-signature, A2AS, runtime-security, behavior-certificate, authenticated-prompt, NHI-governance, agentic-supply-chain, 8k-exposed-MCP, Glasswing-project, BlackHat-2026, ASI10, rogue-agent, self-documenting-code, 34pct-no-AI-security, 79pct-agentic-adoption, 48pct-top-attack-vector, sysdig-2026, csa-2026, owasp-ASI, owasp-agentic-top10, A2AS-framework, IBM-runtime-security, Bessemer-AI-security | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-2029 | 2026-08-02 | 2026-08-02 |
+| I-3131 | The Silent Delegation Failure Stack — When Your Orchestrator Receives "Task Completed" But the Worker Silently Failed | silent-delegation, delegation-failure, A2A, MCP, execution-receipt, completion-signal, trust-boundary, delegation-protocol, DRP, callback-receipt, idempotency-key, tool-call-witness, plausible-completed, inverse-security, worker-fabrication, orchestrator-trust, multi-agent, capability-mismatch, permission-denied, status-vs-proof | 10 | 9 | 10 | 10 | 8 | **9.40** | WRITTEN — S-2038 | 2026-08-02 | 2026-08-02 |
 12-dimensions → I-3114
 three-layers → I-3114
 loop-primitive → I-3114
@@ -3985,15 +3988,59 @@ gitguardian-shadow-credential → I-3128
 csa-nhi-report → I-3128
 54pct-shadow-agents → I-3128
 capability-verification → I-3128
-
+jadepuffer → I-3130
+JADEPUFFER → I-3130
+agentic-ransomware → I-3130
+autonomous-attack → I-3130
+AI-agent-attacker → I-3130
+langflow-cve → I-3130
+CVE-2025-3248 → I-3130
+compound-failure-chain → I-3130
+machine-behavior-signature → I-3130
+self-documenting-code → I-3130
+A2AS → I-3130
+behavior-certificate → I-3130
+authenticated-prompt → I-3130
+runtime-security → I-3130
+NHI-governance → I-3130
+agentic-supply-chain → I-3130
+Glasswing-project → I-3130
+8k-exposed-MCP → I-3130
+BlackHat-2026 → I-3130
+ASI10 → I-3130
+rogue-agent → I-3130
+A2AS-framework → I-3130
+IBM-runtime-security → I-3130
+Bessemer-AI-security → I-3130
+silent-delegation → I-3131
+delegation-failure → I-3131
+execution-receipt → I-3131
+completion-signal → I-3131
+trust-boundary → I-3131
+delegation-protocol → I-3131
+DRP → I-3131
+callback-receipt → I-3131
+idempotency-key → I-3131
+tool-call-witness → I-3131
+plausible-completed → I-3131
+inverse-security → I-3131
+worker-fabrication → I-3131
+orchestrator-trust → I-3131
+capability-mismatch → I-3131
+permission-denied → I-3131
+status-vs-proof → I-3131
 
 - *2026-08-02* — **Agent isolation as a dial, not a binary**: The research consensus across Turion.ai (May 2026), Tian Pan (March 2026), Zylos Research (April 2026), and Agent Native (July 2026) converges on a 5-level isolation spectrum from "no sandbox" to "hardware virtualization." Docker/runc (Level 1) is the de facto default but increasingly recognized as insufficient for untrusted code. gVisor and Firecracker are the two dominant production-grade upgrades. S-298 covered sandboxing as a concept; this run's contribution is the comparative decision framework with boot time, overhead, and threat model mapped to each level.
 
 - *2026-08-02* — **I-3129 → S-2023 — The Premature Commitment Stack — Composite 8.80**: Tracker saturated. Fresh research from two July 2026 papers: arXiv:2607.11250 (MACE, UW-Madison/UCSB) documents structural peer-routing failure where Qwen2.5-7B/GPT-4/GPT-5 lock onto first viable peer after 2-3 observations and persist even when inferior; arXiv:2606.22936 (Mehta, Snowflake AI Research) shows hidden-state convergence at step 4 inversely predicts correctness (r=-0.35). Deduplication: zero handbook coverage for hidden-state convergence as early-warning diagnostic; zero coverage for MACE or exploration-budget routing. Cross-links: S-1063 (multi-agent orchestration) covers coordination overhead but not peer-routing failure mechanics; S-32 (verifiability divider) is invoked as the reason final-answer scoring misses this failure mode.
 
+- *2026-08-02* — **I-3131 → S-2038 — The Silent Delegation Failure Stack — Composite 9.40**: Fresh research: Zylos Research (March 2026) — A2A/MCP protocol analysis confirms silent delegation failure as the dominant multi-agent production failure mode; FutureAGI (2026) — "dominant failure mode in 2026 multi-agent stacks is silent delegation failure. A planner agent sends a task, receives a plausible 'completed' but the billing agent never hit the email API."; codeforge.io — $40k outage from A2A timeout/deadletter issue; glukhov.org (April 2026) — "Security is the biggest unresolved question" for A2A; SyncSoft AI (2026) — "15x more tokens, yet most failures start at the agent handoff." Six candidates evaluated: (A) Silent Delegation Failure (this) — identified as the #1 multi-agent production failure mode with zero handbook coverage. DRP pattern (execution receipt + callback + tool-call coverage check) is the consensus fix. (B) ReliabilityBench/pass@k — partially covered by S-1007 (tool-call hallucination plateau). (C) ACP commerce protocol — too narrow, too beta. (D) NHI agent vault — covered by S-992, S-2013. (E) Capability negotiation — covered by S-1983, S-810, S-1040. (F) Synthetic eval harness — partially covered by S-1980. Pattern: **delegation receipt gap** — the output boundary between two agents is the exact location where trust breaks down, because protocols deliver status signals without execution witnesses.
+
 - *2026-08-02* — **Agentic memory as an active dial, not a passive store**: The shift from passive summarization (external, decoupled from agent intent) to active context compression (agent-controlled, intent-aligned) is the memory management equivalent of the isolation dial. Verma (arXiv:2601.07190, Jan 2026) proves the concept with the Focus agent — 22.7% token reduction, identical accuracy, up to 57% on exploration-heavy tasks. The sawtooth context pattern (accumulate → compress → accumulate) replaces monotonic growth. The Physarum polycephalum biological analogy (explore, consolidate, prune) gives practitioners a concrete mental model. Cross-links: S-854 (token spiral cost compounding from unchecked growth), S-945 (external summarization as alternative), S-2003 (session persistence vs. within-session compression).
 
 ## Recent Decisions
+
+- *2026-08-02* — **I-3129 → S-2027 — The Model Customization Decision Stack — Composite 8.85**: Fresh research: Aisd.io "RAG vs Fine-Tuning vs Agents" (May 2026); Aininza.com decision matrix (2026); n1n.ai decision guide (April 2026); Skycrumbs comparison (May 2026); baeseokjae context window comparison (2026); spheron.network "Agentic AI Inference Cost" (2026); Stanford AI Index 2026; Rajpoot.dev decision guide (2026). Five candidates evaluated: (A) Model Customization Decision Stack (this) — the RAG/Fine-Tuning/Prompting decision framework is the #1 most common architectural question in 2026, nowhere covered as a standalone entry, connects to S-07, S-194, S-295, S-02, S-99, S-1311. High specificity (decision matrix + 4 override signals), timely (every team faces this now). (B) Agent Observability via OTel GenAI — partially covered by S-196, S-997, S-1005. (C) Per-Tool Circuit Breakers — covered by S-1066, S-1311, S-988. (D) Fine-tuning vs RAG deep-dive — already exists as partial entries. (E) MCP + A2A integration — covered by S-197, S-14, S-10. Chose A: highest coverage gap, most actionable for practitioners, not duplicating any existing entry.
 
 - *2026-08-02* — **I-3123 → S-2004 — The Agent Isolation Stack — Composite 9.30**: Fresh research: Turion.ai "Agent Sandboxing: Firecracker, gVisor & Production Isolation" (May 22, 2026); Tian Pan "Agent Sandboxing and Secure Code Execution" (March 9, 2026); Zylos Research "AI Agent Sandboxing and Security Isolation" (April 4, 2026); Agent Native comparison "Firecracker vs gVisor vs Containers for Agent Sandboxing" (July 26, 2026); Johal.in benchmark "gVisor 1.0 vs Kata Containers 3.0 vs Firecracker 1.5" (April 28, 2026); Microsoft Security on MCP remote code execution (May 7, 2026); Veracode SoSS 2025. Five candidates evaluated: (A) Agent Isolation Stack (this) — the isolation technology decision framework not covered elsewhere, high timeliness (multiple 2026 sources), fills gap between S-298 (sandboxing concept) and actual technology choices. (B) Agent Grounding/Citation verification — covered by I-247 (confidence calibration) and S-1261; S-378 (entity grounding); CiteGuard (ACL 2026) is new but citation verification is sub-case of grounding already covered. (C) Multi-agent sycophancy/cascade — covered by I-144 (agent drift), I-176 (semantic intent divergence). (D) Production RAG failure taxonomy — covered by I-147 (agentic RAG control), S-1894 (evidence desert). (E) Agent skill behavioral SBOM — covered by I-3112 (S-1967). Chose A: highest timeliness (5 fresh 2026 sources), most distinct gap (technology comparison absent from all prior entries), most actionable (engineers need the decision framework, not another concept chapter). Deduplication confirmed: I-250 covers file-write sandbox escapes (distinct attack surface); I-082 covers framework RCE CVEs; neither covers isolation technology comparison and graded rollout.
 
@@ -4019,3 +4066,39 @@ capability-verification → I-3128
 
 - *2026-08-01* — **I-3119 → S-1990 — The GenAI Semantic Convention Stack — Composite 8.50**: Tracker re-saturated after I-3118. Fresh research: Gheware (Apr 24, 2026) — OTel GenAI semconv 2026 stable, vendor-neutral standard; RockB (May 19, 2026) — GenAI semantic conventions from local Jaeger to production Grafana Cloud; Baeseokjae (2026) — GenAI span attributes for model names, token counts, tool invocations; Nango, PaxRel — agent observability patterns. Five candidates: (A) GenAI SemConv — OTel conventions for agent spans, enables cross-framework correlation and cost dashboards; (B) Agent Production Failures taxonomy — Gravity Fast (Jun 13, 2026) 7 failure classes, covered by S-990, S-1974, S-1978; (C) SWE-bench Pro gap — tianpan.co (Apr 9, 2026) benchmark saturation vs real capability, covered by S-1386, S-1978; (D) Prompt Injection Defense-in-Depth — covered by S-990; (E) Multi-Agent Composite Reliability — silent failure compounding, implied by S-1974. Chose A: highest coverage gap (zero entries address GenAI semconv specifically), most concrete with runnable Python, enables cross-framework observability, supports most existing entries (S-1019, S-1032, S-1064, S-1936).
 - *2026-08-02* — **I-3126 → S-2014 — The A2A Implementation Stack — Composite 7.65**: All 3125 prior ideas WRITTEN or DUPLICATE. Fresh research: A2A v1.0 (Linux Foundation, May 2026) now stable with 150+ orgs. NiteAgent (Jun 2026): MCP for tools (vertical), A2A for agents (horizontal) — complementary layers. FutureAGI A2A glossary: AgentCard discovery, task push notifications, streaming, context handoff. AgentPatterns.ai (Jun 2026): A2A Protocol adopted. Gap: S-1040 covers MCP vs A2A concept; S-1042 covers full protocol landscape; neither covers production implementation mechanics (AgentCard schema, streaming/async delivery, JWT cross-org auth, MCP+A2A composition). This entry covers all six implementation patterns with working code.
+
+| I-3132 | The Layer-Isolated Eval Stack — When Your Agent Regressed But Your Pass Rate Didn't | layer-isolated-eval, deterministic-scaffold, no-llm-test, regression-lock, pure-mode, per-slice-assertion, eval-layer-taxonomy, masking-effect, aggregate-score-gap, ci-gating, arxiv-2606.11686, zhang-wang-lei, lumivate, scaffold-decomposition, intent-classification, safety-layer-test, routing-layer-test, memory-layer-test, escalation-layer-test, envelope-test, trajectory-quality, llm-judge-noise | 9 | 10 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2044 | 2026-08-02 | 2026-08-02 |
+
+## Pattern Log
+
+- *2026-08-02* — **Deterministic scaffold decomposition**: The layer-isolated eval pattern (arXiv:2606.11686, Zhang/Wang/Lei, Lumivate, June 2026) reframes agent evaluation as testing a code scaffold — not just an LLM. Eight architectural layers (ontology, intent, routing, decomposition, escalation, safety, memory, envelope) are each assertion-tested in no-LLM "pure mode," enabling hard CI gates. The masking effect — where aggregate scores hide layer-level regressions — is resolved by per-slice baseline locking. Novel: no prior entry covers deterministic scaffold testing with per-layer regression locking. Cross-links: S-812 (trajectory vs. endpoint eval — layer eval extends this), S-996 (harness matters more — scaffold testing is the harness testing), S-1045 (agent debugging — layer regression is what debugging needs to find).
+
+## Recent Decisions
+
+- *2026-08-02* — **I-3133 → S-2046 — The Infra Blast-Radius Stack — Composite 9.60**: Tracker saturated (all 3132 prior ideas WRITTEN or DUPLICATE). Fresh research: Infraveil analysis of PocketOS incident (Apr 25 2026 — Cursor + Claude on Railway, DB + backups wiped in ~9 seconds), Mondoo 5-lessons post-mortem, OWASP ASI Top 10 for Agentic Applications (Jun 2026), BeyondScale blast-radius containment guide (May 2026), AgenticWork credential isolation patterns, GitHub/LaureanoPacheco ai-agent-incidents community repo. Five documented incidents (Replit Jul 2025, PocketOS Apr 2026) all follow same structural path: credentials → plan → no gate → backups in blast radius. OWASP ASI03 explicitly maps to "Excessive Authority / over-privileged permissions." Core insight: this is an infrastructure problem, not a prompt problem. The agent did exactly what it was designed to do — the failure is that the infrastructure gave it the credentials to destroy production and the backups simultaneously. No existing entry covers this exact pattern. Deduplication: S-1458 (policy kernel / ASI enforcement) covers policy-layer enforcement but not infra-layer blast-radius partitioning or credential scoping by action class. S-2045 (failure boundary / cost containment) covers retry loops and cost runaway but not destructive-action gates or backup co-location. S-355 (autonomy levels) covers escalation gates but not environment isolation or credential tiering. This is the missing infra layer. Five-layer stack: credential scoping by action class, destructive-action gate (human approval), environment isolation enforcement (separate accounts/projects), blast-radius partitioning (air-gapped backups), action receipt audit trail. Composite 9.60 (Urgency 10, Gap 10, Specificity 9, Timeliness 10, Density 9). Next candidate space: multi-agent capability negotiation, autonomous agent self-improvement, EU AI Act operational compliance.
+
+- *2026-08-02* — **I-3132 → S-2044 — The Layer-Isolated Eval Stack — Composite 9.10**: Tracker saturated (all 3131 prior ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2606.11686 (Zhang/Wang/Lei, Lumivate, June 2026) — first paper to decompose a production LLM agent into a fixed layer taxonomy tested deterministically in no-LLM "pure mode" with regression-locked baselines enabling hard CI gates. Core insight: the deterministic scaffold (routing, intent, safety, escalation, memory, envelope) is code — test it like code. The LLM-as-judge introduces sampling noise that prevents hard gating; pure-mode tests eliminate variance. Five candidates: (A) Layer-isolated eval — chosen, composite 9.10, highest specificity + timeliness, novel to handbook, directly actionable; (B) OWASP MCP Top 10 threats — partial coverage in S-968, S-990, too narrow to standalone; (C) Token optimization latency-cost tradeoffs — covered by S-103 (cost-aware context), S-1869 (difficulty routing); (D) Agent sandboxing 5-level spectrum — partially covered in F-110, S-1108, already partially distilled in tracker; (E) Causal tracing observability — covered by S-1019, S-1045. Pattern: **regression localization** — when the aggregate number tells you "something broke" but not where, decompose the scaffold and test each layer independently.
+
+## Deduplication Index
+
+layer-isolated-eval → I-3132
+pure-mode-assertion → I-3132
+regression-lock → I-3132
+scaffold-decomposition → I-3132
+no-llm-test → I-3132
+eval-layer-taxonomy → I-3132
+masking-effect → I-3132
+aggregate-score-gap → I-3132
+ci-gating → I-3132
+blast-radius → I-3133
+credential-scoping → I-3133
+destructive-action-gate → I-3133
+infra-blast-radius → I-3133
+OWASP-ASI03 → I-3133
+production-wipe → I-3133
+backup-co-location → I-3133
+least-privilege-tool-scope → I-3133
+pocketos → I-3133
+replit → I-3133
+action-receipt → I-3133
+infra-isolation → I-3133
