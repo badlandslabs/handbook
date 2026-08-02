@@ -905,3 +905,5 @@
   - [S-1994 · The Agent GitOps Stack — When Your Agent Configuration Is a Repo and Your Deployment Is a Pull Request](stacks/s1994-the-agent-gitops-stack-when-your-agent-configuration-is-a-repo-and-your-deployment-is-a-pull-request.md)
   - [S-1996 · The AI Runtime Infrastructure Stack — When Your Agent Framework Runs But Your Agent Still Fails](stacks/s1996-the-ai-runtime-infrastructure-stack-when-your-agent-framework-runs-but-your-agent-still-fails.md)
   - [S-1999 · The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew](stacks/s1999-the-nhi-aggregation-stack-when-one-agent-holds-ten-identities-and-your-rbac-never-knew.md)
+  - [S-2002 · The Agent Artifact Corpus Stack — When Your Agent Creates a Hundred Files and Can't Find Any of Them](stacks/s2002-the-agent-artifact-corpus-stack-when-your-agent-creates-a-hundred-files-and-cant-find-any-of-them.md)
+  - [S-2004 · The Agent Isolation Stack — When Docker Is Not Enough for AI-Generated Code](stacks/s2004-the-agent-isolation-stack-when-docker-is-not-enough-for-ai-generated-code.md)

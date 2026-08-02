@@ -3763,6 +3763,7 @@ belief-divergence → I-3117
 | I-3120 | The Agent GitOps Stack — When Your Agent Configuration Is a Repo and Your Deployment Is a Pull Request | agent-gitops, gitops-agent, declarative-agent, agent-config-as-code, agent-manifest, agent-crd, agent-reconciliation, fleet-config-git, prompt-gitops, agent-drift-detection, fleet-reconciliation, agent-cd, agent-operator, content-addressable-prompt, prompt-hash, agent-canary, kubeagentic, kars, agentops | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1994 | 2026-08-02 | 2026-08-02 |
 | I-3121 | The AI Runtime Infrastructure Stack — When Your Agent Framework Runs But Your Agent Still Fails in Ways Nobody Planned For | ai-runtime-infrastructure, runtime-intervention, execution-layer, checkpoint-resume, runtime-policy, runtime-rollback, sandbox-runtime, harness-layer, execution-time-optimization, dapr-agents, agent-substrate, gemini-agent-runtime, inline-enforcement, episodic-checkpoint, background-monitor, span-injection, state-rollback, arxiv-2603.00495, cncf-dapr, augmentcode, agentnative | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1996 | 2026-08-02 | 2026-08-02 |
 | I-3122 | The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew | nhi-aggregation, credential-convergence, aggregate-attack-surface, multi-nhi-context, nhi-sprawl, credential-context-window, nhi-portfolio, non-human-identity, owasp-nhi-top10, credential-isolation, ephemeral-nhi, blast-radius-aggregation, nhi-governance, context-credential-guard, memory-credential-block, credential-per-task, session-nhi, credential-partition, github-token, database-credential, mcp-credential, iam-credential, slack-webhook, oauth-token, hardcoded-credential, credential-broker, zylos-2026, gitguardian-2026, gravitee-2026, csa-nhi, langgrinch-cve, owasp-nhi | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1999 | 2026-08-02 | 2026-08-02 |
+| I-3123 | The Agent Isolation Stack — When Docker Is Not Enough for AI-Generated Code | isolation-stack, docker-insufficient, kernel-boundary, firecracker, gvisor, kata-containers, microvm, userspace-kernel, seccomp-bpf, sandbox-spectrum, container-escape, runsc, firecracker-microvm, isolation-level, code-execution-isolation, wasm-isolation, shared-kernel, hardward-virtualization, agent-sandbox, sandbox-tier, isolation-dial, turion-ai, tianpan-2026, zylos-2026, agentnative-2026, johal-2026, microsoft-mcp-rce, veracode-2025 | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-2004 | 2026-08-02 | 2026-08-02 |
 scaffold-spectrum
 scaffold-spectrum
 scaffold-taxonomy → I-3114
@@ -3863,6 +3864,36 @@ nhi-governance → I-3122
 context-credential-guard → I-3122
 memory-credential-block → I-3122
 credential-per-task → I-3122
+
+isolation-stack → I-3123
+docker-insufficient → I-3123
+kernel-boundary → I-3123
+firecracker → I-3123
+gvisor → I-3123
+kata-containers → I-3123
+microvm → I-3123
+userspace-kernel → I-3123
+seccomp-bpf → I-3123
+sandbox-spectrum → I-3123
+container-escape → I-3123
+runsc → I-3123
+firecracker-microvm → I-3123
+isolation-level → I-3123
+code-execution-isolation → I-3123
+wasm-isolation → I-3123
+shared-kernel → I-3123
+hardware-virtualization → I-3123
+agent-sandbox → I-3123
+sandbox-tier → I-3123
+isolation-dial → I-3123
+
+## Pattern Log
+
+- *2026-08-02* — **Agent isolation as a dial, not a binary**: The research consensus across Turion.ai (May 2026), Tian Pan (March 2026), Zylos Research (April 2026), and Agent Native (July 2026) converges on a 5-level isolation spectrum from "no sandbox" to "hardware virtualization." Docker/runc (Level 1) is the de facto default but increasingly recognized as insufficient for untrusted code. gVisor and Firecracker are the two dominant production-grade upgrades. S-298 covered sandboxing as a concept; this run's contribution is the comparative decision framework with boot time, overhead, and threat model mapped to each level.
+
+## Recent Decisions
+
+- *2026-08-02* — **I-3123 → S-2004 — The Agent Isolation Stack — Composite 9.30**: Fresh research: Turion.ai "Agent Sandboxing: Firecracker, gVisor & Production Isolation" (May 22, 2026); Tian Pan "Agent Sandboxing and Secure Code Execution" (March 9, 2026); Zylos Research "AI Agent Sandboxing and Security Isolation" (April 4, 2026); Agent Native comparison "Firecracker vs gVisor vs Containers for Agent Sandboxing" (July 26, 2026); Johal.in benchmark "gVisor 1.0 vs Kata Containers 3.0 vs Firecracker 1.5" (April 28, 2026); Microsoft Security on MCP remote code execution (May 7, 2026); Veracode SoSS 2025. Five candidates evaluated: (A) Agent Isolation Stack (this) — the isolation technology decision framework not covered elsewhere, high timeliness (multiple 2026 sources), fills gap between S-298 (sandboxing concept) and actual technology choices. (B) Agent Grounding/Citation verification — covered by I-247 (confidence calibration) and S-1261; S-378 (entity grounding); CiteGuard (ACL 2026) is new but citation verification is sub-case of grounding already covered. (C) Multi-agent sycophancy/cascade — covered by I-144 (agent drift), I-176 (semantic intent divergence). (D) Production RAG failure taxonomy — covered by I-147 (agentic RAG control), S-1894 (evidence desert). (E) Agent skill behavioral SBOM — covered by I-3112 (S-1967). Chose A: highest timeliness (5 fresh 2026 sources), most distinct gap (technology comparison absent from all prior entries), most actionable (engineers need the decision framework, not another concept chapter). Deduplication confirmed: I-250 covers file-write sandbox escapes (distinct attack surface); I-082 covers framework RCE CVEs; neither covers isolation technology comparison and graded rollout.
 
 ## Recent Decisions
 
