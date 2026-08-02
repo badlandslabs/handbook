@@ -1,0 +1,36 @@
+# S-2021 · The Tool Catalog Overhead Stack — When More Tools Produce Worse Agents
+
+You add tools because tools help. Then you notice your agent is slower, more expensive, and more likely to hand you the wrong answer. The culprit isn't the tools themselves — it's the catalog. Every tool you expose adds to the context window at every inference call, forces an additional decision step in the model's selection logic, and creates a parameter-generation failure surface. Teams that give agents 50 tools thinking they're being thorough end up with worse outcomes than teams that gave them 8 carefully chosen ones.
+
+## Forces
+
+- **The token tax compounds at every turn.** Tool definitions live in the system prompt. With 50+ tools, you're spending 10–50K tokens per call just on tool descriptions before the model reads the user's request. Anthropic's engineering team measured this directly: "as agents connect to hundreds or thousands of tools, loading all tool definitions upfront slows agents and increases costs" — with some MCP tool schemas running 2,000+ tokens each. The agent isn't thinking harder; it's reading a phone book.
+- **Selection surface grows super-linearly.** With N tools, the model must implicitly rank N options at every turn. With 8 tools the odds of a correct first pick are reasonable. With 80, the model starts hedging, calling the wrong tool, or requesting clarification the user didn't ask for. Swarm Signal's analysis of production agent failures puts parameter construction as the most common failure point — but selection is close behind, and it degrades faster as catalog size grows.
+- **The tool that helps once costs every time.** A specialized tool used once per thousand requests still pays the token rent of its definition on every call. Teams don't account for this: they evaluate tools on marginal utility, not marginal cost-per-call.
+- **Tool count ≠ agent capability.** The correlation breaks down past ~15 tools. What actually predicts good agent performance is tool design quality, semantic distinctiveness, and proper scoping to the task domain — not raw count.
+
+## The move
+
+The core principle: **give agents the smallest coherent tool surface that covers their job, and pay the overhead cost explicitly.**
+
+- **Scope tools to a job, not a capability area.** "Web search" is one tool. "Google search," "Bing search," "DuckDuckGo search," and "Wikipedia lookup" are four. If the agent will pick one based on the query, a single generic tool with routing inside is cheaper than four separate definitions.
+- **Load tool definitions lazily, not at startup.** Anthropic's MCP code execution pattern shows the alternative: dynamically load tool definitions as they're needed rather than flooding the context window at session start. Treat the tool catalog as a service the agent queries, not a payload it carries.
+- **Use a code interpreter as the meta-tool for complex operations.** When an agent needs 3+ tool calls whose results feed into each other, a Python/JavaScript interpreter lets the agent write a short program that orchestrates those calls and returns the final result. This reduces N round-trips through the context window to 1. Microsoft Foundry, OpenAI, and Anthropic all ship this pattern. Use it when: operations are structured (JSON, tables), the same pattern repeats across many items, or intermediate values would exceed the attention budget.
+- **Batch tool calls where the MCP server supports it.** Rather than sequential call-wait-call-wait, send multiple tool invocations and receive all results together. Reduces context window churn and parallelizes wall-clock time.
+- **Enforce a tool review gate at N tools.** When you cross ~20 tools for a single agent, require a review: does every tool genuinely expand what this agent can do that it couldn't do before? If a tool is "nice to have," cut it. The overhead compounds.
+- **Distinguish approval-gated tools from autonomous ones.** Dangerous operations (file deletion, git push, external API writes) belong behind human-in-the-loop approval — but they still cost context tokens. Put them in a separate "requires confirmation" tool family, not the default catalog the model picks from on every turn.
+
+## Evidence
+
+- **Engineering blog:** Anthropic's "Code Execution with MCP" documents the token overhead problem and the code-execution-as-meta-tool solution — loading tools dynamically, batching calls, reducing intermediate result churn. Tool schemas for large MCP servers can exceed 2,000 tokens each; with dozens of servers the overhead becomes the dominant cost. — [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp)
+- **Analysis post:** Swarm Signal's agent tool-use lifecycle analysis identifies six sequential failure points (Discovery → Selection → Parameter construction → Execution → Response parsing → Result integration), with parameter construction and selection ranking as the top two production failure modes — and both degrade with catalog size. — [swarmsignal.net/agent-tool-use-patterns-guide](https://swarmsignal.net/agent-tool-use-patterns-guide/)
+- **Framework data:** AgentPatterns.ai's code interpreter guidance establishes the decision rule: use an interpreter when 3+ tool calls feed into each other, returns are structured, or intermediate results would exceed the attention budget. Microsoft's Foundry ships this as a first-class tool. — [agentpatterns.ai/tool-engineering/code-interpreter-as-agent-tool](https://www.agentpatterns.ai/tool-engineering/code-interpreter-as-agent-tool/)
+- **Production analysis:** AZMX AI's survey of Cursor, Windsurf, Claude Code, and Aider finds that IDE-integrated agents using LSP wrapper patterns outperform those with large open tool catalogs. "The tool count ≠ agent capability correlation breaks down past ~15 tools." — [azmx.ai/blog/ai-agent-tool-use-patterns-production-analysis](https://azmx.ai/blog/ai-agent-tool-use-patterns-production-analysis)
+
+## Gotchas
+
+- **Loading all MCP tool definitions at startup is the default, and it's wrong at scale.** Most MCP client libraries do this. If you're connecting to more than 10 MCP servers, switch to lazy/dynamic loading or your token costs will silently triple.
+- **Adding a tool feels like progress; removing one never does.** Teams accumulate tools. Set a periodic pruning review (quarterly is reasonable) with the explicit question: "Would this agent work better without this tool?"
+- **The approval gate doesn't reduce token overhead.** A tool behind a confirmation prompt still appears in every tool-selection decision. Move it to a separate "privileged operations" group that isn't in the default catalog.
+- **Parameter generation fails more often than tool selection.** When debugging a broken agent, teams blame the wrong tool. The model picked correctly; it generated bad arguments. Improve your tool schema definitions (especially type constraints and enum ranges) before adding more tools.
+- **Context-window token limits create hard ceilings.** A 200K-token context window sounds large until you've loaded 80 tool definitions, 50 messages of conversation history, and a large document. The tool catalog competes with everything else for context space.
