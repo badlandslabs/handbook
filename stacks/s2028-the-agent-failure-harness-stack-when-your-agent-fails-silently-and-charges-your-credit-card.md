@@ -1,0 +1,36 @@
+# S-2028 · The Agent Failure Harness Stack — When Your Agent Fails Silently and Charges Your Credit Card
+
+Agents fail in two registers: the obvious crash (logs, stack traces, alerts) and the expensive one (the agent keeps running, confidently doing the wrong thing, burning tokens until the bill arrives). Traditional error handling covers the first. The harness pattern — deterministic guardrails around the execution layer — covers the second. When you're running autonomous agents that call tools, modify state, or touch production systems, you need both.
+
+## Forces
+
+- **LLMs retry the same broken path.** When an LLM hits a hard error, it often hallucinates that tweaking one parameter will fix it. It keeps trying. Unlike a human, it doesn't get frustrated or bored. The loop runs until a hard limit stops it — or your budget does. — Coasty, "AI Agent Error Handling Is Broken and Nobody Talks About It" (May 2026) — https://coasty.ai/blog/ai-agent-error-handling-and-recovery-nightmare
+- **Specification failures dominate multi-agent breakdowns.** ~42% of multi-agent failures are specification failures (wrong goal definition, ambiguous success criteria), ~37% are coordination breakdowns, ~21% are verification gaps. A 10-step pipeline where each step has 85% reliability succeeds end-to-end only ~20% of the time. — Zylos Research, "AI Agent Self-Healing and Failure Recovery" (2026) — https://zylos.ai/en/research/2026-05-06-agent-self-healing-failure-recovery
+- **Silent drift is costlier than visible failure.** The worst production incident isn't the agent that crashes — it's the agent that runs for three weeks delivering stale data because the HTML structure of a page changed and it never errored. Silent failures accumulate costs silently. — Zylos Research, cited above
+- **The three states of retry.** Only three outcomes exist when something fails: (1) nothing happened yet — retry is safe, (2) something definitely happened — retry duplicates the action, (3) you cannot tell — ambiguity is the real problem. Most teams only handle case 1. — Coasty, "AI Agent Error Handling Is Broken" (May 2026)
+
+## The move
+
+Build a deterministic execution harness around your LLM — guardrails that execute regardless of what the model reasons about. The harness catches failure modes that live in the execution layer, not the model layer.
+
+- **Hard step caps.** Cap the maximum number of agentic steps per session (e.g., 20–50 depending on task complexity). A step cap is the single cheapest insurance against runaway loops. — Cloudzy, "Why AI Agent Loops Fail in Production" (June 2026) — https://cloudzy.com/blog/why-ai-agent-loops-fail-in-production
+- **Dollar budget enforcement.** Set a hard dollar limit per session. Tools like AgentBudget (lost $187 in 10 minutes before building it — HN Show, ~Jan 2026) monkey-patch the OpenAI/Anthropic SDKs to enforce real-time spend caps. — https://news.ycombinator.com/item?id=47133305
+- **Idempotency guards before any retry.** Check whether the action actually executed before retrying. Query the target system state, search existing receipts or records. Only retry if non-execution is confirmed. — iamstackwell, "AI Agent Retry Strategy" (2026) — https://iamstackwell.com/posts/ai-agent-retry-strategy
+- **Structured escalation with full context.** When retries are exhausted, dead-letter the task — attach the complete run context and route to human review. Do not silently drop failed work. — iamstackwell, cited above
+- **Pre-execution verification for destructive actions.** For shell commands, database writes, API mutations: verify the action is in an allowed list, confirm target scope, and require confirmation for destructive operations. The Replit agent wiped a production database for 1,200+ executives during an explicit code freeze. — paddo.dev, "Claude Code Hooks: Guardrails That Actually Work" (June 2026) — https://paddo.dev/blog/claude-code-hooks-guardrails
+- **Output verification layer.** Agents succeed technically but fail semantically (approve flawed images, return stale data). Add a deterministic verification step — a lightweight classifier or rule check — between agent output and any side-effect action. — Harsh Rastogi, "Agentic AI in Production: Error Recovery, Observability, and Scaling Patterns" (March 2026) — https://harshrastogi.tech/blog/agentic-ai-error-recovery-observability-patterns
+- **Observability on the harness, not just the agent.** Standard APM misses agent-specific failure modes: context drift, step count inflation, token cost accumulation, silent semantic failures. Instrument the harness layer itself — log step counts, token usage, tool call outcomes, and output quality signals. — Zylos Research, cited above
+
+## Evidence
+
+- **Production incident:** Asynq.ai's candidate evaluation agent hallucinated tool parameters, got stuck in loops, produced contradictory evaluations, and cost 3x the monthly budget — all without crashing. — Harsh Rastogi, "Agentic AI in Production" (March 2026) — https://harshrastogi.tech/blog/agentic-ai-error-recovery-observability-patterns
+- **Production incident:** A developer's agent got stuck in a retry loop hitting the same failing endpoint. The developer lost $187 in 10 minutes before noticing. Built AgentBudget to enforce dollar budgets. — HN Show, "AgentBudget" (~Jan 2026) — https://news.ycombinator.com/item?id=47133305
+- **Framework:** The Agentic Reliability Framework (ARF) separates decision intelligence (OSS, advisory-only) from governed execution (Enterprise), treating incidents as memory and reasoning problems. The OSS edition explicitly does not auto-heal — it's an analysis layer. The Enterprise edition enforces deterministic safety boundaries around autonomous remediation. — https://github.com/petterjuan/agentic-reliability-framework
+- **Market signal:** Gartner expects over 40% of agentic AI projects to be canceled by end of 2027, citing escalating costs and unclear value — driven largely by production reliability failures. — Cloudzy, citing Gartner 2025 — https://cloudzy.com/blog/why-ai-agent-loops-fail-in-production
+
+## Gotchas
+
+- **Adding harness logic inside the prompt doesn't work.** LLMs can be "convinced otherwise" at runtime. Prompts are interpretive; hooks are deterministic. The safety layer must execute outside the model's reasoning path. — paddo.dev, "Claude Code Hooks" (June 2026) — https://paddo.dev/blog/claude-code-hooks-guardrails
+- **Retry counts without idempotency checks duplicate side effects.** Retrying a write, an email send, or a state mutation without checking whether it already happened turns transient failures into data corruption. Check state first, retry second. — Coasty, cited above
+- **Step caps alone don't stop semantic drift.** An agent can hit 15 of 20 allowed steps while consistently producing wrong outputs. You need both execution limits (step cap, dollar budget) and output quality checks (verification layer).
+- **The OSS version of self-healing frameworks won't heal anything.** The Agentic Reliability Framework's OSS edition explicitly does not execute actions or auto-heal. Teams adopting it expecting production autonomous healing in the open-source tier will be surprised. — ARF README — https://github.com/petterjuan/agentic-reliability-framework
