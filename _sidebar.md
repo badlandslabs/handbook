@@ -907,3 +907,4 @@
   - [S-1999 · The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew](stacks/s1999-the-nhi-aggregation-stack-when-one-agent-holds-ten-identities-and-your-rbac-never-knew.md)
   - [S-2002 · The Agent Artifact Corpus Stack — When Your Agent Creates a Hundred Files and Can't Find Any of Them](stacks/s2002-the-agent-artifact-corpus-stack-when-your-agent-creates-a-hundred-files-and-cant-find-any-of-them.md)
   - [S-2004 · The Agent Isolation Stack — When Docker Is Not Enough for AI-Generated Code](stacks/s2004-the-agent-isolation-stack-when-docker-is-not-enough-for-ai-generated-code.md)
+  - [S-2005 · The Agentic Memory Dial Stack — When Your Agent Becomes a Memory Hoarder and a Slime Mold Teaches It to Let Go](stacks/s2005-the-agentic-memory-dial-stack-when-your-agent-becomes-a-memory-hoarder-and-a-slime-mold-teaches-it-to-let-go.md)
