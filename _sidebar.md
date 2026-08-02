@@ -901,3 +901,7 @@
   - [S-1988 · The Cron Success Stack — When Your Agent Finishes But Nobody Received Anything](stacks/s1988-the-cron-success-stack-when-your-agent-finishes-but-nobody-received-anything.md)
   - [S-1990 · The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them](stacks/s1990-the-genai-semantic-convention-stack-when-your-agent-traces-are-in-the-right-format-but-nobody-elses-tool-can-read-them.md)
   - [S-1992 · The MCP 2.0 Stateless Stack — When Your Session-Bound Protocol Breaks at Scale](stacks/s1992-the-mcp-2-stateless-stack-when-your-session-bound-protocol-breaks-at-scale.md)
+  - [S-1993 · The Agent Failure Ladder Stack — When Your Agent Crashes Quietly and Costs You Money Before Anyone Notices](stacks/s1993-the-agent-failure-ladder-stack-when-your-agent-crashes-quietly-and-costs-you-money-before-anyone-notices.md)
+  - [S-1994 · The Agent GitOps Stack — When Your Agent Configuration Is a Repo and Your Deployment Is a Pull Request](stacks/s1994-the-agent-gitops-stack-when-your-agent-configuration-is-a-repo-and-your-deployment-is-a-pull-request.md)
+  - [S-1996 · The AI Runtime Infrastructure Stack — When Your Agent Framework Runs But Your Agent Still Fails](stacks/s1996-the-ai-runtime-infrastructure-stack-when-your-agent-framework-runs-but-your-agent-still-fails.md)
+  - [S-1999 · The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew](stacks/s1999-the-nhi-aggregation-stack-when-one-agent-holds-ten-identities-and-your-rbac-never-knew.md)

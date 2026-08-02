@@ -3658,6 +3658,18 @@ unmanaged-credential → I-3108
 laptop-attack-surface → I-3108
 mcp-discovery → I-3108
 credential-gateway → I-3108
+ai-runtime-infrastructure → I-3121
+runtime-intervention → I-3121
+execution-time-layer → I-3121
+checkpoint-resume → I-3121
+runtime-policy-enforcement → I-3121
+sandbox-as-runtime-resource → I-3121
+execution-intervention → I-3121
+inline-episodic-background-topology → I-3121
+span-injection → I-3121
+state-rollback → I-3121
+dapr-agents-runtime → I-3121
+agent-substrate → I-3121
 mcp-blast-radius → I-3108
 per-developer-mcp → I-3108
 lifecycle-governance → I-3109
@@ -3748,7 +3760,10 @@ belief-divergence → I-3117
 | I-3118 | The Cron Success Stack — When Your Agent Finished But Nobody Received Anything | cron-success, delivery-confirmation, partial-run, delivery-gap, framework-status, self-reported-success, delivery-reconciliation, idempotency-key, delivery-queue, recovery-queue, side-effect-confirmation, lastDeliveryStatus, temporal-activity, run-status, delivery-token, partial-alert, announcement-step, timeout-mid-run, cron-silent-failure, pazi-2026, mlflow-2026 | 10 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-1988 | 2026-08-01 | 2026-08-01 |
 | I-3119 | The MCP 2.0 Stateless Stack — When Your Session-Bound Protocol Breaks at Scale | mcp-2, mcp-stateless, mcp2, stateless-protocol, session-elimination, mcp-migration, mcp-session, mcp-headers, mcp-method, traceparent, mcp-scale, mcp-load-balancer, mcp-oauth, sep-2468, mcp-apps, mcp-tasks, mcp-extensions, modelcontextprotocol, aaif-2026, mcp-blog, 2026-07-28 | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-1992 | 2026-08-01 | 2026-08-01 |
 | I-3119 | The GenAI Semantic Convention Stack — When Your Agent Traces Are in the Right Format but Nobody Else's Tool Can Read Them | genai-semconv, otel-genai, semantic-convention, gen-ai-attribute, ai-span, model-tracing, token-attribution, vendor-neutral-tracing, framework-interop-trace, genai-operation, opentelemetry-convention, span-attribute, cross-framework-trace, observability-standard, gheware-2026, rockb-2026, baeseokjae-2026 | 9 | 9 | 8 | 8 | 7 | **8.50** | WRITTEN — S-1990 | 2026-08-01 | 2026-08-01 |
-| I-3116
+| I-3120 | The Agent GitOps Stack — When Your Agent Configuration Is a Repo and Your Deployment Is a Pull Request | agent-gitops, gitops-agent, declarative-agent, agent-config-as-code, agent-manifest, agent-crd, agent-reconciliation, fleet-config-git, prompt-gitops, agent-drift-detection, fleet-reconciliation, agent-cd, agent-operator, content-addressable-prompt, prompt-hash, agent-canary, kubeagentic, kars, agentops | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1994 | 2026-08-02 | 2026-08-02 |
+| I-3121 | The AI Runtime Infrastructure Stack — When Your Agent Framework Runs But Your Agent Still Fails in Ways Nobody Planned For | ai-runtime-infrastructure, runtime-intervention, execution-layer, checkpoint-resume, runtime-policy, runtime-rollback, sandbox-runtime, harness-layer, execution-time-optimization, dapr-agents, agent-substrate, gemini-agent-runtime, inline-enforcement, episodic-checkpoint, background-monitor, span-injection, state-rollback, arxiv-2603.00495, cncf-dapr, augmentcode, agentnative | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-1996 | 2026-08-02 | 2026-08-02 |
+| I-3122 | The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew | nhi-aggregation, credential-convergence, aggregate-attack-surface, multi-nhi-context, nhi-sprawl, credential-context-window, nhi-portfolio, non-human-identity, owasp-nhi-top10, credential-isolation, ephemeral-nhi, blast-radius-aggregation, nhi-governance, context-credential-guard, memory-credential-block, credential-per-task, session-nhi, credential-partition, github-token, database-credential, mcp-credential, iam-credential, slack-webhook, oauth-token, hardcoded-credential, credential-broker, zylos-2026, gitguardian-2026, gravitee-2026, csa-nhi, langgrinch-cve, owasp-nhi | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1999 | 2026-08-02 | 2026-08-02 |
+scaffold-spectrum
 scaffold-spectrum
 scaffold-taxonomy → I-3114
 12-dimensions → I-3114
@@ -3829,8 +3844,32 @@ mcp-tasks → I-3119
 mcp-extensions → I-3119
 mcp-2026 → I-3119
 aaif-2026 → I-3119
+ai-runtime-infrastructure-pattern → I-3121
+execution-intervention-pattern → I-3121
+runtime-recovery-pattern → I-3121
+dapr-agents-pattern → I-3121
+nhi-aggregation → I-3122
+credential-convergence → I-3122
+aggregate-attack-surface → I-3122
+multi-nhi-context → I-3122
+nhi-sprawl → I-3122
+credential-context-window → I-3122
+nhi-portfolio → I-3122
+non-human-identity → I-3122
+blast-radius-aggregation → I-3122
+credential-isolation → I-3122
+ephemeral-nhi → I-3122
+nhi-governance → I-3122
+context-credential-guard → I-3122
+memory-credential-block → I-3122
+credential-per-task → I-3122
 
 ## Recent Decisions
+
+- *2026-08-02* — **I-3122 → S-1999 — The NHI Aggregation Stack — Composite 9.15**: Tracker saturated (all 3121 prior ideas WRITTEN or DUPLICATE). Fresh research: Zylos Research (2026-05-07): AI agent credential/security patterns; GitGuardian State of Secrets Sprawl 2026 (28.65M secrets, +34% YoY, 1.2M AI-service); Gravitee 2026 survey (919 orgs, 21.9% NHI-aware, 25.4% hardcoded credentials); OWASP NHI Top 10 (improper offboarding, secret leakage, excessive permissions, long-lived secrets, insecure auth); Mem0 2026 survey (57-71% cross-user contamination); CSA/CrowdStrike/Cisco NHI acquisitions (June 2026); LangGrinch CVE-2025-68664 ephemeral credentialing paper (SSRN, Devon Artis, April 2026). Novel angle: NHI Aggregation Risk — the structural amplification when multiple independent non-human identities converge in a single agent execution context. The core insight: individual credential hygiene is necessary but insufficient; the aggregate attack surface of co-located NHI credentials in the LLM context window creates a qualitatively different risk profile than traditional service account sprawl. Deduplication: S-1083 (Platform Credential Boundary) covers the cloud metadata service identity that your RBAC never scopes — but not the aggregation of multiple NHI credentials in the agent's context window. S-1155 (Credential Lifetime Gate) covers token TTL — not the convergence point. S-1127 (Cross-User Memory Contamination) covers memory leakage — not credential co-location. S-1248 (Token Drift) covers key expiration mid-session — not credential portfolio risk. S-1256 (Scope Attenuation) covers permission escalation — not credential aggregation. No existing entry covers the structural pattern of multiple NHI credentials co-located in the LLM context as an attack surface amplification vector. Key sources independently confirm the problem: Zylos identifies the aggregation risk thesis, GitGuardian quantifies the leak volume, OWASP NHI Top 10 defines the governance categories, CSA/CrowdStrike/Cisco signal enterprise market recognition. The pattern is novel to the handbook. Cross-links: S-1083 (platform credentials), S-1155 (credential lifetime), S-1127 (cross-user contamination), OWASP ASI.
+- *2026-08-02* — **I-3121 → S-1996 — The AI Runtime Infrastructure Stack — Composite 9.45**: arXiv:2603.00495 (Cruz, Feb 2026) formalizes a distinct execution-time architectural layer above the model call and below the application. Dapr Agents v1.0 GA (CNCF, March 2026) provides production primitives. Agent Substrate delivers suspend/resume at scale. Augment Code and Agent Native independently document runtime intervention and rollback patterns. Deduplication: no existing entry covers this active runtime intervention layer. S-961 (harness) covers the orchestration scaffold; S-1181 (gateway) covers fleet-level policy; neither covers execution-time enforcement and recovery. S-1288 (saga) covers rollback but as a workflow design pattern, not a runtime infrastructure primitive. The execution-time layer is distinct: it actively observes and gates behavior during execution, not just designs workflows that might fail. No other idea in the tracker covers this gap. Pattern Log updated with execution-intervention-pattern, runtime-recovery-pattern, dapr-agents-pattern.
+
+
 
 - *2026-08-01* — **I-3119 → S-1992 — The MCP 2.0 Stateless Stack — Composite 9.25**: MCP 2026-07-28 spec (RC locked May 21, final released July 28) is the largest protocol revision since MCP launch. Eliminates session affinity: no more `Mcp-Session-Id`, no `initialize` handshake, no sticky sessions. Remote servers now run behind plain round-robin load balancers. Sources: MCP blog (modelcontextprotocol.io/posts/2026-07-28-release-candidate/), BOVO Digital (stateless enterprise analysis), luismori.dev (migration guide), byteiota (breaking changes), AAIF blog. Deduplication: no prior handbook entry covers MCP at all — zero coverage gap. Alternatives considered: (A) MCP 2.0 auth hardening — covered as SEP-2468 within the same entry, too narrow to standalone; (B) OpenTelemetry GenAI semantic conventions — covered by S-1990; (C) ASSERT eval harness — too narrow, already covered by S-1980. Pattern: **protocol-version boundary** — when a widely-deployed protocol ships a breaking change, production teams must migrate within a bounded window or face silent incompatibility.
 
