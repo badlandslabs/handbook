@@ -3543,6 +3543,21 @@ agentic-routing → I-3102
 intra-agent-tier → I-3102
 model-switch-boundary → I-3102
 safe-reset-boundary → I-3102
+agent-drift → I-3132
+behavioral-degradation → I-3132
+ASI → I-3132
+agent-stability-index → I-3132
+production-drift → I-3132
+rolling-baseline → I-3132
+drift-detection → I-3132
+behavioral-drift → I-3132
+quality-cliff → I-3132
+context-pressure → I-3132
+prompt-decay → I-3132
+latency-drift → I-3132
+outcome-rate → I-3132
+token-velocity → I-3132
+88pct-drift → I-3132
 
 ## Recent Decisions
 - *2026-07-31* — **I-3100 → S-1927 — The MCP Token Wall Stack — Composite 9.05**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Gheware DevOps blog (Mar 18, 2026) — 3 MCP servers consume 143k of 200k tokens (71.5%) at startup; CLI-first design cuts overhead 98% to under 2k tokens; Waxell tool call failures analysis (Jul 24, 2026) — tool-result truncation is the #1 agent production failure; Adaline Labs (May 16, 2026) — tool description is the most important engineering surface for agent tool selection. Core insight: MCP schema overhead is an architectural problem requiring architectural fixes (lazy registration + schema eviction + context budgeting). Deduplication: S-1913 (MCP Tax) covers context burning from verbose MCP usage — this entry covers the specific sub-problem of startup overhead from eager schema registration with actionable architectural solutions. S-1000 (context exhaustion) covers eviction mechanics — this entry covers prevention via budget architecture.
@@ -3807,6 +3822,8 @@ belief-divergence → I-3117
 | I-3122 | The NHI Aggregation Stack — When One Agent Holds Ten Identities and Your RBAC Never Knew | nhi-aggregation, credential-convergence, aggregate-attack-surface, multi-nhi-context, nhi-sprawl, credential-context-window, nhi-portfolio, non-human-identity, owasp-nhi-top10, credential-isolation, ephemeral-nhi, blast-radius-aggregation, nhi-governance, context-credential-guard, memory-credential-block, credential-per-task, session-nhi, credential-partition, github-token, database-credential, mcp-credential, iam-credential, slack-webhook, oauth-token, hardcoded-credential, credential-broker, zylos-2026, gitguardian-2026, gravitee-2026, csa-nhi, langgrinch-cve, owasp-nhi | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-1999 | 2026-08-02 | 2026-08-02 |
 | I-3124 | The Agentic Memory Dial Stack — When Your Agent Becomes a Memory Hoarder and a Slime Mold Teaches It to Let Go | agentic-memory-dial, active-context-compression, autonomous-memory-management, context-bloat, sawtooth-context, focus-agent, physarum-polycephalum, slime-mold, agent-controlled-compression, self-initiated-pruning, knowledge-block, history-pruning, context-poisoning, lost-in-the-middle, append-only-failure, arxiv-2601.07190, verma-2026, autonomous-compression, memory-hoarding, token-reduction, context-compression | 9 | 9 | 9 | 9 | 8 | **8.75** | WRITTEN — S-2005 | 2026-08-02 | 2026-08-02 |
 | I-3133 | The Infra Blast-Radius Stack — When Your AI Agent Deleted Your Production Database in 9 Seconds | blast-radius, credential-scoping, destructive-action-gate, environment-isolation, infra-blast-radius, infra-fail, OWASP-ASI03, production-wipe, backup-co-location, least-privilege-tool-scope, credential-tiering, infra-isolation, production-database-delete, action-receipt, audit-trail, pocketos, replit | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-2046 | 2026-08-02 | 2026-08-02 |
+| I-3134 | The Cache Ordering Trap — When Naive Prompt Caching Slows Your Agent Down | cache-ordering, cache-block, cache-strategy, prompt-cache, kv-cache, cache-naive, cache-paradox, cache-dynamic, tool-result-cache, cache-placement, cache-invalidation, cache-ttft, arxiv-2601.06007, lumer-2026, deepresearch-bench | 9 | 9 | 10 | 9 | 8 | **9.15** | WRITTEN — S-2050 | 2026-08-03 | 2026-08-03 |
+| I-3135 | The Benchmark Saturation Stack — When Your Leaderboard Tells You Nothing | benchmark-saturation, score-convergence, leaderboard-death, proxy-metric-failure, benchmark-exhaustion, eval-perishability, saturation-metadata, arc-agi, swe-bench, mmlu, gpqa, ai-tech-news-2026, buildmvpf ast, alphaxiv-2602.16763, anthropic-eval-saturation, benchmark-ceiling, cross-version-instability, capability-ceiling, production-readiness, benchmark-procurement | 10 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-2054 | 2026-08-03 | 2026-08-03 |
 | I-3125 | The Token Spiral Stack — When Your Agent Isn't Broken, It's Just Expensive | token-spiral, semantic-convergence, cost-velocity, context-acceleration, spiral-detection, green-dashboard, runaway-agent, token-circuit-breaker, cost-attribution, convergence-check, semantic-loop, goal-progress, output-novelty, context-growth-rate, trustgate-2026, n1n-2026, openlegion-2026, velocity-2026, arxiv-2511.22729 | 10 | 9 | 10 | 9 | 9 | **9.45** | WRITTEN — S-2009 | 2026-08-02 | 2026-08-02 |
 
 || I-3126 | The A2A Implementation Stack — When Your Agent Can Call Tools But Not Talk to Peer Agents | A2A, agent-protocol, inter-agent, AgentCard, task-handoff, push-notifications, streaming, MCP+A2A, JWT-auth, multi-agent | 7 | 8 | 8 | 9 | 8 | **7.65** | WRITTEN — S-2014 | 2026-08-02 | 2026-08-02 |
@@ -3814,6 +3831,7 @@ belief-divergence → I-3117
 ||| I-3129 | The Premature Commitment Stack — When Your Agent Locks In Too Early and Cannot Hear Better Options | premature-commitment, peer-routing, multi-agent-exploration, MACE, hidden-state-convergence, representational-commitment, exploration-budget, epsilon-greedy, myopic-routing, confident-wrong, arxiv-2607.11250, arxiv-2606.22936, peer-selection, capability-modeling | 9 | 10 | 9 | 10 | 9 | **8.80** | WRITTEN — S-2023 | 2026-08-02 | 2026-08-02 |
 | I-3130 | The Agentic Ransomware Stack — When Your Agent Becomes Your Worst Security Threat | agentic-ransomware, JADEPUFFER, autonomous-attack, AI-agent-attacker, langflow-cve, CVE-2025-3248, compound-failure-chain, machine-behavior-signature, A2AS, runtime-security, behavior-certificate, authenticated-prompt, NHI-governance, agentic-supply-chain, 8k-exposed-MCP, Glasswing-project, BlackHat-2026, ASI10, rogue-agent, self-documenting-code, 34pct-no-AI-security, 79pct-agentic-adoption, 48pct-top-attack-vector, sysdig-2026, csa-2026, owasp-ASI, owasp-agentic-top10, A2AS-framework, IBM-runtime-security, Bessemer-AI-security | 10 | 10 | 10 | 10 | 9 | **9.80** | WRITTEN — S-2029 | 2026-08-02 | 2026-08-02 |
 | I-3131 | The Silent Delegation Failure Stack — When Your Orchestrator Receives "Task Completed" But the Worker Silently Failed | silent-delegation, delegation-failure, A2A, MCP, execution-receipt, completion-signal, trust-boundary, delegation-protocol, DRP, callback-receipt, idempotency-key, tool-call-witness, plausible-completed, inverse-security, worker-fabrication, orchestrator-trust, multi-agent, capability-mismatch, permission-denied, status-vs-proof | 10 | 9 | 10 | 10 | 8 | **9.40** | WRITTEN — S-2038 | 2026-08-02 | 2026-08-02 |
+| I-3132 | The Agent Drift Stack — When Your Agent Changes Without a Version Bump | agent-drift, behavioral-degradation, ASI, agent-stability-index, production-drift, rolling-baseline, Carmel-Labs, arxiv-2601.04170, drift-detection, behavioral-drift, quality-cliff, context-pressure, prompt-decay, feedback-loop, latency-drift, outcome-rate, token-velocity, 88pct-drift, 1540000-drift-events | 9 | 10 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2048 | 2026-08-02 | 2026-08-02 |
 12-dimensions → I-3114
 three-layers → I-3114
 loop-primitive → I-3114
@@ -4071,6 +4089,8 @@ status-vs-proof → I-3131
 
 ## Pattern Log
 
+- *2026-08-03* — **Eval benchmarks are perishable infrastructure**: MMLU saturated in <2 years (43.9% → 88-94%), SWE-bench Verified in ~18 months (2.1% → 87.6%). alphaXiv:2602.16763 confirms repeated exposure drives convergence — each optimization pass compresses inter-model variance. The insight: benchmark scores without saturation metadata (version, ceiling, age, test-date) are cargo-cult measurements. The contrarian angle: teams cite multiple saturated benchmarks to cancel out measurement error, which compounds rather than cancels the failure. The fix is domain-specific production evals + saturation-aware scoring.
+- *2026-08-03* — **Cache block ordering is a first-class architecture decision**: arXiv:2601.06007 (Lumer et al., Jan 2026) proves that cache block placement — not presence — determines agentic caching outcomes. Full-context caching is counterproductive on agentic workloads because dynamic tool outputs invalidate the entire KV cache prefix, including the expensive static content. The fix is structural: separate prompts into static/semi-static/dynamic zones, place dynamic content at the end, and evaluate cache strategy per-provider (GPT-5.2: exclude tool results; Claude/Gemini: system prompt only). Contrarian: high cache hit rate is not evidence of working caching — delta-TTFT is the right signal.
 - *2026-08-02* — **Deterministic scaffold decomposition**: The layer-isolated eval pattern (arXiv:2606.11686, Zhang/Wang/Lei, Lumivate, June 2026) reframes agent evaluation as testing a code scaffold — not just an LLM. Eight architectural layers (ontology, intent, routing, decomposition, escalation, safety, memory, envelope) are each assertion-tested in no-LLM "pure mode," enabling hard CI gates. The masking effect — where aggregate scores hide layer-level regressions — is resolved by per-slice baseline locking. Novel: no prior entry covers deterministic scaffold testing with per-layer regression locking. Cross-links: S-812 (trajectory vs. endpoint eval — layer eval extends this), S-996 (harness matters more — scaffold testing is the harness testing), S-1045 (agent debugging — layer regression is what debugging needs to find).
 
 ## Recent Decisions
@@ -4102,3 +4122,14 @@ pocketos → I-3133
 replit → I-3133
 action-receipt → I-3133
 infra-isolation → I-3133
+benchmark-saturation → I-3135
+score-convergence → I-3135
+leaderboard-death → I-3135
+proxy-metric-failure → I-3135
+saturation-metadata → I-3135
+cross-version-instability → I-3135
+eval-perishability → I-3135
+
+## Recent Decisions
+
+- *2026-08-03* — **I-3135 → S-2054 — The Benchmark Saturation Stack — Composite 9.25**: Tracker saturated (all 3134 prior ideas WRITTEN or DUPLICATE). Fresh research: AI Tech News (Jul 2026) — "When Every Model Scores 88%": MMLU 88-94% across all frontier models, 5-point band = noise not signal, human ceiling 89.8%, saturation metadata needed for any score to be meaningful; BuildMVPFast (2026) — "Leaderboards Are Dead": ARC-AGI-1 vs ARC-AGI-3 cross-version instability (95% vs 0.51% for same model), Humanity's Last Exam shredded in 18 months; alphaXiv:2602.16763 — systematic saturation study, exposure effect drives convergence, repeated optimization compresses differences; Anthropic eval saturation analysis; Automation Anywhere benchmark gaming data. Core insight: benchmark saturation is a distinct failure mode from benchmark gaming (existing entries S-1074, S-1088 cover gaming/exploit). Saturation = test genuinely measures capability but frontier models reached the ceiling. The fix is not better benchmarks — it's saturation metadata tagging + domain-specific production evals as tiebreakers + eval-as-perishable-infrastructure mindset.
