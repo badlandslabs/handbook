@@ -3824,6 +3824,9 @@ belief-divergence → I-3117
 | I-3133 | The Infra Blast-Radius Stack — When Your AI Agent Deleted Your Production Database in 9 Seconds | blast-radius, credential-scoping, destructive-action-gate, environment-isolation, infra-blast-radius, infra-fail, OWASP-ASI03, production-wipe, backup-co-location, least-privilege-tool-scope, credential-tiering, infra-isolation, production-database-delete, action-receipt, audit-trail, pocketos, replit | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-2046 | 2026-08-02 | 2026-08-02 |
 | I-3134 | The Cache Ordering Trap — When Naive Prompt Caching Slows Your Agent Down | cache-ordering, cache-block, cache-strategy, prompt-cache, kv-cache, cache-naive, cache-paradox, cache-dynamic, tool-result-cache, cache-placement, cache-invalidation, cache-ttft, arxiv-2601.06007, lumer-2026, deepresearch-bench | 9 | 9 | 10 | 9 | 8 | **9.15** | WRITTEN — S-2050 | 2026-08-03 | 2026-08-03 |
 | I-3135 | The Benchmark Saturation Stack — When Your Leaderboard Tells You Nothing | benchmark-saturation, score-convergence, leaderboard-death, proxy-metric-failure, benchmark-exhaustion, eval-perishability, saturation-metadata, arc-agi, swe-bench, mmlu, gpqa, ai-tech-news-2026, buildmvpf ast, alphaxiv-2602.16763, anthropic-eval-saturation, benchmark-ceiling, cross-version-instability, capability-ceiling, production-readiness, benchmark-procurement | 10 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-2054 | 2026-08-03 | 2026-08-03 |
+| I-3136 | The STDIO-"By Design" Stack — When Your SDK Classified RCE as Expected Behavior | mcp-stdio, stdio-injection, cve-2026-30623, cve-2026-40933, cve-2025-54994, stdio-rce, stdio-command-injection, mcpshield, by-design, anthropic-wontfix, ox-security, csa-research, stdio-sanitization, transport-migration, stdio-allowlist, command-argument-injection, stdio-spawn, npx-create-mcp-stdio, langflow-cve, agentzero, fay-framework, flowise, langchain-chatchat, upsonic, 40-plus-cve, sdk-not-patching, stdio-vs-sse, vendor-declined, stdio-argv, stdio-exec | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2056 | 2026-08-03 | 2026-08-03 |
+| I-3137 | The Semantic Isolation Stack — When Your Agents Exchange Messages But Not Meaning | semantic-isolation, layer9, L9, meaning-negotiation, A2A, MCP, protocol-gap, shared-ontology, semantic-grounding, echoing-problem, cross-organizational-agents, intent-framing, schema-registry, cisco-outshift, salesforce-a2a, semantic-negotiation, negotiation-round, shared-meaning, agent-semantics, agent-collaboration, a2a-semantic-layer, arxiv-2604.02369, outshift-cisco, intent-paraphrase, challenge-flag, semantic-contract | 9 | 10 | 9 | 9 | 8 | **8.85** | WRITTEN — S-2059 | 2026-08-03 | 2026-08-03 |
+| I-3138 | The Memory Boundary Stack — When Your Multi-Tenant Agent Leaks Across 57–71% of Users | memory-boundary, multi-tenant, cross-user-contamination, memory-leak, namespace-isolation, tenant-isolation, memory-partition, memory-segregation, principal-check, vector-namespace, embedding-isolation, Mem0-2026-survey, CAISc-2026, cross-session-contamination, memory-poisoning, OWASP-ASI06, context-leak, tenant-data-breach, GDPR-memory, blast-radius, memory-hygiene, memory-scopes, memory-gate, multi-tenant-agent, SaaS-agent | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-2061 | 2026-08-03 | 2026-08-03 |
 | I-3125 | The Token Spiral Stack — When Your Agent Isn't Broken, It's Just Expensive | token-spiral, semantic-convergence, cost-velocity, context-acceleration, spiral-detection, green-dashboard, runaway-agent, token-circuit-breaker, cost-attribution, convergence-check, semantic-loop, goal-progress, output-novelty, context-growth-rate, trustgate-2026, n1n-2026, openlegion-2026, velocity-2026, arxiv-2511.22729 | 10 | 9 | 10 | 9 | 9 | **9.45** | WRITTEN — S-2009 | 2026-08-02 | 2026-08-02 |
 
 || I-3126 | The A2A Implementation Stack — When Your Agent Can Call Tools But Not Talk to Peer Agents | A2A, agent-protocol, inter-agent, AgentCard, task-handoff, push-notifications, streaming, MCP+A2A, JWT-auth, multi-agent | 7 | 8 | 8 | 9 | 8 | **7.65** | WRITTEN — S-2014 | 2026-08-02 | 2026-08-02 |
@@ -4128,8 +4131,45 @@ leaderboard-death → I-3135
 proxy-metric-failure → I-3135
 saturation-metadata → I-3135
 cross-version-instability → I-3135
+semantic-isolation → I-3137
+layer9 → I-3137
+L9 → I-3137
+meaning-negotiation → I-3137
+shared-ontology → I-3137
+semantic-grounding → I-3137
+echoing-problem → I-3137
+intent-framing → I-3137
+schema-registry → I-3137
+semantic-negotiation → I-3137
+shared-meaning → I-3137
+agent-semantics → I-3137
+a2a-semantic-layer → I-3137
+intent-paraphrase → I-3137
+challenge-flag → I-3137
+semantic-contract → I-3137
 eval-perishability → I-3135
+memory-boundary → I-3138
+multi-tenant → I-3138
+cross-user-contamination → I-3138
+memory-leak → I-3138
+namespace-isolation → I-3138
+tenant-isolation → I-3138
+memory-partition → I-3138
+memory-segregation → I-3138
+principal-check → I-3138
+vector-namespace → I-3138
+embedding-isolation → I-3138
+cross-session-contamination → I-3138
+context-leak → I-3138
+tenant-data-breach → I-3138
+GDPR-memory → I-3138
+blast-radius → I-3138
+memory-hygiene → I-3138
+memory-scopes → I-3138
+memory-gate → I-3138
+multi-tenant-agent → I-3138
+SaaS-agent → I-3138
 
 ## Recent Decisions
 
-- *2026-08-03* — **I-3135 → S-2054 — The Benchmark Saturation Stack — Composite 9.25**: Tracker saturated (all 3134 prior ideas WRITTEN or DUPLICATE). Fresh research: AI Tech News (Jul 2026) — "When Every Model Scores 88%": MMLU 88-94% across all frontier models, 5-point band = noise not signal, human ceiling 89.8%, saturation metadata needed for any score to be meaningful; BuildMVPFast (2026) — "Leaderboards Are Dead": ARC-AGI-1 vs ARC-AGI-3 cross-version instability (95% vs 0.51% for same model), Humanity's Last Exam shredded in 18 months; alphaXiv:2602.16763 — systematic saturation study, exposure effect drives convergence, repeated optimization compresses differences; Anthropic eval saturation analysis; Automation Anywhere benchmark gaming data. Core insight: benchmark saturation is a distinct failure mode from benchmark gaming (existing entries S-1074, S-1088 cover gaming/exploit). Saturation = test genuinely measures capability but frontier models reached the ceiling. The fix is not better benchmarks — it's saturation metadata tagging + domain-specific production evals as tiebreakers + eval-as-perishable-infrastructure mindset.
+- *2026-08-03* — **I-3138 → S-2061 — The Memory Boundary Stack — Composite 9.60**: Fresh research: Mem0 2026 survey (8 frameworks: Claude Code, Codex, Copilot, OpenClaw, Hermes, Bedrock AgentCore, Windsurf, Devin) documents 57-71% cross-user memory contamination — structurally, not adversarial; TencentDB-Agent-Memory GitHub issue #111 documents `searchMemories` with no agent/user-level isolation; CAISc 2026 paper on multi-tenant college counseling agents confirms cross-student data contamination; Mem0 GitHub issue #3998 confirms per-agent isolation was not default as of Feb 2026. Deduplication: zero handbook coverage for multi-tenant memory boundary failure as a distinct architectural pattern — S-641 covers adversarial memory poisoning (ASI06), not non-adversarial cross-user contamination at the structural/namespace level. This entry addresses the 10x-more-common default behavior failure, not the attack. Cross-links: S-641 (memory poisoning defense) for adversarial path; S-827 (context sprawl) for multi-agent semantic divergence; S-799 (cross-agent trace) for observability extension with memory principal metadata.ng (existing entries S-1074, S-1088 cover gaming/exploit). Saturation = test genuinely measures capability but frontier models reached the ceiling. The fix is not better benchmarks — it's saturation metadata tagging + domain-specific production evals as tiebreakers + eval-as-perishable-infrastructure mindset.
