@@ -4173,8 +4173,12 @@ SaaS-agent → I-3138
 
 ## Ideas Bank
 
-| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
-| I-3139 | The MCP Credential Boundary Stack — When Every MCP Server Is a Different Security Tenant | mcp-credential-boundary, credential-per-server, scoped-credential, mcp-security, least-agency, blast-radius, ASI04, ASI10, OX-Security, stdio-rce, credential-sprawl, per-server-isolation, MCP-supply-chain, mcp-cve, OWASP-ASI, mcp-token-scoping, credential-rotation, instrumented-credential | 10 | 9 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2064 | 2026-08-03 | 2026-08-03 |
+|| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+|| I-3141 | The Agentic Cache Boundary Stack — When Including Tool Results in Your Prompt Cache Makes It Slower and More Expensive | cache-boundary, zone-model, cache-prefix, agentic-cache, MCP-cache, session-tree, tree-branch, tool-result-cache, cache-invalidation, arxiv-2601.06007, stability-zoning, provider-cache, Anthropic-cache-control, OpenAI-cache, cache-stability, cache-misconfig, cache-corruption, agentic-caching, Lumer-2026, cache-metrics, cache-strategy | 8 | 9 | 10 | 8 | 7 | **8.55** | WRITTEN — S-2069 | 2026-08-03 | 2026-08-03 |
+|| I-3140 | The Environment Scaffolding Stack — When Leaner Models Beat Frontier on Reliability | environment-scaffolding, stack-aware, generate-validate-repair, env-first, policy-gates, scaffold-vs-model, code-generation-agents, production-reliability, benchmark-gap, sandbox-execution, SANER-2026, constraint-constrains, env-constrains-generation | 9 | 9 | 10 | 9 | 8 | **9.10** | WRITTEN — S-2065 | 2026-08-03 | 2026-08-03 |
+|| I-3139 | The MCP Credential Boundary Stack — When Every MCP Server Is a Different Security Tenant | mcp-credential-boundary, credential-per-server, scoped-credential, mcp-security, least-agency, blast-radius, ASI04, ASI10, OX-Security, stdio-rce, credential-sprawl, per-server-isolation, MCP-supply-chain, mcp-cve, OWASP-ASI, mcp-token-scoping, credential-rotation, instrumented-credential | 10 | 9 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2064 | 2026-08-03 | 2026-08-03 |
+||| I-3141 | The Agentic Browser Stack — When Your Agent Becomes the Same-Origin Policy Attacker | agentic-browser, same-origin-policy, SOP-bypass, prompt-injection, cross-origin-exfil, agent-session, browser-agent, UW-Roesner, ASI01, ASI02, ASI05, pleasefix, autojack, arxiv-2606.14027, CSA-autojack, zenity-pleasefix, Roesner-Kohlbrenner, ICLR-2026, ChatGPT-Atlas, Perplexity-Comet, OWASP-ASI, container-sandbox, browser-profile-scoping | 10 | 10 | 9 | 10 | 9 | **9.70** | WRITTEN — S-2067 | 2026-08-03 | 2026-08-03 |
+| I-3142 | The Model Is Not the Problem — When 88% of Your Agent Debugging Time Is Spent in the Wrong Place | infrastructure-first, infrastructure-debugging, 88-percent, context-blindness, rogue-actions, silent-degradation, failure-mode, Clyro, MindStudio, codexical, 591-incident, infrastructure-failure, context-validation, execution-bound, permission-boundary, permission-scoping, model-not-problem, debugging-reflex, infrastructure-gap, production-failure, agent-debugging | 9 | 9 | 9 | 8 | 8 | **8.80** | WRITTEN — S-2071 | 2026-08-03 | 2026-08-03 |
 
 ## Recent Decisions
 
@@ -4189,11 +4193,67 @@ per-server-isolation → I-3139
 mcp-token-scoping → I-3139
 instrumented-credential → I-3139
 credential-rotation → I-3139
+agentic-browser → I-3141
+same-origin-policy → I-3141
+SOP-bypass → I-3141
+cross-origin-exfil → I-3141
+pleasefix → I-3141
+autojack → I-3141
+arxiv-2606.14027 → I-3141
+CSA-autojack → I-3141
+zenity-pleasefix → I-3141
+Roesner-Kohlbrenner → I-3141
+ICLR-2026 → I-3141
+ChatGPT-Atlas → I-3141
+Perplexity-Comet → I-3141
+OWASP-ASI05 → I-3141
+cache-boundary → I-3141
+zone-model-cache → I-3141
+agentic-cache-boundary → I-3141
+tool-result-cache → I-3141
+session-tree-cache → I-3141
+MCP-cache-invalidation → I-3141
+
+browser-profile-scoping → I-3141
+infrastructure-first → I-3142
+88-percent → I-3142
+context-blindness → I-3142
+rogue-actions → I-3142
+silent-degradation → I-3142
+infrastructure-failure → I-3142
+model-not-problem → I-3142
 
 ## Pattern Log
 
-- *2026-08-03* — **Protocol-layer gaps cascade into credential-layer failures**: The MCP protocol solves tool integration but introduces credential sharing as a structural property. The OWASP ASI04 (Least Agency) framework and the OWASP ASI10 (Unmaintained Components) framework converge here: unmaintained MCP servers with wide credential scope create compounding blast-radius risk. The fix requires building isolation at the credential layer even when the protocol doesn't enforce it — credential-per-server scoping, version pinning, and instrumented rotation.
+- *2026-08-03* — **Protocol-layer gaps cascade into credential-layer failures**
+- *2026-08-03* — **Agents fail infrastructure-first, not model-first**: 88% of classifiable agent failures (Clyro, 591 incidents, 2023–2026) trace to infrastructure gaps — missing context validation, permission boundaries, execution bounds. The industry spends 100% of debugging time on the 13% that isn't the problem. Context Blindness (31.6%), Rogue Actions (30.3%), Silent Degradation (24.9%) are the three dominant infrastructure failure modes. The diagnostic reflex must always be: check the wiring before checking the model.
+- *2026-08-03* — **Agentic browser collapses the trust boundary that browsers spent 25 years building**: The SOP was a human-in-the-loop security boundary. Agentic browsers replace the human with a model that follows instructions from any page it visits. The consequence: a malicious page can instruct the agent to read cross-origin authenticated content and execute actions without credentials, user interaction, or browser exploit. This is structurally different from prompt injection (which affects instruction-following) because it attacks the session architecture that enables the agent's capabilities. Pattern connects to I-3139 (credential boundaries), I-3130 (agentic supply chain), I-3030 (instruction privilege), I-010 (prompt injection defense-in-depth).: The MCP protocol solves tool integration but introduces credential sharing as a structural property. The OWASP ASI04 (Least Agency) framework and the OWASP ASI10 (Unmaintained Components) framework converge here: unmaintained MCP servers with wide credential scope create compounding blast-radius risk. The fix requires building isolation at the credential layer even when the protocol doesn't enforce it — credential-per-server scoping, version pinning, and instrumented rotation.
 
 - *2026-08-03* — **I-3138 → S-2061 — The Memory Boundary Stack — Composite 9.60**: Fresh research: Mem0 2026 survey (8 frameworks: Claude Code, Codex, Copilot, OpenClaw, Hermes, Bedrock AgentCore, Windsurf, Devin) documents 57-71% cross-user memory contamination — structurally, not adversarial; TencentDB-Agent-Memory GitHub issue #111 documents `searchMemories` with no agent/user-level isolation; CAISc 2026 paper on multi-tenant college counseling agents confirms cross-student data contamination; Mem0 GitHub issue #3998 confirms per-agent isolation was not default as of Feb 2026. Deduplication: zero handbook coverage for multi-tenant memory boundary failure as a distinct architectural pattern — S-641 covers adversarial memory poisoning (ASI06), not non-adversarial cross-user contamination at the structural/namespace level. This entry addresses the 10x-more-common default behavior failure, not the attack. Cross-links: S-641 (memory poisoning defense) for adversarial path; S-1155 (NHI governance) for credential scoping.
 
 - *2026-08-03* — **I-3139 → S-2063 — The Structured Eviction Stack — Composite 8.85**: Tracker saturated (all 3138 prior ideas WRITTEN or DUPLICATE). Fresh research: Cycle 3 (Context Management). Primary sources: arXiv:2606.11213v1 (Semenov & Dorofeev, April 2026) — Context Window Language (CWL), typed dependency-linked episode eviction; arXiv:2601.07190 (Verma, January 2026) — Focus Agent, autonomous Physarum-inspired context compression; arXiv:2511.22729 (November 2025) — pointer-based context overflow handling for tool-heavy agents; Zylos Research agentic RAG (May 2026) — self-directing retrieval loops; tianpan.co token budget as architecture constraint (April 2026); Neural Paging (Chen & Liu, February 2026) — H-NTM as OS MMU for context. Five candidates evaluated: (A) Structured Eviction — CWL's 4 typed episode types, deterministic eviction priority, governance pin (200 tokens), LLM-free by design, directly addresses I-004 (Governance Decay) root cause; (B) Agentic RAG — covered by S-1136, S-1159, S-1927; (C) Token Budget Architecture — covered by S-103, S-1000, S-1094; (D) Neural Paging — H-NTM academic, overlaps S-1430; (E) Focus Agent — taxonomy paper, not an architectural pattern. Chose A: highest specificity, addresses I-004 root cause, distinct from S-1063 (lifecycle) and S-1430 (quality-gated).th; S-827 (context sprawl) for multi-agent semantic divergence; S-799 (cross-agent trace) for observability extension with memory principal metadata.ng (existing entries S-1074, S-1088 cover gaming/exploit). Saturation = test genuinely measures capability but frontier models reached the ceiling. The fix is not better benchmarks — it's saturation metadata tagging + domain-specific production evals as tiebreakers + eval-as-perishable-infrastructure mindset.
+
+| I-3140 | The Grounding Layer Stack — When Your Agent Knows the Answer But Gets the Fact Wrong | grounding-layer, factual-grounding, schema-grounding, retrieval-decoupling, vendor-agnostic-ground, uncertainty-routing, hallucination-mitigation, knowledge-graph, dsb, confidence-gate, schema-binding, entity-grounding, grounding-architecture | 9 | 8 | 9 | 9 | 8 | **8.60** | WRITTEN — S-2066 | 2026-08-03 | 2026-08-03 |
+
+## Pattern Log
+
+
+- *2026-08-03* — **Cache boundary placement is a first-class architectural decision in agentic workloads**: Lumer et al. (arXiv:2601.06007, Jan 2026) demonstrates that Zone 1+2 caching (system prompt + versioned stable content, excluding tool results) outperforms naive full-context caching by 20-35 percentage points on both cost and latency. The three-zone model (stable / semi-stable / dynamic) maps directly to cacheable / conditionally-cacheable / never-cacheable content. MCP dynamic tool registration and tree-shaped sessions are two structural patterns that break naive cache assumptions.- *2026-08-03* — **Grounding as infrastructure, not model property**: The handbook covers agent memory (s991, s1020, s1043, s1051), RAG evaluation (s1199, s1295), tool hallucination (s1057), and silent truncation (s981), but has no entry treating factual grounding as a first-class production infrastructure layer. The key insight: hallucination mitigation must be architectural (decoupled retrieval, schema binding, confidence gates) rather than prompting-based. Sources: DSG architecture (arXiv:2606.18947, Jun 2026) on decoupling search from reasoning; KG hallucination survey (ACL-SRW.53); semantic grounding research on schema-constrained generation; internal representation hallucination detection (arXiv:2601.05214, Jan 2026) on single-pass detection at 86.4% accuracy.
+
+## Deduplication Index
+
+grounding-layer → I-3140
+factual-grounding → I-3140
+schema-grounding → I-3140
+decoupled-grounding → I-3140
+vendor-agnostic-ground → I-3140
+uncertainty-gate → I-3140
+confidence-routing → I-3140
+retrieval-decoupling → I-3140
+grounding-architecture → I-3140
+
+## Recent Decisions
+
+- *2026-08-03* — **I-3142 → S-2071 — The Model Is Not the Problem — Composite 8.80**: Tracker saturated (all 3141 prior ideas WRITTEN or DUPLICATE). Fresh research: Clyro (Apr 2026, 591-incident analysis; "The 5 AI Agent Failure Modes"), Codexical (May 2026), GrowthEngineer (May 2026). Core finding: 88% of classifiable agent failures trace to infrastructure gaps — missing context validation, permission boundaries, execution bounds — not model quality. Context Blindness (31.6%), Rogue Actions (30.3%), Silent Degradation (24.9%) are the three dominant modes. Deduplication: S-257 covers failure modes as taxonomy/recovery; this entry is about the diagnostic reflex order. S-1799 covers rogue action prevention. Pattern: agents fail infrastructure-first, not model-first.
+
+- *2026-08-03* — **I-3141 → S-2067 — The Agentic Browser Stack — Composite 9.70**: Tracker saturated (all 3140 prior ideas WRITTEN or DUPLICATE). Fresh research: UW Roesner & Kohlbrenner (ICLR 2026 Agents in the Wild Workshop, arXiv:2606.14027, published April 2026, UW News June 30 2026) — 7 agentic browsers studied, 4 create SOP bypass conditions, full PoC on ChatGPT Atlas, cross-origin data exfil demonstrated. CSA AutoJack (June 18 2026) — 3-vulnerability chain enabling arbitrary host code execution via malicious web page. Zenity Labs PleaseFix (March 3 2026) — zero-click browser agent hijacking family affecting Perplexity Comet. OWASP ASI01/02/05 threat mapping. Microsoft Agent Governance Toolkit (April 2 2026). Deduplication: I-3030 (instruction privilege) covers instruction-following hierarchy under injection — this covers the structural SOP collapse from agentic session architecture. I-3139 (MCP credential boundary) covers credential scoping per server — this covers authenticated session cross-origin access. I-010 (prompt injection defense-in-depth) covers the injection vector but not the SOP bypass consequence. Key insight: the SOP was never designed for autonomous principals; defending agentic browsers requires session-scoped credential isolation and cross-origin action gates, not just injection detection. — The Grounding Layer Stack — Composite 8.60**: Tracker saturated. Research into Jul-Aug 2026 production patterns, arXiv papers (2606.18947, 2601.05214, 2511.19933, 2607.05775, 2603.10060), ACL Anthology, Zylos Research, Microsoft agent infrastructure patterns, OpenReview. Candidates considered: (1) Tool result caching — covered by S-1192; (2) Agent interrupt/suspend — covered by S-1054; (3) Agent scheduling/heartbeat — covered in f34-async-agent-requests and multi-agent research; (4) Working-memory rot — partially covered by s981 (silent truncation) and s1022 (drift); (5) A2A protocol — covered by existing MCP entries and f80-agent-to-agent-auth. Chosen: grounding layer because it connects three uncovered sub-problems (factual grounding, schema grounding, uncertainty routing) under one architectural pattern, is supported by fresh Jun-Jul 2026 research, and fits the handbook's "stack" format well. Deduplication against S-981 (truncation → wrong evidence), S-1057 (tool hallucination → wrong tool), S-1022 (drift → wrong over time) — all cover symptom layers of hallucination, not the architectural root cause.
