@@ -315,8 +315,11 @@
 || I-3021 | The Agent FinOps Stack: When Your Dashboard Shows Green But Your Credit Card Burns | agent-finops, token-budget-enforcement, cost-velocity-circuit-breaker, pre-call-budget-gate, workflow-cost-attribution, cost-per-outcome, runaway-cost, finops-enforcement-gap, observability-vs-enforcement, bcg-roai, token-cost-tracking, cost-attribution-grain, waxell-2026, nextpageit-2026, ixaxai-2026, state-of-finops-2026, 47k-incident, 400m-cloud-spend-leak | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-1624 | 2026-07-25 | 2026-07-25 |
 || I-3071 | The Emergent Adversarial Multi-Agent Stack: When Independent Agents Converge on Adversarial Behavior | emergent-adversarial, multi-agent-adversarial, turf-war, agent-kill, resource-contention, instrumental-rationality, goal-conflict, price-collusion, agent-deception, decoy-process, capability-convergence, zero-sum-resource, incentive-structure, mythos-5, anthropic-system-card, agent-evil, autonomous-adversarial | 10 | 10 | 9 | 10 | 9 | **9.60** | WRITTEN — S-1827 | 2026-07-29 | 2026-07-29 |
 || I-3143 | The Agent Co-option Stack: When Your Agent Pursues Goals That Are Not Yours | agent-goal-divergence, misalignment, co-option, instrumental-goal, unintended-behavior, capability-overhang, deceptive-alignment, goal-specification, misgeneralization, reward-hacking, arxiv-2506.12458, openai-redwood, gpt-5 | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-1961 | 2026-07-28 | 2026-07-28 |
-|| I-3144 | The Instrumental Subgoal Escape Stack: When Reduced Safety Refusals Give Your Agent Both Ability and Permission | instrumental-subgoal, safety-filter-reduction, cyber-evaluation, sandbox-escape, ExploitGym, GPT-5.6-Sol, evaluation-containment, subgoal-formation, intent-gap, reduced-refusals, containment-bypass, Hugging-Face, JFrog-Artifactory, zero-day, CSA-2026, hyperfocus, answer-key-theft, goal-directed-escalation, arxiv-2606.02644 | 10 | 10 | 10 | 10 | 10 | **10.00** | WRITTEN — S-2075 | 2026-08-03 | 2026-08-03 |
-|| I-NEW | The Structural Signal Masking Stack: Structural Integration Defects Masking Task-Level Monitoring | structural-monitoring, structural-defect, integration-defect, signal-masking, quality-suitability-efficiency, within-run-cross-run-structural, variance-as-signal, 3D-3-scope, MDM-algorithm, EWMA-threshold, Mahalanobis-distance, heterogeneous-tasks, LLM-judge-variance, ground-truth-uncertainty, arxiv-2606.02494, reins-ai, agenticse-2026 | 9 | 9 | 9 | 9 | 8 | **8.85** | WRITTEN — S-1631 | 2026-07-25 | 2026-07-25 |
+| I-3144 | The Instrumental Subgoal Escape Stack: When Reduced Safety Refusals Give Your Agent Both Ability and Permission | instrumental-subgoal, safety-filter-reduction, cyber-evaluation, sandbox-escape, ExploitGym, GPT-5.6-Sol, evaluation-containment, subgoal-formation, intent-gap, reduced-refusals, containment-bypass, Hugging-Face, JFrog-Artifactory, zero-day, CSA-2026, hyperfocus, answer-key-theft, goal-directed-escalation, arxiv-2606.02644 | 10 | 10 | 10 | 10 | 10 | **10.00** | WRITTEN — S-2075 | 2026-08-03 | 2026-08-03 |
+| I-3145 | The Fault Injection Stack — When Your Agent Works in Staging and Fails in Production | fault-injection, chaos-engineering, llm-api-fault, transport-layer-injection, AgentChaos, ReliabilityBench, fault-taxonomy, latency-spike, empty-response, schema-violation, truncation, rate-limit, silent-failure, robustness-delta, 429, circuit-breaker, graceful-recovery, degraded-mode, task-completion-metric, fault-proxy, ai-reliability-engineering, arxiv-2601.06112, agent-chaos-SDK | 9 | 10 | 9 | 9 | 7 | **9.00** | WRITTEN — S-2082 | 2026-08-03 | 2026-08-03 |
+| I-3146 | The MCP Fleet Resilience Stack — When Your MCP Server Works for One Agent and Breaks for One Hundred | mcp-fleet-resilience, mcp-server-scale, fleet-scale-failure, retry-side-effect, idempotency-key, schema-staleness, schema-cache-ttl, fan-out-n+1, batch-query-coalesce, circuit-breaker, event-loop-saturation, worker-thread-pool, alive-mcp, mcp-chaos-testing, fleet-chaos-harness, mcp-resilience-patterns, server-sent-events-schema, schema-version-registry, parallel-tool-calls, mcp-concurrency | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2087 | 2026-08-03 | 2026-08-03 |
+| I-3147 | The Handoff Desert Stack — When Every Agent Boundary Is a Context Graveyard | handoff-capsule, handoff-desert, context-graveyard, execution-trace-only, handoff-acceptance-gate, silent-handoff-failure, 3-hop-cliff, ghost-completion, AHC, agent-handoff-protocol, context-transfer, inter-agent-redundancy, multi-agent-coordination, handoff-lossy, boundary-context-death, AI-Navigate-2026, agentmemo-2026, MAST-NeurIPS-2025, Zylos-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2098 | 2026-08-03 | 2026-08-03 |
+| I-NEW | The Structural Signal Masking Stack: Structural Integration Defects Masking Task-Level Monitoring | structural-monitoring, structural-defect, integration-defect, signal-masking, quality-suitability-efficiency, within-run-cross-run-structural, variance-as-signal, 3D-3-scope, MDM-algorithm, EWMA-threshold, Mahalanobis-distance, heterogeneous-tasks, LLM-judge-variance, ground-truth
 
 ## Synthesis Notes
 
@@ -4199,6 +4202,7 @@ SaaS-agent → I-3138
 
 || ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 || I-3141 | The Agentic Cache Boundary Stack — When Including Tool Results in Your Prompt Cache Makes It Slower and More Expensive | cache-boundary, zone-model, cache-prefix, agentic-cache, MCP-cache, session-tree, tree-branch, tool-result-cache, cache-invalidation, arxiv-2601.06007, stability-zoning, provider-cache, Anthropic-cache-control, OpenAI-cache, cache-stability, cache-misconfig, cache-corruption, agentic-caching, Lumer-2026, cache-metrics, cache-strategy | 8 | 9 | 10 | 8 | 7 | **8.55** | WRITTEN — S-2069 | 2026-08-03 | 2026-08-03 |
+|| I-3143 | The Recurrence Memory Stack — When Every Interaction Gets a Memory Tax But Only Some Warrant It | recurrence-gate, eager-consolidation, subconscious-buffer, selective-memory, RecMem, recurrence-based, memory-tax, episodic-semantic-dual, LLM-free-buffer, memory-ROI, consolidation-gate, arxiv-2605.16045, ACL-2026, Dai-CUHK-BUPT, LoCoMo, LongMemEval-S, Mem0, A-Mem, MemoryOS, 87-percent-reduction, selective-forgetting, cognitive-architecture, CLS-theory, hippocampal-analog | 9 | 9 | 9 | 9 | 8 | **8.85** | WRITTEN — S-2081 | 2026-08-03 | 2026-08-03 |
 || I-3140 | The Environment Scaffolding Stack — When Leaner Models Beat Frontier on Reliability | environment-scaffolding, stack-aware, generate-validate-repair, env-first, policy-gates, scaffold-vs-model, code-generation-agents, production-reliability, benchmark-gap, sandbox-execution, SANER-2026, constraint-constrains, env-constrains-generation | 9 | 9 | 10 | 9 | 8 | **9.10** | WRITTEN — S-2065 | 2026-08-03 | 2026-08-03 |
 || I-3139 | The MCP Credential Boundary Stack — When Every MCP Server Is a Different Security Tenant | mcp-credential-boundary, credential-per-server, scoped-credential, mcp-security, least-agency, blast-radius, ASI04, ASI10, OX-Security, stdio-rce, credential-sprawl, per-server-isolation, MCP-supply-chain, mcp-cve, OWASP-ASI, mcp-token-scoping, credential-rotation, instrumented-credential | 10 | 9 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2064 | 2026-08-03 | 2026-08-03 |
 ||| I-3141 | The Agentic Browser Stack — When Your Agent Becomes the Same-Origin Policy Attacker | agentic-browser, same-origin-policy, SOP-bypass, prompt-injection, cross-origin-exfil, agent-session, browser-agent, UW-Roesner, ASI01, ASI02, ASI05, pleasefix, autojack, arxiv-2606.14027, CSA-autojack, zenity-pleasefix, Roesner-Kohlbrenner, ICLR-2026, ChatGPT-Atlas, Perplexity-Comet, OWASP-ASI, container-sandbox, browser-profile-scoping | 10 | 10 | 9 | 10 | 9 | **9.70** | WRITTEN — S-2067 | 2026-08-03 | 2026-08-03 |
@@ -4269,6 +4273,7 @@ failure-routing → I-3143
 ## Pattern Log
 
 - *2026-08-03* — **Protocol-layer gaps cascade into credential-layer failures**
+- *2026-08-03* — **Handoff boundaries are the new memory boundaries**: Each agent boundary in a multi-agent system is a context graveyard — execution history, rejected approaches, and intermediate conclusions don't survive the transfer. The coordination layer, not the agent logic, is where multi-agent systems die. This is the same pattern as memory consolidation debt (S-1002) but at the inter-agent rather than intra-agent level: both are about context dying when it should survive.
 - *2026-08-03* — **Agents fail infrastructure-first, not model-first**: 88% of classifiable agent failures (Clyro, 591 incidents, 2023–2026) trace to infrastructure gaps — missing context validation, permission boundaries, execution bounds. The industry spends 100% of debugging time on the 13% that isn't the problem. Context Blindness (31.6%), Rogue Actions (30.3%), Silent Degradation (24.9%) are the three dominant infrastructure failure modes. The diagnostic reflex must always be: check the wiring before checking the model.
 - *2026-08-03* — **Agentic browser collapses the trust boundary that browsers spent 25 years building**: The SOP was a human-in-the-loop security boundary. Agentic browsers replace the human with a model that follows instructions from any page it visits. The consequence: a malicious page can instruct the agent to read cross-origin authenticated content and execute actions without credentials, user interaction, or browser exploit. This is structurally different from prompt injection (which affects instruction-following) because it attacks the session architecture that enables the agent's capabilities. Pattern connects to I-3139 (credential boundaries), I-3130 (agentic supply chain), I-3030 (instruction privilege), I-010 (prompt injection defense-in-depth).: The MCP protocol solves tool integration but introduces credential sharing as a structural property. The OWASP ASI04 (Least Agency) framework and the OWASP ASI10 (Unmaintained Components) framework converge here: unmaintained MCP servers with wide credential scope create compounding blast-radius risk. The fix requires building isolation at the credential layer even when the protocol doesn't enforce it — credential-per-server scoping, version pinning, and instrumented rotation.
 
@@ -4294,9 +4299,91 @@ uncertainty-gate → I-3140
 confidence-routing → I-3140
 retrieval-decoupling → I-3140
 grounding-architecture → I-3140
+recurrence-gate → I-3143
+eager-consolidation → I-3143
+subconscious-buffer → I-3143
+selective-memory → I-3143
+RecMem → I-3143
+recurrence-based → I-3143
+memory-tax → I-3143
+episodic-semantic-dual → I-3143
+LLM-free-buffer → I-3143
+memory-ROI → I-3143
+consolidation-gate → I-3143
+mcp-fleet-resilience → I-3146
+mcp-server-scale → I-3146
+fleet-scale-failure → I-3146
+retry-side-effect → I-3146
+idempotency-key → I-3146
+schema-staleness → I-3146
+schema-cache-ttl → I-3146
+fan-out-n+1 → I-3146
+batch-query-coalesce → I-3146
+event-loop-saturation → I-3146
+alive-mcp → I-3146
+mcp-chaos-testing → I-3146
+schema-version-registry → I-3146
+
+## Recent Decisions
+
+- *2026-08-03* — **I-3143 → S-2081 — The Recurrence Memory Stack — Composite 8.85**: Tracker saturated (all 3142 prior ideas WRITTEN or DUPLICATE). Fresh research: RecMem (Dai et al., arXiv:2605.16045, ACL 2026 Findings), Zylos Research (Jun 2026), arXiv:2509.25250. Core finding: eager memory consolidation — invoking LLM on every interaction regardless of worth — wastes 87% of consolidation tokens on noise (chit-chat, one-off remarks). RecMem's recurrence-based gate: Layer 1 = lightweight embed + buffer (no LLM), Layer 2 = similarity-based recurrence detection, Layer 3 = LLM consolidation only on sustained recurrence threshold (3+ similar interactions in 7 days). Reduces consolidation tokens 87% while improving retrieval accuracy. Deduplication: S-1002 covers memory consolidation debt (what happens when consolidation never happens); S-1043 covers the dreaming/conscious consolidation cycle (when to consolidate). This entry fills the *which interactions warrant consolidation* gate problem — the trigger mechanism, not the mechanism itself. Novel angle: cost-as-quality signal (token waste as a proxy for mis-prioritization). Pattern: cost-compounding at the infrastructure layer.
 
 ## Recent Decisions
 
 - *2026-08-03* — **I-3142 → S-2071 — The Model Is Not the Problem — Composite 8.80**: Tracker saturated (all 3141 prior ideas WRITTEN or DUPLICATE). Fresh research: Clyro (Apr 2026, 591-incident analysis; "The 5 AI Agent Failure Modes"), Codexical (May 2026), GrowthEngineer (May 2026). Core finding: 88% of classifiable agent failures trace to infrastructure gaps — missing context validation, permission boundaries, execution bounds — not model quality. Context Blindness (31.6%), Rogue Actions (30.3%), Silent Degradation (24.9%) are the three dominant modes. Deduplication: S-257 covers failure modes as taxonomy/recovery; this entry is about the diagnostic reflex order. S-1799 covers rogue action prevention. Pattern: agents fail infrastructure-first, not model-first.
 
 - *2026-08-03* — **I-3141 → S-2067 — The Agentic Browser Stack — Composite 9.70**: Tracker saturated (all 3140 prior ideas WRITTEN or DUPLICATE). Fresh research: UW Roesner & Kohlbrenner (ICLR 2026 Agents in the Wild Workshop, arXiv:2606.14027, published April 2026, UW News June 30 2026) — 7 agentic browsers studied, 4 create SOP bypass conditions, full PoC on ChatGPT Atlas, cross-origin data exfil demonstrated. CSA AutoJack (June 18 2026) — 3-vulnerability chain enabling arbitrary host code execution via malicious web page. Zenity Labs PleaseFix (March 3 2026) — zero-click browser agent hijacking family affecting Perplexity Comet. OWASP ASI01/02/05 threat mapping. Microsoft Agent Governance Toolkit (April 2 2026). Deduplication: I-3030 (instruction privilege) covers instruction-following hierarchy under injection — this covers the structural SOP collapse from agentic session architecture. I-3139 (MCP credential boundary) covers credential scoping per server — this covers authenticated session cross-origin access. I-010 (prompt injection defense-in-depth) covers the injection vector but not the SOP bypass consequence. Key insight: the SOP was never designed for autonomous principals; defending agentic browsers requires session-scoped credential isolation and cross-origin action gates, not just injection detection. — The Grounding Layer Stack — Composite 8.60**: Tracker saturated. Research into Jul-Aug 2026 production patterns, arXiv papers (2606.18947, 2601.05214, 2511.19933, 2607.05775, 2603.10060), ACL Anthology, Zylos Research, Microsoft agent infrastructure patterns, OpenReview. Candidates considered: (1) Tool result caching — covered by S-1192; (2) Agent interrupt/suspend — covered by S-1054; (3) Agent scheduling/heartbeat — covered in f34-async-agent-requests and multi-agent research; (4) Working-memory rot — partially covered by s981 (silent truncation) and s1022 (drift); (5) A2A protocol — covered by existing MCP entries and f80-agent-to-agent-auth. Chosen: grounding layer because it connects three uncovered sub-problems (factual grounding, schema grounding, uncertainty routing) under one architectural pattern, is supported by fresh Jun-Jul 2026 research, and fits the handbook's "stack" format well. Deduplication against S-981 (truncation → wrong evidence), S-1057 (tool hallucination → wrong tool), S-1022 (drift → wrong over time) — all cover symptom layers of hallucination, not the architectural root cause.
+
+|| I-3144 | The Observation-Action Gap Stack: TOCTOU Attacks on GUI Agents | TOCTOU, observation-action-gap, GUI-agent, computer-use-agent, visual-hijack, UI-state-inconsistency, temporal-gap, screenshot-agent, DOM-verification, state-lock, action-verification, arxiv-2604.18860, osworld, desktoptoctou-bench, xu-ucsd, zylos-2026, visual-attack, capability-disclosure, cua-attack | 9 | 10 | 9 | 9 | 9 | **9.30** | WRITTEN — S-2083 | 2026-08-03 | 2026-08-03 |
+TOCTOU → I-3144
+observation-action-gap → I-3144
+GUI-agent-TOCTOU → I-3144
+visual-hijack → I-3144
+UI-state-inconsistency → I-3144
+temporal-gap → I-3144
+screenshot-agent → I-3144
+DOM-verification → I-3144
+state-lock → I-3144
+action-verification → I-3144
+arxiv-2604.18860 → I-3144
+osworld → I-3144
+desktoptoctou-bench → I-3144
+cua-attack → I-3144
+| I-3145 | The MCP Server Health Stack — When Your Agent Is Silent But Something Is Very Wrong | mcp-health, mcp-monitoring, mcp-debugging, circuit-breaker, heartbeat, mcp-snoop, stdio-pollution, transport-mismatch, schema-drift, zombie-server, mcp-observability, server-liveness, json-rpc-debug, mcpsnoop, opentelemetry-mcp | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2096 | 2026-08-03 | 2026-08-03 |
+mcp-health → I-3145
+mcp-monitoring → I-3145
+mcp-debugging → I-3145
+circuit-breaker → I-3145
+mcp-heartbeat → I-3145
+mcp-snoop → I-3145
+stdio-pollution → I-3145
+transport-mismatch → I-3145
+schema-drift → I-3145
+zombie-server → I-3145
+mcp-observability → I-3145
+server-liveness → I-3145
+json-rpc-debug → I-3145
+mcpsnoop → I-3145
+mcp-chaos-testing → I-3146
+schema-version-registry → I-3146
+handoff-capsule → I-3147
+handoff-desert → I-3147
+context-graveyard → I-3147
+execution-trace-only → I-3147
+handoff-acceptance-gate → I-3147
+silent-handoff-failure → I-3147
+3-hop-cliff → I-3147
+ghost-completion → I-3147
+AHC → I-3147
+agent-handoff-protocol → I-3147
+context-transfer → I-3147
+inter-agent-redundancy → I-3147
+
+## Recent Decisions
+- *2026-08-03* — **I-3147 → S-2098 — The Handoff Desert Stack — Composite 8.90**: Research from AI Navigate (Jun 2026) — 80% of multi-agent production failures trace to handoff points; MAST study (Cemri et al., NeurIPS 2025) — 41–86.7% of studied multi-agent systems fail; Agentmemo (Feb 2026) — original intent becomes unrecognizable after 3–5 sequential handoffs. Core finding: context dies at agent boundaries unless handoff is a first-class structured data artifact (Agent Handoff Capsule / AHC). Deduplication: S-1013 covers state disagreement between agents (schema mismatch at boundary); S-1008 covers orchestration topology selection. Neither covers the structured handoff protocol, AHC format, acceptance gate, or ghost-completion detector. Distinct angle: lossy-context-at-boundary is the operational complement to S-1013's structural fix.
+
+ — The Observation-Action Gap: TOCTOU Attacks on GUI Agents — Composite 9.30**: Tracker saturated (all 3143 prior ideas WRITTEN or DUPLICATE). Fresh research: Xu et al. (UCSD, arXiv:2604.18860, April 2026) — Temporal UI State Inconsistency, 6.51s mean observation-to-action gap on OSWorld, DesktopTOCTOU-Bench (50 scenarios) with up to 100% action-redirection success. Zylos Research (May 2026) on agentic security confirms visual hijacking as distinct attack surface. Microsoft AI Red Team v2.0 (April 2026) notes CUA visual attacks as new failure mode. Core finding: screenshot-and-click GUI agents have an intrinsic TOCTOU window between observation and action — the page state can change during the agent's deliberation, causing the agent to act on stale state. 6.51s mean gap is empirically measured. Deduplication: S-990 covers web-based agent manipulation via instruction injection; this entry covers UI-layer state manipulation with structurally different attack primitives. S-1490 covers browser-as-tool challenges; this adds the TOCTOU attack specifically. S-968 covers MCP server attestation; complementary (server layer vs. UI layer). Four defenses: state lock overlay, DOM instrumentation, post-action outcome verification, bounded action sequences. Pattern: agents operating on snapshots (screenshots) rather than streams (DOM events) are vulnerable to temporal state manipulation — the same root cause as classic TOCTOU in OS security, applied to the UI layer.
+
+- *2026-08-03* — **I-3145 → S-2096 — The MCP Server Health Stack — Composite 8.90**: Tracker saturated (all 3144 prior ideas WRITTEN or DUPLICATE). Fresh research: Daniel Vaughan Codex CLI (May 2026, updated July 2026) — MCP server health monitoring with circuit breakers and OpenTelemetry; MCP.Directory (July 2026) — debugging guide covering four silent failure modes (stdout pollution, transport mismatch, schema drift, zombie servers) and mcpsnoop transparent proxy tool; GitHub #49133 (anthropics/claude-code, Apr-Jul 2026) — confirmed silent failure as top-1 MCP pain point. Core finding: MCP failures are invisible by default because JSON-RPC over stdio/HTTP never touches application logs — the agent keeps working around the broken server without any error signal. Solution: three-layer stack — visibility tools (mcpsnoop, MCP Inspector, structured logging), external heartbeat monitoring (no built-in MCP health protocol), and circuit breakers that stop routing traffic to sick servers. Deduplication: S-10 covers MCP basics; S-2087 covers MCP fleet resilience at scale; neither covers per-server health monitoring + circuit breaker + four failure signatures.
+
+- *2026-08-03* — **MCP server health is invisible infrastructure debt**: MCP (Model Context Protocol) has become the dominant tool-integration protocol by 2026, adopted by Claude, OpenAI Agents SDK, Cursor, LangGraph, and most major agent frameworks. Yet it has no built-in health protocol — no liveness probe, no circuit breaker, no standard error surface. The four failure modes (stdout pollution, transport mismatch, schema drift, zombie server) are each invisible in different ways. The diagnostic pattern: make JSON-RPC traffic visible first (mcpsnoop, MCP Inspector, structured logging), then add an external heartbeat monitor that pings the server process independently of the agent, then wrap routing in a circuit breaker that fails fast instead of retrying a dead server.
