@@ -925,3 +925,6 @@
   - [S-2044 · The Layer-Isolated Eval Stack — When Your Agent Regressed But Your Pass Rate Didn't](stacks/s2044-the-layer-isolated-eval-stack-when-your-agent-regressed-but-your-pass-rate-didnt.md)
   - [S-2045 · The Agent Failure-Boundary Stack — When Your Agent Ran for 8 Hours and Cost $437 Before Anyone Noticed](stacks/s2045-the-agent-failure-boundary-stack-when-your-agent-ran-for-8-hours-and-cost-437-before-anyone-noticed.md)
   - [S-2046 · The Infra Blast-Radius Stack — When Your AI Agent Deleted Your Production Database in 9 Seconds](stacks/s2046-the-infra-blast-radius-stack-when-your-ai-agent-deleted-your-production-database-in-9-seconds.md)
+  - [S-2056 · The STDIO-"By Design" Stack — When Your SDK Classified RCE as Expected Behavior](stacks/s2056-the-stdio-by-design-stack-when-your-sdk-classified-rce-as-expected-behavior.md)
+  - [S-2059 · The Semantic Isolation Stack — When Your Agents Exchange Messages But Not Meaning](stacks/s2059-the-semantic-isolation-stack-when-your-agents-exchange-messages-but-not-meaning.md)
+  - [S-2064 · The MCP Credential Boundary Stack — When Every MCP Server Is a Different Security Tenant](stacks/s2064-the-mcp-credential-boundary-stack-when-every-mcp-server-is-a-different-security-tenant.md)
