@@ -933,3 +933,4 @@
   - [S-2066 · The Grounding Layer Stack — When Your Agent Knows the Answer But Gets the Fact Wrong](stacks/s2066-the-grounding-layer-stack-when-your-agent-knows-the-answer-but-gets-the-fact-wrong.md)
   - [S-2067 · The Agentic Browser Stack — When Your Agent Becomes the Same-Origin Policy Attacker](stacks/s2067-the-agentic-browser-stack-when-your-agent-becomes-the-same-origin-policy-attacker.md)
   - [S-2071 · The Model Is Not the Problem — When 88% of Your Agent Debugging Time Is Spent in the Wrong Place](stacks/s2071-the-model-is-not-the-problem-when-88-percent-of-your-agent-debugging-time-is-spent-in-the-wrong-place.md)
+  - [S-2074 · The Tool Call Failure Gap Stack — When Your Agent Passes Benchmarks and Breaks in Production](stacks/s2074-the-tool-call-failure-gap-stack-when-your-agent-passes-benchmarks-and-breaks-in-production.md)
