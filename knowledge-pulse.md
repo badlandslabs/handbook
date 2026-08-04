@@ -4590,8 +4590,9 @@ wasmtime → I-3154
 - *2026-08-04* — **I-3149 → S-2102 — The Agent Credential Lifecycle Stack — Composite 9.05**: From CSA/Strata Identity survey (Feb 2026), GitGuardian State of Secrets Sprawl 2026, OpenID Identity Management for Agentic AI (Oct 2025), Red Hat MCP Security blog (Mar 2026), WorkOS AI Agent Secrets Management (Jun 2026), Zylos Research NHI brief (Jul 2026). Core insight: the identity explosion (45-100:1 machine:human identities, 1.3B agents by 2028) creates a governance gap — 78% of orgs have no AI identity creation policy, yet Claude Code commits leak secrets at 3.2% vs 1.5% human baseline. Deduplication: S-695 covers MCP ambient authority and protocol-level security; this entry covers the credential lifecycle and NHI governance layer — complementary, not overlapping. No entry covers agent credential scoping + lifecycle + revocation in a single architectural pattern. Pattern density: connects to S-695 (MCP), S-1000 (structural governance), S-997 (observability).
 - *2026-08-04* — **I-3150 → S-2104 — The Error Propagation Stack — Composite 9.25**: From Guo et al. (HKU + Stellaris AI), "AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking" (arXiv:2604.23581, ACL 2026 Industry Track). Core finding: 63% of step-level failures in agentic workflows are propagated from upstream nodes, not locally generated. End-to-end evaluation masks these because the final output can be correct despite upstream failures that were compensated downstream. AgentEval formalizes agent traces as evaluation DAGs where each node carries typed quality metrics scored by a calibrated LLM judge, and failure propagates backward through dependency edges via a greedy parent strategy. 2.17x recall improvement over end-to-end (0.41 to 0.89), 72% root cause accuracy (vs 81% human ceiling), median RCA time 4.2h to 22min on 450 production traces. Deduplication: S-1001 covers eval benchmarks vs production, S-1009 covers RCA workflow, S-1856 covers belief contamination. Distinct angle: evaluation DAG as evaluation infrastructure, not just a monitoring layer.
 
-| I-3155 | The Structural Overthinking Stack — When Individual Tool Calls Are Harmless But Their Composition Traps Your Agent | structural-overthinking, token-amplification, mcp-tool-composition, cyclic-trajectory, tool-cycle, dag-loop, agent-loop, composition-risk, mcp-security, arxiv-2602.14798 | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-2126 | 2026-08-04 | 2026-08-04 |
-| I-3156 | The MCP Tool Description Injection Stack — When Your Model Trusts the Tool Metadata It Reads | mcp-tool-description-injection, tool-description-injection, mcp-security, tool-poisoning, mcp-tox, description-sanitization, mcp-credential-scoping, mcp-auto-execution, mcp-stdio-rce, mcp-supply-chain, mcp-registry, csa-2026, mcp-attack-surface, model-trusts-metadata, 36-percent-attack-success, 72-percent-worst-case, arxiv-mcp-tox | 10 | 10 | 10 | 10 | 7 | **9.55** | WRITTEN — S-2127 | 2026-08-04 | 2026-08-04 |
+|| I-3155 | The Structural Overthinking Stack — When Individual Tool Calls Are Harmless But Their Composition Traps Your Agent | structural-overthinking, token-amplification, mcp-tool-composition, cyclic-trajectory, tool-cycle, dag-loop, agent-loop, composition-risk, mcp-security, arxiv-2602.14798 | 9 | 10 | 9 | 10 | 8 | **9.30** | WRITTEN — S-2126 | 2026-08-04 | 2026-08-04 |
+|| I-3156 | The MCP Tool Description Injection Stack — When Your Model Trusts the Tool Metadata It Reads | mcp-tool-description-injection, tool-description-injection, mcp-security, tool-poisoning, mcp-tox, description-sanitization, mcp-credential-scoping, mcp-auto-execution, mcp-stdio-rce, mcp-supply-chain, mcp-registry, csa-2026, mcp-attack-surface, model-trusts-metadata, 36-percent-attack-success, 72-percent-worst-case, arxiv-mcp-tox | 10 | 10 | 10 | 10 | 7 | **9.55** | WRITTEN — S-2127 | 2026-08-04 | 2026-08-04 |
+|| I-3157 | The Memory & Context Poisoning Stack — When One Bad Write Poisons Every Future Session | ASI06, OWASP, memory-poison, context-poison, persistent-attack, temporal-decoupling, memory-write-path, OWASP-agentic-top10, Cisco-MemoryTrap, 95-percent-attack-success, 80-percent-attack-success, session-persistence, write-path-security, memory-zone-isolation | 10 | 10 | 10 | 10 | 8 | **9.60** | WRITTEN — S-2130 | 2026-08-04 | 2026-08-04 |
 
 structural-overthinking → I-3155
 token-amplification → I-3155
@@ -4613,6 +4614,17 @@ mcp-auto-exec → I-3156
 mcp-stdio-rce → I-3156
 tool-description-rce → I-3156
 
+ASI06 → I-3157
+memory-poison → I-3157
+context-poison → I-3157
+memory-write-path → I-3157
+temporal-decoupling → I-3157
+persistent-attack → I-3157
+Cisco-MemoryTrap → I-3157
+OWASP-agentic-top10 → I-3157
+write-path-security → I-3157
+memory-zone-isolation → I-3157
+
 - **Tool description injection is the MCP security primitive that nobody secured**: Unlike SQL injection (escaped at the DB layer) or XSS (escaped at the browser layer), MCP tool descriptions flow directly into the model's system context without sanitization. The CSA MCPTox benchmark (2026-07-01) found 36.5% average attack success across 20 models, 72.8% worst case — these are not hypothetical. The attack is invisible to the user: they see the tool call, not the instruction embedded in the description. Pattern density: connects to S-1459 (Trusted-File Escape — same supply-chain-compromise root cause, different mechanism), S-1960 (OWASP Agentic Skills Top 10 — third-party code as attack vector), S-2064 (MCP Credential Boundary — credential scoping as defense layer). (I-3156)
 
 - *2026-08-04* — **I-3156 → S-2127 — The MCP Tool Description Injection Stack — Composite 9.55**: From CSA AI Safety Initiative "MCP Attack Surface: Tool Poisoning and IDE Auto-Execution" (2026-07-01, MCPTox benchmark, 36.5%/72.8% attack success across 20 models), CSA "AI Coding Agents as Attack Surface: MCP, Poisoning, and Miasma" whitepaper (2026-06-28, 200,000 vulnerable MCP installations, 150M+ SDK downloads), Microsoft Tech Community "State of MCP Security in 2026" (2026-06-26, 30+ MCP CVEs H1 2026), ITECS "MCP Tool Poisoning: Enterprise AI Agent Security in 2026" (2026, 72% worst-case, 40% enterprise AI penetration by EOY). Tracker exhausted (all 3155 prior ideas WRITTEN or DUPLICATE). Fresh research surfaced a production-critical gap: S-10 (MCP intro) covers what MCP is; S-1459 (Trusted-File Escape) covers agent escape via file-write/lifecycle-hooks; S-1960 (OWASP Skills Top 10) covers malicious skill install hooks; S-2064 (MCP Credential Boundary) covers credential scoping. No entry covers the *tool description field itself* as an unsanitized injection surface — this is the orthogonal attack vector. 36.5% avg / 72.8% worst-case attack success makes it the highest-urgency unaddressed security gap in the handbook. Alternatives considered: MCP auto-execution STDIO RCE (covered by S-1459's trusted-host mechanism), MCP registry poisoning (subset of S-1960's supply chain). Chose tool description injection as primary entry — most universal attack vector, least covered, highest empirical severity.
@@ -4620,3 +4632,79 @@ tool-description-rce → I-3156
 - **Structural overthinking is an architectural attack, not a prompt or tool problem**: The most dangerous finding from Hou et al. (arXiv:2602.14798, Yonsei/Ewha/HUFS, 2026) is that the attack surface is tool *composition*, not individual tools. A tool with obvious looping behavior is caught by static analysis. A benign checklist validator + benign progress tracker compose into a cycle that no single-tool review surfaces. Token amplification up to 142.4× on Qwen-Code, 971.27× worst case on GLM-4.6. IAL-Scan (R-18) detects termination failures; structural overthinking is the architectural mechanism that creates those loops. Pattern density: connects to S-2114 (Tool Surface — MCP tool count as attack surface), S-1882 (Overthinking Spiral — token-level complement), S-2122 (Recovery — loop costs), S-1188 (A2A Authorization Island — intra-agent analog of cross-agent security). (I-3155)
 
 - *2026-08-04* — **I-3155 → S-2126 — The Structural Overthinking Stack — Composite 9.30**: Discovered via arXiv:2602.14798v1 (Hou et al., "Overthinking Loops in Agents: A Structural Risk via MCP Tools," 2026). Key finding: MCP tool composition — not tool descriptions, not individual tool behavior — creates cyclic agent trajectories. Attack tools used trivial logic; none appeared malicious in isolation. 14.59× mean token amplification on ReAct, 142.4× on Qwen-Code. This is a genuinely novel angle not covered by any existing entry: existing IAL-loop entries cover termination logic (R-18, S-1882), structural overthinking covers the architectural mechanism. Selected over: IETF ATN trust negotiation (protocol layer, not production-ready), ReliabilityBench consistency measurement (covered by R-17 behavioral regression), Zylos parallel concurrency patterns (covered by S-1776). Tracker now has 394 ideas: 393 WRITTEN or DUPLICATE, 1 new this run. Next run will require active new research discovery.
+
+| I-3158 | The Anti-Fragile Agent Stack — When Disruption Becomes Your Train, Test, and Improve Loop | anti-fragile, chaos-engineering, fault-injection, disruption-as-data, diversity-engine, redundancy-variation, failure-signal, chaos-monkey, ReliabilityBench, disruption-log, anti-fragility-metrics, stress-testing, failure-capture, eval-case-generation, chaos-eater, MAESTRO, diversity-disagreement, minority-opinion, recovery-trend | 8 | 10 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2132 | 2026-08-04 | 2026-08-04 |
+
+anti-fragile → I-3158
+chaos-engineering → I-3158
+fault-injection → I-3158
+disruption-as-data → I-3158
+diversity-engine → I-3158
+redundancy-variation → I-3158
+failure-signal → I-3158
+chaos-monkey → I-3158
+ReliabilityBench → I-3158
+disruption-log → I-3158
+anti-fragility-metrics → I-3158
+stress-testing → I-3158
+failure-capture → I-3158
+eval-case-generation → I-3158
+ChaosEater → I-3158
+MAESTRO → I-3158
+diversity-disagreement → I-3158
+minority-opinion → I-3158
+recovery-trend → I-3158
+agent-chaos → I-3158
+tool-failure-injection → I-3158
+LLM-degradation → I-3158
+context-corruption → I-3158
+permission-drift → I-3158
+diversity-signal → I-3158
+Taleb → I-3158
+volatility-opportunity → I-3158
+tianpan-2026 → I-3158
+hkchen-2026 → I-3158
+cloudgeometry-2026 → I-3158
+cordum-runtime → I-3158
+venkatacrc-chaos-monkey → I-3158
+zalt-2026 → I-3158
+
+| I-3158 | The Anti-Fragile Agent Stack — When Disruption Becomes Your Train, Test, and Improve Loop | anti-fragile, chaos-engineering, fault-injection, disruption-as-data, diversity-engine, redundancy-variation, failure-signal, chaos-monkey, ReliabilityBench, disruption-log, anti-fragility-metrics, stress-testing, failure-capture, eval-case-generation, ChaosEater, MAESTRO, diversity-disagreement, minority-opinion, recovery-trend | 8 | 10 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2132 | 2026-08-04 | 2026-08-04 |
+
+anti-fragile → I-3158
+chaos-engineering → I-3158
+fault-injection → I-3158
+disruption-as-data → I-3158
+diversity-engine → I-3158
+redundancy-variation → I-3158
+failure-signal → I-3158
+chaos-monkey → I-3158
+ReliabilityBench → I-3158
+disruption-log → I-3158
+anti-fragility-metrics → I-3158
+stress-testing → I-3158
+failure-capture → I-3158
+eval-case-generation → I-3158
+ChaosEater → I-3158
+MAESTRO → I-3158
+diversity-disagreement → I-3158
+minority-opinion → I-3158
+recovery-trend → I-3158
+agent-chaos → I-3158
+tool-failure-injection → I-3158
+LLM-degradation → I-3158
+context-corruption → I-3158
+permission-drift → I-3158
+diversity-signal → I-3158
+Taleb → I-3158
+volatility-opportunity → I-3158
+tianpan-2026 → I-3158
+hkchen-2026 → I-3158
+cloudgeometry-2026 → I-3158
+cordum-runtime → I-3158
+venkatacrc-chaos-monkey → I-3158
+zalt-2026 → I-3158
+
+## Recent Decisions
+
+- *2026-08-04* — **I-3158 → S-2132 — The Anti-Fragile Agent Stack — Composite 8.75**: Tracker saturated (all 3157 prior ideas WRITTEN or DUPLICATE). Fresh research across 5 sources: Zylos Research (Chaos Engineering for AI Agents, 2026-04-09, ReliabilityBench + ChaosEater + MAESTRO frameworks), tianpan.co (Chaos Engineering for AI Agents, 2026-04-12, 4-dimension fault injection taxonomy), HK Chen (AI Stability Is a Delusion, 2026-05-07, anti-fragility thesis), CloudGeometry (Anti-Fragile AI, 2026, diversity engine principles), Venkatacrc chaos-monkey-distributed-agents (open-source implementation). Key findings: traditional resilience returns system to susceptible state; anti-fragility returns to a stronger state; disruption contains optimization signals invisible in stable conditions; chaos engineering for agents requires tool-failure injection, LLM-degradation injection, context-corruption injection, and permission-drift injection as 4 distinct dimensions. Novel coverage gap: zero S-entries cover anti-fragility, chaos engineering for agents, or disruption-as-improvement-loop. Alternatives considered: agent liability/agency law (covered broadly by S-1266 governance entries), MoE routing jitter (covered by existing observability entries), schema drift (covered by S-999 Silent Tool Catalog). This was the highest-specificity novel idea with real production applicability and a clear architectural response.
