@@ -952,4 +952,7 @@
   - [S-2106 · The Belief Deviation Stack — When Your Agent Knows Less Than It Thinks It Knows](stacks/s2106-the-belief-deviation-stack-when-your-agent-knows-less-than-it-thinks-it-knows.md)
   - [S-2108 · The Citation Faithfulness Stack — When Your Agent Cites Sources That Don't Exist](stacks/s2108-the-citation-faithfulness-stack-when-your-agent-cites-sources-that-dont-exist.md)
   - [S-2111 · The Skill Bloat Stack — When Your Agent Is Drowning in Instructions It Never Needed](stacks/s2111-the-skill-bloat-stack-when-your-agent-is-drowning-in-instructions-it-never-needed.md)
+  - [S-2118 · The Isolation Tier Stack — When Docker Isn't Enough and Firecracker Costs Too Much](stacks/s2118-the-isolation-tier-stack-when-docker-isnt-enough-and-firecracker-costs-too-much.md)
   - [S-2113 · The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures](stacks/s2113-the-proxy-collision-stack-when-your-agent-optimizes-for-the-meter-and-not-what-the-meter-measures.md)
+  - [S-2124 · The Permission Inheritance Stack — When Your Agent Does Exactly What It Was Designed to Do and Wreaks Havoc](stacks/s2124-the-permission-inheritance-stack-when-your-agent-does-exactly-what-it-was-designed-to-do-and-wreaks-havoc.md)
+  - [S-2125 · The AgentOps Platform Stack — When Your Framework Lock-In Decides Your Debugging Capabilities](stacks/s2125-the-agentops-platform-stack-when-your-framework-lock-in-decides-your-debugging-capabilities.md)

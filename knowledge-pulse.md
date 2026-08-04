@@ -321,7 +321,10 @@
 | I-3147 | The Handoff Desert Stack — When Every Agent Boundary Is a Context Graveyard | handoff-capsule, handoff-desert, context-graveyard, execution-trace-only, handoff-acceptance-gate, silent-handoff-failure, 3-hop-cliff, ghost-completion, AHC, agent-handoff-protocol, context-transfer, inter-agent-redundancy, multi-agent-coordination, handoff-lossy, boundary-context-death, AI-Navigate-2026, agentmemo-2026, MAST-NeurIPS-2025, Zylos-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2098 | 2026-08-03 | 2026-08-03 |
 || I-3148 | The Structural Signal Masking Stack — When Task-Level Monitoring Is Blind to the Real Failures | structural-monitoring, structural-defect, integration-defect, signal-masking, quality-suitability-efficiency, within-run-cross-run-structural, variance-as-signal, 3D-3-scope, MDM-algorithm, EWMA-threshold, Mahalanobis-distance, heterogeneous-tasks, LLM-judge-variance, ground-truth, severity-classification, provenance-tagging, E-H-S-alerting, cross-run-drift, agentic-monitoring, arxiv-2606.02494, AgenticSE-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2099 | 2026-08-03 | 2026-08-03 |
 || I-3149 | The Convergence Detection Stack — When Your Refinement Loop Runs All Night and Still Looks Done | convergence-detection, refinement-loop, stop-condition, change-velocity, output-similarity, semantic-diff, content-convergence, three-signal, iteration-cap, diminishing-returns, evaluator-optimizer, convergence-metric, agentpatterns.ai, agent-native | 8 | 8 | 9 | 7 | 6 | **7.60** | WRITTEN — S-1866 | 2026-07-30 | 2026-07-30 |
-|| I-3153 | The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures | proxy-collision, Goodhart-Law, reward-hacking, evaluation-channel, RLHF-misalignment, RLVR, proxy-compression, oversight, exploit, evaluation-manipulation, sandbox-escape, arxiv-2605.02964, arxiv-2604.13602, rhb-benchmark, openai-huggingface-2026, MIT-2026, proxy-surface, environmental-hardening, multi-evaluator, oversight-multiplicity | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2113 | 2026-08-04 | 2026-08-04 |
+||| I-3154 | The Isolation Tier Stack: Firecracker vs gVisor vs Containers for Agent Code Execution | firecracker, microvm, gvisor, sandbox, isolation, container-escape, code-execution, trust-tier, e2b, daytona, modal, wasm, wasmtime, runsc, kvm, hiddenlayer-2026, 1-in-8-breaches, runc-cve, isolation-tier-stack | 9 | 10 | 9 | 8 | 8 | **8.95** | WRITTEN — S-2118 | 2026-08-04 | 2026-08-04 |
+| I-3155 | The Memory Trust Gap Stack — When Your Agent Treats Retrieved Memories and Known Facts with Equal Confidence | memory-trust-gap, epistemic-blind-spot, provenance-metadata, confidence-gating, memory-poisoning, ASI06, OWASP-ASI06, memory-staleness, retrieved-vs-known, epistemic-layer, memory-confidence, write-path-hygiene, cross-session-isolation, arxiv-2606.00832, frontiers-2026-1802727, OWASP-Agentic-AI-Top10, memory-contamination, staleness-awareness, provenance-labeling, memory-verify, MOMENTO-benchmark | 9 | 10 | 10 | 9 | 8 | **9.25** | WRITTEN — S-2120 | 2026-08-04 | 2026-08-04 |
+| I-3156 | The Permission Inheritance Stack — When Your Agent Does Exactly What It Was Designed to Do and Wreaks Havoc | permission-inheritance, excessive-agency, least-privilege-agent, operator-credential, permission-scoping, human-permission-gap, kiro-incident, excessive-permission, permission-boundary, irreversible-action, human-approval-gate, OWASP-Agentic-Top10-3, cisa-ncsc-2026, auth0-agent-as-principal, agent-lifecycle, credential-revocation | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-2124 | 2026-08-04 | 2026-08-04 |
+| I-3153 | The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures | proxy-collision, Goodhart-Law, reward-hacking, evaluation-channel, RLHF-misalignment, RLVR, proxy-compression, oversight, exploit, evaluation-manipulation, sandbox-escape, arxiv-2605.02964, arxiv-2604.13602, rhb-benchmark, openai-huggingface-2026, MIT-2026, proxy-surface, environmental-hardening, multi-evaluator, oversight-multiplicity | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2113 | 2026-08-04 | 2026-08-04 |
 
 ## Synthesis Notes
 
@@ -3725,6 +3728,7 @@ delta-probe → I-3113
 | I-3107 | The Fail-Plausible Stack — When Your Agent Lies Convincingly About Its Own Failures | fail-plausible, silent-failure, fluent-failure, class-d-failure, chained-hallucination, narrative-error, error-disguised, arxiv-2606.14589, confidence-calibration, confidence-mismatch, tool-trace-consistency, post-hoc-verification, error-compounding, failure-taxonomy, agent-lies | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1947 | 2026-08-01 | 2026-08-01 |
 | I-3108 | The Shadow MCP Stack — Credential Sprawl on Every Developer's Laptop | shadow-mcp, bottom-up-mcp, credential-sprawl, per-user-mcp, mcp-inventory, unmanaged-credential, laptop-attack-surface, mcp-discovery, credential-gateway, mcp-blast-radius, per-developer-mcp, mcp-security, mcp-oauth, unmanaged-tool-install, mcp-registry, credential-rot | 8 | 9 | 8 | 9 | 7 | **8.35** | WRITTEN — S-1949 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
+| I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 
 
 - *2026-08-01* — **Fail-Plausible Failures Are Class-D Taxonomy (arXiv:2606.14589)**: Wu & Wei (June 2026) document a failure class unique to LLM systems: agents transform errors into fluent, confident narratives delivered to users as correct answers. Class D chained hallucination and fabrication is distinct from environment quirks (A), design mismatch (B), error swallowing (C), and coordination failure (E). 70% of class D failures caught by human observation, not automated systems. Key insight: the training objective (plausible text generation) directly conflicts with the production safety objective (accurate failure reporting). Architectural verification, not prompt engineering, is the only fix. Cross-links: S-439 (confident false success), S-1942 (failure recovery), S-1945 (agent drift), S-451 (LLM-as-judge limitations).
@@ -4405,10 +4409,26 @@ provenance-tagging → I-3148
 E-H-S-alerting → I-3148
 cross-run-drift → I-3148
 
-| I-3149 | The Premature Commitment Stack — When Your Agent Settles on a Wrong Answer by Step 4 and Defends It to the End | premature-commitment, representational-commitment, hidden-state-convergence, trajectory-collapse, commitment-inflection, commitment-diagnosis, self-consistency-pressure, counterfactual-injection, step-4-checkpoint, divergence-prompt, cross-run-diversity, arxiv-2606.22936, Mehta-2026, commitment-vs-correctness, commitment-vs-confidence, trajectory-monitoring, reasoning-path-diversity | 10 | 10 | 9 | 10 | 8 | **9.45** | WRITTEN — S-2103 | 2026-08-04 | 2026-08-04 |
-|premature-commitment → I-3149
-|representational-commitment → I-3149
-|hidden-state-convergence → I-3149
+|| I-3149 | The Premature Commitment Stack — When Your Agent Settles on a Wrong Answer by Step 4 and Defends It to the End | premature-commitment, representational-commitment, hidden-state-convergence, trajectory-collapse, commitment-inflection, commitment-diagnosis, self-consistency-pressure, counterfactual-injection, step-4-checkpoint, divergence-prompt, cross-run-diversity, arxiv-2606.22936, Mehta-2026, commitment-vs-correctness, commitment-vs-confidence, trajectory-monitoring, reasoning-path-diversity | 10 | 10 | 9 | 10 | 8 | **9.45** | WRITTEN — S-2103 | 2026-08-04 | 2026-08-04 |
+| premature-commitment → I-3149
+| representational-commitment → I-3149
+| hidden-state-convergence → I-3149
+||
+|| I-3150 | The AgentOps Platform Stack — When Your Framework Lock-In Decides Your Debugging Capabilities | agentops, observability, tracing, langsmith, langfuse, helicone, arize-phoenix, framework-lock-in, trace-hierarchy, semantic-verdict, eval-trigger, self-hosting, data-residency, EU-AI-Act, agent-debugging, production-observability, multi-agent-trace, otel-native, benchmark-gap, alphaeval, aiagentrank-2026 | 9 | 9 | 9 | 9 | 8 | **8.80** | WRITTEN — S-2125 | 2026-08-04 | 2026-08-04 |
+| agentops → I-3150
+| observability-platform → I-3150
+| langsmith-vs-langfuse → I-3150
+| langsmith-vs-helicone → I-3150
+| framework-lock-in-tracing → I-3150
+| trace-hierarchy → I-3150
+| semantic-verdict → I-3150
+| eval-trigger → I-3150
+| agent-debugging-platform → I-3150
+| production-observability → I-3150
+| multi-agent-trace → I-3150
+| aiagentrank-2026 → I-3150
+||
+|- *2026-08-04* — **I-3150 → S-2125 — The AgentOps Platform Stack — Composite 8.80**: Tracker exhausted (all 3149 prior ideas WRITTEN or DUPLICATE). Fresh research: aiagentrank.io "AI Agent Observability 2026" (May 2026, live extraction), geodocs.dev "Langfuse vs LangSmith vs Helicone" (live extraction), techstackvs.com pricing comparison (live extraction), particula.tech "Helicone vs Langfuse vs LangSmith pricing" (live extraction). Gap confirmed: handbook covers eval pipelines (S-246), flight recorders (S-760), EU audit trails (S-535), but has no entry on agent observability platform selection — a live decision teams face at framework selection time. AlphaEval arXiv:2604.12162 (best agent scores 64.41/100, scaffold variance 11–15 points) confirms eval gap is structural, not model-bound. LangSmith (SaaS, LangGraph-native, $39/mo, ~$4-8K/mo at 100M traces), Langfuse (OTel-native, self-hostable, MIT, ~$2-4K/mo at 100M traces), Helicone (HTTP proxy, one-line, ~$1.5-3K/mo at 100M traces), Arize/Phoenix (ML-flavored, Phoenix OSS free). Framework coupling is the decisive factor: LangSmith requires LangGraph for full fidelity; Langfuse works with any framework via OTel. Chose S-2125 over alternative ideas (scaffold spectrum — covered by S-1975; MCP SSRF hardening — covered by S-261; CrewAI pitfalls — covered by S-565; infinite loop detection — covered by S-821; plan-execute fragility — would overlap with existing reasoning-planning entries).
 |trajectory-collapse → I-3149
 |commitment-inflection → I-3149
 |commitment-diagnosis → I-3149
@@ -4540,6 +4560,15 @@ sandbox-escape → I-3153
 environmental-hardening → I-3153
 multi-evaluator → I-3153
 oversight-multiplicity → I-3153
+isolation-tier → I-3154
+firecracker → I-3154
+microvm → I-3154
+gvisor → I-3154
+sandbox-tier → I-3154
+trust-tier → I-3154
+e2b → I-3154
+daytona → I-3154
+wasmtime → I-3154
 
 ## Pattern Log
 
