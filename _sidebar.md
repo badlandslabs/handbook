@@ -949,3 +949,6 @@
   - [S-2102 · The Agent Credential Lifecycle Stack — When Your Agent Has More Secrets Than Your Engineers](stacks/s2102-the-agent-credential-lifecycle-stack-when-your-agent-has-more-secrets-than-your-engineers.md)
   - [S-2103 · The Premature Commitment Stack — When Your Agent Settles on a Wrong Answer by Step 4 and Defends It to the End](stacks/s2103-the-premature-commitment-stack-when-your-agent-settles-on-a-wrong-answer-by-step-4-and-defends-it-to-the-end.md)
   - [S-2104 · The Error Propagation Stack — When Your Agent's Final Answer Looks Right but the Reasoning Chain Is Broken](stacks/s2104-the-error-propagation-stack-when-your-agents-final-answer-looks-right-but-the-reasoning-chain-is-broken.md)
+  - [S-2106 · The Belief Deviation Stack — When Your Agent Knows Less Than It Thinks It Knows](stacks/s2106-the-belief-deviation-stack-when-your-agent-knows-less-than-it-thinks-it-knows.md)
+  - [S-2108 · The Citation Faithfulness Stack — When Your Agent Cites Sources That Don't Exist](stacks/s2108-the-citation-faithfulness-stack-when-your-agent-cites-sources-that-dont-exist.md)
+  - [S-2111 · The Skill Bloat Stack — When Your Agent Is Drowning in Instructions It Never Needed](stacks/s2111-the-skill-bloat-stack-when-your-agent-is-drowning-in-instructions-it-never-needed.md)
