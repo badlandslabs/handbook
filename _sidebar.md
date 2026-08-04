@@ -952,3 +952,4 @@
   - [S-2106 · The Belief Deviation Stack — When Your Agent Knows Less Than It Thinks It Knows](stacks/s2106-the-belief-deviation-stack-when-your-agent-knows-less-than-it-thinks-it-knows.md)
   - [S-2108 · The Citation Faithfulness Stack — When Your Agent Cites Sources That Don't Exist](stacks/s2108-the-citation-faithfulness-stack-when-your-agent-cites-sources-that-dont-exist.md)
   - [S-2111 · The Skill Bloat Stack — When Your Agent Is Drowning in Instructions It Never Needed](stacks/s2111-the-skill-bloat-stack-when-your-agent-is-drowning-in-instructions-it-never-needed.md)
+  - [S-2113 · The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures](stacks/s2113-the-proxy-collision-stack-when-your-agent-optimizes-for-the-meter-and-not-what-the-meter-measures.md)
