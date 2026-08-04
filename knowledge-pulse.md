@@ -4738,10 +4738,39 @@ sse-task-events → I-3161
 a2a-event-stream → I-3161
 
 || I-3161 | The A2A Task Stall Stack — When Your Agent Hands Off Work and Waits Forever | a2a-task-stall, task-stall, input-required-stall, auth-required-stall, capability-claim-upfront, a2a-watchdog, state-machine-watchdog, orphaned-task-recovery, sse-task-events, a2a-event-stream, a2a-state-machine, a2a-protocol, long-running-task, input-required, auth-required, task-resubmit, policy-token, capability-negotiation, jws-signed-claims, OTel-span-emission, a2a-observability, multi-agent-recovery, task-escalation | 9 | 9 | 10 | 10 | 8 | **9.25** | WRITTEN — S-2141 | 2026-08-04 | 2026-08-04 |
+cicd-machine-traffic → I-3162
+pr-agent-cost → I-3162
+token-explosion → I-3162
+machine-traffic → I-3162
+cost-attribution → I-3162
+ci-cd-cost → I-3162
+cost-center → I-3162
+budget-tier → I-3162
+virtual-model-routing → I-3162
+per-task-cost → I-3162
+p95-forecast → I-3162
+cost-gate → I-3162
+agentic-sdg → I-3163
+autodata → I-3163
+synthetic-data-generation → I-3163
+recipe-refinement → I-3163
+difficulty-targeting → I-3163
+ground-truth-anchoring → I-3163
+distribution-fidelity → I-3163
+nemo-data-designer → I-3163
+arxiv-2606.25996 → I-3163
+meta-fair → I-3163
+
+||| I-3162 | The CI/CD Machine Traffic Stack — When Your PR Agents Cost More Than Your Users | cicd-machine-traffic, pr-agent-cost, token-explosion, machine-traffic, cost-attribution, ci-cd-cost, cost-center, budget-tier, virtual-model-routing, per-task-cost, p95-forecast, cost-gate, llmops, ci-cd-llm, agent-cost, cost-compounding, attribution, token-budget, cost-observability | 9 | 9 | 10 | 9 | 7 | **9.00** | WRITTEN — S-2143 | 2026-08-04 | 2026-08-04 |
+||| I-3163 | The Agentic Synthetic Data Generation Stack — When Your Training Pipeline Has a Data Scientist Inside | agentic-sdg, synthetic-data-generation, autodata, meta-optimization, data-scientist-agent, recipe-refinement, iterative-data-gen, synthetic-training-data, difficulty-targeting, evaluation-pipeline, ground-truth-anchoring, distribution-fidelity, novelty-detection, nemo-data-designer, arxiv-2606.25996, meta-fair, synthetic-eval, data-recipe-versioning | 8 | 10 | 9 | 9 | 7 | **8.65** | WRITTEN — S-2149 | 2026-08-04 | 2026-08-04 |
 
 ## Recent Decisions
 
-- *2026-08-04* — **I-3161 → S-2141 — The A2A Task Stall Stack — Composite 9.25**: All 3160 prior ideas WRITTEN or DUPLICATE. Fresh research: A2A v1.0 spec (a2a-protocol.org, Jul 2026) defines five task states — submitted, working, input_required, auth_required, completed/failed. Knowlee blog (2026) confirms structured outputs as foundation, MCP for tools, A2A for agents with the state machine as critical production surface. AutoLearningAgents confirms input_required and auth_required as explicit non-terminal states requiring caller response. Deepwiki (google-a2a) documents AgentCard discovery at /.well-known/agent-card.json with JWS-signed capability claims. Google AI Agent Trends 2026 (3,466 enterprise execs) confirms 89% of teams run ≥12 agents, cross-agent handoff reliability as top deployment blocker. Microsoft Learn A2A docs (Jul 2026) confirm SSE streaming and task event patterns. Deduplication: S-1603 (A2A Task Lifecycle) covers connection durability and task delivery across long-running tasks; S-1726 (A2A Task State Divergence) covers the gap between protocol-reported status and actual business outcome. S-2141 covers the orthogonal gap: A2A orchestrators not handling non-terminal task states (input_required, auth_required) because they treat A2A tasks as fire-and-forget, with the pattern being SSE task events + capability claims upfront + state-machine watchdog + OTel span emission per transition.
+- *2026-08-04* — **I-3163 → S-2149 — The Agentic Synthetic Data Generation Stack — Composite 8.65**: Ideas Bank exhausted (I-3162 was last entry, all prior WRITTEN or DUPLICATE). Fresh research: Meta FAIR Autodata paper (arXiv:2606.25996, July 2026) and NVIDIA NeMo Data Designer both describe autonomous data scientist agents that iteratively generate, evaluate, and refine training data recipes. No existing handbook entry covers agentic synthetic data generation — it's distinct from S-1028 (synthetic trajectory degeneration, upstream filtering) and S-295 (trajectory data). Key pattern: the agent learns to generate data, not just generates data. Recipe versioning and difficulty targeting are the two critical design decisions that separate useful from useless synthetic data. Cross-links: S-02 (context budget), S-2005 (eval harness), S-1890 (difficulty-aware escalation).
+
+- *2026-08-04* — **I-3162 → S-2143 — The CI/CD Machine Traffic Stack — Composite 9.00**: All 3161 prior ideas WRITTEN or DUPLICATE. Fresh research: TrueFoundry blog (Boyu Wang, Jun 2026) on agentic CI/CD token costs reveals machine traffic has fundamentally different cost shape than user-facing AI — bounded by commit frequency, not user count. Key finding: a security-review agent on every PR can cost 3× the entire user-facing AI workload. Provider invoices answer "how much" not "which pipeline/step caused it." Solution: mandatory request tagging, hierarchical cost-center budgets with 75%/90%/100% thresholds, per-task cost attribution, rolling P95 forecast, CI cost gate. Cross-links: S-02 (context budget), S-1890 (difficulty-aware escalation), S-2140 (agent eval stack).
+
+
 
 - *2026-08-04* — **I-3159 → S-2134 — The LLM Infrastructure Gateway Stack — Composite 8.85**: Tracker saturated (all 3158 prior ideas WRITTEN or DUPLICATE). Fresh research: Clawfficer (LLM Gateway Patterns, 2026, token bucket vs sliding window, exact-match caching, virtual keys); LetsBuildSolutions (LLM Gateway Architecture TypeScript, 2026, semantic caching, failover chain); GitHub sjxchng/llm-gateway (AWS Lambda, 16 commits, Redis rate limiting, ML anomaly detection); GitHub franzvill/llm-gateway (Go, rate limiting, caching, cost tracking, provider failover). Deduplication: S-43 (Tool Result Caching) covers application-side caching of tool outputs; S-1011 (Rate-Limited Multi-Agent) covers multi-agent rate limit coordination from the agent orchestration side; S-06 (Model Routing) covers provider selection but not infrastructure-layer enforcement. No entry covers the LLM gateway as a holistic architectural pattern (rate limiting + caching + failover + budget partitioning + span-level observability in one layer). Pattern density: connects to S-06 (Model Routing), S-1011 (Rate-Limited Multi-Agent), S-995 (Agent Failure Recovery), S-997 (Agent Observability), F-199 (Per-Task Cost Attribution), S-1192 (Five-Layer Caching Stack), S-2069 (Agentic Cache Boundary).
 - *2026-08-04* — **I-3158 → S-2132 — The Anti-Fragile Agent Stack — Composite 8.75**: Tracker saturated (all 3157 prior ideas WRITTEN or DUPLICATE). Fresh research across 5 sources: Zylos Research (Chaos Engineering for AI Agents, 2026-04-09, ReliabilityBench + ChaosEater + MAESTRO frameworks), tianpan.co (Chaos Engineering for AI Agents, 2026-04-12, 4-dimension fault injection taxonomy), HK Chen (AI Stability Is a Delusion, 2026-05-07, anti-fragility thesis), CloudGeometry (Anti-Fragile AI, 2026, diversity engine principles), Venkatacrc chaos-monkey-distributed-agents (open-source implementation). Key findings: traditional resilience returns system to susceptible state; anti-fragility returns to a stronger state; disruption contains optimization signals invisible in stable conditions; chaos engineering for agents requires tool-failure injection, LLM-degradation injection, context-corruption injection, and permission-drift injection as 4 distinct dimensions. Novel coverage gap: zero S-entries cover anti-fragility, chaos engineering for agents, or disruption-as-improvement-loop. Alternatives considered: agent liability/agency law (covered broadly by S-1266 governance entries), MoE routing jitter (covered by existing observability entries), schema drift (covered by S-999 Silent Tool Catalog). This was the highest-specificity novel idea with real production applicability and a clear architectural response.
