@@ -320,6 +320,7 @@
 | I-3146 | The MCP Fleet Resilience Stack — When Your MCP Server Works for One Agent and Breaks for One Hundred | mcp-fleet-resilience, mcp-server-scale, fleet-scale-failure, retry-side-effect, idempotency-key, schema-staleness, schema-cache-ttl, fan-out-n+1, batch-query-coalesce, circuit-breaker, event-loop-saturation, worker-thread-pool, alive-mcp, mcp-chaos-testing, fleet-chaos-harness, mcp-resilience-patterns, server-sent-events-schema, schema-version-registry, parallel-tool-calls, mcp-concurrency | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2087 | 2026-08-03 | 2026-08-03 |
 | I-3147 | The Handoff Desert Stack — When Every Agent Boundary Is a Context Graveyard | handoff-capsule, handoff-desert, context-graveyard, execution-trace-only, handoff-acceptance-gate, silent-handoff-failure, 3-hop-cliff, ghost-completion, AHC, agent-handoff-protocol, context-transfer, inter-agent-redundancy, multi-agent-coordination, handoff-lossy, boundary-context-death, AI-Navigate-2026, agentmemo-2026, MAST-NeurIPS-2025, Zylos-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2098 | 2026-08-03 | 2026-08-03 |
 || I-3148 | The Structural Signal Masking Stack — When Task-Level Monitoring Is Blind to the Real Failures | structural-monitoring, structural-defect, integration-defect, signal-masking, quality-suitability-efficiency, within-run-cross-run-structural, variance-as-signal, 3D-3-scope, MDM-algorithm, EWMA-threshold, Mahalanobis-distance, heterogeneous-tasks, LLM-judge-variance, ground-truth, severity-classification, provenance-tagging, E-H-S-alerting, cross-run-drift, agentic-monitoring, arxiv-2606.02494, AgenticSE-2026 | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2099 | 2026-08-03 | 2026-08-03 |
+|| I-3149 | The Convergence Detection Stack — When Your Refinement Loop Runs All Night and Still Looks Done | convergence-detection, refinement-loop, stop-condition, change-velocity, output-similarity, semantic-diff, content-convergence, three-signal, iteration-cap, diminishing-returns, evaluator-optimizer, convergence-metric, agentpatterns.ai, agent-native | 8 | 8 | 9 | 7 | 6 | **7.95** | WRITTEN — S-2100 | 2026-08-04 | 2026-08-04 |
 
 ## Synthesis Notes
 
@@ -4407,3 +4408,34 @@ cross-run-drift → I-3148
 - *2026-08-03* — **I-3145 → S-2096 — The MCP Server Health Stack — Composite 8.90**: Tracker saturated (all 3144 prior ideas WRITTEN or DUPLICATE). Fresh research: Daniel Vaughan Codex CLI (May 2026, updated July 2026) — MCP server health monitoring with circuit breakers and OpenTelemetry; MCP.Directory (July 2026) — debugging guide covering four silent failure modes (stdout pollution, transport mismatch, schema drift, zombie servers) and mcpsnoop transparent proxy tool; GitHub #49133 (anthropics/claude-code, Apr-Jul 2026) — confirmed silent failure as top-1 MCP pain point. Core finding: MCP failures are invisible by default because JSON-RPC over stdio/HTTP never touches application logs — the agent keeps working around the broken server without any error signal. Solution: three-layer stack — visibility tools (mcpsnoop, MCP Inspector, structured logging), external heartbeat monitoring (no built-in MCP health protocol), and circuit breakers that stop routing traffic to sick servers. Deduplication: S-10 covers MCP basics; S-2087 covers MCP fleet resilience at scale; neither covers per-server health monitoring + circuit breaker + four failure signatures.
 
 - *2026-08-03* — **MCP server health is invisible infrastructure debt**: MCP (Model Context Protocol) has become the dominant tool-integration protocol by 2026, adopted by Claude, OpenAI Agents SDK, Cursor, LangGraph, and most major agent frameworks. Yet it has no built-in health protocol — no liveness probe, no circuit breaker, no standard error surface. The four failure modes (stdout pollution, transport mismatch, schema drift, zombie server) are each invisible in different ways. The diagnostic pattern: make JSON-RPC traffic visible first (mcpsnoop, MCP Inspector, structured logging), then add an external heartbeat monitor that pings the server process independently of the agent, then wrap routing in a circuit breaker that fails fast instead of retrying a dead server.
+
+
+## Ideas Bank
+
+| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+| I-3149 | The Agent Credential Lifecycle Stack — When Your Agent Has More Secrets Than Your Engineers | agent-credential, non-human-identity, NHI, credential-lifecycle, secrets-management, workload-identity, OAuth-token-exchange, rfc8693, spiffe-spire, zero-trust-agents, mcp-credential-scoping, agent-identity-governance, credential-scoped-task, agent-deprovisioning, secrets-leak, gitguardian-2026, csa-identity-gap, ibm-agent-iam, okta-agentic-iam, workload-identity | 9 | 10 | 9 | 9 | 7 | **9.05** | WRITTEN — S-2102 | 2026-08-04 | 2026-08-04 |
+
+## Deduplication Index
+
+agent-credential → I-3149
+non-human-identity → I-3149
+NHI → I-3149
+credential-lifecycle → I-3149
+secrets-management → I-3149
+workload-identity → I-3149
+OAuth-token-exchange → I-3149
+rfc8693 → I-3149
+spiffe-spire → I-3149
+zero-trust-agents → I-3149
+mcp-credential-scoping → I-3149
+agent-identity-governance → I-3149
+credential-scoped-task → I-3149
+agent-deprovisioning → I-3149
+secrets-leak → I-3149
+
+## Pattern Log
+
+- **NHI lifecycle governance**: AI agents are non-human identities requiring full lifecycle management (provision → scope → rotate → revoke). Existing IAM covers humans; agents need parallel governance. Pattern density: connects to S-695 (MCP ambient authority), S-1000 (structural governance), S-997 (agent observability). (I-3149)
+
+## Recent Decisions
+- *2026-08-04* — **I-3149 → S-2102 — The Agent Credential Lifecycle Stack — Composite 9.05**: From CSA/Strata Identity survey (Feb 2026), GitGuardian State of Secrets Sprawl 2026, OpenID Identity Management for Agentic AI (Oct 2025), Red Hat MCP Security blog (Mar 2026), WorkOS AI Agent Secrets Management (Jun 2026), Zylos Research NHI brief (Jul 2026). Core insight: the identity explosion (45-100:1 machine:human identities, 1.3B agents by 2028) creates a governance gap — 78% of orgs have no AI identity creation policy, yet Claude Code commits leak secrets at 3.2% vs 1.5% human baseline. Deduplication: S-695 covers MCP ambient authority and protocol-level security; this entry covers the credential lifecycle and NHI governance layer — complementary, not overlapping. No entry covers agent credential scoping + lifecycle + revocation in a single architectural pattern. Pattern density: connects to S-695 (MCP), S-1000 (structural governance), S-997 (observability).

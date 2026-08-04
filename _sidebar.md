@@ -944,3 +944,6 @@
   - [S-2096 · The MCP Server Health Stack — When Your Agent Is Silent But Something Is Very Wrong](stacks/s2096-the-mcp-server-health-stack-when-your-agent-is-silent-but-something-is-very-wrong.md)
   - [S-2098 · The Handoff Desert Stack — When Every Agent Boundary Is a Context Graveyard](stacks/s2098-the-handoff-desert-stack-when-every-agent-boundary-is-a-context-graveyard.md)
   - [S-2099 · The Structural Signal Masking Stack — When Task-Level Monitoring Is Blind to the Real Failures](stacks/s2099-the-structural-signal-masking-stack-when-task-level-monitoring-is-blind-to-the-real-failures.md)
+  - [S-2100 · The Convergence Detection Stack — When Your Refinement Loop Runs All Night and Still Looks Done](stacks/s2100-the-convergence-detection-stack-when-your-refinement-loop-runs-all-night-and-still-looks-done.md)
+  - [S-2101 · The Grounded Retrieval Stack — When Your Agent Can't Find What's Already in Your System](stacks/s2101-the-grounded-retrieval-stack-when-your-agent-cant-find-whats-already-in-your-system.md)
+  - [S-2102 · The Agent Credential Lifecycle Stack — When Your Agent Has More Secrets Than Your Engineers](stacks/s2102-the-agent-credential-lifecycle-stack-when-your-agent-has-more-secrets-than-your-engineers.md)
