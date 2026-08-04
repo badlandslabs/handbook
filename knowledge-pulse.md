@@ -4447,16 +4447,42 @@ cross-run-drift → I-3148
 |citation-verification → I-3151
 |field-level-verification → I-3151
 |cite-tracer → I-3151
-|arxiv-2605.08583 → I-3151
-|12-code-taxonomy → I-3151
-|crossref-verification → I-3151
-|citation-propagation → I-3151
-|source-anchor → I-3151
-|citation-fabrication → I-3151
-|academic-writing → I-3151
-|600-desk-rejects → I-3151
+| arxiv-2605.08583 → I-3151
+| 12-code-taxonomy → I-3151
+| crossref-verification → I-3151
+| citation-propagation → I-3151
+| source-anchor → I-3151
+| citation-fabrication → I-3151
+| academic-writing → I-3151
+| 600-desk-rejects → I-3151
+
+| I-3154 | The Pre-Deployment Contract Stack — When Your POC Passed and Production Is on Fire | POC-to-production, workload-contract, pre-deployment, blast-radius, non-goals, side-effect-boundary, prompt-as-policy, production-evidence, recovery-procedure, idempotency, token-budget, cost-attribution, QubitTool-2026, Stackpulsar-2026, contract-as-test, evidence-not-demo, 73-percent-environment-failures, 12-percent-prompt-bypass | 10 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-2115 | 2026-08-04 | 2026-08-04 |
+| POC-to-production → I-3154
+| workload-contract → I-3154
+| pre-deployment → I-3154
+| blast-radius → I-3154
+| non-goals → I-3154
+| side-effect-boundary → I-3154
+| prompt-as-policy → I-3154
+| production-evidence → I-3154
+| recovery-procedure → I-3154
+| idempotency → I-3154
+| token-budget → I-3154
+| cost-attribution → I-3154
+| QubitTool-2026 → I-3154
+| Stackpulsar-2026 → I-3154
+| contract-as-test → I-3154
+| evidence-not-demo → I-3154
+| 73-percent-environment-failures → I-3154
+| 12-percent-prompt-bypass → I-3154
+
+## Pattern Log
+
+- **POC evidence ≠ production readiness**: The dominant production failure pattern in 2026 research is not bad models — it is teams treating a working demo as proof of production safety. QubitTool's workload contract framework and Stackpulsar's reliability guide converge on the same finding: 73% of production failures trace to environment-specific conditions (live data shapes, expiring auth, rate limits, schema drift) absent from the POC. The contract pattern (user outcome, non-goals, evidence requirements, side-effect boundaries, operational budgets, recovery procedures) maps each demo failure mode to an explicit, testable specification. (I-3154)
 
 ## Recent Decisions
+
+- *2026-08-04* — **I-3154 → S-2115 — The Pre-Deployment Contract Stack — Composite 9.55**: Tracker saturated (all 389 prior ideas WRITTEN or DUPLICATE). Fresh research across QubitTool (POC-to-Production guide, 2026-05-16), Stackpulsar (AI Agent Reliability 2026, June 2026), AI Tech Trend (Silicon Valley AI Agent Problems, April 2026), Microsoft Security Blog (RCE in Agent Frameworks, May 2026), and Augment Code (Multi-Agent Failure Patterns, June 2026). Core finding: the #1 production failure pattern is treating demo evidence as a release decision. The workload contract framework — six mandatory entries (user outcome, non-goals, evidence requirements, side-effect boundaries, operational budgets, recovery procedures) — is the architectural response. Key nuance: "treating prompts as policy" is the most dangerous specific failure within this pattern; a system prompt is not a security boundary or a business policy, and treating it as one produces silent failures under context pressure. Deduplication: S-1000 covers structural governance (what enforces non-goals once written); S-1014 covers pre-deployment eval (what proves the contract before shipping); S-1000-Agent-Recovery covers the recovery procedure activation. This entry fills the pre-deployment gap — the contract that must exist before governance, eval, or recovery can function. (I-3154)
 - *2026-08-04* — **I-3149 → S-2103 — The Premature Commitment Stack — Composite 9.45**: From Mehta (Snowflake AI Research), "When Agents Commit Too Soon: Diagnosing Premature Commitment in LLM Agents" (arXiv:2606.22936, 22 Jun 2026). Core finding: long-horizon agents fail silently by settling on an early interpretation and defending it for the remainder of the run — not through deliberate deception, but through next-token prediction's inherent self-consistency pressure. Representational commitment (cross-run hidden-state cosine similarity at a fixed step) is a measurable diagnostic signal that tells you *when* the agent settled, not *whether* it is right. On Llama-3.1-70B ReAct on HotpotQA, step-4 similarity predicts behavioral consistency (r = −0.35, partial r = −0.45); replicates across Qwen-2.5-72B and Phi-3-14B with r = −0.8 on StrategyQA. Committed-wrong and committed-correct are representationally indistinguishable — the signal is diagnostic, not evaluative. Deduplication: S-996 mentions "premature output" in MAST verification failures but does not address trajectory-level commitment or the hidden-state convergence diagnostic. S-1261 covers verbalized confidence calibration (the agent's self-reported uncertainty) — premature commitment is distinct: the agent is unconscious of having committed, no verbalized signal exists, and the fix is counterfactual injection rather than confidence routing. S-1023 (Recovery Ladder / semantic failure gap) is the broader class; premature commitment is a specific root cause within that class. Novel entry.
 
 
