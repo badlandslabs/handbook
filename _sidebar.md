@@ -943,3 +943,4 @@
   - [S-2095 · The Context Drift Stack — When Your Multi-Agent System Hallucinates Things That Never Happened](stacks/s2095-the-context-drift-stack-when-your-multi-agent-system-hallucinates-things-that-never-happened.md)
   - [S-2096 · The MCP Server Health Stack — When Your Agent Is Silent But Something Is Very Wrong](stacks/s2096-the-mcp-server-health-stack-when-your-agent-is-silent-but-something-is-very-wrong.md)
   - [S-2098 · The Handoff Desert Stack — When Every Agent Boundary Is a Context Graveyard](stacks/s2098-the-handoff-desert-stack-when-every-agent-boundary-is-a-context-graveyard.md)
+  - [S-2099 · The Structural Signal Masking Stack — When Task-Level Monitoring Is Blind to the Real Failures](stacks/s2099-the-structural-signal-masking-stack-when-task-level-monitoring-is-blind-to-the-real-failures.md)
