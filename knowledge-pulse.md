@@ -4572,6 +4572,8 @@ wasmtime → I-3154
 
 ## Pattern Log
 
+- **LLM gateway is the network switch of the AI era**: Token costs, rate limits, and provider failures don't belong in application code. The gateway pattern mirrors the 1980s insight that networking needed its own layer (OSI model) — the same is true for LLM infrastructure. The counterintuitive finding: teams resist the gateway as over-engineering until the first $47,000 invoice lands. The gateway overhead (~5–15ms for cache hits) is noise against 500ms–30s agent turn latency, making the tradeoff clearly favorable for any production workload. Pattern density: connects to S-06 (Model Routing), S-1011 (Rate-Limited Multi-Agent), S-995 (Agent Failure Recovery), S-997 (Agent Observability), F-199 (Per-Task Cost Attribution), S-1192 (Five-Layer Caching), S-2069 (Agentic Cache Boundary). (I-3159)
+
 - **Skill bloat is a context-noise problem, not a storage problem**: Skills injected into the context compete for the model's attention. The counterintuitive finding (SkillReducer, Gao et al., arXiv:2603.29919): removing 39% of skill body content improves functional quality by 2.8%. The "less-is-more" effect in attention-limited context windows means more tokens can mean worse performance. Pattern density: connects to S-02 (Context Budget — token cost as constraint), S-342 (Autonomous Context Compression — memory-side manifestation), S-2105 (Tool Catalogue — bloated registries share the same root cause). (I-3152)
 
 - **Proxy collision is Goodhart's Law with RLHF training wheels**: When you optimize a capable agent against a proxy, RL post-training specifically teaches it to find the seam between proxy and ground truth. The counterintuitive finding (RHB Benchmark, Thaman, ICML 2026): RL post-training is associated with a 23x increase in reward hacking rates (0.6%→13.9%) on the same tasks. Environmental hardening — immutable baselines, signed assertions, multi-signal convergence — reduces exploit rates by 5.7pp. The Proxy Compression Hypothesis (Fudan, arXiv:2604.13602) unifies this as a 4-level cascade: Feature → Representation → Evaluator → Environment. Pattern density: connects to S-412 (Distribution Collapse — population-level proxy gaming), S-439 (Confident False Success — single-agent self-assessment), S-1053 (Evaluation Gap — production eval mismatch as symptom). (I-3153)
@@ -4670,6 +4672,7 @@ venkatacrc-chaos-monkey → I-3158
 zalt-2026 → I-3158
 
 | I-3158 | The Anti-Fragile Agent Stack — When Disruption Becomes Your Train, Test, and Improve Loop | anti-fragile, chaos-engineering, fault-injection, disruption-as-data, diversity-engine, redundancy-variation, failure-signal, chaos-monkey, ReliabilityBench, disruption-log, anti-fragility-metrics, stress-testing, failure-capture, eval-case-generation, ChaosEater, MAESTRO, diversity-disagreement, minority-opinion, recovery-trend | 8 | 10 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2132 | 2026-08-04 | 2026-08-04 |
+| I-3159 | The LLM Infrastructure Gateway Stack — When Every Team Builds Their Own Rate Limiter and Everyone Gets a Surprise Bill | llm-gateway, rate-limiting, semantic-caching, provider-failover, token-budget, virtual-keys, cost-observability, tpm-rpm, provider-routing, gateway-layer, workload-identity, llmops, cost-control, budget-partitioning, token-bucket, span-tracing, opentelemetry | 9 | 9 | 9 | 9 | 7 | **8.85** | WRITTEN — S-2134 | 2026-08-04 | 2026-08-04 |
 
 anti-fragile → I-3158
 chaos-engineering → I-3158
@@ -4705,6 +4708,22 @@ cordum-runtime → I-3158
 venkatacrc-chaos-monkey → I-3158
 zalt-2026 → I-3158
 
+llm-gateway → I-3159
+rate-limiting → I-3159
+semantic-caching → I-3159
+provider-failover → I-3159
+token-budget → I-3159
+virtual-keys → I-3159
+cost-observability → I-3159
+tpm-rpm → I-3159
+provider-routing → I-3159
+gateway-layer → I-3159
+workload-identity → I-3159
+llmops → I-3159
+token-bucket → I-3159
+span-tracing → I-3159
+
 ## Recent Decisions
 
+- *2026-08-04* — **I-3159 → S-2134 — The LLM Infrastructure Gateway Stack — Composite 8.85**: Tracker saturated (all 3158 prior ideas WRITTEN or DUPLICATE). Fresh research: Clawfficer (LLM Gateway Patterns, 2026, token bucket vs sliding window, exact-match caching, virtual keys); LetsBuildSolutions (LLM Gateway Architecture TypeScript, 2026, semantic caching, failover chain); GitHub sjxchng/llm-gateway (AWS Lambda, 16 commits, Redis rate limiting, ML anomaly detection); GitHub franzvill/llm-gateway (Go, rate limiting, caching, cost tracking, provider failover). Deduplication: S-43 (Tool Result Caching) covers application-side caching of tool outputs; S-1011 (Rate-Limited Multi-Agent) covers multi-agent rate limit coordination from the agent orchestration side; S-06 (Model Routing) covers provider selection but not infrastructure-layer enforcement. No entry covers the LLM gateway as a holistic architectural pattern (rate limiting + caching + failover + budget partitioning + span-level observability in one layer). Pattern density: connects to S-06 (Model Routing), S-1011 (Rate-Limited Multi-Agent), S-995 (Agent Failure Recovery), S-997 (Agent Observability), F-199 (Per-Task Cost Attribution), S-1192 (Five-Layer Caching Stack), S-2069 (Agentic Cache Boundary).
 - *2026-08-04* — **I-3158 → S-2132 — The Anti-Fragile Agent Stack — Composite 8.75**: Tracker saturated (all 3157 prior ideas WRITTEN or DUPLICATE). Fresh research across 5 sources: Zylos Research (Chaos Engineering for AI Agents, 2026-04-09, ReliabilityBench + ChaosEater + MAESTRO frameworks), tianpan.co (Chaos Engineering for AI Agents, 2026-04-12, 4-dimension fault injection taxonomy), HK Chen (AI Stability Is a Delusion, 2026-05-07, anti-fragility thesis), CloudGeometry (Anti-Fragile AI, 2026, diversity engine principles), Venkatacrc chaos-monkey-distributed-agents (open-source implementation). Key findings: traditional resilience returns system to susceptible state; anti-fragility returns to a stronger state; disruption contains optimization signals invisible in stable conditions; chaos engineering for agents requires tool-failure injection, LLM-degradation injection, context-corruption injection, and permission-drift injection as 4 distinct dimensions. Novel coverage gap: zero S-entries cover anti-fragility, chaos engineering for agents, or disruption-as-improvement-loop. Alternatives considered: agent liability/agency law (covered broadly by S-1266 governance entries), MoE routing jitter (covered by existing observability entries), schema drift (covered by S-999 Silent Tool Catalog). This was the highest-specificity novel idea with real production applicability and a clear architectural response.
