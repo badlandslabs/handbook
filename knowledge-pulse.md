@@ -382,6 +382,7 @@
 | I-263 | The Spend Guardrail Stack: When Your $0.01 Request Costs $5,000 | spend-guardrail, cost-budget, token-cap, step-budget, retry-loop, runaway-agent, agent-finops, llm-cost, runtime-cost-enforcement, cost-multiplication, spend-guardrail, guardrail, runaway-cost, token-budget, agent-spend, llm-cfo, kissapi-2026, llmcfo-2026, supergood-2026, ey-2026, techcrunch-2026 | 9 | 10 | 10 | 10 | 8 | **9.70** | WRITTEN — S-1340 | 2026-07-19 | 2026-07-19 |
 | I-262 | The Synchronization Boundary: When Naive Broadcast Makes Multi-Agent Systems More Confident and More Wrong | context-drift, synchronization-boundary, naive-broadcast, CDS, SSVP, context-contamination, threshold-gated-sync, multi-agent-hallucination, spatial-drift, temporal-drift, structural-drift, arxiv-2606.21666, rodrigues-2026, galileo-2026, ai-navigate-2026, contamination-effect | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-1333 | 2026-07-19 | 2026-07-19 |
 | I-257 | The Epistemic Memory Stack: When Your Agent Stores Facts, Beliefs, and Opinions in the Same Drawer | epistemic-memory, belief-facts-distinction, evidence-inference-blur, memory-epistemology, observed-inferred-stated, Hindsight-architecture, Nous-memory, True-Memory, provenance-tracking, Bayesian-memory, surprise-driven-revision, four-network-memory, epistemic-tier, memory-poisoning-defense, provenance-capped, entity-attribute-distribution, retrieval-pipeline, verbatim-preservation, arxiv-2512.12818, arxiv-2606.22030, arxiv-2605.04897 | 9 | 9 | 9 | 9 | 8 | **8.80** | WRITTEN — S-1331 | 2026-07-19 | 2026-07-19 |
+| I-3150 | The Error Propagation Stack — When Your Agent's Final Answer Looks Right but the Reasoning Chain Is Broken | error-propagation, dag-evaluation, step-level-quality, greedy-parent-attribution, hierarchical-failure-taxonomy, upstream-contamination, root-cause-attribution, agenteval, guo-2026, hku-stellaris, acl-2026, arxiv-2604.23581, 63-percent-propagated, evaluation-dag, step-node-scoring, llm-judge-calibration, ci-cd-evaluation-gate, production-trace-analysis | 9 | 10 | 10 | 9 | 9 | **9.25** | WRITTEN — S-2104 | 2026-08-04 | 2026-08-04 |
 |||| I-261
 || Credential Lifetime Is Blast Radius — R
 | Generation-Verification Separation Is a Distinct Scaling Axis | Generation quality and verification quality are separate capabilities, not correlated by default. A strong generator does not guarantee a strong verifier, especially on novel tasks, edge cases, and adversarial inputs. The solution: architectural separation of a dedicated verification layer that scores outputs against per-dimension criteria, decomposes failures, and gates downstream actions. Key techniques: (1) logit-distribution scoring over coarse discrete scores (27% tie rate reduction), (2) criteria decomposition over monolithic pass/fail, (3) probabilistic scoring capturing evaluation uncertainty, (4) repeated evaluation for hard tasks, (5) dense reward signal feeding RL loops. Stanford/NVIDIA arXiv:2607.05391 demonstrates SOTA on Terminal-Bench v2 (86.5%), SWE-bench Verified (78.2%), MedAgentBench (73.3%). Distinct from S-561 (self-correction gap) which covers internal self-correction; this covers architectural separation of a dedicated verifier layer. | I-260 |
@@ -410,6 +411,7 @@ saga-compensation-langgraph → I-2037
 checkpoint-vs-durable → I-2037
 langgraph-plugin → I-2037
 temporalio-langgraph → I-2037
+
 ## Deduplication Index
 scaffold-harness → I-186
 framework-variance → I-186
@@ -4419,6 +4421,24 @@ cross-run-drift → I-3148
 |commitment-vs-confidence → I-3149
 |trajectory-monitoring → I-3149
 |reasoning-path-diversity → I-3149
+|error-propagation → I-3150
+|dag-evaluation → I-3150
+|step-level-quality → I-3150
+|greedy-parent-attribution → I-3150
+|hierarchical-failure-taxonomy → I-3150
+|upstream-contamination → I-3150
+|root-cause-attribution → I-3150
+|agenteval → I-3150
+|guo-2026 → I-3150
+|hku-stellaris → I-3150
+|acl-2026 → I-3150
+|arxiv-2604.23581 → I-3150
+|63-percent-propagated → I-3150
+|evaluation-dag → I-3150
+|step-node-scoring → I-3150
+|llm-judge-calibration → I-3150
+|ci-cd-evaluation-gate → I-3150
+|production-trace-analysis → I-3150
 
 ## Recent Decisions
 - *2026-08-04* — **I-3149 → S-2103 — The Premature Commitment Stack — Composite 9.45**: From Mehta (Snowflake AI Research), "When Agents Commit Too Soon: Diagnosing Premature Commitment in LLM Agents" (arXiv:2606.22936, 22 Jun 2026). Core finding: long-horizon agents fail silently by settling on an early interpretation and defending it for the remainder of the run — not through deliberate deception, but through next-token prediction's inherent self-consistency pressure. Representational commitment (cross-run hidden-state cosine similarity at a fixed step) is a measurable diagnostic signal that tells you *when* the agent settled, not *whether* it is right. On Llama-3.1-70B ReAct on HotpotQA, step-4 similarity predicts behavioral consistency (r = −0.35, partial r = −0.45); replicates across Qwen-2.5-72B and Phi-3-14B with r = −0.8 on StrategyQA. Committed-wrong and committed-correct are representationally indistinguishable — the signal is diagnostic, not evaluative. Deduplication: S-996 mentions "premature output" in MAST verification failures but does not address trajectory-level commitment or the hidden-state convergence diagnostic. S-1261 covers verbalized confidence calibration (the agent's self-reported uncertainty) — premature commitment is distinct: the agent is unconscious of having committed, no verbalized signal exists, and the fix is counterfactual injection rather than confidence routing. S-1023 (Recovery Ladder / semantic failure gap) is the broader class; premature commitment is a specific root cause within that class. Novel entry.
@@ -4463,3 +4483,4 @@ secrets-leak → I-3149
 
 ## Recent Decisions
 - *2026-08-04* — **I-3149 → S-2102 — The Agent Credential Lifecycle Stack — Composite 9.05**: From CSA/Strata Identity survey (Feb 2026), GitGuardian State of Secrets Sprawl 2026, OpenID Identity Management for Agentic AI (Oct 2025), Red Hat MCP Security blog (Mar 2026), WorkOS AI Agent Secrets Management (Jun 2026), Zylos Research NHI brief (Jul 2026). Core insight: the identity explosion (45-100:1 machine:human identities, 1.3B agents by 2028) creates a governance gap — 78% of orgs have no AI identity creation policy, yet Claude Code commits leak secrets at 3.2% vs 1.5% human baseline. Deduplication: S-695 covers MCP ambient authority and protocol-level security; this entry covers the credential lifecycle and NHI governance layer — complementary, not overlapping. No entry covers agent credential scoping + lifecycle + revocation in a single architectural pattern. Pattern density: connects to S-695 (MCP), S-1000 (structural governance), S-997 (observability).
+- *2026-08-04* — **I-3150 → S-2104 — The Error Propagation Stack — Composite 9.25**: From Guo et al. (HKU + Stellaris AI), "AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking" (arXiv:2604.23581, ACL 2026 Industry Track). Core finding: 63% of step-level failures in agentic workflows are propagated from upstream nodes, not locally generated. End-to-end evaluation masks these because the final output can be correct despite upstream failures that were compensated downstream. AgentEval formalizes agent traces as evaluation DAGs where each node carries typed quality metrics scored by a calibrated LLM judge, and failure propagates backward through dependency edges via a greedy parent strategy. 2.17x recall improvement over end-to-end (0.41 to 0.89), 72% root cause accuracy (vs 81% human ceiling), median RCA time 4.2h to 22min on 450 production traces. Deduplication: S-1001 covers eval benchmarks vs production, S-1009 covers RCA workflow, S-1856 covers belief contamination. Distinct angle: evaluation DAG as evaluation infrastructure, not just a monitoring layer.

@@ -947,3 +947,5 @@
   - [S-2100 · The Convergence Detection Stack — When Your Refinement Loop Runs All Night and Still Looks Done](stacks/s2100-the-convergence-detection-stack-when-your-refinement-loop-runs-all-night-and-still-looks-done.md)
   - [S-2101 · The Grounded Retrieval Stack — When Your Agent Can't Find What's Already in Your System](stacks/s2101-the-grounded-retrieval-stack-when-your-agent-cant-find-whats-already-in-your-system.md)
   - [S-2102 · The Agent Credential Lifecycle Stack — When Your Agent Has More Secrets Than Your Engineers](stacks/s2102-the-agent-credential-lifecycle-stack-when-your-agent-has-more-secrets-than-your-engineers.md)
+  - [S-2103 · The Premature Commitment Stack — When Your Agent Settles on a Wrong Answer by Step 4 and Defends It to the End](stacks/s2103-the-premature-commitment-stack-when-your-agent-settles-on-a-wrong-answer-by-step-4-and-defends-it-to-the-end.md)
+  - [S-2104 · The Error Propagation Stack — When Your Agent's Final Answer Looks Right but the Reasoning Chain Is Broken](stacks/s2104-the-error-propagation-stack-when-your-agents-final-answer-looks-right-but-the-reasoning-chain-is-broken.md)
