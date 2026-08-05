@@ -1,0 +1,222 @@
+================================================================================
+QUANTITATIVE SWING TRADING ADVISORY — NASDAQ SCAN
+Report Generated: 2026-08-04 12:34 ET
+Data as of: 2026-08-03 (Prior trading day close)
+================================================================================
+
+================================================================================
+STAGE 1: MACRO MARKET REGIME ANALYSIS
+================================================================================
+
+QQQ: $700.07 | Change: +1.76%
+  RSI(14): 50.1 | Regime: TRANSITIONAL
+  Above 200 SMA: True | EMA20 > SMA50: False | EMA20 > SMA200: True
+  200 SMA: $nan
+  ATR(14): $15.07 (2.15% of price)
+  5-Day Return: +2.63%
+  20-Day Range: $661.73 – $725.51
+
+SPY: $757.67 | Change: +1.42%
+  RSI(14): 59.6 | Regime: TRANSITIONAL
+  Above 200 SMA: True | EMA20 > SMA50: False | EMA20 > SMA200: True
+  200 SMA: $nan
+  VIX Proxy (VIXY): $20.35 | RSI: 42.2
+
+IWM: $296.22 | Change: +1.72%
+  RSI(14): 54.7 | Regime: BULL
+  Above 200 SMA: True | EMA20 > SMA50: True | EMA20 > SMA200: True
+  200 SMA: $nan
+
+>>> OVERALL MARKET REGIME: TRANSITIONAL
+    QQQ: TRANSITIONAL | SPY: TRANSITIONAL | IWM: BULL
+
+================================================================================
+STAGE 2: INDIVIDUAL TICKER TECHNICAL SCAN
+================================================================================
+
+AAPL: $303.42 | -1.78% | Score: 4
+  RSI: 40.3 | MACD Hist: -2.9789 | MACD X-Up: False
+  EMA20: $320.81 | SMA50: $309.52 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $10.18 (3.4%) | Vol Ratio: 1.37x
+  Range Pos (20d): 0% | Ret5: -9.9% | Ret20: -3.0%
+  20D Low: $303.42 | 20D High: $340.08 | Regime: BULL
+
+MSFT: $487.65 | +4.93% | Score: 9
+  RSI: 78.3 | MACD Hist: +10.4114 | MACD X-Up: False
+  EMA20: $410.33 | SMA50: $400.74 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: True | Above 200SMA: True
+  ATR: $17.49 (3.6%) | Vol Ratio: 1.76x
+  Range Pos (20d): 100% | Ret5: +25.3% | Ret20: +26.1%
+  20D Low: $381.58 | 20D High: $487.65 | Regime: BULL
+
+NVDA: $206.64 | +2.93% | Score: 5
+  RSI: 53.1 | MACD Hist: -0.2773 | MACD X-Up: False
+  EMA20: $202.43 | SMA50: $205.79 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: True | Above 200SMA: True
+  ATR: $7.85 (3.8%) | Vol Ratio: 0.99x
+  Range Pos (20d): 74% | Ret5: +5.2% | Ret20: +5.7%
+  20D Low: $190.01 | 20D High: $212.50 | Regime: TRANSITIONAL
+
+GOOGL: $373.51 | +4.88% | Score: 8
+  RSI: 61.1 | MACD Hist: +2.8130 | MACD X-Up: False
+  EMA20: $347.56 | SMA50: $358.38 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: True | Above 200SMA: True
+  ATR: $14.07 (3.8%) | Vol Ratio: 1.26x
+  Range Pos (20d): 100% | Ret5: +14.4% | Ret20: +1.9%
+  20D Low: $317.69 | 20D High: $373.51 | Regime: TRANSITIONAL
+
+AMZN: $284.02 | +4.58% | Score: 7
+  RSI: 72.2 | MACD Hist: +3.6568 | MACD X-Up: False
+  EMA20: $246.59 | SMA50: $247.01 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: True | Above 200SMA: True
+  ATR: $10.03 (3.5%) | Vol Ratio: 1.88x
+  Range Pos (20d): 100% | Ret5: +22.7% | Ret20: +16.3%
+  20D Low: $226.65 | 20D High: $284.02 | Regime: TRANSITIONAL
+
+META: $590.24 | +6.02% | Score: 2
+  RSI: 47.0 | MACD Hist: -8.6272 | MACD X-Up: False
+  EMA20: $600.99 | SMA50: $601.71 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $25.80 (4.4%) | Vol Ratio: 1.33x
+  Range Pos (20d): 36% | Ret5: -0.6% | Ret20: -1.7%
+  20D Low: $539.03 | 20D High: $681.31 | Regime: TRANSITIONAL
+
+TSLA: $322.08 | +3.49% | Score: 1
+  RSI: 36.8 | MACD Hist: -4.7367 | MACD X-Up: False
+  EMA20: $347.72 | SMA50: $388.86 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $16.33 (5.1%) | Vol Ratio: 0.95x
+  Range Pos (20d): 22% | Ret5: +4.2% | Ret20: -23.3%
+  20D Low: $298.32 | 20D High: $407.76 | Regime: TRANSITIONAL
+
+AMD: $484.64 | +1.78% | Score: 1
+  RSI: 46.7 | MACD Hist: -7.2489 | MACD X-Up: False
+  EMA20: $502.12 | SMA50: $512.95 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $41.57 (8.6%) | Vol Ratio: 0.88x
+  Range Pos (20d): 43% | Ret5: -2.1% | Ret20: -12.2%
+  20D Low: $429.56 | 20D High: $557.89 | Regime: TRANSITIONAL
+
+INTC: $91.00 | +0.89% | Score: 1
+  RSI: 40.7 | MACD Hist: -0.7981 | MACD X-Up: False
+  EMA20: $98.91 | SMA50: $112.25 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $7.96 (8.7%) | Vol Ratio: 0.82x
+  Range Pos (20d): 30% | Ret5: -0.7% | Ret20: -25.5%
+  20D Low: $81.88 | 20D High: $112.54 | Regime: TRANSITIONAL
+
+NFLX: $73.33 | +2.26% | Score: 5
+  RSI: 49.8 | MACD Hist: +0.6681 | MACD X-Up: False
+  EMA20: $72.54 | SMA50: $76.82 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: False | Above 200SMA: True
+  ATR: $2.74 (3.7%) | Vol Ratio: 0.70x
+  Range Pos (20d): 67% | Ret5: +4.2% | Ret20: -3.5%
+  20D Low: $67.60 | 20D High: $76.18 | Regime: TRANSITIONAL
+
+COIN: $146.50 | +0.16% | Score: 2
+  RSI: 40.5 | MACD Hist: -1.3039 | MACD X-Up: False
+  EMA20: $159.91 | SMA50: $163.45 | SMA200: $nan
+  Above 20EMA: False | Above 50SMA: False | Above 200SMA: True
+  ATR: $10.76 (7.3%) | Vol Ratio: 1.24x
+  Range Pos (20d): 1% | Ret5: -12.5% | Ret20: -13.2%
+  20D Low: $146.26 | 20D High: $175.85 | Regime: TRANSITIONAL
+
+SMCI: $28.64 | +0.85% | Score: 5
+  RSI: 49.5 | MACD Hist: +0.3594 | MACD X-Up: False
+  EMA20: $28.37 | SMA50: $32.29 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: False | Above 200SMA: True
+  ATR: $2.42 (8.4%) | Vol Ratio: 0.56x
+  Range Pos (20d): 65% | Ret5: -3.9% | Ret20: +5.3%
+  20D Low: $23.83 | 20D High: $31.20 | Regime: TRANSITIONAL
+
+AVGO: $392.23 | +0.76% | Score: 5
+  RSI: 52.7 | MACD Hist: +1.3152 | MACD X-Up: False
+  EMA20: $385.39 | SMA50: $394.54 | SMA200: $nan
+  Above 20EMA: True | Above 50SMA: False | Above 200SMA: True
+  ATR: $16.17 (4.1%) | Vol Ratio: 0.85x
+  Range Pos (20d): 71% | Ret5: +2.4% | Ret20: +4.9%
+  20D Low: $370.32 | 20D High: $401.11 | Regime: TRANSITIONAL
+
+================================================================================
+TICKER SCOREBOARD (sorted by composite score)
+================================================================================
+  MSFT   | Score:   9 | RSI:  78.3 | MACD Hist: +10.4114 | Range20d: 100% | Ret5: +25.3% | Regime: BULL
+  GOOGL  | Score:   8 | RSI:  61.1 | MACD Hist: +2.8130 | Range20d: 100% | Ret5: +14.4% | Regime: TRANSITIONAL
+  AMZN   | Score:   7 | RSI:  72.2 | MACD Hist: +3.6568 | Range20d: 100% | Ret5: +22.7% | Regime: TRANSITIONAL
+  NVDA   | Score:   5 | RSI:  53.1 | MACD Hist: -0.2773 | Range20d: 74% | Ret5: +5.2% | Regime: TRANSITIONAL
+  NFLX   | Score:   5 | RSI:  49.8 | MACD Hist: +0.6681 | Range20d: 67% | Ret5: +4.2% | Regime: TRANSITIONAL
+  SMCI   | Score:   5 | RSI:  49.5 | MACD Hist: +0.3594 | Range20d: 65% | Ret5: -3.9% | Regime: TRANSITIONAL
+  AVGO   | Score:   5 | RSI:  52.7 | MACD Hist: +1.3152 | Range20d: 71% | Ret5: +2.4% | Regime: TRANSITIONAL
+  AAPL   | Score:   4 | RSI:  40.3 | MACD Hist: -2.9789 | Range20d: 0% | Ret5: -9.9% | Regime: BULL
+  META   | Score:   2 | RSI:  47.0 | MACD Hist: -8.6272 | Range20d: 36% | Ret5: -0.6% | Regime: TRANSITIONAL
+  COIN   | Score:   2 | RSI:  40.5 | MACD Hist: -1.3039 | Range20d: 1% | Ret5: -12.5% | Regime: TRANSITIONAL
+  TSLA   | Score:   1 | RSI:  36.8 | MACD Hist: -4.7367 | Range20d: 22% | Ret5: +4.2% | Regime: TRANSITIONAL
+  AMD    | Score:   1 | RSI:  46.7 | MACD Hist: -7.2489 | Range20d: 43% | Ret5: -2.1% | Regime: TRANSITIONAL
+  INTC   | Score:   1 | RSI:  40.7 | MACD Hist: -0.7981 | Range20d: 30% | Ret5: -0.7% | Regime: TRANSITIONAL
+
+================================================================================
+STAGE 3: TOP SWING TRADE SETUPS — RISK/REWARD ANALYSIS
+================================================================================
+
+────────────────────────────────────────────────────────────
+  MSFT | Score: 9 | Regime: BULL
+  Price: $487.65 | ATR: $17.49 (3.6%)
+  Support 1 (EMA20/SwLow): $410.33 | Support 2 (SMA50): $400.74
+  Resistance 1 (SwHigh): $487.65 | Resistance 2: $502.28
+  Stop Loss: $379.67 | Risk: 22.14%
+  T1: $522.62 | Reward: 7.17% | R:R = 0.3:1
+  T2: $502.28 | Reward: 3.00% | R:R = 0.1:1
+  RSI: 78.3 | MACD Hist: +10.4114 | Range Pos: 100%
+
+────────────────────────────────────────────────────────────
+  GOOGL | Score: 8 | Regime: TRANSITIONAL
+  Price: $373.51 | ATR: $14.07 (3.8%)
+  Support 1 (EMA20/SwLow): $347.56 | Support 2 (SMA50): $358.38
+  Resistance 1 (SwHigh): $373.51 | Resistance 2: $384.72
+  Stop Loss: $316.10 | Risk: 15.37%
+  T1: $401.65 | Reward: 7.53% | R:R = 0.5:1
+  T2: $384.72 | Reward: 3.00% | R:R = 0.2:1
+  RSI: 61.1 | MACD Hist: +2.8130 | Range Pos: 100%
+
+────────────────────────────────────────────────────────────
+  AMZN | Score: 7 | Regime: TRANSITIONAL
+  Price: $284.02 | ATR: $10.03 (3.5%)
+  Support 1 (EMA20/SwLow): $246.59 | Support 2 (SMA50): $247.01
+  Resistance 1 (SwHigh): $284.02 | Resistance 2: $292.54
+  Stop Loss: $225.52 | Risk: 20.60%
+  T1: $304.08 | Reward: 7.06% | R:R = 0.3:1
+  T2: $292.54 | Reward: 3.00% | R:R = 0.1:1
+  RSI: 72.2 | MACD Hist: +3.6568 | Range Pos: 100%
+
+────────────────────────────────────────────────────────────
+  NVDA | Score: 5 | Regime: TRANSITIONAL
+  Price: $206.64 | ATR: $7.85 (3.8%)
+  Support 1 (EMA20/SwLow): $202.43 | Support 2 (SMA50): $205.79
+  Resistance 1 (SwHigh): $212.50 | Resistance 2: $218.88
+  Stop Loss: $189.06 | Risk: 8.51%
+  T1: $212.50 | Reward: 2.84% | R:R = 0.3:1
+  T2: $218.88 | Reward: 5.92% | R:R = 0.7:1
+  RSI: 53.1 | MACD Hist: -0.2773 | Range Pos: 74%
+
+────────────────────────────────────────────────────────────
+  NFLX | Score: 5 | Regime: TRANSITIONAL
+  Price: $73.33 | ATR: $2.74 (3.7%)
+  Support 1 (EMA20/SwLow): $72.54 | Support 2 (SMA50): $76.82
+  Resistance 1 (SwHigh): $76.18 | Resistance 2: $78.47
+  Stop Loss: $67.26 | Risk: 8.27%
+  T1: $76.18 | Reward: 3.89% | R:R = 0.5:1
+  T2: $78.47 | Reward: 7.00% | R:R = 0.8:1
+  RSI: 49.8 | MACD Hist: +0.6681 | Range Pos: 67%
+
+================================================================================
+STAGE 4: FINAL TACTICAL ADVISORY
+================================================================================
+
+================================================================================
+MARKET CONTEXT NOTES:
+  - QQQ Regime: TRANSITIONAL
+  - QQQ RSI: 50.1
+  - Data Date: 2026-08-03 (prior close)
+  - WARNING: Trading during NASDAQ hours — use limit orders, not market orders
+================================================================================

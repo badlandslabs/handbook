@@ -1,4 +1,4 @@
-# S-2194 · The Framework Gravity Stack — When Your Agent Project Is Being Consumed by Its Own Scaffolding
+# S-2195 · The Framework Gravity Stack — When Your Scaffolding Weighs More Than Your Agent
 
 You have a task that needs an agent: route emails, analyze data, interact with a browser. You install LangGraph. Then CrewAI. Then you need async so you add a Celery layer. Two weeks later your agent does one useful thing and the framework takes four engineers to maintain. This is framework gravity: the tendency of agent scaffolding to grow until it outweighs the agent itself.
 

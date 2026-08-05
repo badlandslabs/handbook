@@ -1,179 +1,515 @@
-import yfinance as yf
-import pandas as pd
+#!/usr/bin/env python3
+"""Quantitative Swing Trading Analysis Engine"""
+import pickle
 import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
+import pandas as pd
+from datetime import datetime, timedelta
 
-def get_ohlcv(ticker, period='6mo', interval='1d'):
-    df = yf.download(ticker, period=period, interval=interval, progress=False)
-    if df.empty:
-        return None, None, None, None, None
-    # Handle multi-level columns from yfinance
-    if isinstance(df.columns, pd.MultiIndex):
-        df.columns = df.columns.get_level_values(0)
-    close = df['Close'].values.flatten()
-    high = df['High'].values.flatten()
-    low = df['Low'].values.flatten()
-    vol = df['Volume'].values.flatten()
-    dates = df.index
-    return close, high, low, vol, dates
+# Load data
+with open('/opt/data/handbook/market_data.pkl', 'rb') as f:
+    data = pickle.load(f)
 
-def calc_rsi(close, period=14):
-    delta = np.diff(close, prepend=close[0])
-    gain = np.where(delta > 0, delta, 0)
-    loss = np.where(delta < 0, -delta, 0)
-    # EMA
-    alpha = 2 / (period + 1)
-    ema_gain = gain[0]
-    ema_loss = loss[0]
-    for i in range(1, len(gain)):
-        ema_gain = alpha * gain[i] + (1 - alpha) * ema_gain
-        ema_loss = alpha * loss[i] + (1 - alpha) * ema_loss
-    rs = ema_gain / ema_loss if ema_loss != 0 else 100
-    rsi = 100 - (100 / (1 + rs))
-    return rsi
+print("=" * 80)
+print("QUANTITATIVE SWING TRADING ADVISORY — NASDAQ SCAN")
+print(f"Report Generated: {datetime.now().strftime('%Y-%m-%d %H:%M ET')}")
+print("Data as of: 2026-08-03 (Prior trading day close)")
+print("=" * 80)
 
-def calc_atr(high, low, close, period=14):
+# ── Helper Functions ─────────────────────────────────────────────────────────
+
+def sma(series, period):
+    return series.rolling(period).mean()
+
+def ema(series, period):
+    return series.ewm(span=period).mean()
+
+def atr(df, period=14):
+    high = df['High']
+    low = df['Low']
+    close = df['Close']
+    prev_close = close.shift(1)
     tr1 = high - low
-    tr2 = np.abs(high - np.roll(close, 1))
-    tr3 = np.abs(low - np.roll(close, 1))
-    tr2[0] = tr1[0]
-    tr3[0] = tr1[0]
-    tr = np.maximum.reduce([tr1, tr2, tr3])
-    # SMA ATR
-    atr = np.mean(tr[-period:])
-    return atr
+    tr2 = (high - prev_close).abs()
+    tr3 = (low - prev_close).abs()
+    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+    return tr.rolling(14).mean()
 
-def calc_sma(close, period):
-    if len(close) < period:
-        return np.nan
-    return np.mean(close[-period:])
+def rsi(series, period=14):
+    delta = series.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.ewm(com=period-1, min_periods=period).mean()
+    avg_loss = loss.ewm(com=period-1, min_periods=period).mean()
+    rs = avg_gain / avg_loss
+    return 100 - (100 / (1 + rs))
 
-print("=== MACRO REGIME ===")
-for sym in ['SPY', 'QQQ', 'IWM', '^VIX']:
-    close, high, low, vol, dates = get_ohlcv(sym, '1y')
-    if close is None:
-        print(f"{sym}: No data")
-        continue
-    latest = close[-1]
-    sma20 = calc_sma(close, 20)
-    sma50 = calc_sma(close, 50)
-    sma200 = calc_sma(close, 200)
-    rsi = calc_rsi(close)
-    atr = calc_atr(high, low, close)
-    pct_52w = ((latest - np.min(low)) / (np.max(low) - np.min(low))) * 100 if np.max(low) > np.min(low) else 50
-    print(f"{sym}: ${latest:.2f} | SMA20={sma20:.2f} | SMA50={sma50:.2f} | SMA200={sma200:.2f} | RSI={rsi:.1f} | ATR={atr:.2f} | Above200={latest>sma200} | 52wPos={pct_52w:.0f}%")
+def macd_signal(series, fast=12, slow=26, signal=9):
+    ema_fast = series.ewm(span=fast, adjust=False).mean()
+    ema_slow = series.ewm(span=slow, adjust=False).mean()
+    macd_line = ema_fast - ema_slow
+    signal_line = macd_line.ewm(span=signal, adjust=False).mean()
+    histogram = macd_line - signal_line
+    return macd_line, signal_line, histogram
 
-print("\n=== TOP CANDIDATE DEEP DIVE ===")
-candidates = ['CRWD', 'PANW', 'NVDA', 'AMAT', 'FAST', 'TSLA', 'AAPL', 'META', 'AVGO', 'AMD']
+def analyze_ticker(ticker, df):
+    close = df['Close'].squeeze()
+    high = df['High'].squeeze()
+    low = df['Low'].squeeze()
+    volume = df['Volume'].squeeze()
 
-for sym in candidates:
-    close, high, low, vol, dates = get_ohlcv(sym, '3mo')
-    if close is None or len(close) < 30:
-        print(f"{sym}: No data")
-        continue
-    
-    latest = close[-1]
-    prev5 = close[-6] if len(close) > 5 else close[0]
-    prev10 = close[-11] if len(close) > 10 else close[0]
-    prev20 = close[-21] if len(close) > 20 else close[0]
-    
-    sma20 = calc_sma(close, 20)
-    sma50 = calc_sma(close, 50)
-    sma200 = calc_sma(close, 200) if len(close) >= 200 else np.nan
-    rsi = calc_rsi(close)
-    atr = calc_atr(high, low, close)
-    
-    # EMA for MACD
-    ema12 = close[-1]
-    ema26 = close[-1]
-    alpha12 = 2/13
-    alpha26 = 2/27
-    for i in range(min(50, len(close)-1), -1, -1):
-        if i == min(50, len(close)-1):
-            ema12 = close[i]
-            ema26 = close[i]
+    close_20ema = ema(close, 20)
+    close_50sma = sma(close, 50)
+    close_200sma = sma(close, 200)
+    rsi_val = rsi(close)
+    macd_line, signal_line, hist = macd_signal(close)
+    atr_val = atr(df).iloc[-1]
+
+    last = close.iloc[-1]
+    prev = close.iloc[-2]
+    prev2 = close.iloc[-3]
+    prev4 = close.iloc[-5]
+    prev20 = close.iloc[-21] if len(close) >= 21 else close.iloc[0]
+    prev10 = close.iloc[-11] if len(close) >= 11 else close.iloc[0]
+
+    # 20-day range position
+    low20 = close.iloc[-20:].min()
+    high20 = close.iloc[-20:].max()
+    range_pos = (last - low20) / (high20 - low20) if high20 != low20 else 0.5
+
+    # 50-day range position
+    low50 = close.iloc[-50:].min() if len(close) >= 50 else close.min()
+    high50 = close.iloc[-50:].max() if len(close) >= 50 else close.max()
+    range_pos50 = (last - low50) / (high50 - low50) if high50 != low50 else 0.5
+
+    # Momentum: 10-day return
+    ret10 = (last - prev10) / prev10 * 100
+
+    # Trend classification
+    above_20ema = last > close_20ema.iloc[-1]
+    above_50sma = last > close_50sma.iloc[-1]
+    above_200sma = last > close_200sma.iloc[-1] if not pd.isna(close_200sma.iloc[-1]) else True
+    ema20_above_50 = close_20ema.iloc[-1] > close_50sma.iloc[-1] if not pd.isna(close_50sma.iloc[-1]) else True
+
+    # Volume
+    avg_vol = volume.iloc[-20:].mean()
+    vol_ratio = volume.iloc[-1] / avg_vol if avg_vol > 0 else 1
+
+    # RSI
+    rsi_curr = rsi_val.iloc[-1]
+
+    # MACD
+    macd_curr = macd_line.iloc[-1]
+    signal_curr = signal_line.iloc[-1]
+    hist_curr = hist.iloc[-1]
+    hist_prev = hist.iloc[-2]
+    macd_cross_up = hist_curr > 0 and hist_prev <= 0
+    macd_bullish = macd_curr > signal_curr and macd_curr > 0
+
+    # Recent swing
+    swing_high_20 = high.iloc[-20:].max()
+    swing_low_20 = low.iloc[-20:].min()
+
+    # 5-day momentum
+    mom5 = (last - prev5) / prev5 * 100 if len(close) >= 6 else 0
+    prev5 = close.iloc[-6] if len(close) >= 6 else close.iloc[0]
+
+    # ATR-based volatility
+    pct_atr = atr_val / last * 100
+
+    # Regime
+    if above_200sma and close_20ema.iloc[-1] > close_50sma.iloc[-1] if not pd.isna(close_50sma.iloc[-1]) else True:
+        regime = "BULL"
+    elif not above_200sma and close_20ema.iloc[-1] < close_50sma.iloc[-1] if not pd.isna(close_50sma.iloc[-1]) else False:
+        regime = "BEAR"
+    else:
+        regime = "TRANSITIONAL"
+
+    return {
+        'ticker': ticker,
+        'close': last,
+        'prev_close': prev,
+        'change_pct': (last - prev) / prev * 100,
+        'rsi': rsi_curr,
+        'macd': macd_curr,
+        'macd_signal': signal_curr,
+        'macd_hist': hist_curr,
+        'macd_cross_up': macd_cross_up,
+        'macd_bullish': macd_bullish,
+        'above_20ema': above_20ema,
+        'above_50sma': above_50sma,
+        'above_200sma': above_200sma,
+        'ema20_above_50': ema_above_50,
+        'atr': atr_val,
+        'pct_atr': pct_atr,
+        'vol_ratio': vol_ratio,
+        'range_pos20': range_pos,
+        'range_pos50': range_pos50,
+        'ret10': ret10,
+        'swing_high_20': swing_high_20,
+        'swing_low_20': swing_low_20,
+        'close_20ema': close_20ema.iloc[-1],
+        'close_50sma': close_50sma.iloc[-1],
+        'close_200sma': close_200sma.iloc[-1],
+        'regime': regime,
+        'close_20ema': close_20ema.iloc[-1],
+    }
+
+def ema_above_50_func(df):
+    close = df['Close'].squeeze()
+    ema20 = ema(close, 20)
+    sma50 = sma(close, 50)
+    return ema20.iloc[-1] > sma50.iloc[-1] if not pd.isna(sma50.iloc[-1]) else True
+
+# ── Stage 1: Macro Market Regime ────────────────────────────────────────────
+print("\n" + "=" * 80)
+print("STAGE 1: MACRO MARKET REGIME ANALYSIS")
+print("=" * 80)
+
+# Indices analysis
+index_tickers = ['QQQ', 'SPY', 'IWM']
+indices_analysis = {}
+for t in index_tickers:
+    if t in data:
+        df = data[t]
+        close = df['Close'].squeeze()
+        close_20ema = ema(close, 20)
+        close_50sma = sma(close, 50)
+        close_200sma = sma(close, 200)
+        rsi_val = rsi(close).iloc[-1]
+        last = close.iloc[-1]
+        prev = close.iloc[-2]
+
+        above_200 = last > close_200sma.iloc[-1] if not pd.isna(close_200sma.iloc[-1]) else True
+        ema_above_50 = close_20ema.iloc[-1] > close_50sma.iloc[-1] if not pd.isna(close_50sma.iloc[-1]) else True
+        ema_above_200 = close_20ema.iloc[-1] > close_200sma.iloc[-1] if not pd.isna(close_200sma.iloc[-1]) else True
+
+        if above_200 and ema_above_50 and ema_above_200:
+            regime = "BULL"
+        elif not above_200 and not ema_above_50 and not ema_above_200:
+            regime = "BEAR"
         else:
-            ema12 = alpha12 * close[i] + (1-alpha12) * ema12
-            ema26 = alpha26 * close[i] + (1-alpha26) * ema26
-    # Recalc properly from start
-    ema12_arr = []
-    ema26_arr = []
-    for i in range(len(close)):
-        if i == 0:
-            ema12_arr.append(close[0])
-            ema26_arr.append(close[0])
-        else:
-            ema12_arr.append(alpha12 * close[i] + (1-alpha12) * ema12_arr[-1])
-            ema26_arr.append(alpha26 * close[i] + (1-alpha26) * ema26_arr[-1])
-    macd_line = ema12_arr[-1] - ema26_arr[-1]
-    macd_prev = ema12_arr[-2] - ema26_arr[-2]
-    # Signal = 9-period EMA of MACD
-    macd_vals = np.array(ema12_arr) - np.array(ema26_arr)
-    alpha9 = 2/10
-    macd_sig = macd_vals[-1]
-    for i in range(-10, -1):
-        macd_sig = alpha9 * macd_vals[i] + (1-alpha9) * macd_sig
-    
-    # Bollinger
-    bb_mid = sma20
-    bb_std = np.std(close[-20:])
-    bb_upper = bb_mid + 2*bb_std
-    bb_lower = bb_mid - 2*bb_std
-    bb_pos = (latest - bb_lower) / (bb_upper - bb_lower) if bb_upper > bb_lower else 0.5
-    
-    # Recent swing highs/lows (lookback 20 days)
-    swing_highs = []
-    swing_lows = []
-    for i in range(2, min(len(high)-2, 22)):
-        if high[i] > high[i-1] and high[i] > high[i+1] and high[i] > high[i-2] and high[i] > high[i+2]:
-            swing_highs.append(high[i])
-        if low[i] < low[i-1] and low[i] < low[i+1] and low[i] < low[i-2] and low[i] < low[i+2]:
-            swing_lows.append(low[i])
-    
-    # Recent support = max of recent lows below price
-    nearest_support = max([l for l in swing_lows if l < latest], default=latest*0.95)
-    nearest_resistance = min([h for h in swing_highs if h > latest], default=latest*1.05)
-    
-    ret_5d = (latest/prev5 - 1)*100
-    ret_10d = (latest/prev10 - 1)*100
-    ret_20d = (latest/prev20 - 1)*100 if len(close) > 20 else 0
-    
-    print(f"\n{sym}: ${latest:.2f}")
-    print(f"  RSI={rsi:.1f} | ATR14={atr:.2f} ({(atr/latest)*100:.1f}% of price)")
-    sma200_str = f"{sma200:.2f}" if not np.isnan(sma200) else "N/A"
-    print(f"  SMA20={sma20:.2f} | SMA50={sma50:.2f} | SMA200={sma200_str}")
-    print(f"  BB: Lower={bb_lower:.2f} Upper={bb_upper:.2f} Pos={bb_pos*100:.0f}%")
-    print(f"  MACD={macd_line:.3f} Signal={macd_sig:.3f} | {'BULL+' if macd_line > macd_sig else 'BEAR-'}")
-    print(f"  Returns: 5d={ret_5d:+.1f}% | 10d={ret_10d:+.1f}% | 20d={ret_20d:+.1f}%")
-    print(f"  Nearest S: ${nearest_support:.2f} | Nearest R: ${nearest_resistance:.2f}")
-    print(f"  Swing Highs (recent): {sorted(swing_highs, reverse=True)[:3]}")
-    print(f"  Swing Lows (recent): {sorted(swing_lows)[:3]}")
-    above_200 = "N/A" if np.isnan(sma200) else (latest > sma200)
-    print(f"  Above SMA20: {latest > sma20} | Above SMA50: {latest > sma50} | Above SMA200: {above_200}")
-    
-    # Earnings
-    try:
-        t = yf.Ticker(sym)
-        try:
-            cal = t.calendar
-            if cal is not None:
-                print(f"  Earnings cal: {cal}")
-        except:
-            pass
-    except:
-        pass
+            regime = "TRANSITIONAL"
 
-print("\n=== SECTOR ROTATION ===")
-sector_etfs = {'XLK':'Tech', 'XLF':'Financials', 'XLV':'Healthcare', 'XLY':'Consumer Disc',
-               'XLP':'Staples', 'XLE':'Energy', 'XLC':'Comm', 'XLI':'Industrials', 'XLB':'Materials', 'XLRE':'Real Estate'}
-for etf, name in sector_etfs.items():
-    close, _, _, _, _ = get_ohlcv(etf, '20d')
-    spy_close, _, _, _, _ = get_ohlcv('SPY', '20d')
-    if close is not None and spy_close is not None and len(close) > 2 and len(spy_close) > 2:
-        etf_ret = (close[-1]/close[0] - 1)*100
-        spy_ret = (spy_close[-1]/spy_close[0] - 1)*100
-        rel = etf_ret - spy_ret
-        print(f"  {etf} ({name}): {etf_ret:+.2f}% | vs SPY: {rel:+.2f}%")
+        # VIX proxy
+        vix = None
+        if 'VIXY' in data:
+            vix_close = data['VIXY']['Close'].squeeze()
+            vix = vix_close.iloc[-1]
+            vix_rsi = rsi(vix_close).iloc[-1]
 
-print("\n=== SCAN COMPLETE ===")
+        indices_analysis[t] = {
+            'close': last,
+            'prev_close': prev,
+            'change': (last - prev) / prev * 100,
+            'rsi': rsi_val,
+            'above_200sma': above_200,
+            'ema_above_50': ema_above_50,
+            'ema_above_200': ema_above_200,
+            'close_200sma': close_200sma.iloc[-1],
+            'regime': regime,
+        }
+
+        print(f"\n{t}: ${last:.2f} | Change: {indices_analysis[t]['change']:+.2f}%")
+        print(f"  RSI(14): {rsi_val:.1f} | Regime: {regime}")
+        print(f"  Above 200 SMA: {above_200} | EMA20 > SMA50: {ema_above_50} | EMA20 > SMA200: {ema_above_200}")
+        print(f"  200 SMA: ${close_200sma.iloc[-1]:.2f}")
+
+        if t == 'QQQ':
+            # ATR for QQQ
+            qqq_atr = atr(data['QQQ']).iloc[-1]
+            qqq_pct_atr = qqq_atr / last * 100
+            print(f"  ATR(14): ${qqq_atr:.2f} ({qqq_pct_atr:.2f}% of price)")
+            # 5-day trend
+            close_5d_ago = close.iloc[-6]
+            ret5 = (last - close_5d_ago) / close_5d_ago * 100
+            print(f"  5-Day Return: {ret5:+.2f}%")
+            # 20-day range
+            low20 = close.iloc[-20:].min()
+            high20 = close.iloc[-20:].max()
+            print(f"  20-Day Range: ${low20:.2f} – ${high20:.2f}")
+
+        if vix is not None and t == 'SPY':
+            print(f"  VIX Proxy (VIXY): ${vix:.2f} | RSI: {vix_rsi:.1f}")
+
+# Overall market regime
+qqq_regime = indices_analysis['QQQ']['regime']
+spy_regime = indices_analysis['SPY']['regime']
+iwm_regime = indices_analysis['IWM']['regime']
+
+overall_regime = qqq_regime
+if qqq_regime == spy_regime == iwm_regime:
+    overall_regime = qqq_regime
+elif qqq_regime == 'BULL' and spy_regime == 'BULL':
+    overall_regime = 'BULL'
+elif qqq_regime == 'BEAR' and spy_regime == 'BEAR':
+    overall_regime = 'BEAR'
+else:
+    overall_regime = 'TRANSITIONAL'
+
+print(f"\n>>> OVERALL MARKET REGIME: {overall_regime}")
+print(f"    QQQ: {qqq_regime} | SPY: {spy_regime} | IWM: {iwm_regime}")
+
+# ── Stage 2: Individual Stock Scan ────────────────────────────────────────────
+print("\n" + "=" * 80)
+print("STAGE 2: INDIVIDUAL TICKER TECHNICAL SCAN")
+print("=" * 80)
+
+stock_tickers = ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AMD', 'INTC', 'NFLX', 'COIN', 'SMCI', 'AVGO']
+
+scan_results = []
+for t in stock_tickers:
+    if t not in data:
+        continue
+    df = data[t]
+    close = df['Close'].squeeze()
+    high = df['High'].squeeze()
+    low = df['Low'].squeeze()
+    volume = df['Volume'].squeeze()
+
+    last = close.iloc[-1]
+    prev = close.iloc[-2]
+
+    # Moving averages
+    ema20 = ema(close, 20)
+    sma50 = sma(close, 50)
+    sma200 = sma(close, 200)
+    ema20_val = ema20.iloc[-1]
+    sma50_val = sma50.iloc[-1]
+    sma200_val = sma200.iloc[-1]
+
+    # Indicators
+    rsi_val = rsi(close).iloc[-1]
+    macd_line, signal_line, hist = macd_signal(close)
+    macd_curr = macd_line.iloc[-1]
+    signal_curr = signal_line.iloc[-1]
+    hist_curr = hist.iloc[-1]
+    hist_prev = hist.iloc[-2]
+    atr_val = atr(df).iloc[-1]
+    pct_atr = atr_val / last * 100
+
+    # Volume
+    avg_vol = volume.iloc[-20:].mean()
+    vol_ratio = volume.iloc[-1] / avg_vol if avg_vol > 0 else 1
+
+    # Trend flags
+    above_20ema = last > ema20_val
+    above_50sma = last > sma50_val if not pd.isna(sma50_val) else True
+    above_200sma = last > sma200_val if not pd.isna(sma200_val) else True
+    ema_above_50 = ema20_val > sma50_val if not pd.isna(sma50_val) else True
+    ema_above_200 = ema20_val > sma200_val if not pd.isna(sma200_val) else True
+
+    # Range position
+    low20 = close.iloc[-20:].min()
+    high20 = close.iloc[-20:].max()
+    range_pos20 = (last - low20) / (high20 - low20) if high20 != low20 else 0.5
+    low50 = close.iloc[-50:].min() if len(close) >= 50 else close.min()
+    high50 = close.iloc[-50:].max() if len(close) >= 50 else close.max()
+    range_pos50 = (last - low50) / (high50 - low50) if high50 != low50 else 0.5
+
+    # Momentum
+    ret10 = (last - close.iloc[-11]) / close.iloc[-11] * 100 if len(close) >= 11 else 0
+    ret5 = (last - close.iloc[-6]) / close.iloc[-6] * 100 if len(close) >= 6 else 0
+    ret20 = (last - close.iloc[-21]) / close.iloc[-21] * 100 if len(close) >= 21 else 0
+
+    # MACD cross
+    macd_cross_up = hist_curr > 0 and hist_prev <= 0
+    macd_cross_down = hist_curr < 0 and hist_prev >= 0
+
+    # RSI divergence check (simple: price making HH but RSI making LH = bearish div)
+    # Recent 20-day high
+    price_hh_20 = high.iloc[-20:].max()
+    price_hh_idx = high.iloc[-20:].idxmax()
+
+    # Regime
+    if above_200sma and ema_above_50 and ema_above_200:
+        regime = "BULL"
+    elif not above_200sma and not ema_above_50 and not ema_above_200:
+        regime = "BEAR"
+    else:
+        regime = "TRANSITIONAL"
+
+    # Swing scores
+    score = 0
+    if above_20ema: score += 2
+    if above_50sma: score += 2
+    if above_200sma: score += 1
+    if ema_above_50: score += 2
+    if macd_cross_up: score += 3
+    if macd_curr > signal_curr: score += 1
+    if hist_curr > 0: score += 1
+    if rsi_val > 50: score += 1
+    if vol_ratio > 1.2: score += 1
+    if range_pos20 > 0.7: score -= 1  # Slightly penalized if near 20d high
+    if rsi_val > 70: score -= 1  # Overbought penalty
+
+    result = {
+        'ticker': t,
+        'close': last,
+        'prev_close': prev,
+        'change': (last - prev) / prev * 100,
+        'rsi': rsi_val,
+        'macd': macd_curr,
+        'macd_signal': signal_curr,
+        'macd_hist': hist_curr,
+        'macd_cross_up': macd_cross_up,
+        'macd_cross_down': macd_cross_down,
+        'above_20ema': above_20ema,
+        'above_50sma': above_50sma,
+        'above_200sma': above_200sma,
+        'ema_above_50': ema_above_50,
+        'ema_above_200': ema_above_200,
+        'atr': atr_val,
+        'pct_atr': pct_atr,
+        'vol_ratio': vol_ratio,
+        'range_pos20': range_pos20,
+        'range_pos50': range_pos50,
+        'ret5': ret5,
+        'ret10': ret10,
+        'ret20': ret20,
+        'low20': low20,
+        'high20': high20,
+        'swing_high_20': high20,
+        'swing_low_20': low20,
+        'ema20': ema20_val,
+        'sma50': sma50_val,
+        'sma200': sma200_val,
+        'regime': regime,
+        'score': score,
+    }
+    scan_results.append(result)
+
+    print(f"\n{t}: ${last:.2f} | {result['change']:+.2f}% | Score: {score}")
+    print(f"  RSI: {rsi_val:.1f} | MACD Hist: {hist_curr:+.4f} | MACD X-Up: {macd_cross_up}")
+    print(f"  EMA20: ${ema20_val:.2f} | SMA50: ${sma50_val:.2f} | SMA200: ${sma200_val:.2f}")
+    print(f"  Above 20EMA: {above_20ema} | Above 50SMA: {above_50sma} | Above 200SMA: {above_200sma}")
+    print(f"  ATR: ${atr_val:.2f} ({pct_atr:.1f}%) | Vol Ratio: {vol_ratio:.2f}x")
+    print(f"  Range Pos (20d): {range_pos20:.0%} | Ret5: {ret5:+.1f}% | Ret20: {ret20:+.1f}%")
+    print(f"  20D Low: ${low20:.2f} | 20D High: ${high20:.2f} | Regime: {regime}")
+
+# Sort by score
+scan_results.sort(key=lambda x: x['score'], reverse=True)
+
+print("\n" + "=" * 80)
+print("TICKER SCOREBOARD (sorted by composite score)")
+print("=" * 80)
+for r in scan_results:
+    print(f"  {r['ticker']:6s} | Score: {r['score']:3d} | RSI: {r['rsi']:5.1f} | "
+          f"MACD Hist: {r['macd_hist']:+.4f} | Range20d: {r['range_pos20']:.0%} | "
+          f"Ret5: {r['ret5']:+.1f}% | Regime: {r['regime']}")
+
+# ── Stage 3: Top Setups Selection ───────────────────────────────────────────
+print("\n" + "=" * 80)
+print("STAGE 3: TOP SWING TRADE SETUPS — RISK/REWARD ANALYSIS")
+print("=" * 80)
+
+top_setups = []
+for r in scan_results[:5]:  # Top 5 by score
+    t = r['ticker']
+    df = data[t]
+    close = df['Close'].squeeze()
+
+    last = r['close']
+    atr_val = r['atr']
+    pct_atr = r['pct_atr']
+    low20 = r['low20']
+    high20 = r['high20']
+    rsi_val = r['rsi']
+    range_pos20 = r['range_pos20']
+
+    # Calculate support/resistance
+    # Support 1: Recent swing low or EMA20
+    support1 = max(r['ema20'], r['swing_low_20'])
+    # Support 2: 50 SMA or deeper
+    support2 = r['sma50'] if not pd.isna(r['sma50']) else support1 * 0.95
+
+    # Resistance
+    resistance1 = r['swing_high_20']
+    resistance2 = r['sma200'] if not pd.isna(r['sma200']) and r['sma200'] > r['swing_high_20'] else r['swing_high_20'] * 1.03
+
+    # Stop loss: Below swing low or EMA20, whichever is deeper
+    stop = min(support1 * 0.995, r['swing_low_20'] * 0.995)
+    risk_pct = (last - stop) / last * 100
+
+    # Targets
+    # T1: 2:1 R:R on the ATR, or the 20-day high
+    t1_candidates = [
+        last + atr_val * 2,
+        resistance1,
+    ]
+    t1 = min([x for x in t1_candidates if x > last])
+    reward_pct_t1 = (t1 - last) / last * 100
+    rr_t1 = reward_pct_t1 / risk_pct if risk_pct > 0 else 0
+
+    # T2: 3:1 R:R
+    t2_candidates = [
+        last + atr_val * 3,
+        resistance2,
+    ]
+    t2 = min([x for x in t2_candidates if x > last])
+    reward_pct_t2 = (t2 - last) / last * 100
+    rr_t2 = reward_pct_t2 / risk_pct if risk_pct > 0 else 0
+
+    # If shorting (RSI > 70 or bearish setup)
+    if r['rsi'] > 70 or r['macd_cross_down']:
+        # Bearish: target below swing low
+        t1_bear = max(support1 * 0.98, low20)
+        t2_bear = support2
+        rr_bear = (last - t1_bear) / risk_pct if risk_pct > 0 else 0
+    else:
+        t1_bear = None
+        t2_bear = None
+        rr_bear = None
+
+    setup = {
+        **r,
+        'support1': support1,
+        'support2': support2,
+        'resistance1': resistance1,
+        'resistance2': resistance2,
+        'stop_loss': stop,
+        'risk_pct': risk_pct,
+        't1': t1,
+        'rr_t1': rr_t1,
+        't2': t2,
+        'rr_t2': rr_t2,
+    }
+    top_setups.append(setup)
+
+    print(f"\n{'─' * 60}")
+    print(f"  {r['ticker']} | Score: {r['score']} | Regime: {r['regime']}")
+    print(f"  Price: ${last:.2f} | ATR: ${atr_val:.2f} ({pct_atr:.1f}%)")
+    print(f"  Support 1 (EMA20/SwLow): ${support1:.2f} | Support 2 (SMA50): ${support2:.2f}")
+    print(f"  Resistance 1 (SwHigh): ${resistance1:.2f} | Resistance 2: ${resistance2:.2f}")
+    print(f"  Stop Loss: ${stop:.2f} | Risk: {risk_pct:.2f}%")
+    print(f"  T1: ${t1:.2f} | Reward: {reward_pct_t1:.2f}% | R:R = {rr_t1:.1f}:1")
+    print(f"  T2: ${t2:.2f} | Reward: {reward_pct_t2:.2f}% | R:R = {rr_t2:.1f}:1")
+    print(f"  RSI: {rsi_val:.1f} | MACD Hist: {r['macd_hist']:+.4f} | Range Pos: {range_pos20:.0%}")
+
+print("\n" + "=" * 80)
+print("STAGE 4: FINAL TACTICAL ADVISORY")
+print("=" * 80)
+
+# Filter for actionable setups: RR >= 2:1, RSI not extreme
+actionable = [s for s in top_setups if s['rr_t1'] >= 2.0 and 30 < s['rsi'] < 80]
+actionable.sort(key=lambda x: (x['score'], x['rr_t1']), reverse=True)
+
+for i, s in enumerate(actionable[:3], 1):
+    print(f"\n{'═' * 60}")
+    print(f"  TRADE #{i}: {s['ticker']}")
+    print(f"{'═' * 60}")
+    print(f"  DIRECTION: {'LONG' if s['change'] > -2 else 'WATCH'}")
+    print(f"  Entry Zone: ${s['close']:.2f} ± ${s['atr']:.2f} (today's range)")
+    print(f"  Stop Loss: ${s['stop_loss']:.2f} ({s['risk_pct']:.1f}% risk)")
+    print(f"  T1: ${s['t1']:.2f} ({s['rr_t1']:.1f}:1 R:R)")
+    print(f"  T2: ${s['t2']:.2f} ({s['rr_t2']:.1f}:1 R:R)")
+    print(f"  Key Catalyst: {'MACD bullish cross' if s['macd_cross_up'] else 'Strong trend + momentum'}")
+    print(f"  Regime Alignment: {s['regime']} (Market: {overall_regime})")
+    print(f"  RSI: {s['rsi']:.1f} | ATR: ${s['atr']:.2f} | Position Size: 2-3% risk per trade")
+
+print(f"\n{'=' * 80}")
+print(f"MARKET CONTEXT NOTES:")
+print(f"  - QQQ Regime: {overall_regime}")
+print(f"  - QQQ RSI: {indices_analysis['QQQ']['rsi']:.1f}")
+print(f"  - Data Date: 2026-08-03 (prior close)")
+print(f"  - WARNING: Trading during NASDAQ hours — use limit orders, not market orders")
+print(f"{'=' * 80}")
