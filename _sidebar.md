@@ -1007,4 +1007,6 @@
   - [S-2245 · The Trace Divergence Stack — When Your Multi-Agent Pipeline Looks Correct but Delivers Wrong](stacks/s2245-the-trace-divergence-stack-when-your-multi-agent-pipeline-looks-correct-but-delivers-wrong.md)
   - [S-2246 · The Agent Eval Stack — When Your Agent Looks Good but Fails in Production](stacks/s2246-the-agent-eval-stack-when-your-agent-looks-good-but-fails-in-production.md)
   - [S-2247 · The Agent Failure Recovery Stack — When Your Agent Keeps Retrying the Same Broken Thing](stacks/s2247-the-agent-failure-recovery-stack-when-your-agent-keeps-retrying-the-same-broken-thing.md)
+  - [S-2272 · The Ephemeral Continuum — When Your Agent Is Stateless and You Didn't Mean to Be](stacks/s2272-the-ephemeral-continuum-when-your-agent-is-stateless-and-you-didnt-mean-to-be.md)
+  - [S-2274 · The Isolation Spectrum Stack — When Your Agent Runs Code and Nobody Drew the Fence](stacks/s2274-the-isolation-spectrum-stack-when-your-agent-runs-code-and-nobody-drew-the-fence.md)
   - [S-2248 · The Stochastic-Deterministic Boundary Stack — When Your Agent Can Do Anything but You Can't Prove It Did the Right Thing](stacks/s2248-the-stochastic-deterministic-boundary-stack-when-your-agent-can-do-anything-but-you-cant-prove-it-did-the-right-thing.md)
