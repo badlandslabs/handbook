@@ -1,0 +1,49 @@
+# S-2291 · The Failure Domain Stack — When Your Agent Succeeds at Failing and No One Catches It
+
+Your agent completes a customer refund workflow. The customer gets their money back. Success — except the agent called the wrong policy endpoint, pulled data from the wrong account, and happened to reach a correct-looking answer through a reckless path. It will fail silently the next time the data doesn't cooperate. This is the failure domain problem: agents fail in ways traditional error handling wasn't designed to catch, and the most expensive failures look like successes.
+
+## Forces
+
+- **Agents fail in three layers, not one.** Syntactic failures (HTTP 429, timeouts) are visible to traditional try-catch. Semantic failures (confident nonsense, tool parameter hallucination, wrong tool selected) return HTTP 200 and look correct. Orchestration failures (partial progress, step 3 of 8 dies, context lost) leave the system in an undefined state.
+- **The most expensive failure mode is invisible.** An agent deleting 847 rows from a production database didn't hallucinate — it ran a cleanup task, hit a tool error on step 6, retried with slightly different parameters that matched a wildcard delete query. Every individual step looked fine. The problem was in the sequence. Standard logging doesn't capture this.
+- **Retry logic designed for APIs destroys agents.** Retrying a semantic error just gives the model the same broken context to hallucinate from again. Retrying without backoff causes thundering herds. Retrying without loop detection lets an agent re-execute the same failure 50 times before burning through budget.
+- **Success criteria are often ambiguous.** A tool-call that technically succeeded (HTTP 200, correct JSON schema) can semantically fail (returned wrong account data, image approval on a clearly flawed image). The agent moves forward confidently, compounding the error.
+
+## The Move
+
+Build a layered failure architecture that distinguishes syntactic, semantic, and orchestration failures — and handles each with the right recovery strategy.
+
+**1. Classify failures at the boundary, not after.** Wrap every tool call and LLM invocation in a result classifier. Distinguish: transient (retry), semantic (re-prompt with corrective context), resource (reduce payload), and orchestration (checkpoint and hand off). Send each to a different recovery path.
+
+**2. Retry with exponential backoff + jitter for API errors.** Standard retry: wait 1s, 2s, 4s. Add jitter (±20%) to prevent thundering herds from synchronized clients. Cap at 3–5 attempts. Set a per-call budget. Never retry semantic errors — they don't improve on repetition.
+
+**3. Implement loop detection as a first-class guard.** Track action history and detect three loop types: tool-call oscillation (same sequence repeated), exact state loops (identical inputs), and semantic repetition (similar outputs with no progress). LoopGuard (MIT, zero-dependency Python lib) detects structural and semantic loops across LangChain, LangGraph, CrewAI, and Autogen. Set `max_iterations=10` as a hard floor — but loop detection catches failures that max-iterations can't (wasted tokens before the cap, and semantic loops that max-iteration limits miss entirely).
+
+**4. Circuit-break tool calls that degrade silently.** If a tool returns degraded quality or fails at a rate above a threshold (e.g., 5 failures in 10 calls), open the circuit and skip the tool for a cooling period. This prevents cascading failures from propagating through a multi-step workflow.
+
+**5. Checkpoint state after every successful step.** Store agent state (completed steps, tool results, intermediate outputs) in an external durable store — Redis, database, or object storage. If the agent process crashes or the step fails, restart from the last checkpoint rather than from scratch. Store checkpoints externally, not in-memory: container orchestrators can restart your process at any time.
+
+**6. Dead-letter queues for unrecoverable failures.** After retries are exhausted, send the task + failure context to a DLQ. Log: original input, error type, step of failure, and what was attempted. DLQ entries feed back into evaluation pipelines — they become your regression test cases. Best agent frameworks still fail 4 out of 10 times (MAST study, 1,642 traces); DLQ analysis is how you catch the pattern before it ships again.
+
+**7. Escalation queues for high-stakes uncertainty.** For irreversible actions (financial transactions, database writes, customer communications), define a confidence threshold. Below it, queue the decision for human review instead of retrying or falling back. Human-in-the-loop is not a fallback — it is a first-class architectural component for production agents.
+
+**8. Graceful degradation ladder.** An agent should always return something useful. Define degradation levels: ideal response → simplified response → cached response → static response with apology. Each level strips a capability while maintaining a coherent user experience. Never surface raw errors to end users.
+
+## Evidence
+
+- **HN Ask/Show thread:** "Why autonomous AI agents fail in production" — documented that most agent demos look impressive but fail in production due to non-deterministic failures, cascading errors through multi-step workflows, and ambiguous success criteria that let agents "succeed" at the wrong outcome — [HN #46450307](https://news.ycombinator.com/item?id=46450307)
+- **GitHub Issue (crewAI):** Feature request for Agent Loop Detection Middleware (closed/completed) — author `sicmundu` noted that loop detection is one of the most impactful reliability improvements for long-lived autonomous agents running 100+ iterations; agents inevitably encounter states where they repeat without progress and burn tokens without detection — [crewAI#4682](https://github.com/crewAIInc/crewAI/issues/4682)
+- **GitHub Repo (LoopGuard):** Zero-dependency semantic and structural loop detector for AI agents — framework-agnostic, supports LangChain, LangGraph, CrewAI, Autogen — detects tool-call oscillation, exact state loops, and semantic repetition that max-iteration limits miss — [github.com/Charbelto/loopguard](https://github.com/Charbelto/loopguard)
+- **AI Agents Blog (March 2026):** "Agent Error Recovery: 5 Patterns for Production Reliability" — documents the difference between traditional software failure (clear boundaries) and agent failure (partial progress, ambiguous state, semantically broken HTTP 200 responses); implements retry, circuit breakers, checkpoint-and-resume, fallback chains, and escalation queues using Anthropic SDK — [aiagentsblog.com](https://aiagentsblog.com/blog/agent-error-recovery-patterns/)
+- **BuildMVPFast (March 2026):** "Debugging AI Agents in Production" — documents a real incident: agent deleted 847 production rows because it hit a tool error on step 6, retried with slightly different parameters that matched a wildcard query; every individual step looked fine. Also cites MAST study finding best agent frameworks still fail 4/10 times across 1,642 traces — [buildmvpfast.com](https://www.buildmvpfast.com/blog/debugging-ai-agents-production-error-recovery-self-healing-2026)
+- **Harsh Rastogi / Modelia.ai (March 2026):** "Agentic AI Error Recovery, Observability, and Scaling Patterns" — documents two production incidents: Asynq.ai candidate evaluation agent hallucinated tool parameters, produced contradictory evaluations, cost 3x budget; Modelia.ai image generation agent approved obviously flawed images because it optimized for completing the workflow rather than quality — [harshrastogi.tech](https://www.harshrastogi.tech/blog/agentic-ai-error-recovery-observability-patterns)
+- **CyberQuickly (April 2026):** "AI Agents Production Failure — 9 Known Failure Classes" — documents API detection and rate limiting as a production failure class: an agent making hundreds of requests per minute to an external API looks like a DoS attack from the API's perspective; rate limiters block based on velocity, not intent — [cyberquickly.com](https://www.cyberquickly.com/2026/04/07/ai-agents-production-failure/)
+- **Preporato / NCP-AAI (May 2026):** "Error Handling in AI Agents: Circuit Breakers, Retry & Recovery" — documents that agentic AI errors include hallucinations returning HTTP 200, tool calls that succeed technically but fail semantically, and reasoning chains producing confident nonsense; proposes circuit breaker, retry with backoff, fallback chains, graceful degradation as the resilience stack — [preporato.com](https://preporato.com/blog/error-handling-resilience-patterns-agentic-ai-systems)
+
+## Gotchas
+
+- **Retrying semantic errors amplifies them.** A hallucinated tool parameter re-prompted with the same context produces a different hallucination, not a fix. Re-prompt with corrective context (what went wrong, what format is expected) or escalate — don't just retry.
+- **Max-iteration limits prevent infinite loops but don't catch semantic waste.** An agent calling `search_api("weather")` → `search_api("weather today")` → `search_api("chicago weather")` never hits max-iteration because inputs differ. Loop detection with semantic similarity is required.
+- **Cross-provider fallbacks are the only way to survive correlated outages.** If your primary (OpenAI) and fallback (also OpenAI) are on the same provider, a single API outage takes down your entire chain. Mix providers — OpenAI + Anthropic + a local model.
+- **Checkpointing to in-memory state survives nothing.** Store checkpoints in Redis or a database. Container orchestrators restart processes. If your checkpoint is in RAM, it vanishes on restart.
+- **DLQ without feedback loop is a graveyard.** Sending failures to a DLQ and forgetting them means the same failure reproduces in the next deployment. DLQ entries must feed back into evaluation, prompt review, and test case generation.
