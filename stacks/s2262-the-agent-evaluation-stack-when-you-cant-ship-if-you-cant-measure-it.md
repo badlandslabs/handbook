@@ -1,0 +1,42 @@
+# S-2262 · The Agent Evaluation Stack — When You Can't Ship If You Can't Measure It
+
+You built a demo agent that books flights, answers support tickets, or triages bugs. It works in the sandbox. Your team asks the hard question: how do you know it's still working tomorrow, after a model update, a prompt change, or a slow degradation that nobody notices for two weeks? This is the agent evaluation problem — and the teams that solved it share a common stack and a shared set of lessons about what evaluation actually catches versus what it merely promises.
+
+## Forces
+
+- **Agents are trajectories, not outputs** — traditional unit tests check if a function returns the right value. Agents take steps, call tools, recover from errors, and may reach valid goals via different paths. Single-output accuracy metrics miss the failure modes that actually break production agents
+- **Non-determinism is structural, not noise** — the same input can produce different tool-call sequences across runs. A 60% success rate on a single pass drops to 25% across eight runs. Teams that treat this as test flakiness rather than a signal will spend weeks chasing phantom bugs
+- **The 37% benchmark-to-production gap** — lab benchmarks use clean inputs, predictable tool responses, and controlled environments. Production agents face ambiguous user requests, flaky APIs, rate limits, and adversarial inputs. Evaluation suites built only from synthetic test cases systematically miss real failure modes
+- **The observability gap** — most teams have no systematic way to inspect what their agent actually did on production traffic. By the time a regression surfaces, it's been shipping for days or weeks. The window between "broken" and "noticed" is where quality bleeds out
+
+## The move
+
+The 2026 evaluation stack has converged on three layers used together, not sequentially:
+
+**1. Trajectory-aware metrics over output accuracy.** Track the full action sequence — which tools were called, in what order, with what arguments, and whether the agent recovered from failures. Task success rate, goal completion, and graceful degradation matter more than whether the final text matches a reference. Rate tool-call efficiency (steps-to-goal), not just goal-achieved.
+
+**2. LLM-as-judge as a calibrated instrument, not a black box.** Use a separate model to score agent outputs against a rubric with defined anchors for each rating level. Calibrate against a golden set of 50–100 human-scored examples, targeting ≥0.80 Spearman correlation before trusting judge scores. Key biases to watch: position bias (judge favors responses it saw first), self-preference (GPT-4o judges GPT-4o higher), verbosity bias (longer answers score higher regardless of quality), and leniency drift (judge scores shift over time and model versions).
+
+**3. Production observability feeding back into CI.** Instrument agent traces in production with Langfuse, Braintrust, or LangSmith. Automatically flag regressions when task success drops below threshold. Use production failure cases — real user failures, not synthetic ones — as the primary source for new test cases. The highest-value tests come from what broke in production, not from what you imagined might break.
+
+**4. The three-tool evaluation stack, not one tool for all layers.** Combine: promptfoo (repeatable test suites, red-team cases, CI regression checks), Ragas (RAG quality, retrieval grounding, answer faithfulness), and Langfuse or Braintrust (production traces, online scoring, feedback loops). Each layer is different — testing, RAG quality, and observability are not interchangeable.
+
+**5. Accept flaky tests as a fact, not a failure.** Run agents multiple times and report pass@N rates, not pass@1. Track the distribution of outcomes, not just whether the last run passed. If a critical agent must be reliable, test whether the 80th-percentile run succeeds, not whether the median one does.
+
+## Evidence
+
+- **HN Ask HN thread:** "Very, very heterogeneous and fast-moving space... It's definitely an afterthought for most teams although we are starting to see increased interest." One practitioner summarized the majority state: "The vast majority of AI companies I talk to seem to evaluate models mostly based on vibes." Real teams reported using LangFuse + promptfoo + custom scripts glued together, with no standard. — [Ask HN: How are people doing AI evals these days? | Hacker News](https://news.ycombinator.com/item?id=47319587)
+
+- **LLM-as-judge deep dive:** Teams using LLM-as-judge without calibration produce scores with the wrong sign — agents that are worse score higher. The gap between a naively-configured judge and a well-calibrated one is "wide enough to produce opposite conclusions about agent quality." Common failure modes documented: position bias (judge favors first answer in pairwise comparison), self-preference (models judge their own outputs 15–20% higher), verbosity bias (longer responses score higher regardless of quality), and leniency drift across model versions. Target ≥0.80 Spearman correlation with human judgment before trusting automated scores. — [LLM-as-Judge Patterns for Agent Evaluation | Zylos Research (2026-05-26)](https://zylos.ai/en/research/2026-05-26-llm-as-judge-agent-evaluation-patterns/), [LLM-as-judge evaluation: rubrics, calibration, and production pitfalls | Matheus Palma (2026-04-28)](https://matheuspalma.com/blog/llm-as-judge-evaluation-rubrics-calibration-production)
+
+- **The benchmark gap:** A 37% gap exists between lab benchmark scores and real-world deployment performance. SWE-bench evaluates on real GitHub issues and PRs (gold standard for coding agents); GAIA tests general assistant tasks requiring multi-step reasoning; WebArena evaluates long-horizon web navigation. These are useful for relative model comparison but should be supplemented with domain-specific test suites built from production data. — [Agent Evaluation Benchmarks: SWE-bench, GAIA, WebArena | Tech Jacks Solutions](https://techjacksolutions.com/ai/agentic-ai/build/agent-evaluation-benchmarks/), [Benchmark Suites: SWE-bench, GAIA, and WebArena | Kindatechnical (March 2026)](https://kindatechnical.com/agentic-ai/benchmark-suites-swe-bench-gaia-and-webarena.html)
+
+- **Non-determinism quantified:** Agents achieve 60% success on single runs but drop to 25% across eight runs. Over 40% of agentic AI projects are expected to be canceled by end of 2027, with evaluation gaps cited as a primary cause. Production monitoring showing green while real users encounter failures is the most common failure mode teams report. — [AI Agent Evaluation: Production Performance Metrics 2026 | Noqta (April 2026)](https://noqta.tn/en/blog/ai-agent-evaluation-production-performance-metrics-2026), [Agent Evaluation Framework | Galileo AI (July 2026)](https://galileo.ai/blog/agent-evaluation-framework-metrics-rubrics-benchmarks)
+
+## Gotchas
+
+- **Golden set calibration is skipped most often and matters most.** Without it, judge scores drift, correlations collapse, and teams make bad ship decisions based on scores they can't trust. Build the golden set once, score it every time the judge model changes, and track correlation over time, not just at setup
+- **Trajectory metrics require instrumentation that isn't free.** You can't measure tool-call efficiency or recovery rates if you aren't recording the full action trace. Langfuse, Braintrust, and LangSmith all require SDK integration — teams that add observability after building the agent pay twice the retrofitting cost
+- **Red-team cases in CI don't cover novel failure modes.** promptfoo excels at regression testing against known failure patterns, but it can't discover new ones. Production trace analysis is the only reliable source for failure cases that nobody anticipated
+- **Benchmarks measure the scaffold, not just the model.** The same model with a Cursor wrapper vs an agentless wrapper differs by 40 points on SWE-bench. When evaluating agent frameworks or scaffolds, use trajectory-aware benchmarks that account for multi-step planning, not just end-state accuracy
+- **LLM-as-judge evaluates outputs, not outcomes.** A judge can score a response as high-quality while the agent's action (booking the wrong flight, deleting the wrong file) has real-world consequences the judge can't observe. Combine trajectory scoring with outcome validation wherever agent actions have downstream effects
