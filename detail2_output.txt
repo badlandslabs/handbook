@@ -1,0 +1,167 @@
+
+==================================================
+=== NVDA ===
+Price: $219.22 | 52w H: $236.54 | 52w L: $164.07
+Distance from 52w High: -7.3%
+Recent Vol (M): 156.4M | 20d Avg: 130.2M | Ratio: 1.20x
+SMA20: $205.36 | SMA50: $205.76 | SMA200: N/A
+RSI(14): 58.9
+ATR(14): $8.01
+MACD: 0.806 | Signal: -0.702 | Histogram: 1.508
+Recent 10d Range: $190.01 - $219.22
+Last 5 closes: [195.04, 200.75, 206.64, 211.94, 219.22]
+Last 5 Vols (M): [129.0, 140.0, 128.4, 134.9, 157.6]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== AMZN ===
+Price: $272.65 | 52w H: $287.2 | 52w L: $196.0
+Distance from 52w High: -5.1%
+Recent Vol (M): 42.4M | 20d Avg: 50.3M | Ratio: 0.84x
+SMA20: $248.87 | SMA50: $247.31 | SMA200: N/A
+RSI(14): 61.7
+ATR(14): $10.12
+MACD: 5.789 | Signal: 1.071 | Histogram: 4.718
+Recent 10d Range: $226.65 - $284.02
+Last 5 closes: [235.5, 271.58, 284.02, 277.42, 272.65]
+Last 5 Vols (M): [101.8, 129.1, 90.8, 69.7, 45.0]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== GOOGL ===
+Price: $362.43 | 52w H: $408.61 | 52w L: $193.67
+Distance from 52w High: -11.3%
+Recent Vol (M): 46.3M | 20d Avg: 32.4M | Ratio: 1.43x
+SMA20: $348.96 | SMA50: $357.82 | SMA200: N/A
+RSI(14): 53.1
+ATR(14): $14.20
+MACD: 0.152 | Signal: -4.365 | Histogram: 4.517
+Recent 10d Range: $317.69 - $377.65
+Last 5 closes: [333.66, 356.13, 373.51, 377.65, 362.43]
+Last 5 Vols (M): [30.2, 46.5, 38.7, 35.7, 46.7]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== ADBE ===
+Price: $259.32 | 52w H: $370.86 | 52w L: $190.12
+Distance from 52w High: -30.1%
+Recent Vol (M): 4.0M | 20d Avg: 5.4M | Ratio: 0.74x
+SMA20: $236.46 | SMA50: $228.85 | SMA200: N/A
+RSI(14): 61.4
+ATR(14): $12.86
+MACD: 9.035 | Signal: 5.999 | Histogram: 3.036
+Recent 10d Range: $212.17 - $263.43
+Last 5 closes: [247.9, 250.41, 251.34, 257.49, 259.32]
+Last 5 Vols (M): [6.9, 5.6, 4.3, 4.2, 4.3]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== CRM ===
+Price: $192.98 | 52w H: $269.11 | 52w L: $146.32
+Distance from 52w High: -28.3%
+Recent Vol (M): 8.3M | 20d Avg: 12.7M | Ratio: 0.65x
+SMA20: $174.03 | SMA50: $171.69 | SMA200: N/A
+RSI(14): 63.9
+ATR(14): $8.77
+MACD: 5.840 | Signal: 3.255 | Histogram: 2.585
+Recent 10d Range: $156.93 - $192.98
+Last 5 closes: [180.71, 184.02, 185.95, 190.99, 192.98]
+Last 5 Vols (M): [12.2, 9.7, 12.9, 9.3, 9.6]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== AVGO ===
+Price: $418.28 | 52w H: $495.0 | 52w L: $281.87
+Distance from 52w High: -15.5%
+Recent Vol (M): 15.7M | 20d Avg: 19.8M | Ratio: 0.80x
+SMA20: $389.49 | SMA50: $394.95 | SMA200: N/A
+RSI(14): 70.5
+ATR(14): $16.55
+MACD: 3.594 | Signal: -0.792 | Histogram: 4.386
+Recent 10d Range: $370.32 - $418.28
+Last 5 closes: [387.84, 389.28, 392.23, 418.16, 418.28]
+Last 5 Vols (M): [23.6, 20.4, 17.3, 29.6, 16.8]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== NFLX ===
+Price: $74.2 | 52w H: $126.71 | 52w L: $65.08
+Distance from 52w High: -41.4%
+Recent Vol (M): 27.9M | 20d Avg: 48.7M | Ratio: 0.57x
+SMA20: $71.97 | SMA50: $76.21 | SMA200: N/A
+RSI(14): 49.6
+ATR(14): $2.73
+MACD: -0.753 | Signal: -1.484 | Histogram: 0.731
+Recent 10d Range: $68.89 - $74.20
+Last 5 closes: [73.17, 71.71, 73.33, 73.57, 74.2]
+Last 5 Vols (M): [54.3, 35.8, 33.9, 42.9, 28.9]
+Above 20SMA: True | Above 50SMA: False | Above 200SMA: False
+Setup Type: RECOVERY ATTEMPT
+
+==================================================
+=== PYPL ===
+Price: $57.93 | 52w H: $79.215 | 52w L: $38.46
+Distance from 52w High: -26.9%
+Recent Vol (M): 8.2M | 20d Avg: 18.9M | Ratio: 0.43x
+SMA20: $54.89 | SMA50: $47.87 | SMA200: N/A
+RSI(14): 57.7
+ATR(14): $1.49
+MACD: 3.147 | Signal: 3.226 | Histogram: -0.079
+Recent 10d Range: $56.00 - $58.54
+Last 5 closes: [57.65, 57.21, 57.87, 58.54, 57.93]
+Last 5 Vols (M): [12.0, 9.8, 9.3, 10.3, 8.5]
+Above 20SMA: True | Above 50SMA: True | Above 200SMA: False
+Setup Type: BULLISH BREAKOUT
+
+==================================================
+=== INTC ===
+Price: $101.06 | 52w H: $142.35 | 52w L: $19.6
+Distance from 52w High: -29.0%
+Recent Vol (M): 84.2M | 20d Avg: 115.4M | Ratio: 0.73x
+SMA20: $98.00 | SMA50: $111.52 | SMA200: N/A
+RSI(14): 53.6
+ATR(14): $7.77
+MACD: -5.553 | Signal: -6.608 | Histogram: 1.056
+Recent 10d Range: $81.88 - $101.06
+Last 5 closes: [91.13, 90.2, 91.0, 100.86, 101.06]
+Last 5 Vols (M): [140.3, 109.0, 96.6, 124.4, 85.0]
+Above 20SMA: True | Above 50SMA: False | Above 200SMA: False
+Setup Type: RECOVERY ATTEMPT
+
+==================================================
+=== META ===
+Price: $588.77 | 52w H: $796.25 | 52w L: $520.26
+Distance from 52w High: -26.1%
+Recent Vol (M): 14.8M | 20d Avg: 19.5M | Ratio: 0.76x
+SMA20: $618.20 | SMA50: $601.07 | SMA200: N/A
+RSI(14): 28.9
+ATR(14): $24.68
+MACD: -8.436 | Signal: -3.252 | Histogram: -5.184
+Recent 10d Range: $539.03 - $606.10
+Last 5 closes: [539.03, 556.71, 590.24, 587.94, 588.77]
+Last 5 Vols (M): [42.3, 24.3, 25.9, 18.0, 14.8]
+Above 20SMA: False | Above 50SMA: False | Above 200SMA: False
+Setup Type: BEARISH / WEAK
+
+
+=== QQQ 4H CONTEXT ===
+Last 5 hourly closes: [720.77, 721.31, 720.89, 717.22, 717.3]
+4H ATR(14): $2.72
+
+
+=== VIX / VOLATILITY CONTEXT ===
+VIX: $15.85
+VIX 52w Range: $13.38 - $35.3
+VIX RSI(14): 39.2
+VIX Last 5: [15.99, 15.86, 16.5, 15.81, 15.85]
+
+
+=== 10Y YIELD CONTEXT ===
+10Y Yield: 4.617%
+Last 5: [4.66, 4.74, 4.69, 4.63, 4.62]

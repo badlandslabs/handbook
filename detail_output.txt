@@ -1,0 +1,75 @@
+
+==================================================
+=== NVDA ===
+Price: $219.22 | 52w H: $236.54 | 52w L: $164.07
+Distance from 52w High: -7.3%
+Recent Vol (M): 156.4M | 20d Avg Vol: 130.2M | Ratio: 1.20x
+Error fetching NVDA: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== AMZN ===
+Price: $272.65 | 52w H: $287.2 | 52w L: $196.0
+Distance from 52w High: -5.1%
+Recent Vol (M): 42.4M | 20d Avg Vol: 50.3M | Ratio: 0.84x
+Error fetching AMZN: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== GOOGL ===
+Price: $362.43 | 52w H: $408.61 | 52w L: $193.67
+Distance from 52w High: -11.3%
+Recent Vol (M): 46.3M | 20d Avg Vol: 32.4M | Ratio: 1.43x
+Error fetching GOOGL: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== ADBE ===
+Price: $259.32 | 52w H: $370.86 | 52w L: $190.12
+Distance from 52w High: -30.1%
+Recent Vol (M): 4.0M | 20d Avg Vol: 5.4M | Ratio: 0.74x
+Error fetching ADBE: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== CRM ===
+Price: $192.98 | 52w H: $269.11 | 52w L: $146.32
+Distance from 52w High: -28.3%
+Recent Vol (M): 8.3M | 20d Avg Vol: 12.7M | Ratio: 0.65x
+Error fetching CRM: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== AVGO ===
+Price: $418.28 | 52w H: $495.0 | 52w L: $281.87
+Distance from 52w High: -15.5%
+Recent Vol (M): 15.7M | 20d Avg Vol: 19.8M | Ratio: 0.80x
+Error fetching AVGO: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== NFLX ===
+Price: $74.2 | 52w H: $126.71 | 52w L: $65.08
+Distance from 52w High: -41.4%
+Recent Vol (M): 27.9M | 20d Avg Vol: 48.7M | Ratio: 0.57x
+Error fetching NFLX: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== PYPL ===
+Price: $57.93 | 52w H: $79.215 | 52w L: $38.46
+Distance from 52w High: -26.9%
+Recent Vol (M): 8.2M | 20d Avg Vol: 18.9M | Ratio: 0.43x
+Error fetching PYPL: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== INTC ===
+Price: $101.06 | 52w H: $142.35 | 52w L: $19.6
+Distance from 52w High: -29.0%
+Recent Vol (M): 84.2M | 20d Avg Vol: 115.4M | Ratio: 0.73x
+Error fetching INTC: unsupported format string passed to NoneType.__format__
+
+==================================================
+=== META ===
+Price: $588.77 | 52w H: $796.25 | 52w L: $520.26
+Distance from 52w High: -26.1%
+Recent Vol (M): 14.8M | 20d Avg Vol: 19.5M | Ratio: 0.76x
+Error fetching META: unsupported format string passed to NoneType.__format__
+
+
+=== QQQ 4H CHART CONTEXT ===
+Last 5 hourly closes: [720.77, 721.31, 720.89, 717.22, 717.3]
+4H ATR: $2.72

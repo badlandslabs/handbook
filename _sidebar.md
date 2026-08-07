@@ -1020,3 +1020,5 @@
   - [S-2289 · The Failure-Driven Eviction Stack — When Your MCP Tools Are Drowning Your Agent in Tokens](stacks/s2289-the-failure-driven-eviction-stack-when-your-mcp-tools-are-drowning-your-agent-in-tokens.md)
   - [S-2290 · The A2A Credential Propagation Stack — When Your Delegation Chain Hands Out the Keys](stacks/s2290-the-a2a-credential-propagation-stack-when-your-delegation-chain-hands-out-the-keys.md)
   - [S-2291 · The MCP Supply Chain Stack — When Your Tool Registry Is Your Attack Surface](stacks/s2291-the-mcp-supply-chain-stack-when-your-tool-registry-is-your-attack-surface.md)
+  - [S-2293 · The Capability Saturation Paradox — When Adding Agents Makes Your System Stupid](stacks/s2293-the-capability-saturation-paradox-when-adding-agents-makes-your-system-stupid.md)
+  - [S-2298 · The KV Cache Topology Mismatch Stack — When Your Agent Is Slow Not Because the Model Is Slow, But Because the Inference Engine Is Caching the Wrong Thing](stacks/s2298-the-kv-cache-topology-mismatch-stack-when-your-agent-is-slow-not-because-the-model-is-slow-but-because-the-inference-engine-is-caching-the-wrong-thing.md)

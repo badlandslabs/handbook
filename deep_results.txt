@@ -1,0 +1,294 @@
+
+=================================================================
+  GOOGL  |  $357.75
+=================================================================
+  DAILY:
+    SMA20: $348.91 | SMA50: $357.16
+    EMA20: $352.16
+    BB Upper: $382.79 | BB Lower: $315.02 | BB Pos: 63%
+    VWAP(20): $347.96
+    RSI(14): 54.4
+    MACD: 0.950 | Signal: -2.785 | Hist: 3.7352
+    ATR(14): $13.78 (3.9%)
+  FIBONACCI (60d swing 314.90–408.37):
+    38.2%: $372.66 | 61.8%: $350.60 | 78.6%: $334.90
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $350.60 (-2.0% from price)
+    SMA50: $357.16 (-0.2% from price)
+    EMA20: $352.16 (-1.6% from price)
+    10d Low: $317.32
+  RESISTANCE ZONES:
+    20d High: $384.48
+    10d High: $384.48
+  SWING TARGETS:
+    T1: $408.37 (+14.1% | 3.7x ATR)
+    T2: $408.37 (+14.1% | 3.7x ATR)
+  RISK:
+    SL: $343.59 (-4.0% | 1.0x ATR)
+    R:R = 1:3.6
+  4H CHART:
+    Price: $357.89 | 4H SMA20: $367.59 | 4H SMA50: $356.64
+    4H RSI: 16.4 | 4H MACD hist: -2.2795
+    4H Trend: BELOW 4H SMA20
+
+=================================================================
+  FTNT  |  $160.11
+=================================================================
+  DAILY:
+    SMA20: $158.84 | SMA50: $152.24
+    EMA20: $158.16
+    BB Upper: $169.55 | BB Lower: $148.13 | BB Pos: 56%
+    VWAP(20): $158.70
+    RSI(14): 48.1
+    MACD: 2.992 | Signal: 2.897 | Hist: 0.0947
+    ATR(14): $7.16 (4.5%)
+  FIBONACCI (60d swing 112.71–172.09):
+    38.2%: $149.41 | 61.8%: $135.39 | 78.6%: $125.42
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $135.39 (-15.4% from price)
+    SMA50: $152.24 (-4.9% from price)
+    EMA20: $158.16 (-1.2% from price)
+    10d Low: $143.77
+  RESISTANCE ZONES:
+    20d High: $172.09
+    10d High: $172.09
+  SWING TARGETS:
+    T1: $172.09 (+7.5% | 1.7x ATR)
+    T2: $172.09 (+7.5% | 1.7x ATR)
+  RISK:
+    SL: $132.69 (-17.1% | 3.8x ATR)
+    R:R = 1:0.4
+  4H CHART:
+    Price: $160.12 | 4H SMA20: $164.28 | 4H SMA50: $159.66
+    4H RSI: 17.6 | 4H MACD hist: -1.0883
+    4H Trend: BELOW 4H SMA20
+
+=================================================================
+  PANW  |  $359.49
+=================================================================
+  DAILY:
+    SMA20: $339.74 | SMA50: $313.64
+    EMA20: $337.82
+    BB Upper: $373.16 | BB Lower: $306.33 | BB Pos: 80%
+    VWAP(20): $340.12
+    RSI(14): 50.4
+    MACD: 10.743 | Signal: 9.537 | Hist: 1.2068
+    ATR(14): $15.02 (4.2%)
+  FIBONACCI (60d swing 210.77–376.98):
+    38.2%: $313.49 | 61.8%: $274.26 | 78.6%: $246.34
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $274.26 (-23.7% from price)
+    SMA50: $313.64 (-12.8% from price)
+    EMA20: $337.82 (-6.0% from price)
+    10d Low: $308.54
+  RESISTANCE ZONES:
+    20d High: $376.98
+    10d High: $376.98
+  SWING TARGETS:
+    T1: $376.98 (+4.9% | 1.2x ATR)
+    T2: $376.98 (+4.9% | 1.2x ATR)
+  RISK:
+    SL: $268.78 (-25.2% | 6.0x ATR)
+    R:R = 1:0.2
+  4H CHART:
+    Price: $359.56 | 4H SMA20: $361.08 | 4H SMA50: $340.90
+    4H RSI: 41.0 | 4H MACD hist: -2.0585
+    4H Trend: BELOW 4H SMA20
+
+=================================================================
+  AMZN  |  $272.26
+=================================================================
+  DAILY:
+    SMA20: $250.14 | SMA50: $247.45
+    EMA20: $253.68
+    BB Upper: $284.28 | BB Lower: $215.99 | BB Pos: 82%
+    VWAP(20): $253.64
+    RSI(14): 63.1
+    MACD: 6.830 | Signal: 2.469 | Hist: 4.3613
+    ATR(14): $9.96 (3.7%)
+  FIBONACCI (60d swing 225.55–287.20):
+    38.2%: $263.65 | 61.8%: $249.10 | 78.6%: $238.74
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $249.10 (-8.5% from price)
+    SMA50: $247.45 (-9.1% from price)
+    EMA20: $253.68 (-6.8% from price)
+    10d Low: $226.16
+  RESISTANCE ZONES:
+    20d High: $287.20
+    10d High: $287.20
+  SWING TARGETS:
+    T1: $287.20 (+5.5% | 1.5x ATR)
+    T2: $287.20 (+5.5% | 1.5x ATR)
+  RISK:
+    SL: $242.51 (-10.9% | 3.0x ATR)
+    R:R = 1:0.5
+  4H CHART:
+    Price: $272.20 | 4H SMA20: $274.36 | 4H SMA50: $262.95
+    4H RSI: 30.2 | 4H MACD hist: -1.3092
+    4H Trend: BELOW 4H SMA20
+
+=================================================================
+  NVDA  |  $218.99
+=================================================================
+  DAILY:
+    SMA20: $206.17 | SMA50: $205.82
+    EMA20: $206.19
+    BB Upper: $221.56 | BB Lower: $190.77 | BB Pos: 92%
+    VWAP(20): $205.83
+    RSI(14): 63.1
+    MACD: 1.902 | Signal: -0.064 | Hist: 1.9664
+    ATR(14): $7.81 (3.6%)
+  FIBONACCI (60d swing 189.80–236.26):
+    38.2%: $218.52 | 61.8%: $207.55 | 78.6%: $199.74
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $207.55 (-5.2% from price)
+    SMA50: $205.82 (-6.0% from price)
+    EMA20: $206.19 (-5.8% from price)
+    10d Low: $190.01
+  RESISTANCE ZONES:
+    20d High: $223.63
+    10d High: $223.63
+  SWING TARGETS:
+    T1: $236.26 (+7.9% | 2.2x ATR)
+    T2: $236.26 (+7.9% | 2.2x ATR)
+  RISK:
+    SL: $201.70 (-7.9% | 2.2x ATR)
+    R:R = 1:1.0
+  4H CHART:
+    Price: $218.99 | 4H SMA20: $217.40 | 4H SMA50: $205.99
+    4H RSI: 66.3 | 4H MACD hist: -0.6031
+    4H Trend: ABOVE 4H SMA20
+
+=================================================================
+  META  |  $589.90
+=================================================================
+  DAILY:
+    SMA20: $616.12 | SMA50: $600.48
+    EMA20: $597.87
+    BB Upper: $696.38 | BB Lower: $535.86 | BB Pos: 34%
+    VWAP(20): $612.18
+    RSI(14): 32.7
+    MACD: -8.129 | Signal: -4.396 | Hist: -3.7325
+    ATR(14): $22.59 (3.8%)
+  FIBONACCI (60d swing 524.49–686.08):
+    38.2%: $624.35 | 61.8%: $586.22 | 78.6%: $559.07
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $586.22 (-0.6% from price)
+    SMA50: $600.48 (+1.8% from price)
+    EMA20: $597.87 (+1.4% from price)
+    10d Low: $524.49
+  RESISTANCE ZONES:
+    20d High: $686.08
+    10d High: $611.26
+  SWING TARGETS:
+    T1: $600.48 (+1.8% | 0.5x ATR)
+    T2: $686.08 (+16.3% | 4.3x ATR)
+  RISK:
+    SL: $574.49 (-2.6% | 0.7x ATR)
+    R:R = 1:0.7
+  4H CHART:
+    Price: $589.84 | 4H SMA20: $587.58 | 4H SMA50: $575.78
+    4H RSI: 53.9 | 4H MACD hist: -0.3186
+    4H Trend: ABOVE 4H SMA20
+
+=================================================================
+  QCOM  |  $160.39
+=================================================================
+  DAILY:
+    SMA20: $167.46 | SMA50: $192.99
+    EMA20: $167.20
+    BB Upper: $189.73 | BB Lower: $145.18 | BB Pos: 34%
+    VWAP(20): $165.89
+    RSI(14): 41.1
+    MACD: -9.451 | Signal: -9.791 | Hist: 0.3405
+    ATR(14): $7.63 (4.8%)
+  FIBONACCI (60d swing 142.89–258.96):
+    38.2%: $214.62 | 61.8%: $187.23 | 78.6%: $167.73
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $187.23 (+16.7% from price)
+    SMA50: $192.99 (+20.3% from price)
+    EMA20: $167.20 (+4.2% from price)
+    10d Low: $142.89
+  RESISTANCE ZONES:
+    20d High: $190.19
+    10d High: $171.19
+  SWING TARGETS:
+    T1: $192.99 (+20.3% | 4.3x ATR)
+    T2: $258.96 (+61.5% | 12.9x ATR)
+  RISK:
+    SL: $183.49 (+14.4% | -3.0x ATR)
+    R:R = 1:0.0
+  4H CHART:
+    Price: $160.43 | 4H SMA20: $160.18 | 4H SMA50: $155.74
+    4H RSI: 44.2 | 4H MACD hist: 0.0458
+    4H Trend: ABOVE 4H SMA20
+
+=================================================================
+  AAPL  |  $312.41
+=================================================================
+  DAILY:
+    SMA20: $323.53 | SMA50: $309.74
+    EMA20: $318.27
+    BB Upper: $345.95 | BB Lower: $301.11 | BB Pos: 25%
+    VWAP(20): $321.91
+    RSI(14): 36.4
+    MACD: 1.376 | Signal: 4.852 | Hist: -3.4757
+    ATR(14): $9.78 (3.1%)
+  FIBONACCI (60d swing 273.75–344.57):
+    38.2%: $317.52 | 61.8%: $300.80 | 78.6%: $288.91
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $300.80 (-3.7% from price)
+    SMA50: $309.74 (-0.9% from price)
+    EMA20: $318.27 (+1.9% from price)
+    10d Low: $300.00
+  RESISTANCE ZONES:
+    20d High: $344.57
+    10d High: $344.57
+  SWING TARGETS:
+    T1: $344.57 (+10.3% | 3.3x ATR)
+    T2: $344.57 (+10.3% | 3.3x ATR)
+  RISK:
+    SL: $294.79 (-5.6% | 1.8x ATR)
+    R:R = 1:1.8
+  4H CHART:
+    Price: $312.45 | 4H SMA20: $309.72 | 4H SMA50: $316.32
+    4H RSI: 58.9 | 4H MACD hist: 0.9619
+    4H Trend: ABOVE 4H SMA20
+
+=================================================================
+  MSFT  |  $499.86
+=================================================================
+  DAILY:
+    SMA20: $418.09 | SMA50: $405.27
+    EMA20: $431.93
+    BB Upper: $504.89 | BB Lower: $331.29 | BB Pos: 97%
+    VWAP(20): $427.99
+    RSI(14): 82.4
+    MACD: 25.471 | Signal: 13.464 | Hist: 12.0068
+    ATR(14): $18.00 (3.6%)
+  FIBONACCI (60d swing 349.20–501.56):
+    38.2%: $443.36 | 61.8%: $407.40 | 78.6%: $381.81
+  SUPPORT ZONES:
+    Fib 61.8% confluence: $407.40 (-18.5% from price)
+    SMA50: $405.27 (-18.9% from price)
+    EMA20: $431.93 (-13.6% from price)
+    10d Low: $380.65
+  RESISTANCE ZONES:
+    20d High: $501.56
+    10d High: $501.56
+  SWING TARGETS:
+    T1: $501.56 (+0.3% | 0.1x ATR)
+    T2: $501.56 (+0.3% | 0.1x ATR)
+  RISK:
+    SL: $397.16 (-20.5% | 5.7x ATR)
+    R:R = 1:0.0
+  4H CHART:
+    Price: $499.86 | 4H SMA20: $494.18 | 4H SMA50: $467.05
+    4H RSI: 61.6 | 4H MACD hist: -1.3812
+    4H Trend: ABOVE 4H SMA20
+
+=================================================================
+  VIX CONTEXT
+=================================================================
+  VIX: 15.28 | 5d High: 18.43 | 5d Low: 15.11 | 5d change: -4.4%
+  Regime: LOW FEAR (Bull supportive)
