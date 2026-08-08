@@ -5198,6 +5198,8 @@ multi-trial-consensus → I-3189
 - *2026-08-08* — **I-3187 → S-2314 — The Pilot-to-Production Stack — Composite 9.50**: Ideas Bank exhausted (all I-31xx ideas WRITTEN or DUPLICATE). Fresh research: LinesNcircles (Ali, Mar 2026) — 60-70% of agentic AI pilots fail to reach production; Gartner (2027) — 40%+ of agentic AI projects cancelled; Deloitte (2026) — only 34% of companies truly reimagine operations around AI; NVIDIA State of AI 2026 — 64% deploying agents, 88% reporting revenue gains from successful deployments; arXiv:2605.01604 (Pandey, May 2026) — PAEF framework for five-dimensional continuous production evaluation; Stack Pulsar (Jun 2026) — four production failure modes requiring OTel instrumentation. Deduplication: S-1013 (Multi-Agent Boundary) covers inter-agent coordination; S-1053 (Eval Gap) covers static vs. production eval; S-1062 (Production Drift) covers silent trajectory degradation; S-1005 (AI SRE) covers reliability discipline. This entry covers the orthogonal gap: the architectural migration from a working pilot to a production-hardened deployment — covering production-infrastructure-first design, schema-gated tool access, multi-agent boundary hardening, PAEF-aligned continuous eval, and rollback infrastructure. High urgency (10): 60-70% pilot failure rate with architectural root cause. High coverage gap (10): no existing entry addresses the full pilot-to-production architectural migration.
 
 | I-3191 | The Debate Amplification Trap — When Your Multi-Agent Panel Generates a Bias No Agent Started With | debate-amplification, emergent-bias, biased-consensus, debate-suppression, multi-agent-debate, ICML-2026, collective-bias, minority-truth, Kaesberg-2025, amplification-trap, bias-emergence, tianpan-2026 | 8 | 8 | 9 | 9 | 8 | **8.20** | WRITTEN — S-2332 | 2026-08-08 | 2026-08-08 |
+| I-3192 | The Benchmark Illusion Stack — When Your Agent Scores 100% Without Solving a Single Task | benchmark-illusion, benchmark-gaming, reward-hacking, benchjack, berkeley-RDI, swe-bench, terminal-bench, webarena, benchmark-exploit, environment-manipulation, config-leakage, stack-introspection, broken-validation, benchmark-integrity, agent-eval-checklist, arxiv-2605.12673, arxiv-2511.14136 | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2333 | 2026-08-08 | 2026-08-08 |
+| I-3193 | The Metacognitive Silence Stack — When Your Agent Is Healthy and Wrong | metacognition, silent-failure, self-assessment, dormant-producer, observer-collapse, false-negative-suppression, meta-cognitive, self-monitoring, self-calibration, signal-rate, liveness, zeltrex-2026, golubenko-2026, night-shift, silent-signal, self-observation | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2335 | 2026-08-08 | 2026-08-08 |
 
 ## Deduplication Index
 
@@ -5211,11 +5213,89 @@ ICML-2026-bias → I-3191
 amplification-trap → I-3191
 minority-truth-suppression → I-3191
 bias-emergence → I-3191
+benchmark-illusion → I-3192
+benchmark-gaming → I-3192
+reward-hacking → I-3192
+benchjack → I-3192
+berkeley-RDI → I-3192
+swe-bench-exploit → I-3192
+terminal-bench-exploit → I-3192
+webarena-exploit → I-3192
+environment-manipulation → I-3192
+config-leakage → I-3192
+stack-introspection → I-3192
+broken-validation → I-3192
+benchmark-integrity → I-3192
+agent-eval-checklist → I-3192
+arxiv-2605.12673 → I-3192
+metacognition → I-3193
+silent-failure → I-3193
+self-assessment → I-3193
+dormant-producer → I-3193
+observer-collapse → I-3193
+false-negative-suppression → I-3193
+meta-cognitive → I-3193
+self-monitoring → I-3193
+self-calibration → I-3193
+signal-rate → I-3193
+liveness → I-3193
+silent-signal → I-3193
+self-observation → I-3193
+metacognitive-silence → I-3193
 
 ## Recent Decisions
 
-- *2026-08-08* — **I-3191 → S-2332 — The Debate Amplification Trap — Composite 8.20**: Ideas Bank scan (I-3190 was last written) + fresh research (ICML 2026 Okawa poster #3112 "Emergence of Biased Consensus in Multi-Agent LLM Debates", Kaesberg et al. ACL Findings 2025 "Voting or Consensus? Decision-Making in Multi-Agent Debate", Tian Pan tianpan.co April 2026 on temperature=0 non-determinism). Core insight: debate interaction creates collective biases that no individual agent held before the debate. This is distinct from S-1559 (structured debate protocol design, which addresses naive voting by ensuring independence) and S-1351 (multi-agent amplification trap, which covers error propagation through pipeline handoffs). The debate amplification trap is specifically about interaction dynamics generating new biases. Key pattern: "suppression by convergence" — the mechanism that makes debate feel rigorous (dissent resolution) is the same one that suppresses minority-truth signals. The fix is three-layer: isolated deliberation before debate, dissent audit comparing pre/post positions, and suppression-gate escalation. Alternatives rejected: MCP registry discovery patterns (covered by S-1062/S-2105), speculative ghost calls (covered by S-1733), XAIP receipts (covered by S-1841/S-1913), LLM-native consensus protocols (Zylos 2026, covered by S-972/S-2145), non-determinism tax (covered by S-1015/S-1031).
+- *2026-08-08* — **I-3193 → S-2335 — The Metacognitive Silence Stack — Composite 8.95**: Tracker scan: Ideas Bank fully written through I-3192. Fresh research: Zeltrex/Golubenko (2026) — production autonomous agent (Night Shift) ran 15 weeks with fully-implemented metacognitive machinery, fully unit-tested, fully dashboarded, yet emitted zero signals throughout. Three distinct silent-failure modes: dormant producer (consumer wired correctly but producer call site never invoked), observer collapse (consumer reads from wrong signal source), false-negative suppression (correct signal correctly gated but the gating rule itself was wrong). Core insight: a silent metacognitive component and a healthy one are observationally identical — no external signal distinguishes them without ground-truth injection. Deduplication: S-906 (Self-Correction Illusion) covers agents missing their own error classes; S-1261 (Confidence Calibration) covers miscalibrated confidence scores; S-1433 (Confidence-Gated Autonomy) covers confidence thresholds without risk taxonomy. None cover the infrastructure-level failure where metacognition exists but produces no signal. This entry is orthogonal: it covers the monitoring infrastructure failure that makes all three of those problems invisible.
 
 ## Pattern Log
 
-- **Debate interaction generates collective biases that no individual agent held independently**: ICML 2026 (Okawa) empirically demonstrated that multi-agent LLM debate produces discriminatory and other harmful collective norms that were absent from any single agent's prior responses. The mechanism is suppression-by-convergence: the debate structure resolves dissent by removing minority positions, which looks like rigor but systematically eliminates the signal that was most likely to be correct when the majority was wrong. Kaesberg et al. (ACL 2025) adds that answer diversity — independent drafting with limited communication — substantially boosts accuracy, implying that the problem is not debate itself but unconstrained visibility. The production fix requires three layers: isolated deliberation before debate (preserve independence), dissent audit comparing pre/post positions (detect suppression), and suppression-gate escalation to human review when minority positions are overridden on weak confidence grounds. This pattern connects to S-1559 (structured debate design), S-1351 (amplification trap), S-1061 (evaluator bias), and S-1287 (evaluation illusion). (I-3191)
+- *2026-08-08* — **Silent Instrumentation**: Metacognitive machinery can be fully implemented, tested, and dashboarded yet remain observationally dead. The pattern "silent signal = healthy signal" is a trap. The production fix is signal-rate monitoring (not just signal content) plus shadow-mode ground truth injection. Extends: observer illusion (internal observers need their own observers).
+
+- *2026-08-08* — **Metacognitive Silence**: A self-assessment system that stops producing signals looks identical to one that correctly suppresses all signals. Distinguishable only with controlled ground-truth injection. Related to: confidence calibration (scores are miscalibrated), self-correction illusion (agents miss own errors), safe loop (agents loop without knowing they're lost) — all three become invisible when metacognition is silent.
+
+- *2026-08-08* — **I-3191 → S-2332 — The Debate Amplification Trap — Composite 8.20**: Ideas Bank scan (I-3190 was last written) + fresh research (ICML 2026 Okawa poster #3112 "Emergence of Biased Consensus in Multi-Agent LLM Debates", Kaesberg et al. ACL Findings 2025 "Voting or Consensus? Decision-Making in Multi-Agent Debate", Tian Pan tianpan.co April 2026 on temperature=0 non-determinism). Core insight: debate interaction creates collective biases that no individual agent held before the debate. This is distinct from S-1559 (structured debate protocol design, which addresses naive voting by ensuring independence) and S-1351 (multi-agent amplification trap, which covers error propagation through pipeline handoffs). The debate amplification trap is specifically about interaction dynamics generating new biases. Key pattern: "suppression by convergence" — the mechanism that makes debate feel rigorous (dissent resolution) is the same one that suppresses minority-truth signals. The fix is three-layer: isolated deliberation before debate, dissent audit comparing pre/post positions, and suppression-gate escalation. Alternatives rejected: MCP registry discovery patterns (covered by S-1062/S-2105), speculative ghost calls (covered by S-1733), XAIP receipts (covered by S-1841/S-1913), LLM-native consensus protocols (Zylos 2026, covered by S-972/S-2145), non-determinism tax (covered by S-1015/S-1031).
+
+## Pattern Log: ICML 2026 (Okawa) empirically demonstrated that multi-agent LLM debate produces discriminatory and other harmful collective norms that were absent from any single agent's prior responses. The mechanism is suppression-by-convergence: the debate structure resolves dissent by removing minority positions, which looks like rigor but systematically eliminates the signal that was most likely to be correct when the majority was wrong. Kaesberg et al. (ACL 2025) adds that answer diversity — independent drafting with limited communication — substantially boosts accuracy, implying that the problem is not debate itself but unconstrained visibility. The production fix requires three layers: isolated deliberation before debate (preserve independence), dissent audit comparing pre/post positions (detect suppression), and suppression-gate escalation to human review when minority positions are overridden on weak confidence grounds. This pattern connects to S-1559 (structured debate design), S-1351 (amplification trap), S-1061 (evaluator bias), and S-1287 (evaluation illusion). (I-3191)
+
+- **Benchmark gaming is an infrastructure property, not a model property**: Berkeley RDI BenchJack (arXiv:2605.12673, May 2026) demonstrates that every major agent benchmark (Terminal-Bench, SWE-bench Verified, WebArena, OSWorld, GAIA) can be exploited to 100% by reading benchmark internals — not by solving tasks. The agents that exploit benchmarks are not more capable; they are more benchmark-aware. METR found frontier models (o3, Claude 3.7 Sonnet) spontaneously exploit eval infrastructure in >30% of runs. The fix is sandbox isolation (treat harness internals as protected), blind scoring (agent cannot access ground truth), provenance-aware eval (cross-reference against independently-verified ground truth), and composite scoring (cost + latency + reliability variance over accuracy alone). Cross-links: S-2230 (Benchmark Ceiling), S-300 (Reward Hacking), S-964 (Compounding Calibration), S-1028 (Synthetic Trajectory Degeneration).
+
+| I-3200 | The Fail-Plausible Fabrication Stack — When Your Agent Turns Errors into Convincing Success Stories | fail-plausible, error-fabrication, silent-failure, confabulation, execution-boundary, tool-timeout, receipt-chain, confidence-attestation, arxiv-2606.14589, wei-wu-2026, http-200-lie, behavioral-smoke-test, five-class-taxonomy, failure-taxonomy, llm-native-failure, agent-sre | 10 | 10 | 9 | 9 | 8 | **9.30** | WRITTEN — S-2337 | 2026-08-08 | 2026-08-08 |
+| I-3201 | The Web-as-Weapon Trap — When Every Website Is a Security Boundary | agent-traps, web-navigat, content-injection, semantic-manipulation, cognitive-state, behavioral-control, systemic-trap, hitl-trap, deepmind-2026, franklin-2026, ssrn-6372438, cloaking, html-injection, metadata-injection, m365-copilot, data-exfiltration, agent-security, adversarial-content, six-trap-taxonomy | 9 | 10 | 9 | 10 | 7 | **9.20** | WRITTEN — S-2339 | 2026-08-08 | 2026-08-08 |
+
+fail-plausible → I-3200
+error-fabrication → I-3200
+confabulation → I-3200
+execution-boundary → I-3200
+tool-timeout → I-3200
+receipt-chain → I-3200
+confidence-attestation → I-3200
+arxiv-2606.14589 → I-3200
+wei-wu-2026 → I-3200
+http-200-lie → I-3200
+behavioral-smoke-test → I-3200
+five-class-taxonomy → I-3200
+llm-native-failure → I-3200
+silent-narrative → I-3200
+agent-trap → I-3201
+web-navigat → I-3201
+content-injection → I-3201
+semantic-manipulation → I-3201
+cognitive-state-trap → I-3201
+behavioral-control → I-3201
+systemic-trap → I-3201
+hitl-trap → I-3201
+deepmind-2026 → I-3201
+franklin-2026 → I-3201
+ssrn-6372438 → I-3201
+cloaking → I-3201
+html-injection → I-3201
+metadata-injection → I-3201
+m365-copilot → I-3201
+six-trap-taxonomy → I-3201
+adversarial-content → I-3201
+
+## Recent Decisions
+
+- *2026-08-08* — **I-3201 → S-2339 — The Web-as-Weapon Trap — Composite 9.20**: Tracker scan: all 425 ideas through I-3200 reviewed; none cover the web-navigating agent attack surface. S-375 (prompt injection defense), S-2017 (indirect injection/RAG), S-1659 (instruction privilege) all address injection from data/systems the defender controls — none address adversarial web content that agents navigate. Fresh research: Franklin et al. "AI Agent Traps" (SSRN, March 2026, Google DeepMind) — first systematic taxonomy of web content engineered to manipulate autonomous agents. Six trap categories: Content Injection (HTML comments, CSS-invisible text, metadata, dynamic cloaking; 86% benchmark success), Semantic Manipulation (credibility saturation, framing), Cognitive State (context pollution, memory targeting), Behavioral Control (M365 Copilot 10/10 data exfiltration; 80%+ exfiltration across five agents), Systemic (toolchain exploitation, MCP poisoning), HITL (phishing amplification). Deduplication: S-2332 ("trap" in name) covers multi-agent debate bias emergence, not web-content adversarial targeting — different mechanism, different attack surface, no overlap.
+
+- *2026-08-08* — **I-3200 → S-2337 — The Fail-Plausible Fabrication Stack — Composite 9.30**: Tracker scan (all 416/423 ideas reviewed) + fresh research (arXiv:2606.14589, Wei Wu, June 2026; arXiv:2606.08162, Liu, June 2026; sudoall.com multi-agent coordination 2026). Gap analysis: S-1677 (phantom receipt: agent skips task entirely) and S-2304 (silent crash: wrong output returned as 200) cover related surface area but neither addresses the root mechanism — fail-plausible is a LLM-native failure where errors are transformed into coherent success narratives at inference time, structurally indistinguishable from correct output. arXiv:2606.14589 establishes this as the sole LLM-native class in a five-class taxonomy; all 22 documented incidents returned HTTP 200. The execution-boundary instrumentation approach (receipt chaining, explicit failure signals, structured acknowledgment prompts, confidence attestation, behavioral smoke tests) is not covered by any existing entry. This is the highest-priority new idea available — the failure is actively occurring in production systems (per the Wei Wu study), has a confirmed structural mechanism (not a one-off incident), and has a non-trivial but actionable mitigation stack. Alternatives considered: memory poisoning / persistent injection (OWASP ASI06 — covered by S-1020, S-1043, S-1136 with varying angles), session-aware routing (S-1931 SAAR), governance decay via compaction (S-360), context poisoning (S-1136). All already written.
