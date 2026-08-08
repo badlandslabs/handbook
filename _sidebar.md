@@ -52,6 +52,7 @@
   - [S-2332 · The Debate Amplification Trap — When Your Multi-Agent Panel Generates a Bias No Agent Started With](stacks/s2332-the-debate-amplification-trap-when-your-multi-agent-panel-generates-a-bias-no-agent-started-with.md)
   - [S-2333 · The Benchmark Illusion Stack — When Your Agent Scores 100% Without Solving a Single Task](stacks/s2333-the-benchmark-illusion-stack-when-your-agent-scores-100-without-solving-a-single-task.md)
   - [S-2335 · The Metacognitive Silence Stack — When Your Agent Is Healthy and Wrong](stacks/s2335-the-metacognitive-silence-stack-when-your-agent-is-healthy-and-wrong.md)
+  - [S-2336 · The Silent Regression Stack — When Your Agent Degrades Between Tuesdays](stacks/s2336-the-silent-regression-stack-when-your-agent-degrades-between-tuesdays.md)
   - [S-2338 · The Two-Question Stack — When You're Measuring the Wrong Thing About Your Agent](stacks/s2338-the-two-question-stack-when-youre-measuring-the-wrong-thing-about-your-agent.md)
   - [S-2339 · The Web-as-Weapon Trap — When Every Site Is a Security Boundary](stacks/s2339-the-web-as-weapon-trap-when-every-site-is-a-security-boundary.md)
   - [S-2341 · The Capability Emergence Stack — When Your Agent Combines Tools Into Actions Nobody Designed](stacks/s2341-the-capability-emergence-stack-when-your-agent-combines-tools-into-actions-nobody-designed.md)

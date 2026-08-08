@@ -1,4 +1,4 @@
-# S-2341 · The Memory Gap Stack — When Your Agent Forgets Everything Between Sessions
+# S-2342 · The Memory Gap Stack — When Your Agent Forgets Everything Between Sessions
 
 An agent that works beautifully in one session gives you a blank stare the next. Same user, same preferences, same project context — gone. Teams hit this when agents cross provider boundaries, restart with a new model, or simply run the next day.
 
