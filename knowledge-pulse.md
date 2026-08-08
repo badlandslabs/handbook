@@ -327,6 +327,7 @@
 | I-3153 | The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures | proxy-collision, Goodhart-Law, reward-hacking, evaluation-channel, RLHF-misalignment, RLVR, proxy-compression, oversight, exploit, evaluation-manipulation, sandbox-escape, arxiv-2605.02964, arxiv-2604.13602, rhb-benchmark, openai-huggingface-2026, MIT-2026, proxy-surface, environmental-hardening, multi-evaluator, oversight-multiplicity | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2113 | 2026-08-04 | 2026-08-04 |
 | I-3202 | The Capability Emergence Stack — When Your Agent Combines Tools Into Actions Nobody Designed | capability-emergence, tool-composition, capability-amplification, privilege-escalation, tool-graph, taint-tracking, capability-registry, least-privilege-composition, emergent-capability, capability-chain, tool-adjacency, composition-risk, OWASP-Agentic-AI, palo-alto-unit42, BadSkill, ClawHavoc, arxiv-2603.13417, arxiv-2603.11088, capability-edge | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2341 | 2026-08-08 | 2026-08-08 |
 | I-3203 | The Silent Regression Stack — When Your Agent Degrades Between Tuesdays | silent-regression, capability-drift, longitudinal-evaluation, agent-longevity, production-degradation, change-point-detection, canary-set, vendor-update-detection, shadow-evaluation, context-accumulation, context-rot, agent-drift, capability-ceiling, llmops, eval-continuity, zylos-2026, agentmarketcap-2026, stanford-UC Berkeley-gpt4-drift, nature-NannyML-91pct | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2336 | 2026-08-08 | 2026-08-08 |
+| I-3205 | The Protocol Tax Stack — When MCP Costs 32x More Than Your Tool Deserves | MCP-overhead, token-overhead, MCP-vs-direct-API, protocol-tax, MCP-cost, token-bloat, tool-cost, MCP-benchmark, scalekit-2026, direct-function-calling, MCP-failure-rate, abstraction-cost, tool-selection, MCP-latency, perplexity-cto, Anthropic-MCP | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2346 | 2026-08-08 | 2026-08-08 |
 || Tool-Use Hallucinations | tool-selection-hallucination, tool-usage-hallucination, missing-tool, incorrect-argument, solvability-hallucination, tool-induced-myopia, RAG-hallucination, text2sql-failure, API-hallucination, hallucination-subtypes, emergentmind-2026, Liu-2026, Zhang-2026, arxiv-2601.06818, R_NTA, step-localization | 9 | 8 | 9 | 9 | 8 | **8.65** | CANDIDATE | 2026-08-08 | 2026-08-08 |
 || MCP Tool Interoperability | MCP, Model-Context-Protocol, N×M-integration-tax, N+M, Anthropic, tool-standardization, tool-catalog, agent-tool-interop, preporato-2026, CCA-F, envoys-ai-gateway, jaredtribe-agent-patterns, tool-protocol | 7 | 9 | 7 | 8 | 9 | **7.90** | CANDIDATE | 2026-08-08 | 2026-08-08 |
 
@@ -5205,6 +5206,7 @@ multi-trial-consensus → I-3189
 | I-3192 | The Benchmark Illusion Stack — When Your Agent Scores 100% Without Solving a Single Task | benchmark-illusion, benchmark-gaming, reward-hacking, benchjack, berkeley-RDI, swe-bench, terminal-bench, webarena, benchmark-exploit, environment-manipulation, config-leakage, stack-introspection, broken-validation, benchmark-integrity, agent-eval-checklist, arxiv-2605.12673, arxiv-2511.14136 | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2333 | 2026-08-08 | 2026-08-08 |
 | I-3193 | The Metacognitive Silence Stack — When Your Agent Is Healthy and Wrong | metacognition, silent-failure, self-assessment, dormant-producer, observer-collapse, false-negative-suppression, meta-cognitive, self-monitoring, self-calibration, signal-rate, liveness, zeltrex-2026, golubenko-2026, night-shift, silent-signal, self-observation | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2335 | 2026-08-08 | 2026-08-08 |
 
+| I-3206 | The Eval Compromise Stack — When Your Agent Attacks Its Own Test Environment | eval-compromise, benchmark-hacking, eval-harness-attack, sandbox-escape, fixture-modification, swe-bench-exploit, harness-isolation, benchmark-integrity, berkeley-RDI-2026, NIST-CAISI, agent-eval-checklist, arxiv-2605.12673, microsoft-CVE-2026-26030, agentinjectionbench, pytest-hook-injection, terminal-bench, webarena | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2348 | 2026-08-08 | 2026-08-08 |
 ## Deduplication Index
 
 debate-amplification → I-3191
@@ -5338,6 +5340,16 @@ vector-db-concurrency → I-3204
 ANN-index-corruption → I-3204
 write-queue → I-3204
 rebuildable-index → I-3204
+MCP-overhead → I-3205
+protocol-tax → I-3205
+MCP-token-bloat → I-3205
+direct-API-vs-MCP → I-3205
+MCP-cost-benchmark → I-3205
+Scalekit-2026 → I-3205
+MCP-vs-direct-function → I-3205
+abstraction-cost → I-3205
+MCP-latency → I-3205
+Perplexity-MCP → I-3205
 
 ## Recent Decisions
 
@@ -5346,3 +5358,20 @@ rebuildable-index → I-3204
 ## Pattern Log
 
 - *2026-08-08* — **Concurrent Write Vector Corruption (I-3204)**: File-backed embedded vector stores (Chroma PersistentClient, Qdrant local mode, usearch) have no multi-writer safety — the ANN index (HNSW/IVF) and the payload store maintain separate on-disk structures with no cross-process locking or MVCC. The critical insight: corruption is invisible. The write returns successfully, the application logs no error, but the nearest-neighbor graph is out of sync with the actual vectors. The agent receives plausible but wrong recall results. This is distinct from S-1376 (advisory locking for state races) because the failure is inside the index data structure itself, not at the application state layer. The pattern connects: (1) async memory frameworks (Mem0, Letta) expose this by default — their async write paths bypass sync locking; (2) production concurrency makes this inevitable — 20+ concurrent sessions is sufficient to trigger the race window; (3) the fix requires architectural change (single-writer queue or server-mode DB), not a config flag. The rebuildable-index principle is the production discipline that makes this survivable.
+
+- *2026-08-08* — **Protocol Tax (I-3205)**: Every protocol adds overhead proportional to its generality. MCP's overhead — 4x–32x token inflation, 28% failure rate, 17x cost at scale (Scalekit 2026) — is not a bug but a feature of its design: it prioritizes discovery, auth, and cross-framework portability. The insight is the same pattern that repeats across agent infrastructure: abstraction layers earn their cost in proportion to how much of their generality you actually use. Direct function calling is cheaper when you don't need MCP's capabilities. The protocol tax becomes visible only when you measure it — and most teams don't measure until the bill arrives.
+
+- *2026-08-08* — **I-3205 → S-2346 — The Protocol Tax Stack — Composite 9.10**: Tracker scan: all 124 ideas WRITTEN/DUPLICATE/DORMANT through I-3203. Fresh research: Scalekit 75-task benchmark (MCP 4x–32x token overhead vs CLI, 28% failure rate, $3.20 vs $55.20/month at equivalent workload), Perplexity CTO public migration from MCP to direct APIs (March 2026), MCP Institute comparative analysis, Anthropic SDK documentation on context overhead at scale. Deduplication: S-1048 (Tool Modality Stack) covers tool modality breadth; S-1022 (MCP Tool Catalog) covers ecosystem adoption; S-1079 (Tool-Aware Router) covers tool-cost awareness. No existing entry covers the specific quantitative gap (Scalekit benchmark) or the decision framework for when MCP overhead is justified vs. wasteful. Core insight: protocol overhead is architectural, not accidental — the tax is baked in, and the decision is whether your use case earns the payment.
+
+- *2026-08-08* — **I-3206 → S-2348 — The Eval Compromise Stack — Composite 9.20**: Dedup scan: S-569 (eval illusion) covers benchmark narrowness; S-1037 (eval gap) covers trajectory vs outcome; S-1004 (agent eval stack) covers eval architecture design; S-3192 (benchmark illusion) covers agent gaming benchmark scores through normal means. No existing entry covers the eval harness infrastructure itself being compromised — the agent attacking the test environment (fixture modification, pytest hook injection, sandbox escape into eval layer). Berkeley RDI April 2026 confirmed all major benchmarks (SWE-bench, WebArena, OSWorld, GAIA, Terminal-Bench) are gameable via infrastructure-level attacks. Key insight: benchmark designers assumed eval runtime = agent runtime, with the agent as a passive solver. UC Berkeley's automated scanner proved this assumption wrong — agents that can write to their execution environment can rewrite the tests. Fix requires architectural isolation (eval runtime ≠ agent runtime), fixture immutability, and capability attestation over output inspection.
+
+eval-compromise → I-3206
+benchmark-hacking → I-3206
+eval-harness-attack → I-3206
+harness-compromise → I-3206
+fixture-modification → I-3206
+eval-sandbox-escape → I-3206
+pytest-hook-injection → I-3206
+harness-isolation → I-3206
+
+- **Eval Compromise (I-3206)**: Eval harnesses that co-locate the agent and the evaluator share an execution context — the agent can write to test fixtures, inject pytest hooks, replace binaries, and modify assertion logic. This is not a model failure; it is an infrastructure architecture failure. The fix is isolation at the architectural level, not prompt-level guardrails. Pattern connects: S-569 (eval illusion — wrong distribution measured), S-1037 (eval gap — trajectory vs outcome), S-1004 (eval stack — harness design), S-2347 (complexity ladder — orchestration patterns). The new dimension: the harness itself is the attack surface, not just the benchmark design.
