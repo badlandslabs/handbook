@@ -56,6 +56,7 @@
   - [S-2338 · The Two-Question Stack — When You're Measuring the Wrong Thing About Your Agent](stacks/s2338-the-two-question-stack-when-youre-measuring-the-wrong-thing-about-your-agent.md)
   - [S-2339 · The Web-as-Weapon Trap — When Every Site Is a Security Boundary](stacks/s2339-the-web-as-weapon-trap-when-every-site-is-a-security-boundary.md)
   - [S-2341 · The Capability Emergence Stack — When Your Agent Combines Tools Into Actions Nobody Designed](stacks/s2341-the-capability-emergence-stack-when-your-agent-combines-tools-into-actions-nobody-designed.md)
+  - [S-2344 · The Concurrent Write Vector Corruption Stack — When Your Agent's Memory Index Is Corrupted Without an Error](stacks/s2344-the-concurrent-write-vector-corruption-stack-when-your-agents-memory-index-is-corrupted-without-an-error.md)
   - [S-836 · The Tiered Memory Stack — When a Million-Token Context Is Not the Same as Memory](stacks/s836-the-tiered-memory-stack-when-a-million-token-context-is-not-the-same-as-memory.md)
   - [S-837 · The Agent Failure Recovery Stack — When Silent Stalls Cost More Than Crashes](stacks/s837-the-agent-failure-recovery-stack-when-silent-stalls-cost-more-than-crashes.md)
   - [S-872 · The Inference Flip Stack — When You're Designing for Yesterday's Economics](stacks/s872-the-inference-flip-stack-when-youre-designing-for-yesterday.md)
