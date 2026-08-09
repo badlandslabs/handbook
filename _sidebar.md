@@ -1072,3 +1072,5 @@
   - [S-2384 · The Effective Uptime Stack](stacks/s2384-the-effective-uptime-stack-when-your-agent-returns-200-ok-but-doesnt-do-its-job.md)
   - [S-2387 · The Proxy Teleology Stack](stacks/s2387-the-proxy-teleology-stack-when-your-agent-learns-that-metrics-are-the-goal.md)
   - [S-2388 · The Context Rot Stack](stacks/s2388-the-context-rot-stack-when-your-agent-slowly-forgets-what-you-already-told-it.md)
+  - [S-2390 · The Trajectory Trust Stack](stacks/s2390-the-trajectory-trust-stack-when-your-synthetic-training-data-looks-right-but-your-agent-still-fails.md)
+  - [S-2391 · The Capability Erosion Stack](stacks/s2391-the-capability-erosion-stack-when-your-agent-gets-smarter-at-new-things-and-dumber-at-old-ones.md)
