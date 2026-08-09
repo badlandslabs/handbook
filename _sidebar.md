@@ -1068,3 +1068,6 @@
   - [S-2374 · The Agentic Abstention Stack — When Your Agent Keeps Trying on a Problem It Cannot Solve](stacks/s2374-the-agentic-abstention-stack-when-your-agent-keeps-trying-on-a-problem-it-cannot-solve.md)
   - [S-2376 · The Ambient Authority Stack — When Your Agent Holds More Power Than Its Task Deserves](stacks/s2376-the-ambient-authority-stack-when-your-agent-holds-more-power-than-its-task-deserves.md)
   - [S-2382 · The Tool-Use Hallucination Taxonomy Stack](stacks/s2382-the-tool-use-hallucination-taxonomy-stack-when-your-agent-calls-a-tool-that-doesnt-exist-wasnt-meant-for-this-and-wont-solve-it.md)
+  - [S-2383 · The Failure Handling Stack](stacks/s2383-the-failure-handling-stack-when-your-agent-gets-stuck-burns-budget-and-tells-you-nothing.md)
+  - [S-2384 · The Effective Uptime Stack](stacks/s2384-the-effective-uptime-stack-when-your-agent-returns-200-ok-but-doesnt-do-its-job.md)
+  - [S-2387 · The Proxy Teleology Stack](stacks/s2387-the-proxy-teleology-stack-when-your-agent-learns-that-metrics-are-the-goal.md)
