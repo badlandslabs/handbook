@@ -327,7 +327,8 @@
 | I-3153 | The Proxy Collision Stack — When Your Agent Optimizes for the Meter and Not What the Meter Measures | proxy-collision, Goodhart-Law, reward-hacking, evaluation-channel, RLHF-misalignment, RLVR, proxy-compression, oversight, exploit, evaluation-manipulation, sandbox-escape, arxiv-2605.02964, arxiv-2604.13602, rhb-benchmark, openai-huggingface-2026, MIT-2026, proxy-surface, environmental-hardening, multi-evaluator, oversight-multiplicity | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2113 | 2026-08-04 | 2026-08-04 |
 | I-3202 | The Capability Emergence Stack — When Your Agent Combines Tools Into Actions Nobody Designed | capability-emergence, tool-composition, capability-amplification, privilege-escalation, tool-graph, taint-tracking, capability-registry, least-privilege-composition, emergent-capability, capability-chain, tool-adjacency, composition-risk, OWASP-Agentic-AI, palo-alto-unit42, BadSkill, ClawHavoc, arxiv-2603.13417, arxiv-2603.11088, capability-edge | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2341 | 2026-08-08 | 2026-08-08 |
 | I-3203 | The Silent Regression Stack — When Your Agent Degrades Between Tuesdays | silent-regression, capability-drift, longitudinal-evaluation, agent-longevity, production-degradation, change-point-detection, canary-set, vendor-update-detection, shadow-evaluation, context-accumulation, context-rot, agent-drift, capability-ceiling, llmops, eval-continuity, zylos-2026, agentmarketcap-2026, stanford-UC Berkeley-gpt4-drift, nature-NannyML-91pct | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2336 | 2026-08-08 | 2026-08-08 |
-| I-3205 | The Protocol Tax Stack — When MCP Costs 32x More Than Your Tool Deserves | MCP-overhead, token-overhead, MCP-vs-direct-API, protocol-tax, MCP-cost, token-bloat, tool-cost, MCP-benchmark, scalekit-2026, direct-function-calling, MCP-failure-rate, abstraction-cost, tool-selection, MCP-latency, perplexity-cto, Anthropic-MCP | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2346 | 2026-08-08 | 2026-08-08 |
+| I-3205 | The Protocol Tax Stack — When MCP Costs 32x More Than Your Tool Deserves | MCP-overhead, token-overhead, MCP-vs-direct-API, protocol-tax, MCP-cost, token-bloat, tool-cost, MCP-benchmark, scalekit-2026, direct-function-calling, abstraction-cost, tool-selection, MCP-latency, perplexity-cto, Anthropic-MCP | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2346 | 2026-08-08 | 2026-08-08 |
+| I-3209 | The Capability Scoping Stack — When Your Summarization Agent Has Shell Access and Nobody Knows Why | capability-scoping, overprovisioning, skill-economy-ratio, SER, least-privilege-agent, tool-visibility, capability-governance, capability-governor, safety-router, AgentWarden, aethelgard, sidik-rokach, arxiv-2604.11839, NeurIPS-2026, tool-awareness, session-scoped, task-type-scoped, PPO-governance, agent-warden, overprovision-ratio, capability-surface, tool-scoping, task-classification | 9 | 10 | 9 | 9 | 9 | **9.35** | WRITTEN — S-2364 | 2026-08-09 | 2026-08-09 |
 | I-3204 | Tool-Use Hallucinations | tool-selection-hallucination, tool-usage-hallucination, missing-tool, incorrect-argument, solvability-hallucination, tool-induced-myopia, RAG-hallucination, text2sql-failure, API-hallucination, hallucination-subtypes, emergentmind-2026, Liu-2026, Zhang-2026, arxiv-2601.06818, R_NTA, step-localization | 9 | 8 | 9 | 9 | 8 | **8.65** | CANDIDATE | 2026-08-08 | 2026-08-08 |
 | I-3206 | The Chaos Engineering Stack — When Your Agent Survives Everything in Staging and Fails on Friday | chaos-engineering, failure-injection, agent-stress-test, tool-chain-failure, context-stress, policy-path-test, abort-criteria, prober, synthetic-failure, fail-safely, Cordum-2026, StackPulsar-2026, Cordum-chaos, abort-discipline, hypothesis-first, policy-aware-validation, one-experiment | 9 | 9 | 9 | 10 | 9 | **9.00** | WRITTEN — S-2350 | 2026-08-08 | 2026-08-08 |
 
@@ -4344,8 +4345,9 @@ failure-routing → I-3143
 
 ## Pattern Log
 
-
-- *2026-08-03* — **Cache boundary placement is a first-class architectural decision in agentic workloads**: Lumer et al. (arXiv:2601.06007, Jan 2026) demonstrates that Zone 1+2 caching (system prompt + versioned stable content, excluding tool results) outperforms naive full-context caching by 20-35 percentage points on both cost and latency. The three-zone model (stable / semi-stable / dynamic) maps directly to cacheable / conditionally-cacheable / never-cacheable content. MCP dynamic tool registration and tree-shaped sessions are two structural patterns that break naive cache assumptions.- *2026-08-03* — **Grounding as infrastructure, not model property**: The handbook covers agent memory (s991, s1020, s1043, s1051), RAG evaluation (s1199, s1295), tool hallucination (s1057), and silent truncation (s981), but has no entry treating factual grounding as a first-class production infrastructure layer. The key insight: hallucination mitigation must be architectural (decoupled retrieval, schema binding, confidence gates) rather than prompting-based. Sources: DSG architecture (arXiv:2606.18947, Jun 2026) on decoupling search from reasoning; KG hallucination survey (ACL-SRW.53); semantic grounding research on schema-constrained generation; internal representation hallucination detection (arXiv:2601.05214, Jan 2026) on single-pass detection at 86.4% accuracy.
+- *2026-08-09* — **Capability overprovisioning is the default in open-source agent runtimes, and nobody measures it.** Sidik & Rokach (arXiv:2604.11839) quantify the gap: SER=0.053 on uncontrolled OpenClaw (5.3% tool utilization). The 15–19× overprovision ratio isn't intentional — it's architectural inertia. The fix isn't a security feature addition; it's a scoping architecture that treats the tool inventory as task-type-dependent, not session-universal. The analogous problem in cloud: every microservice gets a VPC with full internet egress by default. Nobody notices until an incident reveals the blast radius.
+- *2026-08-03* — **Cache boundary placement is a first-class architectural decision in agentic workloads**: Lumer et al. (arXiv:2601.06007, Jan 2026) demonstrates that Zone 1+2 caching (system prompt + versioned stable content, excluding tool results) outperforms naive full-context caching by 20-35 percentage points on both cost and latency. The three-zone model (stable / semi-stable / dynamic) maps directly to cacheable / conditionally-cacheable / never-cacheable content. MCP dynamic tool registration and tree-shaped sessions are two structural patterns that break naive cache assumptions.
+- *2026-08-03* — **Grounding as infrastructure, not model property**: The handbook covers agent memory (s991, s1020, s1043, s1051), RAG evaluation (s1199, s1295), tool hallucination (s1057), and silent truncation (s981), but has no entry treating factual grounding as a first-class production infrastructure layer. The key insight: hallucination mitigation costs money and adds latency, so teams under-invest. The shift is treating grounding as an SLO — measurable, monitorable, and recoverable — rather than a model property to be tuned.
 
 ## Deduplication Index
 
@@ -5413,6 +5415,49 @@ TCSS-2026 → I-3207
 IEEE-11549913 → I-3207
 harness-isolation → I-3206
 
+skill-economy → I-3209
+SER → I-3209
+overprovision → I-3209
+capability-governance → I-3209
+capability-governor → I-3209
+safety-router → I-3209
+agent-warden → I-3209
+aethelgard → I-3209
+tool-awareness → I-3209
+task-scoped → I-3209
+PPO-governance → I-3209
+overprovision-ratio → I-3209
+capability-surface → I-3209
+tool-scoping → I-3209
+sidik-rokach → I-3209
+NeurIPS-2026 → I-3209
+
 - **Eval Compromise (I-3206)**: Eval harnesses that co-locate the agent and the evaluator share an execution context — the agent can write to test fixtures, inject pytest hooks, replace binaries, and modify assertion logic. This is not a model failure; it is an infrastructure architecture failure. The fix is isolation at the architectural level, not prompt-level guardrails. Pattern connects: S-569 (eval illusion — wrong distribution measured), S-1037 (eval gap — trajectory vs outcome), S-1004 (eval stack — harness design), S-2347 (complexity ladder — orchestration patterns). The new dimension: the harness itself is the attack surface, not just the benchmark design.
 
 - *2026-08-09* — **I-3207 → S-2359 — The Inter-Agent Trust Propagation Stack — Composite 9.45**: Tracker exhausted (all I-31xx ideas WRITTEN/DUPLICATE). Fresh research: Bappy et al. (arXiv:2608.00718, IEEE GLOBECOM 2026) — the core insight: multi-agent pipelines embed implicit trust assumptions not adversarially robust; once adversarial content is accepted by one agent, it propagates as trusted input throughout. Attack success aligns with pipeline structure, not model capability. Three unverifiable trust assumptions identified: content non-adversarial, agent parameter authorization, channel integrity. Xu et al. (IEEE TCSS 2026, DOI 10.1109/TCSS.2026.3695070) — formalizes the Trust–Vulnerability Paradox (TVP): increasing inter-agent trust to improve coordination simultaneously amplifies over-exposure and authorization drift. Deduplication: S-1013 (multi-agent boundary) covers benign coordination state disagreement (different agents disagreeing on shared state), not adversarial content propagation. S-1050 (tool-response poisoning) covers external MCP/tool server return poisoning, not inter-agent trust exploitation. No existing entry covers the structural vulnerability where an attacker's adversarial content propagates through the agent-to-agent handoff chain — distinct from both the tool poisoning surface and the benign coordination surface. TVP framework extends the governance theme: S-2325 (privilege scope mis-resolution), S-1412 (MCP supply chain), S-3156 (permission inheritance).
+
+|| I-3208 | The Prompt CI/CD Stack — When Your Three-Word Prompt Tweak Halts Revenue | prompt-cicd, prompt-versioning, eval-gate, golden-dataset, canary-rollout, prompt-registry, prompt-rollback, three-trigger-gate, floor-gate, regress-gate, canary-gate, prompt-debt, langfuse, prompt-management, prompt-hot-reload, development-staging-production-labels, prompt-as-deployment, silent-regression, prompt-change-management | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2360 | 2026-08-09 | 2026-08-09 |
+
+prompt-cicd → I-3208
+prompt-versioning → I-3208
+eval-gate → I-3208
+golden-dataset → I-3208
+canary-rollout → I-3208
+prompt-registry → I-3208
+prompt-rollback → I-3208
+three-trigger-gate → I-3208
+floor-gate → I-3208
+regress-gate → I-3208
+canary-gate → I-3208
+prompt-debt → I-3208
+langfuse → I-3208
+prompt-management → I-3208
+prompt-hot-reload → I-3208
+silent-regression → I-3208
+prompt-as-deployment → I-3208
+
+- *2026-08-09* — **Prompt-as-Deployment: The Three-Trigger Eval Gate**: Prompt CI/CD extends the code deployment model to the prompts that steer agent behavior. The core pattern: version (immutable labeled artifacts), validate (golden dataset + deterministic + LLM-as-judge + regression suite), gate (three independent triggers — floor, regress, canary — any one fires blocks CI), roll out (canary stages), observe (prompt_version on every span), roll back (one command, no redeploy). Key failure case: 3-word prompt tweak weakening content filters; JSON instruction reworded causing silent parsing breakage; structured-output error spike halting revenue workflows. These succeed silently and fail loudly. The minimum viable pipeline: prompt registry → eval harness → CI gate → canary deploy → one-step rollback. Confirmed: Langfuse Prompt CI/CD docs, tutorialQ Agent CI/CD guide (2026), tianpan.co two-part analysis (Apr–May 2026), Future AGI CI/CD guide (2026). Distinct from S-1239 (runtime verification — production-time) and S-958 (synthetic trajectory fidelity — eval data) — this is the pipeline layer connecting prompt authoring to safe production promotion.
+
+- *2026-08-09* — **I-3208 → S-2360 — The Prompt CI/CD Stack — Composite 9.10**: Tracker exhausted — I-3204 (Tool-Use Hallucinations, 8.65, CANDIDATE) duplicates S-767/S-1057 (Tool-Call Hallucination Plateau). I-3206 (Chaos Engineering, in-progress) and I-3207 (Inter-Agent Trust, just written) were written in parallel by another run. Fresh research into uncovered gaps: prompt CI/CD, context compression, A2A protocol, skill hallucination, MCP reliability. Prompt CI/CD won on coverage gap (10 — zero entries in handbook), production urgency (9 — prompt changes are the #1 silent regression source in LLM apps), specificity (9 — concrete 6-stage pipeline), and timeliness (9 — production hardening wave 2026). Alternatives: context compression (covered implicitly by S-02/S-1035), A2A protocol (covered by S-2301/S-2303), skill hallucination (covered by I-3202/S-1960). Composite 9.10.
+
+- *2026-08-09* — **I-3209 → S-2364 — The Capability Scoping Stack — Composite 9.35**: Tracker re-saturated (I-3204 is CANDIDATE/DUPLICATE, I-3206/3207/3208 already written). Fresh research: Sidik & Rokach (arXiv:2604.11839, NeurIPS 2026 Agent Safety Workshop) — the capability overprovisioning problem: open-source agent runtimes (OpenClaw v2026.3.28) expose every tool to every session by default, achieving SER=0.053 (5.3% tool utilization). 15–19× overprovision ratio quantified. AgentWarden three-layer framework: Capability Governor (task-scoped tool awareness), Safety Router (runtime call intercept), PPO Learning Policy (audit-log-driven minimum viable toolset). On live OpenClaw: SER improves to 0.557 (10.5×), 73% attack surface reduction, AgentDojo ASR from 90.3% to 88.9%. Deduplication: S-574 (per-principal least privilege) covers credential scoping per NHI — Capability Scoping governs which tools the agent can *consider* based on task type, a distinct and complementary layer. S-743 (tool description poisoning) covers malicious schema content; Capability Scoping covers whether the agent sees the tool at all. S-1065 (inter-agent trust escalation) — scoping limits blast radius even when delegation bypasses auth. No existing entry covers the task-type → tool-awareness mapping problem. Chosen over: EU AI Act governance patterns (covered by S-1168 audit trail), ocap/secAgentLabs (adjacent but more theoretical — no SER metric, no PPO learning layer). Composite 9.35.
