@@ -328,8 +328,8 @@
 | I-3202 | The Capability Emergence Stack — When Your Agent Combines Tools Into Actions Nobody Designed | capability-emergence, tool-composition, capability-amplification, privilege-escalation, tool-graph, taint-tracking, capability-registry, least-privilege-composition, emergent-capability, capability-chain, tool-adjacency, composition-risk, OWASP-Agentic-AI, palo-alto-unit42, BadSkill, ClawHavoc, arxiv-2603.13417, arxiv-2603.11088, capability-edge | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2341 | 2026-08-08 | 2026-08-08 |
 | I-3203 | The Silent Regression Stack — When Your Agent Degrades Between Tuesdays | silent-regression, capability-drift, longitudinal-evaluation, agent-longevity, production-degradation, change-point-detection, canary-set, vendor-update-detection, shadow-evaluation, context-accumulation, context-rot, agent-drift, capability-ceiling, llmops, eval-continuity, zylos-2026, agentmarketcap-2026, stanford-UC Berkeley-gpt4-drift, nature-NannyML-91pct | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2336 | 2026-08-08 | 2026-08-08 |
 | I-3205 | The Protocol Tax Stack — When MCP Costs 32x More Than Your Tool Deserves | MCP-overhead, token-overhead, MCP-vs-direct-API, protocol-tax, MCP-cost, token-bloat, tool-cost, MCP-benchmark, scalekit-2026, direct-function-calling, MCP-failure-rate, abstraction-cost, tool-selection, MCP-latency, perplexity-cto, Anthropic-MCP | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2346 | 2026-08-08 | 2026-08-08 |
-|| Tool-Use Hallucinations | tool-selection-hallucination, tool-usage-hallucination, missing-tool, incorrect-argument, solvability-hallucination, tool-induced-myopia, RAG-hallucination, text2sql-failure, API-hallucination, hallucination-subtypes, emergentmind-2026, Liu-2026, Zhang-2026, arxiv-2601.06818, R_NTA, step-localization | 9 | 8 | 9 | 9 | 8 | **8.65** | CANDIDATE | 2026-08-08 | 2026-08-08 |
-|| MCP Tool Interoperability | MCP, Model-Context-Protocol, N×M-integration-tax, N+M, Anthropic, tool-standardization, tool-catalog, agent-tool-interop, preporato-2026, CCA-F, envoys-ai-gateway, jaredtribe-agent-patterns, tool-protocol | 7 | 9 | 7 | 8 | 9 | **7.90** | CANDIDATE | 2026-08-08 | 2026-08-08 |
+| I-3204 | Tool-Use Hallucinations | tool-selection-hallucination, tool-usage-hallucination, missing-tool, incorrect-argument, solvability-hallucination, tool-induced-myopia, RAG-hallucination, text2sql-failure, API-hallucination, hallucination-subtypes, emergentmind-2026, Liu-2026, Zhang-2026, arxiv-2601.06818, R_NTA, step-localization | 9 | 8 | 9 | 9 | 8 | **8.65** | CANDIDATE | 2026-08-08 | 2026-08-08 |
+| I-3206 | The Chaos Engineering Stack — When Your Agent Survives Everything in Staging and Fails on Friday | chaos-engineering, failure-injection, agent-stress-test, tool-chain-failure, context-stress, policy-path-test, abort-criteria, prober, synthetic-failure, fail-safely, Cordum-2026, StackPulsar-2026, Cordum-chaos, abort-discipline, hypothesis-first, policy-aware-validation, one-experiment | 9 | 9 | 9 | 10 | 9 | **9.00** | WRITTEN — S-2350 | 2026-08-08 | 2026-08-08 |
 
 ## Synthesis Notes
 
@@ -5205,6 +5205,7 @@ multi-trial-consensus → I-3189
 | I-3191 | The Debate Amplification Trap — When Your Multi-Agent Panel Generates a Bias No Agent Started With | debate-amplification, emergent-bias, biased-consensus, debate-suppression, multi-agent-debate, ICML-2026, collective-bias, minority-truth, Kaesberg-2025, amplification-trap, bias-emergence, tianpan-2026 | 8 | 8 | 9 | 9 | 8 | **8.20** | WRITTEN — S-2332 | 2026-08-08 | 2026-08-08 |
 | I-3192 | The Benchmark Illusion Stack — When Your Agent Scores 100% Without Solving a Single Task | benchmark-illusion, benchmark-gaming, reward-hacking, benchjack, berkeley-RDI, swe-bench, terminal-bench, webarena, benchmark-exploit, environment-manipulation, config-leakage, stack-introspection, broken-validation, benchmark-integrity, agent-eval-checklist, arxiv-2605.12673, arxiv-2511.14136 | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2333 | 2026-08-08 | 2026-08-08 |
 | I-3193 | The Metacognitive Silence Stack — When Your Agent Is Healthy and Wrong | metacognition, silent-failure, self-assessment, dormant-producer, observer-collapse, false-negative-suppression, meta-cognitive, self-monitoring, self-calibration, signal-rate, liveness, zeltrex-2026, golubenko-2026, night-shift, silent-signal, self-observation | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2335 | 2026-08-08 | 2026-08-08 |
+| I-3207 | The Inter-Agent Trust Propagation Stack — When Your Security Boundary Is the Agent You Trust | inter-agent-trust, trust-propagation, boundary-verification, multi-agent-security, adversarial-pipeline, implicit-trust, trust-vulnerability-paradox, TVP, agent-boundary, agent-poisoning, inter-agent-attack, adversarial-attack, structural-vulnerability, fan-in, fan-out, arxiv-2608.00718, IEEE-GLOBECOM-2026, TCSS-2026, IEEE-11549913, Bappy-2026, Xu-2026 | 10 | 9 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2359 | 2026-08-09 | 2026-08-09 |
 
 | I-3206 | The Eval Compromise Stack — When Your Agent Attacks Its Own Test Environment | eval-compromise, benchmark-hacking, eval-harness-attack, sandbox-escape, fixture-modification, swe-bench-exploit, harness-isolation, benchmark-integrity, berkeley-RDI-2026, NIST-CAISI, agent-eval-checklist, arxiv-2605.12673, microsoft-CVE-2026-26030, agentinjectionbench, pytest-hook-injection, terminal-bench, webarena | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2348 | 2026-08-08 | 2026-08-08 |
 ## Deduplication Index
@@ -5312,10 +5313,29 @@ least-privilege-composition → I-3202
 composition-risk → I-3202
 emergent-capability → I-3202
 tool-adjacency → I-3202
+chaos-engineering → I-3206
+failure-injection → I-3206
+agent-stress-test → I-3206
+tool-chain-failure → I-3206
+context-stress → I-3206
+policy-path-test → I-3206
+abort-criteria → I-3206
+synthetic-failure → I-3206
+Cordum-2026 → I-3206
+Cordum-chaos → I-3206
+StackPulsar-chaos → I-3206
+policy-aware-validation → I-3206
+one-experiment → I-3206
+abort-discipline → I-3206
+hypothesis-first → I-3206
 
 ## Recent Decisions
 
-- *2026-08-08* — **I-3202 → S-2341 — The Capability Emergence Stack — Composite 9.00**: Tracker scan confirmed all 569 WRITTEN ideas reviewed; no existing entry covers capability emergence from tool-graph topology. Closest neighbors: S-2325 (privilege boundary: permission scope mis-resolution at config-vs-runtime), S-1412 (OWASP MCP Top 10: protocol-level MCP server trust), S-1122 (skill marketplace poisoning: coordinated capability amplification across marketplace skills). None address the per-session tool composition risk: individually-safe tools that create dangerous capability chains when combined by the agent at runtime. Research: OWASP Agentic AI Top 10 (privilege escalation via tool combination), Palo Alto Unit 42 MCP research (78.3% attack success with 5-server compositions, Feb 2026), ClawHavoc/BadSkill capability amplification pattern, arXiv:2603.11088 (comprehensive survey of agentic AI attack landscape).
+- *2026-08-08* — **I-3202 → S-2341 — The Capability Emergence Stack — Composite 9.00**: Tracker scan confirmed all 569 WRITTEN ideas reviewed; no existing entry covers capability emergence from tool-graph topology. Closest neighbors: S-2325 (privilege boundary), S-1412 (OWASP MCP Top 10), S-1122 (skill marketplace poisoning). None address per-session tool composition risk: individually-safe tools that create dangerous capability chains at runtime. Research: OWASP Agentic AI Top 10, Palo Alto Unit 42 MCP research (78.3% attack success with 5-server compositions, Feb 2026), ClawHavoc/BadSkill capability amplification, arXiv:2603.11088.
+
+- *2026-08-08* — **I-3206 → S-2350 — The Chaos Engineering Stack — Composite 9.00**: Tracker scan confirmed no existing entry covers agent chaos engineering. Most-closely related: S-1000 (agent recovery), S-1032 (dead letter), S-2340 (control plane), S-1005 (AI SRE). None address structured failure injection into agent systems. Research: Cordum AI Agent Chaos Engineering Playbook (June 2026) — four-principle framework (hypothesis-first, abort discipline, policy-aware validation, one-experiment), agent-specific failure axes (tool-chain, context window, policy-path, credential exposure). Stack Pulsar AI Agent Reliability (2026) — four failure modes, cost-compounding under autonomous retry. Core mechanism: agents amplify failure at autonomous speed; standard infrastructure chaos doesn't reach the agent layer.
+
+
 
 - *2026-08-08* — **I-3201 → S-2339 — The Web-as-Weapon Trap — Composite 9.20**: S-375 (prompt injection defense), S-2017 (indirect injection/RAG), S-1659 (instruction privilege) all address injection from data/systems the defender controls — none address adversarial web content that agents navigate. Fresh research: Franklin et al. "AI Agent Traps" (SSRN, March 2026, Google DeepMind) — first systematic taxonomy of web content engineered to manipulate autonomous agents. Six trap categories: Content Injection (HTML comments, CSS-invisible text, metadata, dynamic cloaking; 86% benchmark success), Semantic Manipulation (credibility saturation, framing), Cognitive State (context pollution, memory targeting), Behavioral Control (M365 Copilot 10/10 data exfiltration; 80%+ exfiltration across five agents), Systemic (toolchain exploitation, MCP poisoning), HITL (phishing amplification). Deduplication: S-2332 ("trap" in name) covers multi-agent debate bias emergence, not web-content adversarial targeting — different mechanism, different attack surface, no overlap.
 
@@ -5372,6 +5392,27 @@ harness-compromise → I-3206
 fixture-modification → I-3206
 eval-sandbox-escape → I-3206
 pytest-hook-injection → I-3206
+
+inter-agent-trust → I-3207
+trust-propagation → I-3207
+boundary-verification → I-3207
+multi-agent-security → I-3207
+adversarial-pipeline → I-3207
+implicit-trust → I-3207
+trust-vulnerability-paradox → I-3207
+TVP → I-3207
+agent-boundary → I-3207
+agent-poisoning → I-3207
+inter-agent-attack → I-3207
+fan-in-convergence → I-3207
+fan-out-propagation → I-3207
+Bappy-2026 → I-3207
+arxiv-2608.00718 → I-3207
+IEEE-GLOBECOM-2026 → I-3207
+TCSS-2026 → I-3207
+IEEE-11549913 → I-3207
 harness-isolation → I-3206
 
 - **Eval Compromise (I-3206)**: Eval harnesses that co-locate the agent and the evaluator share an execution context — the agent can write to test fixtures, inject pytest hooks, replace binaries, and modify assertion logic. This is not a model failure; it is an infrastructure architecture failure. The fix is isolation at the architectural level, not prompt-level guardrails. Pattern connects: S-569 (eval illusion — wrong distribution measured), S-1037 (eval gap — trajectory vs outcome), S-1004 (eval stack — harness design), S-2347 (complexity ladder — orchestration patterns). The new dimension: the harness itself is the attack surface, not just the benchmark design.
+
+- *2026-08-09* — **I-3207 → S-2359 — The Inter-Agent Trust Propagation Stack — Composite 9.45**: Tracker exhausted (all I-31xx ideas WRITTEN/DUPLICATE). Fresh research: Bappy et al. (arXiv:2608.00718, IEEE GLOBECOM 2026) — the core insight: multi-agent pipelines embed implicit trust assumptions not adversarially robust; once adversarial content is accepted by one agent, it propagates as trusted input throughout. Attack success aligns with pipeline structure, not model capability. Three unverifiable trust assumptions identified: content non-adversarial, agent parameter authorization, channel integrity. Xu et al. (IEEE TCSS 2026, DOI 10.1109/TCSS.2026.3695070) — formalizes the Trust–Vulnerability Paradox (TVP): increasing inter-agent trust to improve coordination simultaneously amplifies over-exposure and authorization drift. Deduplication: S-1013 (multi-agent boundary) covers benign coordination state disagreement (different agents disagreeing on shared state), not adversarial content propagation. S-1050 (tool-response poisoning) covers external MCP/tool server return poisoning, not inter-agent trust exploitation. No existing entry covers the structural vulnerability where an attacker's adversarial content propagates through the agent-to-agent handoff chain — distinct from both the tool poisoning surface and the benign coordination surface. TVP framework extends the governance theme: S-2325 (privilege scope mis-resolution), S-1412 (MCP supply chain), S-3156 (permission inheritance).
