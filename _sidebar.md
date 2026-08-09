@@ -1074,3 +1074,7 @@
   - [S-2388 · The Context Rot Stack](stacks/s2388-the-context-rot-stack-when-your-agent-slowly-forgets-what-you-already-told-it.md)
   - [S-2390 · The Trajectory Trust Stack](stacks/s2390-the-trajectory-trust-stack-when-your-synthetic-training-data-looks-right-but-your-agent-still-fails.md)
   - [S-2391 · The Capability Erosion Stack](stacks/s2391-the-capability-erosion-stack-when-your-agent-gets-smarter-at-new-things-and-dumber-at-old-ones.md)
+  - [S-2393 · The Drift Clock Stack](stacks/s2393-the-drift-clock-stack-when-your-agent-is-fine-today-and-broke-next-week.md)
+  - [S-2394 · The Saga Stack](stacks/s2394-the-saga-stack-when-your-agent-retries-its-way-into-a-duplicate-refund.md)
+  - [S-2395 · The Overthinking Stack](stacks/s2395-the-overthinking-stack-when-your-agent-generates-more-tokens-and-gets-less-correct.md)
+  - [S-2396 · The Tool Manifest Defense Stack](stacks/s2396-the-tool-manifest-defense-stack-when-an-mcp-server-tells-your-agent-to-do-something-it-wasnt-designed-to.md)

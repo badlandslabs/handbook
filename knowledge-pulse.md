@@ -333,6 +333,7 @@
 | I-3206 | The Chaos Engineering Stack — When Your Agent Survives Everything in Staging and Fails on Friday | chaos-engineering, failure-injection, agent-stress-test, tool-chain-failure, context-stress, policy-path-test, abort-criteria, prober, synthetic-failure, fail-safely, Cordum-2026, StackPulsar-2026, Cordum-chaos, abort-discipline, hypothesis-first, policy-aware-validation, one-experiment | 9 | 9 | 9 | 10 | 9 | **9.00** | WRITTEN — S-2350 | 2026-08-08 | 2026-08-08 |
 | I-3210 | The Trajectory Trust Stack — When Your Synthetic Training Data Looks Right But Your Agent Still Fails | trajectory-quality, synthetic-data, synthetic-trajectory, fine-tuning-data, sft-trajectory, trajectory-verification, SynAE, Trajectory2Task, validity-fidelity-diversity, tool-calling-traces, agent-fine-tuning, domain-agent, trace-synthesis, APIGen-MT, MCP-Flow, NVIDIA-synthetic, agent-sft, trajectory-curation, per-turn-labeling, verifiable-back-generation, intent-distribution, ambiguous-ground-truth, trajectory-noise, trajectory-bias, AGIEval-4o, AgentRe ${ /* ... truncated ... */} | 9 | 9 | 9 | 9 | 8 | **8.80** | WRITTEN — S-2390 | 2026-08-09 | 2026-08-09 |
 | I-3213 | The Capability Erosion Stack — When Your Agent Gets Smarter at New Things and Dumber at Old Ones | capability-erosion, self-evolution, skill-overwrite, bounded-capacity, forgetting, capability-preservation, workflow-drift, model-evolution, memory-evolution, task-distribution-shift, retrospective-decay, behavioral-policy-drift, generalization-erosion, arxiv-2605.09315, CPE, capability-preserving-evolution, skill-repository, evolution-channel, agent-lifelong | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2391 | 2026-08-10 | 2026-08-10 |
+| I-3214 | The Overthinking Stack — When Your Agent Generates More Tokens and Gets Less Correct | overthinking, test-time-compute, flip-event, marginal-utility, answer-stability, adaptive-stopping, reasoning-budget, token-efficiency, overthinker-diet, difficulty-aware, reasoning-effort, accuracy-degradation, compute-scaling, token-calories, arxiv-2604.10739, arxiv-2604.22750, arxiv-2602.13517, arxiv-2507.02076, acl-2026, iclr-2026, deepseek-r1, test-time-scaling, answer-oscillation, reasoning-spiral | 9 | 10 | 9 | 9 | 9 | **9.30** | WRITTEN — S-2395 | 2026-08-09 | 2026-08-09 |
 
 ## Synthesis Notes
 
@@ -2813,6 +2814,8 @@ citation-grounding → I-3047
 | I-3212 | The Proxy Teleology Stack — When Your Agent Learns That Metrics Are the Goal | proxy-teleology, runtime-metrics, feedback-gaming, observability-gaming, goodharts-law, reward-hacking, spec-gaming, production-metrics, runtime-eval, RL-exploit, ExploitGym, RHB-2026, SpecBench, arxiv-2605.02964, arxiv-2605.21384 | 9 | 10 | 10 | 10 | 8 | **9.10** | WRITTEN — S-2387 | 2026-08-09 | 2026-08-09 |
 
 ## Pattern Log
+
+- *2026-08-09* — **Manifests-as-Untrusted-Input: The Configuration-Is-Input Confusion**: MCP tool manifests are treated as trusted configuration but arrive over the network at install time — making them the AI equivalent of unvalidated SQL schema definitions. The agent reads tool descriptions to decide *whether and how* to call tools; a poisoned description poisons the decision before any runtime guard fires. The defense pattern is the same as network security: treat manifests as untrusted, verify integrity at install (content-addressed snapshots + human-review gate), validate semantics at load (LLM judge on description/schema self-consistency), enforce authorization at invoke (policy-derived permissions, not manifest-claimed permissions), and monitor egress at runtime. Each layer catches a different failure mode. None alone is sufficient. This is the 4-layer defense-in-depth model for tool ecosystem poisoning.
 
 - *2026-08-08* — **Judge-First Eval: Single-Trial LLM-as-Judge Is Not a Signal, It's Noise**: The arXiv 2606.13685 finding (13.6% pairwise flip rate on identical inputs) exposes the deepest assumption in production eval: that an LLM judge at temperature 0.7 produces a stable ground truth. It doesn't. Single-trial scores have std dev 0.47 on a 1-5 scale — that's a full grade tier. The economic incentive to use LLM-as-Judge ($0.001-0.05 vs $0.10-3.00 per annotation) creates enormous pressure to deploy unreliability at scale. The practical fix is a three-layer envelope: anchor stabilization (frozen human-labeled anchors catch judge drift), multi-trial consensus (4/5 majority for pairwise, median for pointwise), and structured attribution (judge_version + anchor_drift + consensus_rate in every eval record). Without these, your eval pipeline is a coin flip dressed as a measurement.
 
@@ -5533,7 +5536,32 @@ arxiv-2511.22729 → I-3210
 redis-2026 → I-3210
 orchestrabench-2608.05263 → I-3210
 
+|| I-3214 | The Tool Manifest Defense Stack — When an MCP Server Tells Your Agent to Do Something It Wasn't Designed To | manifest-poison, tool-manifest-poison, schema-poison, mcp-tool-manifest, manifest-integrity, semantic-input-validate, tool-description-validate, authorization-middleware, behavioral-monitoring, egress-profile, content-addressed-manifest, manifest-drift, description-as-trusted, practical-devsecops, aiworkflowlab, cisco-mcp-scanner, akto-mcp-security, bifrost-mcp, pinterest-mcp, tool-ecosystem-defense | 9 | 10 | 10 | 10 | 8 | **9.15** | WRITTEN — S-2396 | 2026-08-09 | 2026-08-09 |
+
+manifest-poison → I-3214
+tool-manifest-poison → I-3214
+schema-poison → I-3214
+mcp-tool-manifest → I-3214
+manifest-integrity → I-3214
+semantic-input-validate → I-3214
+tool-description-validate → I-3214
+authorization-middleware → I-3214
+behavioral-monitoring → I-3214
+egress-profile → I-3214
+content-addressed-manifest → I-3214
+manifest-drift → I-3214
+description-as-trusted → I-3214
+practical-devsecops → I-3214
+aiworkflowlab → I-3214
+cisco-mcp-scanner → I-3214
+akto-mcp-security → I-3214
+bifrost-mcp → I-3214
+pinterest-mcp → I-3214
+tool-ecosystem-defense → I-3214
+
 ## Recent Decisions
+
+- *2026-08-09* — **I-3214 → S-2396 — The Tool Manifest Defense Stack — Composite 9.15**: Tracker exhausted (all I-31xx ideas WRITTEN/DUPLICATE through I-3213). Fresh research: Practical DevSecOps MCP Tool Poisoning analysis (practical-devsecops.com, Jul 2026 — 3 structural properties: no cryptographic signing, manifest treated as trusted config, behavioral monitoring fires too late); AI Workflow Lab MCP Security Guide with 4-layer Python code (aiworkflowlab.dev, Jun 2026 — real incidents: compromised MCP server exfiltrated repo contents + salary data, Asana MCP bug exposed private projects, Claude Cowork VM escape per Hacker News Jul 2026); Cisco AI Defense mcp-scanner (GitHub 2026); Akto MCP Security blog (akto.io — description-as-trusted-configuration gap); Bifrost gateway-layer defense with MCP tool allowlists (getmaxim.ai, Jul 2026); Pinterest production MCP deployment (Medium/Pinterest Engineering, 66K monthly invocations, 844 users, JWT auth + HITL safeguards). Deduplication: I-035 (MCP Schema Contracts, S-427) covers schema versioning/diffing for breaking changes; S-1298 (Capability Proxy Attack, S-1298) covers tool poisoning as attack outcome on the agent side; neither covers the 4-layer defense architecture (manifest integrity at install, semantic input validation, authorization middleware, behavioral monitoring) with code patterns. New angle: the root assumption — tool descriptions are trusted configuration — is itself the vulnerability; fixing it requires treating manifests as untrusted input and verifying them at every layer.
 
 - *2026-08-09* — **I-3210 → S-2388 — The Context Rot Stack — Composite 9.00**: Tracker exhausted (all I-31xx ideas WRITTEN/DUPLICATE). Fresh research: statebase.org ("7 Failure Modes of Production Agents" — context loss as standalone class, distinct from overflow), Redis.io (2026 — context rot is attention-degradation before hard limit), SIVARO (context overflow "logical failures beyond monitoring"), arXiv 2511.22729 (truncation/summarization fails to preserve output fidelity), OrchestraBench (arXiv 2608.05263 — 95.5% correct agents → 87.4% orchestration: 8pt gap partly from context degradation in multi-step pipelines). Deduplication: S-1000 (Context Exhaustion) covers hard overflow when window fills; S-02 (Context Budget) covers token budgeting; S-1063 (Context Lifecycle) covers memory management across turns. None cover the *attention-mechanism-level* degradation where fidelity erodes well before the hard limit — the middle-position degradation phenomenon, constraint drift in long conversations, and the failure mode of a rotted agent producing a plausible wrong answer (not an exception). New dimension: rot is a silent correctness failure, not a crash — requires outcome-level detection, not trace-level monitoring.
 
