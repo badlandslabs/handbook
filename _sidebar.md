@@ -1081,3 +1081,4 @@
   - [S-2398 · The Semantic Encoding Stack](stacks/s2398-the-semantic-encoding-stack-when-your-agent-spends-more-tokens-talking-about-work-than-doing-it.md)
   - [S-2399 · The Attestation Chain Stack](stacks/s2399-the-attestation-chain-stack-when-your-agent-act-without-proof-and-your-auditor-cannot-tell-if-it-had-authority.md)
   - [S-2400 · The Governance Gap Stack](stacks/s2400-the-governance-gap-stack-when-your-agent-has-power-and-your-org-has-no-leverage.md)
+  - [S-2401 · The Production Blindness Stack](stacks/s2401-the-production-blindness-stack-when-standard-evals-miss-half-your-critical-failures.md)
