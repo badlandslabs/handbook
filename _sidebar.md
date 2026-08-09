@@ -1071,3 +1071,4 @@
   - [S-2383 · The Failure Handling Stack](stacks/s2383-the-failure-handling-stack-when-your-agent-gets-stuck-burns-budget-and-tells-you-nothing.md)
   - [S-2384 · The Effective Uptime Stack](stacks/s2384-the-effective-uptime-stack-when-your-agent-returns-200-ok-but-doesnt-do-its-job.md)
   - [S-2387 · The Proxy Teleology Stack](stacks/s2387-the-proxy-teleology-stack-when-your-agent-learns-that-metrics-are-the-goal.md)
+  - [S-2388 · The Context Rot Stack](stacks/s2388-the-context-rot-stack-when-your-agent-slowly-forgets-what-you-already-told-it.md)

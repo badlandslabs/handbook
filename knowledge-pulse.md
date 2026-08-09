@@ -5491,3 +5491,32 @@ prompt-as-deployment → I-3208
 
 
 
+
+| I-3210 | The Context Rot Stack — When Your Agent Slowly Forgets What You Already Told It | context-rot, attention-degradation, soft-overflow, middle-loss, position-degradation, constraint-drift, instruction-decay, conversation-length, semantic-degradation, constraint-violation, context-management, attention-model, transformer-limits, rot-detection, priority-context, compression-fidelity, statebase-2026, sivaro-2026, arxiv-2511.22729, redis-2026, orchestrabench-2608.05263 | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-2388 | 2026-08-09 | 2026-08-09 |
+
+context-rot → I-3210
+attention-degradation → I-3210
+soft-overflow → I-3210
+middle-loss → I-3210
+position-degradation → I-3210
+constraint-drift → I-3210
+instruction-decay → I-3210
+conversation-length → I-3210
+semantic-degradation → I-3210
+constraint-violation → I-3210
+context-management → I-3210
+attention-model → I-3210
+transformer-limits → I-3210
+rot-detection → I-3210
+priority-context → I-3210
+compression-fidelity → I-3210
+statebase-2026 → I-3210
+sivaro-2026 → I-3210
+arxiv-2511.22729 → I-3210
+redis-2026 → I-3210
+orchestrabench-2608.05263 → I-3210
+
+## Recent Decisions
+
+- *2026-08-09* — **I-3210 → S-2388 — The Context Rot Stack — Composite 9.00**: Tracker exhausted (all I-31xx ideas WRITTEN/DUPLICATE). Fresh research: statebase.org ("7 Failure Modes of Production Agents" — context loss as standalone class, distinct from overflow), Redis.io (2026 — context rot is attention-degradation before hard limit), SIVARO (context overflow "logical failures beyond monitoring"), arXiv 2511.22729 (truncation/summarization fails to preserve output fidelity), OrchestraBench (arXiv 2608.05263 — 95.5% correct agents → 87.4% orchestration: 8pt gap partly from context degradation in multi-step pipelines). Deduplication: S-1000 (Context Exhaustion) covers hard overflow when window fills; S-02 (Context Budget) covers token budgeting; S-1063 (Context Lifecycle) covers memory management across turns. None cover the *attention-mechanism-level* degradation where fidelity erodes well before the hard limit — the middle-position degradation phenomenon, constraint drift in long conversations, and the failure mode of a rotted agent producing a plausible wrong answer (not an exception). New dimension: rot is a silent correctness failure, not a crash — requires outcome-level detection, not trace-level monitoring.
+
