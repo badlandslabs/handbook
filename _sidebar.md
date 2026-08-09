@@ -1078,3 +1078,6 @@
   - [S-2394 · The Saga Stack](stacks/s2394-the-saga-stack-when-your-agent-retries-its-way-into-a-duplicate-refund.md)
   - [S-2395 · The Overthinking Stack](stacks/s2395-the-overthinking-stack-when-your-agent-generates-more-tokens-and-gets-less-correct.md)
   - [S-2396 · The Tool Manifest Defense Stack](stacks/s2396-the-tool-manifest-defense-stack-when-an-mcp-server-tells-your-agent-to-do-something-it-wasnt-designed-to.md)
+  - [S-2398 · The Semantic Encoding Stack](stacks/s2398-the-semantic-encoding-stack-when-your-agent-spends-more-tokens-talking-about-work-than-doing-it.md)
+  - [S-2399 · The Attestation Chain Stack](stacks/s2399-the-attestation-chain-stack-when-your-agent-act-without-proof-and-your-auditor-cannot-tell-if-it-had-authority.md)
+  - [S-2400 · The Governance Gap Stack](stacks/s2400-the-governance-gap-stack-when-your-agent-has-power-and-your-org-has-no-leverage.md)
