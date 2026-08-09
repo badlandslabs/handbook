@@ -1,0 +1,34 @@
+# S-2358 · The Eval Stack — When Your Agent Ships and Nobody Knows If It's Any Good
+
+Your agent has been running in production for three weeks. Task completion looks fine on the dashboard. The team has moved on to the next feature. Nobody has actually measured whether it's reliable, cost-efficient, safe, or improving. This is the default state of most agent deployments — and the reason eval engineering has become a first-class discipline in 2025–2026.
+
+## Forces
+
+- **Standard benchmarks are broken at the methodology level.** UC Berkeley's RDI center demonstrated an exploit agent that scored 100% on 7 of 8 major benchmarks (SWE-bench Verified, SWE-bench Pro, Terminal-Bench, FieldWorkArena, CAR-bench, WebArena, OSWorld, GAIA) without solving a single task. The exploits targeted the evaluation pipeline, not the agent capability.
+- **Task-completion scores miss what matters in production.** Correct outcome but 47 tool calls and $4.20 in API costs? Binary pass/fail doesn't capture cost efficiency, trajectory elegance, or whether the agent recovered gracefully from a mid-flight error.
+- **Human review doesn't scale.** Production agents generate thousands of traces per day. Manual review is a bottleneck that creates a blind spot precisely when the system is under load.
+- **The eval harness shapes scores more than the agent does.** Scaffold choices — context formatting, retry logic, time limits, tool execution timing — swing benchmark scores 10–20 percentage points independently of model quality.
+
+## The Move
+
+Production-grade agent evaluation requires a layered stack that treats eval engineering as infrastructure, not afterthought:
+
+- **Build internal golden datasets from production traces.** The highest-signal eval cases come from real failures caught in production, not synthetic scenarios dreamed up in a notebook. Capture the full trajectory (all tool calls, intermediate states, error recovery sequences) alongside the outcome.
+- **Use state-based validation over transcript matching.** tau-bench and its successors score agents on whether the end state satisfies the goal, not whether the conversation matches a template. State grading handles semantic equivalence and edge-case variations that string-matching misses. Audit the trivially-passing cases, not just the failures.
+- **Calibrate LLM-as-judge before trusting it.** A naive judge and a well-calibrated one can produce opposite conclusions about the same agent. Use chain-of-thought rubric scoring, multi-dimension rubrics (don't collapse to a single 1–10 score), and reference anchors (gold, silver, bronze examples). Zylos Research's taxonomy identifies positional bias, verbosity bias, and self-preference bias as the three most common calibration failures.
+- **Measure trajectory, not just outcome.** Track tool selection accuracy (right tool, right parameters, right sequence), cost-per-task, latency budgets, and error recovery paths. An agent that reaches the right answer via a 20-step detour is structurally different from one that gets there in 3 steps — even if both "pass."
+- **Gate releases with regression suites.** Like traditional unit tests, agent regression suites capture known failure modes as executable cases. When a prompt change or model swap breaks a previously-passing trajectory, the CI gate catches it before production. The `reaatech/agent-eval-harness` and `praveenpke/agent-eval-harness` projects implement this pattern: golden dataset → trajectory capture → rule + LLM-as-judge scoring → CI gate.
+- **Staged rollout from sandbox to canary to production.** Each stage validates different aspects: sandbox tests trajectory correctness, canary tests behavior under real traffic distribution, production tests long-horizon reliability and cost efficiency.
+
+## Evidence
+
+- **Research paper:** UC Berkeley RDI demonstrated exploit agents achieving 100% on SWE-bench Verified (500 tasks), Terminal-Bench (89 tasks), FieldWorkArena (890 tasks), and near-100% on WebArena, OSWorld, and GAIA — without solving any tasks. Exploits included pytest hooks on SWE-bench, config file leakage via unrestricted `file://` URL navigation, binary wrapper trojans in Terminal-Bench, and hidden DOM injection to satisfy `must_include` substring checks. The benchmark evaluation pipelines have structural vulnerabilities that benchmark scores cannot correct for. — [Berkeley RDI blog](https://rdi.berkeley.edu/blog/trustworthy-benchmarks-cont) | [ToKnow.ai summary](https://toknow.ai/posts/berkeley-rdi-ai-agent-benchmarks-gamed-100-percent)
+- **Engineering post:** Google Cloud's production-ready agents guide (Feb 2026) recommends trajectory analysis of multi-step decision sequences and staged rollouts from sandbox to canary to production. Emphasizes that "agents don't behave like traditional software — they reason, act, and adapt, requiring new approaches to testing." — [Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/a-devs-guide-to-production-ready-ai-agents)
+- **Practical guide:** Zylos Research's LLM-as-judge patterns guide (May 2026) documents three critical judge biases — positional (judge favors first option), verbosity (judge rewards longer reasoning traces regardless of quality), and self-preference (judge favors responses similar to its own style) — and provides calibration protocols: chain-of-thought rubric scoring, multi-dimension rubrics, and reference anchor examples. Notes the gap between naively-configured and well-calibrated judges is "wide enough to produce opposite conclusions about agent quality." — [Zylos Research](https://zylos.ai/en/research/2026-05-26-llm-as-judge-agent-evaluation-patterns)
+
+## Gotchas
+
+- **Evaluating against the public benchmark is not evaluating your agent.** SWE-bench, WebArena, and GAIA measure general capability — not your specific tool schema, your business logic, or your error recovery requirements. Public benchmarks are useful for model selection, not release gating.
+- **Golden trajectories go stale.** Tool APIs change, prompts evolve, and user input distributions shift. A regression suite that isn't updated becomes a false-negative factory — it passes agents that have regressed because the test case no longer reflects current requirements.
+- **LLM-as-judge amplifies model biases, not just fixes them.** If your judge model has a preference for verbose output, it will systematically score sparse-but-correct trajectories lower. Judge calibration is not a one-time setup — it needs to be validated against human judgment on a sample of cases on each model/prompt change.
+- **Cost and latency are first-class metrics, not afterthoughts.** An agent that achieves 95% task success at 3× the cost and 5× the latency of a baseline is not "better." Treat cost-per-task and p95 latency as gate criteria alongside correctness.
