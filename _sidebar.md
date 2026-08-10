@@ -1082,3 +1082,5 @@
   - [S-2399 · The Attestation Chain Stack](stacks/s2399-the-attestation-chain-stack-when-your-agent-act-without-proof-and-your-auditor-cannot-tell-if-it-had-authority.md)
   - [S-2400 · The Governance Gap Stack](stacks/s2400-the-governance-gap-stack-when-your-agent-has-power-and-your-org-has-no-leverage.md)
   - [S-2401 · The Production Blindness Stack](stacks/s2401-the-production-blindness-stack-when-standard-evals-miss-half-your-critical-failures.md)
+  - [S-2402 · The Tool Shaping Stack](stacks/s2402-the-tool-shaping-stack-when-your-agent-has-a-hundred-tools-and-uses-none-of-them.md)
+  - [S-2403 · The Simulation Fidelity Trap](stacks/s2403-the-simulation-fidelity-trap-when-your-staging-environment-lies-to-you.md)
