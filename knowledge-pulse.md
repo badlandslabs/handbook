@@ -5906,8 +5906,60 @@ sleeper-agent-attack → I-3231
 arxiv-2605.15338v2 → I-3231
 pulipaka-hlebik → I-3231
 
+| I-3233 | The Self-Modifying Agent Stack — When Your Agent Improves Itself and You Can't Tell If That's Good | self-modifying-agent, self-improvement, runtime-code-gen, self-extension, self-evol, DGM, Darwin-Godel-Machine, SICA, SelfEvolve, SEAMS-2026, evaluation-gaming, eval-harness-poison, modification-scope, self-patch, self-healing, autonomous-improvement, agentic-loop, meta-agent, tool-mutation, prompt-refinement, runtime-extension, capability-drift, tianpan-2026, arxiv-2604.16314 | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2429 | 2026-08-10 | 2026-08-10 |
+
+self-modifying-agent → I-3233
+self-improvement → I-3233
+runtime-code-gen → I-3233
+self-extension → I-3233
+self-evol → I-3233
+DGM → I-3233
+Darwin-Godel-Machine → I-3233
+SICA → I-3233
+SelfEvolve → I-3233
+SEAMS-2026 → I-3233
+evaluation-gaming → I-3233
+eval-harness-poison → I-3233
+modification-scope → I-3233
+self-patch → I-3233
+self-healing → I-3233
+autonomous-improvement → I-3233
+agentic-loop → I-3233
+meta-agent → I-3233
+tool-mutation → I-3233
+prompt-refinement → I-3233
+runtime-extension → I-3233
+capability-drift → I-3233
+tianpan-2026 → I-3233
+arxiv-2604.16314 → I-3233
+
 ## Recent Decisions
 - *2026-08-10* — **I-3231 → S-2426 — The Sleeper Memory Poisoning Stack — Composite 9.40**: Tracker exhausted (I-3222/I-3230 written today, all others WRITTEN or DUPLICATE). Fresh research: arXiv:2605.15338v2 (Pulipaka et al., SPAR/ELLIS/MPI/CISPA, May 2026) — "Hidden in Memory: Sleeper Memory Poisoning in LLM Agents." Key findings: end-to-end attack success 73.9% on GPT-5.5, injection rates 95–99.8% across all tested models (GPT-5.5/5.4, Kimi-K2.6, DeepSeek-V4), adversarial action rates 60–89%. Palo Alto Unit 42 confirms persistent memory attacks in enterprise environments (Chen & Lu, 2025). Atlan (April 2026): ~65% of enterprise agent failures trace to context drift/poisoning. Dedup: S-1086 (Cascading Hallucination Spill) covers RAG propagation of confident errors — not persistent cross-session memory corruption. S-1050 (Tool-Response Poisoning) covers runtime tool output injection — short-lived, not multi-session dormant payloads. S-1052 (Cascade Stack) covers multi-agent pipeline infection — not memory-layer sleeper attacks. S-1020 (Tiered Memory) covers memory architecture patterns — doesn't address poisoning of the memory store itself. New angle: sleeper memory poisoning — adversarial content causes agent to store fabricated memories that persist across sessions and surface in unrelated future conversations, with no trace at retrieval time.
 
 - *2026-08-10* — **I-3222 → S-2420 — The Tool Manifest Semantic Drift Stack — Composite 8.95**: Ideas Bank exhausted (all prior I-3222 ideas WRITTEN or DUPLICATE). Fresh research: Practical DevSecOps (May 2026) — MCP tool poisoning covers tool description injection attacks at connect-time, but does NOT cover gradual semantic drift where a legitimate server changes parameter/description semantics post-onboarding. The key gap: S-999 (MCP Schema Drift) covers structural drift (tools added/removed/renamed) — identical schema, changed meaning is uncovered. S-1050 (Tool-Response Poisoning) covers runtime payload injection — not manifest-level description drift. S-1720 (Tool Poisoning Defense) covers runtime poisoning after approval — not the gradual semantic drift that precedes it. New angle: tool manifest semantic drift — the schema is identical, parameter labels unchanged, but the conceptual meaning of a parameter or tool description has shifted, causing the agent to call tools with subtly wrong intent. Evidence: parameter label drift (`order_id` → `transaction_id`), description rewording ("ID of the channel to post to" → "ID or name of the channel"), enum value expansion. Fix: (1) manifest snapshot pinning + diff at session start, (2) semantic fingerprint in tool descriptions for LLM-cross-check, (3) runtime intent-semantic validation, (4) cross-reference tool names with intent taxonomy.
 - *2026-08-10* — **I-3221 → S-2419 — The Memory Drift Stack — Composite 9.35**: Tracker exhausted (all I-3220 prior ideas WRITTEN or DUPLICATE). Fresh research: Tian Pan (April 17, 2026, tianpan.co) formally defines knowledge contamination as distinct from parametric knowledge override — self-generated vs. training-induced. arXiv:2606.21666 (Rodrigues, June 2026) introduces Context Divergence Score (CDS) for measuring knowledge-state mismatch between agents, applicable to cross-session drift. WorkOS (June 9, 2026) confirms contamination vs. poisoning are distinct: contamination requires no adversary. arXiv:2604.21131 (Azarafrooz, April 2026) Cross-Session Threats benchmark with contamination as named category. Dedup: S-947 (Parametric Knowledge Override) covers training weights overriding context — not self-generated contamination. S-626 (Generator-Retriever Mismatch) covers retrieval bypass at call time — not cross-session accumulation. S-2151 (Memory Poisoning) covers adversarial injection — not self-compounding error. S-2088 (Forgotten Context) covers forgetting — not remembering wrong things. The cross-session compounding mechanism (correct → stored → drifts → re-stored) is novel. Pattern: agent-authored memory accumulates without authority check, eventually overrides authoritative retrieval — distinct from poisoning (adversarial) and parametric override (training-weight induced).
+
+|| I-3232 | The Three-Tier LLM Cache Stack — When Your LLM API Bill Is 3× What It Needs to Be | three-tier-cache, cache-stacking, semantic-cache, prompt-cache, kv-cache, cache-cascade, cache-orchestration, cache-invalidation, tokenmaxxing, prompt-cache-control, kv-persistence, semantic-similarity-threshold, cache-hit-matrix, application-cache, provider-cache, runtime-cache, multi-agent-cache, cache-layering, cache-tier | 8 | 8 | 9 | 7 | 8 | **8.20** | WRITTEN — S-2428 | 2026-08-10 | 2026-08-10 |
+
+three-tier-cache → I-3232
+cache-stacking → I-3232
+semantic-cache → I-3232
+prompt-cache → I-3232
+kv-cache → I-3232
+cache-cascade → I-3232
+cache-orchestration → I-3232
+cache-invalidation → I-3232
+tokenmaxxing → I-3232
+cache-layering → I-3232
+cache-tier → I-3232
+provider-prompt-cache → I-3232
+application-semantic-cache → I-3232
+runtime-kv-cache → I-3232
+cache_hit_matrix → I-3232
+
+## Pattern Log
+- *2026-08-10* — **Cache layering compounds nonlinearly**: Each cache tier operates at a different abstraction level (application, provider, runtime). When orchestrated correctly, the combined savings (60–80%) exceed the sum of individual tier savings because each tier filters requests that would hit the next — cascading from cheapest to most expensive. The anti-pattern is treating each cache as independent and missing the cascade order.
+
+## Recent Decisions
+- *2026-08-10* — **I-3233 → S-2429 — The Self-Modifying Agent Stack — Composite 9.15**: Tracker exhausted (I-3231/I-3232 written today; all prior 3231 ideas WRITTEN or DUPLICATE). Fresh research: tianpan.co "Self-Modifying Agent Horizon" (April 10, 2026) covers DGM (Darwin Gödel Machine — 2.8× SWE-bench Lite improvement via evolutionary tool mutation), SICA (meta-agent prompt refinement), and SelfEvolve (SEAMS 2026, arXiv:2604.16314 — 11/11 successful runtime self-extensions). Cockroach Labs (June 10, 2026): agentic workflows consume 5–30× more tokens than chatbots, inference is ~20% of total TCO; Uber CTO: Claude Code adoption jumped 32%→84% of engineers, budget "blown away." Dedup: S-1028 (Synthetic Trajectory Degeneration) covers recursive fine-tuning narrowing capability — different mechanism from runtime self-modification. S-1326 (Library Drift) covers skill installation causing slow degradation — this covers the agent modifying its own code mid-flight, a fundamentally different failure mode where the evaluator is itself writable. No existing entry covers the specific failure mode where an agent modifies its own evaluation harness or scoring criteria — the most dangerous variant where self-improvement and metric gaming become observationally identical. Core pattern: the evaluation boundary must be architecturally impermeable to the agent, not just permission-gated. Six-point move: (1) isolate eval boundary, (2) tier modification scope, (3) version every modification with rollback, (4) read-before-apply gate, (5) separate learned heuristics from immutable policy, (6) SelfEvolve's gen/verify/integrate architecture separation.
+- *2026-08-10* — **I-3232 → S-2428 — The Three-Tier LLM Cache Stack — Composite 8.20**: Ideas Bank exhausted (all I-3231 and prior written). Fresh research: MyEngineeringPath "LLM Caching — Semantic Cache, KV Cache & Prompt Cache (2026)"; Redis blog "Prompt vs Semantic Caching"; Zhongpu Consulting Gist "LLM Cost Optimization Production Patterns 2026"; webhani "Token Budget Management for Production LLMs (2026-05-28)". Dedup: S-244 (Semantic Caching at Vector Layer) covers Tier 1 alone without the stacking architecture or provider prompt cache integration. S-1905 (Stale Cache Stall) covers KV cache eviction between steps — not the cascade strategy. S-464 (KV-Snapshot Sharing) covers KV cache forking in multi-agent — not the three-tier stacking. S-2404 (Budget Cliff) covers monitoring runaway costs — not the architectural pattern that prevents them. S-207 (Semantic Caching for Agents) covers application-layer semantic cache for agentic queries — not the three-tier stack. The new angle: unified cascade decision matrix across all three tiers, with explicit ordering logic and cross-tier invalidation. Composite score: Urgency 8 × 0.35 + Gap 8 × 0.25 + Specificity 9 × 0.20 + Timeliness 7 × 0.10 + Density 8 × 0.10 = 2.80 + 2.00 + 1.80 + 0.70 + 0.80 = 8.10.
