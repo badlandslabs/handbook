@@ -1,113 +1,14 @@
-Scan Date: 2026-08-07 06:13:08.591598-04:00
-======================================================================
-Fetching data...
-Fetched 40 stock tickers
+QQQ: price=721.27 20sma=700.82 50sma=714.04 200sma=N/A above200=N/A trend=DOWN 1d=-0.24% 5d=+3.03% 1m=-0.58% 52wh=747.83 52wl=661.14
+SPY: price=773.49 20sma=751.39 50sma=747.03 200sma=N/A above200=N/A trend=UP 1d=+0.03% 5d=+2.09% 1m=+2.46% 52wh=776.85 52wl=716.58
+IWM: price=300.11 20sma=295.10 50sma=293.88 200sma=N/A above200=N/A trend=UP 1d=-0.48% 5d=+1.31% 1m=+1.39% 52wh=303.06 52wl=269.99
+^VIX: price=15.19 20sma=17.07 50sma=17.26 200sma=N/A above200=N/A trend=DOWN 1d=+1.95% 5d=-4.22% 1m=+1.06% 52wh=23.34 52wl=14.77
+^TNX: price=4.69 20sma=4.64 50sma=4.54 200sma=N/A above200=N/A trend=UP 1d=+0.64% 5d=+0.09% 1m=+2.65% 52wh=4.75 52wl=4.36
+HYG: price=79.50 20sma=79.24 50sma=79.18 200sma=N/A above200=N/A trend=UP 1d=-0.13% 5d=+0.25% 1m=+0.23% 52wh=79.69 52wl=78.08
 
-======================================================================
-INDEX CONTEXT
-======================================================================
-  QQQ: $714.6500244140625 | RSI:57.3 | BULL | 5d:+4.5% | 20d:-1.2%
-    SMA20:700.46 SMA50:714.42 SMA200:nan
-  SPY: $768.5599975585938 | RSI:66.6 | BULL | 5d:+3.6% | 20d:+2.2%
-    SMA20:749.26 SMA50:746.12 SMA200:nan
-  IWM: $298.25 | RSI:55.6 | BULL | 5d:+1.9% | 20d:+0.3%
-    SMA20:294.49 SMA50:293.47 SMA200:nan
-
-======================================================================
-RANKED SCAN RESULTS
-======================================================================
-  GOOGL  Sc:11 $357.75 RSI: 54.4(N) ATR:3.9% SMA50:  +0.2% SMA200:  +nan% 5d:  +7.2% MACD:+
-  FTNT   Sc:11 $160.11 RSI: 48.1(N) ATR:4.5% SMA50:  +5.2% SMA200:  +nan% 5d:  +3.8% MACD:+
-  PANW   Sc:10 $359.49 RSI: 50.4(N) ATR:4.2% SMA50: +14.6% SMA200:  +nan% 5d: +10.4% MACD:+
-  MDLZ   Sc:10 $62.75 RSI: 57.2(N) ATR:2.8% SMA50:  +3.1% SMA200:  +nan% 5d:  -0.5% MACD:+
-  CMCSA  Sc:10 $25.17 RSI: 59.3(N) ATR:3.8% SMA50:  +6.6% SMA200:  +nan% 5d:  +6.3% MACD:+
-  AAPL   Sc: 9 $312.41 RSI: 36.4(OS) ATR:3.1% SMA50:  +0.9% SMA200:  +nan% 5d:  -6.3% MACD:-
-  AMZN   Sc: 9 $272.26 RSI: 63.1(OB) ATR:3.7% SMA50: +10.0% SMA200:  +nan% 5d: +15.6% MACD:+
-  MU     Sc: 9 $881.47 RSI: 52.4(N) ATR:9.6% SMA50:  -9.3% SMA200:  +nan% 5d:  +0.8% MACD:UP
-  AMAT   Sc: 9 $527.48 RSI: 49.7(N) ATR:7.1% SMA50:  -4.3% SMA200:  +nan% 5d:  +5.1% MACD:UP
-  NVDA   Sc: 8 $218.99 RSI: 63.1(OB) ATR:3.6% SMA50:  +6.4% SMA200:  +nan% 5d: +12.3% MACD:+
-  CRM    Sc: 8 $186.77 RSI: 60.3(OB) ATR:4.9% SMA50:  +8.8% SMA200:  +nan% 5d:  +3.4% MACD:+
-  ADBE   Sc: 8 $260.24 RSI: 61.0(OB) ATR:5.0% SMA50: +13.5% SMA200:  +nan% 5d:  +5.0% MACD:+
-  PAYX   Sc: 8 $120.13 RSI: 62.2(OB) ATR:3.3% SMA50: +14.3% SMA200:  +nan% 5d:  +3.3% MACD:+
-  TEAM   Sc: 8 $110.17 RSI: 62.4(OB) ATR:6.6% SMA50: +19.1% SMA200:  +nan% 5d: +12.3% MACD:+
-  QCOM   Sc: 7 $160.39 RSI: 41.1(N) ATR:4.8% SMA50: -16.9% SMA200:  +nan% 5d:  +5.8% MACD:UP
-  ADI    Sc: 7 $377.31 RSI: 51.1(N) ATR:3.6% SMA50:  -4.6% SMA200:  +nan% 5d:  +2.9% MACD:+
-  GFS    Sc: 7 $50.36 RSI: 35.2(OS) ATR:6.8% SMA50: -27.8% SMA200:  +nan% 5d:  +0.9% MACD:+
-  MSFT   Sc: 6 $499.86 RSI: 82.4(EX) ATR:3.6% SMA50: +23.3% SMA200:  +nan% 5d: +10.8% MACD:+
-  META   Sc: 6 $589.90 RSI: 32.7(OS) ATR:3.8% SMA50:  -1.8% SMA200:  +nan% 5d:  +9.4% MACD:-
-  AVGO   Sc: 6 $420.57 RSI: 73.6(EX) ATR:3.9% SMA50:  +6.6% SMA200:  +nan% 5d:  +8.4% MACD:+
-  INTU   Sc: 6 $321.91 RSI: 65.0(OB) ATR:4.8% SMA50: +10.7% SMA200:  +nan% 5d:  +2.0% MACD:+
-  LRCX   Sc: 6 $305.77 RSI: 47.9(N) ATR:8.1% SMA50:  -9.5% SMA200:  +nan% 5d:  +2.7% MACD:+
-  SNPS   Sc: 6 $405.98 RSI: 60.4(OB) ATR:3.4% SMA50:  -7.1% SMA200:  +nan% 5d:  +9.0% MACD:+
-  CDNS   Sc: 6 $338.42 RSI: 54.9(N) ATR:4.0% SMA50:  -8.3% SMA200:  +nan% 5d:  +1.7% MACD:+
-  MRVL   Sc: 6 $210.54 RSI: 58.2(N) ATR:8.2% SMA50: -12.4% SMA200:  +nan% 5d: +14.9% MACD:+
-  CSCO   Sc: 6 $120.88 RSI: 72.8(EX) ATR:3.0% SMA50:  +2.8% SMA200:  +nan% 5d:  +6.4% MACD:+
-  FAST   Sc: 6 $50.80 RSI: 78.1(EX) ATR:2.4% SMA50:  +9.5% SMA200:  +nan% 5d:  +8.9% MACD:+
-  ORLY   Sc: 6 $93.37 RSI: 66.8(OB) ATR:3.0% SMA50:  +5.7% SMA200:  +nan% 5d:  +6.9% MACD:+
-  ROST   Sc: 6 $254.31 RSI: 76.6(EX) ATR:2.0% SMA50:  +9.9% SMA200:  +nan% 5d:  +0.7% MACD:+
-  AMD    Sc: 4 $489.28 RSI: 49.0(N) ATR:8.2% SMA50:  -4.9% SMA200:  +nan% 5d:  +0.8% MACD:-
-  NFLX   Sc: 4 $73.69 RSI: 68.8(OB) ATR:3.0% SMA50:  -3.0% SMA200:  +nan% 5d:  +0.7% MACD:+
-  TXN    Sc: 4 $278.40 RSI: 47.0(N) ATR:4.2% SMA50:  -5.4% SMA200:  +nan% 5d:  +0.4% MACD:-
-  ON     Sc: 4 $78.33 RSI: 38.1(OS) ATR:6.3% SMA50: -23.4% SMA200:  +nan% 5d:  -6.5% MACD:-
-  TSLA   Sc: 3 $319.53 RSI: 27.8(OS) ATR:4.7% SMA50: -16.5% SMA200:  +nan% 5d:  +3.5% MACD:-
-  ORCL   Sc: 3 $143.47 RSI: 64.2(OB) ATR:5.1% SMA50: -10.8% SMA200:  +nan% 5d: +12.5% MACD:+
-  MAR    Sc: 3 $359.67 RSI: 46.1(N) ATR:2.8% SMA50:  -4.7% SMA200:  +nan% 5d:  -4.2% MACD:-
-  MELI   Sc: 3 $1830.00 RSI: 52.6(N) ATR:3.1% SMA50:  +4.9% SMA200:  +nan% 5d:  -3.0% MACD:DN
-  DDOG   Sc: 3 $229.29 RSI: 38.6(OS) ATR:6.9% SMA50:  -7.9% SMA200:  +nan% 5d: -14.6% MACD:DN
-  KLAC   Sc: 2 $193.22 RSI: 40.1(N) ATR:6.8% SMA50: -12.7% SMA200:  +nan% 5d:  +7.1% MACD:-
-  NXPI   Sc: 2 $231.78 RSI: 31.9(OS) ATR:5.3% SMA50: -18.4% SMA200:  +nan% 5d:  -5.5% MACD:-
-
-======================================================================
-TOP 3 SWING SETUPS — FULL ANALYSIS
-======================================================================
-
-=================================================================
-  #1 GOOGL  |  Score: 11  |  $357.75
-=================================================================
-  KEY LEVELS:
-    SMA20: $348.91 | SMA50: $357.16 | SMA200: $nan
-    EMA20: $352.16
-    20d Range: $314.90 – $384.48 | Pullback: -7.0% from 20d high
-    60d Swing: $314.90 – $408.37 (29.7% range)
-  MOMENTUM:
-    RSI(14): 54.4 → NEUTRAL
-    MACD: hist=3.7352 | BULLISH | STABLE
-    Momentum: 5d +7.2% | 10d +12.6% | 20d -0.3%
-  STRUCTURE:
-    ATR(14): $13.78 (3.9% of price)
-    Volume: 0.8x avg | Vol trend: 1.10
-    Active: >SMA50 | >SMA20 | >EMA20 | MACD_POS
-
-=================================================================
-  #2 FTNT  |  Score: 11  |  $160.11000061035156
-=================================================================
-  KEY LEVELS:
-    SMA20: $158.84 | SMA50: $152.24 | SMA200: $nan
-    EMA20: $158.16
-    20d Range: $143.77 – $172.09 | Pullback: -7.0% from 20d high
-    60d Swing: $112.71 – $172.09 (52.7% range)
-  MOMENTUM:
-    RSI(14): 48.1 → NEUTRAL
-    MACD: hist=0.0947 | BULLISH | STABLE
-    Momentum: 5d +3.8% | 10d +5.7% | 20d -2.2%
-  STRUCTURE:
-    ATR(14): $7.16 (4.5% of price)
-    Volume: 0.9x avg | Vol trend: 1.42
-    Active: >SMA50 | >SMA20 | >EMA20 | MACD_POS
-
-=================================================================
-  #3 PANW  |  Score: 10  |  $359.489990234375
-=================================================================
-  KEY LEVELS:
-    SMA20: $339.74 | SMA50: $313.64 | SMA200: $nan
-    EMA20: $337.82
-    20d Range: $308.54 – $376.98 | Pullback: -4.6% from 20d high
-    60d Swing: $210.77 – $376.98 (78.9% range)
-  MOMENTUM:
-    RSI(14): 50.4 → NEUTRAL
-    MACD: hist=1.2068 | BULLISH | STABLE
-    Momentum: 5d +10.4% | 10d +10.4% | 20d +6.3%
-  STRUCTURE:
-    ATR(14): $15.02 (4.2% of price)
-    Volume: 0.9x avg | Vol trend: 1.01
-    Active: >SMA50 | >SMA20 | >EMA20 | MACD_POS
+--- NASDAQ 100 TOP COMPONENTS ---
+CDNS: price=338.80 20sma=341.53 50sma=367.68 above200=N/A trend=DOWN 1d=-0.13% 5d=+0.79% 1m=-11.81% 52wpos=19% volratio=0.1x atr=12.61(3.7%)
+ADSK: price=254.43 20sma=226.67 50sma=216.22 above200=N/A trend=UP 1d=+2.15% 5d=+8.40% 1m=+22.06% 52wpos=100% volratio=0.1x atr=10.13(4.0%)
+QCOM: price=163.48 20sma=165.37 50sma=190.12 above200=N/A trend=DOWN 1d=-2.61% 5d=+7.86% 1m=-13.58% 52wpos=18% volratio=0.3x atr=7.75(4.7%)
+TXN: price=281.27 20sma=282.78 50sma=292.96 above200=N/A trend=DOWN 1d=-1.68% 5d=+4.55% 1m=-9.23% 52wpos=24% volratio=0.1x atr=11.24(4.0%)
+NXPI: price=233.93 20sma=255.31 50sma=280.20 above200=N/A trend=DOWN 1d=-2.41% 5d=+4.35% 1m=-19.96% 52wpos=13% volratio=0.2x atr=12.04(5.1%)
+INTC: price=97.88 20sma=96.69 50sma=110.19 above200=N/A trend=DOWN 1d=-3.71% 5d=+7.56% 1m=-10.89% 52wpos=27% volratio=0.4x atr=7.42(7.6%)
