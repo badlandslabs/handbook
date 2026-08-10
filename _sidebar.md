@@ -1101,3 +1101,5 @@
   - [S-2424 · The Agent Offboarding Stack](stacks/s2424-the-agent-offboarding-stack-when-your-agent-dies-and-its-credentials-live-forever.md)
   - [S-2425 · The Metacognitive Failure Stack](stacks/s2425-the-metacognitive-failure-stack-when-blind-retries-repeat-the-same-mistake.md)
   - [S-2426 · The Sleeper Memory Poisoning Stack](stacks/s2426-the-sleeper-memory-poisoning-stack-when-your-agent-remembers-a-conversation-that-never-happened.md)
+  - [S-2428 · The Three-Tier LLM Cache Stack](stacks/s2428-the-three-tier-llm-cache-stack-when-your-llm-api-bill-is-3x-what-it-needs-to-be.md)
+  - [S-2430 · The Inter-Agent Handoff Stack](stacks/s2430-the-inter-agent-handoff-stack-when-your-agent-hands-off-and-nobody-answers.md)

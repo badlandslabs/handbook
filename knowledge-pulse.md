@@ -5907,6 +5907,7 @@ arxiv-2605.15338v2 → I-3231
 pulipaka-hlebik → I-3231
 
 | I-3233 | The Self-Modifying Agent Stack — When Your Agent Improves Itself and You Can't Tell If That's Good | self-modifying-agent, self-improvement, runtime-code-gen, self-extension, self-evol, DGM, Darwin-Godel-Machine, SICA, SelfEvolve, SEAMS-2026, evaluation-gaming, eval-harness-poison, modification-scope, self-patch, self-healing, autonomous-improvement, agentic-loop, meta-agent, tool-mutation, prompt-refinement, runtime-extension, capability-drift, tianpan-2026, arxiv-2604.16314 | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2429 | 2026-08-10 | 2026-08-10 |
+| I-3234 | The Inter-Agent Handoff Stack — When Your Agent Hands Off and Nobody Answers | inter-agent-handoff, handoff-contract, handoff-acknowledgment, A2A-handoff, task-delegation, semantic-handoff, handoff-confirmation, two-phase-commit, artifact-lineage, handoff-relevance-score, cascade-timeout, receiver-backoff, agent-delegation, handoff-failure, MAST-handoff, context-pollution-cross-agent, artifact-relevance, inter-agent-contract | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2430 | 2026-08-10 | 2026-08-10 |
 
 self-modifying-agent → I-3233
 self-improvement → I-3233
@@ -5957,9 +5958,30 @@ application-semantic-cache → I-3232
 runtime-kv-cache → I-3232
 cache_hit_matrix → I-3232
 
+handoff-ref → I-3234
+handoff-contract → I-3234
+handoff-acknowledgment → I-3234
+A2A-handoff → I-3234
+task-delegation → I-3234
+semantic-handoff → I-3234
+handoff-confirmation → I-3234
+two-phase-commit → I-3234
+artifact-lineage → I-3234
+handoff-relevance-score → I-3234
+cascade-timeout → I-3234
+receiver-backoff → I-3234
+agent-delegation → I-3234
+handoff-failure → I-3234
+MAST-handoff → I-3234
+context-pollution-cross-agent → I-3234
+artifact-relevance → I-3234
+inter-agent-contract → I-3234
+
 ## Pattern Log
 - *2026-08-10* — **Cache layering compounds nonlinearly**: Each cache tier operates at a different abstraction level (application, provider, runtime). When orchestrated correctly, the combined savings (60–80%) exceed the sum of individual tier savings because each tier filters requests that would hit the next — cascading from cheapest to most expensive. The anti-pattern is treating each cache as independent and missing the cascade order.
+- *2026-08-10* — **Handoff integrity ≠ delivery integrity**: The most dangerous multi-agent failure is not a dropped message but a semantic mismatch — the payload arrives (HTTP 200) but the receiver has no context to act on it meaningfully. MAST taxonomy (NeurIPS 2025) confirms handoff failures break 80% of production AI pipelines. The fix is a two-phase handoff (propose → acknowledge → start) with structured contracts that echo problem statement and acceptance criteria back to the sender before work begins.
 
 ## Recent Decisions
+- *2026-08-10* — **I-3234 → S-2430 — The Inter-Agent Handoff Stack — Composite 9.00**: Tracker exhausted (all I-3233 prior ideas WRITTEN or DUPLICATE). Fresh research: Atlan "Multi-Agent Debugging: 7 Failure Modes" (Jul 24, 2026, citing MAST/Cemri NeurIPS 2025, 41-86.7% MAS failure rate, handoff failures break 80% of pipelines); beam.ai "6 Multi-Agent Orchestration Patterns" (Aug 10, 2026, 40% multi-agent pilot failure within 6 months); Google A2A year-one retrospective (Jun 18, 2026); baeseokjae "MCP vs A2A 2026" (Apr 18, 2026); Zylos "Agent Interoperability Protocols 2026" (Mar 26, 2026). Dedup: S-1946 (MAST) covers failure taxonomy not prevention patterns. S-14 (A2A Protocol) covers discovery/task lifecycle not handoff contracts. S-918 (A2A Trust Gap) covers security not delegation semantics. S-2095 (Context Drift) covers single-agent drift not cross-agent pollution. S-357 (Long-Running Orchestration) covers temporal layers not handoff contracts. The gap: nobody documents how to prevent handoff failure — this entry fills it.
 - *2026-08-10* — **I-3233 → S-2429 — The Self-Modifying Agent Stack — Composite 9.15**: Tracker exhausted (I-3231/I-3232 written today; all prior 3231 ideas WRITTEN or DUPLICATE). Fresh research: tianpan.co "Self-Modifying Agent Horizon" (April 10, 2026) covers DGM (Darwin Gödel Machine — 2.8× SWE-bench Lite improvement via evolutionary tool mutation), SICA (meta-agent prompt refinement), and SelfEvolve (SEAMS 2026, arXiv:2604.16314 — 11/11 successful runtime self-extensions). Cockroach Labs (June 10, 2026): agentic workflows consume 5–30× more tokens than chatbots, inference is ~20% of total TCO; Uber CTO: Claude Code adoption jumped 32%→84% of engineers, budget "blown away." Dedup: S-1028 (Synthetic Trajectory Degeneration) covers recursive fine-tuning narrowing capability — different mechanism from runtime self-modification. S-1326 (Library Drift) covers skill installation causing slow degradation — this covers the agent modifying its own code mid-flight, a fundamentally different failure mode where the evaluator is itself writable. No existing entry covers the specific failure mode where an agent modifies its own evaluation harness or scoring criteria — the most dangerous variant where self-improvement and metric gaming become observationally identical. Core pattern: the evaluation boundary must be architecturally impermeable to the agent, not just permission-gated. Six-point move: (1) isolate eval boundary, (2) tier modification scope, (3) version every modification with rollback, (4) read-before-apply gate, (5) separate learned heuristics from immutable policy, (6) SelfEvolve's gen/verify/integrate architecture separation.
 - *2026-08-10* — **I-3232 → S-2428 — The Three-Tier LLM Cache Stack — Composite 8.20**: Ideas Bank exhausted (all I-3231 and prior written). Fresh research: MyEngineeringPath "LLM Caching — Semantic Cache, KV Cache & Prompt Cache (2026)"; Redis blog "Prompt vs Semantic Caching"; Zhongpu Consulting Gist "LLM Cost Optimization Production Patterns 2026"; webhani "Token Budget Management for Production LLMs (2026-05-28)". Dedup: S-244 (Semantic Caching at Vector Layer) covers Tier 1 alone without the stacking architecture or provider prompt cache integration. S-1905 (Stale Cache Stall) covers KV cache eviction between steps — not the cascade strategy. S-464 (KV-Snapshot Sharing) covers KV cache forking in multi-agent — not the three-tier stacking. S-2404 (Budget Cliff) covers monitoring runaway costs — not the architectural pattern that prevents them. S-207 (Semantic Caching for Agents) covers application-layer semantic cache for agentic queries — not the three-tier stack. The new angle: unified cascade decision matrix across all three tiers, with explicit ordering logic and cross-tier invalidation. Composite score: Urgency 8 × 0.35 + Gap 8 × 0.25 + Specificity 9 × 0.20 + Timeliness 7 × 0.10 + Density 8 × 0.10 = 2.80 + 2.00 + 1.80 + 0.70 + 0.80 = 8.10.
