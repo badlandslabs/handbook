@@ -1084,3 +1084,6 @@
   - [S-2401 · The Production Blindness Stack](stacks/s2401-the-production-blindness-stack-when-standard-evals-miss-half-your-critical-failures.md)
   - [S-2402 · The Tool Shaping Stack](stacks/s2402-the-tool-shaping-stack-when-your-agent-has-a-hundred-tools-and-uses-none-of-them.md)
   - [S-2403 · The Simulation Fidelity Trap](stacks/s2403-the-simulation-fidelity-trap-when-your-staging-environment-lies-to-you.md)
+  - [S-2404 · The Budget Cliff Stack](stacks/s2404-the-budget-cliff-stack-when-your-agent-spends-more-while-youre-not-watching.md)
+  - [S-2406 · The Orchestration Success Signal](stacks/s2406-the-orchestration-success-signal-when-your-sub-agent-returns-but-nothing-happened.md)
+  - [S-2407 · The Trajectory Confidence Gap](stacks/s2407-the-trajectory-confidence-gap-when-your-agent-says-it's-confident-and-is-wrong.md)

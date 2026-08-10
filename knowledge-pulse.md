@@ -5684,7 +5684,26 @@ berkeley-agent-eval → I-3217
 eval-noise-ratio → I-3217
 production-divergence → I-3217
 
+| I-3218 | The Orchestration Success Signal Stack — When Your Sub-Agent Returns But Nothing Happened | orchestrator-success-signal, effect-gap, missing-action, sub-agent-complete, span-level-blind, outcome-gate, effect-verification, effect-required, side-effect-confirm, action-annotated, MAST, ICPE-2026, 3777911.3801104, tessary-orchestration, silent-failure-orchestration, write-step, model-call-tool-gap, orchestration-paradox | 10 | 10 | 10 | 9 | 9 | **9.70** | WRITTEN — S-2406 | 2026-08-10 | 2026-08-10 |
+
+effect-gap → I-3218
+orchestrator-success-signal → I-3218
+missing-action → I-3218
+sub-agent-complete → I-3218
+span-level-blind → I-3218
+outcome-gate → I-3218
+effect-verification → I-3218
+effect-required → I-3218
+side-effect-confirm → I-3218
+action-annotated → I-3218
+tessary-orchestration → I-3218
+write-step → I-3218
+model-call-tool-gap → I-3218
+ICPE-2026 → I-3218
+3777911.3801104 → I-3218
+
 ## Recent Decisions
+- *2026-08-10* — **I-3218 → S-2406 — The Orchestration Success Signal Stack — Composite 9.70**: Tracker scan: 39 non-WRITTEN entries, most are pattern/description fragments, not standalone ideas. Dedup: I-034 (Outcome Delivery Verification) covers post-run confirmation of side effects, but from a cron/timer perspective; this covers the in-flight orchestrator success criterion being structurally wrong. I-039 (Confident False Success) covers agent self-assessment failure; this covers orchestrator assessment failure. I-1023 (Recovery Ladder) covers semantic gap between agent report and reality; this covers the orchestrator blindly believing call-return = success. I-1066 (Invisible Failure) covers monitoring blind spots; this covers the specific architectural mechanism. I-1325 (Agent Handoff) covers baton-pass failures; this covers the step-internal "did the tool run" failure. I-1639 (Canonical Action Gap) covers multi-runtime action attribution; this covers single-step effect verification. Fresh research: Tessary.ai (June 21, 2026, updated July 31, 2026) documents orchestrator success signal problem from MAST taxonomy (1,642 annotated traces, 7 frameworks, 14–31% effect gap rate). IBM Research ICPE '26 paper (DOI: 10.1145/3777911.3801104, May 3, 2026, 252 downloads, 28% acceptance) provides first systematic study of silent failure detection in multi-agent trajectories. Core insight: orchestrator success = call-return is the wrong abstraction; orchestrator success must be defined at the effect level, not the call level. Pattern name: "Effect-Gate Orchestration". This is distinct from outcome-verification (I-034) because it operates at sub-agent granularity, not session granularity, and requires explicit effect declarations at the task definition level.
 - *2026-08-09* — **I-3216 → S-2401 — The Production Blindness Stack — Composite 8.90**: Fresh research: arXiv:2605.01604 (Pandey, May 2026, CC BY 4.0) empirically demonstrates that standard benchmarks (HELM, MT-Bench, AgentBench, BIG-bench) miss 4 of 7 production failure modes entirely and detect the other 3 with multi-cycle lag. Novel contributions: FM-2 (availability-truth decoupling — graceful tool degradation produces schema-valid stale data, no error signal), FM-4 (cross-entry-point consistency collapse — identical semantic requests yield different decisions through API vs UI), FM-5 (explanation-decision decoupling — plausible explanations that don't match actual decision logic), FM-6 (oracle dependency — no ground truth for long-horizon tasks makes evaluation circular), FM-7 (proxy goal convergence — Goodhart's Law in production, agents gaming aggregate metrics). PAEF (Production Agentic Evaluation Framework) provides 5-dim continuous evaluation: Task Completion Rate, Decision Chain Fidelity, Output Freshness & Validity, Cohort Equity, Behavioral Stability. github.com/mukund1985/llm-eval-toolkit. Deduplication: S-1062 covers FM-1, FM-3, and drift detection (not FM-2/4/5/6/7 or PAEF framework); S-1026 mentions PAEF acronym in NIST context; S-2385 covers benchmark contamination; S-1005 covers AI SRE and outcome measurement. None cover the 7-mode taxonomy + PAEF as a unified evaluation architecture grounded at billion-event scale.fore it enters the LLM context window.
 
 
@@ -5692,3 +5711,65 @@ production-divergence → I-3217
 
 - *2026-08-09* — **I-3217 → S-2403 — The Simulation Fidelity Trap — Composite 8.80**: New research from tianpan.co (April 2026) + reinsights.reinventing.ai (Berkeley-sourced agent eval patterns, 2026): staging environments solve the wrong problem for agents. Structural fidelity (matching schemas/APIs) is achievable and done well. Behavioral fidelity (how the system responds under real conditions — edge inputs, partial data, state divergence) is structurally invisible to staging. The null-agent baseline check from Berkeley: if a null agent scores above zero, the eval has a bug; if a random agent scores close to your agent, the eval has more noise than signal. The eval-noise-ratio metric quantifies this. Four dimensions of fidelity: structural, behavioral, temporal, stateful. Failure modes: truncated responses, malformed fields, empty results, rate limiting, stale caches, timeouts — all invisible to staging but common in production. Alternatives considered: Environment-Free Synthetic Data (arXiv:2607.16900, Apple ML, July 2026 — scored 7.75, narrower applicability, overlaps with S-1028 and S-3210). Pattern: staging optimizes for not crashing, not for honesty — a form of measurement-distortion (Goodhart's Law in eval infrastructure).
 
+
+| I-3219 | The Trajectory Confidence Gap Stack — When Your Agent Says It's Confident and Is Wrong | trajectory-confidence, confidence-calibration, agentic-confidence, overconfidence, blast-radius-gating, trajectory-calibration, consequence-tier, review-depth, HTC, null-baseline, calibration-gap, model-confidence, arxiv-2601.15778, saleforces-ai, agentic-calibration, grounding-ratio, tool-variance, step-entropy, calibration-brier, JetBrains-2026, devos-2026, 15x-penalty | 10 | 10 | 9 | 9 | 8 | **9.25** | WRITTEN — S-2407 | 2026-08-10 | 2026-08-10 |
+
+trajectory-confidence → I-3219
+trajectory-calibration → I-3219
+confidence-calibration → I-3219
+agentic-confidence → I-3219
+overconfidence → I-3219
+blast-radius-gating → I-3219
+consequence-tier → I-3219
+review-depth → I-3219
+HTC → I-3219
+null-baseline → I-3219
+calibration-gap → I-3219
+model-confidence → I-3219
+arxiv-2601.15778 → I-3219
+saleforces-ai → I-3219
+agentic-calibration → I-3219
+grounding-ratio → I-3219
+tool-variance → I-3219
+step-entropy → I-3219
+calibration-brier → I-3219
+JetBrains-2026 → I-3219
+devos-2026 → I-3219
+15x-penalty → I-3219
+
+## Recent Decisions
+- *2026-08-10* — **I-3219 → S-2407 — The Trajectory Confidence Gap Stack — Composite 9.25**: Tracker exhausted (I-3218 written today). Fresh research: arXiv 2601.15778 "Agentic Confidence Calibration" (Zhang et al., Salesforce AI Research, 2026) formally defines trajectory-level calibration as distinct from single-turn calibration — Holistic Trajectory Calibration (HTC) extracts process-level features from full trajectories. JetBrains 2026: AI logic errors 2.3x more common than human errors. DevOS Team (2026): agent PR substantial rework 23% vs. 15% human; combined penalty ~15x. Dedup: S-53 (Confidence Calibration) covers single-call model calibration with logprob/routing — not trajectory-level calibration. S-2406 (Orchestration Success Signal) covers orchestrator believing call-return = success — not the agent's own confidence calibration failure. S-375 (Prompt Injection Defense-in-Depth) covers privilege separation for high-consequence actions — not the confidence mechanism itself. F-97 (Output Field Confidence Annotation) notes model self-confidence is poorly calibrated and must be run externally — confirms the problem, doesn't cover the trajectory-level calibration stack. Core insight: agent confidence is inversely correlated with consequence size; the actions agents are most confident about often have the largest blast radius. The fix: consequence-tier classification → trajectory calibration tracking → null baseline probes → blast-radius-gated review routing.
+
+## Pattern Log
+- *2026-08-10* — **Trajectory Confidence Inversion: Confidence Is Not a Reliability Signal for Agents**: arXiv 2601.15778 (Zhang et al., Salesforce AI Research) confirms: per-call logprob and verbalized confidence measure the model's uncertainty about the next token, not whether the accumulated plan is sound, tool calls were correct, or outputs are grounded. RLHF and SFT on agent trajectories reinforce confident-sounding output regardless of actual correctness — agents are most confident precisely when most wrong. JetBrains 2026: AI logic errors are 2.3x more common than human errors, and the combined penalty is ~15x (6.5x escape cost × 2.3x frequency). The architectural fix is the consequence-tier-gated review pattern: classify blast radius at step planning time (TIER_A = irreversible, TIER_B = moderate, TIER_C = low), track trajectory-level calibration metrics (step entropy, null baseline divergence, grounding ratio), then route human review depth proportional to blast_radius × calibration_gap. The inversion principle: review the calibration model, not the output — use it to gate attention where the agent's self-assessment is most unreliable.
+
+| I-3219 | The Trajectory Confidence Gap Stack — When Your Agent Says It's Confident and Is Wrong | trajectory-confidence, confidence-calibration, agentic-confidence, overconfidence, blast-radius-gating, trajectory-calibration, consequence-tier, review-depth, HTC, null-baseline, calibration-gap, model-confidence, arxiv-2601.15778, saleforces-ai, agentic-calibration, grounding-ratio, tool-variance, step-entropy, calibration-brier, JetBrains-2026, devos-2026, 15x-penalty | 10 | 10 | 9 | 9 | 8 | **9.25** | WRITTEN — S-2407 | 2026-08-10 | 2026-08-10 |
+
+trajectory-confidence → I-3219
+trajectory-calibration → I-3219
+confidence-calibration → I-3219
+agentic-confidence → I-3219
+overconfidence → I-3219
+blast-radius-gating → I-3219
+consequence-tier → I-3219
+review-depth → I-3219
+HTC → I-3219
+null-baseline → I-3219
+calibration-gap → I-3219
+model-confidence → I-3219
+arxiv-2601.15778 → I-3219
+saleforces-ai → I-3219
+agentic-calibration → I-3219
+grounding-ratio → I-3219
+tool-variance → I-3219
+step-entropy → I-3219
+calibration-brier → I-3219
+JetBrains-2026 → I-3219
+devos-2026 → I-3219
+15x-penalty → I-3219
+
+## Recent Decisions
+- *2026-08-10* — **I-3219 → S-2407 — The Trajectory Confidence Gap Stack — Composite 9.25**: Tracker exhausted (I-3218 written today). Fresh research: arXiv 2601.15778 "Agentic Confidence Calibration" (Zhang et al., Salesforce AI Research, 2026) formally defines trajectory-level calibration as distinct from single-turn calibration — Holistic Trajectory Calibration (HTC) extracts process-level features from full trajectories. JetBrains 2026: AI logic errors 2.3x more common than human errors. DevOS Team (2026): agent PR substantial rework 23% vs. 15% human; combined penalty ~15x. Dedup: S-53 (Confidence Calibration) covers single-call model calibration with logprob/routing — not trajectory-level calibration. S-2406 (Orchestration Success Signal) covers orchestrator believing call-return = success — not the agent's own confidence calibration failure. S-375 (Prompt Injection Defense-in-Depth) covers privilege separation for high-consequence actions — not the confidence mechanism itself. F-97 (Output Field Confidence Annotation) notes model self-confidence is poorly calibrated and must be run externally — confirms the problem, does not cover the trajectory-level calibration stack. Core insight: agent confidence is inversely correlated with consequence size; the actions agents are most confident about often have the largest blast radius. The fix: consequence-tier classification at step planning time, trajectory calibration tracking, null baseline probes, blast-radius-gated review routing.
+
+## Pattern Log
+- *2026-08-10* — **Trajectory Confidence Inversion: Confidence Is Not a Reliability Signal for Agents**: arXiv 2601.15778 (Zhang et al., Salesforce AI Research) confirms: per-call logprob and verbalized confidence measure the model's uncertainty about the next token, not whether the accumulated plan is sound, tool calls were correct, or outputs are grounded. RLHF and SFT on agent trajectories reinforce confident-sounding output regardless of actual correctness — agents are most confident precisely when most wrong. JetBrains 2026: AI logic errors are 2.3x more common than human errors, and the combined penalty is ~15x (6.5x escape cost times 2.3x frequency). The architectural fix is the consequence-tier-gated review pattern: classify blast radius at step planning time (TIER_A = irreversible, TIER_B = moderate, TIER_C = low), track trajectory-level calibration metrics (step entropy, null baseline divergence, grounding ratio), then route human review depth proportional to blast_radius times calibration_gap. The inversion principle: review the calibration model, not the output — use it to gate attention where the agent's self-assessment is most unreliable.
