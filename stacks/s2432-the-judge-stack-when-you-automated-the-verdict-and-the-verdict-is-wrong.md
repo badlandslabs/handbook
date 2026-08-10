@@ -1,0 +1,39 @@
+# S-2432 · The Judge Stack — When You Automated the Verdict and the Verdict Is Wrong
+
+You can't write a test for "did the agent handle this customerRefund scenario correctly." The output space is too large, the ground truth is ambiguous, and your team has 40 scenarios with no labels. So you wire up an LLM-as-judge, point it at your eval set, and ship on the green build. The judge says 94%. Six months later you're hearing from customers that the agent has been escalating refund disputes it should have resolved autonomously. The judge was wrong. The judge is always confident. That's the problem.
+
+## Forces
+
+- **Ground truth doesn't exist at scale.** For most agent tasks — "did the support agent respond empathetically," "did the planner use the right tools" — there is no ground truth label. You can't build a regression test without one, so teams reach for an LLM to supply one.
+- **Automated judges are better than nothing but fragile as hell.** An LLM judge can score open-ended outputs consistently, catch regressions in CI, and run on thousands of examples. It can also be systematically biased toward verbose responses, higher scores for longer outputs, and agreement with the model being judged.
+- **The judge is downstream of your prompt.** Changing the agent's system prompt changes the judge's verdicts even when nothing else changes. Teams discover this the hard way after a release causes a spike in "improved" scores that turn out to be judge's opinion shifting.
+- **Calibration drift is silent.** A judge trained on one distribution of outputs degrades as the agent improves or changes distribution. Without human anchor points, you don't know when the judge stopped correlating with human judgment.
+- **Eval quality compounds faster than eval quantity.** Running 500 noisy evals produces less signal than 50 well-curated ones with human-calibrated anchors.
+
+## The move
+
+Build a judge stack that treats the LLM judge as a *noisy signal* to be bounded, not a verdict to be trusted. Use it to find regressions and flag anomalies, then route ambiguous cases to human review. Anchor the judge continuously with deterministic scorers and human-calibrated exemplars.
+
+### Specifics
+
+- **Pair the judge with deterministic scorers for anything measurable.** For tool-calling agents, measure tool-selection accuracy directly: did the agent invoke the correct tool, with correct arguments, in the correct order? That's a deterministic check, not a judgment call. Only let the judge handle the fuzzy parts — response tone, reasoning coherence, output format quality.
+- **Build a golden anchor set of 20–50 human-labeled exemplars.** Hand-label these yourself (or with your domain expert). These are fixed reference points for judge calibration. Run every judge change against the anchor set and measure Spearman correlation with human labels. Reject judge changes that drop below 0.7 correlation.
+- **Route by confidence, not binary pass/fail.** Instead of "judge says 85%, ship it," classify outputs into three buckets: high-confidence pass (>90% judge agreement with clear reasoning), high-confidence fail (<10% agreement), and ambiguous middle. Only the middle bucket goes to human review. This scales human review to the cases that actually need it.
+- **Use CI regression gates with score deltas, not absolutes.** A drop from 94% to 92% on the judge doesn't mean the agent got worse — it means the judge's opinion shifted. Gate on *delta from baseline* for the same judge, not on absolute scores. Measure the baseline on every commit and alert on statistically significant regressions.
+- **Log judge reasoning, not just scores.** The justification the judge provides is more valuable than the score. Patterns in judge reasoning reveal failure modes the score alone misses — a 70% score with reasoning citing "wrong tool" is actionable in a way that a 70% score without reasoning is not.
+- **Contextualize cost-per-eval in the flywheel.** Token consumption compounds in multi-turn agent evaluation because early messages get re-sent on every subsequent call. Track cost per passing eval as a first-class metric. Teams that run hundreds of judge evals per day on long-context agents find that eval cost rivals model inference cost.
+
+## Evidence
+
+- **Amazon AI Agents evaluation blog (Feb 2026):** Amazon's production evaluation framework evaluates four dimensions independently: tool-selection accuracy, reasoning coherence, memory retrieval quality, and task completion. Critically, they treat these as separate signal dimensions — a high task-completion rate doesn't compensate for poor tool-selection accuracy. They use trace files as evaluation inputs and run automated scoring against ground truth definitions. — [aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons](https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon/)
+- **BigData Boutique — "LLM Evaluation in Production" (May 2026):** Defines a layered evaluation system: offline regression suites (golden datasets, deterministic scorers, CI gates), online/shadow evaluation (production traffic sampling), and human calibration anchors. Argues that framework selection (DeepEval vs. Ragas vs. LangSmith vs. Braintrust) is downstream of this architecture decision. Notes that LLM-as-judge scores drift with model version and prompt changes — treat the judge as a noisy sensor, not an oracle. — [bigdataboutique.com/blog/llm-evaluation-frameworks-metrics-best-practices](https://bigdataboutique.com/blog/llm-evaluation-frameworks-metrics-best-practices)
+- **Hacker News discussion — "Why eval startups fail" (2025):** Practitioner comments corroborate the golden dataset approach: the Pragmatic Engineer newsletter (2025) is cited as the best starting point for teams new to systematic evals, covering how LLM non-determinism breaks traditional testing. The HN thread discusses Google's "Methodical Approach to Agent Evaluation" (Nov 2025) as a canonical reference for structured eval design. — [news.ycombinator.com/item?id=48637868](https://news.ycombinator.com/item?id=48637868)
+- **GitHub — jbelnick/llm-judge-evals:** Open-source eval harness demonstrating the pattern of combining a hand-labeled golden dataset with deterministic fidelity scorers plus an LLM judge, all gated in CI. Demonstrates the guard-against-judge-wrongness principle: deterministic scorers catch cases where the judge is biased or drifts. — [github.com/jbelnick/llm-judge-evals](https://github.com/jbelnick/llm-judge-evals)
+- **LangSmith production guide:** Emphasizes converting production traces into regression datasets — "turn a problematic trace identified in production to a dataset with a single click, and that dataset becomes the ground truth for regression testing." — [langchain.com/resources/llm-evals](https://www.langchain.com/resources/llm-evals)
+
+## Gotchas
+
+- **Judge agreement with itself is not judge accuracy.** A judge that gives consistent scores is not necessarily scoring correctly. Measure correlation with human judgment, not just inter-run consistency.
+- **Longer outputs score higher by default.** Most LLM judges have a positive length bias. If your agent starts producing more verbose responses, judge scores inflate even when quality is flat — so always compare a length-controlled baseline.
+- **Judging the judge is a full-time job.** Without a dedicated process to monitor judge drift and re-calibrate against new human anchors, the judge silently degrades. Budget for this like you budget for monitoring the agent itself.
+- **Framework choice is downstream of architecture.** Teams that pick DeepEval or Braintrust first and then design their eval system around the framework's constraints end up with metric shapes that don't match their actual failure modes. Define what you need to measure first, then pick the tool that measures it.
