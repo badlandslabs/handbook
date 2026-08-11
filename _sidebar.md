@@ -1127,3 +1127,7 @@
   - [S-2466 · The MCP Protocol Trust Stack](stacks/s2466-the-mcp-protocol-trust-stack-when-the-protocol-assumes-your-server-is-honest.md)
   - [S-2468 · The Look-Don't-Pick Stack](stacks/s2468-the-look-dont-pick-stack-when-your-agent-knows-the-right-tool-but-picks-the-wrong-one.md)
   - [S-2470 · The A2A Protocol Trust Stack](stacks/s2470-the-a2a-protocol-trust-stack-when-the-protocol-authenticates-the-session-but-not-the-agent.md)
+  - [S-2474 · The Concurrent Write Stack](stacks/s2474-the-concurrent-write-stack-when-two-agents-succeed-and-one-writers-work-vanishes.md)
+  - [S-2477 · The Action Threshold Failure Stack](stacks/s2477-the-action-threshold-failure-stack-when-your-agent-knows-what-to-do-but-doesnt-do-it.md)
+  - [S-2478 · The Defense-in-Depth Guardrail Stack](stacks/s2478-the-defense-in-depth-guardrail-stack-when-six-layers-isnt-one-layer-either.md)
+  - [S-2479 · The Cascade Radius Stack](stacks/s2479-the-cascade-radius-stack-when-your-multi-agent-system-succeeds-but-one-hop-away-it-breaks.md)
