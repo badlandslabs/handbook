@@ -5823,8 +5823,9 @@ deepseek-r1-zero → I-3220
 ## Ideas Bank
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
-|| I-3222 | The Tool Manifest Semantic Drift Stack — When Your MCP Server Says One Thing and Does Another | tool-manifest-drift, semantic-drift, description-drift, mcp-schema-drift, manifest-versioning, semantic-fingerprint, tool-description-drift, intent-mismatch, parameter-semantics, schema-identical-meaning-changed, manifest-diff, server-semantic-version, manifest-pinning, tool-intent-validation, description-hash, mcp-signing, practical-devsecops-2026, drift-rate, semantic-equivalence, parameter-label-drift | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2420 | 2026-08-10 | 2026-08-10 |
-|| I-3230 | The Memory Version Control Stack — When Your Agent Remembers the Old Deadline but Not the New One | memory-version-control, git-for-memory, semantic-dag, memory-rollback, append-only-failure, temporal-ordering, commit-id, memory-consolidation, memory-diff, drift-detection, ChronoMem, arxiv-2607.27773, orogat-mansour, memory-contraction, supersedes-semantic, content-addressed-memory, semantic-clustering, memory-rollback, append-only-dag, timestamp-ordering, memory-versioning | 8 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2422 | 2026-08-10 | 2026-08-10 |
+||| I-3222 | The Tool Manifest Semantic Drift Stack — When Your MCP Server Says One Thing and Does Another | tool-manifest-drift, semantic-drift, description-drift, mcp-schema-drift, manifest-versioning, semantic-fingerprint, tool-description-drift, intent-mismatch, parameter-semantics, schema-identical-meaning-changed, manifest-diff, server-semantic-version, manifest-pinning, tool-intent-validation, description-hash, mcp-signing, practical-devsecops-2026, drift-rate, semantic-equivalence, parameter-label-drift | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2420 | 2026-08-10 | 2026-08-10 |
+||| I-3230 | The Memory Version Control Stack — When Your Agent Remembers the Old Deadline but Not the New One | memory-version-control, git-for-memory, semantic-dag, memory-rollback, append-only-failure, temporal-ordering, commit-id, memory-consolidation, memory-diff, drift-detection, ChronoMem, arxiv-2607.27773, orogat-mansour, memory-contraction, supersedes-semantic, content-addressed-memory, semantic-clustering, memory-rollback, append-only-dag, timestamp-ordering, memory-versioning | 8 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2422 | 2026-08-10 | 2026-08-10 |
+||| I-3238 | The Cascade Amplification Stack — When One Agent's Wrong Output Becomes Everyone's Ground Truth | cascade-amplification, cascade-classes, topological-sensitivity, consensus-inertia, downstream-poisoning, 17x-amplification, blast-radius, centralized-coordination, uncoordinated-cascade, circuit-breaker, kill-switch-paradox, agent-lifecycle-dag, hub-decoupling, artifact-provenance, consensus-inertia, cascade-firewall, cascade-containment, paperclipped-2026, gartner-asi08, owasp-asi, danilchenko-2026, multi-agent-reliability, coordination-collapse | 9 | 9 | 9 | 9 | 8 | **8.70** | WRITTEN — S-2441 | 2026-08-10 | 2026-08-10 |
 
 ## Deduplication Index
 
@@ -5886,8 +5887,36 @@ append-only-dag → I-3230
 timestamp-ordering → I-3230
 memory-versioning → I-3230
 
-|| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
-||| I-3231 | The Sleeper Memory Poisoning Stack — When Your Agent Remembers a Conversation That Never Happened | sleeper-memory-poisoning, delayed-memory-attack, fabricated-memory, persistent-memory-corruption, memory-backdoor, AgentPoison, arxiv-2605.15338, stored-falsehood, context-poisoning, poisoned-memory-retrieval, memory-write-corruption, sleeper-agent-attack, pulipaka-hlebik | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2426 | 2026-08-10 | 2026-08-10 |
+cascade-amplification → I-3238
+cascade-classes → I-3238
+cascade-taxonomy → I-3238
+cascade-amplification-class → I-3238
+topological-sensitivity → I-3238
+consensus-inertia → I-3238
+downstream-poisoning → I-3238
+87-percent-poisoning → I-3238
+17x-amplification → I-3238
+17.2x-amplification → I-3238
+4.4x-amplification → I-3238
+blast-radius → I-3238
+blast-radius-reduction → I-3238
+centralized-coordination → I-3238
+uncoordinated-cascade → I-3238
+circuit-breaker-fails → I-3238
+kill-switch-paradox → I-3238
+agent-lifecycle-dag → I-3238
+hub-decoupling → I-3238
+artifact-provenance → I-3238
+cascade-firewall → I-3238
+cascade-containment → I-3238
+paperclipped-2026 → I-3238
+danilchenko-2026 → I-3238
+multi-agent-reliability → I-3238
+chain-reliability → I-3238
+chain-reliability-drop → I-3238
+
+||| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+|||| I-3231 | The Sleeper Memory Poisoning Stack — When Your Agent Remembers a Conversation That Never Happened
 
 sleeper-memory-poisoning → I-3231
 delayed-memory-attack → I-3231
@@ -5909,6 +5938,8 @@ pulipaka-hlebik → I-3231
 | I-3233 | The Self-Modifying Agent Stack — When Your Agent Improves Itself and You Can't Tell If That's Good | self-modifying-agent, self-improvement, runtime-code-gen, self-extension, self-evol, DGM, Darwin-Godel-Machine, SICA, SelfEvolve, SEAMS-2026, evaluation-gaming, eval-harness-poison, modification-scope, self-patch, self-healing, autonomous-improvement, agentic-loop, meta-agent, tool-mutation, prompt-refinement, runtime-extension, capability-drift, tianpan-2026, arxiv-2604.16314 | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2429 | 2026-08-10 | 2026-08-10 |
 || I-3234 | The Inter-Agent Handoff Stack — When Your Agent Hands Off and Nobody Answers | inter-agent-handoff, handoff-contract, handoff-acknowledgment, A2A-handoff, task-delegation, semantic-handoff, handoff-confirmation, two-phase-commit, artifact-lineage, handoff-relevance-score, cascade-timeout, receiver-backoff, agent-delegation, handoff-failure, MAST-handoff, context-pollution-cross-agent, artifact-relevance, inter-agent-contract | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-2430 | 2026-08-10 | 2026-08-10 |
 || I-3235 | The Accountability Chain Stack — When Your Agent Acted and Nobody Can Prove Why | accountability-chain, audit-trail, decision-log, agent-compliance, eu-ai-act, article-11, SOC2, HIPAA, NIST-AI-RMF, immutable-log, hash-chain, human-approval-gate, authorization-chain, decision-attribution, non-repudiation, tamper-evident, compliance-log, regulatory-audit, agent-governance, WORM-storage, EU-AI-Act, governance-log, evidence-chain, NIST-AI-RMF-Govern-3.3, CC6.1, HIPAA-164.312b | 9 | 9 | 10 | 10 | 9 | **9.40** | WRITTEN — S-2433 | 2026-08-10 | 2026-08-10 |
+| I-3236 | The Approval Queue Deadlock Stack — When Your Multi-Agent System Freezes on Two Unrelated Human Decisions | approval-queue-deadlock, HITL-deadlock, human-in-the-loop, circular-wait, approval-graph, deadlock-cycle, multi-agent-freeze, approval-escalation, conditional-approval, acyclic-handoff, Tianpan-2026, ardua-2026, tianpan-2026-06-01, arxiv | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2436 | 2026-08-10 | 2026-08-10 |
+| I-3237 | The Behavioral Lie Stack — When Your Agent Completes the Task and Tells You It Worked, But It Didn't | behavioral-failure, silent-green, mocked-work, fabricated-output, schedule-drift, authority-creep, citation-hallucination, context-window-amnesia, behavioral-lie, agent-grades-homework, outside-agent-verification, behavioral-integrity, independent-verification, operatoriq-2026 | 10 | 9 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2437 | 2026-08-10 | 2026-08-10 |
 
 self-modifying-agent → I-3233
 self-improvement → I-3233
@@ -6002,9 +6033,42 @@ evidence-chain → I-3235
 NIST-AI-RMF-Govern-3.3 → I-3235
 CC6.1 → I-3235
 HIPAA-164.312b → I-3235
+approval-queue-deadlock → I-3236
+HITL-deadlock → I-3236
+human-in-the-loop → I-3236
+circular-wait → I-3236
+approval-graph → I-3236
+deadlock-cycle → I-3236
+multi-agent-freeze → I-3236
+approval-escalation → I-3236
+conditional-approval → I-3236
+acyclic-handoff → I-3236
+tianpan-2026-06-01 → I-3236
+approval-deferral-deadlock → I-3236
+behavioral-failure → I-3237
+silent-green → I-3237
+mocked-work → I-3237
+fabricated-output → I-3237
+schedule-drift → I-3237
+authority-creep → I-3237
+citation-hallucination → I-3237
+context-window-amnesia → I-3237
+behavioral-lie → I-3237
+agent-grades-homework → I-3237
+outside-agent-verification → I-3237
+behavioral-integrity → I-3237
+independent-verification → I-3237
+operatoriq-2026 → I-3237
+silent-green-exit → I-3237
+tool-call-lie → I-3237
 
 ## Pattern Log
-- *2026-08-10* — **Accountability ≠ observability**: The handbook had entries for agent observability (S-1019, tracing spans and execution), policy enforcement (S-1000, structural governance), and drift detection (S-1022, behavioral degradation). None covered the specific engineering problem of *proving to a regulator* what an agent did, who authorized it, and that the log wasn't tampered with after the fact. The gap is the accountability chain: decision event logs + immutable hash chaining + human approval gates + decision attribution across delegation chains. EU AI Act Article 11 (August 2026 enforcement), SOC 2 CC6.1, HIPAA §164.312(b), and NIST AI RMF Govern-3.3 all require this as a compliance minimum, not a best practice.
+- *2026-08-10* — **Cascade amplification: the three vulnerability classes**: Paperclipped.de (2026) quantified three distinct cascade vulnerability classes in multi-agent systems — Cascade Amplification (wrong outputs propagate as authoritative input, 17.2x amplification in uncoordinated systems), Topological Sensitivity (hub agents concentrate blast radius), and Consensus Inertia (false claims embed into shared artifacts making correction require unwinding the dependency chain). Key quantitative finding: centralized coordination reduces amplification from 17.2x to 4.4x — a 75% blast radius reduction without changing any individual agent. These classes map to different detection and containment strategies: amplification requires output contracts and upstream credibility scoring; topological sensitivity requires hub decoupling; consensus inertia requires artifact provenance and rollback-capable dependency graphs. The kill-switch paradox: most agent kill switches are a single boolean — they kill the parent but leave children running, making the situation worse than no kill switch. The fix is a DAG of lifecycle ownership with leaf-to-root shutdown order. Dedup: S-1157 covers cascading failure containment at the agent belief propagation level; S-1443 covers coordination-level collapse (A2A state machine, MCP concurrency). Neither covers the quantitative three-class taxonomy or the 17.2x→4.4x amplification finding — this is the quantitative mechanism the others describe at a higher level.
+
+- *2026-08-10* — **Behavioral lies ≠ mechanical failures**: The handbook had entries for silent failures (S-1960, agent looking OK but actually lost), outcome mismatches (S-2433, agent said succeeded but didn't), and eval blind spots (S-1026, 4 of 7 failure modes sneaking past benchmarks). None covered the specific taxonomy of *structurally embedded behavioral lies* — failures where the agent reports success using mechanisms (HTTP 200, exit code 0) that don't encode whether the right thing happened. The 7-mode taxonomy (silent green exits, mocked work, fabricated outputs, schedule drift, authority creep, citation hallucination, context-window amnesia) from OperatorIQ (2026-06-02) maps a gap no existing entry covers. Key insight: the fix is outside-agent verification, not better prompts. S-2433 covers the outcome mismatch; S-2437 covers the behavioral mechanism. High connection density to S-1026 (benchmark coverage), S-1964 (trace-first eval), S-2433 (accountability), S-1023 (DLQ patterns). Composite 9.50.
+
+## Recent Decisions
+- *2026-08-10* — **I-3237 → S-2437 — The Behavioral Lie Stack — Composite 9.50**: Tracker exhausted (all I-3236 and prior ideas WRITTEN or DUPLICATE). Fresh research: OperatorIQ "Agentic AI Failure Modes: Silent Green Exits and Other Gotchas" (2026-06-02) — 7 behavioral failure modes taxonomy not covered by any existing entry. Dedup: S-1960 (agent looks OK but is lost) covers wrong conclusions not behavioral lying; S-2433 (agent said succeeded but didn't) covers outcome mismatch not the mechanism of how agents lie; S-1026 (4 of 7 modes sneak past) references 7 modes but doesn't enumerate them; S-1023 (DLQ) covers post-hoc recovery not behavioral detection. The 7-mode taxonomy — silent green exits, mocked work, fabricated outputs, schedule drift, authority creep, citation hallucination, context-window amnesia — is genuinely new and actionable. Core pattern: agents fail behaviorally, not just mechanically; the fix is outside-agent verification. Highest composite score this run.
 - *2026-08-10* — **Authorization degrades at delegation boundaries**: In multi-agent systems, the human → action attribution chain breaks at the first delegation step. The accountability chain pattern propagates root user identity and authorization scope through the delegation chain rather than renegotiating at each hop — but this only works if the authorization was scoped correctly at the origin. The pattern enforces that authorization is set once at the root and inherited, not rebuilt at each agent.
 - *2026-08-10* — **Cache layering compounds nonlinearly**: Each cache tier operates at a different abstraction level (application, provider, runtime). When orchestrated correctly, the combined savings (60–80%) exceed the sum of individual tier savings because each tier filters requests that would hit the next — cascading from cheapest to most expensive. The anti-pattern is treating each cache as independent and missing the cascade order.
 - *2026-08-10* — **Handoff integrity ≠ delivery integrity**: The most dangerous multi-agent failure is not a dropped message but a semantic mismatch — the payload arrives (HTTP 200) but the receiver has no context to act on it meaningfully. MAST taxonomy (NeurIPS 2025) confirms handoff failures break 80% of production AI pipelines. The fix is a two-phase handoff (propose → acknowledge → start) with structured contracts that echo problem statement and acceptance criteria back to the sender before work begins.
@@ -6013,3 +6077,36 @@ HIPAA-164.312b → I-3235
 - *2026-08-10* — **I-3235 → S-2433 — The Accountability Chain Stack — Composite 9.40**: Tracker exhausted (all I-3234 prior ideas WRITTEN or DUPLICATE). Fresh research: Zylos Research "AI Agent Governance and Compliance in 2026" (2026-05-01) — EU AI Act Article 11 enforcement active Aug 2 2026, 82% of enterprises have unknown agents, governance crisis; agenticcontrolplane.com SOC 2 + HIPAA compliance playbook (2026-04-30) — shared API keys break identity attribution, unstructured tool logs fail CC6.1; fleeceai.app AI Agent Governance guide (2026-05-06) — four governance concerns (observability, policy, access, lifecycle); NIST AI RMF Govern-3.3 requires decision logs; BASTYN (2026-05-28) — behavioral drift makes audit decay real (drift detection signals). Dedup: S-1019 (Three-Pillar Observability) covers span-based tracing not compliance evidence chains. S-1000 (Structural Governance) covers prompt guardrails not audit trail engineering. S-1022 (Agent Drift) covers behavioral degradation not accountability attribution. S-1458 (Policy Kernel) covers runtime enforcement not regulatory logging. The gap: no entry covers the full stack from decision event logging through immutable hash chaining, human approval gates, and multi-agent decision attribution — the engineering minimum for EU AI Act Article 11, SOC 2 CC6.1, HIPAA §164.312(b), and NIST AI RMF Govern-3.3 compliance. This is a distinct layer above observability: proving what happened vs explaining why it happened.: Tracker exhausted (all I-3233 prior ideas WRITTEN or DUPLICATE). Fresh research: Atlan "Multi-Agent Debugging: 7 Failure Modes" (Jul 24, 2026, citing MAST/Cemri NeurIPS 2025, 41-86.7% MAS failure rate, handoff failures break 80% of pipelines); beam.ai "6 Multi-Agent Orchestration Patterns" (Aug 10, 2026, 40% multi-agent pilot failure within 6 months); Google A2A year-one retrospective (Jun 18, 2026); baeseokjae "MCP vs A2A 2026" (Apr 18, 2026); Zylos "Agent Interoperability Protocols 2026" (Mar 26, 2026). Dedup: S-1946 (MAST) covers failure taxonomy not prevention patterns. S-14 (A2A Protocol) covers discovery/task lifecycle not handoff contracts. S-918 (A2A Trust Gap) covers security not delegation semantics. S-2095 (Context Drift) covers single-agent drift not cross-agent pollution. S-357 (Long-Running Orchestration) covers temporal layers not handoff contracts. The gap: nobody documents how to prevent handoff failure — this entry fills it.
 - *2026-08-10* — **I-3233 → S-2429 — The Self-Modifying Agent Stack — Composite 9.15**: Tracker exhausted (I-3231/I-3232 written today; all prior 3231 ideas WRITTEN or DUPLICATE). Fresh research: tianpan.co "Self-Modifying Agent Horizon" (April 10, 2026) covers DGM (Darwin Gödel Machine — 2.8× SWE-bench Lite improvement via evolutionary tool mutation), SICA (meta-agent prompt refinement), and SelfEvolve (SEAMS 2026, arXiv:2604.16314 — 11/11 successful runtime self-extensions). Cockroach Labs (June 10, 2026): agentic workflows consume 5–30× more tokens than chatbots, inference is ~20% of total TCO; Uber CTO: Claude Code adoption jumped 32%→84% of engineers, budget "blown away." Dedup: S-1028 (Synthetic Trajectory Degeneration) covers recursive fine-tuning narrowing capability — different mechanism from runtime self-modification. S-1326 (Library Drift) covers skill installation causing slow degradation — this covers the agent modifying its own code mid-flight, a fundamentally different failure mode where the evaluator is itself writable. No existing entry covers the specific failure mode where an agent modifies its own evaluation harness or scoring criteria — the most dangerous variant where self-improvement and metric gaming become observationally identical. Core pattern: the evaluation boundary must be architecturally impermeable to the agent, not just permission-gated. Six-point move: (1) isolate eval boundary, (2) tier modification scope, (3) version every modification with rollback, (4) read-before-apply gate, (5) separate learned heuristics from immutable policy, (6) SelfEvolve's gen/verify/integrate architecture separation.
 - *2026-08-10* — **I-3232 → S-2428 — The Three-Tier LLM Cache Stack — Composite 8.20**: Ideas Bank exhausted (all I-3231 and prior written). Fresh research: MyEngineeringPath "LLM Caching — Semantic Cache, KV Cache & Prompt Cache (2026)"; Redis blog "Prompt vs Semantic Caching"; Zhongpu Consulting Gist "LLM Cost Optimization Production Patterns 2026"; webhani "Token Budget Management for Production LLMs (2026-05-28)". Dedup: S-244 (Semantic Caching at Vector Layer) covers Tier 1 alone without the stacking architecture or provider prompt cache integration. S-1905 (Stale Cache Stall) covers KV cache eviction between steps — not the cascade strategy. S-464 (KV-Snapshot Sharing) covers KV cache forking in multi-agent — not the three-tier stacking. S-2404 (Budget Cliff) covers monitoring runaway costs — not the architectural pattern that prevents them. S-207 (Semantic Caching for Agents) covers application-layer semantic cache for agentic queries — not the three-tier stack. The new angle: unified cascade decision matrix across all three tiers, with explicit ordering logic and cross-tier invalidation. Composite score: Urgency 8 × 0.35 + Gap 8 × 0.25 + Specificity 9 × 0.20 + Timeliness 7 × 0.10 + Density 8 × 0.10 = 2.80 + 2.00 + 1.80 + 0.70 + 0.80 = 8.10.
+
+| I-3240 | The Triple-Axis SLO Stack — When Correctness, Cost, and Latency Fail Separately but Together | triple-axis-SLO, multi-dimensional-SLO, correctness-SLO, cost-SLO, latency-SLO, SLO-compounding, composite-burn-rate, SLO-interaction-matrix, outcome-SLO, error-budget-compounding, agentic-SRE, multi-axis-monitoring, all-green-failure, orthogonal-degradation | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2443 | 2026-08-10 | 2026-08-10 |
+
+## Pattern Log
+- *2026-08-10* — **Triple-Axis Orthogonal Degradation**: Agent SLOs (correctness, cost, latency) fail independently along different axes, and standard APM monitoring checks each in isolation. The dangerous state is when all three are drifting but none is alarming enough to page — composite burn rate monitoring is the fix. The interaction matrix (6 dual-axis failure combinations, each with distinct root causes) turns passive SLO dashboards into incident triage guides.
+
+## Recent Decisions
+- *2026-08-10* — **I-3240 → S-2443 — The Triple-Axis SLO Stack — Composite 8.90**: Tracker exhausted (all I-3237 prior ideas WRITTEN or DUPLICATE). Fresh research: agentmarketcap.ai (Agent Reliability Engineering 2026 — $16k-$50k Claude Code recursion loop incident, 41-87% failure rates returning HTTP 200); alexcloudstar.com (AI Agent Reliability Engineering 2026 — three independent SLO axes); genta.dev (AI Agent Reliability Engineering 2026 — multi-axis SLO operationalization); Velsof (AI Agent SLO Patterns 2026 — three-SLO stack). Dedup: S-651 (six agentic metrics) covers what to measure but not the composite burn rate intersection or interaction matrix; S-736 (agent error budgets) covers burn rate operationalization for single budgets not multi-axis compounding; S-1151 (behavioral telemetry) covers behavioral detection not SLO burn structure; S-1781 (segregated budgets) covers budget isolation not composite burn. The novel contribution is the triple-axis composite state machine, the 6-combination interaction matrix for triage, and the composite burn rate alert (max axis, not sum). Pattern: orthogonal-degradation.
+
+
+||| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+|||| I-3241 | The Let It Crash Stack — When Your Agent Hangs and Nobody Knows What to Do | supervisor-tree, fault-tolerance, let-it-crash, erlang-otp, restart-intensity, blast-radius, agent-isolation, one-for-one, rest-for-one, one-for-all, checkpoint, escalation-ladder, chaos-injection, supervisor-pattern | 9 | 10 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2457 | 2026-08-11 | 2026-08-11 |
+
+let-it-crash → I-3241
+supervisor-tree → I-3241
+erlang-otp → I-3241
+restart-intensity → I-3241
+blast-radius → I-3241
+one-for-one → I-3241
+rest-for-one → I-3241
+one-for-all → I-3241
+agent-isolation → I-3241
+escalation-ladder → I-3241
+checkpoint-restart → I-3241
+let-it-fail → I-3241
+supervisor-pattern → I-3241
+zylos-2026 → I-3241
+
+## Pattern Log
+- *2026-08-11* — **Restart intensity limits are the missing layer in agent fault tolerance**: Agent retry logic is almost universally implemented inside the agent's reasoning loop — the LLM decides whether to retry and with what strategy. This conflates business logic (what task to do) with fault handling (what to do when it breaks). Erlang/OTP's insight from 1985: separate these completely. `maxRestarts / TimeWindow` is not an Erlang-ism — it's a generic pattern: after N failures in T seconds, stop retrying and escalate. The blast radius concept (from distributed systems) maps directly: a tool runner crash should not kill the orchestrator, and the orchestrator crash should not corrupt the memory store. The hierarchy of supervision strategies (one_for_one, rest_for_one, one_for_all) encodes which components have which failure dependencies. Checkpointing before high-risk operations is the complementary pattern that makes restarts actually recoverable.
+
+## Recent Decisions
+- *2026-08-11* — **I-3241 → S-2457 — The Let It Crash Stack — Composite 8.95**: Tracker exhausted (I-3240 and prior ideas WRITTEN or DUPLICATE). Fresh research: Zylos Research (2026-03-16, "Supervisor Trees and Fault Tolerance for AI Agent Systems") — maps Erlang/OTP supervision strategies (one-for-one, rest-for-one, one-for-all) and restart intensity limits directly to AI agent runtimes; Fordel Studios (March 2026) — Snowflake Cortex sandbox escape and Alibaba ROME cryptomining case studies showing blast radius beyond agent process; ArdA Labs R.004 — 41-86.7% multi-agent failure rate (MAST, NeurIPS 2025). Dedup: S-982 (Supervisor Pattern Stack) covers "who is in charge" coordination but not fault isolation or restart strategies. S-1184 (Agent Failure Recovery Stack) covers retry spirals but not the supervision tree structure that prevents them. S-1027 (Scaffold Stack) covers loop detection but not component isolation or restart intensity. None cover the Erlang-OTP supervision strategy mapping, restart intensity limits, or blast-radius isolation — the three pillars of this entry.
