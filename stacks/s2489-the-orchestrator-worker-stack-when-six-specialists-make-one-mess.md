@@ -1,0 +1,37 @@
+# S-2489 · The Orchestrator-Worker Stack — When Six Specialists Make One Mess
+
+The orchestrator-worker pattern is the default multi-agent architecture: one central agent decomposes tasks, delegates to specialists, and assembles results. It sounds elegant. In practice, the central agent becomes a fragile router, specialists step on each other's output, and "assembles results" means "glues together five partial answers that contradict each other." This is not a model problem. It is an architectural problem with a specific and well-understood fix.
+
+## Forces
+
+- **The orchestrator does two jobs it wasn't built for.** It must understand the full task scope *and* decide who does what *and* track progress *and* merge outputs. LLMs handle the first well, the rest poorly.
+- **Specialists assume context the orchestrator didn't provide.** A billing-agent answering "what happened to my order?" needs the same order context the support-agent just looked up. Without explicit state propagation, each specialist re-derives or invents.
+- **Result assembly is an afterthought.** Teams implement 80% of the pattern — agents, tools, parallel execution — and then call `concat(responses)` and wonder why the final output is incoherent.
+- **Cost and latency multiply with agent count.** Gartner (2025) found multi-agent adds only 2.1 percentage points of accuracy at roughly double the cost versus single-agent. Princeton NLP confirmed: single agents matched or outperformed multi-agent on 64% of benchmarks at half the cost. The pattern is only worth it when tasks genuinely decompose into independent, specialized subtasks.
+- **The 40% pilot failure rate has a common root.** Per Beam.ai's analysis of 2025–2026 deployments, most failures trace to wrong pattern selection or correct pattern implemented without understanding failure modes — not to model capability.
+
+## The Move
+
+The fix is a **bounded orchestrator** with **structured state propagation** and **explicit merge logic** — not a general-purpose router.
+
+- **Define orchestrator scope narrowly.** The orchestrator decides *what sub-tasks exist* and *which specialist handles each*. It does not reason about the task domain itself — that belongs to the specialists. One concrete technique: give the orchestrator a fixed decomposition schema (e.g., "returns: [order_id, timeline, resolution_path], billing: [account_id, charges, dispute_eligible]") and hard-code task-to-agent routing for known query shapes. Only fall back to LLM-driven routing for genuinely novel task types.
+- **Pass structured context objects, not free text.** Each worker receives a typed input packet — `{order_id, account_id, query_type, prior_agent_outputs}` — not a paragraph summary. This prevents context drift where specialists interpret the same request differently. LangGraph's state graph model enforces this structurally; CrewAI's role-based agents approximate it through prompt isolation.
+- **Implement an explicit merge agent, not a concat.** After all workers return, a dedicated synthesis step — which can be a separate LLM call or a deterministic aggregator — reads all worker outputs through a merge prompt that knows the output schema. This is where contradictions get surfaced and resolved, not at the final output.
+- **Budget tool calls per specialist before delegation.** A common failure: a worker agent loops on tool calls indefinitely because no one set a cap. Set a `max_turns` or `tool_call_budget` per worker and have the orchestrator handle the timeout gracefully — mark the worker result as `incomplete`, log it, continue.
+- **Make the failure mode explicit.** If a worker fails or times out, the orchestrator should decide: retry (same worker), skip (proceed with partial result), or escalate (return an error state with what was and wasn't completed). Do not silently fall back to the orchestrator answering from its own context — that produces confident wrong answers.
+- **Instrument every handoff.** Log orchestrator → worker dispatch events with timestamps, input hashes, and output hashes. Without this, debugging a broken pipeline means reading LLM traces like archaeology. LangSmith, Helicone, or OpenTelemetry-based tracing are the standard tooling.
+
+## Evidence
+
+- **Microsoft ISE** documented a real retail customer migrating from a modular monolith (deterministic router) to a coordinator-based multi-agent architecture — a transition that surfaced cross-system reuse and team ownership problems. The case study explicitly contrasts the limitations of centralized routing with the flexibility of specialized agent delegation. — [Microsoft ISE Developer Blog](https://devblogs.microsoft.com/ise/coordinator-patterns-multi-agent-systems)
+- **Beam.ai's production analysis** identified orchestrator-worker as one of six viable patterns, with specific failure modes: orchestrator bottleneck, worker over-delegation, and silent result conflicts. Their data: 40% of multi-agent pilots fail within six months; Gartner saw 1,445% growth in multi-agent inquiries (Q1 2024 → Q2 2025) alongside this failure rate. — [Beam.ai: 6 Multi-Agent Orchestration Patterns](https://beam.ai/agentic-insights/multi-agent-orchestration-patterns-production)
+- **LangGraph's 42-company case study collection** (Cisco CX, Captide, Athena Intelligence, and others) shows the most common production deployment uses graph-based state management where the orchestrator is a graph node, not an LLM with unbounded discretion. Cisco CX specifically uses LangGraph for hierarchical agent patterns where a coordinator routes to specialized sub-agents with typed inputs. — [LangChain Case Studies](https://docs.langchain.com/oss/python/langgraph/case-studies)
+- **Amazon's 750,000-robot warehouse MAS** demonstrates the extreme end of the spectrum: hierarchical task decomposition with a central coordinator delegating to specialized robots — not LLMs, but the same architectural principles. This is the production scale where orchestrator-worker has been proven for over a decade. — [Santage.ai: Multi-Agent Systems Guide](https://santageai.com/learn/concepts/multi-agent-systems)
+
+## Gotchas
+
+- **Don't give the orchestrator the most expensive model and the workers the cheapest.** The orchestrator's job is routing and synthesis — relatively simple. Use a capable but not necessarily frontier model for orchestration; reserve the most capable models for specialists doing the actual domain reasoning.
+- **Parallel execution is not free parallelism.** If worker A needs the output of worker B, they cannot run in parallel. Map dependencies explicitly before launching workers — a dependency graph, not a flat queue.
+- **The merge step is where you lose the most quality.** If you skip or under-engineer the synthesis step, you will spend more time post-processing incoherent outputs than you saved by parallelizing. Treat merge as a first-class agent, not a formatting pass.
+- **Typed schemas prevent hallucinated field names.** When the orchestrator defines a worker's output schema in code (Pydantic, Zod, JSON Schema), the worker cannot invent extra fields or omit required ones. This is the cheapest quality gate available.
+- **40% of pilots fail before 6 months** (Beam.ai). The most common cause is not bad models — it is adding agents without a deterministic execution layer. LangGraph's graph-based approach and Temporal's durable execution model both address this by making the orchestration layer failure-resistant.
