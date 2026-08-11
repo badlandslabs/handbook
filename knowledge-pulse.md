@@ -5829,6 +5829,9 @@ deepseek-r1-zero → I-3220
 | I-3244 | The A2A Protocol Trust Stack — When the Protocol Authenticates the Session but Not the Agent | a2a-trust, agent-card-security, jws-self-attestation, jku-circular-trust, signed-card-spoofing, session-vs-agent-auth, outcome-verification, task-lifecycle-watchdog, egress-profiling, a2a-allowlist, jwks-pinning, credential-vs-principal, cross-org-handoff, agentsid-scanner, a2a-vulnscan, thecodeforge-2026, $40k-timeout, signed-agent-card, transport-auth, behavioral-trust | 10 | 9 | 9 | 10 | 8 | **9.15** | WRITTEN — S-2470 | 2026-08-11 | 2026-08-11 |
 | I-3245 | The Defense-in-Depth Guardrail Stack — When Six Safety Layers Isn't One Layer Either | six-guardrail-layer, defense-in-depth, owasp-llm-top10-2026, llama-guard-3, input-filter, output-validation, retrieval-sanitization, tool-gating, observability-layer, content-moderation, layered-safety, layer-independence, digital-applied-2026, cybersecuritynews-owasp-2026, guarda.ai, nemo-guardrails, false-positive-cost, latency-budget, prompt-injection, indirect-injection, security-stack | 9 | 9 | 9 | 10 | 8 | **9.15** | WRITTEN — S-2478 | 2026-08-11 | 2026-08-11 |
 | I-3246 | The Cascade Radius Stack — When Your Multi-Agent System Succeeds but One Hop Away It Breaks | cascade-radius, multi-agent-reliability, failure-injection, orchestration-benchmark, orchestrabench, cascade-radius-metric, latent-fault, transient-fault, recovery-rate, per-step-reliability, framework-comparison, autogen-langgraph-crewai, cascade-propagation, reliability-compounding, failure-mode-taxonomy, arxiv-2608.05263 | 9 | 9 | 8 | 10 | 8 | **8.85** | WRITTEN — S-2479 | 2026-08-11 | 2026-08-11 |
+| I-3247 | The Three-Tier Cache Stack — When Your Agent Pays Full Price for the Same Answer Twice | semantic-cache, kv-cache, prompt-cache, three-tier-cache, gptcache, vector-similarity-cache, cache-tiering, cost-reduction-compounding, cache-invalidation, llm-gateway, redis-vector-cache, vllm-paged-attention, prompt-cache-directive, cache-miss, cache-hit, cost-optimization, token-budget | 9 | 8 | 9 | 9 | 6 | **8.60** | WRITTEN — S-2484 | 2026-08-11 | 2026-08-11 |
+| I-3249 | The Tool Response Trust Gap Stack — When Your MCP Server Says One Thing and Does Another at Runtime | tool-response-poisoning, mcp-tool-poisoning, trust-gap, response-sanitization, llm-context-injection, tool-poison, indirect-injection, semantic-attack, mcp-security, connect-time-trust, runtime-trust, owasp-llm-top10, csa-ai-security, nsa-mcp-security, cve-2025-49596, ox-security-mcp, arxiv-2605.11418, invarianlabs, practical-devsecops-2026, tool-response-trust | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2496 | 2026-08-11 | 2026-08-11 |
+| I-3250 | The Golden Dataset Decay Stack — When Your Eval Suite Passes but Users Are Complaining | golden-dataset-decay, eval-set-decay, eval-staleness, eval-grounding, benchmark-illusion, eval-set-overfitting, synthetic-contamination, distribution-shift, ground-truth-drift, policy-version, eval-coverage, cohort-coverage, production-trace-mining, eval-rotation, staleness-gate, eval-liability, tianpan-2026, agentmodeai-2026, golden-eval-set, drift-sensor, eval-freshness | 9 | 10 | 9 | 8 | 7 | **9.10** | WRITTEN — S-2499 | 2026-08-11 | 2026-08-11 |
 
 ## Deduplication Index
 
@@ -5994,6 +5997,23 @@ provider-prompt-cache → I-3232
 application-semantic-cache → I-3232
 runtime-kv-cache → I-3232
 cache_hit_matrix → I-3232
+observable-read → I-3248
+stale-generation → I-3248
+phantom-tool → I-3248
+causal-cascade → I-3248
+concurrency-anomaly → I-3248
+isolation-primitive → I-3248
+read-your-writes → I-3248
+state-version → I-3248
+vector-clock → I-3248
+causal-verification → I-3248
+shared-state-failure → I-3248
+agentic-consistency → I-3248
+observable-read-isolation → I-3248
+stale-read-counter → I-3248
+stale-read-gauge → I-3248
+ori-protocol → I-3248
+observable-ori → I-3248
 
 handoff-ref → I-3234
 handoff-contract → I-3234
@@ -6117,6 +6137,7 @@ transport-auth → I-3244
 - *2026-08-10* — **I-3232 → S-2428 — The Three-Tier LLM Cache Stack — Composite 8.20**: Ideas Bank exhausted (all I-3231 and prior written). Fresh research: MyEngineeringPath "LLM Caching — Semantic Cache, KV Cache & Prompt Cache (2026)"; Redis blog "Prompt vs Semantic Caching"; Zhongpu Consulting Gist "LLM Cost Optimization Production Patterns 2026"; webhani "Token Budget Management for Production LLMs (2026-05-28)". Dedup: S-244 (Semantic Caching at Vector Layer) covers Tier 1 alone without the stacking architecture or provider prompt cache integration. S-1905 (Stale Cache Stall) covers KV cache eviction between steps — not the cascade strategy. S-464 (KV-Snapshot Sharing) covers KV cache forking in multi-agent — not the three-tier stacking. S-2404 (Budget Cliff) covers monitoring runaway costs — not the architectural pattern that prevents them. S-207 (Semantic Caching for Agents) covers application-layer semantic cache for agentic queries — not the three-tier stack. The new angle: unified cascade decision matrix across all three tiers, with explicit ordering logic and cross-tier invalidation. Composite score: Urgency 8 × 0.35 + Gap 8 × 0.25 + Specificity 9 × 0.20 + Timeliness 7 × 0.10 + Density 8 × 0.10 = 2.80 + 2.00 + 1.80 + 0.70 + 0.80 = 8.10.
 
 | I-3240 | The Triple-Axis SLO Stack — When Correctness, Cost, and Latency Fail Separately but Together | triple-axis-SLO, multi-dimensional-SLO, correctness-SLO, cost-SLO, latency-SLO, SLO-compounding, composite-burn-rate, SLO-interaction-matrix, outcome-SLO, error-budget-compounding, agentic-SRE, multi-axis-monitoring, all-green-failure, orthogonal-degradation | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2443 | 2026-08-10 | 2026-08-10 |
+| I-3248 | The Observable Read Stack — When Your Multi-Agent System Reads a World That No Longer Exists | observable-read, stale-generation, phantom-tool, causal-cascade, concurrency-anomaly, isolation-primitive, read-your-writes, state-version, vector-clock, causal-verification, shared-state-failure, agentic-consistency, observable-read-isolation, blokz-2026, arxiv-2605.31354, mast-2025, tierzero-2026, stale-read-counter | 10 | 10 | 9 | 10 | 9 | **9.70** | WRITTEN — S-2200 | 2026-08-11 | 2026-08-11 |
 
 ## Pattern Log
 - *2026-08-10* — **Triple-Axis Orthogonal Degradation**: Agent SLOs (correctness, cost, latency) fail independently along different axes, and standard APM monitoring checks each in isolation. The dangerous state is when all three are drifting but none is alarming enough to page — composite burn rate monitoring is the fix. The interaction matrix (6 dual-axis failure combinations, each with distinct root causes) turns passive SLO dashboards into incident triage guides.
@@ -6172,12 +6193,53 @@ transient-fault → I-3246
 per-step-reliability → I-3246
 reliability-compounding → I-3246
 multi-agent-eval → I-3246
+semantic-cache → I-3247
+kv-cache → I-3247
+prompt-cache → I-3247
+three-tier-cache → I-3247
+gptcache → I-3247
+vector-similarity-cache → I-3247
+cache-tiering → I-3247
+cost-reduction-compounding → I-3247
+per-step-reliability → I-3246
+reliability-compounding → I-3246
+multi-agent-eval → I-3246
+tool-response-poisoning → I-3249
+mcp-tool-poisoning → I-3249
+trust-gap → I-3249
+response-sanitization → I-3249
+llm-context-injection → I-3249
+indirect-prompt-injection → I-3249
+semantic-attack → I-3249
+connect-runtime-trust-gap → I-3249
+tool-response-trust → I-3249
+
+golden-dataset-decay → I-3250
+eval-set-decay → I-3250
+eval-staleness → I-3250
+eval-grounding → I-3250
+benchmark-illusion → I-3250
+eval-set-overfitting → I-3250
+synthetic-contamination → I-3250
+distribution-shift → I-3250
+ground-truth-drift → I-3250
+policy-version → I-3250
+eval-coverage → I-3250
+cohort-coverage → I-3250
+eval-rotation → I-3250
+staleness-gate → I-3250
+eval-liability → I-3250
+eval-freshness → I-3250
+golden-rotat → I-3250
+eval-decay → I-3250
 
 ## Pattern Log
-- *2026-08-11* — **Cascade radius formalizes the measurement gap in multi-agent reliability**: Traditional agent benchmarks report task accuracy — pass or fail. But a multi-agent pipeline can "pass" at the task level while silently propagating a failure 15 hops downstream, corrupting outputs no benchmark would flag. The cascade-radius metric (OrchestraBench, arXiv:2608.05263, Aug 2026) closes this gap: it measures how many hops a failure propagates before recovery or termination. The non-obvious insight: latent faults (wrong data model, silently corrupted tool output) have near-zero recovery rate, while transient faults (timeout, rate limit) recover readily. Detection must happen before propagation — not after. This connects to the restart-intensity pattern: both are fault-tolerance mechanisms, but restart-intensity controls retry behavior within a single agent while cascade-radius controls propagation behavior across the orchestration graph. Together they form the complete fault-tolerance stack: detect early (cascade-radius harness) → contain fast (restart intensity limits) → recover gracefully (dead letter queues, S-1047).
+- *2026-08-11* — **Cascade radius formalizes the measurement gap in multi-agent reliability**: Traditional agent benchmarks report task accuracy — pass or fail. But a multi-agent pipeline can "pass" at the task level while silently propagating a failure 15 hops downstream, corrupting outputs no benchmark would flag. The cascade-radius metric (OrchestraBench, arXiv:2608.05263, Aug 2026) closes this gap: it measures how many hops a failure propagates before recovery or termination. The non-obvious insight: latent faults (wrong data model, silently corrupted tool output) have near-zero recovery rate, while transient faults (timeout, rate limit) recover readily. Detection must happen before propagation — not after. This connects to the restart-intensity pattern: both are fault-tolerance mechanisms, but restart-intensity controls retry behavior within a single agent while cascade-radius controls propagation behavior across the orchestration graph.
+- *2026-08-11* — **Golden dataset decay: the eval set measures the past, not the present**: The most common eval failure mode is not a bad agent — it is a stale eval set. Three decay mechanisms: (1) distribution shift — user queries evolve faster than test cases, so the eval set measures what users asked last quarter, not this quarter; (2) ground-truth drift — the correct answer changes (policy update, API change, product pivot) but the eval case still encodes the old answer; (3) synthetic contamination — test cases written by the team or generated from the agent's own outputs inherit the agent's quirks, creating eval-set overfitting. The non-obvious insight: adding cases makes this worse, not better — new cases capture the distribution already solved, further biasing the set toward the past. The solution is rotation with replacement (replace 10-15% per quarter) and a staleness gate in CI that excludes aged cases from the pass-rate calculation, forcing triage rather than silent drift. Sources: tianpan.co (April 2026), agentmodeai.com (May 2026). Together they form the complete fault-tolerance stack: detect early (cascade-radius harness) → contain fast (restart intensity limits) → recover gracefully (dead letter queues, S-1047).
 - *2026-08-11* — **Restart intensity limits are the missing layer in agent fault tolerance**: Agent retry logic is almost universally implemented inside the agent's reasoning loop — the LLM decides whether to retry and with what strategy. This conflates business logic (what task to do) with fault handling (what to do when it breaks). Erlang/OTP's insight from 1985: separate these completely. `maxRestarts / TimeWindow` is not an Erlang-ism — it's a generic pattern: after N failures in T seconds, stop retrying and escalate. The blast radius concept (from distributed systems) maps directly: a tool runner crash should not kill the orchestrator, and the orchestrator crash should not corrupt the memory store. The hierarchy of supervision strategies (one_for_one, rest_for_one, one_for_all) encodes which components have which failure dependencies. Checkpointing before high-risk operations is the complementary pattern that makes restarts actually recoverable.
 - *2026-08-11* — **The Six-Layer Safety Stack Is Not Six Layers — It's One Attack Surface**: Each guardrail layer (input validation, retrieval rail, LLM-based classification, structured output validation, tool-call gating, observability) addresses a different OWASP LLM Top 10 2026 vulnerability class. But they chain: an indirect prompt injection bypasses the content filter via a RAG chunk, bypasses structured output validation via a tool response, and executes via the sandboxed tool that trusts the MCP server's output. No single layer failed — all six failed sequentially against the same attack path. The fix is layer independence: each layer must validate its own trust boundary, not assume upstream layers are correct. The second key insight is the classifier choice as a product decision: Llama Guard 3 8B (F1 0.939, FPR 4%) at 62.5× lower cost than GPT-4 moderation (F1 0.805, FPR 15.2%) — the false-positive math directly affects user experience and revenue, not just security posture. OWASP 2026's design philosophy shift from "make a model that can't be fooled" to "harden the surrounding architecture" is the conceptual frame: guardrails are not about the model being safe, they are about the application surviving model compromise.
 - *2026-08-11* — **The Look-Don't-Pick failure class: attention-correct, decision-wrong**: arXiv:2606.16364 (Chen, Jun 2026) establishes through attention-segment analysis on BFCL failures that models attend correctly to the right tool 80% of the time but still call the wrong one. The failure is in the decision-readout layer, not the perception/harness layer. This refutes the "crowded harness" hypothesis and requires a completely different fix strategy: readout validation, not better tool descriptions. arXiv:2608.04719 (Anand & Chattaraj, Aug 2026) provides the diagnostic taxonomy via canary tools: semantic decoys, parameter traps, capability mirages, prerequisite blindness, temporal confusion, compositional misfire. AgentProp-Bench (arXiv:2604.16706) adds the evaluation angle: substring-based judges score κ=0.049 (chance) vs. human annotation, meaning the industry standard eval pipeline is blind to this failure class.
+- *2026-08-11* — **Three-tier caching compounds non-linearly**: Semantic cache (application layer, vector similarity, 30-80% hit rate, eliminates API call), prompt cache (API layer, token prefix, 50-90% hit rate, 90% cheaper tokens), and KV cache (inference layer, PagedAttention, 30-60% hit rate, 30-70% faster prefill) are complementary, not competing. Each tier reduces cost at a different point in the request lifecycle. Composed at realistic hit rates (70% semantic, 100% prefix, 60% KV), the composite cost reduction is ~98.8% vs uncached. Key non-obvious insight: semantic cache requires short TTL for RAG agents (cached answers go stale when docs update), while prompt/KV cache work best with stable prefixes. The tension: maximizing prompt cache hits requires frozen prefixes, but agentic multi-turn loops append history dynamically — the fix is splitting prompts into a stable cached prefix and a dynamic suffix.
 
 ## Recent Decisions
 - *2026-08-11* — **I-3243 → S-2468 — The Look-Don't-Pick Stack — Composite 9.25**: Tracker exhausted (all I-3242 prior ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2606.16364 (Chen, Jun 2026) — attention-segment analysis on BFCL v2 failures, 80% attention-on-correct-tool vs. 21% random, refutes crowded-harness hypothesis, identifies decision-readout as the broken layer; arXiv:2608.04719 (Anand & Chattaraj, Aug 2026) — canary tool probes in MCP tool sets, six-type taxonomy of tool-selection weakness; arXiv:2604.16706 (AgentProp-Bench, Gurram) — substring-based eval judges κ=0.049 (chance). Dedup: S-989 (Tool Surface Stack) covers tool count → wrong-tool correlations but attributes failure to surface area, not readout; S-1014 (Eval in Production) covers trajectory vs. single-step eval but not the readout-layer mechanism; S-1000 (Eval Gap Stack) covers eval failures broadly but not the specific attention-vs-readout split. The novel contribution is the three-stage architecture (perception / reasoning / readout) with Stage 3 as the targeted fix layer. No existing entry covers this mechanism.
