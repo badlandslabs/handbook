@@ -1131,3 +1131,6 @@
   - [S-2477 · The Action Threshold Failure Stack](stacks/s2477-the-action-threshold-failure-stack-when-your-agent-knows-what-to-do-but-doesnt-do-it.md)
   - [S-2478 · The Defense-in-Depth Guardrail Stack](stacks/s2478-the-defense-in-depth-guardrail-stack-when-six-layers-isnt-one-layer-either.md)
   - [S-2479 · The Cascade Radius Stack](stacks/s2479-the-cascade-radius-stack-when-your-multi-agent-system-succeeds-but-one-hop-away-it-breaks.md)
+  - [S-2503 · The Eval-to-Training Pipeline Leak Stack](stacks/s2503-the-eval-to-training-pipeline-leak-when-your-eval-set-quietly-joins-your-training-corpus.md)
+  - [S-2504 · The Escalation Ladder Stack](stacks/s2504-the-escalation-ladder-stack-when-your-agent-is-stuck-but-refuses-to-stop.md)
+  - [S-2505 · The Stale State Stack](stacks/s2505-the-stale-state-stack-when-your-agent-acts-on-data-that-stopped-being-true.md)

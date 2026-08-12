@@ -5832,6 +5832,7 @@ deepseek-r1-zero → I-3220
 | I-3247 | The Three-Tier Cache Stack — When Your Agent Pays Full Price for the Same Answer Twice | semantic-cache, kv-cache, prompt-cache, three-tier-cache, gptcache, vector-similarity-cache, cache-tiering, cost-reduction-compounding, cache-invalidation, llm-gateway, redis-vector-cache, vllm-paged-attention, prompt-cache-directive, cache-miss, cache-hit, cost-optimization, token-budget | 9 | 8 | 9 | 9 | 6 | **8.60** | WRITTEN — S-2484 | 2026-08-11 | 2026-08-11 |
 | I-3249 | The Tool Response Trust Gap Stack — When Your MCP Server Says One Thing and Does Another at Runtime | tool-response-poisoning, mcp-tool-poisoning, trust-gap, response-sanitization, llm-context-injection, tool-poison, indirect-injection, semantic-attack, mcp-security, connect-time-trust, runtime-trust, owasp-llm-top10, csa-ai-security, nsa-mcp-security, cve-2025-49596, ox-security-mcp, arxiv-2605.11418, invarianlabs, practical-devsecops-2026, tool-response-trust | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2496 | 2026-08-11 | 2026-08-11 |
 | I-3250 | The Golden Dataset Decay Stack — When Your Eval Suite Passes but Users Are Complaining | golden-dataset-decay, eval-set-decay, eval-staleness, eval-grounding, benchmark-illusion, eval-set-overfitting, synthetic-contamination, distribution-shift, ground-truth-drift, policy-version, eval-coverage, cohort-coverage, production-trace-mining, eval-rotation, staleness-gate, eval-liability, tianpan-2026, agentmodeai-2026, golden-eval-set, drift-sensor, eval-freshness | 9 | 10 | 9 | 8 | 7 | **9.10** | WRITTEN — S-2499 | 2026-08-11 | 2026-08-11 |
+| I-3251 | The Eval-to-Training Pipeline Leak — When Your Eval Set Quietly Joins Your Training Corpus | eval-training-leak, self-contamination, pipeline-leak, eval-set-contamination, fine-tuning-contamination, temporal-fence, held-out, eval-pipeline, coverage-ratio, data-governance, production-fine-tuning, three-signal-filter, eval-to-training, benchmark-memorization, training-pipeline, eval-rotation, temporal-firewall, human-edited-outputs, validator-failures, production-log, tianpan-2026, worldprogramming-2026, multigrid-2026 | 9 | 9 | 9 | 9 | 7 | **8.70** | WRITTEN — S-2503 | 2026-08-11 | 2026-08-11 |
 
 ## Deduplication Index
 
@@ -6233,6 +6234,27 @@ eval-freshness → I-3250
 golden-rotat → I-3250
 eval-decay → I-3250
 
+eval-training-leak → I-3251
+self-contamination → I-3251
+pipeline-leak → I-3251
+eval-set-contamination → I-3251
+fine-tuning-contamination → I-3251
+temporal-fence → I-3251
+held-out → I-3251
+eval-pipeline → I-3251
+coverage-ratio → I-3251
+data-governance → I-3251
+production-fine-tuning → I-3251
+three-signal-filter → I-3251
+eval-to-training → I-3251
+benchmark-memorization → I-3251
+training-pipeline → I-3251
+eval-rotation → I-3251
+temporal-firewall → I-3251
+human-edited-outputs → I-3251
+validator-failures → I-3251
+production-log → I-3251
+
 ## Pattern Log
 - *2026-08-11* — **Cascade radius formalizes the measurement gap in multi-agent reliability**: Traditional agent benchmarks report task accuracy — pass or fail. But a multi-agent pipeline can "pass" at the task level while silently propagating a failure 15 hops downstream, corrupting outputs no benchmark would flag. The cascade-radius metric (OrchestraBench, arXiv:2608.05263, Aug 2026) closes this gap: it measures how many hops a failure propagates before recovery or termination. The non-obvious insight: latent faults (wrong data model, silently corrupted tool output) have near-zero recovery rate, while transient faults (timeout, rate limit) recover readily. Detection must happen before propagation — not after. This connects to the restart-intensity pattern: both are fault-tolerance mechanisms, but restart-intensity controls retry behavior within a single agent while cascade-radius controls propagation behavior across the orchestration graph.
 - *2026-08-11* — **Golden dataset decay: the eval set measures the past, not the present**: The most common eval failure mode is not a bad agent — it is a stale eval set. Three decay mechanisms: (1) distribution shift — user queries evolve faster than test cases, so the eval set measures what users asked last quarter, not this quarter; (2) ground-truth drift — the correct answer changes (policy update, API change, product pivot) but the eval case still encodes the old answer; (3) synthetic contamination — test cases written by the team or generated from the agent's own outputs inherit the agent's quirks, creating eval-set overfitting. The non-obvious insight: adding cases makes this worse, not better — new cases capture the distribution already solved, further biasing the set toward the past. The solution is rotation with replacement (replace 10-15% per quarter) and a staleness gate in CI that excludes aged cases from the pass-rate calculation, forcing triage rather than silent drift. Sources: tianpan.co (April 2026), agentmodeai.com (May 2026). Together they form the complete fault-tolerance stack: detect early (cascade-radius harness) → contain fast (restart intensity limits) → recover gracefully (dead letter queues, S-1047).
@@ -6248,3 +6270,26 @@ eval-decay → I-3250
 - *2026-08-11* — **I-3242 → S-2467 — The MCP Server Architecture Stack — Composite 9.00**: Tracker re-saturated (I-32xx fully processed). Fresh research: arXiv:2606.30317v1 (Rodrigues & Vas, June 2026) — five recurring MCP server architecture patterns from 15 independently-developed servers: Resource Gateway, Streaming Bridge, Stateful Session Server, Tool Orchestrator, Multi-Agent Relay; four anti-patterns cataloged. Tool selection accuracy drops below 90% at 10-15 tools (Haiku) / 20-30 tools (Sonnet). The Agent Report (July 2026): 14 CVEs in MCP, 200,000+ exposed servers, 150M+ SDK downloads; CSA (May 2026): StdioServerParameters passes unsanitized command to subprocess — RCE by design. Dedup: S-1062 covers MCP supply chain (CVEs/marketplaces); S-2466 covers MCP protocol trust model — neither covers internal server-side architecture patterns. S-989/S-1006 cover tool belt/selection from agent side — this covers server design from server author side. Non-overlapping. Cross-links: S-1358, S-1062, S-2466.
 
 - *2026-08-11* — **I-3245 → S-2478 — The Defense-in-Depth Guardrail Stack — Composite 9.15**: Tracker re-saturated (I-32xx ideas exhausted — I-3244 was last, written today). Fresh research: (1) OWASP GenAI LLM Top 10 2026 (released Aug 3, 2026 — 7,714 real incidents, 75% practitioner voting) — updated threat taxonomy with prompt injection (LLM01) and excessive agency (LLM03) as top risks; (2) Digital Applied (May 2026) — six-layer guardrail taxonomy: input validation, retrieval rail, LLM-based classification, structured output validation, tool-call gating, observability layer; (3) Llama Guard 3 8B benchmarks: F1 0.939 vs GPT-4 F1 0.805, FPR 4% vs 15.2% — open-weight at 62.5× lower cost; (4) OWASP design philosophy shift: "harden the surrounding architecture so that when a model is compromised, downstream impact is contained." Dedup: S-1000 (Structural Agent Governance) covers prompt-based guardrail brittleness and moving enforcement out of system prompt — but does not address the specific six-layer taxonomy, layer independence requirements, or OWASP 2026 mapping. S-2118 (Isolation Tier) covers execution sandboxing — complements Layer 5 (tool-call gating) but is a separate concern. S-1894 (Agentic RAG Evidence Desert) covers retrieval failure — complements Layer 2 (retrieval rail) but doesn't cover the broader safety stack. S-360 (Governance Decay) covers constraint erosion — Layer 3 (classification) faces the same decay risk. Novel contribution: the six-layer taxonomy with explicit layer-independence requirements, OWASP 2026 mapping per layer, and the false-positive cost math per layer. Cross-links added to S-1000 (structural vs. runtime governance), S-2118 (execution isolation complement), S-1894 (retrieval rail complement), S-360 (classification decay risk).
+
+| I-3252 | The Stale State Stack — When Your Agent Acts on Data That Stopped Being True | stale-state, tool-result-freshness, environment-state, state-reconciliation, temporal-inconsistency, tool-staleness, world-model, action-precondition, read-write-consistency | 8 | 8 | 8 | 7 | 7 | **7.75** | WRITTEN — S-2505 | 2026-08-12 | 2026-08-12 |
+| I-3253 | The Agent Observability Pipeline Stack — When Your Agent Runs in Production and You Cannot See Inside It | agent-observability, tracing, OpenTelemetry, LangSmith, AgentOps, Phoenix, OTEL, span, trace-annotation, production-debugging, agent-debugging | 8 | 8 | 8 | 7 | 7 | **7.75** | PENDING | 2026-08-12 | 2026-08-12 |
+
+## Deduplication Index
+stale-state → I-3252
+environment-state → I-3252
+state-reconciliation → I-3252
+temporal-inconsistency → I-3252
+tool-staleness → I-3252
+freshness-timestamp → I-3252
+world-model-staleness → I-3252
+cross-call-consistency → I-3252
+action-precondition → I-3252
+agent-observability → I-3253
+OTEL-agent → I-3253
+LangSmith-agent → I-3253
+Phoenix-agent → I-3253
+trace-annotation → I-3253
+agent-debugging → I-3253
+
+## Recent Decisions
+- *2026-08-12* — **I-3252 → S-2505 — The Stale State Stack — Composite 7.75**: Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: (1) Tian Pan "Context Poisoning in Long-Running AI Agents" (Apr 2026) — establishes stale context as a reliability failure mode; (2) Adaline Labs "Agent Memory Is A Product Surface" (May 2026) — memory vs. context distinction; (3) Conceptualise "Multi-Agent Failure Modes" (May 2026) — silent failure patterns; (4) Nexgismo blog "AI Agent Budget Guards" (Jun 2026) — runaway cost incidents; (5) Clyro "$47K loop" forensic analysis. Dedup: S-1248 (Token Drift) covers OAuth TTL expiry, not tool result staleness; S-1016 (Agent Failure Intervention) covers wrong-action intervention, not precondition checking; S-2409 (Trace Replay) covers debugging after failure, not staleness-aware action preconditions; S-1120 (Tool Wiring with MCP) covers tool integration, not the temporal consistency problem across tool calls. The novel contribution is the three-layer staleness architecture: freshness metadata on every tool result, a freshness gate before write-side actions, and an environment digest to detect cross-call inconsistencies — none of which existing entries cover.
