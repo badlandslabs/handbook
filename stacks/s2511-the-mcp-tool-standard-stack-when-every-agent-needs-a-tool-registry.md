@@ -1,0 +1,35 @@
+# S-2511 · The MCP Tool Standard Stack — When Every Agent Needs a Tool Registry
+
+When your agent needs to call one tool, you write one adapter. When it needs 50 — across databases, APIs, filesystems, browsers — you start wishing someone had invented a USB standard for AI. MCP is that attempt. The question is whether it actually holds up in production.
+
+## Forces
+
+- **The tool-integration sprawl is real.** As agents connect to hundreds or thousands of tools, loading all tool definitions upfront consumes massive context tokens and increases costs. A single Google Drive MCP server can have 50+ tools; loading them all on every request is untenable. — [Anthropic Engineering: Code execution with MCP (2025)](https://www.anthropic.com/engineering/code-execution-with-mcp)
+- **MCP crossed the adoption threshold.** As of late 2025: 10,000+ active public MCP servers, 97M+ monthly SDK downloads, 15,900+ GitHub repos with the `mcp-server` topic, and cross-vendor support from Anthropic, OpenAI, Google, Microsoft, GitHub, Vercel, VS Code, Cursor, and ChatGPT. — [Digital Applied: MCP Adoption Statistics 2026](https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol)
+- **The security surface is wider than most teams plan for.** 43% of MCP servers have command injection vulnerabilities, and with 10 plugins installed the exploit probability exceeds 92%. The protocol's design — agents reading external data sources — creates inherent prompt injection pathways. — [The Hacker News: Critical MCP Vulnerability (2025)](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)
+- **Not everyone is convinced.** Critics on HN pointed out that MCP adds significant JSON-RPC overhead for what is often a simple function call, and that the tool-calling capabilities it enables could be achieved with simpler REST interfaces. The complexity-versus-value debate is live. — [Hacker News: OpenAI adds MCP support (March 2025)](https://news.ycombinator.com/item?id=43485566)
+
+## The Move
+
+MCP works. Here's what the production pattern actually looks like, stripped of hype:
+
+- **Lazy tool loading beats eager loading.** Anthropic's Nov 2025 guidance: don't load all 50 Google Drive tools at once. Instead, agents write code that calls tools dynamically on demand, reducing token overhead dramatically. One Anthropic demo showed tool descriptions being improved by agents resulting in a **40% decrease in task completion time**.
+- **Start with composable LLM calls, not agents.** Anthropic's consistent engineering guidance across multiple blog posts: most applications are better served by a single LLM call with retrieval + in-context examples. Agents and workflows earn their keep when the task genuinely requires dynamic tool selection, not as a default starting point. — [Anthropic: Building Effective AI Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents)
+- **Multi-agent systems are justified by parallelism, not complexity.** Anthropic's own research system — a lead agent (Claude Opus 4) delegating to Sonnet 4 subagents in parallel — outperformed single Opus 4 by **90.2%** on internal eval. The gain comes from parallel tool execution cutting research time by up to **90%**, not from having more sophisticated agents. — [Anthropic: How We Built Our Multi-Agent Research System (Jun 2025)](https://www.anthropic.com/engineering/multi-agent-research-system)
+- **Use MCP as infrastructure, not application logic.** The protocol handles transport and discovery; your agent handles reasoning. Anthropic's MCP code execution guide demonstrates agents that write Python to call MCP tools — the agent decides *what* to call, the tool handles *how*.
+- **Evaluate tool use quality, not just task completion.** Anthropic recommends tracking: right tool selection, correct arguments, tool error rates, total tool calls per task, and token consumption per call. These signal where tool definitions need improvement. — [Anthropic: Writing Effective Tools for AI Agents (2025)](https://www.anthropic.com/engineering/writing-tools-for-agents)
+- **Treat MCP servers like network services, not code.** Apply network-level security: MCP servers have command injection risks, can serve as prompt injection vectors from attacker-controlled data, and need SOC2-type vetting for production. The NSA published specific MCP security design considerations for this reason. — [NSA: MCP Security Design Considerations (2025)](https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf)
+
+## Evidence
+
+- **Anthropic internal eval:** Multi-agent research system with lead Opus 4 + parallel Sonnet 4 subagents → 90.2% improvement over single Opus 4 on internal research benchmark. Parallel execution delivered up to 90% reduction in research time. — [Anthropic Engineering: Multi-Agent Research System (Jun 2025)](https://www.anthropic.com/engineering/multi-agent-research-system)
+- **OpenAI corroboration:** OpenAI added MCP support to their Agents SDK in March 2025 (807 HN points, 267 comments), validating MCP as the cross-vendor tool standard. The announcement was made via @OpenAIDevs. — [Hacker News: OpenAI adds MCP support to Agents SDK (Mar 2025)](https://news.ycombinator.com/item?id=43485566)
+- **Enterprise adoption and security:** Stacklok's 2026 analysis verified 41% of organizations have MCP in limited or broad production. 43% of MCP servers have command injection flaws; NSA published dedicated security guidance. — [Digital Applied: MCP Adoption Statistics 2026](https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol) / [NSA: MCP Security Design Considerations (2025)](https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf)
+
+## Gotchas
+
+- **Eager loading all tool definitions is the #1 performance killer.** If your agent connects to a large MCP server with 20+ tools and you're loading them all into context on every turn, you've built a token furnace. Use dynamic/lazy loading instead.
+- **MCP is not magic — it's plumbing.** The protocol solves transport and discovery; your agent still needs good tool descriptions, clear input/output schemas, and error handling. A poorly described tool behind a perfect MCP adapter is still a poor tool.
+- **Security review every MCP server before enabling.** Command injection via MCP is not theoretical. Treat third-party MCP servers with the same suspicion you'd treat a random npm package with network access and filesystem read.
+- **Single-agent loops are often enough.** The 90.2% multi-agent gain came from a well-matched task (parallel web research). For sequential reasoning tasks, a well-crafted single-agent loop with good tool design outperforms multi-agent complexity.
+- **The 75% time-savings claims from marketing need verification.** Block's reported 75% time savings on engineering tasks is cited across multiple secondary sources but trace back to a single Xenoss.io blog post that lacks primary attribution. Verified production numbers are harder to find than the ecosystem size metrics.
