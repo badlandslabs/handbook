@@ -5857,6 +5857,7 @@ deepseek-r1-zero → I-3220
 | I-3249 | The Tool Response Trust Gap Stack — When Your MCP Server Says One Thing and Does Another at Runtime | tool-response-poisoning, mcp-tool-poisoning, trust-gap, response-sanitization, llm-context-injection, tool-poison, indirect-injection, semantic-attack, mcp-security, connect-time-trust, runtime-trust, owasp-llm-top10, csa-ai-security, nsa-mcp-security, cve-2025-49596, ox-security-mcp, arxiv-2605.11418, invarianlabs, practical-devsecops-2026, tool-response-trust | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2496 | 2026-08-11 | 2026-08-11 |
 | I-3250 | The Golden Dataset Decay Stack — When Your Eval Suite Passes but Users Are Complaining | golden-dataset-decay, eval-set-decay, eval-staleness, eval-grounding, benchmark-illusion, eval-set-overfitting, synthetic-contamination, distribution-shift, ground-truth-drift, policy-version, eval-coverage, cohort-coverage, production-trace-mining, eval-rotation, staleness-gate, eval-liability, tianpan-2026, agentmodeai-2026, golden-eval-set, drift-sensor, eval-freshness | 9 | 10 | 9 | 8 | 7 | **9.10** | WRITTEN — S-2499 | 2026-08-11 | 2026-08-11 |
 | I-3251 | The Eval-to-Training Pipeline Leak — When Your Eval Set Quietly Joins Your Training Corpus | eval-training-leak, self-contamination, pipeline-leak, eval-set-contamination, fine-tuning-contamination, temporal-fence, held-out, eval-pipeline, coverage-ratio, data-governance, production-fine-tuning, three-signal-filter, eval-to-training, benchmark-memorization, training-pipeline, eval-rotation, temporal-firewall, human-edited-outputs, validator-failures, production-log, tianpan-2026, worldprogramming-2026, multigrid-2026 | 9 | 9 | 9 | 9 | 7 | **8.70** | WRITTEN — S-2503 | 2026-08-11 | 2026-08-11 |
+| I-3261 | The Mis-Specified Verifier Stack — When Your RLVR Training Silently Teaches the Wrong Thing | mis-specified-verifier, systematic-verifier-error, RLVR-failure, verifier-collapse, reward-hacking, extensional-check, shortcut-learning, Isomorphic-Perturbation-Testing, IPT, false-positive-verifier, false-negative-verifier, verifier-design, ensemble-verifier, reward-gaming, RLVR-collapse, RLVR-plateau, SRI-2026, arxiv-2605.02909, arxiv-2604.15149, helff-2026, egashira-2026, COLM-2026, hud-ai-2026, snorkel-2026 | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2531 | 2026-08-12 | 2026-08-12 |
 
 ## Deduplication Index
 
@@ -6331,7 +6332,17 @@ raining target. S-1028 (trajectory degeneration) and S-2520 (RLVR) form a comple
 | I-3252 | The Stale State Stack — When Your Agent Acts on Data That Stopped Being True | stale-state, tool-result-freshness, environment-state, state-reconciliation, temporal-inconsistency, tool-staleness, world-model, action-precondition, read-write-consistency | 8 | 8 | 8 | 7 | 7 | **7.75** | WRITTEN — S-2505 | 2026-08-12 | 2026-08-12 |
 | I-3253 | The Agent Observability Pipeline Stack — When Your Agent Runs in Production and You Cannot See Inside It | agent-observability, tracing, OpenTelemetry, LangSmith, AgentOps, Phoenix, OTEL, span, trace-annotation, production-debugging, agent-debugging | 8 | 8 | 8 | 7 | 7 | **7.75** | SUPERSEDED — covered by S-2512 Production Agent Floor; ambiguous retry is distinct | 2026-08-12 | 2026-08-12 |
 | I-3258 | The Ambiguous Retry Stack — When Your Agent Doesn’t Know If the Email Sent | ambiguous-retry, idempotency-key, non-idempotent, partial-result, unknown-outcome, side-effect-uncertainty, retry-classification, poll-before-retry, idempotency-store, three-way-outcome, effect-confirmation, retry-ambiguity, rate-limit-retry, network-drop, result-confirmation, redis-idempotency, outcome-polling, compensation-action, retry-safety, action-verification, Cordum-2026, StackWell-2026, Datadog-AI-2026 | 9 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2524 | 2026-08-12 | 2026-08-12 |
-|| I-3259 | The Agent Rot Stack — When Your Deployed Agent Becomes Quietly Wrong | agent-rot, world-drift, silent-degradation, world-model-staleness, world-model, source-of-truth, semantic-freshness, ground-truth-check, outcome-verification, embedding-freshness, stale-retrieval, freshnes-signal, verysmartparrot-2026, tianpan-2026, trovex-2026, vectara-2026, mg6-2026, semantic-drift, confidence-wrong, world-state-drift, context-freshness | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2527 | 2026-08-12 | 2026-08-12 |
+| I-3261 | The Mis-Specified Verifier Stack — When Your RLVR Training Silently Teaches the Wrong Thing | mis-specified-verifier, systematic-verifier-error, verifier-collapse, verifier-noise, RLVR-failure, RLVR-collapse, RLVR-plateau, shortcut-learning, extensional-check, Isomorphic-Perturbation-Testing, IPT, false-positive-verifier, false-negative-verifier, ensemble-verifier, verifier-design | 9 | 10 | 9 | 9 | 8 | **9.20** | WRITTEN — S-2531 | 2026-08-12 | 2026-08-12 |
+| I-3262 | The MCP Version Skew Stack — When Your Agent Calls a Tool That No Longer Exists | mcp-version-skew, schema-drift, tool-schema-evolution, capability-negotiation, schema-pinning, schema-snapshot, breaking-change, non-breaking-change, listChanged, pre-flight-check, schema-cache, mcp-schema-evolution, reaatech, tool-signature-drift, schema-contract | 9 | 9 | 9 | 8 | 7 | **8.70** | WRITTEN — S-2535 | 2026-08-12 | 2026-08-12 |
+| I-3263 | The Agent Card Spoofing Stack — When Your Agent Discovery Protocol Is a Social Engineering Attack Surface | agent-card-spoofing, A2A-security, capability-spoofing, impersonation, agent-discovery, SPIFFE, SPIRE, workload-identity, agent-registry, signed-agent-card, JWS, capability-routing, Kubernetes-workload, zero-trust-discovery, kagenti, a2a-registry, Kagenti-Operator, RedHat-2026, MAESTRO-threat-model, capability-misrepresentation, A2A-attacks, attestation-binding | 10 | 10 | 9 | 10 | 9 | **9.75** | WRITTEN — S-2543 | 2026-08-12 | 2026-08-12 |
+| I-3264 | The Outcome SLO Stack — When Your Dashboard Shows 99% But Your Users Are Churning | outcome-SLO, task-success-rate, HTTP-success-gap, capability-SLO, service-SLO, dashboard-lies, silent-regression, composition-math, provider-sla-trap, error-budget, outcome-verification, LLM-as-judge, canary-measurement, task-availability, APM-gap | 10 | 10 | 9 | 10 | 8 | **9.65** | WRITTEN — S-2545 | 2026-08-12 | 2026-08-12 |26-08-12 | 2026-08-12 |
+| I-3260 | The Injection Escalation Stack — When a Prompt Becomes a Shell | prompt-injection-RCE-chain, parameter-poisoning, tool-call-escalation, Microsoft-Defender-2026, arxiv-2601.17548, CVSS-9.6-RCE, semantic-kernel-CVE, injection-escalation, defense-in-depth, security-boundary, guard-gap, command-injection, tool-allowlist, hardened-tool, parameter-validation, security-layering, MCP-CVE, agentmelt-2026, paperclipped-2026 | 10 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-2529 | 2026-08-12 | 2026-08-12 |
+| I-3259 | The Agent Rot Stack — When Your Deployed Agent Becomes Quietly Wrong | agent-rot, world-drift, silent-degradation, world-model-staleness, world-model, source-of-truth, semantic-freshness, ground-truth-check, outcome-verification, embedding-freshness, stale-retrieval, freshness-signal, verysmartparrot-2026, tianpan-2026, trovex-2026, vectara-2026, mg6-2026, semantic-drift, confidence-wrong, world-state-drift, context-freshness, stale-world-model, cache-staleness, rot-monitoring | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2527 | 2026-08-12 | 2026-08-12 |
+
+| I-3263 | The Handoff Desert Stack — When Your Multi-Agent Pipeline Produces Garbage Between Perfect Agents | handoff-desert, context-loss, agent-handoff, multi-agent-pipeline, decision-package, structured-handoff, context-compression, handoff-verification, reasoning-trail, typed-schema-handoff, corbits-2026, xtrace-2026, ai-navigate-2026, corbits-dev, sudoall-2026 | 9 | 9 | 10 | 10 | 9 | **9.25** | DUPLICATE — covered by S-2098 (handoff-capsule entry); merged new patterns below | 2026-08-12 | 2026-08-12 |
+
+## Recent Decisions
+- *2026-08-12* — **I-3263 → DUPLICATE of S-2098**: Fresh research identified handoff context loss as top topic (Corbits Dev, AI Navigate, XTrace, SudoAll, 2026). On dedup check, S-2098 "The Handoff Desert Stack" (2026-08-03) already covers this exact failure mode comprehensively. New research adds: (1) information-theoretic framing of handoff scope vs tool-call scope; (2) structured decision-package pattern with typed schema (Pydantic); (3) verification gate at receiving agent; (4) handoff-reasoning coupling antipattern. These have been merged into the Pattern Log below for S-2098's curator to incorporate.ost-execution isolation) not the pre-execution parameter boundary. The novel contribution is the four-layer escalation model: Malicious Input → Model Interpretation → Tool-Call Parameter → Tool Execution — each layer needs its own defense; the chain only breaks if all layers fail. Pattern density: S-259 (OWASP ASI), S-1006 (toolbelt least privilege), S-1145 (two-layer guards), S-1108 (sandbox), S-1000 (structural governance).
 || I-3257
 
 ## Deduplication Index
@@ -6432,8 +6443,36 @@ world-belief → I-3259
 stale-world-model → I-3259
 cache-staleness → I-3259
 rot-monitoring → I-3259
+prompt-injection-RCE-chain → I-3260
+parameter-poisoning → I-3260
+tool-call-escalation → I-3260
+Microsoft-Defender-2026 → I-3260
+semantic-kernel-CVE → I-3260
+injection-escalation → I-3260
+command-injection → I-3260
+tool-allowlist → I-3260
+hardened-tool → I-3260
+parameter-validation → I-3260
+security-layering → I-3260
+CVSS-9.6-RCE → I-3260
+agentmelt-2026 → I-3260
+paperclipped-2026 → I-3260
+defense-in-depth → I-3260
+security-boundary → I-3260
+guard-gap → I-3260
+MCP-CVE → I-3260
+
+agent-card-spoofing → I-3263
+A2A-spoofing → I-3263
+capability-spoofing → I-3263
+agent-discovery-attack → I-3263
+spiffe-agent-binding → I-3263
+kagenti → I-3263
+a2a-registry-security → I-3263
+signed-agent-card → I-3263
 
 ## Recent Decisions
+- *2026-08-12* — **I-3262 → S-2535 — The MCP Version Skew Stack — Composite 8.70**: Research surface: (1) MCP Best Practices guide (modelcontextprotocol.info) — architectural design principles covering capability negotiation, single-responsibility servers, schema versioning; (2) OWASP MCP Security Cheat Sheet (cheatsheetseries.owasp.org) — MCP as "USB-C for AI" with new attack surface combining prompt injection, supply chain attacks, and confused deputy problems; (3) AliveMCP capability negotiation guide — protocol handshake details, feature detection, version mismatch handling; (4) reaatech/mcp-schema-evolution (GitHub, 2026) — ProtoBuf-style evolution rules for MCP: breaking vs. non-breaking classification, CI enforcement; (5) Adaline Labs (May 2026) — tool description as primary selection signal (primary, not system prompt); (6) chatforest MCP versioning guide — supportedProtocolVersions negotiation, capability declaration tables. Deduplication: S-874 (MCP Config Drift) covers permission/configuration drift after handshake — orthogonal to this entry's schema/interface drift during handshake; S-2511 (MCP Tool Registry) covers discovery/catalog — orthogonal to schema stability; S-767 (Tool-Call Hallucination Plateau) covers model-level tool selection failures — orthogonal to infrastructure-level schema staleness. The MCP version skew angle is distinct: it's the infrastructure contract problem, not the model reasoning problem. Chosen over: (1) Graduated Autonomy Stack — covered implicitly by existing HITL entries (S-1032 dead letter, S-2534 authorization); (2) Tool Description Engineering Stack — S-767 already covers this at the model level; this MCP-level angle would be redundant.
 - *2026-08-12* — **I-3259 → S-2527 — The Agent Rot Stack — Composite 9.50**: Tracker exhausted (all I-3243–3258 fully processed). Fresh research: (1) VerySmartParrot "Agent Rot" (May 2026, updated July 2026) — formally names this phenomenon: "the gradual degradation of a deployed agent's output quality as the world drifts away from the assumptions it was built on." Central thesis: traditional monitoring catches crashes, not wrong answers; agent rot produces confident, factually wrong output while every metric stays green. Governance model: world-model audit trail, ground-truth checkpoints, freshness contracts. (2) Tian Pan "MCP Server Supply Chain Risk" (April 2026) — stale tool descriptions as silent failure vectors; schema drift turns stale descriptions into wrong-tool-calling with no error signal. (3) Trovex (June 2026) — why RAG surfaces stale docs: "embedding search ranks by similarity, not freshness"; the old runbook and current runbook score identically because they're semantically near-identical. Fix: canonical/stale/duplicate marking + hybrid retrieval with freshness signals. (4) Vectara/awesome-agent-failures (Apache 2.0, 89 commits) — catalogs tool hallucination (wrong tool output → wrong decision) and response hallucination (inconsistent tool outputs → wrong synthesis) as distinct from world-model drift, but connected. (5) MG6 (July 2026) — Gartner: 40% of agentic AI projects cancelled by 2027 due to unclear value + inadequate risk controls; <1 in 10 enterprise AI apps fully observable; bank credit model case study: 95% → 87% accuracy over 6 months, zero alerts. Dedup: S-2388 (Context Rot) covers in-session attention degradation from transformer limits — rot from within, not rot from without; S-3252 (Stale State) covers tool-result staleness within a task context, not world-model drift over time; S-2521 (Consistency) covers cross-run output variance, not environmental divergence; S-818 (Longitudinal Eval) covers capability drift detection over model versions, not the world-model staleness mechanism. The novel contribution: three-layer rot detection (source-of-truth anchoring with value hashing, semantic freshness via embedding drift + ground-truth probes, outcome-level verification gate inside the agent loop). Counter-intuitive: TTL-based cache invalidation is almost useless because the world changes on business timelines, not fixed intervals — freshness must be semantic, not temporal.
 - *2026-08-12* — **I-3254 → S-2512 — The Production Agent Floor Stack — Composite 8.85**: Tracker exhausted. Fresh research: (1) whysogeek.com "AI Agent Observability 2026" (Aug 2026) — cost per task + loop count as single most useful metric combination; (2) Gheware "OpenTelemetry for AI Agents" (Apr 2026) — OTel semantic conventions, Grafana Tempo stack, <1% overhead, 60% less debugging time; (3) AgentSight (arXiv:2508.02736) — eBPF boundary tracing for semantic gap; (4) ExploreAgentic "Agent Registry" (May 2026) — registry vs. gateway distinction. Dedup: S-1440 (Boundary Tracing) covers observability FROM outside the agent boundary (security focus); S-3253 (Agent Observability OTEL) is a named idea, not a written entry; S-2506 (Agent Eval) covers "is my agent improving over time?" not "is it working right now?" This entry fills the minimum viable production monitoring surface — two metrics (loop count, cost per task), three layers (session signals, trajectory traces, four-number dashboard). Chosen over: (1) AgentCard normative spec debate — interesting but too spec-level, low actionable density; (2) Dynamic capability negotiation — covered by I-3117/S capability stack; (3) x402 payment header for agents — premature, not yet production-grade.
 - *2026-08-12* — **I-3252 → S-2505 — The Stale State Stack — Composite 7.75**: Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: (1) Tian Pan "Context Poisoning in Long-Running AI Agents" (Apr 2026) — establishes stale context as a reliability failure mode; (2) Adaline Labs "Agent Memory Is A Product Surface" (May 2026) — memory vs. context distinction; (3) Conceptualise "Multi-Agent Failure Modes" (May 2026) — silent failure patterns; (4) Nexgismo blog "AI Agent Budget Guards" (Jun 2026) — runaway cost incidents; (5) Clyro "$47K loop" forensic analysis. Dedup: S-1248 (Token Drift) covers OAuth TTL expiry, not tool result staleness; S-1016 (Agent Failure Intervention) covers wrong-action intervention, not precondition checking; S-2409 (Trace Replay) covers debugging after failure, not staleness-aware action preconditions; S-1120 (Tool Wiring with MCP) covers tool integration, not the temporal consistency problem across tool calls. The novel contribution is the three-layer staleness architecture: freshness metadata on every tool result, a freshness gate before write-side actions, and an environment digest to detect cross-call inconsistencies — none of which existing entries cover.
@@ -6455,3 +6494,57 @@ idempotency-store → I-3258
 three-way-outcome → I-3258
 effect-confirmation → I-3258
 outcome-polling → I-3258
+mis-specified-verifier → I-3261
+systematic-verifier-error → I-3261
+verifier-collapse → I-3261
+verifier-noise → I-3261
+RLVR-failure → I-3261
+RLVR-collapse → I-3261
+RLVR-plateau → I-3261
+shortcut-learning → I-3261
+extensional-check → I-3261
+Isomorphic-Perturbation-Testing → I-3261
+IPT → I-3261
+false-positive-verifier → I-3261
+false-negative-verifier → I-3261
+ensemble-verifier → I-3261
+verifier-design → I-3261
+mcp-version-skew → I-3262
+schema-drift → I-3262
+tool-schema-evolution → I-3262
+capability-negotiation → I-3262
+schema-pinning → I-3262
+schema-snapshot → I-3262
+breaking-change → I-3262
+non-breaking-change → I-3262
+listChanged → I-3262
+pre-flight-check → I-3262
+schema-cache → I-3262
+mcp-schema-evolution → I-3262
+tool-signature-drift → I-3262
+
+outcome-SLO → I-3264
+task-success-rate → I-3264
+HTTP-success-gap → I-3264
+capability-SLO → I-3264
+service-SLO → I-3264
+dashboard-lies → I-3264
+silent-regression → I-3264
+composition-math → I-3264
+provider-sla-trap → I-3264
+error-budget → I-3264
+outcome-verification → I-3264
+LLM-as-judge → I-3264
+canary-measurement → I-3264
+task-availability → I-3264
+APM-gap → I-3264
+
+## Pattern Log
+- *2026-08-12* — **Outcome SLO vs Service SLO: The Dashboard Lie Pattern.** AlexCloudStar (May 2026) and ValuestreamAI (Aug 2026) independently identified the same failure: HTTP-layer APM reports green while task-layer outcomes fail silently. The root cause is that agents fail at the capability layer (wrong tool, wrong reasoning, wrong output) without any HTTP error. Tian Pan (April 2026) adds the composition arithmetic: a 99.9% provider SLA composed across 12 LLM calls = 98.8% task availability before user-facing failures. The fix requires three independent SLOs (service, capability, outcome), instrumented at the task boundary, with ground truth defined per task type. This pattern connects S-2512 (Production Agent Floor, same symptom: 200 but failing) and S-2544 (Agent Evaluation: benchmark green but production fails) — this entry adds the SLO/error-budget layer that makes those symptoms measurable and actionable.
+- *2026-08-12* — **Structured Decision Package vs Output Dump: The handoff schema pattern.** Corbits Dev (2026-05-28) and XTrace AI (2026-08-09) independently converged on the same corrective: treat handoffs as structured knowledge transfer, not output passing. The decision package includes fields the sending agent doesn't naturally produce — `exclusions` (what was ruled out and why), `contradictions` (known conflicts between sources), `critical_constraints` (business rules the next agent must respect), and `next_agent_goal` (what the receiving agent should accomplish and why). Enforced via Pydantic/JSONSchema so agents cannot omit uncomfortable fields. The verification gate (receiving agent reconstructs reasoning from the package) is the feedback signal that the handoff is working. This complements S-2098's handoff-capsule concept with a concrete schema implementation. SudoAll (June 2026) adds that handoff structure directly affects the token overhead multiplier: structured handoffs reduce the 15× orchestrator-worker overhead by eliminating redundant reasoning reconstruction at each boundary.
+- *2026-08-12* — **Verifier Is the Model: Systematic verification errors are training data.** The central insight from SRI Lab (COLM 2026, arXiv:2605.02909) is that RLVR makes the verifier part of the model — every accepted trajectory encodes the verifier's biases as learned behavior. Unlike SFT where human curation filters bad examples, RLVR trains on what the code produces. Systematic false positives teach confident wrong behavior; systematic false negatives teach avoidance of correct behavior. The fix is diagnostic: measure FP/FN rates before training, use IPT to detect shortcut learning, and ensemble verifiers to catch contradictions.
+
+## Recent Decisions
+- *2026-08-12* — **I-3264 → S-2545 — The Outcome SLO Stack — Composite 9.65**: Top-scoring idea this run. Fresh research: (1) AlexCloudStar (May 2026) — "AI Agent Reliability Engineering 2026" — three-layer SLO framework (service/capability/outcome), documented case of silent regression where 200s were returned while zero users were served. (2) Tian Pan (April 2026, tianpan.co) — "Your Provider's 99.9% SLA Is Measured at the Wrong Boundary" — composition arithmetic: 99.9%^12 = 98.8% task availability before user failures. (3) PageBolt (March 2026) — agent SLA measurement guide, why traditional uptime metrics don't apply. (4) ValuestreamAI (Aug 2026) — worst failures don't look like failures, 200 status with confident wrong output. Dedup: I-3253 (Agent Observability Pipeline) covered tracing infrastructure — does NOT cover the SLO/task-success vs HTTP-success gap. S-2512 (Production Agent Floor) covers the symptom (200 but failing) — does NOT cover the three-layer SLO architecture or the composition math. This entry adds the operational reliability layer that makes observability data actionable. Chosen over I-3265 (Synthetic Data Generation / Distillation) — higher urgency (production operators need this now vs. training teams), higher coverage gap, stronger timeliness signal.-difficulty examples outperform 500 easy examples under the same budget. Dedup: S-2520 (RLVR Training Stack) covers the RLVR baseline — how to train with verifiable rewards. This entry covers the failure mode: what happens when your verifier is wrong and the optimizer treats wrong as ground truth. S-2387 (Proxy Teleology) covers gaming of runtime metrics; this covers gaming of training-time evaluation. Both are about feedback-signal manipulation but at different temporal layers. Chosen over A2A security gaps (covered by S-2470 A2A Protocol Trust Stack) and trust calibration (covered by S-1059 Graduated Autonomy Playbook).
+
+- *2026-08-12* — **Agent Card Spoofing = Identity Binding Gap in A2A Discovery**: The A2A protocol standardizes capability-based agent discovery via Agent Cards (JSON at `/.well-known/agent-card.json`) but mandates no cryptographic binding between the card and the publishing workload. Any pod can publish any card, enabling impersonation, capability cloaking, and redirection attacks. Red Hat's Kagenti operator (GitHub: `kagenti/kagenti-operator`) implements the three-gate defense: (1) SPIFFE/SPIRE workload attestation, (2) JWS-signed Agent Cards with JWKS key distribution, (3) card content hash verification for post-attestation tamper detection. Academic analysis (OpenReview / MAESTRO threat model) confirms 5 of 6 A2A attack classes succeed near-100% against unverified registries. The A2A Registry spec defines a 4-layer verification stack (identity → integrity → authorization → freshness). This is the mirror of S-1065 (Inter-Agent Trust Escalation) at the discovery layer: S-1065 covers the second-hop authorization failure; this covers the pre-selection trust gap. New pattern: **capability-oracle hijacking** — the discovery mechanism itself becomes the attack vector when it runs before verification.
