@@ -1134,3 +1134,5 @@
   - [S-2503 · The Eval-to-Training Pipeline Leak Stack](stacks/s2503-the-eval-to-training-pipeline-leak-when-your-eval-set-quietly-joins-your-training-corpus.md)
   - [S-2504 · The Escalation Ladder Stack](stacks/s2504-the-escalation-ladder-stack-when-your-agent-is-stuck-but-refuses-to-stop.md)
   - [S-2505 · The Stale State Stack](stacks/s2505-the-stale-state-stack-when-your-agent-acts-on-data-that-stopped-being-true.md)
+  - [S-2506 · The Memory Governance Gap Stack](stacks/s2506-the-memory-governance-gap-stack-when-your-multi-tenant-agent-knows-things-it-shouldnt.md)
+  - [S-2512 · The Production Agent Floor Stack](stacks/s2512-the-production-agent-floor-stack-when-your-agent-returns-200-but-is-failing.md)
