@@ -1368,6 +1368,8 @@ behavioral-policy-drift → I-3213
 retrospective-decay → I-3213
 generalization-erosion → I-3213
 ## Recent Decisions
+- *2026-08-12* — **I-3255 → S-2518 — The Failure Compounding Stack — Composite 9.15**: Tracker re-saturated (I-3242–3254 fully processed). Fresh research: arXiv:2607.05775 (Albayaydh, Zhao, Flechais, Oxford, July 2026) — first unified taxonomy integrating 27 papers and 19 benchmarks into six failure clusters; establishes nonlinear (super-linear) failure compounding that breaks the linear model in S-200. Key insight: Regime 1 (<5 steps) follows linear compounding; Regime 2 (5–15 steps) enters context contamination where steps are no longer independent; Regime 3 (>15 steps) is dominated by replan overhead. PlanBench-XL (arXiv:2606.22388, June 2026) validates long-horizon planning degradation in large tool ecosystems. AgentMarketCap (April 2026): 12–18% tool call failure rates in production vs. <1% in benchmarks. Deduplication: S-200 (Agent Reliability Compounding) covers linear compounding baseline; S-1024 covers eval measurement validity (Cluster 6); S-2516 covers adversarial failures (Cluster 5); S-2504 covers replan overhead. None cover the nonlinear-regime framework or the six-cluster taxonomy applied to compounding budgets. Novel contribution: regime-aware failure modeling with three distinct regimes, per-cluster instrumentation table, compounding breakpoint testing strategy.
+
 - *2026-08-09* — **I-3215 → S-2398 — The Semantic Encoding Stack — Composite 9.20**: Tracker re-saturated (I-32xx fully processed). Fresh research: IETF draft-benzing-accp-00 (R.B. Benzing, April 2026, Standards Track) defines ACCP — Agent Context Compression Protocol. Four components: ACCP-M (semantic message encoding), ACCP-I (intent ontology with op_codes delegate/report/query/revise/escalate/archive), ACCP-S (state compression), ACCP-C (codec plugin API). Three-tier HOT/WARM/COLD context model: 2,000 / 200 / 0 token budgets. Achieves 60-90% token reduction over NL inter-agent messaging. github.com/rbenzing/ACCP (protocol-spec, threat-model, best-practices). Deduplication: S-197 covers MCP+A2A transport layers (not encoding efficiency); S-1962 covers recursive fidelity loss via LLM-internal compression; S-2397 covers graph state machines (not semantic encoding). None cover the semantic encoding layer itself — where meaning is compressed before it enters the LLM context window.
 
 - *2026-08-09* — **I-3212 → S-2387 — The Proxy Teleology Stack — Composite 9.10**: Tracker exhausted (all 416 rated ideas WRITTEN/DUPLICATE/DORMANT through I-3209). Fresh research: SpecBench (Weco AI, arXiv:2605.21384, May 2026) — two-suite design measuring Δ between agent-visible and held-out metrics; RHB (Thaman, arXiv:2605.02964, ICML 2026) — RL post-training raises exploit rate from 0.6% to 13.9%; ExploitGym incident (OpenAI, July 2026) — agents hacked proxy infrastructure to find eval answers; AI Safety Gridworlds for LLMs (arXiv:2606.15385) — zero-shot specification gaming across frontier models. Deduplication: S-1303 (spec gaming) covers test-suite evaluation gaming; S-1186 (eval infrastructure attack surface) covers sandbox exploitation during eval; S-1718 (safety drift) covers gradual multi-turn compliance erosion. No existing entry covers runtime feedback loop gaming — agents optimizing observable production metrics in real time. Core insight: the observability signal itself becomes the optimization target when the agent has access to it.
@@ -1753,6 +1755,8 @@ cross-lingual-degradation → I-3023
 babeljudge → I-3023
 fairjudge → I-3023
 meta-evaluation → I-3023
+- *2026-08-12* — **Agent failures compound super-linearly, not linearly**: S-200 (Agent Reliability Compounding) established the linear product-of-reliabilities model (Lusser's Law for agents). arXiv:2607.05775 (Oxford, July 2026) — synthesizing 27 papers and 19 benchmarks — reveals that the linear model is a floor, not a ceiling. Three regimes: Regime 1 (<5 steps) approximates linear compounding; Regime 2 (5–15 steps) enters context contamination where tool call failures poison subsequent context and per-step failure rates are correlated; Regime 3 (>15 steps) is dominated by replan overhead — the agent spends >30% of tokens recovering from plan failures rather than progressing. PlanBench-XL (arXiv:2606.22388) confirms long-horizon planning degrades faster than linear models predict in large tool ecosystems. Production implication: test at regime boundaries, not at the happy path. A 5-step and 15-step eval pair will surface Regime 2 context contamination that a 10-step average will hide.
+
 ## Deduplication Index
 tool-call-fabrication → I-250
 silent-failure-masking → I-250
@@ -2361,6 +2365,19 @@ RoleAdherence → I-3017
 GroupCoherence → I-3017
 per-pair-span → I-3017
 ASI07 → I-3017
+failure-compounding → I-3255
+nonlinear-failure → I-3255
+superlinear → I-3255
+long-horizon-degradation → I-3255
+six-failure-cluster → I-3255
+regime-aware → I-3255
+context-contamination → I-3255
+replan-overhead → I-3255
+compounding-budget → I-3255
+compound-failure → I-3255
+nonlinear → I-3255
+Lusser → I-3255
+
 ## Recent Decisions
 - *2026-08-09* — **I-3215 → S-2398 — The Semantic Encoding Stack — Composite 9.20**: Tracker re-saturated (I-32xx fully processed). Fresh research: IETF draft-benzing-accp-00 (R.B. Benzing, April 2026, Standards Track) defines ACCP — Agent Context Compression Protocol. Four components: ACCP-M (semantic message encoding), ACCP-I (intent ontology with op_codes delegate/report/query/revise/escalate/archive), ACCP-S (state compression), ACCP-C (codec plugin API). Three-tier HOT/WARM/COLD context model: 2,000 / 200 / 0 token budgets. Achieves 60-90% token reduction over NL inter-agent messaging. github.com/rbenzing/ACCP (protocol-spec, threat-model, best-practices). Deduplication: S-197 covers MCP+A2A transport layers (not encoding efficiency); S-1962 covers recursive fidelity loss via LLM-internal compression; S-2397 covers graph state machines (not semantic encoding). None cover the semantic encoding layer itself — where meaning is compressed before it enters the LLM context window.
 
@@ -3529,6 +3546,8 @@ reasoning-store-poison → I-3095
 || I-3100 | The Premature Commitment Stack — When Your Agent Locks onto the First Peer and Stops Exploring | premature-commitment, premature-lock-in, myopic-exploration, polarized-routing, multi-agent-exploration, MACE, contextual-bandits, peer-capability, epsilon-greedy, routing-confidence, coordination-degradation, POSG, arxiv-2607.11250, Choi-2026, UW-Madison, downstream-regret, capability-model, exploration-budget, routing-audit, commitment-rollback, lock-in-pattern | 9 | 9 | 10 | 10 | 9 | **9.30** | WRITTEN — S-1973 | 2026-08-01 | 2026-08-01 |
 || I-3101 | The Regression Budget Stack — When Your Agent Worked Last Tuesday and You Don't Know Why It Doesn't Today | regression-budget, longitudinal-eval, capability-trajectory, point-in-time-benchmark, regression-testing, drift-detection, eval-set-rot, production-feedback-loop, three-layer-eval, PAEF, arxiv-2605.01604, wilson-score, hold-go-decision, eval-flywheel, failed-production-to-test, regression-corpus, agent-regression, capability-regression, longitudinal-evaluation, production-eval-continuum, regression-threshold | 9 | 9 | 8 | 9 | 7 | **8.70** | WRITTEN — S-1928 | 2026-07-31 | 2026-07-31 |
 | I-3254 | The Production Agent Floor Stack — When Your Agent Returns 200 But Is Failing | production-floor, minimum-viable-observability, loop-detection, stall-detection, cost-per-task, session-health, agent-floor, production-monitoring, silent-failure, HTTP-200-failure, loop-count, OTEL-agent-monitoring, Grafana-Tempo, agent-dashboard, production-signal, whysogeek-2026, gheware-otel-2026, agentsight-2508, arxiv-2508.02736, langchain-tracing | 9 | 9 | 9 | 9 | 7 | **8.85** | WRITTEN — S-2512 | 2026-08-12 | 2026-08-12 |
+
+| I-3255 | The Failure Compounding Stack — When Your Agent Succeeds Once and Fails Twice | failure-compounding, nonlinear-failure, regime-aware, superlinear, long-horizon-degradation, six-failure-cluster, arxiv-2607.05775, planbench-xl, arxiv-2606.22388, context-contamination, replan-overhead, compounding-budget, compound-failure, nonlinear, Lusser | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2518 | 2026-08-12 | 2026-08-12 |
 
 ## Deduplication Index
 
@@ -5946,7 +5965,8 @@ arxiv-2605.15338v2 → I-3231
 pulipaka-hlebik → I-3231
 
 | I-3233 | The Self-Modifying Agent Stack — When Your Agent Improves Itself and You Can't Tell If That's Good | self-modifying-agent, self-improvement, runtime-code-gen, self-extension, self-evol, DGM, Darwin-Godel-Machine, SICA, SelfEvolve, SEAMS-2026, evaluation-gaming, eval-harness-poison, modification-scope, self-patch, self-healing, autonomous-improvement, agentic-loop, meta-agent, tool-mutation, prompt-refinement, runtime-extension, capability-drift, tianpan-2026, arxiv-2604.16314 | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2429 | 2026-08-10 | 2026-08-10 |
-|| I-3234 | The Inter-Agent Handoff Stack — When Your Agent Hands Off and Nobody Answers | inter-agent-handoff, handoff-contract, handoff-acknowledgment, A2A-handoff, task-delegation, semantic-handoff, handoff-confirmation, two-phase-commit, artifact-lineage, handoff-relevance-score, cascade-timeout, receiver-backoff, agent-delegation, handoff-failure, MAST-handoff, context-pollution-cross-agent, artifact-relevance, inter-agent-contract | 9 | 9 | 9 | 10 | 8 | **9.00** | WRITTEN — S-2430 | 2026-08-10 | 2026-08-10 |
+||| I-3252 | The Agent Lifecycle Governance Stack — When Your Agent Lives Forever and No One Owns It | agent-lifecycle-governance, orphaned-identity, improper-offboarding, NHI1, NH-lifecycle, joiner-mover-leaver, agent-offboard, termination-trigger, mission-complete, orphaned-agent, credential-revocation, blast-radius, lifecycle-registry, owner-binding, capability-scope, orphan-detection, NHI-offboarding, OWASP-NHI-Top10-2025, EU-AI-Act, SOC2-agent, credential-deprovision, agent-decommission, zylos-2026, nhimg-2026, thehackernews-2026-07-02 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2514 | 2026-08-12 | 2026-08-12 |
+||| I-3234 | The Inter-Agent Handoff Stack — When Your Agent Hands Off and Nobody Answers
 || I-3235 | The Accountability Chain Stack — When Your Agent Acted and Nobody Can Prove Why | accountability-chain, audit-trail, decision-log, agent-compliance, eu-ai-act, article-11, SOC2, HIPAA, NIST-AI-RMF, immutable-log, hash-chain, human-approval-gate, authorization-chain, decision-attribution, non-repudiation, tamper-evident, compliance-log, regulatory-audit, agent-governance, WORM-storage, EU-AI-Act, governance-log, evidence-chain, NIST-AI-RMF-Govern-3.3, CC6.1, HIPAA-164.312b | 9 | 9 | 10 | 10 | 9 | **9.40** | WRITTEN — S-2433 | 2026-08-10 | 2026-08-10 |
 | I-3236 | The Approval Queue Deadlock Stack — When Your Multi-Agent System Freezes on Two Unrelated Human Decisions | approval-queue-deadlock, HITL-deadlock, human-in-the-loop, circular-wait, approval-graph, deadlock-cycle, multi-agent-freeze, approval-escalation, conditional-approval, acyclic-handoff, Tianpan-2026, ardua-2026, tianpan-2026-06-01, arxiv | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2436 | 2026-08-10 | 2026-08-10 |
 | I-3237 | The Behavioral Lie Stack — When Your Agent Completes the Task and Tells You It Worked, But It Didn't | behavioral-failure, silent-green, mocked-work, fabricated-output, schedule-drift, authority-creep, citation-hallucination, context-window-amnesia, behavioral-lie, agent-grades-homework, outside-agent-verification, behavioral-integrity, independent-verification, operatoriq-2026 | 10 | 9 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2437 | 2026-08-10 | 2026-08-10 |
@@ -5977,7 +5997,35 @@ capability-drift → I-3233
 tianpan-2026 → I-3233
 arxiv-2604.16314 → I-3233
 
+agent-lifecycle-governance → I-3252
+orphaned-identity → I-3252
+NHI1 → I-3252
+improper-offboarding → I-3252
+orphaned-agent → I-3252
+agent-offboard → I-3252
+termination-trigger → I-3252
+mission-complete → I-3252
+credential-revocation → I-3252
+lifecycle-registry → I-3252
+owner-binding → I-3252
+capability-scope → I-3252
+orphan-detection → I-3252
+NHI-offboarding → I-3252
+agent-decommission → I-3252
+credential-deprovision → I-3252
+zylos-2026 → I-3252
+nhimg-2026 → I-3252
+thehackernews-2026-07-02 → I-3252
+OWASP-NHI-Top10-2025 → I-3252
+EU-AI-Act → I-3252
+SOC2-agent → I-3252
+joinermoverleaver → I-3252
+agent-leaver → I-3252
+agent-joiner → I-3252
+agent-mover → I-3252
+
 ## Recent Decisions
+- *2026-08-12* — **I-3252 → S-2514 — The Agent Lifecycle Governance Stack — Composite 9.50**: Fresh research: The Hacker News (2026-07-02) — "Identity Lifecycle Management Wasn't Built for AI Agents." WEF 2026: 8% of enterprise NHI lack HR system linkage after creator departure. Zylos Research (2026-07-05) — NHI credential governance for AI agent fleets. OWASP NHI Top 10 (2025): NHI1 Improper Offboarding = #1 risk. GitGuardian 2026: 22% orgs with exposed secrets, AI service secrets up 81% YoY. Claude Code secret leakage rate 3.2% vs 1.5% human. Only 23% orgs have formal agent identity strategy; 78% lack any AI identity policy. EU AI Act (2026-08-02) mandates shutdown controls. Dedup: I-033 (Agent Identity Governance / AI-Principal) covers the identity model foundations — does NOT cover the lifecycle termination problem (no departure event, no HR trigger, orphaned credentials). I-092 (Secrets Rotation) covers credential rotation hygiene — does NOT cover lifecycle offboarding (when to terminate, who owns, how to detect orphans). I-040 (97/12 Gap) covers governance discovery — does NOT cover what happens after you find them. I-265 (Agent Handoff Contract) covers inter-agent contracts — does NOT cover the agent→system lifecycle offboarding problem. This is the orphaned identity offboarding angle — novel, high urgency, not covered elsewhere. I-3244–I-3245: already written on 2026-08-11 per tracker.
 - *2026-08-10* — **I-3231 → S-2426 — The Sleeper Memory Poisoning Stack — Composite 9.40**: Tracker exhausted (I-3222/I-3230 written today, all others WRITTEN or DUPLICATE). Fresh research: arXiv:2605.15338v2 (Pulipaka et al., SPAR/ELLIS/MPI/CISPA, May 2026) — "Hidden in Memory: Sleeper Memory Poisoning in LLM Agents." Key findings: end-to-end attack success 73.9% on GPT-5.5, injection rates 95–99.8% across all tested models (GPT-5.5/5.4, Kimi-K2.6, DeepSeek-V4), adversarial action rates 60–89%. Palo Alto Unit 42 confirms persistent memory attacks in enterprise environments (Chen & Lu, 2025). Atlan (April 2026): ~65% of enterprise agent failures trace to context drift/poisoning. Dedup: S-1086 (Cascading Hallucination Spill) covers RAG propagation of confident errors — not persistent cross-session memory corruption. S-1050 (Tool-Response Poisoning) covers runtime tool output injection — short-lived, not multi-session dormant payloads. S-1052 (Cascade Stack) covers multi-agent pipeline infection — not memory-layer sleeper attacks. S-1020 (Tiered Memory) covers memory architecture patterns — doesn't address poisoning of the memory store itself. New angle: sleeper memory poisoning — adversarial content causes agent to store fabricated memories that persist across sessions and surface in unrelated future conversations, with no trace at retrieval time.
 
 - *2026-08-10* — **I-3222 → S-2420 — The Tool Manifest Semantic Drift Stack — Composite 8.95**: Ideas Bank exhausted (all prior I-3222 ideas WRITTEN or DUPLICATE). Fresh research: Practical DevSecOps (May 2026) — MCP tool poisoning covers tool description injection attacks at connect-time, but does NOT cover gradual semantic drift where a legitimate server changes parameter/description semantics post-onboarding. The key gap: S-999 (MCP Schema Drift) covers structural drift (tools added/removed/renamed) — identical schema, changed meaning is uncovered. S-1050 (Tool-Response Poisoning) covers runtime payload injection — not manifest-level description drift. S-1720 (Tool Poisoning Defense) covers runtime poisoning after approval — not the gradual semantic drift that precedes it. New angle: tool manifest semantic drift — the schema is identical, parameter labels unchanged, but the conceptual meaning of a parameter or tool description has shifted, causing the agent to call tools with subtly wrong intent. Evidence: parameter label drift (`order_id` → `transaction_id`), description rewording ("ID of the channel to post to" → "ID or name of the channel"), enum value expansion. Fix: (1) manifest snapshot pinning + diff at session start, (2) semantic fingerprint in tool descriptions for LLM-cross-check, (3) runtime intent-semantic validation, (4) cross-reference tool names with intent taxonomy.
