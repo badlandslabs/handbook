@@ -1,0 +1,149 @@
+
+=================================================================
+  PANW | $377.88 | RSI=68.3 | ATR=$14.40
+=================================================================
+  [STRUCTURE]
+  Near Resistance:  $385.04 (+1.9% above price)
+  Near Support:    $241.00 (+36.2% below price)
+  20d High:        $385.17 | 20d Low: $308.54 | Range: 20.3%
+  Pullback from 20d High: -1.9%
+  ATR volatility:  4.0% (EXPANDING)
+  Volume Breadth:  0.85x (up-day vol / down-day vol)
+  200SMA:          $N/A
+  [MOMENTUM]
+  RSI(14):         68.3 | 5d delta: +12.4 (Rising)
+  MACD Histogram:  3.229 | 5d ago: -0.482
+  MACD Hist delta: +3.711 (Expanding)
+  MACD Cross Rec:  No recent cross
+  [4H INTRADAY]
+  4H Price:        $377.88
+  4H 8EMA:         $378.76 | BELOW | Delta: 0.23%
+  4H 20EMA:        $373.03 | ABOVE | Delta: 1.30%
+  4H 50EMA:        $369.72 | ABOVE
+  [KEY LEVELS]
+  R1: $385.04 | S1: $241.00
+  Stop zone:     $219.41–$233.80
+  Entry range:   $377.84–$385.04
+  T1: $406.63 (5.7%) | T2: $428.23 (11.4%)
+  R:R T1: 1.0x
+
+=================================================================
+  ADBE | $269.32 | RSI=75.1 | ATR=$12.36
+=================================================================
+  [STRUCTURE]
+  Near Resistance:  $270.16 (+0.3% above price)
+  Near Support:    $195.10 (+27.6% below price)
+  20d High:        $273.13 | 20d Low: $210.88 | Range: 23.1%
+  Pullback from 20d High: -1.4%
+  ATR volatility:  4.8% (EXPANDING)
+  Volume Breadth:  0.94x (up-day vol / down-day vol)
+  200SMA:          $N/A
+  [MOMENTUM]
+  RSI(14):         75.1 | 5d delta: +10.6 (Rising)
+  MACD Histogram:  2.749 | 5d ago: 3.115
+  MACD Hist delta: -0.366 (Contracting)
+  MACD Cross Rec:  No recent cross
+  [4H INTRADAY]
+  4H Price:        $269.36
+  4H 8EMA:         $270.28 | BELOW | Delta: 0.34%
+  4H 20EMA:        $267.07 | ABOVE | Delta: 0.86%
+  4H 50EMA:        $263.48 | ABOVE
+  [KEY LEVELS]
+  R1: $270.16 | S1: $195.10
+  Stop zone:     $176.56–$188.92
+  Entry range:   $263.98–$270.16
+  T1: $288.70 (6.9%) | T2: $307.25 (13.8%)
+  R:R T1: 1.0x
+
+=================================================================
+  NVDA | $220.76 | RSI=56.5 | ATR=$7.63
+=================================================================
+  [STRUCTURE]
+  Near Resistance:  $225.87 (+2.3% above price)
+  Near Support:    $191.52 (+13.2% below price)
+  20d High:        $224.76 | 20d Low: $190.01 | Range: 15.7%
+  Pullback from 20d High: -1.8%
+  ATR volatility:  3.5% (CONTRACTION)
+  Volume Breadth:  0.94x (up-day vol / down-day vol)
+  200SMA:          $N/A
+  [MOMENTUM]
+  RSI(14):         56.5 | 5d delta: +6.9 (Rising)
+  MACD Histogram:  2.227 | 5d ago: 0.517
+  MACD Hist delta: +1.710 (Expanding)
+  MACD Cross Rec:  No recent cross
+  [4H INTRADAY]
+  4H Price:        $220.72
+  4H 8EMA:         $219.56 | ABOVE | Delta: 0.53%
+  4H 20EMA:        $220.16 | ABOVE | Delta: 0.25%
+  4H 50EMA:        $220.47 | ABOVE
+  [KEY LEVELS]
+  R1: $225.87 | S1: $191.52
+  Stop zone:     $180.07–$187.70
+  Entry range:   $222.05–$225.87
+  T1: $237.31 (5.2%) | T2: $248.76 (10.4%)
+  R:R T1: 1.0x
+
+=================================================================
+  AMD | $466.24 | RSI=35.5 | ATR=$36.06
+=================================================================
+  [STRUCTURE]
+  Near Resistance:  $562.99 (+20.7% above price)
+  Near Support:    $426.05 (+8.6% below price)
+  20d High:        $561.47 | 20d Low: $424.03 | Range: 29.5%
+  Pullback from 20d High: -17.0%
+  ATR volatility:  8.6% (EXPANDING)
+  Volume Breadth:  1.08x (up-day vol / down-day vol)
+  200SMA:          $N/A
+  [MOMENTUM]
+  RSI(14):         35.5 | 5d delta: -12.8 (Falling)
+  MACD Histogram:  -3.095 | 5d ago: -3.573
+  MACD Hist delta: +0.478 (Contracting)
+  MACD Cross Rec:  No recent cross
+  [4H INTRADAY]
+  4H Price:        $466.24
+  4H 8EMA:         $473.42 | BELOW | Delta: 1.52%
+  4H 20EMA:        $478.40 | BELOW | Delta: 2.54%
+  4H 50EMA:        $482.65 | BELOW
+  [KEY LEVELS]
+  R1: $562.99 | S1: $426.05
+  Stop zone:     $371.96–$408.02
+  Entry range:   $544.96–$562.99
+  T1: $617.08 (11.6%) | T2: $671.17 (23.2%)
+  R:R T1: 1.0x
+
+=================================================================
+  AMZN | $274.93 | RSI=65.6 | ATR=$10.12
+=================================================================
+  [STRUCTURE]
+  Near Resistance:  $278.84 (+1.4% above price)
+  Near Support:    $230.99 (+16.0% below price)
+  20d High:        $287.20 | 20d Low: $226.16 | Range: 22.2%
+  Pullback from 20d High: -4.3%
+  ATR volatility:  3.4% (CONTRACTION)
+  Volume Breadth:  1.21x (up-day vol / down-day vol)
+  200SMA:          $N/A
+  [MOMENTUM]
+  RSI(14):         65.6 | 5d delta: +4.1 (Rising)
+  MACD Histogram:  3.340 | 5d ago: 4.583
+  MACD Hist delta: -1.243 (Contracting)
+  MACD Cross Rec:  No recent cross
+  [4H INTRADAY]
+  4H Price:        $274.93
+  4H 8EMA:         $276.63 | BELOW | Delta: 0.61%
+  4H 20EMA:        $276.01 | BELOW | Delta: 0.39%
+  4H 50EMA:        $275.75 | BELOW
+  [KEY LEVELS]
+  R1: $278.84 | S1: $230.99
+  Stop zone:     $215.80–$225.93
+  Entry range:   $273.78–$278.84
+  T1: $294.03 (5.5%) | T2: $309.21 (11.0%)
+  R:R T1: 1.0x
+
+
+=== SWING SCORE RANKING ===
+Rank   Ticker    Score    Price   RSI  %Resist  Chg20dH    MACD   4H>EMA20
+  1    PANW         10 $ 377.88  68.3     +1.9     -1.9   3.229       True
+  2    NVDA         10 $ 220.76  56.5     +2.3     -1.8   2.227       True
+  3    AMZN          9 $ 274.93  65.6     +1.4     -4.3   3.340      False
+  4    ADBE          8 $ 269.32  75.1     +0.3     -1.4   2.749       True
+  5    AMD           1 $ 466.24  35.5    +20.7    -17.0  -3.095      False

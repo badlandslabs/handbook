@@ -1136,3 +1136,7 @@
   - [S-2505 · The Stale State Stack](stacks/s2505-the-stale-state-stack-when-your-agent-acts-on-data-that-stopped-being-true.md)
   - [S-2506 · The Memory Governance Gap Stack](stacks/s2506-the-memory-governance-gap-stack-when-your-multi-tenant-agent-knows-things-it-shouldnt.md)
   - [S-2512 · The Production Agent Floor Stack](stacks/s2512-the-production-agent-floor-stack-when-your-agent-returns-200-but-is-failing.md)
+  - [S-2520 · The RLVR Training Stack — When Your Agent Learns From Outcomes, Not Examples](stacks/s2520-the-rlvr-training-stack-when-your-agent-learns-from-outcomes-not-examples.md)
+  - [S-2522 · The Governed Agent Mesh Stack — When Your Agents Talk to Strangers and You Have No Idea Who Trusts Whom](stacks/s2522-the-governed-agent-mesh-stack-when-your-agents-talk-to-strangers-and-you-have-no-idea-who-trusts-whom.md)
+  - [S-2523 · The Tool Bloat Stack — When More Tools Make Your Agent Dumber](stacks/s2523-the-tool-bloat-stack-when-more-tools-make-your-agent-dumber.md)
+  - [S-2524 · The Ambiguous Retry Stack — When Your Agent Doesn't Know If the Email Sent](stacks/s2524-the-ambiguous-retry-stack-when-your-agent-doesnt-know-if-the-email-sent.md)

@@ -3549,6 +3549,8 @@ reasoning-store-poison → I-3095
 
 | I-3255 | The Failure Compounding Stack — When Your Agent Succeeds Once and Fails Twice | failure-compounding, nonlinear-failure, regime-aware, superlinear, long-horizon-degradation, six-failure-cluster, arxiv-2607.05775, planbench-xl, arxiv-2606.22388, context-contamination, replan-overhead, compounding-budget, compound-failure, nonlinear, Lusser | 9 | 10 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2518 | 2026-08-12 | 2026-08-12 |
 
+| I-3256 | The RLVR Training Stack — When Your Agent Learns From Outcomes, Not Examples | rlvr, grpo, verifiable-rewards, reward-design, reward-hacking, process-reward, outcome-reward, agent-training, rl-post-training, synthetic-trajectory, deepseek-r1, sft-warmup, pass@k, patronus-ai, anhtu-dev-rlvr, rlvr-book, grpo-optimization, reward-probing | 9 | 9 | 9 | 10 | 8 | **9.10** | WRITTEN — S-2520 | 2026-08-12 | 2026-08-12 |
+
 ## Deduplication Index
 
 phantom-invocation → I-3096
@@ -6308,7 +6310,9 @@ validator-failures → I-3251
 production-log → I-3251
 
 ## Pattern Log
-- *2026-08-12* — **The production agent floor: operations ≠ evaluation**: LLM observability tooling (LangSmith, Phoenix, Braintrust, Langfuse) grew up around the "is my agent getting better?" question — evaluation, not operations. The production floor closes the orthogonal gap: "is my agent working right now?" The two critical signals are loop count (detects the most common silent failure — an agent burning tokens on a task that will never complete) and cost per completed task (the denominator that makes all other signals interpretable). Both are invisible to infrastructure monitoring (CPU, memory, HTTP status) because agents return 200 even when failing. This connects to the regression budget pattern (S-1928): longitudinal eval tracks whether the floor is moving; the floor tracks whether the agent is above it today.
+- *2026-08-12* — **RLVR = the agentic training stack that SFT can't build**: The shift from imitation learning (SFT) to outcome learning (RLVR) is the defining production training transition of 2026. DeepSeek-R1-Zero's 77.9% on AIME with zero human examples proved that verifiable reward signals can surpass human demonstration. For production agents: (1) reward design IS the core engineering challenge — wrong rewards produce expert failures; (2) GRPO replaces PPO because it eliminates the separate reward model and enables 16-samples-per-prompt training with 50% less memory; (3) process rewards (per-step scoring) are dramatically more sample-efficient than outcome rewards for multi-step tasks; (4) reward hacking detection via probing sets is mandatory infrastructure. RLVR requires BETTER eval, not less eval.
+- *2026-08-12* — **Agent rot = world-model staleness is the silent production killer**: 2026 has revealed the failure mode that makes traditional monitoring irrelevant: agents that work perfectly while delivering wrong answers. VerySmartParrot (May 2026) coined "agent rot" for this. The mechanism: every agent builds a world model from tool call results; when that model diverges from reality, the agent operates on fiction — confidently and with no alerting. Key sub-patterns: (1) RAG retrieval surfaces "most similar" not "most current" — embedding similarity ≠ factual currency; (2) world-model staleness propagates: stale context → stale belief → stale action → stale database record; (3) standard monitoring (uptime, latency, error rate) is always green for rotted agents — only outcome-level verification catches it; (4) TTL-based cache invalidation fails because the world changes on business timelines; freshness must be semantic and verified, not temporal.
+raining target. S-1028 (trajectory degeneration) and S-2520 (RLVR) form a complete cycle: RLVR generates synthetic trajectories that S-1028 monitors for collapse.
 - *2026-08-11* — **Cascade radius formalizes the measurement gap in multi-agent reliability**: Traditional agent benchmarks report task accuracy — pass or fail. But a multi-agent pipeline can "pass" at the task level while silently propagating a failure 15 hops downstream, corrupting outputs no benchmark would flag. The cascade-radius metric (OrchestraBench, arXiv:2608.05263, Aug 2026) closes this gap: it measures how many hops a failure propagates before recovery or termination. The non-obvious insight: latent faults (wrong data model, silently corrupted tool output) have near-zero recovery rate, while transient faults (timeout, rate limit) recover readily. Detection must happen before propagation — not after. This connects to the restart-intensity pattern: both are fault-tolerance mechanisms, but restart-intensity controls retry behavior within a single agent while cascade-radius controls propagation behavior across the orchestration graph.
 - *2026-08-11* — **Golden dataset decay: the eval set measures the past, not the present**: The most common eval failure mode is not a bad agent — it is a stale eval set. Three decay mechanisms: (1) distribution shift — user queries evolve faster than test cases, so the eval set measures what users asked last quarter, not this quarter; (2) ground-truth drift — the correct answer changes (policy update, API change, product pivot) but the eval case still encodes the old answer; (3) synthetic contamination — test cases written by the team or generated from the agent's own outputs inherit the agent's quirks, creating eval-set overfitting. The non-obvious insight: adding cases makes this worse, not better — new cases capture the distribution already solved, further biasing the set toward the past. The solution is rotation with replacement (replace 10-15% per quarter) and a staleness gate in CI that excludes aged cases from the pass-rate calculation, forcing triage rather than silent drift. Sources: tianpan.co (April 2026), agentmodeai.com (May 2026). Together they form the complete fault-tolerance stack: detect early (cascade-radius harness) → contain fast (restart intensity limits) → recover gracefully (dead letter queues, S-1047).
 - *2026-08-11* — **Restart intensity limits are the missing layer in agent fault tolerance**: Agent retry logic is almost universally implemented inside the agent's reasoning loop — the LLM decides whether to retry and with what strategy. This conflates business logic (what task to do) with fault handling (what to do when it breaks). Erlang/OTP's insight from 1985: separate these completely. `maxRestarts / TimeWindow` is not an Erlang-ism — it's a generic pattern: after N failures in T seconds, stop retrying and escalate. The blast radius concept (from distributed systems) maps directly: a tool runner crash should not kill the orchestrator, and the orchestrator crash should not corrupt the memory store. The hierarchy of supervision strategies (one_for_one, rest_for_one, one_for_all) encodes which components have which failure dependencies. Checkpointing before high-risk operations is the complementary pattern that makes restarts actually recoverable.
@@ -6325,7 +6329,10 @@ production-log → I-3251
 - *2026-08-11* — **I-3245 → S-2478 — The Defense-in-Depth Guardrail Stack — Composite 9.15**: Tracker re-saturated (I-32xx ideas exhausted — I-3244 was last, written today). Fresh research: (1) OWASP GenAI LLM Top 10 2026 (released Aug 3, 2026 — 7,714 real incidents, 75% practitioner voting) — updated threat taxonomy with prompt injection (LLM01) and excessive agency (LLM03) as top risks; (2) Digital Applied (May 2026) — six-layer guardrail taxonomy: input validation, retrieval rail, LLM-based classification, structured output validation, tool-call gating, observability layer; (3) Llama Guard 3 8B benchmarks: F1 0.939 vs GPT-4 F1 0.805, FPR 4% vs 15.2% — open-weight at 62.5× lower cost; (4) OWASP design philosophy shift: "harden the surrounding architecture so that when a model is compromised, downstream impact is contained." Dedup: S-1000 (Structural Agent Governance) covers prompt-based guardrail brittleness and moving enforcement out of system prompt — but does not address the specific six-layer taxonomy, layer independence requirements, or OWASP 2026 mapping. S-2118 (Isolation Tier) covers execution sandboxing — complements Layer 5 (tool-call gating) but is a separate concern. S-1894 (Agentic RAG Evidence Desert) covers retrieval failure — complements Layer 2 (retrieval rail) but doesn't cover the broader safety stack. S-360 (Governance Decay) covers constraint erosion — Layer 3 (classification) faces the same decay risk. Novel contribution: the six-layer taxonomy with explicit layer-independence requirements, OWASP 2026 mapping per layer, and the false-positive cost math per layer. Cross-links added to S-1000 (structural vs. runtime governance), S-2118 (execution isolation complement), S-1894 (retrieval rail complement), S-360 (classification decay risk).
 
 | I-3252 | The Stale State Stack — When Your Agent Acts on Data That Stopped Being True | stale-state, tool-result-freshness, environment-state, state-reconciliation, temporal-inconsistency, tool-staleness, world-model, action-precondition, read-write-consistency | 8 | 8 | 8 | 7 | 7 | **7.75** | WRITTEN — S-2505 | 2026-08-12 | 2026-08-12 |
-| I-3253 | The Agent Observability Pipeline Stack — When Your Agent Runs in Production and You Cannot See Inside It | agent-observability, tracing, OpenTelemetry, LangSmith, AgentOps, Phoenix, OTEL, span, trace-annotation, production-debugging, agent-debugging | 8 | 8 | 8 | 7 | 7 | **7.75** | DEFERRED — low composite, tracker re-saturated | 2026-08-12 | 2026-08-12 |
+| I-3253 | The Agent Observability Pipeline Stack — When Your Agent Runs in Production and You Cannot See Inside It | agent-observability, tracing, OpenTelemetry, LangSmith, AgentOps, Phoenix, OTEL, span, trace-annotation, production-debugging, agent-debugging | 8 | 8 | 8 | 7 | 7 | **7.75** | SUPERSEDED — covered by S-2512 Production Agent Floor; ambiguous retry is distinct | 2026-08-12 | 2026-08-12 |
+| I-3258 | The Ambiguous Retry Stack — When Your Agent Doesn’t Know If the Email Sent | ambiguous-retry, idempotency-key, non-idempotent, partial-result, unknown-outcome, side-effect-uncertainty, retry-classification, poll-before-retry, idempotency-store, three-way-outcome, effect-confirmation, retry-ambiguity, rate-limit-retry, network-drop, result-confirmation, redis-idempotency, outcome-polling, compensation-action, retry-safety, action-verification, Cordum-2026, StackWell-2026, Datadog-AI-2026 | 9 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2524 | 2026-08-12 | 2026-08-12 |
+|| I-3259 | The Agent Rot Stack — When Your Deployed Agent Becomes Quietly Wrong | agent-rot, world-drift, silent-degradation, world-model-staleness, world-model, source-of-truth, semantic-freshness, ground-truth-check, outcome-verification, embedding-freshness, stale-retrieval, freshnes-signal, verysmartparrot-2026, tianpan-2026, trovex-2026, vectara-2026, mg6-2026, semantic-drift, confidence-wrong, world-state-drift, context-freshness | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2527 | 2026-08-12 | 2026-08-12 |
+|| I-3257
 
 ## Deduplication Index
 stale-state → I-3252
@@ -6371,8 +6378,80 @@ memory-schema-lifecycle → I-3239
 tiered-governance → I-3239
 reflection-bounded → I-3239
 governance-routing → I-3239
+rlvr → I-3256
+grpo → I-3256
+verifiable-reward → I-3256
+reward-hacking → I-3256
+reward-design → I-3256
+process-reward → I-3256
+agent-training → I-3256
+rl-post-train → I-3256
+sft-warmup → I-3256
+pass@k → I-3256
+deepseek-r1 → I-3256
+
+agent-mesh → I-3257
+governed-mesh → I-3257
+peer-to-peer-agent → I-3257
+ephemeral-identity → I-3257
+silicon-handshake → I-3257
+IATP → I-3257
+protocol-bridge → I-3257
+mesh-discovery → I-3257
+dMVP → I-3257
+non-human-identity → I-3257
+agent-identity → I-3257
+trust-handshake → I-3257
+scope-chain → I-3257
+hub-spoke-dead → I-3257
+central-orchestrat → I-3257
+
+agent-rot → I-3259
+world-drift → I-3259
+silent-degradation → I-3259
+world-model-staleness → I-3259
+world-model → I-3259
+source-of-truth → I-3259
+semantic-freshness → I-3259
+ground-truth-check → I-3259
+outcome-verification → I-3259
+embedding-freshness → I-3259
+stale-retrieval → I-3259
+freshness-signal → I-3259
+verysmartparrot-2026 → I-3259
+tianpan-2026 → I-3259
+trovex-2026 → I-3259
+vectara-2026 → I-3259
+mg6-2026 → I-3259
+semantic-drift → I-3259
+confidence-wrong → I-3259
+world-state-drift → I-3259
+context-freshness → I-3259
+drift-detection → I-3259
+world-belief → I-3259
+stale-world-model → I-3259
+cache-staleness → I-3259
+rot-monitoring → I-3259
+
 ## Recent Decisions
+- *2026-08-12* — **I-3259 → S-2527 — The Agent Rot Stack — Composite 9.50**: Tracker exhausted (all I-3243–3258 fully processed). Fresh research: (1) VerySmartParrot "Agent Rot" (May 2026, updated July 2026) — formally names this phenomenon: "the gradual degradation of a deployed agent's output quality as the world drifts away from the assumptions it was built on." Central thesis: traditional monitoring catches crashes, not wrong answers; agent rot produces confident, factually wrong output while every metric stays green. Governance model: world-model audit trail, ground-truth checkpoints, freshness contracts. (2) Tian Pan "MCP Server Supply Chain Risk" (April 2026) — stale tool descriptions as silent failure vectors; schema drift turns stale descriptions into wrong-tool-calling with no error signal. (3) Trovex (June 2026) — why RAG surfaces stale docs: "embedding search ranks by similarity, not freshness"; the old runbook and current runbook score identically because they're semantically near-identical. Fix: canonical/stale/duplicate marking + hybrid retrieval with freshness signals. (4) Vectara/awesome-agent-failures (Apache 2.0, 89 commits) — catalogs tool hallucination (wrong tool output → wrong decision) and response hallucination (inconsistent tool outputs → wrong synthesis) as distinct from world-model drift, but connected. (5) MG6 (July 2026) — Gartner: 40% of agentic AI projects cancelled by 2027 due to unclear value + inadequate risk controls; <1 in 10 enterprise AI apps fully observable; bank credit model case study: 95% → 87% accuracy over 6 months, zero alerts. Dedup: S-2388 (Context Rot) covers in-session attention degradation from transformer limits — rot from within, not rot from without; S-3252 (Stale State) covers tool-result staleness within a task context, not world-model drift over time; S-2521 (Consistency) covers cross-run output variance, not environmental divergence; S-818 (Longitudinal Eval) covers capability drift detection over model versions, not the world-model staleness mechanism. The novel contribution: three-layer rot detection (source-of-truth anchoring with value hashing, semantic freshness via embedding drift + ground-truth probes, outcome-level verification gate inside the agent loop). Counter-intuitive: TTL-based cache invalidation is almost useless because the world changes on business timelines, not fixed intervals — freshness must be semantic, not temporal.
 - *2026-08-12* — **I-3254 → S-2512 — The Production Agent Floor Stack — Composite 8.85**: Tracker exhausted. Fresh research: (1) whysogeek.com "AI Agent Observability 2026" (Aug 2026) — cost per task + loop count as single most useful metric combination; (2) Gheware "OpenTelemetry for AI Agents" (Apr 2026) — OTel semantic conventions, Grafana Tempo stack, <1% overhead, 60% less debugging time; (3) AgentSight (arXiv:2508.02736) — eBPF boundary tracing for semantic gap; (4) ExploreAgentic "Agent Registry" (May 2026) — registry vs. gateway distinction. Dedup: S-1440 (Boundary Tracing) covers observability FROM outside the agent boundary (security focus); S-3253 (Agent Observability OTEL) is a named idea, not a written entry; S-2506 (Agent Eval) covers "is my agent improving over time?" not "is it working right now?" This entry fills the minimum viable production monitoring surface — two metrics (loop count, cost per task), three layers (session signals, trajectory traces, four-number dashboard). Chosen over: (1) AgentCard normative spec debate — interesting but too spec-level, low actionable density; (2) Dynamic capability negotiation — covered by I-3117/S capability stack; (3) x402 payment header for agents — premature, not yet production-grade.
 - *2026-08-12* — **I-3252 → S-2505 — The Stale State Stack — Composite 7.75**: Tracker exhausted (all prior ideas WRITTEN or DUPLICATE). Fresh research: (1) Tian Pan "Context Poisoning in Long-Running AI Agents" (Apr 2026) — establishes stale context as a reliability failure mode; (2) Adaline Labs "Agent Memory Is A Product Surface" (May 2026) — memory vs. context distinction; (3) Conceptualise "Multi-Agent Failure Modes" (May 2026) — silent failure patterns; (4) Nexgismo blog "AI Agent Budget Guards" (Jun 2026) — runaway cost incidents; (5) Clyro "$47K loop" forensic analysis. Dedup: S-1248 (Token Drift) covers OAuth TTL expiry, not tool result staleness; S-1016 (Agent Failure Intervention) covers wrong-action intervention, not precondition checking; S-2409 (Trace Replay) covers debugging after failure, not staleness-aware action preconditions; S-1120 (Tool Wiring with MCP) covers tool integration, not the temporal consistency problem across tool calls. The novel contribution is the three-layer staleness architecture: freshness metadata on every tool result, a freshness gate before write-side actions, and an environment digest to detect cross-call inconsistencies — none of which existing entries cover.
 - *2026-08-12* — **I-3238 → S-2506 — The Memory Governance Gap Stack — Composite 8.75**: Tracker exhausted (all I-32xx ideas WRITTEN or DUPLICATE). Fresh research: arXiv:2606.18829 (GateMem, Ren et al., Jun 2026) — first benchmark for memory governance in multi-principal shared-memory agents (hospitals, workplaces, campuses, households). 92% governance routing precision, zero cross-entity leakage on 500 adversarial queries. Four-layer governed memory architecture: dual-modality episodic/semantic, tiered governance routing, reflection-bounded retrieval, schema lifecycle governance. Dedup: S-2061 (Memory Boundary) covers cross-user contamination mechanics but not governance infrastructure. S-2151 (Memory Poisoning) covers adversarial contamination, not access control. GateMem's multi-principal framing and governance routing precision represent a distinct, uncovered angle.
+- *2026-08-12* — **I-3256 → S-2520 — The RLVR Training Stack — Composite 9.10**: Fresh idea from research cycle. Primary sources: anhtu.dev "Reinforcement Learning for AI Agents: RLVR and GRPO in 2026" (Jun 2, 2026) — RLVR as the defining production training paradigm shift (SFT → RL post-training era); patronus.ai "Reinforcement Learning with Verifiable Rewards: A Complete Guide" (2026) — RLVR architecture, reward design, GRPO vs PPO, reward hacking, process vs outcome rewards; rlvrbook.com — DeepSeek-R1-Zero achieved 77.9% on AIME 2024 with zero human examples via pure RLVR; NVIDIA Mastering Agentic Techniques (May 2026) — RLVR/GRPO as the production fine-tuning stack. Key insight: the handbook has S-1028 (trajectory degeneration from synthetic-only training) and S-1004 (agent eval feeding back into training), but neither covers the RLVR training paradigm itself — how to design reward functions, run GRPO training, and prevent reward hacking. These are distinct: S-1028 is the failure mode; S-2520 is the solution architecture. Dedup: no existing entry covers the RLVR training stack as a production engineering pattern — verifiable environment design, GRPO training loop, reward hacking detection, process vs outcome reward design, SFT warmup sequencing, pass@k metrics. Composite score 9.10 driven by maximum timeliness (RLVR is the defining 2026 training paradigm), high gap (wholly uncovered), and strong specificity (concrete code examples for all four components).
+- *2026-08-12* — **I-3258 → S-2524 — The Ambiguous Retry Stack — Composite 8.55**: Tracker exhausted. Fresh research: (1) I Am Stackwell "AI Agent Retry Strategy" (2026) — three-case retry taxonomy (nothing happened, something happened, ambiguous); (2) Cordum "AI Agent Timeouts, Retries, and Backoff in Production" (Apr 2026) — retry policy is budget policy, deadline-first ordering; (3) NiteAgent "Building Reliable Agent Error Handling" (Jul 2026) — layered error-handling architecture; (4) Datadog State of AI Engineering 2026 — rate limit errors = ~1/3 of all LLM call failures. Dedup: S-1000 (Failure Handling) covers error taxonomy broadly but does not address the specific epistemic problem of non-idempotent ambiguity (unknown whether the side effect occurred). S-1003 (Failure Recovery) covers partial execution and resume but not the retry decision under uncertainty. I-3253 (Observability Pipeline, 7.75, DEFERRED) is SUPERSEDED — the production floor (S-2512) covers OTEL tracing; I-3258 is the distinct problem of retry safety under unknown state.
 
+- *2026-08-12* — **Three-Way Outcome Classification**: The key insight from production retry research is that agent tool calls have three possible outcomes, not two: (1) Success — deterministic, proceed; (2) Failure — deterministic, classify and route; (3) Ambiguous — network dropped, server may or may not have processed the request. Treating ambiguous as a subtype of failure leads to blind retry, which duplicates non-idempotent effects. The fix is idempotency keys (server-side deduplication) + outcome polling (client-side verification) + escalation ladder. This is distinct from error taxonomy (S-1000) because it operates at the causal layer: not "what error occurred" but "did the effect happen at all."
+
+
+ambiguous-retry → I-3258
+idempotency-key → I-3258
+non-idempotent → I-3258
+partial-result → I-3258
+unknown-outcome → I-3258
+side-effect-uncertainty → I-3258
+poll-before-retry → I-3258
+idempotency-store → I-3258
+three-way-outcome → I-3258
+effect-confirmation → I-3258
+outcome-polling → I-3258
