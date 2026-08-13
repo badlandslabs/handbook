@@ -6828,3 +6828,27 @@ context-signal-density → I-3295
 
 - *2026-08-13* — **I-3286 → S-2587 — The Context Stability Zone Stack — Composite 8.85**: Research surface: (1) arXiv:2601.06007 (Lumer et al., PwC, 2026) — first comprehensive evaluation of prompt caching for agentic tasks across OpenAI/Anthropic/Google; (2) Sourcegraph Context Engineering guide (May 2026) — context engineering as the discipline of curating what the model sees per inference; (3) Atlan Context Caching guide (May 2026) — governed context caching for enterprise; (4) SitePoint Prompt Compression guide (Aug 2026) — 63% cost reduction via compression + caching; (5) DeveloperDigest Copilot traces (Aug 2026) — 13.5M sessions, 98% cache hit rate. Chosen over: direct prompt compression (S-2069 already covers agentic cache boundaries), multi-agent orchestration (S-2577 covered bag-of-agents), latent capability (S-2585 covered safety training). New angle: the Stability Zone model as the actionable engineering framework for agentic caching, distinct from S-2069's tool-result cache exclusion.
 
+
+| I-3297 | The Tool Description Engineering Stack — When Your System Prompt Is Not Where Your Tool-Selection Decisions Get Made | tool-description, tool-schema, description-engineering, tool-selection, wrong-tool, tool-selection-error, pairwise-discrimination, trigger-phrase, parameter-description, description-anchoring, adaline-2026, agenteval-arxiv, tau-bench, tool-selection-crisis | 9 | 9 | 9 | 8 | 8 | **8.60** | WRITTEN — S-2605 | 2026-08-13 | 2026-08-13 |
+
+tool-description → I-3297
+tool-schema-engineering → I-3297
+description-as-instruction → I-3297
+tool-selection → I-3297
+wrong-tool-selection → I-3297
+tool-selection-error → I-3297
+tool-selection-ambiguity → I-3297
+pairwise-discrimination → I-3297
+trigger-phrase → I-3297
+concrete-trigger → I-3297
+parameter-description → I-3297
+tool-description-drift → I-3297
+description-regression → I-3297
+description-audit → I-3297
+adaline-labs-2026 → I-3297
+agenteval-2604.23581 → I-3297
+tau-bench → I-3297
+tool-selection-crisis → I-3297
+micheal-lanham-2026 → I-3297
+
+- *2026-08-13* — **I-3297 → S-2605 — The Tool Description Engineering Stack — Composite 8.60**: Primary angle: tool descriptions are the primary instruction layer for tool-selection decisions, not system prompts. Adaline Labs (May 2026) — "tool description is your most important engineering surface"; AgentEval arXiv:2604.23581 — wrong tool selection 18% of failures, parameter errors 22% with 62% cascade to wrong answer; τ-bench ~25% task success rate. Six-move pattern: (1) descriptions as classifiers, (2) pairwise discrimination, (3) concrete triggers, (4) parameter-level selection metadata, (5) description regression suite, (6) description drift monitoring. Distinct from S-767 (tool-call hallucination plateau — symptom, not cause), S-03 (tool-use mechanics), S-1006 (toolbelt design — which tools, not how to describe them). Chosen over: behavioral drift monitoring (well-covered by S-1022), multi-system fragmentation (covered by S-1035), prompt injection defenses (covered by S-990, S-1145).
