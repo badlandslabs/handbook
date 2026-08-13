@@ -6343,6 +6343,7 @@ raining target. S-1028 (trajectory degeneration) and S-2520 (RLVR) form a comple
 | I-3267 | The Knowing-Acting Alignment Stack — When Your Agent Knows What It Doesn't Know But Acts Like It Does | knowing-acting, kapro, metacognition, tool-use-judgment, KAS, epistemic-boundary, self-awareness, knowing-acting-gap, tool-underuse, tool-overuse, metacognitive-judgment, knowing-action-consistency, li-2026, arxiv-2606.20661, AI-Santiago/KAware, knowing-acting-quadrant, cognitive-behavioral-alignment | 8 | 9 | 9 | 9 | 7 | **8.30** | WRITTEN — S-2554 | 2026-08-13 | 2026-08-13 |
 | I-3268 | The Delegation Chain Amplification Stack — When One Agent Authorizing Another Creates an Attack Surface Nobody Scoped | delegation-chain, scope-amplification, credential-inheritance, scope-reduction, delegation-depth, inter-agent-authorization, scope-creep, delegation-audit, NHI-delegation, chain-compounding, entrust-2026, penligent-delegation, tianpan-permission-creep | 9 | 9 | 9 | 9 | 8 | **8.80** | WRITTEN — S-2556 | 2026-08-13 | 2026-08-13 |
 | I-3269 | The ETCLOVG Harness Layering Stack — When Your Trace Says Failed but You Cannot Find Where | ETCLOVG, harness-layering, harness-taxonomy, trace-diagnosis, failure-attribution, harness-fix, HTIR, execution-environment, tooling-layer, context-layer, lifecycle-layer, observability-layer, verification-layer, governance-layer, etclovg, arxiv-2606.06324, truefoundry-survey, seven-layer, layer-attribution, trace-normalization | 9 | 10 | 9 | 9 | 8 | **9.00** | WRITTEN — S-2561 | 2026-08-13 | 2026-08-13 |
+| I-3270 | The Iteration Budget Pressure Stack — When Your Agent Hits the Wall Without Warning | iteration-budget-pressure, wrap-up-signal, budget-pressure-tier, graceful-wrap-up, max-iteration-wall, pressure-signal, tiered-budget, budget-warning, iteration-warning, wrap-up-call, abrupt-termination, budget-exhaustion, NousResearch-414, utah-harness, inngest-utah, OpenHands-2406, litellm-iteration-budget, context-pressure, dollar-budget-pressure, hard-cap-vs-graceful, pressure-message, budget-tier, caution-tier, stop-tier, Hermes-ephemeral-prompt | 9 | 9 | 10 | 9 | 7 | **9.05** | WRITTEN — S-2562 | 2026-08-13 | 2026-08-13 |
 
 ||| I-3260 | The Injection Escalation Stack — When a Prompt Becomes a Shell |
 | I-3259 | The Agent Rot Stack — When Your Deployed Agent Becomes Quietly Wrong | agent-rot, world-drift, silent-degradation, world-model-staleness, world-model, source-of-truth, semantic-freshness, ground-truth-check, outcome-verification, embedding-freshness, stale-retrieval, freshness-signal, verysmartparrot-2026, tianpan-2026, trovex-2026, vectara-2026, mg6-2026, semantic-drift, confidence-wrong, world-state-drift, context-freshness, stale-world-model, cache-staleness, rot-monitoring | 10 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2527 | 2026-08-12 | 2026-08-12 |
@@ -6619,3 +6620,53 @@ self-awareness-benchmark → I-3267
 - *2026-08-13* — **I-3266 → S-2557 — The Semantic Boundary Stack — Composite 9.15**: Tracker saturated (all I-3252–3265 WRITTEN/DUPLICATE). Research surface: (1) BabyBots "A2A Protocol in 2026" (Aug 2026) — the two-layer MCP+A2A stack without governed context produces inconsistent multi-agent results; shared workflow knowledge must be protocol-agnostic and exist as its own layer; domain seams become agent boundaries. (2) Zylos Research "Agent-to-Agent Communication Protocols" (Feb 2026) — MCP for vertical tool integration, A2A for horizontal coordination, third pillar is governed shared context. (3) RetailNews.ai "Protocol War: MCP, A2A, UCP, AP2" (Aug 2026) — three-pillar stack confirmed as 2026 enterprise architectural default; semantic inconsistency identified as silent production killer. (4) Microsoft Learn "Multi-agent patterns" (2026) — A2A recommended for cross-platform coordination with published contracts. (5) Hintas.blog "A2A + MCP: two protocols, one interoperability layer" — seam-layer recommendation. (6) Linux Foundation press release (Apr 2026) — A2A v1.0, 150+ organizations, deep GCP/Azure/AWS integration. Dedup: I-017 (Protocol Convergence Thesis, S-414) covers MCP/A2A/AP2 protocol landscape and interoperability — does NOT cover the semantic/context governance layer gap. S-2467 (MCP Server Architecture) covers server design patterns — does NOT cover the concept-registry/definition-layer. S-2470 (A2A Protocol Trust) covers authentication/identity — does NOT cover semantic alignment. S-2556 (Three-Tier Memory) covers memory architecture — does NOT cover shared meaning between agents. The Semantic Boundary Stack adds the governed vocabulary layer (Semantic Contract Registry + Handoff Manifest + Concept Injection) as the third architectural pillar of the enterprise multi-agent stack.
 
 - *2026-08-13* — **I-3269 → S-2561 — The ETCLOVG Harness Layering Stack — Composite 9.00**: Research surface: (1) arXiv 2606.06324v2 (Chen et al., ISCAS/UCAS, June 4 2026, revised July 2 2026) — "From Failed Trajectories to Reliable LLM Agents" — ETCLOVG seven-layer taxonomy (Execution, Tooling, Context, Lifecycle, Observability, Verification, Governance) + HarnessFix framework (HTIR trace normalization → layer attribution → scoped repair → regression validation); 15.2–50.0% improvement on SWE-Bench, Terminal-Bench, GAIA, AppWorld; (2) TrueFoundry ETCLOVG survey (2026) — 170+ open-source projects mapped to seven layers; (3) LangChain Anatomy of an Agent Harness (March 2026) — "If you're not the model, you're the harness." Deduplication: S-996 covers production-capability gap but not layer taxonomy; S-1013 covers reproduction but not diagnosis; S-1018 covers component-level attribution but not ETCLOVG. New angle: systematic seven-layer taxonomy + HTIR + layer-attribution diagnosis protocol.
+
+- *2026-08-13* — **I-3272 → S-2564 — The Capability-Authorization Gap Stack — Composite 8.95**: Tracker re-saturated. Fresh research: (1) arXiv:2606.28679 (Mellafe Zuvic, 2026) — "Capability Gates Are Not Authorization: Confused-Deputy Failures in LLM Agent Frameworks": systematic audit of LangChain, LangGraph, CrewAI, AutoGen, MCP servers found ZERO implement per-call argument-level authorization by default. Every framework gates which tools exist; zero gate which argument values are valid per-call. (2) Prefactor Tech (Aug 12, 2026) — 37% lab-production gap, METR 4-minute/4-hour reliability curve. (3) OWASP ASI Top 10 2026 — excessive agency (LLM03) and insecure output handling as top risks. (4) Minixium (Jun 2026) — six defense patterns for prompt injection; all require architectural enforcement, not prompt-based. Dedup: S-2279 (Confused Deputy) covers cross-agent authority confusion; S-889 (Ambient Authority) covers session-level authority without per-call enforcement; S-1458 (Policy Kernel) covers ecosystem-level enforcement. I-3272 is the distinct gap: per-call argument-level authorization within a single tool invocation.
+
+## Ideas Bank
+
+| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+| I-3272 | The Capability-Authorization Gap Stack — When Your Framework Shows Every Tool But Enforces None | per-call-authorization, argument-validation, capability-gate, confused-deputy, ambient-authority, framework-gap, authorization-layer, tool-wrapper, policy-enforcement, arxiv-2606.28679, scope-gate, Mellafe-Zuvic | 9 | 10 | 9 | 10 | 8 | **8.95** | WRITTEN — S-2564 | 2026-08-13 | 2026-08-13 |
+
+## Pattern Log
+
+- *2026-08-13* — **Capability gating ≠ Authorization: The framework gap is architectural.** arXiv:2606.28679 (Mellafe Zuvic, 2026) systematically audited LangChain, LangGraph, CrewAI, AutoGen, and MCP servers. Every framework implements capability gating (which tools are visible to the agent). Zero implement per-call argument-level authorization (which argument values are valid for this caller, this context, this amount). This is not a missing feature — it is an architectural assumption baked into the framework paradigm. The distinction maps directly to OWASP's "Excessive Agency" (LLM03): agents have more authority than their operators realize because authorization policies live in prose, not in code. The fix requires architectural enforcement at the tool-wrapping layer, not in system prompts. This pattern connects S-1458 (Policy Kernel), S-2279 (Confused Deputy), S-889 (Ambient Authority), and S-2564 (per-call enforcement — the missing bottom layer).
+
+## Deduplication Index
+
+per-call-authorization → I-3272
+argument-validation → I-3272
+capability-gate-not-authorization → I-3272
+confused-deputy-intra-agent → I-3272
+framework-gap-per-call → I-3272
+policy-enforcement-layer → I-3272
+arxiv-2606.28679 → I-3272
+Mellafe-Zuvic → I-3272
+scope-gate → I-3272
+ambient-authority-intra-agent → I-3272
+
+## Ideas Bank
+
+| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+| I-3273 | The MCP STDIO By-Design Stack — When the Vulnerability Is the Spec and the Vendor Won't Fix It | stdio-transport, command-injection, by-design-vulnerability, mcp-security, rce, vendor-wont-fix, cve, transport-layer, csa-ox-security, cve-2026-30623, Anthropic, supply-chain | 9 | 10 | 9 | 10 | 8 | **8.95** | WRITTEN — S-2566 | 2026-08-13 | 2026-08-13 |
+
+## Pattern Log
+
+- *2026-08-13* — **"By-Design" Is Not a Security Posture: The Vendor-Won't-Fix Attack Surface.** When a vendor classifies a systemic RCE as "expected behavior" (Anthropic, April 2026, OX Security advisory), the blast radius shifts entirely to downstream developers. This is distinct from normal supply chain risk (bad package, compromised server) because there is no patch to wait for. The CSA research note identified four exploitation families all sharing one root cause in the STDIO transport: unauthenticated injection via config UI, authenticated injection via compromised config, dependency confusion, and developer toolchain compromise. The critical distinction: even if you fully address S-1062 (marketplace poisoning) and S-749 (ambient authority), the STDIO transport remains exploitable unless you migrate to SSE/HTTP or implement config allowlisting. This pattern connects S-1062 (MCP supply chain, different failure mode) and S-1450 (protocol threat matrix, different abstraction layer).
+
+## Deduplication Index
+
+stdio-transport → I-3273
+command-injection-mcp → I-3273
+by-design-vulnerability → I-3273
+mcp-stdio-rce → I-3273
+vendor-wont-fix → I-3273
+cve-2026-30623 → I-3273
+mcp-200k-servers → I-3273
+anthropic-by-design → I-3273
+CSA-mcp-rce → I-3273
+OX-Security-mcp → I-3273
+
+## Recent Decisions
+
+- *2026-08-13* — **I-3273 → S-2566 — The MCP STDIO By-Design Stack — Composite 8.95**: Primary angle: the transport-layer architectural flaw where Anthropic classified the vulnerability as "by-design" and declined to patch. 200K+ servers, 150M+ downloads, 14+ CVEs. Scored 10/10 on Coverage Gap (handbook covers MCP supply chain S-1062 and MCP threat matrix S-1450, but neither covers the STDIO transport vulnerability with the "by-design no-fix" framing) and Timeliness (the OX Security disclosure was April 2026, 4 months ago — still hot, fix still not broadly adopted). The three-layer mitigation (SSE migration, config allowlisting, UI audit) provides actionable, concrete guidance. Cross-links to S-1062 (supply chain, different failure mode), S-1450 (threat matrix, different layer), S-749 (ambient authority, pre-authorization failure). Rejected candidates: Agentic Silent Memory Drift (covered partially by OWASP ASI06 in S-1062), Framework-Free Agentic (too meta), Agent Fleet Orchestration (nascent, covered by F-198).
