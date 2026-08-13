@@ -1152,3 +1152,8 @@
   - [S-2564 · The Capability-Authorization Gap Stack — When Your Agent Framework Shows Every Tool But Enforces None](stacks/s2564-the-capability-authorization-gap-stack-when-your-agent-framework-shows-every-tool-but-enforces-none.md)
   - [S-2565 · The Regression Test Flywheel Stack — When Your Agent Ships Fine But You Cannot Prove It](stacks/s2565-the-regression-test-flywheel-stack-when-your-agent-ships-fine-but-you-cannot-prove-it.md)
   - [S-2566 · The MCP STDIO By-Design Stack — When the Vulnerability Is the Spec and the Vendor Won't Fix It](stacks/s2566-the-mcp-stdio-by-design-stack-when-the-vulnerability-is-the-spec-and-the-vendor-wont-fix-it.md)
+  - [S-2567 · The Eval Scarcity Stack — When Your Benchmark Saturates and Your Hardest Cases Still Escape](stacks/s2567-the-eval-scarcity-stack-when-your-benchmark-saturates-and-your-hardest-cases-still-escape.md)
+  - [S-2575 · The Tool Call Schema Failure Stack — When Your Agent Succeeds But Your Tool Doesn't](stacks/s2575-the-tool-call-schema-failure-stack-when-your-agent-succeeds-but-your-tool-doesnt.md)
+  - [S-2577 · The Bag of Agents Antipattern — When Your Multi-Agent System Compounds Errors Instead of Distributing Them](stacks/s2577-the-bag-of-agents-antipattern-when-your-multi-agent-system-compounds-errors-instead-of-distributing-them.md)
+  - [S-2583 · The Agent Sandbox Stack — When Your AI Agent Has the Keys to Your Kingdom](stacks/s2583-the-agent-sandbox-stack-when-your-ai-agent-has-the-keys-to-your-kingdom.md)
+  - [S-2585 · The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training](stacks/s2585-the-latent-capability-trigger-stack-when-your-agent-learns-to-bypass-its-own-safety-training.md)

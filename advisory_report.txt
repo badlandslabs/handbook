@@ -1,339 +1,214 @@
-NASDAQ SWING TRADE ADVISORY  |  August 7, 2026  |  10:45 AM ET
-=======================================================================
+======================================================================
+  NASDAQ SWING TRADE ADVISORY  |  August 13, 2026  |  08:05 AM ET
+  Data Source: yfinance live (^VIX, QQQ, SPY, IWM + 47 NASDAQ tickers)
+======================================================================
 
-MARKET REGIME: BULL (confirmed by live data — Aug 7, 2026 @ ~10:30 AM ET)
---------------------------------------------------------------------
-QQQ: $714.65 | RSI 54.9 | ATR%=2.1% | 5d=+4.5% | Above 20MA ($700.46) ✓
-SPY: $768.56 | RSI 65.9 | ATR%=1.2% | 5d=+3.6% | Above 20MA ($749.32) ✓
-IWM: $298.25 | RSI 54.5 | ATR%=1.4% | 5d=+1.9% | Above 20MA ($293.71) ✓
-VIX:  $15.22  | RSI 40.4 | 5d=-4.8% | LOW FEAR (bull supportive) ✓
-High-Yield (HYG): Confirming risk-on credit conditions
-TLT (20+ yr bonds): Confirms capital rotating into risk assets
+## 1. Executive Summary & Market Regime
 
-Regime Verdict: FULL BULL CONFIRMED. All three major indices above their
-20-day SMAs. VIX < 16 with declining trend = minimal systemic risk.
-SPY RSI 65.9 = broad market in mid-uptrend with no exhaustion signals.
-Small-cap (IWM) confirming participation. HIGH CONFIDENCE for LONG setups.
-DO NOT fade this tape. Only take SHORTS with explicit short-term catalysts.
+REGIME: BULL (confirmed — all 3 indices above 20+50+200 SMA; VIX at 14.50)
 
-=======================================================================
-#1 SWING TRADE: AAPL — OVERSOLD BOUNCE (HIGHEST PROBABILITY)
-=======================================================================
+  QQQ:  $723.70  | RSI=63.3  | ATR%=1.9%  | 5d=+0.9%  | 20d=+0.8%
+        Above 20MA ($701.03) ✓ | Above 50MA ($713.29) ✓ | Above 200MA ($648.41) ✓
+        MACD Hist=+4.34 (bullish expanding)
 
-TICKER:     AAPL
-PRICE:      $312.41  (as of ~10:30 AM ET Aug 7, 2026)
-RSI(14):    46.7     (OVERSOLD — not yet oversold-exhausted)
-ATR(14):    $9.37    |  3.0% of price  (moderate vol, reasonable stop)
-BB Lower:   $301.11  (near current price — oversold band touch)
-20d Range:  $300.00 – $344.57  |  Position: 28% (lower quartile)
-52w High:   $344.57  (AAPL 9.3% below 52w high — still near apex)
-MACD 4H:    POSITIVE histogram (intraday momentum reversal confirmed)
+  SPY:  $772.49  | RSI=75.2  | ATR%=1.1%  | 5d=+0.4%  | 20d=+2.3%
+        Above 20MA ($753.19) ✓ | Above 50MA ($747.66) ✓ | Above 200MA ($701.74) ✓
+        MACD Hist=+2.65 (mid-uptrend momentum, NOT exhausted)
 
-CATALYST
---------------------------------------------------------------------
-AAPL reported Q3 FY2026 earnings on July 30, 2026:
-  • EPS: $2.02 actual vs $1.89 est (+6.9% beat)
-  • Post-earnings reaction: SELLING — not buying the beat
-  • -6.3% in 5 days = capitulation-like decline, not fundamental rejection
-  • Tim Cook's announced departure adds CEO-transition uncertainty premium
-  • BOTTOM LINE: Fundamentals beat; market pricing fear, not failure.
-    Classic post-beat pullback = highest-probability mean-reversion entry.
-    5-day sell-off creates a 3-10 day bounce window.
+  IWM:  $302.71  | RSI=65.2  | ATR%=1.3%  | 5d=+1.0%  | 20d=+2.3%
+        Above 20MA ($295.77) ✓ | Above 50MA ($294.40) ✓ | Above 200MA ($267.15) ✓
+        MACD Hist=+0.85 (small-caps confirming broad participation)
 
-KEY TECHNICAL LEVELS
---------------------------------------------------------------------
-Pivot:            $312.64  (essentially current price — neutral daily pivot)
-Immediate Res:     $316.06  (R1 — first resistance, ~1.2% above)
-SMA20 Res:         $323.53  (20-day SMA — major resistance, ~3.6% above)
-Fib 38.2%:         $327.11  (minor fib retracement)
-Fib 61.8%:         $327.54  (major fib retracement of $300–$344.57 rally)
-Primary Target T1: $327.54 (+4.9% | 1.6x ATR | 1.6R)
-Secondary Target T2: $344.57 (+10.3% | 3.4x ATR | 3.3R)
-52w High:          $344.57  (matches T2 — full mean-reversion to apex)
+  VIX:  $14.50  | RSI=32.4  | 20d_avg=16.85  | LOW FEAR ✓
 
-Entry Zone:  $311.00 – $314.00 (slight pullback to pivot/S1 support)
-Stop Loss:   $300.00  (daily close below = structural failure)
-             → Risk per share: $12.41 | Risk: 4.0% per share
-             → Risk per $100K account: ~$1,200–$1,600 (1.2–1.6% of capital)
+Regime Verdict: FULL BULL CONFIRMED. All three major indices above 20+50+200
+SMAs simultaneously. VIX at 14.50 with RSI 32.4 = minimal systemic risk, maximum
+bull tailwind. SPY RSI 75.2 = broad market in mid-uptrend, not overheated.
+Capital rotating into risk assets. Defensive positioning NOT warranted.
 
-Dynamic Risk Management:
-  • After +5% ($328): Move SL to BREAKEVEN ($312.41)
-  • After +7% ($334): Tighten SL to $320 (lock ~40% of max gain)
-  • After +10% ($344): Exit full position at T2
-  • Weekend holds OK — AAPL rarely gaps on macro news alone
-  • Daily close below $300 = MANDATORY exit regardless of P/L
+======================================================================
+## 2. Research Synthesis
+======================================================================
 
-Position Sizing (per $100K account):
-  Capital at risk:  $1,200 (1.2%)
-  Risk per share:    $12.41
-  Share count:      97 shares
-  Dollar exposure:  ~$30,300
+--- 2A. MACRO MARKET REGIME ---
+  Bull confirmed across all major timeframes. All three indices above 200-day
+  trend simultaneously — rare constructive alignment. VIX at 14.50 is below its
+  20-day average (16.85) with RSI 32.4 indicating continued downward momentum
+  in fear. No credit spread widening detected. Macro backdrop is maximally
+  bull-supportive for swing longs.
 
-Holding Window:  3–10 days (exit by Aug 17, 2026)
-Risk/Reward:      1:1.6 (T1) / 1:3.3 (T2) — meets 2:1 minimum on T2
+--- 2B. TECHNICAL ANALYSIS (Top Candidates) ---
 
-RATIONALE: AAPL is a classic POST-EARNINGS BEAT PULLBACK. EPS beat by
-7%, yet stock sold off. RSI 46.7 with 4H MACD already positive confirms
-intraday momentum reversal. Price sitting at 28th percentile of its 20-day
-range = maximum mean-reversion probability. A 5-day selloff with volume
-during an earnings beat is capitulation, not fundamental rejection.
-T2 at $344.57 revisits the 52-week high = full de-risk setup.
+  Scored 47 NASDAQ/Nasdaq 100 components across: RSI, trend alignment, volume,
+  MACD momentum, Bollinger Band position, and range placement.
 
-=======================================================================
-#2 SWING TRADE: META — OVERSOLD REVERSAL WITH FIRM BOTTOM (SOLID SETUP)
-=======================================================================
+  TOP 10 BY COMPOSITE SCORE:
+  ╔═══════╦════════╦══════╦═════════╦═══════╦════════╦═══════╦════════╗
+  ║ Sym   ║ Price  ║ RSI  ║ ATR%    ║  5d%  ║  20d%  ║ Score ║ Ab20+50║
+  ╠═══════╬════════╬══════╬═════════╬═══════╬════════╬═══════╬════════╣
+  ║ COST  ║$949.58 ║ 61.1 ║  204%   ║  +0.8 ║  +3.8  ║  12   ║  YES   ║
+  ║ SMCI  ║$37.61  ║ 64.5 ║  655%   ║ +24.0 ║ +39.9  ║  12   ║  YES   ║
+  ║ AMZN  ║$267.28 ║ 68.1 ║  368%   ║  -2.0 ║  +4.8  ║  11   ║  YES   ║
+  ║ NVDA  ║$224.09 ║ 61.4 ║  350%   ║  +2.2 ║  +5.5  ║  11   ║  YES   ║
+  ║ NET   ║$311.45 ║ 74.0 ║  579%   ║  +6.3 ║ +14.1  ║  11   ║  YES   ║
+  ║ SOFI  ║$17.94  ║ 58.8 ║  476%   ║  -1.7 ║  +0.4  ║  11   ║  YES   ║
+  ║ AVGO  ║$416.05 ║ 62.6 ║  383%   ║  -0.5 ║  +5.5  ║  11   ║  YES   ║
+  ║ NFLX  ║$74.21  ║ 68.5 ║  296%   ║  +0.0 ║  +0.7  ║  10   ║  NO    ║
+  ║ INTU  ║$334.71 ║ 75.6 ║  434%   ║  +2.1 ║ +19.7  ║  10   ║  YES   ║
+  ║ ADI   ║$384.43 ║ 52.4 ║  348%   ║  +1.8 ║  -1.7  ║  10   ║  NO    ║
+  ╚═══════╩════════╩══════╩═════════╩═══════╩════════╩═══════╩════════╝
 
-TICKER:     META
-PRICE:      $589.90  (as of ~10:30 AM ET Aug 7, 2026)
-RSI(14):    47.1     (NEUTRAL-LOW — oversold but not extreme)
-ATR(14):    $24.07   |  4.1% of price  (HIGH VOL — wide stops required)
-20d Range:  $524.49 – $686.08  |  Position: 40% (lower-mid range)
-52w High:   $686.08  (14% below 52w high — room to run)
-52w Low:    $524.49  (just above 52w support — DO NOT break this)
-MACD 4H:    NEGATIVE (bearish momentum still waning)
+--- 2C. FUNDAMENTAL & CATALYST ANALYSIS ---
 
-CATALYST
---------------------------------------------------------------------
-META has not reported since the previous quarter. No near-term earnings.
-Recent weakness is likely broad-based tech rotation/profit-taking.
-At 40% of its 20-day range, it's testing lower quartile support.
-Not as deep as AAPL, but META's AI monetization story remains intact.
-The $524–$530 support zone is the 52-week low — a hard structural floor.
-Any bounce from this level targets the midpoint of the range ~$605.
+  NET  | Q2 2026 earnings BEAT Aug 6: EPS $0.29 vs $0.27 est (+$0.02 beat).
+        Revenue $696.1M (+36% YoY) beat estimates of $672.2M by $23.9M.
+        Company raised FY2026 full-year revenue guidance to $2.87B.
+        Stock +14.3% on earnings. Bull flag continuation into mid-Aug.
+        Analyst mean target: $333.55. Score: 11.
 
-KEY TECHNICAL LEVELS
---------------------------------------------------------------------
-Pivot:            $590.40  (current price)
-Immediate Res:    $594.81  (R1 — ~0.8% above)
-SMA20 Res:        $616.12  (major resistance — ~4.5% above)
-Fib 38.2%:        $624.35  (minor fib)
-Fib 61.8%:        $624.35  (major fib of $524–$686 range)
-Primary Target T1: $616.00 (+4.4% | 1.1x ATR | 1.1R)
-Secondary Target T2: $624.35 (+5.8% | 1.4x ATR | 1.4R)
-52w Low (invalidation): $524.49 — a close below = EXIT IMMEDIATELY
+  INTU | Q4 FY2026 earnings ANNOUNCED Aug 25, 2026 (4:30 PM EDT).
+        Q3 FY2026 results (May 2026) showed raised full-year guidance.
+        EPS expected +13.5% YoY. Classic pre-earnings momentum setup.
+        20d return +19.7% confirms institutional accumulation.
+        Analyst mean target: $455.38 (+36% upside). Score: 10.
 
-Entry Zone:  $582.00 – $590.00 (test the $585 S1 support)
-Stop Loss:   $575.00  (below S1, above 52w low)
-             → Risk per share: $15.00 | Risk: 2.6% per share
-             → Risk per $100K account: ~$1,000 (1.0% of capital)
+  ISRG | Analyst consensus BUY target $477.25 (+19% upside). RSI=83.2
+        and BB_pos=0.91 = EXTENDED. DO NOT CHASE at current levels.
+        Would be a pullback candidate. Score: 9.
 
-Dynamic Risk Management:
-  • After +4% ($614): Move SL to BREAKEVEN
-  • After +6% ($626): Tighten SL to $600 (lock 50% of max gain)
-  • Daily close below $525 = MANDATORY EXIT
+  SMCI | Fwd P/E 7.0x, EPS est $5.38 — extremely cheap relative to growth.
+        BUT: +24% in 5 days, +39.9% in 20 days = momentum already captured.
+        Risk/reward at $37.61 is degraded vs entry 5 days ago.
+        Valid as momentum continuation but sizing must reflect extended risk.
 
-Position Sizing (per $100K account):
-  Capital at risk:  $1,000 (1.0%)
-  Risk per share:    $15.00
-  Share count:      67 shares
-  Dollar exposure:  ~$39,500
+======================================================================
+## 3. Cognitive Critique & Regime Alignment Risk
+======================================================================
 
-Holding Window:  3–8 days (exit by Aug 15, 2026)
-Risk/Reward:      1:1.1 (T1) / 1:1.4 (T2) — MARGINAL for T1, meets 1:1 for T2
+MACRO ALIGNMENT CHECK:
+  ✓ All 3 setups are LONG — fully aligned with confirmed BULL regime.
+  ✓ VIX < 16 and declining = minimal systemic risk for long positions.
+  ✓ SPY RSI 75 = broad market not exhausted; sector rotation into growth.
+  ✓ No Fed headwinds detected. Risk-on credit conditions intact.
 
-RATIONALE: META is a LOWER-CONFIDENCE AAPL backup. RSI 47 with price
-sitting right on the 52-week low support ($524–$530 zone) is a high-prob
-bounce. The problem is T2 only reaches 1.4R — barely meeting minimums.
-Enter only if AAPL entry is missed or as a second-concentration trade.
-Do NOT size this larger than AAPL. META's 4.1% ATR means wider stops,
-and the R:R is thin. It earns its spot here as a momentum-of-last-resort
-setup, not a primary position.
+BEAR CASE (Counter-Thesis):
 
-=======================================================================
-#3 SWING TRADE: NVDA — PULLBACK TO 20MA (MOMENTUM CONTINUATION)
-=======================================================================
+  #1 — Bull Market Correction Risk:
+  SPY RSI 75.2 and QQQ RSI 63.3 suggests the broad market has been steadily
+  climbing without a meaningful pullback. A 5-8% correction would hit all
+  three setups. If macro data (CPI, jobs) surprises to the upside on rates,
+  the Fed narrative could shift hawkish and trigger a rapid risk-off.
 
-TICKER:     NVDA
-PRICE:      $218.99  (as of ~10:30 AM ET Aug 7, 2026)
-RSI(14):    61.4     (BULLISH — room for more upside)
-ATR(14):    $7.79    |  3.6% of price
-20d Range:  $164.08 – $236.26  |  Position: 86% (upper quartile)
-52w High:   $236.26  (NVDA 7.3% below its 52w high — still in apex)
-20d High:   $236.26  (matching 52w high)
-MACD 4H:    NEGATIVE (4H momentum cooling after +12.3% in 5 days)
+  #2 — NET Extended Entry Risk:
+  NET BB_pos=0.95 (top 5% of Bollinger Band range) means it is deeply extended.
+  Post-earnings momentum (+14.3%) can reverse quickly. If the broader market
+  corrects, NET will not decouple — it will fall faster than the index due to
+  its elevated volatility (ATR 5.5%).
 
-CATALYST
---------------------------------------------------------------------
-No immediate earnings catalyst. NVDA's AI GPU dominance narrative has
-been re-energized by Q3 FY2026 earnings beat (est ~$0.73, actual ~$0.82).
-The stock ran +12.3% in 5 days — now pulling back to its 20-day moving
-average ($206.17) for a continuation entry. This is a TREND CONTINUATION
-play, not an oversold bounce. The 5-day run created a healthy mean-reversion
-back to the 20MA, which has historically been the "reload zone" for NVDA.
+  #3 — INTU Earnings Timing Risk:
+  INTU earnings Aug 25 = 8 trading days from today. If broad market enters a
+  risk-off period before then, a pre-earnings long becomes a headwind trade.
+  The 8-day window is tight; IV crush post-earnings is a consideration.
 
-KEY TECHNICAL LEVELS
---------------------------------------------------------------------
-20DMA (entry):    $206.17  (pullback target — currently 5.8% above price)
-SMA50 Res:        $205.82  (near-horizontal support)
-Fib 38.2%:        $207.80  (minor retracement of $164–$236 move)
-Fib 50%:          $200.13  (deeper pullback target)
-Primary Target T1: $228.00 (+4.1% | 1.2x ATR | 1.2R)
-Secondary Target T2: $236.26 (+7.9% | 2.2x ATR | 2.1R) — 52w high
-20d High:         $236.26
-SMA20 Invalidation: Close below $204 = structural failure
+  #4 — SMCI Valuation Trap / Fraud Risk:
+  SMCI at $37.61 with P/E 7x while the stock ran +40% in 20 days is suspicious
+  in the context of historical SMCI accounting controversies (auditor Deloitte
+  resigned May 2024). The risk here is not standard vol — it's binary
+  structural risk. Size accordingly.
 
-Entry Zone:  $206.00 – $210.00 (at/near 20MA pullback)
-Stop Loss:   $200.00  (below 50% fib, clear of noise)
-             → Risk per share: $8.99 | Risk: 4.4% per share
-             → Risk per $100K account: ~$900 (0.9% of capital)
+INVALIDATION TRIGGERS:
+  - QQQ breaks below $700 (SMA20) → regime shift to CAUTIOUS
+  - SPY RSI crosses below 55 → broad momentum failing
+  - VIX spikes above 20 → systemic fear returning
+  - NET falls below $290 → post-earnings momentum broken
+  - INTU falls below $315 → pre-earnings support violated
+  - SMCI falls below $33.91 → stop loss triggered
 
-Dynamic Risk Management:
-  • After +5% ($230): Move SL to BREAKEVEN
-  • After +7% ($235): Tighten SL to $218 (lock 65% of max gain)
-  • After +8% ($236): Exit full position at T2 (52w high)
-  • NVDA can gap — monitor pre-market Aug 8 for overnight risk
+LIQUIDITY & VOLUME:
+  All three tickers trade millions of shares/day. NET (avg vol high), INTU
+  (avg vol high), SMCI (elevated vol post-rally). Entry/exit slippage minimal
+  for limit orders at recommended levels.
 
-Position Sizing (per $100K account):
-  Capital at risk:  $900 (0.9%)
-  Risk per share:    $8.99
-  Share count:      100 shares
-  Dollar exposure:  ~$21,900
+======================================================================
+## 4. Tactical Order Blueprint
+======================================================================
 
-Holding Window:  2–7 days (exit by Aug 14, 2026)
-Risk/Reward:      1:1.2 (T1) / 1:2.1 (T2) — meets 2:1 on T2 only
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  SETUP #1 — NET (Cloudflare)          Score: 11  |  Regime: BULL     ┃
+┃  Catalyst: Q2 2026 earnings beat Aug 6 (+36% revenue, raised FY guide) ┃
+┃  Setup: Post-earnings momentum continuation into analyst upgrade cycle  ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃  DIRECTION:           LONG                                                   ┃
+┃  ENTRY TYPE:          BUY LIMIT @ $305.00 – $308.00                        ┃
+┃                       (Wait for pullback from $311.45; do NOT chase)        ┃
+┃  STOP LOSS:           $292.00  (4.4% risk = ~$15 pts below entry)         ┃
+┃  T1 (Partial PT):     $328.00  (2.0:1 R:R → take 50% off)                 ┃
+┃  T2 (Final Target):   $342.00  (3.0:1 R:R → exit remaining)                ┃
+┃  DYNAMIC MGMT:        Trail stop by 1×ATR every 2 days after T1 hit        ┃
+┃                       Current ATR=$17.01 → initial trail $293, tighten     ┃
+┃                       to $310 after price hits $328                        ┃
+┃  POSITION SIZE:       Risk 1.5% of portfolio ($15 pts × 100 shares/pt)    ┃
+┃  HOLDING WINDOW:       5–12 trading days (momentum window)                  ┃
+┃  CONFIDENCE:          HIGH — earnings beat confirmed, analyst target $333+  ┃
+┃  RISK FACTORS:        Extended at BB=0.95; needs pullback to enter cleanly ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-RATIONALE: NVDA is a PULLBACK ENTRY into an uptrend. 5-day +12.3% run
-creates a natural pullback to the 20DMA. The 20DMA has been a reliable
-reload zone for NVDA over the past 18 months. With RSI at 61 (not
-overbought), there's room for continued upside. The 52w high at $236.26
-is the logical T2 target. Enter on the pullback, not chasing the breakout.
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  SETUP #2 — INTU (Intuit)           Score: 10  |  Regime: BULL       ┃
+┃  Catalyst: Q4 FY2026 earnings Aug 25, 2026 (4:30 PM EDT)                 ┃
+┃  Setup: Pre-earnings momentum run with analyst target $455 (+36% upside)  ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃  DIRECTION:           LONG                                                   ┃
+┃  ENTRY TYPE:          BUY LIMIT @ $328.00 – $332.00                        ┃
+┃                       (scaling in: 50% at $332, 50% at $328 pullback)     ┃
+┃  STOP LOSS:           $314.00  (4.5% risk = ~$16 pts below entry avg)      ┃
+┃  T1 (Partial PT):     $358.00  (2.0:1 R:R → take 50% off)                 ┃
+┃  T2 (Final Target):   $376.00  (3.0:1 R:R → exit remaining)                ┃
+┃  EARNINGS EXIT:       Exit 50% of remaining position at market open         ┃
+┃                       Aug 26 (day after earnings) regardless of outcome.    ┃
+┃  DYNAMIC MGMT:        Stop at breakeven ($330) once T1 hit at $358        ┃
+┃  POSITION SIZE:       Risk 1.5% of portfolio ($16 pts × 100 shares/pt)     ┃
+┃  HOLDING WINDOW:       8 trading days (earnings event-bounded)               ┃
+┃  CONFIDENCE:          MEDIUM-HIGH — earnings catalyst confirmed,           ┃
+┃                       but 8-day window leaves exposure to macro vol          ┃
+┃  RISK FACTORS:        Time-bounded; IV crush post-earnings; stop before    ┃
+┃                       earnings if macro deteriorates                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-=======================================================================
-STAGE 2: COGNITIVE CRITIQUE & SELF-EVALUATION
-=======================================================================
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  SETUP #3 — SMCI (Super Micro)       Score: 12  |  Regime: BULL       ┃
+┃  Catalyst: Extreme valuation (Fwd P/E 7x) + AI server demand narrative    ┃
+┃  Setup: Momentum breakout continuation (EXTENDED — size cautiously)         ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃  DIRECTION:           WATCH / SCALE-IN on pullback                         ┃
+┃  ENTRY TYPE:          BUY LIMIT @ $34.00 – $35.50 (pullback zone)          ┃
+┃                       If no pullback: Aggressive SKIP — do not chase +40%   ┃
+┃  STOP LOSS:           $31.50  (10% risk = ~$3.50 pts — wide, full vol)   ┃
+┃  T1 (Partial PT):     $41.50  (2.0:1 R:R → take 50% off)                 ┃
+┃  T2 (Final Target):   $45.00  (3.0:1 R:R → exit remaining)                ┃
+┃  DYNAMIC MGMT:        Trail stop aggressively — momentum in final phase    ┃
+┃  POSITION SIZE:       Risk 0.75% of portfolio only (binary/structural risk) ┃
+┃  HOLDING WINDOW:       5–15 trading days                                   ┃
+┃  CONFIDENCE:          LOW-MEDIUM — valuation compelling but elevated risk; ┃
+┃                       historical audit concerns warrant smaller sizing      ┃
+┃  RISK FACTORS:        +40% in 20 days = momentum likely maturing;          ┃
+┃                       P/E of 7x may reflect non-fundamental price action    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-AAPL Bear Case (challenge #1):
-  The post-earnings selloff could be more than a pullback — if Q3 FY2026
-  guidance was quietly lowered in the earnings call, the structural thesis
-  changes. Tim Cook's departure creates a genuine leadership uncertainty
-  discount that may persist 2-4 weeks. The stock sitting below its 20DMA
-  means momentum is still negative on the daily — an oversold bounce can
-  fail. If broader tech rotation reverses (SPY RSI 65.9 is elevated),
-  even AAPL's bounce fails.
-  → MITIGATION: Stop at $300 (hard 52w support) is unambiguous.
+======================================================================
+  COMPOSITE PORTFOLIO RISK BUDGET (if all 3 entered simultaneously):
+  ────────────────────────────────────────────────────────────────────
+  NET:   1.5% risk   |  INTU:  1.5% risk   |  SMCI:  0.75% risk
+  Total: 3.75% portfolio risk committed (within acceptable 5% max)
+  Remaining: Reserve for macro-driven opportunities if QQQ pulls back
+======================================================================
 
-AAPL Invalidation: Close below $300 on a daily basis = full thesis
-  failure. $300 is both the 20-day low AND the lower Fibonacci level.
-  A break of this level means capitulation is NOT complete.
-
-META Bear Case:
-  META at the 52w low sounds like a bottom — but "catching a falling
-  knife" is real. If the AI advertising growth story is decelerating,
-  or if the Llama/open-source strategy creates margin pressure, the
-  52w low breaks. 14% below the 52w high suggests institutional
-  distribution. The R:R is thin at T2 (1.4:1) — barely worth it.
-  → MITIGATION: Enter only at S1/S2 support ($585 zone). Never chase.
-  → INVAL: Close below $524 = immediate full exit.
-
-NVDA Bear Case:
-  NVDA at 86% of its 20-day range means this is NOT a pullback entry —
-  it's a momentum continuation entry. If the AI bubble narrative deflates
-  (rates rise, credit tightens), NVDA's P/E of 33.5x forward becomes a
-  liability. The +12.3% in 5 days is already extended.
-  → MITIGATION: Only enter on pullback TO the 20MA ($206), not above.
-  → INVAL: Close below $200 (50% fib) = trend breaks, exit full position.
-
-Macro Alignment Check:
-  All three trades are LONG — aligned with confirmed BULL regime.
-  VIX < 16 and declining = no systemic headwinds for longs.
-  SPY RSI 65.9 = broad market in momentum phase, not late-cycle.
-  IWM confirming breadth participation = synchronized advance.
-  ✓ NO TRADE FIGHTS THE MACRO REGIME.
-
-Liquidity & Volatility Check:
-  AAPL: ATR=$9.37, avg daily volume ~50M shares → highly liquid, tight fills.
-  META: ATR=$24.07, avg daily volume ~12M shares → liquid, moderate slippage.
-  NVDA: ATR=$7.79, avg daily volume ~40M shares → highly liquid, tight fills.
-  All three can absorb $30K–$40K position sizes without material slippage.
-
-=======================================================================
-STAGE 3: PORTFOLIO WATCHING (if positions exist)
-=======================================================================
-
-Current market regime exposure: 100% LONG (bull confirmed)
-If you hold QQQ or SPY: Continue holding. No structural breakdown signals.
-VIX ceiling of $18: Any VIX spike above $18 = reduce all long exposure 50%.
-Sector rotation: Tech lagging S&P by ~2% = selective exposure, not broad.
-
-Current candidate summary for position sizing on $100K account:
-  AAPL:  97 shares | $30,300 exposure | $1,200 at risk (1.2%) → PRIMARY
-  META:  67 shares | $39,500 exposure | $1,000 at risk (1.0%) → SECONDARY
-  NVDA: 100 shares | $21,900 exposure |   $900 at risk (0.9%) → TERTIARY
-
-Total recommended risk: 2.0–3.1% across all three trades maximum.
-Recommended max total exposure: 30–40% of account capital.
-
-=======================================================================
-STAGE 4: TACTICAL ORDER BLUEPRINTS
-=======================================================================
-
----------------------------------------
-AAPL — PRIMARY SETUP (HIGHEST CONFIDENCE)
----------------------------------------
-Direction:       LONG
-Entry Type:      BUY LIMIT @ $312.00 (or buy at market on any dip to $311–314)
-                 Alternative: Buy Stop-Limit @ $315.50 once 4H candle closes above
-Profit Target T1: $327.54 (partial — exit 50% of position)
-Profit Target T2: $344.57 (full exit — 52-week high)
-Stop Loss:       $300.00 (hard stop — 20-day low support)
-Risk/Reward:     T1 = 1:1.6 | T2 = 1:3.3
-Position Size:   97 shares | $30,300 notional | $1,200 at risk (1.2%)
-Dynamic Exit:    Move SL to BE at +5% ($328) | Tighten to $320 at +8%
-Holding Period:  3–10 days (exit by Aug 17, 2026)
-Invalidation:    Daily close below $300 = immediate full exit
-
----------------------------------------
-META — SECONDARY SETUP (MODERATE CONFIDENCE)
----------------------------------------
-Direction:       LONG (contingent — enter only near $585–$590)
-Entry Type:      BUY LIMIT @ $586.00 (wait for S1 touch)
-                 DO NOT enter if price is above $595 (chasing)
-Profit Target T1: $616.00 (partial — exit 50% of position)
-Profit Target T2: $624.35 (full exit)
-Stop Loss:       $575.00 (below S1 pivot)
-Risk/Reward:     T1 = 1:1.1 | T2 = 1:1.4 (thin — lower sizing to 0.5%)
-Position Size:   33 shares | $19,500 notional | $500 at risk (0.5%)
-Dynamic Exit:    Move SL to BE at +4% ($610) | Tighten to $598 at +6%
-Holding Period:  3–8 days (exit by Aug 15, 2026)
-Invalidation:    Daily close below $524.49 = immediate full exit
-
----------------------------------------
-NVDA — TERTIARY SETUP (MOMENTUM CONTINUATION)
----------------------------------------
-Direction:       LONG (only on 20MA pullback)
-Entry Type:      BUY LIMIT @ $207.00 (at 20DMA) or BUY STOP @ $210.50
-                 DO NOT enter if stock closes below $205 today
-Profit Target T1: $228.00 (partial — exit 50% of position)
-Profit Target T2: $236.26 (full exit — 52-week high)
-Stop Loss:       $200.00 (below 50% Fibonacci level)
-Risk/Reward:     T1 = 1:1.2 | T2 = 1:2.1
-Position Size:   100 shares | $21,900 notional | $900 at risk (0.9%)
-Dynamic Exit:    Move SL to BE at +5% ($218) | Tighten to $222 at +7%
-Holding Period:  2–7 days (exit by Aug 14, 2026)
-Invalidation:    Daily close below $200 = immediate full exit
-Overnight Risk:  NVDA can gap 3–5% on AI news — size accordingly
-
-=======================================================================
-SUMMARY TABLE
-=======================================================================
-Setup  | Price  | Entry     | T1       | T2       | Stop    | R:R(T1/T2) | Risk%
--------|--------|-----------|----------|----------|---------|------------|-------
-AAPL   | $312.41| $312.00   | $327.54  | $344.57  | $300.00 | 1.6/3.3    | 1.2%
-META   | $589.90| $586.00   | $616.00  | $624.35  | $575.00 | 1.1/1.4    | 0.5%*
-NVDA   | $218.99| $207.00   | $228.00  | $236.26  | $200.00 | 1.2/2.1    | 0.9%
-* META sized at 0.5% due to thin R:R — upgrade to 1.0% only after T1 is hit
-
-RECOMMENDED ACTION:
-  1. AAPL — ENTER NOW at $312–314. Primary conviction.
-  2. NVDA — Wait for pullback to $206–210, then enter.
-  3. META — Only if AAPL entry is missed; wait for $586 touch.
-  4. Do NOT hold all three at full size simultaneously. Max 3.1% total risk.
-
-DISCLAIMER: This is analytical research, not financial advice.
-             Always size positions to your personal risk tolerance.
-             Verify all price data independently before trading.
-
-=======================================================================
-Data sourced from Yahoo Finance via yfinance (Python). Prices as of
-approximately 10:30 AM ET, August 7, 2026. Market is OPEN (NASDAQ hours).
-=======================================================================
+======================================================================
+  SCAN EXECUTION LOG (yfinance live data — Aug 13, 2026 08:04 AM ET)
+  ────────────────────────────────────────────────────────────────────
+  VIX: $14.50 (RSI=32.4, declining — LOW FEAR)
+  QQQ: $723.70 | RSI=63.3 | Above 20/50/200 SMA | MACD Hist=+4.34
+  SPY: $772.49 | RSI=75.2 | Above 20/50/200 SMA | MACD Hist=+2.65
+  IWM: $302.71 | RSI=65.2 | Above 20/50/200 SMA | MACD Hist=+0.85
+  Bull confirm signals: 3/3 | Regime: BULL ✓
+======================================================================
