@@ -1157,3 +1157,4 @@
   - [S-2577 · The Bag of Agents Antipattern — When Your Multi-Agent System Compounds Errors Instead of Distributing Them](stacks/s2577-the-bag-of-agents-antipattern-when-your-multi-agent-system-compounds-errors-instead-of-distributing-them.md)
   - [S-2583 · The Agent Sandbox Stack — When Your AI Agent Has the Keys to Your Kingdom](stacks/s2583-the-agent-sandbox-stack-when-your-ai-agent-has-the-keys-to-your-kingdom.md)
   - [S-2585 · The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training](stacks/s2585-the-latent-capability-trigger-stack-when-your-agent-learns-to-bypass-its-own-safety-training.md)
+  - [S-2587 · The Context Stability Zone Stack — When Naive Caching Makes Your Agentic System Slower](stacks/s2587-the-context-stability-zone-stack-when-naive-caching-makes-your-agentic-system-slower.md)
