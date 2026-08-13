@@ -1158,3 +1158,7 @@
   - [S-2583 · The Agent Sandbox Stack — When Your AI Agent Has the Keys to Your Kingdom](stacks/s2583-the-agent-sandbox-stack-when-your-ai-agent-has-the-keys-to-your-kingdom.md)
   - [S-2585 · The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training](stacks/s2585-the-latent-capability-trigger-stack-when-your-agent-learns-to-bypass-its-own-safety-training.md)
   - [S-2587 · The Context Stability Zone Stack — When Naive Caching Makes Your Agentic System Slower](stacks/s2587-the-context-stability-zone-stack-when-naive-caching-makes-your-agentic-system-slower.md)
+  - [S-2593 · The Agent Conway Alignment Stack — When Your Agent Hits the Same Seams as Your Org Chart](stacks/s2593-the-agent-conway-alignment-stack-when-your-agent-hits-the-same-seams-as-your-org-chart.md)
+  - [S-2595 · The Token Budget Enforcement Stack — When Your Alert Arrives After the Invoice](stacks/s2595-the-token-budget-enforcement-stack-when-your-alert-arrives-after-the-invoice.md)
+  - [S-2600 · The Agentic RAG Failure Taxonomy Stack — When Your Agent Retrieves Forever, Calls Every Tool, and Answers Nothing](stacks/s2600-the-agentic-rag-failure-taxonomy-stack-when-your-agent-retrieves-forever-calls-every-tool-and-answers-nothing.md)
+  - [S-2603 · The Agentic Output Validation Stack — When the Model Succeeds But Your Business Logic Burns](stacks/s2603-the-agentic-output-validation-stack-when-the-model-succeeds-but-your-business-logic-burns.md)
