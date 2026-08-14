@@ -6897,6 +6897,7 @@ mcp-breaking-change → I-3299
 |||| I-3301 | The Planning Horizon Stack — When Eager Step-by-Step Planning Costs You 2× the Tokens for No Accuracy Gain | planning-horizon, full-horizon, single-step-horizon, FH-SH, lazy-replan, eager-monitoring, token-efficiency, plan-quality, execution-graph, branching-factor, arxiv-2605.08477, megagon-labs, cais-2026, CAIS, data-centric-tool-calling, adaptive-horizon, horizon-router, depth-breadth | 8 | 9 | 9 | 9 | 7 | **8.65** | WRITTEN — S-2612 | 2026-08-14 | 2026-08-14 |
 ||||| I-3302 | The Three-Layer Agent Reliability Stack — When Your Model Is Smart but Your System Still Fails | three-layer-reliability, eval-vs-guardrail-vs-harness, harness-layer, concurrency-control, fan-out-governance, multi-path-conflict, execution-path-governance, eval-layer, guardrail-layer, harness-layer, arize-2026, harnessfix-2606.06324, trace-guided, orchestration-correctness, structural-correctness, multi-agent-orchestration, parallel-path-conflict, fan-out-failure, voice-agent-demo | 9 | 9 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2615 | 2026-08-14 | 2026-08-14 |
 |||||| I-3303 | The Provider Regression Detection Stack — When Your Agent Breaks Without a Commit | provider-regression, upstream-model-change, model-update-regression, behavioral-canary, golden-dataset-continuous, prompt-drift, provider-change-attribution, diffless-regression, continuous-evaluation, production-traffic-eval, semantic-canary, provider-gating, upstream-drift, model-pin, behavioral-version, Tessary, Converra, ElixirData, Comet, Stanford-Berkeley-GPT4-drift, ProviderChangeAttribution, Silent-Diff, silent-diff | 8 | 8 | 7 | 8 | 6 | **7.70** | WRITTEN — S-2618 | 2026-08-14 | 2026-08-14 |
+|||||| I-3304 | The Knowledge Compilation Stack — When Your Agent Rediscovers Everything on Every Query | knowledge-compilation, compile-once-query-many, knowledge-layer, raw-source-RAG, wiki-pattern, karpathy-llm-wiki, incremental-knowledge, agent-wiki, token-efficiency, context-layer, knowledge-architecture, source-compilation, compiled-knowledge, knowledge-freshness, retrieval-overhead, knowledge-tier, entity-page, contradiction-flag, cross-reference, compile-once-query-many, SuperML-2026, Redis-Iris-2026, VentureBeat-2026, TheNewStack-2026 | 10 | 10 | 10 | 10 | 8 | **9.80** | WRITTEN — S-2620 | 2026-08-14 | 2026-08-14 |
 
 ## Pattern Log
 
@@ -6978,8 +6979,24 @@ provider-gating → I-3303
 upstream-drift → I-3303
 model-pin → I-3303
 behavioral-version → I-3303
+knowledge-compilation → I-3304
+compile-once-query-many → I-3304
+knowledge-layer → I-3304
+wiki-pattern → I-3304
+agent-wiki → I-3304
+compiled-knowledge → I-3304
+source-compilation → I-3304
+retrieval-overhead → I-3304
+incremental-knowledge → I-3304
+knowledge-freshness → I-3304
+contradiction-flag → I-3304
+entity-page → I-3304
+karpathy-llm-wiki → I-3304
+raw-source-RAG → I-3304
 
 ## Recent Decisions
+
+- *2026-08-14* — **I-3304 → S-2620 — The Knowledge Compilation Stack — Composite 9.80**: Discovered via multi-source research: Karpathy LLM Wiki pattern (compile-once-query-many), The New Stack "Context Layer Bottleneck" (Karpathy cited: compile step dominates, July 2026), VentureBeat "Context Architecture Replacing RAG" (Redis Iris, May 2026), SuperML "MCP Bloat Tax" (Atlassian Teamwork Graph: 48% token reduction via structured query, May 2026). Core insight: raw-source RAG forces the LLM to re-derive synthesized understanding on every query. The fix: two-phase architecture -- compile once (LLM synthesizes raw sources into interlinked entity/topics wiki pages), then query many (cheap, consistent, no re-derivation). Incremental update: watch source timestamps, recompile affected pages only. Implementation refs: agent-wiki npm, openclaw_llm-wiki-compiler (54 commits), llm-wiki-hermes skill. Deduplicated from S-2600 (RAG failure taxonomy), S-2607 (agent memory tiers), S-2619 (memory architecture). Tags: I-3304.
 
 - *2026-08-14* — **I-3303 → S-2618 — The Provider Regression Detection Stack — Composite 7.70**: Fresh research across Tessary, Zylos, Converra, Georgian, ElixirData, and Comet AI. Core insight: standard regression gates are diff-triggered, but provider-side model updates arrive as production events with no pull request — meaning the most dangerous regressions bypass every existing quality gate. S-1033 (Behavioral Version Stack) covers 4 independently-evolving layers including model version; S-1033 frames the problem as versioning/attribution within the stack. S-2618 takes a different angle: continuous behavioral evaluation running on production traffic, not on diffs. Layer 1: continuous eval on 1-5% production sample against golden dataset. Layer 2: behavioral canary with probe assertions. Layer 3: provider-change attribution gate with model pinning response. This is distinct from S-1009 (RCA after failure) and S-1010 (eval dataset quality). Deduplication: checked MCP (S-10, S-2608), observability (S-2616), sandbox (S-2611), eval (S-2605, S-1010, R-16), behavioral versioning (S-1033), RCA (S-1009), AI SRE (S-1005), cost control (S-1032, S-1027), A2A security (S-2606), multi-agent orchestration (S-2609), agentic failure handling (S-2606), output validation (S-2603), planning (S-2604), MCP stateless (S-2608), step-level monitoring (S-2616), memory (S-2607), compensation graph (S-2610), and synthetic data / tool use / shared state — all covered, no overlap.
 
