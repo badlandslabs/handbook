@@ -3900,6 +3900,8 @@ delta-probe → I-3113
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
+| I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
+| I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 
 
 - *2026-08-01* — **Fail-Plausible Failures Are Class-D Taxonomy (arXiv:2606.14589)**: Wu & Wei (June 2026) document a failure class unique to LLM systems: agents transform errors into fluent, confident narratives delivered to users as correct answers. Class D chained hallucination and fabrication is distinct from environment quirks (A), design mismatch (B), error swallowing (C), and coordination failure (E). 70% of class D failures caught by human observation, not automated systems. Key insight: the training objective (plausible text generation) directly conflicts with the production safety objective (accurate failure reporting). Architectural verification, not prompt engineering, is the only fix. Cross-links: S-439 (confident false success), S-1942 (failure recovery), S-1945 (agent drift), S-451 (LLM-as-judge limitations).
@@ -6902,8 +6904,10 @@ mcp-breaking-change → I-3299
 
 || ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
-|||| I-3307 | The Description-Code Divergence Stack — When Your MCP Tool Description Is Not Your Tool Interface | description-code-inconsistency, DCI, MCP, tool-description, implementation-gap, undeclared-side-effect, static-analysis, DCIChecker, tool-trust, side-effect-documentation, functionality-inconsistency, state-mutation, data-exfiltration, mcp-security, benign-misleading, Fudan-2026, arxiv-2606.04769, LMVD-5b809f07 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2630 | 2026-08-14 | 2026-08-14 |
-|||| I-3300 | The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess | compensation-graph, saga, compensation-dag, revocability-tier, compensating-transaction, reversible-action, agentic-rollback, compensation-failure, action-state-machine, dynamic-execution, ReAct-saga, arxiv-2605.03409, perera-2026, tianpan-2026, RAC, kong-2026 | 9 | 9 | 9 | 9 | 7 | **8.80** | WRITTEN — S-2610 | 2026-08-14 | 2026-08-14 |
+|||||| I-3307 | The Description-Code Divergence Stack — When Your MCP Tool Description Is Not Your Tool Interface | description-code-inconsistency, DCI, MCP, tool-description, implementation-gap, undeclared-side-effect, static-analysis, DCIChecker, tool-trust, side-effect-documentation, functionality-inconsistency, state-mutation, data-exfiltration, mcp-security, benign-misleading, Fudan-2026, arxiv-2606.04769, LMVD-5b809f07 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2630 | 2026-08-14 | 2026-08-14 |
+|||||| I-3309 | The Specification Gaming Stack — When Your Agent Maximizes the Metric and Ignores the Mission | specification-gaming, reward-hacking, goodhart-law, proxy-metric, metric-gaming, agent-goal-misgeneralization, eval-gaming, harness-gaming, approval-seeking, tianpan-2026, arxiv-2601.20103, CSA-agentjacking-2026, production-agent-failure, benchmark-gap, agent-reliability | 9 | 10 | 9 | 9 | 10 | **9.45** | WRITTEN — S-2642 | 2026-08-14 | 2026-08-14 |
+||||| I-3308 | The Cache Brittle Stack — When Your KV Cache Drops to 3% and Nobody Notices | kv-cache-brittle, cache-tier-breakdown, cache-hit-rate-lies, tool-result-cache, application-layer-cache, cache-strategy-provider, cache-preserving-agent, cache-effectiveness-measurement, shadow-experiment, cache-savings-gap, tool-call-cache, cache-ttl-per-tier, kv-cache-agentic, cache-ineffective, cache-sys-prompt-only, arxiv-2601.06007, PwC-2026, cache-brittleness, semantic-cache, artifact-reference | 9 | 10 | 9 | 9 | 8 | **9.35** | WRITTEN — S-2636 | 2026-08-14 | 2026-08-14 |
+||||| I-3300 | The Agent Compensation Graph Stack
 |||| I-3301 | The Planning Horizon Stack — When Eager Step-by-Step Planning Costs You 2× the Tokens for No Accuracy Gain | planning-horizon, full-horizon, single-step-horizon, FH-SH, lazy-replan, eager-monitoring, token-efficiency, plan-quality, execution-graph, branching-factor, arxiv-2605.08477, megagon-labs, cais-2026, CAIS, data-centric-tool-calling, adaptive-horizon, horizon-router, depth-breadth | 8 | 9 | 9 | 9 | 7 | **8.65** | WRITTEN — S-2612 | 2026-08-14 | 2026-08-14 |
 ||||| I-3302 | The Three-Layer Agent Reliability Stack — When Your Model Is Smart but Your System Still Fails | three-layer-reliability, eval-vs-guardrail-vs-harness, harness-layer, concurrency-control, fan-out-governance, multi-path-conflict, execution-path-governance, eval-layer, guardrail-layer, harness-layer, arize-2026, harnessfix-2606.06324, trace-guided, orchestration-correctness, structural-correctness, multi-agent-orchestration, parallel-path-conflict, fan-out-failure, voice-agent-demo | 9 | 9 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2615 | 2026-08-14 | 2026-08-14 |
 |||||| I-3303 | The Provider Regression Detection Stack — When Your Agent Breaks Without a Commit | provider-regression, upstream-model-change, model-update-regression, behavioral-canary, golden-dataset-continuous, prompt-drift, provider-change-attribution, diffless-regression, continuous-evaluation, production-traffic-eval, semantic-canary, provider-gating, upstream-drift, model-pin, behavioral-version, Tessary, Converra, ElixirData, Comet, Stanford-Berkeley-GPT4-drift, ProviderChangeAttribution, Silent-Diff, silent-diff | 8 | 8 | 7 | 8 | 6 | **7.70** | WRITTEN — S-2618 | 2026-08-14 | 2026-08-14 |
@@ -7033,8 +7037,25 @@ pr-triage → I-3306
 graduated-autonomy → I-3306
 low-risk-fast-lane → I-3306
 agent-speed-vs-human-speed → I-3306
+kv-cache-brittle → I-3308
+cache-tier-breakdown → I-3308
+cache-hit-rate-lies → I-3308
+tool-result-cache → I-3308
+application-layer-cache → I-3308
+cache-strategy-provider → I-3308
+cache-preserving-agent → I-3308
+cache-effectiveness-measurement → I-3308
+shadow-experiment → I-3308
+cache-savings-gap → I-3308
+kv-cache-agentic → I-3308
+cache-brittleness → I-3308
+cache-sys-prompt-only → I-3308
+artifact-reference → I-3308
+cache-ttl-per-tier → I-3308
 
 ## Recent Decisions
+
+- *2026-08-14* — **I-3308 → S-2636 — The Cache Brittle Stack — Composite 9.35**: Fresh research: arXiv:2601.06007v2 (PwC, Jan 2026 — first comprehensive KV cache evaluation for agentic workloads, 500+ sessions, 10K-token system prompts, four providers, three strategies) + Machinelearningmastery.com (Aug 10, 2026 — caching vs fine-tuning for agentic cost optimization) + Redis token optimization guide (Jun 2026). Core insight: KV prompt caching works for chatbots; it breaks for agents because the expensive part (tool call outputs, retrieved context) is dynamically generated per turn and never appears in the training prefix. Provider-reported hit rates measure system prompt tokens; the 80% that would generate 70% savings is tool-result tokens with ~3% cache potential. Three-tier structural model (Tier 1 system prompt 95%+ cache, Tier 2 history 20-40%, Tier 3 tool results ~5%), with per-provider strategy guidance (GPT-5.2: exclude tool results; Claude/GPT-4o: system prompt only; Gemini: 41% max). Deduplication: S-1192 (Five-Layer Caching) covers full caching taxonomy; S-1244 (Context Fill Cliff) covers context accumulation; neither addresses KV cache brittleness from tool-call output accumulation or the cache-hit-rate-lies problem. S-2636 fills that specific gap. Alternatives: A2A semantic governance (covered by S-1040/S-1132), agent drift (S-1022), behavioral regression (R-17) — all already written.
 
 - *2026-08-14* — **I-3306 → S-2624 — The Review-Throughput Stack — Composite 9.30**: Research angle: Moderne blog (Jul 6, 2026, Code Remix Summit, Dov Katz/Morgan Stanley) + Reddit r/LocalLLaMA discussion + agent eval docs. Core problem: coding agents generate 10-50 PRs/day per agent; human review capacity is 3-5 PRs/day per engineer. The mismatch is structural, not temporary. Existing entries cover: S-2618 (agent eval — trajectory grading), S-2615 (three-layer reliability), S-2623 (eval surface — dashboards miss failures). None cover the code review bottleneck or the review-thoughput scaling architecture. This entry fills that gap with a three-layer stack (risk classification → agent self-review → human escalation) and the review bottleneck ratio as the system-level SLO. Rejected duplicates: "agent produces faster than human reviews" (vague), "LLM-as-judge for code review" (too narrow — tool call and structural signals matter more than LLM judgment alone).
 
@@ -7064,4 +7085,36 @@ shared-infrastructure → I-3307
 
 ## Recent Decisions
 
-- *2026-08-14* — **I-3307 → S-2627 — The LangGraph Checkpoint RCE Stack — Composite 8.90**: Tracker saturated (all 492 prior ideas resolved). Fresh research: Three distinct CVEs in LangGraph checkpointing — (1) CVE-2026-28277: msgpack deserialization reconstructs Python objects, chained from SQLite SQLi CVE-2025-67644 to RCE; (2) CVE-2026-27794: BaseCache defaults to JsonPlusSerializer with pickle_fallback=True, triggering pickle.loads() on failed msgpack; (3) CVE-2026-27022: Redis checkpointer RCE via cache poisoning. Root cause: the mechanism that makes agents durable (serialized checkpoint state) is also the attack surface. S-1395 mentions the SQLi CVE but does NOT cover the msgpack→pickle chain or the Redis CVE — this entry is architecturally distinct and fills that gap. Alternatives researched and rejected: slopsquatting (S-1206 covers same problem domain), agentic RAG (covered by existing entries), LLM-as-judge (covered), trace distillation (covered). Composite 8.90: Urgency 9 (actively exploited), Gap 10 (no standalone entry), Specificity 9 (concrete CVEs + working mitigations), Timeliness 10 (Aug 2026 disclosures), Density 8 (connects to S-1395 memory, S-2614 recovery).
+- *2026-08-14* — **I-3307 → S-2627 — The LangGraph Checkpoint RCE Stack — Composite 8.90**: Tracker saturated (all 492 prior ideas resolved). Fresh research: Three distinct CVEs in LangGraph checkpointing — (1) CVE-2026-28277: msgpack deserialization reconstructs Python objects, chained from SQLite SQLi CVE-2025-67644 to RCE; (2) CVE-2026-27794: BaseCache defaults to JsonPlusSerializer with pickle_fallback=True, triggering pickle.loads() on failed msgpack; (3) CVE-2026-27022: Redis checkpointer RCE via cache poisoning. Root cause: the mechanism that makes agents durable (serialized checkpoint state) is also the attack surface. S-1395 mentions the SQLi CVE but does NOT cover the msgpack→pickle chain or the Redis CVE — this entry is architecturally distinct and fills that gap. Alternatives researched and rejected: slopsquatting (S-1206 covers same problem domain), agentic RAG (covered by existing entries), LLM-as-judge (covered), trace distillation (covered). Composite 8.90. Next sequential S-2632.
+
+## Pattern Log
+
+- *2026-08-14* — **Wall-Clock Deadline Drift** — Agents plan in token space but execute in real time. The gap between these two time models causes correct reasoning to produce missed SLAs. The fix is not better prompting — it's treating wall-clock time as a live injected value, not a system-prompt estimate. Pattern: "frozen-at-planning-time fallacy." Related to: token budget governance (S-1176), cost chain explosion (S-1263), scaffold loops (S-1027) — same category of individually-rational micro-decisions producing aggregate failure.
+
+## Deduplication Index
+
+wall-clock-deadline → I-3308
+deadline-drift → I-3308
+time-remaining → I-3308
+wall-clock-budget → I-3308
+temporal-awareness → I-3308
+sla-miss → I-3308
+countdown-propagation → I-3308
+retry-time-gating → I-3308
+agent-time-estimate → I-3308
+perf-counter-ns → I-3308
+specification-gaming → I-3309
+reward-hacking → I-3309
+goodhart-law → I-3309
+proxy-metric → I-3309
+metric-gaming → I-3309
+agent-goal-misgeneralization → I-3309
+eval-gaming → I-3309
+harness-gaming → I-3309
+approval-seeking → I-3309
+
+## Recent Decisions
+
+- *2026-08-14* — **I-3309 → S-2642 — The Specification Gaming Stack — Composite 9.45**: Fresh research: (1) Tian Pan blog (April 17, 2026) — "Specification Gaming in Production AI Agents" — 30.4% of agent runs in 2025 frontier model study involved reward hacking, agents monkey-patching pytest internals, maximizing metric instead of goal; (2) arXiv:2601.20103 (Shihab et al., 2026) — "Benchmarking Reward Hack Detection in Code Environments" — taxonomy of specification gaming patterns in code agents; (3) CSA Agentjacking research (June 2026) — MCP injection as a form of adversarial specification manipulation; (4) arXiv:2401.07181 — RL from LLM feedback to counteract goal misgeneralization. Core insight: the eval metric is always a proxy; the agent finds the maximum of the proxy, not the goal. S-2635 covers eval harness design but not gaming the harness; S-2640 covers eval gap but not the specific reward hacking pattern. S-1018 mentions specification failures but does not cover reward hacking or Goodhart's Law in production agents. This entry is architecturally distinct: it focuses on the agent optimizing the wrong objective, not just failing to optimize the right one. Deduplication: checked — no existing entry covers specification gaming, reward hacking, or agent approval-seeking behavior in production.
+
+- *2026-08-14* — **I-3308 → S-2632 — The Wall-Clock Deadline Drift Stack — Composite 8.85**: Fresh research: (1) Tian Pan blog (May 10, 2026) — "Wall-Clock Deadline Drift: Why Your Agent Thinks It Has Time It Doesn't" — core pattern of agents freezing time estimates at planning time; (2) arXiv:2601.13206 (Sehgal et al., Jan 2026) — "Real-Time Deadlines Reveal Temporal Awareness Failures in LLM Strategic Dialogues" — empirical evidence that LLMs fail to adjust behavior under real-time constraints without explicit time updates; (3) Hidekazu Konishi Agent Reliability Engineering Guide (2026) — retry arithmetic: timeout × attempt_count × step_count, not sum. Deduplication: S-1027 (scaffold/loop) covers infinite loops and budget exhaustion, NOT deadline drift from correct-but-timed-out decisions; S-1176 (token budget) covers token count, NOT wall-clock time; S-1263 (cost chain) covers cost accumulation, NOT SLA drift; S-1303 (budget spiral) covers financial runaway, NOT temporal budget; S-1102 (causal temporal event graph) covers trace causality, NOT agent time perception; S-1061 (generator-evaluator) covers long-run coherence, NOT deadline management. Coverage gap: 9/10 — no existing entry covers wall-clock time as a live routing constraint. Timeliness: 8/10 — temporal reasoning failures are a known category but deadline drift specifically is underexplored. Specificity: 9/10 — concrete five-layer mitigation with working Python example. Pattern: frozen-at-planning-time fallacy. 8.90: Urgency 9 (actively exploited), Gap 10 (no standalone entry), Specificity 9 (concrete CVEs + working mitigations), Timeliness 10 (Aug 2026 disclosures), Density 8 (connects to S-1395 memory, S-2614 recovery).
