@@ -1,0 +1,37 @@
+# S-2641 · The Agent Loop Survivor Stack — When Your Agent Burns Budget Because It Cannot Let Go
+
+Your candidate evaluation agent worked perfectly in staging. In production it called the same broken SQL tool 400 times, burned through 3× its monthly API budget, and was only caught because the finance team noticed a line item. This is not a model failure. The model worked exactly as designed — it received an error, retried, got the same error, and retrying seemed reasonable. The loop has no termination discipline, no budget awareness, and no circuit breaker. This is the **agent loop survivor stack**: the structural patterns that keep production agents from becoming budget black holes.
+
+## Forces
+
+- **The retry instinct is correct 99% of the time.** A transient API error should be retried. An agent that gives up on the first failure is worse than one that loops. The problem is that the retry instinct runs unbounded — the same pattern that handles a 503 also handles a fundamentally broken tool, forever.
+- **Agents cannot self-diagnose tool failure modes.** A tool that returns an error is indistinguishable from a tool that returns wrong data, unless you validate the output. Agents retry both cases identically because they have no contract with the tool that says "this class of error is transient" vs "this input will never work."
+- **State loss compounds silently.** When an agent loops and burns budget, the context window eventually forces compaction — which drops the history of what already failed. The agent starts fresh, encounters the same broken tool, and loops again. The loop doesn't know it is looping.
+- **Cost awareness lives outside the agent's context.** Token budgets and dollar limits are infrastructure concerns, not reasoning concerns. The agent sees the task ("fetch candidate data") not the cost ("this is the 400th attempt").
+
+## The Move
+
+Implement layered failure infrastructure — not in the prompt, in the execution layer. These patterns work together as a system:
+
+- **Hard iteration cap with checkpoint-before-retry.** Set a maximum step count (e.g., 50) per task. Before each retry after failure, snapshot the current state (partial results, conversation history, tool call log) to durable storage. When the cap is hit, the agent resumes from the checkpoint with a fresh context window, not a compacted one that dropped failure history.
+- **Tool contract validation before the loop starts.** Every tool gets a schema contract: what valid output looks like, what error classes exist, and which classes are transient vs permanent. Validate tool output against the contract immediately. Permanent errors should increment a failure counter and fail fast, not retry.
+- **Circuit breaker per tool, per agent.** Treat each tool call as a circuit: open after N consecutive failures (e.g., 3), reject immediately for a cooldown period (e.g., 60 seconds), then half-open to allow one probe. If the probe succeeds, close the circuit. This prevents retry storms from compounding.
+- **Cost checkpoint at 50% budget.** Track cumulative token spend per task. At 50% of the budget ceiling, emit a warning and inject a cost summary into the agent's context: "You have used $X of your $Y budget. N tool calls have failed. Consider whether to continue or escalate." Let the agent make an informed decision rather than an unbounded one.
+- **Dead-end detection via output diffing.** Track the last K tool outputs. If the agent produces identical or near-identical outputs across K+1 consecutive steps with no new data, flag as dead-end regardless of error status. Dead-end ≠ error, but it is equally fatal to budget.
+- **Escalation handoff with full audit trail.** When all recovery layers are exhausted, surface a structured summary — tool call log, failure counts, cost consumed, partial results — to a human or supervisor agent. The receiving party should be able to understand what happened without replaying the loop.
+
+## Evidence
+
+- **Engineering post — $47k lesson:** A team running 4 LangChain agents via A2A/MCP spent $47k in 4 weeks because the infrastructure layer had no circuit breakers, cost monitoring, or iteration caps. Weekly costs escalated from ~$1,500 to $20k before detection. Identified as essential: token estimation, agent state persistence, cost monitoring, rate limiting, circuit breakers, retry logic, context caching, and deadlock detection. — [HN thread / Towards AI, Oct 2025](https://news.ycombinator.com/item?id=45802430)
+- **Engineering post — Asynq.ai / Modelia.ai:** A candidate evaluation agent hallucinated tool parameters, got stuck in loops, and contradicted its own reasoning. An image generation pipeline approved obviously flawed images, optimizing for workflow completion over quality. Root cause: no output validation layer, no dead-end detection. — [harshrastogi.tech, Mar 2026](https://www.harshrastogi.tech/blog/agentic-ai-error-recovery-observability-patterns)
+- **GitHub — AgentCircuit:** A circuit breaker library specifically for AI agent functions, wrapping tool calls with open/half-open/closed state management to prevent retry storms. — [github.com/simranmultani197/AgentCircuit](https://github.com/simranmultani197/AgentCircuit)
+- **GitHub — agent-failure-recovery:** Runtime controls for agentic AI: detect unsafe output, attribute failure back to the tool call that produced it, quarantine bad state, roll back to a known-good snapshot, validate restored state is safe. — [github.com/NassimRahimi/agent-failure-recovery](https://github.com/NassimRahimi/agent-failure-recovery)
+- **HN thread — repoMirror coding agent loop:** A coding agent in an autonomous while loop spent ~$800 and made ~1,100 commits over a multi-hour run. It self-terminated via `pkill` after recognizing its own limitations. Key insight: iteration cap was not enforced by infrastructure — the agent had to implement its own termination. — [HN #45005434, 425 points](https://news.ycombinator.com/item?id=45005434)
+- **Survey — Gartner:** Over 40% of agentic AI projects will be canceled by end of 2027, not because models fail but because the pipelines around them do. The engineering question shifted from "can the agent do this?" to "what happens when step 47 of 50 fails at 2 a.m.?" — [Gartner, via cloudzy.com, Jun 2026](https://cloudzy.com/blog/why-ai-agent-loops-fail-in-production)
+
+## Gotchas
+
+- **Soft limits in prompts don't hold.** Telling the agent "limit yourself to 10 tool calls" in the system prompt does not survive cost pressure, urgency, or a model that interprets "be thorough" as "retry more." Hard limits belong in the execution layer, not the prompt.
+- **Context compaction kills failure memory.** When the context window forces summarization, the history of what already failed is compressed away. The agent loses institutional memory of the failure, and loops restart as if fresh. Checkpoints must be external to the context window.
+- **Retry storms compound exponentially.** Without circuit breakers, N agents each retrying M times creates N×M calls to a downstream service. If that service is the broken tool, retries amplify the damage and may trigger rate limits that cascade to other agents.
+- **Completion ≠ correctness.** Agents optimize for task completion signals (tool returned "success" = continue). A broken tool that returns malformed but technically successful output gets retried as if it worked. Validation must check output quality, not just HTTP status.
