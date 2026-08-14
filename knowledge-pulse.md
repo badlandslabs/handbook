@@ -6895,6 +6895,7 @@ mcp-breaking-change → I-3299
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 |||| I-3300 | The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess | compensation-graph, saga, compensation-dag, revocability-tier, compensating-transaction, reversible-action, agentic-rollback, compensation-failure, action-state-machine, dynamic-execution, ReAct-saga, arxiv-2605.03409, perera-2026, tianpan-2026, RAC, kong-2026 | 9 | 9 | 9 | 9 | 7 | **8.80** | WRITTEN — S-2610 | 2026-08-14 | 2026-08-14 |
 |||| I-3301 | The Planning Horizon Stack — When Eager Step-by-Step Planning Costs You 2× the Tokens for No Accuracy Gain | planning-horizon, full-horizon, single-step-horizon, FH-SH, lazy-replan, eager-monitoring, token-efficiency, plan-quality, execution-graph, branching-factor, arxiv-2605.08477, megagon-labs, cais-2026, CAIS, data-centric-tool-calling, adaptive-horizon, horizon-router, depth-breadth | 8 | 9 | 9 | 9 | 7 | **8.65** | WRITTEN — S-2612 | 2026-08-14 | 2026-08-14 |
+||||| I-3302 | The Three-Layer Agent Reliability Stack — When Your Model Is Smart but Your System Still Fails | three-layer-reliability, eval-vs-guardrail-vs-harness, harness-layer, concurrency-control, fan-out-governance, multi-path-conflict, execution-path-governance, eval-layer, guardrail-layer, harness-layer, arize-2026, harnessfix-2606.06324, trace-guided, orchestration-correctness, structural-correctness, multi-agent-orchestration, parallel-path-conflict, fan-out-failure, voice-agent-demo | 9 | 9 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2615 | 2026-08-14 | 2026-08-14 |
 
 ## Pattern Log
 
@@ -6919,6 +6920,12 @@ compensation-order → I-3300
 forward-break-compensate → I-3300
 break-forward → I-3300
 irreversible-action → I-3300
+three-layer-reliability → I-3302
+eval-vs-guardrail-vs-harness → I-3302
+harness-layer → I-3302
+orchestration-correctness → I-3302
+structural-correctness → I-3302
+voice-agent-demo → I-3302
 
 ## Recent Decisions
 
@@ -6950,3 +6957,7 @@ model-agnostic-improvement → I-3301
 
 - *2026-08-14* — **Harness as First-Class Optimization Target: The Model-is-Correct Assumption**: Three independent sources confirm that model-level changes are the wrong optimization target for agent quality. The harness (execution flow, tool definitions, self-verification, state management, observability hooks) is where gains live, is iterative rather than discrete, and feeds a flywheel: production traces → eval seeds → harness improvements → better traces. Self-verification as a harness primitive (the agent judges its own plan before executing) is the highest-leverage single modification for coding agents. The compound harness insight: different components have different leverage multipliers — tool definitions and execution flow > system prompts. Pattern connects to: trace-as-training-data (I-3301), compound systems (arxiv-2604.25850), Better-Harness recipe (LangChain), harness anatomy (S-2561).
 
+
+- *2026-08-14* — **Three-Layer Reliability Taxonomy: Eval, Guardrail, and Harness Are Not Interchangeable.** Arize AI blog (Laurie Voss, Aug 13, 2026) establishes the three-layer framework: Eval measures outcomes ("did it perform well?"), Guardrail enforces policy ("was it allowed to do that?"), Harness governs structural execution correctness ("is the orchestration sound?"). Voice agent case study: three parallel response paths fired simultaneously — model was fine, guardrail was fine, harness failed. arXiv:2606.06324 "HarnessFix" (Chen et al., Chinese Academy of Sciences): trace-guided harness diagnosis improves held-out test performance by 15.2-50.0% across four benchmarks — purely from harness-layer fixes, model held constant. tinyhumansai/openhuman Issue #3471: E2E harness test cases covering subagent fan-out, race conditions, multi-path concurrency, and context window compaction mid-turn. Novel — S-2614 covers harness engineering broadly; S-1319 covers tool-call interception; neither establishes the three-layer taxonomy or the structural execution correctness gap. Cross-links: S-2614, S-2610, S-2200, S-1319.
+
+- *2026-08-14* — **I-3302 → S-2615 — The Three-Layer Agent Reliability Stack — Composite 9.05**: Tracker re-saturated (I-33xx fully processed). Fresh research: (1) Arize AI "AI Agent Guardrails vs Evals" (Aug 13, 2026) — the three-layer taxonomy with the voice agent multi-path concurrency failure as the canonical case; (2) arXiv:2606.06324 "HarnessFix" (Chen et al., CAS) — trace-guided harness diagnosis, 15.2-50.0% improvement from harness-layer fixes alone; (3) tinyhumansai/openhuman #3471 — E2E harness test cases including fan-out race conditions and subagent delegation. Deduplication: S-2614 (harness engineering loop) covers harness broadly but doesn't establish the three-layer eval/guardrail/harness taxonomy; S-1319 covers tool-call interception (guardrail-equivalent); S-1770 covers concurrency control (a harness sub-concern); none cover the taxonomy itself or the structural execution correctness problem that eval and guardrail can't address. Rejected: (a) prompt caching — covered by I-046/S-462; (b) agent serializability — covered by I-3058/S-1770; (c) context management — covered broadly by S-2607 and S-2200; (d) harness diagnostics — partially covered by S-1865; (e) output validation — covered by I-3296/S-2603.

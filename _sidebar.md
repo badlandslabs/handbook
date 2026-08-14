@@ -1166,3 +1166,4 @@
   - [S-2608 · The MCP Stateless Migration Stack — When Your MCP Goes From Stateful to Stateless and Half Your Servers Don't Know It](stacks/s2608-the-mcp-stateless-migration-stack-when-your-mcp-goes-from-stateful-to-stateless-and-half-your-servers-dont-know-it.md)
   - [S-2610 · The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess](stacks/s2610-the-agent-compensation-graph-stack-when-your-agent-breaks-forward-and-leaves-a-mess.md)
   - [S-2614 · The Harness Engineering Loop Stack — When the Model Is Not Your Problem and You Change Everything Anyway](stacks/s2614-the-harness-engineering-loop-stack-when-the-model-is-not-your-problem-and-you-change-everything-anyway.md)
+  - [S-2615 · The Three-Layer Agent Reliability Stack — When Your Model Is Smart but Your System Still Fails](stacks/s2615-the-three-layer-agent-reliability-stack-when-your-model-is-smart-but-your-system-still-fails.md)
