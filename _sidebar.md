@@ -1162,3 +1162,4 @@
   - [S-2595 · The Token Budget Enforcement Stack — When Your Alert Arrives After the Invoice](stacks/s2595-the-token-budget-enforcement-stack-when-your-alert-arrives-after-the-invoice.md)
   - [S-2600 · The Agentic RAG Failure Taxonomy Stack — When Your Agent Retrieves Forever, Calls Every Tool, and Answers Nothing](stacks/s2600-the-agentic-rag-failure-taxonomy-stack-when-your-agent-retrieves-forever-calls-every-tool-and-answers-nothing.md)
   - [S-2603 · The Agentic Output Validation Stack — When the Model Succeeds But Your Business Logic Burns](stacks/s2603-the-agentic-output-validation-stack-when-the-model-succeeds-but-your-business-logic-burns.md)
+  - [S-2606 · The A2A Security Gap Stack — When Your Agent Protocol Is Enterprise-Ready But Not Enterprise-Secure](stacks/s2606-the-a2a-security-gap-stack-when-your-agent-protocol-is-enterprise-ready-but-not-enterprise-secure.md)
