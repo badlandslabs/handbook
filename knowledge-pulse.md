@@ -7144,8 +7144,20 @@ tool-loop-break → I-3311
 agent-continuity → I-3311
 switch-costing → I-3311
 routing-failure → I-3311
+mcp-server-supply-chain → I-3312
+stdio-design-flaw → I-3312
+mcp-auth-bypass → I-3312
+delegation-verification → I-3313
+sub-agent-output → I-3313
+orchestrator-trust → I-3313
+handoff-gate → I-3313
+
+||||||| I-3312 | The MCP Server Supply Chain Stack — When Your Agent Registers a Server Nobody Vetted | mcp-server-supply-chain, stdio-design-flaw, mcp-auth-bypass, csa-research-note, ox-security, anthropic-by-design, lite-llm-auth, langchain-auth, langflow-auth, mcp-gateway, mcp-server-allowlist, mcp-registry-audit, cve-2025-65719, cve-2025-69443, cve-2026-40933, kubectl-mcp-rce, archon-os-mcp, markitdown-mcp, mcp-egress-filter, mcp-trust-tier, microsoft-mcp-security-2026 | 9 | 10 | 9 | 10 | 7 | **9.25** | WRITTEN — S-2657 | 2026-08-14 | 2026-08-14 |
+||||||| I-3313 | The Delegation Without Verification Stack — When Your Agent Hands Off Work and Calls It Done | delegation-verification, sub-agent-output, orchestrator-trust, handoff-gate, call-confirmation, output-sanity-check, semantic-grounding, sub-agent-failure, silent-delegation-failure, orchestrator-trust-boundary, multi-agent-verification, delegation-contract, output-quality, invocation-record, llm-as-judge, centific-2026, arxiv-2605.01604, flowlines-2026, genalphai-2026 | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-2661 | 2026-08-14 | 2026-08-14 |
 
 ## Recent Decisions
+
+- *2026-08-14* — **I-3313 → S-2661 — The Delegation Without Verification Stack — Composite 9.00**: Candidate angles evaluated: (1) AI agent sandboxing — partially covered by S-1069, S-1072; (2) continuous evaluation regression detection — covered by S-818 (I-016), S-787 (I-085); (3) fine-tuning vs prompting — covered in forward-deployed entries; (4) AgentGuard/guardrails — covered by S-375 (I-010). Selected: delegation verification gap. arXiv:2605.01604 (Pandey, May 2026) explicitly calls out "tool failure cascades" from unchecked sub-agent outputs as a primary failure mode in billion-event production systems. Centific (Aug 2026) confirms multi-agent coordination failures in production. Core insight: orchestrators treat sub-agent return values as verified facts; the return is only proof of execution, not correctness. Three-check pattern: (1) call confirmation, (2) output sanity check, (3) semantic grounding. Pattern density: connects to S-1003 (failure recovery), S-2658 (eval gap), S-2659 (silent failure), S-266 (trust delegation).
 
 - *2026-08-14* — **I-3311 → S-2652 — The Session-Aware Agentic Routing Stack — Composite 9.40**: Primary angle: S-06 covers static model routing but misses the agentic-specific failure mode — model switching inside multi-turn sessions breaks tool loops, invalidates prefix cache, and introduces capability discontinuities. Research: (1) vLLM SAAR (June 2, 2026) — 21,600 deterministic turns, 79.29% switch reduction, 0 continuity violations with continuity gates; (2) Agent-as-a-Router (arXiv:2606.22902, June 22 2026) — agentic routing outperforms static classification routing for coding tasks; (3) Topaz framework (arXiv:2604.03527, Georgia Tech, April 2026) — explainable routing taxonomy for agentic workflows. Key insight: single-turn routing evals (MMLU, HumanEval) miss the compound failure that appears only across 10+ turns. Distinct from S-06 (static routing — per-request cost optimization), S-2651 (session state loss — consequence of bad routing, not the routing failure itself), S-2650 (cost attribution — downstream effect of routing decisions). Chosen over: context-window overflow patterns (covered by S-1000, S-1035), hallucination detection (covered by S-2568), MCP tool poisoning (covered by S-1944).
 
