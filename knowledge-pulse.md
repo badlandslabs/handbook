@@ -6902,6 +6902,7 @@ mcp-breaking-change → I-3299
 
 || ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+|||| I-3307 | The Description-Code Divergence Stack — When Your MCP Tool Description Is Not Your Tool Interface | description-code-inconsistency, DCI, MCP, tool-description, implementation-gap, undeclared-side-effect, static-analysis, DCIChecker, tool-trust, side-effect-documentation, functionality-inconsistency, state-mutation, data-exfiltration, mcp-security, benign-misleading, Fudan-2026, arxiv-2606.04769, LMVD-5b809f07 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2630 | 2026-08-14 | 2026-08-14 |
 |||| I-3300 | The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess | compensation-graph, saga, compensation-dag, revocability-tier, compensating-transaction, reversible-action, agentic-rollback, compensation-failure, action-state-machine, dynamic-execution, ReAct-saga, arxiv-2605.03409, perera-2026, tianpan-2026, RAC, kong-2026 | 9 | 9 | 9 | 9 | 7 | **8.80** | WRITTEN — S-2610 | 2026-08-14 | 2026-08-14 |
 |||| I-3301 | The Planning Horizon Stack — When Eager Step-by-Step Planning Costs You 2× the Tokens for No Accuracy Gain | planning-horizon, full-horizon, single-step-horizon, FH-SH, lazy-replan, eager-monitoring, token-efficiency, plan-quality, execution-graph, branching-factor, arxiv-2605.08477, megagon-labs, cais-2026, CAIS, data-centric-tool-calling, adaptive-horizon, horizon-router, depth-breadth | 8 | 9 | 9 | 9 | 7 | **8.65** | WRITTEN — S-2612 | 2026-08-14 | 2026-08-14 |
 ||||| I-3302 | The Three-Layer Agent Reliability Stack — When Your Model Is Smart but Your System Still Fails | three-layer-reliability, eval-vs-guardrail-vs-harness, harness-layer, concurrency-control, fan-out-governance, multi-path-conflict, execution-path-governance, eval-layer, guardrail-layer, harness-layer, arize-2026, harnessfix-2606.06324, trace-guided, orchestration-correctness, structural-correctness, multi-agent-orchestration, parallel-path-conflict, fan-out-failure, voice-agent-demo | 9 | 9 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2615 | 2026-08-14 | 2026-08-14 |
@@ -6916,6 +6917,20 @@ mcp-breaking-change → I-3299
 
 ## Deduplication Index
 
+description-code-inconsistency → I-3307
+DCI → I-3307
+description-code-divergence → I-3307
+tool-description-code-gap → I-3307
+undeclared-side-effect → I-3307
+mcp-description-mismatch → I-3307
+side-effect-documentation → I-3307
+state-mutation-undisclosed → I-3307
+tool-implementation-gap → I-3307
+dcichecker → I-3307
+Fudan-MCP → I-3307
+LMVD-5b809f07 → I-3307
+functionality-inconsistency → I-3307
+data-exfiltration-benign → I-3307
 compensation-graph → I-3300
 saga-compensation → I-3300
 compensation-dag → I-3300
@@ -6941,6 +6956,9 @@ structural-correctness → I-3302
 voice-agent-demo → I-3302
 
 ## Recent Decisions
+
+- *2026-08-14* — **I-3307 → S-2630 — The Description-Code Divergence Stack — Composite 9.50**: Research: arXiv:2606.04769 (Fudan University, Shi et al., Jun 2026) — DCIChecker measurement study of 2,214 MCP servers and 19,200 description-code pairs: 9.93% of tools exhibit Description-Code Inconsistency, 35% of servers have at least one DCI tool. DCI is distinct from tool poisoning: benign production servers where developers omitted side effects from descriptions. Two-axis taxonomy: functionality inconsistency (underclaim, overclaim, parameter mismatch) + undeclared side effects (state mutation, data exfiltration, privilege escalation). Formal definition: DCI(T) := (Φ_claim ≠ Φ_actual) ∨ (Ψ_actual ⊈ Ψ_claim). VERIK journal summary (Jun 2026) confirms critical defense blind spot. Hermes Agent GitHub #16462 implements DCI scan in MCP analyzer. promptfoo LLM security DB (LMVD-5b809f07, Feb 2026) formalizes the vulnerability. Deduplication: S-078 covers adversarial tool description poisoning (OWASP MCP Top-10); S-035 covers schema drift/versioning; S-2603 covers output validation after tool invocation. None cover the non-adversarial description-code gap as a distinct structural vulnerability. Novel angle: benign DCI tools create an exploitable weakness that only requires a code change (no description change needed), making the upgrade from misleading to malicious trivially undetectable. Cross-links: S-078, S-035, S-2603, S-427.
+
 
 - *2026-08-14* — **I-3300 → S-2610 — The Agent Compensation Graph Stack — Composite 8.80**: Tracker re-saturated. Fresh research: (1) arXiv:2605.03409 Perera et al. "Robust Agent Compensation (RAC)" ACM CAIS '26 (May 2026) — formalizes that ReAct-style dynamic execution breaks classical saga because execution order is unknown at compensation-design time; introduces RAC taxonomy. (2) Tian Pan blog series (Apr 2026) — "The Agent That Deadlocked Waiting on Another Agent" and "The Compensating Transaction Your Agent Never Runs" — 37% of multi-agent failures are coordination failures, many leaving forward side effects with no compensation. (3) Kore.ai Agent Productivity Index 2026 (n=408, Jun 2026) — 82% consequential actions, 79.4% required manual reversal, detection lag median 50% in 1-4h. (4) Velocity engineering audits (2026) — multi-agent deployments without loop guards averaged $4,800/token in cascading failure incidents. Deduplication: S-1012 mentions saga as a single bullet but does not cover the full pattern (dynamic execution handling, revocability tiers, compensation DAG, action lifecycle states, failure propagation). F-51 covers individual action rollback at the tool level. No existing entry covers compensation graph for dynamic agentic workflows — the gap is real. Chosen over: LLM Judge Drift (covered by S-897 OAEI loop), Agentic Deadlock (covered by S-1008, S-1034, S-1144), AI SRE Runbook (covered by F-180 AI Incident Commander, S-1005).
 
