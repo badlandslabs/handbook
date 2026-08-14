@@ -6868,3 +6868,27 @@ tool-selection-crisis → I-3297
 micheal-lanham-2026 → I-3297
 
 - *2026-08-13* — **I-3297 → S-2605 — The Tool Description Engineering Stack — Composite 8.60**: Primary angle: tool descriptions are the primary instruction layer for tool-selection decisions, not system prompts. Adaline Labs (May 2026) — "tool description is your most important engineering surface"; AgentEval arXiv:2604.23581 — wrong tool selection 18% of failures, parameter errors 22% with 62% cascade to wrong answer; τ-bench ~25% task success rate. Six-move pattern: (1) descriptions as classifiers, (2) pairwise discrimination, (3) concrete triggers, (4) parameter-level selection metadata, (5) description regression suite, (6) description drift monitoring. Distinct from S-767 (tool-call hallucination plateau — symptom, not cause), S-03 (tool-use mechanics), S-1006 (toolbelt design — which tools, not how to describe them). Chosen over: behavioral drift monitoring (well-covered by S-1022), multi-system fragmentation (covered by S-1035), prompt injection defenses (covered by S-990, S-1145).
+
+|| I-3299 | The MCP Stateless Migration Stack — When Your MCP Goes From Stateful to Stateless and Half Your Servers Don't Know It | mcp-stateless, mcp-v2, mcp-migration, session-state, sticky-session, stateless-protocol, mcp-2026-07-28, protocol-migration, session-drop, init-handshake, mcp-sdk, load-balancer, state-token, task-lifecycle, mcp-breaking-change, cloudflare-mcp, azure-app-service, state-embedding | 9 | 10 | 9 | 10 | 8 | **9.15** | WRITTEN — S-2608 | 2026-08-14 | 2026-08-14 |
+## Pattern Log
+
+- *2026-08-14* — **Stateless Rewrite Relocates Failure Modes, Not Eliminates Them.** The MCP v2 spec shift from stateful session to stateless request/response does not solve the async task lifecycle problem — it moves the problem from the protocol layer (where some tooling existed) to the application layer (where teams must manage it explicitly). Teams that migrated sticky sessions to shared Redis session stores will now need to migrate again to per-request state embedding. This is a "solve one problem, surface another" pattern. The async task lifecycle gap connects to S-2606 (Agentic Failure Handling — hybrid failure modes) and S-2607 (Agentic Memory — state across sessions). The broader pattern of "protocol rewrites that change who owns state" recurs: HTTP/1.1 keep-alive → HTTP/2 multiplexing, WebSocket → WebTransport, REST → GraphQL subscriptions all followed this same shape.
+
+## Deduplication Index
+
+mcp-stateless → I-3299
+mcp-v2 → I-3299
+mcp-migration → I-3299
+session-state → I-3299
+sticky-session → I-3299
+stateless-protocol → I-3299
+mcp-2026-07-28 → I-3299
+protocol-migration → I-3299
+session-drop → I-3299
+init-handshake → I-3299
+state-token → I-3299
+mcp-breaking-change → I-3299
+
+## Recent Decisions
+
+- *2026-08-14* — **I-3299 → S-2608 — The MCP Stateless Migration Stack — Composite 9.15**: Primary angle: MCP 2026-07-28 spec drops `Mcp-Session-Id` header and `initialize`/`initialized` handshake, making protocol fully stateless. Ships July 28, 2026 (13 days ago from today). Existing MCP servers that manage session state in-memory or via sticky routing become partially broken. Three production pain points identified by AgentMarketCap (April 2026) — stateful sessions vs. load balancers, discovery without connection, async task lifecycle gaps — are now formally solved at the protocol level, but the migration requires explicit state embedding at the application level. Scored 9/10 on Production Urgency (97M monthly SDK downloads, 10K+ public servers, Fortune 500 deployments), 10/10 on Coverage Gap (handbook covers MCP supply chain S-1062, MCP STDIO S-2566, MCP tool contract S-1056, A2A protocol S-2606 but nothing on the v2 stateless migration), 9/10 on Specificity (topology audit pattern, state embedding migration code, load balancer config changes, task store design), 10/10 on Timeliness (spec RC published May 21 2026, final ships July 28 2026 — ultra-fresh), 8/10 on Pattern Density (connects to S-2606 A2A security gap, S-2607 memory, S-2606 failure handling, S-1062 supply chain). Rejected candidates: Agentic Silent Memory Drift (covered by OWASP ASI06 in S-1062), MCP Tool Squatting (covered by S-1062 capability namespace squatting), A2A Capability Namespace Squatting (covered by S-2606 A2A security gap).
