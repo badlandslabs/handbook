@@ -7027,3 +7027,23 @@ agent-speed-vs-human-speed → I-3306
 ## Pattern Log
 
 - *2026-08-14* — **Silent-Diff Anti-Pattern: The Dependency That Changes Without Permission**: Providers (OpenAI, Anthropic, Google) update model weights and inference behavior without notice, creating behavioral regressions that bypass every diff-triggered gate in your CI/CD. The pattern is that your quality gates are designed for changes you make, not for changes the ecosystem makes around you. This mirrors the broader "dependency without version pinning" problem from traditional software, but with a critical difference: you can't pin a model version without losing access to bug fixes and capability improvements. The correct response is continuous behavioral evaluation on production traffic — not a diff trigger, but a time-series signal. Related anti-patterns: supply-chain dependency without lockfiles, third-party API without contract testing.
+
+|| I-3307 | The LangGraph Checkpoint RCE Stack — When Your Durable State Layer Becomes Your Code Execution Vector | langgraph-checkpoint, CVE-2026-28277, CVE-2026-27794, CVE-2026-27022, msgpack-deserialization, pickle-fallback, RCE, BaseCache, checkpoint-security, langgraph-Redis, langgraph-SQLite, serialization-attack, checkpoint-injection, pickle-injection, cache-layer-RCE, shared-infrastructure, langgraph-cve-chain, pickle_fallback, JsonPlusSerializer, checkpoint-isolation | 9 | 10 | 9 | 10 | 8 | **8.90** | WRITTEN — S-2627 | 2026-08-14 | 2026-08-14 |
+
+langgraph-checkpoint → I-3307
+CVE-2026-28277 → I-3307
+CVE-2026-27794 → I-3307
+CVE-2026-27022 → I-3307
+msgpack-deserialization → I-3307
+pickle-fallback → I-3307
+checkpoint-RCE → I-3307
+BaseCache → I-3307
+checkpoint-security → I-3307
+pickle-injection → I-3307
+checkpoint-injection → I-3307
+cache-layer-RCE → I-3307
+shared-infrastructure → I-3307
+
+## Recent Decisions
+
+- *2026-08-14* — **I-3307 → S-2627 — The LangGraph Checkpoint RCE Stack — Composite 8.90**: Tracker saturated (all 492 prior ideas resolved). Fresh research: Three distinct CVEs in LangGraph checkpointing — (1) CVE-2026-28277: msgpack deserialization reconstructs Python objects, chained from SQLite SQLi CVE-2025-67644 to RCE; (2) CVE-2026-27794: BaseCache defaults to JsonPlusSerializer with pickle_fallback=True, triggering pickle.loads() on failed msgpack; (3) CVE-2026-27022: Redis checkpointer RCE via cache poisoning. Root cause: the mechanism that makes agents durable (serialized checkpoint state) is also the attack surface. S-1395 mentions the SQLi CVE but does NOT cover the msgpack→pickle chain or the Redis CVE — this entry is architecturally distinct and fills that gap. Alternatives researched and rejected: slopsquatting (S-1206 covers same problem domain), agentic RAG (covered by existing entries), LLM-as-judge (covered), trace distillation (covered). Composite 8.90: Urgency 9 (actively exploited), Gap 10 (no standalone entry), Specificity 9 (concrete CVEs + working mitigations), Timeliness 10 (Aug 2026 disclosures), Density 8 (connects to S-1395 memory, S-2614 recovery).
