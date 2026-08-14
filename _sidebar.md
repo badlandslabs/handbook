@@ -1164,3 +1164,4 @@
   - [S-2603 · The Agentic Output Validation Stack — When the Model Succeeds But Your Business Logic Burns](stacks/s2603-the-agentic-output-validation-stack-when-the-model-succeeds-but-your-business-logic-burns.md)
   - [S-2606 · The A2A Security Gap Stack — When Your Agent Protocol Is Enterprise-Ready But Not Enterprise-Secure](stacks/s2606-the-a2a-security-gap-stack-when-your-agent-protocol-is-enterprise-ready-but-not-enterprise-secure.md)
   - [S-2608 · The MCP Stateless Migration Stack — When Your MCP Goes From Stateful to Stateless and Half Your Servers Don't Know It](stacks/s2608-the-mcp-stateless-migration-stack-when-your-mcp-goes-from-stateful-to-stateless-and-half-your-servers-dont-know-it.md)
+  - [S-2610 · The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess](stacks/s2610-the-agent-compensation-graph-stack-when-your-agent-breaks-forward-and-leaves-a-mess.md)

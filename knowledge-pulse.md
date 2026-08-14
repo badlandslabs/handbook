@@ -6889,6 +6889,38 @@ init-handshake → I-3299
 state-token → I-3299
 mcp-breaking-change → I-3299
 
+## Ideas Bank
+
+|| ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
+||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+|||| I-3300 | The Agent Compensation Graph Stack — When Your Agent Breaks Forward and Leaves a Mess | compensation-graph, saga, compensation-dag, revocability-tier, compensating-transaction, reversible-action, agentic-rollback, compensation-failure, action-state-machine, dynamic-execution, ReAct-saga, arxiv-2605.03409, perera-2026, tianpan-2026, RAC, kong-2026 | 9 | 9 | 9 | 9 | 7 | **8.80** | WRITTEN — S-2610 | 2026-08-14 | 2026-08-14 |
+
+## Pattern Log
+
+- *2026-08-14* — **Dynamic Execution Breaks Static Sagas: The Compensation Graph Pattern.** arXiv:2605.03409 (Perera et al., ACM CAIS '26, May 2026) introduces Robust Agent Compensation (RAC) — formalizing that ReAct-style dynamic execution order breaks classical saga, which assumes known execution order. Kore.ai Agent Productivity Index (n=408) found 82% of agent actions are consequential, 79.4% required manual reversal. Tian Pan (Apr 2026): compensation must be a DAG, not a stack, because execution order is determined at runtime. Key patterns: revocability tiers (fully/partially/irreversible), action lifecycle states (PENDING → COMMITTED → COMPENSATING → COMPENSATED/COMPENSATION_FAILED), topological rollback order for DAGs. Novel — S-1012 mentions saga as a bullet, but the full compensation graph with dynamic execution handling, revocability tiers, and failure-state propagation has no dedicated entry. Cross-links: S-1012, F-51, S-93.
+
+## Deduplication Index
+
+compensation-graph → I-3300
+saga-compensation → I-3300
+compensation-dag → I-3300
+compensating-transaction → I-3300
+revocability-tier → I-3300
+reversible-action → I-3300
+agentic-rollback → I-3300
+compensation-failure → I-3300
+action-state-machine → I-3300
+dynamic-saga → I-3300
+ReAct-saga → I-3300
+RAC → I-3300
+agent-compensation → I-3300
+compensation-order → I-3300
+forward-break-compensate → I-3300
+break-forward → I-3300
+irreversible-action → I-3300
+
 ## Recent Decisions
+
+- *2026-08-14* — **I-3300 → S-2610 — The Agent Compensation Graph Stack — Composite 8.80**: Tracker re-saturated. Fresh research: (1) arXiv:2605.03409 Perera et al. "Robust Agent Compensation (RAC)" ACM CAIS '26 (May 2026) — formalizes that ReAct-style dynamic execution breaks classical saga because execution order is unknown at compensation-design time; introduces RAC taxonomy. (2) Tian Pan blog series (Apr 2026) — "The Agent That Deadlocked Waiting on Another Agent" and "The Compensating Transaction Your Agent Never Runs" — 37% of multi-agent failures are coordination failures, many leaving forward side effects with no compensation. (3) Kore.ai Agent Productivity Index 2026 (n=408, Jun 2026) — 82% consequential actions, 79.4% required manual reversal, detection lag median 50% in 1-4h. (4) Velocity engineering audits (2026) — multi-agent deployments without loop guards averaged $4,800/token in cascading failure incidents. Deduplication: S-1012 mentions saga as a single bullet but does not cover the full pattern (dynamic execution handling, revocability tiers, compensation DAG, action lifecycle states, failure propagation). F-51 covers individual action rollback at the tool level. No existing entry covers compensation graph for dynamic agentic workflows — the gap is real. Chosen over: LLM Judge Drift (covered by S-897 OAEI loop), Agentic Deadlock (covered by S-1008, S-1034, S-1144), AI SRE Runbook (covered by F-180 AI Incident Commander, S-1005).
 
 - *2026-08-14* — **I-3299 → S-2608 — The MCP Stateless Migration Stack — Composite 9.15**: Primary angle: MCP 2026-07-28 spec drops `Mcp-Session-Id` header and `initialize`/`initialized` handshake, making protocol fully stateless. Ships July 28, 2026 (13 days ago from today). Existing MCP servers that manage session state in-memory or via sticky routing become partially broken. Three production pain points identified by AgentMarketCap (April 2026) — stateful sessions vs. load balancers, discovery without connection, async task lifecycle gaps — are now formally solved at the protocol level, but the migration requires explicit state embedding at the application level. Scored 9/10 on Production Urgency (97M monthly SDK downloads, 10K+ public servers, Fortune 500 deployments), 10/10 on Coverage Gap (handbook covers MCP supply chain S-1062, MCP STDIO S-2566, MCP tool contract S-1056, A2A protocol S-2606 but nothing on the v2 stateless migration), 9/10 on Specificity (topology audit pattern, state embedding migration code, load balancer config changes, task store design), 10/10 on Timeliness (spec RC published May 21 2026, final ships July 28 2026 — ultra-fresh), 8/10 on Pattern Density (connects to S-2606 A2A security gap, S-2607 memory, S-2606 failure handling, S-1062 supply chain). Rejected candidates: Agentic Silent Memory Drift (covered by OWASP ASI06 in S-1062), MCP Tool Squatting (covered by S-1062 capability namespace squatting), A2A Capability Namespace Squatting (covered by S-2606 A2A security gap).
