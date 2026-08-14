@@ -289,6 +289,8 @@
   - [S-267 · Tiered Model Routing](stacks/s267-tiered-model-routing-cost-slash.md)
   - [S-268 · Multi-Agent Coordination Patterns](stacks/s268-multi-agent-coordination-patterns.md)
   - [S-269 · MCP Tool Abstraction Layer](stacks/s269-mcp-tool-abstraction-layer.md)
+  - [S-2622 · The MCP Security Gateway Stack](stacks/s2622-the-mcp-security-gateway-stack-when-your-agent-trusts-every-tool-that-returns-ok.md)
+  - [S-2624 · The Review-Throughput Stack](stacks/s2624-the-review-throughput-stack-when-your-ai-coding-agent-ships-faster-than-humans-can-verify.md)
   - [S-270 · Choosing an Eval Framework](stacks/s270-choosing-an-eval-framework.md)
   - [S-272 · Agent Circuit Breakers and Spend Guards](stacks/s272-agent-circuit-breakers-and-spend-guards.md)
   - [S-276 · Adversarial Agent CI Testing — RAMPART & PyRIT](stacks/s276-adversarial-agent-ci-testing-rampart-pyrit.md)
