@@ -7,8 +7,10 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 |----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+| I-3320 | The LLM Gateway Failure Atlas — When Your Proxy Looks Healthy but Everything Is Broken | llm-gateway, failure-atlas, silent-failure, multi-provider-routing, liteLLM, CVE-2026-42208, arxiv-2607.17525, loud-vs-silent, stream-truncation, format-drift, context-truncation, provider-switch, session-continuity, network-transport, streaming-protocol, state-session, model-behavior, governance-cost, metriqual, proxy-layer-failures, opentelemetry-monitoring, SQL-injection | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2682 | 2026-08-15 | 2026-08-15 |
 ||| I-3285 | The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training | latent-capability, capability-emergence, alignment-gap, safety-training-limits, agentic-threat-model, capability-elicitation, autonomous-goal-pursuit, sandbox-escape, blast-radius-proportional, containment-tier, emergent-deception, system-red-team, safety-eval-gap, tool-use-alignment, motivation-construction, hidden-capability, inner-alignment | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2585 | 2026-08-13 | 2026-08-13 |
 |||| I-3296 | The Agentic Output Validation Stack — When the Model Succeeds But Your Business Logic Burns | output-validation, type-coercion, schema-mismatch, parse-error, semantic-check, business-rule-gate, validation-pipeline, downstream-failure, coerce-or-reject, parse-guard, semantic-fence, approval-gate, agentic-output, VelsOf-2026, niteagent-2026, Stanford-AI-Index-2026 | 9 | 9 | 8 | 9 | 7 | **8.50** | WRITTEN — S-2603 | 2026-08-13 | 2026-08-13 |
+| I-3300 | The Agent Context Lifecycle Stack — When Your Agent Remembers Wrong Things for the Wrong Reasons | context-lifecycle, memory-lifecycle, scope-bleeding, identity-fragmentation, cross-session-amnesia, retrieval-on-critical-path, architect, author, augment, adjust, archive, heartbeat-compaction, entity-resolution, episodic-memory, semantic-memory, per-agent-isolation, maximem-2026, arxiv-2607.21503, openclaw-heartbeat, memory-pruning, memory-compaction | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2680 | 2026-08-15 | 2026-08-15 |
 
 ||| I-3294 | The Long-Horizon Coherence Stack — When Your Agent Is Mildly Wrong for Very Long | long-horizon, coherence-drift, trajectory-quality, semantic-drift, confirmation-bias, goal-drift, multi-step-agent, evaluation-gap, self-reinforcing-error, counterfactual-probing, coherence-checkpoint, step-boundary-prediction, semantic-fidelity | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2598 | 2026-08-13 | 2026-08-13 |
 || I-3290 | The Transitive MCP Attack Surface Stack — When Your MCP Server Is Not the Target, but the Hop | transitive-mcp, downstream-topology, MCP-security, trust-graph, server-asset-manifest, credential-scoping, network-isolation-tier, egress-filtering, blast-radius, containment-tier, mcp-compromise, openclaw-2026, csa-mcp-crisis, pivot-attack, trust-transitivity, downstream-dependency | 9 | 9 | 9 | 9 | 9 | **9.15** | WRITTEN — S-2590 | 2026-08-13 | 2026-08-13 |
@@ -6847,6 +6849,32 @@ signed-agent-card-spoof → I-3298
 
 - *2026-08-13* — **I-3298 → S-2606 — The A2A Security Gap Stack — Composite 9.25**: Primary angle: AgentsID Research (April 2026) documents six structural vulnerabilities in A2A v1.0 — the spec uses MUST for interoperability and SHOULD for security. Key gaps: JWS self-attestation (agent cards can be spoofed), token lifetime overexposure, insufficient handoff authentication, capability namespace squatting, message replay in long sessions, and tool squatting via label-based routing. A2A crossed 150 enterprise deployments by April 2026 (Linux Foundation). Complementary to S-918 (A2A trust gap — broader trust model) and S-2141 (A2A task stall — operational failure, not security). Coverage gap: 10/10 — no existing entry covers the six structural spec-level security gaps with concrete mitigations. Timeliness: 10/10 — A2A GA April 2026, enterprises deploying now without security awareness. Pattern: "MUST vs SHOULD" protocol design tradeoff — interoperability standards systematically underinvest in security by design.
 
+llm-gateway → I-3320
+failure-atlas → I-3320
+silent-failure → I-3320
+multi-provider-routing → I-3320
+liteLLM → I-3320
+CVE-2026-42208 → I-3320
+arxiv-2607.17525 → I-3320
+loud-vs-silent → I-3320
+stream-truncation → I-3320
+format-drift → I-3320
+context-truncation → I-3320
+provider-switch → I-3320
+session-continuity → I-3320
+network-transport → I-3320
+streaming-protocol → I-3320
+state-session → I-3320
+model-behavior → I-3320
+governance-cost → I-3320
+proxy-layer-failures → I-3320
+opentelemetry-monitoring → I-3320
+SQL-injection → I-3320
+failure-mode-taxonomy → I-3320
+provider-format-drift → I-3320
+truncated-completion → I-3320
+asyncio-event-loop → I-3320
+
 ## Recent Decisions
 
 - *2026-08-13* — **I-3298 → S-2606 — The A2A Security Gap Stack — Composite 9.25**: Primary angle: AgentsID Research (April 2026) documents six structural vulnerabilities in A2A v1.0 — the spec uses MUST for interoperability and SHOULD for security. Key gaps: JWS self-attestation (agent cards can be spoofed), token lifetime overexposure, insufficient handoff authentication, capability namespace squatting, message replay in long sessions, and tool squatting via label-based routing. A2A crossed 150 enterprise deployments by April 2026 (Linux Foundation). Complementary to S-918 (A2A trust gap — broader trust model) and S-2141 (A2A task stall — operational failure, not security). Coverage gap: 10/10 — no existing entry covers the six structural spec-level security gaps with concrete mitigations. Timeliness: 10/10 — A2A GA April 2026, enterprises deploying now without security awareness.ll all document these as top production failures. Scored 9/10 on Production Urgency (agentic RAG is mainstream; failure modes are poorly understood), 7/10 on Coverage Gap (S-1029 covers stopping rules; S-100 covers agentic RAG pattern; neither provides the diagnostic taxonomy for distinguishing failure modes), 9/10 on Specificity (diagnostic function with three concrete signals, fixes by mode), 9/10 on Timeliness (agentic RAG adoption accelerating in 2026, failures trending on HN and engineering blogs), 8/10 on Pattern Density (connects to S-1029, S-100, S-2584, S-2589). Sources: n1n.ai (Mar 20, 2026), Swoft (Apr 26, 2026), Towards Data Science, SudoAll (Jun 24, 2026), Velsof (May 22, 2026).
@@ -7275,6 +7303,8 @@ autonomous-halt → I-3319
 
 ## Recent Decisions
 
+- *2026-08-15* — **I-3320 → S-2682 — The LLM Gateway Failure Atlas — Composite 9.40**: Tracker saturated (all I-33xx WRITTEN). Fresh research: arXiv:2607.17525v1 (Pandey & Singh, Metriqual, July 2026 — FailureAtlas taxonomy: 5-layer × loud/silent matrix for multi-provider LLM gateways). Key finding: the most operationally severe failures are SILENT — HTTP 200, green health checks, corrupted application state. L1: asyncio event loop blocks cause 50ms→50s latency without errors. L2: truncated completions accepted as valid. L3: provider switches break session continuity, re-trigger loops. L4: format drift across providers (Kimi double-fences JSON, Gemini adds trailing commas, DeepSeek omits optional keys). L5: context truncation handled at LLM layer returns HTTP 200. CVE overlay: CVE-2026-42208 (CVSS 9.3, LiteLLM v1.81.16–1.83.6) — pre-auth SQL injection in API key path, exploited within 36 hours, exposes all stored provider credentials. Upgrade to v1.83.10-stable. Architecturally distinct from: S-06 (Model Routing — focuses on dispatch logic, not failure taxonomy), S-1062 (MCP CVEs — focuses on MCP server security), S-2681 (Orchestration — focuses on agent coordination, not proxy layer). Pattern: "silent failures are the new normal in LLM infrastructure; standard monitoring is structurally blind."
+
 - *2026-08-15* — **I-3319 → S-2678 — The Agent Governor Stack — Composite 9.05**: Tracker saturated (all I-33xx WRITTEN). Fresh research: EU AI Act Article 14(4)(a) mandates a functional stop mechanism for high-risk AI agents as of August 2, 2026 — this is now a legal obligation, not a best practice. AGT-012 (AI Governance Institute) defines a 4-level maturity model for kill switches: Level 1 (none) → Level 4 (automated forensic logging + policy-driven rollback). Gheware DevOps guide (Jun 2026) confirms most enterprise agentic systems lack audit trails, kill switches, and human ownership assignments. Forrester (2026) found 71% of enterprises lack formal governance frameworks even as 64% plan to increase agent autonomy within 12 months. Pattern: "compliance deadline drove governance from aspirational to mandatory." Architecturally distinct from: S-1000 (Recovery — reactive failure response), S-1458 (Policy-Kernel — enforces what agent CAN do), S-2673 (Recovery — budget burn during loop). The Governor is PREVENTIVE and PROACTIVE: it stops the agent before harm, at the infrastructure layer, not the reasoning layer. EU AI Act compliance record format specified in the entry maps directly to Article 12 mandatory record-keeping. Alternatives rejected: Agentic FinOps (I-3310 covers spend attribution), Synthetic Data (engineering focus, not ops), EU AI Act generic governance (this entry is the agent-specific implementation pattern).
 
 - *2026-08-15* — **I-3316 → S-2669 — The Reliability Surface Stack — Composite 9.55**: Ideas Bank fully saturated — all I-33xx entries WRITTEN. Fresh research: (1) arXiv:2601.06112 ReliabilityBench (Gupta, Jan 2026) — unified R(k, ε, λ) reliability surface, 1,280 episodes, 4 domains, 2 models, 2 architectures. Key findings: agents 96.9% at ε=0 drop to 88.1% at ε=0.2 (8.8% perturbation penalty); rate limiting causes largest fault-tolerance degradation; ReAct outperforms Reflexion under combined stress; Gemini 2.0 Flash achieves comparable reliability to GPT-4o at 82× lower cost. (2) AgentChaos (IntelligentDDS/AgentChaos, GitHub) — LLM API-layer fault injection. (3) Agent Chaos (reaatech/agent-chaos, GitHub) — middleware-based fault injection with circuit-breaker validation. (4) Tian Pan (tianpan.co, Apr 2026) — LLM API calls fail 1–5% per-call; 10-20 tool-call workflow sees meaningful failure probability on every run. (5) Agent Belt (jfrog/agent-belt, GitHub) — pass^k variance across trials for reproducible agent evaluation. Novel angle: 3D reliability surface (consistency × robustness × fault tolerance) as the correct characterization of production readiness, replacing single-dimension pass@1. Deduplication: S-1000 covers eval suite limitations but not the 3D reliability surface; S-1015 covers variance across trials but not the perturbation or fault-tolerance dimensions; S-2655 covers chaos engineering but not the reliability surface framework; S-2667 covers eval loops but not the R(k, ε, λ) characterization. I-3316 is distinct — it provides the unifying mathematical framework for the other four.
@@ -7316,7 +7346,25 @@ turn-level-evidence → I-3317
 adversarial-campaign → I-3317
 juror-disagreement → I-3317
 adversarial-multi-juror → I-3317
+context-lifecycle → I-3300
+scope-bleeding → I-3300
+identity-fragmentation → I-3300
+cross-session-amnesia → I-3300
+retrieval-on-critical-path → I-3300
+memory-lifecycle → I-3300
+architect-author-augment-adjust-archive → I-3300
+heartbeat-compaction → I-3300
+entity-resolution → I-3300
+episodic-memory → I-3300
+semantic-memory → I-3300
+per-agent-isolation → I-3300
+maximem-2026 → I-3300
+openclaw-heartbeat → I-3300
+memory-compaction → I-3300
+memory-pruning → I-3300
 
 ## Recent Decisions
+
+- *2026-08-15* — **I-3300 → S-2680 — The Agent Context Lifecycle Stack — Composite 9.45**: Primary angle: treating agent memory as a lifecycle problem (not a storage problem) — five primitives (architect, author, augment, adjust, archive) from arXiv:2607.21503v1 (Maximem, Gaurav Dadhich, 23 Jul 2026). Four primary failure modes: scope bleeding, identity fragmentation, cross-session amnesia, retrieval-on-critical-path. Key finding: production agent failures stem less from inability to reason and more from inability to manage what's in their reasoning context. Distinct from S-827 (Context Sprawl — multi-agent consistency downstream symptom), S-02 (Context Budget — storage constraint, not lifecycle discipline), S-646 (Agent Drift — behavioral drift; S-2680 addresses the memory substrate drift detection operates on), S-2674 (ASI06 Memory Guard — security poisoning vs. lifecycle decay). The heartbeat compaction pattern (OpenClaw) and entity resolution merging provide concrete implementation. Scored 9/10 Production Urgency (every long-running agent has stale memory), 10/10 Coverage Gap (no existing entry covers this), 9/10 Specificity (concrete 5-primitive taxonomy + code example), 10/10 Timeliness (hot topic from Jul 2026 paper), 9/10 Pattern Density (connects to 4+ existing entries).
 
 - *2026-08-15* — **I-3317 → S-2670 — The Adversarial Eval Harness Stack — Composite 9.65**: Tracker saturated (all I-33xx WRITTEN). Fresh research: ProofAgent Harness (arxiv:2605.24134, Bousetouane, UChicago/ProofAgent.ai, May 2026, Apache 2.0) — open-source adversarial eval infrastructure for AI agents. Novel angle: multi-juror scoring (AMJS) with turn-level audit and evidence-linked reporting, plus governance profiles as CI shipping gates. Distinct from S-2667 (eval loop — layered eval architecture), S-2665 (causal trace — tracing vs causation), S-276 (PyRIT/RAMPART — prompt injection red-teaming), S-219 (agent eval harness — general). ProofAgent adds: adversarial campaign library, persona-calibrated jurors, disagreement detection, and E/Q/C/G four-part eval. Pattern: "benchmark isolation ≠ adversarial trajectory." Cross-links: S-2667, S-2665, S-2669.
