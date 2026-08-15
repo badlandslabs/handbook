@@ -7130,6 +7130,8 @@ shared-infrastructure → I-3307
 
 - *2026-08-14* — **Wall-Clock Deadline Drift** — Agents plan in token space but execute in real time. The gap between these two time models causes correct reasoning to produce missed SLAs. The fix is not better prompting — it's treating wall-clock time as a live injected value, not a system-prompt estimate. Pattern: "frozen-at-planning-time fallacy." Related to: token budget governance (S-1176), cost chain explosion (S-1263), scaffold loops (S-1027) — same category of individually-rational micro-decisions producing aggregate failure.
 
+- *2026-08-15* — **Reliability Is Three-Dimensional, Not One** — Single-run pass@1 systematically overestimates production readiness by 20-40% because production stress has three independent axes: consistency (same input, repeated runs), robustness (semantically equivalent inputs), and fault tolerance (infrastructure failures). A 97% pass@1 agent can score R(8, 0.2, 0.3) = 0.34 — one-third reliable under real conditions. The most surprising findings: (1) simpler ReAct outperforms complex Reflexion under combined stress; (2) Gemini 2.0 Flash matches GPT-4o reliability at 82× lower cost; (3) rate limiting is the single most damaging fault type. Pattern: "benchmark capability ≠ production reliability." Related to: eval gap (S-1000), stability gradient (S-1015), chaos engineering (S-2655), eval loops (S-2667) — I-3316/S-2669 is the unifying framework that explains why all four of those failure modes coexist.
+
 ## Deduplication Index
 
 wall-clock-deadline → I-3308
@@ -7191,16 +7193,63 @@ openinference-instrumentation → I-3314
 arize-phoenix → I-3314
 langfuse → I-3314
 
+obsolescence-blind → I-3315
+memory-staleness → I-3315
+temporal-retrieval → I-3315
+vector-qualification → I-3315
+retrieval-action-gap → I-3315
+similarity-validity-gap → I-3315
+memory-decay → I-3315
+age-weighted → I-3315
+time-decay → I-3315
+factual-drift → I-3315
+schema-evolution → I-3315
+effective-until → I-3315
+staleness-threshold → I-3315
+memory-action-qualification → I-3315
+forgetting-design → I-3315
+age-mem → I-3315
+memfree → I-3315
+age-weighted-recall → I-3315
+verification-recency → I-3315
+temporal-decay-score → I-3315
+context-temporal → I-3315
+reliability-surface → I-3316
+R-k-epsilon-lambda → I-3316
+pass@k → I-3316
+multi-trial-consistency → I-3316
+action-metamorphic-relations → I-3316
+fault-injection → I-3316
+chaos-engineering → I-3316
+perturbation-robustness → I-3316
+fault-tolerance → I-3316
+rate-limit-sensitivity → I-3316
+ReAct-vs-Reflexion → I-3316
+Gemini-vs-GPT4o-cost → I-3316
+reliability-bench → I-3316
+agent-belt → I-3316
+agentchaos → I-3316
+reaatech-agent-chaos → I-3316
+tianpan-2026 → I-3316
+jfrog-agent-belt → I-3316
+consistency-under-stress → I-3316
+production-stress → I-3316
+reliability-compounding → I-3316
+
 ## Recent Decisions
 
-- *2026-08-15* — **I-3314 → S-2665 — The Causal Trace Stack — Composite 9.35**: Ideas Bank fully saturated — all existing entries WRITTEN. Research required fresh discovery. Candidate angles: (1) agent sandboxing — partially covered by S-1069, S-1072; (2) synthetic data generation — covered in multiple entries; (3) cost attribution — covered by S-1263, S-1907; (4) guardrails — covered by S-375, S-2615. Selected: causal observability. Core gap: standard OTel traces capture WHAT happened but miss WHY — e.g., the reranker score of 0.34 that dropped the compliance clause to rank 3 is invisible in a standard span. Three-layer stack: GenAI semantic conventions → OpenInference enrichment (retrieval/reranker signals) → EvalTag (LLM-as-judge verdicts as span attributes). Research: Uptrace OTel GenAI conventions, FutureAGI blog (three-layer OTel), Datadog Agent Observability (Jul 2026), OpenInference GitHub, AgentMarketCap (LangFuse vs Phoenix). GenAI conventions are the 2026 industry standard — OpenAI, Anthropic, Google, Azure, Bedrock all support gen_ai.* attributes. Tail sampling via OTel Collector is the production cost-control standard. Pattern density: S-1001, S-2614, S-2615, S-2623, S-825, S-2618.
+- *2026-08-15* — **I-3316 → S-2669 — The Reliability Surface Stack — Composite 9.55**: Ideas Bank fully saturated — all I-33xx entries WRITTEN. Fresh research: (1) arXiv:2601.06112 ReliabilityBench (Gupta, Jan 2026) — unified R(k, ε, λ) reliability surface, 1,280 episodes, 4 domains, 2 models, 2 architectures. Key findings: agents 96.9% at ε=0 drop to 88.1% at ε=0.2 (8.8% perturbation penalty); rate limiting causes largest fault-tolerance degradation; ReAct outperforms Reflexion under combined stress; Gemini 2.0 Flash achieves comparable reliability to GPT-4o at 82× lower cost. (2) AgentChaos (IntelligentDDS/AgentChaos, GitHub) — LLM API-layer fault injection. (3) Agent Chaos (reaatech/agent-chaos, GitHub) — middleware-based fault injection with circuit-breaker validation. (4) Tian Pan (tianpan.co, Apr 2026) — LLM API calls fail 1–5% per-call; 10-20 tool-call workflow sees meaningful failure probability on every run. (5) Agent Belt (jfrog/agent-belt, GitHub) — pass^k variance across trials for reproducible agent evaluation. Novel angle: 3D reliability surface (consistency × robustness × fault tolerance) as the correct characterization of production readiness, replacing single-dimension pass@1. Deduplication: S-1000 covers eval suite limitations but not the 3D reliability surface; S-1015 covers variance across trials but not the perturbation or fault-tolerance dimensions; S-2655 covers chaos engineering but not the reliability surface framework; S-2667 covers eval loops but not the R(k, ε, λ) characterization. I-3316 is distinct — it provides the unifying mathematical framework for the other four.
+- *2026-08-15* — **I-3314 → S-2665 — The Causal Trace Stack — Composite 9.35**: Ideas Bank fully saturated — all existing entries WRITTEN. Research required fresh discovery. Candidate angles: (1) agent sandboxing — partially covered by S-1069, S-1072; (2) synthetic data generation — covered in multiple entries; (3) cost attribution — covered by S-1263, S-1907; (4) guardrails — covered by S-375, S-2615. Selected: causal observability. Core gap: standard OTel traces capture WHAT happened but miss WHY — e.g., the reranker score of 0.34 that dropped the compliance clause to rank 3 is invisible in a standard span. Three-layer stack: GenAI semantic conventions → OpenInference enrichment (retrieval/reranker signals) → EvalTag (LLM-as-judge verdicts as span attributes). Research: Uptrace OTel GenAI conventions, FutureAGI blog (three-layer OTel), Datadog Agent Observability (Jul 2026), OpenInference GitHub, AgentMarketCap (LangFuse vs Phoenix). GenAI conventions are the 2026 inflection point — W3C DID WG adopting semantic conventions, 20+ vendors shipping GenAI instrumentation. Novel: causal observability vs. standard tracing. Deduplication: S-1005 covers agent SRE broadly; S-2665 covers observability broadly; neither addresses why standard OTel misses the causal signal. This is the causal gap, not the observability gap.
 
 ||||||| I-3312 | The MCP Server Supply Chain Stack — When Your Agent Registers a Server Nobody Vetted | mcp-server-supply-chain, stdio-design-flaw, mcp-auth-bypass, csa-research-note, ox-security, anthropic-by-design, lite-llm-auth, langchain-auth, langflow-auth, mcp-gateway, mcp-server-allowlist, mcp-registry-audit, cve-2025-65719, cve-2025-69443, cve-2026-40933, kubectl-mcp-rce, archon-os-mcp, markitdown-mcp, mcp-egress-filter, mcp-trust-tier, microsoft-mcp-security-2026 | 9 | 10 | 9 | 10 | 7 | **9.25** | WRITTEN — S-2657 | 2026-08-14 | 2026-08-14 |
 ||||||| I-3313 | The Delegation Without Verification Stack — When Your Agent Hands Off Work and Calls It Done | delegation-verification, sub-agent-output, orchestrator-trust, handoff-gate, call-confirmation, output-sanity-check, semantic-grounding, sub-agent-failure, silent-delegation-failure, orchestrator-trust-boundary, multi-agent-verification, delegation-contract, output-quality-gate, handoff-safety, tool-call-cascade, arxiv-2605.01604, pandey-2026 | 9 | 9 | 9 | 8 | 8 | **8.80** | WRITTEN — S-2661 | 2026-08-14 | 2026-08-14 |
 |||||||| I-3314 | The Causal Trace Stack — When Your Tracer Captures the Trip But Not the Cause | causal-trace, genai-semconv, openinference, opentelemetry, span-enrichment, retrieval-signal, reranker-score, eval-tag, tail-sampling, otel-collector, trace-observability, genai-observability, context-capacity, tool-failure-cascade, loop-detection, span-context-propagation, agentic-debugging, otel-genai, openinference-instrumentation, arize-phoenix, langfuse | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-2665 | 2026-08-15 | 2026-08-15 |
+| I-3315 | The Obsolescence Blind Spot Stack — When Your Agent Remembers Correctly But Acts Wrong | obsolescence-blind, memory-staleness, temporal-retrieval, vector-qualification, retrieval-action-gap, similarity-validity-gap, memory-decay, age-weighted, time-decay, factual-drift, schema-evolution, effective-until, staleness-threshold, memory-action-qualification, forgetting-design, age-mem, memfree, age-weighted-recall, verification-recency, temporal-decay-score, context-temporal, acl-2026, arxiv-2607.07118, mnemoverse-2026 | 9 | 10 | 9 | 9 | 8 | **9.20** | WRITTEN — S-2666 | 2026-08-15 | 2026-08-15 |
+| I-3316 | The Reliability Surface Stack — When Your Agent Scores 97% and Fails One-Third of the Time in Production | reliability-surface, R-k-epsilon-lambda, pass@k, multi-trial-consistency, action-metamorphic-relations, fault-injection, chaos-engineering, perturbation-robustness, fault-tolerance, rate-limit-sensitivity, ReAct-vs-Reflexion, Gemini-vs-GPT4o-cost, reliability-bench, arxiv-2601.06112, agent-belt, agentchaos, reaatech-agent-chaos, tianpan-2026, jfrog-agent-belt, consistency-under-stress, production-stress, reliability-compounding | 10 | 10 | 9 | 9 | 9 | **9.55** | WRITTEN — S-2669 | 2026-08-15 | 2026-08-15 |
 
 ## Recent Decisions
 
+- *2026-08-15* — **I-3315 → S-2666 — The Obsolescence Blind Spot Stack — Composite 9.20**: Tracker saturated — all I-33xx ideas WRITTEN. Fresh research identified obsolescence blind spot (temporal retrieval validity) as novel: (1) arXiv:2607.07118 MemFree (Jul 2026) — separates retrieval from qualification with time_decay_score = relevance * exp(-λ * age); (2) mnemoverse.com production memory requirements — reranking by age/verification recency is mandatory; (3) ACL 2026 AgeMem (Yu et al.) — memory management quality determines long-horizon task performance; (4) LangChain Continual Learning (Harrison Chase, Apr 2026) — context as learning layer distinct from model/harness. Novel angle: gap between retrieval accuracy and action qualification. S-178 (freshness watermark — per-source TTLs, not action-aware), S-206 (context debt — data quality vs temporal validity), S-239 (multi-agent memory — shared state), S-1035 (context capacity — window size), S-2636 (cache brittleness — KV cache) all adjacent but distinct. Alternatives: MemoHarness (S-2614), HarnessOpt-Bench (eval), AgeMem (meta-learning designs, not qualification), GitHub million-lines (coding agents, covered).
 - *2026-08-14* — **I-3313 → S-2661 — The Delegation Without Verification Stack — Composite 9.00**: Candidate angles evaluated: (1) AI agent sandboxing — partially covered by S-1069, S-1072; (2) continuous evaluation regression detection — covered by S-818 (I-016), S-787 (I-085); (3) fine-tuning vs prompting — covered in forward-deployed entries; (4) AgentGuard/guardrails — covered by S-375 (I-010). Selected: delegation verification gap. arXiv:2605.01604 (Pandey, May 2026) explicitly calls out "tool failure cascades" from unchecked sub-agent outputs as a primary failure mode in billion-event production systems. Centific (Aug 2026) confirms multi-agent coordination failures in production. Core insight: orchestrators treat sub-agent return values as verified facts; the return is only proof of execution, not correctness. Three-check pattern: (1) call confirmation, (2) output sanity check, (3) semantic grounding. Pattern density: connects to S-1003 (failure recovery), S-2658 (eval gap), S-2659 (silent failure), S-266 (trust delegation).
 
 - *2026-08-14* — **I-3311 → S-2652 — The Session-Aware Agentic Routing Stack — Composite 9.40**: Primary angle: S-06 covers static model routing but misses the agentic-specific failure mode — model switching inside multi-turn sessions breaks tool loops, invalidates prefix cache, and introduces capability discontinuities. Research: (1) vLLM SAAR (June 2, 2026) — 21,600 deterministic turns, 79.29% switch reduction, 0 continuity violations with continuity gates; (2) Agent-as-a-Router (arXiv:2606.22902, June 22 2026) — agentic routing outperforms static classification routing for coding tasks; (3) Topaz framework (arXiv:2604.03527, Georgia Tech, April 2026) — explainable routing taxonomy for agentic workflows. Key insight: single-turn routing evals (MMLU, HumanEval) miss the compound failure that appears only across 10+ turns. Distinct from S-06 (static routing — per-request cost optimization), S-2651 (session state loss — consequence of bad routing, not the routing failure itself), S-2650 (cost attribution — downstream effect of routing decisions). Chosen over: context-window overflow patterns (covered by S-1000, S-1035), hallucination detection (covered by S-2568), MCP tool poisoning (covered by S-1944).
