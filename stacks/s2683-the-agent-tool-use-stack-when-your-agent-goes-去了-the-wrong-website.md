@@ -1,4 +1,4 @@
-# S-2682 · The Agent Tool-Use Stack
+# S-2683 · The Agent Tool-Use Stack
 
 When your agent calls the right tool for the wrong site, with valid JSON, a 200 response, and a completely wrong result — and you have no idea it happened until a customer calls.
 
