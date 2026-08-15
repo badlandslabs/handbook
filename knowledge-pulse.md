@@ -7094,6 +7094,7 @@ boundary-contract -> I-3312
 || I-3307 | The LangGraph Checkpoint RCE Stack — When Your Durable State Layer Becomes Your Code Execution Vector | langgraph-checkpoint, CVE-2026-28277, CVE-2026-27794, CVE-2026-27022, msgpack-deserialization, pickle-fallback, RCE, BaseCache, checkpoint-security, langgraph-Redis, langgraph-SQLite, serialization-attack, checkpoint-injection, pickle-injection, cache-layer-RCE, shared-infrastructure, langgraph-cve-chain, pickle_fallback, JsonPlusSerializer, checkpoint-isolation | 9 | 10 | 9 | 10 | 8 | **8.90** | WRITTEN — S-2627 | 2026-08-14 | 2026-08-14 |
 || I-3310 | The Agentic Spend Attribution Stack — When the Invoice Lands but Nobody Knows Why | agentic-finops, spend-attribution, trace-attribution, cost-governance, per-agent-budget, chargeback, llm-call-trace, token-cost-rollup, budget-quota, team-attribution, feature-attribution, agentic-cost-hierarchy, observability-tag, spend-anomaly, trace-span-tagging, finops-llm, Uber-agentic-budget, Gartner-agentic-cancel, cost-accountability, budget-enforcement, spend-visibility | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2650 | 2026-08-14 | 2026-08-14 |
 | I-3318 | The ASI06 Memory Guard Stack — When Your Agent Remembers the Wrong Lesson | ASI06, memory-poisoning, OWASP-agentic, MINJA, query-only-injection, memory-guard, provenance-scoring, behavioral-drift, memory-write-sanitization, trust-decay, OWASP-agent-memory-guard, memory-injection, session-persistence, write-path-defense, read-path-validation, memory-rollback, memory-snapshot | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2674 | 2026-08-15 | 2026-08-15 |
+| I-3319 | The Agent Governor Stack — When Your Agent Keeps Running After It Should Have Stopped | agent-governor, kill-switch, emergency-stop, EU-AI-Act, Article-14, autonomy-tier, action-fence, infrastructure-stop, human-oversight, AGT-012, compliance, rollback, graduated-autonomy, confirmation-gate, governor-pattern, unbypassable-stop, action-limit, autonomous-halt, compliance-evidence, agent-halt | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2678 | 2026-08-15 | 2026-08-15 |
 
 langgraph-checkpoint → I-3307
 agentic-spend-attribution → I-3310
@@ -7252,7 +7253,29 @@ consistency-under-stress → I-3316
 production-stress → I-3316
 reliability-compounding → I-3316
 
+agent-governor → I-3319
+kill-switch → I-3319
+emergency-stop → I-3319
+EU-AI-Act → I-3319
+Article-14 → I-3319
+autonomy-tier → I-3319
+action-fence → I-3319
+infrastructure-stop → I-3319
+human-oversight → I-3319
+AGT-012 → I-3319
+agent-halt → I-3319
+graduated-autonomy → I-3319
+confirmation-gate → I-3319
+unbypassable-stop → I-3319
+action-limit → I-3319
+compliance-evidence → I-3319
+rollback → I-3319
+governor-pattern → I-3319
+autonomous-halt → I-3319
+
 ## Recent Decisions
+
+- *2026-08-15* — **I-3319 → S-2678 — The Agent Governor Stack — Composite 9.05**: Tracker saturated (all I-33xx WRITTEN). Fresh research: EU AI Act Article 14(4)(a) mandates a functional stop mechanism for high-risk AI agents as of August 2, 2026 — this is now a legal obligation, not a best practice. AGT-012 (AI Governance Institute) defines a 4-level maturity model for kill switches: Level 1 (none) → Level 4 (automated forensic logging + policy-driven rollback). Gheware DevOps guide (Jun 2026) confirms most enterprise agentic systems lack audit trails, kill switches, and human ownership assignments. Forrester (2026) found 71% of enterprises lack formal governance frameworks even as 64% plan to increase agent autonomy within 12 months. Pattern: "compliance deadline drove governance from aspirational to mandatory." Architecturally distinct from: S-1000 (Recovery — reactive failure response), S-1458 (Policy-Kernel — enforces what agent CAN do), S-2673 (Recovery — budget burn during loop). The Governor is PREVENTIVE and PROACTIVE: it stops the agent before harm, at the infrastructure layer, not the reasoning layer. EU AI Act compliance record format specified in the entry maps directly to Article 12 mandatory record-keeping. Alternatives rejected: Agentic FinOps (I-3310 covers spend attribution), Synthetic Data (engineering focus, not ops), EU AI Act generic governance (this entry is the agent-specific implementation pattern).
 
 - *2026-08-15* — **I-3316 → S-2669 — The Reliability Surface Stack — Composite 9.55**: Ideas Bank fully saturated — all I-33xx entries WRITTEN. Fresh research: (1) arXiv:2601.06112 ReliabilityBench (Gupta, Jan 2026) — unified R(k, ε, λ) reliability surface, 1,280 episodes, 4 domains, 2 models, 2 architectures. Key findings: agents 96.9% at ε=0 drop to 88.1% at ε=0.2 (8.8% perturbation penalty); rate limiting causes largest fault-tolerance degradation; ReAct outperforms Reflexion under combined stress; Gemini 2.0 Flash achieves comparable reliability to GPT-4o at 82× lower cost. (2) AgentChaos (IntelligentDDS/AgentChaos, GitHub) — LLM API-layer fault injection. (3) Agent Chaos (reaatech/agent-chaos, GitHub) — middleware-based fault injection with circuit-breaker validation. (4) Tian Pan (tianpan.co, Apr 2026) — LLM API calls fail 1–5% per-call; 10-20 tool-call workflow sees meaningful failure probability on every run. (5) Agent Belt (jfrog/agent-belt, GitHub) — pass^k variance across trials for reproducible agent evaluation. Novel angle: 3D reliability surface (consistency × robustness × fault tolerance) as the correct characterization of production readiness, replacing single-dimension pass@1. Deduplication: S-1000 covers eval suite limitations but not the 3D reliability surface; S-1015 covers variance across trials but not the perturbation or fault-tolerance dimensions; S-2655 covers chaos engineering but not the reliability surface framework; S-2667 covers eval loops but not the R(k, ε, λ) characterization. I-3316 is distinct — it provides the unifying mathematical framework for the other four.
 - *2026-08-15* — **I-3314 → S-2665 — The Causal Trace Stack — Composite 9.35**: Ideas Bank fully saturated — all existing entries WRITTEN. Research required fresh discovery. Candidate angles: (1) agent sandboxing — partially covered by S-1069, S-1072; (2) synthetic data generation — covered in multiple entries; (3) cost attribution — covered by S-1263, S-1907; (4) guardrails — covered by S-375, S-2615. Selected: causal observability. Core gap: standard OTel traces capture WHAT happened but miss WHY — e.g., the reranker score of 0.34 that dropped the compliance clause to rank 3 is invisible in a standard span. Three-layer stack: GenAI semantic conventions → OpenInference enrichment (retrieval/reranker signals) → EvalTag (LLM-as-judge verdicts as span attributes). Research: Uptrace OTel GenAI conventions, FutureAGI blog (three-layer OTel), Datadog Agent Observability (Jul 2026), OpenInference GitHub, AgentMarketCap (LangFuse vs Phoenix). GenAI conventions are the 2026 inflection point — W3C DID WG adopting semantic conventions, 20+ vendors shipping GenAI instrumentation. Novel: causal observability vs. standard tracing. Deduplication: S-1005 covers agent SRE broadly; S-2665 covers observability broadly; neither addresses why standard OTel misses the causal signal. This is the causal gap, not the observability gap.
