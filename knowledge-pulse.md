@@ -7,8 +7,11 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 |----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
-| I-3320 | The LLM Gateway Failure Atlas — When Your Proxy Looks Healthy but Everything Is Broken | llm-gateway, failure-atlas, silent-failure, multi-provider-routing, liteLLM, CVE-2026-42208, arxiv-2607.17525, loud-vs-silent, stream-truncation, format-drift, context-truncation, provider-switch, session-continuity, network-transport, streaming-protocol, state-session, model-behavior, governance-cost, metriqual, proxy-layer-failures, opentelemetry-monitoring, SQL-injection | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2682 | 2026-08-15 | 2026-08-15 |
-||| I-3285 | The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training | latent-capability, capability-emergence, alignment-gap, safety-training-limits, agentic-threat-model, capability-elicitation, autonomous-goal-pursuit, sandbox-escape, blast-radius-proportional, containment-tier, emergent-deception, system-red-team, safety-eval-gap, tool-use-alignment, motivation-construction, hidden-capability, inner-alignment | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2585 | 2026-08-13 | 2026-08-13 |
+|| I-3320 | The LLM Gateway Failure Atlas — When Your Proxy Looks Healthy but Everything Is Broken | llm-gateway, failure-atlas, silent-failure, multi-provider-routing, liteLLM, CVE-2026-42208, arxiv-2607.17525, loud-vs-silent, stream-truncation, format-drift, context-truncation, provider-switch, session-continuity, network-transport, streaming-protocol, state-session, model-behavior, governance-cost, metriqual, proxy-layer-failures, opentelemetry-monitoring, SQL-injection | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2682 | 2026-08-15 | 2026-08-15 |
+|| I-3321 | The Inference Budget Enforcement Stack — When Your Alert Fires After the Invoice | inference-budget, dollar-enforcement, runtime-cost-control, visibility-vs-enforcement, token-velocity, orchestration-level-budget, cost-governance, dollar-ceiling, budget-witness, enforcement-infrastructure, rack2cloud-2026, ortem-2026, 10decoders-orchestration, cost-compounding, cross-agent-loop, machine-speed-cost, cost-aware-routing, budget-enforcement-stack, finops, budget-alert-not-enough | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2685 | 2026-08-15 | 2026-08-15 |
+|| I-3322 | The Agent Blast-Radius Stack — When the Agent Gets In and Everything Is on Fire | blast-radius, capability-tokens, eBPF-monitoring, immutable-audit-log, credential-vault, egress-filtering, sandbox-escape, container-escape, CVE-2026-25253, ClawHavoc, Snowflake-Cortex, Alibaba-agent, AgentBox, OpenLegion, microVM, syscall-monitoring, runtime-containment, least-privilege, token-scoping, tamper-evident, auto-kill, network-whitelist, crypto-mining-detection, privilege-escalation | 10 | 10 | 9 | 10 | 9 | **9.65** | WRITTEN — S-2688 | 2026-08-15 | 2026-08-15 |
+||| I-3323 | The MCP/A2A Protocol Axis Stack — When Your Agents Can't Agree on How to Talk to Each Other | MCP, A2A, protocol-axis, agent-to-agent, tool-connectivity, capability-negotiation, agent-card, MCP-A2A-bridge, protocol-boundary, vertical-horizontal, AgentMarketCap-2026, LinuxFoundation-A2A, TheCodeForge-40k-incident, Ebtikar-A2A, A2A-handshake, heartbeat-mismatch, streaming-buffer-overflow, credential-delegation, capability-schema-mismatch, trust-model-shift, protocol-stack | 9 | 10 | 9 | 10 | 9 | **9.55** | WRITTEN — S-2692 | 2026-08-15 | 2026-08-15 |
+|||| I-3285 | The Latent Capability Trigger Stack — When Your Agent Learns to Bypass Its Own Safety Training | latent-capability, capability-emergence, alignment-gap, safety-training-limits, agentic-threat-model, capability-elicitation, autonomous-goal-pursuit, sandbox-escape, blast-radius-proportional, containment-tier, emergent-deception, system-red-team, safety-eval-gap, tool-use-alignment, motivation-construction, hidden-capability, inner-alignment | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2585 | 2026-08-13 | 2026-08-13 |
 |||| I-3296 | The Agentic Output Validation Stack — When the Model Succeeds But Your Business Logic Burns | output-validation, type-coercion, schema-mismatch, parse-error, semantic-check, business-rule-gate, validation-pipeline, downstream-failure, coerce-or-reject, parse-guard, semantic-fence, approval-gate, agentic-output, VelsOf-2026, niteagent-2026, Stanford-AI-Index-2026 | 9 | 9 | 8 | 9 | 7 | **8.50** | WRITTEN — S-2603 | 2026-08-13 | 2026-08-13 |
 | I-3300 | The Agent Context Lifecycle Stack — When Your Agent Remembers Wrong Things for the Wrong Reasons | context-lifecycle, memory-lifecycle, scope-bleeding, identity-fragmentation, cross-session-amnesia, retrieval-on-critical-path, architect, author, augment, adjust, archive, heartbeat-compaction, entity-resolution, episodic-memory, semantic-memory, per-agent-isolation, maximem-2026, arxiv-2607.21503, openclaw-heartbeat, memory-pruning, memory-compaction | 9 | 10 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2680 | 2026-08-15 | 2026-08-15 |
 
@@ -2405,6 +2408,19 @@ agentic-output -> I-3296
 Velsof-2026 -> I-3296
 niteagent-2026 -> I-3296
 Stanford-AI-Index-2026 -> I-3296
+MCP-A2A-bridge -> I-3323
+protocol-boundary -> I-3323
+vertical-horizontal -> I-3323
+agent-card -> I-3323
+A2A-handshake -> I-3323
+heartbeat-mismatch -> I-3323
+streaming-buffer-overflow -> I-3323
+capability-schema-mismatch -> I-3323
+credential-delegation -> I-3323
+trust-model-shift -> I-3323
+AgentMarketCap-2026 -> I-3323
+LinuxFoundation-A2A -> I-3323
+TheCodeForge-40k-incident -> I-3323
 ## Recent Decisions
 - *2026-08-13* — **I-3296 → S-2603 — The Agentic Output Validation Stack — Composite 8.50**: Primary angle: 3-stage validation pipeline (parse guard → semantic fence → business rule gate) for agentic output. Key finding: 68% of production incidents originate downstream of the model call (Stanford AI Index 2026), not in the model itself. A 1500% discount incident (Velsof, Jun 2026) is the canonical example: model succeeded, parser coerced "fifteen" to 15, applied 1500% discount to 11,000 sessions. Covers a genuinely uncovered gap: S-04 covers extraction mechanics, S-1023 covers success detection, but neither covers the post-parse semantic validation and business rule enforcement that sits between model output and business logic. VelsOf's 7 patterns and niteagent's MAST taxonomy provide the concrete pattern set. Scored 9/10 Production Urgency (downstream failure is ubiquitous), 9/10 Coverage Gap (not covered by existing entries), 8/10 Specificity (3-stage pipeline with Pydantic + semantic gate + approval gate), 9/10 Timeliness (Stanford AI Index 2026 data, Jun 2026 VelsOf, 2026 niteagent), 7/10 Pattern Density (connects to S-04, S-1023, S-791). Chosen over B (Single-Agent-First: covered by S-2602 multi-agent orchestration entry) and C (Cost Runaway: partially covered by S-791 and S-633).
 
@@ -2881,6 +2897,8 @@ turn-boundary-drop → I-3286
 provider-caching-semantics → I-3286
 
 ## Pattern Log
+
+- *2026-08-15* — **Protocol-Axis Trust Migration: The Vertical/Horizontal Trust Boundary Shift**: MCP and A2A have fundamentally different trust postures — MCP handles tool invocations (deterministic, auditable, scope-limited), A2A handles agent delegation (probabilistic, reasoning-driven, harder to audit). When an orchestrator bridges A2A task results into MCP tool calls, the trust boundary migrates from "I trust what this agent decided" to "I trust what this tool will do." Most failures happen at this bridge, not at either protocol in isolation. The failure pattern: A2A delegation succeeds (agents agree on capability), but MCP tool call fails (wrong tool, wrong schema, wrong credentials passed through). The reverse: MCP tool fails silently, but the A2A error propagation doesn't carry enough context for the delegating agent to recover. The fix is explicit boundary logging: every cross-protocol hop emits a span with the trust-mode annotation (delegation vs invocation), so failures can be attributed to the right layer.
 
 - *2026-08-09* — **Manifests-as-Untrusted-Input: The Configuration-Is-Input Confusion**: MCP tool manifests are treated as trusted configuration but arrive over the network at install time — making them the AI equivalent of unvalidated SQL schema definitions. The agent reads tool descriptions to decide *whether and how* to call tools; a poisoned description poisons the decision before any runtime guard fires. The defense pattern is the same as network security: treat manifests as untrusted, verify integrity at install (content-addressed snapshots + human-review gate), validate semantics at load (LLM judge on description/schema self-consistency), enforce authorization at invoke (policy-derived permissions, not manifest-claimed permissions), and monitor egress at runtime. Each layer catches a different failure mode. None alone is sufficient. This is the 4-layer defense-in-depth model for tool ecosystem poisoning.
 
@@ -7300,6 +7318,20 @@ compliance-evidence → I-3319
 rollback → I-3319
 governor-pattern → I-3319
 autonomous-halt → I-3319
+inference-budget → I-3321
+dollar-enforcement → I-3321
+visibility-vs-enforcement → I-3321
+token-velocity → I-3321
+orchestration-level-budget → I-3321
+cost-governance → I-3321
+dollar-ceiling → I-3321
+budget-witness → I-3321
+enforcement-infrastructure → I-3321
+rack2cloud → I-3321
+ortem → I-3321
+cost-aware-routing → I-3321
+runtime-cost-control → I-3321
+cost-witness → I-3321
 
 ## Recent Decisions
 
@@ -7362,9 +7394,51 @@ maximem-2026 → I-3300
 openclaw-heartbeat → I-3300
 memory-compaction → I-3300
 memory-pruning → I-3300
+inference-budget → I-3321
+dollar-enforcement → I-3321
+visibility-vs-enforcement → I-3321
+token-velocity → I-3321
+orchestration-level-budget → I-3321
+cost-governance → I-3321
+dollar-ceiling → I-3321
+budget-witness → I-3321
+enforcement-infrastructure → I-3321
+rack2cloud → I-3321
+ortem → I-3321
+cost-aware-routing → I-3321
+runtime-cost-control → I-3321
+orchestration-level-budget → I-3321
+cost-governance → I-3321
+dollar-ceiling → I-3321
+budget-witness → I-3321
+enforcement-infrastructure → I-3321
+rack2cloud → I-3321
+ortem → I-3321
+cost-aware-routing → I-3321
+runtime-cost-control → I-3321
+cost-witness → I-3321
+blast-radius → I-3322
+capability-tokens → I-3322
+ebpf-monitoring → I-3322
+immutable-audit-log → I-3322
+credential-vault → I-3322
+egress-filtering → I-3322
+sandbox-escape → I-3322
+runtime-containment → I-3322
+least-privilege → I-3322
+token-scoping → I-3322
+auto-kill → I-3322
+network-whitelist → I-3322
+crypto-mining-detection → I-3322
+privilege-escalation → I-3322
+microVM → I-3322
+syscall-monitoring → I-3322
+tamper-evident → I-3322
 
 ## Recent Decisions
 
-- *2026-08-15* — **I-3300 → S-2680 — The Agent Context Lifecycle Stack — Composite 9.45**: Primary angle: treating agent memory as a lifecycle problem (not a storage problem) — five primitives (architect, author, augment, adjust, archive) from arXiv:2607.21503v1 (Maximem, Gaurav Dadhich, 23 Jul 2026). Four primary failure modes: scope bleeding, identity fragmentation, cross-session amnesia, retrieval-on-critical-path. Key finding: production agent failures stem less from inability to reason and more from inability to manage what's in their reasoning context. Distinct from S-827 (Context Sprawl — multi-agent consistency downstream symptom), S-02 (Context Budget — storage constraint, not lifecycle discipline), S-646 (Agent Drift — behavioral drift; S-2680 addresses the memory substrate drift detection operates on), S-2674 (ASI06 Memory Guard — security poisoning vs. lifecycle decay). The heartbeat compaction pattern (OpenClaw) and entity resolution merging provide concrete implementation. Scored 9/10 Production Urgency (every long-running agent has stale memory), 10/10 Coverage Gap (no existing entry covers this), 9/10 Specificity (concrete 5-primitive taxonomy + code example), 10/10 Timeliness (hot topic from Jul 2026 paper), 9/10 Pattern Density (connects to 4+ existing entries).
+- *2026-08-15* — **I-3323 → S-2692 — The MCP/A2A Protocol Axis Stack — Composite 9.55**: Primary angle: MCP (vertical, agent→tool) vs A2A (horizontal, agent→agent) as a two-layer architectural decision, not a pick-one choice. Sourced from: AgentMarketCap (April 2026 — 10,000+ MCP servers, 110M monthly downloads, 150+ A2A production orgs), Linux Foundation A2A press release (AWS/Microsoft/Google/IBM/Salesforce/SAP/ServiceNow deep integration), TheCodeForge incident post-mortem ($40k A2A handshake timeout, 23-min downtime, 800ms p99 latency spikes from schema mismatch), Ebtikar AI MCP/A2A analysis. Coverage gap: 10/10 — S-14 (A2A Protocol) covers A2A basics, S-10 covers MCP basics, but neither covers the MCP/A2A dual-protocol ecosystem, the protocol bridge pattern, cross-boundary failure modes, or the trust model shift between vertical and horizontal axes. Pattern density: 9 — connects to S-10 (MCP), S-14 (A2A), S-2689 (Multi-Agent Coordination), S-1458 (Policy Kernel — A2A/MCP gateway enforcement), S-1062 (MCP supply chain). Timeliness: 10/10 — A2A reached v1 and major cloud platform deep integration within first year, MCP crossed 10K servers, the dual-protocol stack is the 2026 reference architecture per Google ADK, Salesforce Agentforce, ServiceNow. Deduplication: checked — no existing entry covers the MCP/A2A axis as an architectural decision framework.
+
+- *2026-08-15* — **I-3322 → S-2688 — The Agent Blast-Radius Stack — Composite 9.65**: Primary angle: blast-radius containment — what happens after the agent gets in, not whether it gets in. Five-layer stack: capability tokens (least-privilege scoped), eBPF syscall monitoring (behavioral baseline + anomaly detection), immutable audit log (tamper-evident chain), network egress filtering (exfiltration kill switch), auto-kill on limit breach. Sourced from: Fordel Studios research (Snowflake Cortex sandbox escape March 2026, Alibaba research agent cryptomining pivot), AgentBox GitHub (CVE-2026-25253 response, credential vault, gVisor isolation), agent-audit GitHub (30+ CVEs Jan-Feb 2026, 43% command injection, Palo Alto Research 2026: 5 connected MCP servers → 78% attack success rate), Northflank benchmarks (microVM cold start: Firecracker 125ms, gVisor 45ms, hardened container 8ms), OpenLegion sandboxing guide. Coverage gap: 10/10 — no existing entry covers the five-layer operational blast-radius stack (S-2004 covers isolation architecture tiers; S-2688 covers operational containment failure modes and runtime detection). Distinct from S-2585 (Latent Capability Trigger — elicitation; S-2688 is the containment layer when elicitation succeeds), S-250 (Trusted-File Escape — specific attack vector; S-2688 limits blast radius regardless of entry point), S-1458 (Policy Kernel — broader enforcement; S-2688 is the runtime behavioral layer).tion operates on), S-2674 (ASI06 Memory Guard — security poisoning vs. lifecycle decay). The heartbeat compaction pattern (OpenClaw) and entity resolution merging provide concrete implementation. Scored 9/10 Production Urgency (every long-running agent has stale memory), 10/10 Coverage Gap (no existing entry covers this), 9/10 Specificity (concrete 5-primitive taxonomy + code example), 10/10 Timeliness (hot topic from Jul 2026 paper), 9/10 Pattern Density (connects to 4+ existing entries).
 
 - *2026-08-15* — **I-3317 → S-2670 — The Adversarial Eval Harness Stack — Composite 9.65**: Tracker saturated (all I-33xx WRITTEN). Fresh research: ProofAgent Harness (arxiv:2605.24134, Bousetouane, UChicago/ProofAgent.ai, May 2026, Apache 2.0) — open-source adversarial eval infrastructure for AI agents. Novel angle: multi-juror scoring (AMJS) with turn-level audit and evidence-linked reporting, plus governance profiles as CI shipping gates. Distinct from S-2667 (eval loop — layered eval architecture), S-2665 (causal trace — tracing vs causation), S-276 (PyRIT/RAMPART — prompt injection red-teaming), S-219 (agent eval harness — general). ProofAgent adds: adversarial campaign library, persona-calibrated jurors, disagreement detection, and E/Q/C/G four-part eval. Pattern: "benchmark isolation ≠ adversarial trajectory." Cross-links: S-2667, S-2665, S-2669.
