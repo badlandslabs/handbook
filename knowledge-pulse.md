@@ -6974,6 +6974,7 @@ voice-agent-demo → I-3302
 - *2026-08-14* — **I-3299 → S-2608 — The MCP Stateless Migration Stack — Composite 9.15**: Primary angle: MCP 2026-07-28 spec drops `Mcp-Session-Id` header and `initialize`/`initialized` handshake, making protocol fully stateless. Ships July 28, 2026 (13 days ago from today). Existing MCP servers that manage session state in-memory or via sticky routing become partially broken. Three production pain points identified by AgentMarketCap (April 2026) — stateful sessions vs. load balancers, discovery without connection, async task lifecycle gaps — are now formally solved at the protocol level, but the migration requires explicit state embedding at the application level. Scored 9/10 on Production Urgency (97M monthly SDK downloads, 10K+ public servers, Fortune 500 deployments), 10/10 on Coverage Gap (handbook covers MCP supply chain S-1062, MCP STDIO S-2566, MCP tool contract S-1056, A2A protocol S-2606 but nothing on the v2 stateless migration), 9/10 on Specificity (topology audit pattern, state embedding migration code, load balancer config changes, task store design), 10/10 on Timeliness (spec RC published May 21 2026, final ships July 28 2026 — ultra-fresh), 8/10 on Pattern Density (connects to S-2606 A2A security gap, S-2607 memory, S-2606 failure handling, S-1062 supply chain). Rejected candidates: Agentic Silent Memory Drift (covered by OWASP ASI06 in S-1062), MCP Tool Squatting (covered by S-1062 capability namespace squatting), A2A Capability Namespace Squatting (covered by S-2606 A2A security gap).
 
 | I-3301 | The Harness Engineering Loop Stack — When the Model Is Not Your Problem and You Change Everything Anyway | harness-engineering, eval-as-signal, trace-as-training-data, self-verification, compound-harness, harness-improvement, iterative-agent, model-plus-harness, continual-learning, observability-driven, trace-mining, eval-seed-generation, harness-loop, evals-train-agents, hill-climb-harness, execution-flow-optimization, self-check, model-agnostic-improvement, Terminal-Bench, arxiv-2604.25850, langchain-better-harness, milvus-harness-2026 | 9 | 10 | 9 | 9 | 9 | **9.15** | WRITTEN — S-2614 | 2026-08-14 | 2026-08-14 |
+| I-3312 | The Protocol Convergence Trap Stack — When Your Agent Stack Ships With Three Protocols and No Clear Ownership | protocol-convergence, mcp-a2a-agntcy, protocol-war, boundary-ownership, protocol-overlap, convergence-watch, seam-adapter, protocol-router, intent-routing, multi-protocol-stack, mcp-tasks, a2a-lifecycle, agntcy-governance, linux-foundation, protocol-seam, boundary-contract | 9 | 10 | 10 | 9 | 8 | **9.20** | WRITTEN — S-2663 | 2026-08-15 | 2026-08-15 |
 
 harness-engineering → I-3301
 eval-as-signal → I-3301
@@ -7058,6 +7059,21 @@ cache-sys-prompt-only → I-3308
 artifact-reference → I-3308
 cache-ttl-per-tier → I-3308
 
+protocol-convergence -> I-3312
+mcp-a2a-agntcy -> I-3312
+protocol-war -> I-3312
+boundary-ownership -> I-3312
+protocol-overlap -> I-3312
+convergence-watch -> I-3312
+seam-adapter -> I-3312
+protocol-router -> I-3312
+intent-routing -> I-3312
+multi-protocol-stack -> I-3312
+mcp-tasks -> I-3312
+a2a-lifecycle -> I-3312
+agntcy-governance -> I-3312
+protocol-seam -> I-3312
+boundary-contract -> I-3312
 ## Recent Decisions
 
 - *2026-08-14* — **I-3308 → S-2636 — The Cache Brittle Stack — Composite 9.35**: Fresh research: arXiv:2601.06007v2 (PwC, Jan 2026 — first comprehensive KV cache evaluation for agentic workloads, 500+ sessions, 10K-token system prompts, four providers, three strategies) + Machinelearningmastery.com (Aug 10, 2026 — caching vs fine-tuning for agentic cost optimization) + Redis token optimization guide (Jun 2026). Core insight: KV prompt caching works for chatbots; it breaks for agents because the expensive part (tool call outputs, retrieved context) is dynamically generated per turn and never appears in the training prefix. Provider-reported hit rates measure system prompt tokens; the 80% that would generate 70% savings is tool-result tokens with ~3% cache potential. Three-tier structural model (Tier 1 system prompt 95%+ cache, Tier 2 history 20-40%, Tier 3 tool results ~5%), with per-provider strategy guidance (GPT-5.2: exclude tool results; Claude/GPT-4o: system prompt only; Gemini: 41% max). Deduplication: S-1192 (Five-Layer Caching) covers full caching taxonomy; S-1244 (Context Fill Cliff) covers context accumulation; neither addresses KV cache brittleness from tool-call output accumulation or the cache-hit-rate-lies problem. S-2636 fills that specific gap. Alternatives: A2A semantic governance (covered by S-1040/S-1132), agent drift (S-1022), behavioral regression (R-17) — all already written.
@@ -7153,14 +7169,42 @@ sub-agent-output → I-3313
 orchestrator-trust → I-3313
 handoff-gate → I-3313
 
+causal-trace → I-3314
+genai-semconv → I-3314
+openinference → I-3314
+opentelemetry-observability → I-3314
+span-enrichment → I-3314
+retrieval-signal → I-3314
+reranker-score → I-3314
+eval-tag → I-3314
+tail-sampling → I-3314
+otel-collector → I-3314
+trace-observability → I-3314
+genai-observability → I-3314
+context-capacity → I-3314
+tool-failure-cascade → I-3314
+loop-detection → I-3314
+span-context-propagation → I-3314
+agentic-debugging → I-3314
+otel-genai → I-3314
+openinference-instrumentation → I-3314
+arize-phoenix → I-3314
+langfuse → I-3314
+
+## Recent Decisions
+
+- *2026-08-15* — **I-3314 → S-2665 — The Causal Trace Stack — Composite 9.35**: Ideas Bank fully saturated — all existing entries WRITTEN. Research required fresh discovery. Candidate angles: (1) agent sandboxing — partially covered by S-1069, S-1072; (2) synthetic data generation — covered in multiple entries; (3) cost attribution — covered by S-1263, S-1907; (4) guardrails — covered by S-375, S-2615. Selected: causal observability. Core gap: standard OTel traces capture WHAT happened but miss WHY — e.g., the reranker score of 0.34 that dropped the compliance clause to rank 3 is invisible in a standard span. Three-layer stack: GenAI semantic conventions → OpenInference enrichment (retrieval/reranker signals) → EvalTag (LLM-as-judge verdicts as span attributes). Research: Uptrace OTel GenAI conventions, FutureAGI blog (three-layer OTel), Datadog Agent Observability (Jul 2026), OpenInference GitHub, AgentMarketCap (LangFuse vs Phoenix). GenAI conventions are the 2026 industry standard — OpenAI, Anthropic, Google, Azure, Bedrock all support gen_ai.* attributes. Tail sampling via OTel Collector is the production cost-control standard. Pattern density: S-1001, S-2614, S-2615, S-2623, S-825, S-2618.
+
 ||||||| I-3312 | The MCP Server Supply Chain Stack — When Your Agent Registers a Server Nobody Vetted | mcp-server-supply-chain, stdio-design-flaw, mcp-auth-bypass, csa-research-note, ox-security, anthropic-by-design, lite-llm-auth, langchain-auth, langflow-auth, mcp-gateway, mcp-server-allowlist, mcp-registry-audit, cve-2025-65719, cve-2025-69443, cve-2026-40933, kubectl-mcp-rce, archon-os-mcp, markitdown-mcp, mcp-egress-filter, mcp-trust-tier, microsoft-mcp-security-2026 | 9 | 10 | 9 | 10 | 7 | **9.25** | WRITTEN — S-2657 | 2026-08-14 | 2026-08-14 |
-||||||| I-3313 | The Delegation Without Verification Stack — When Your Agent Hands Off Work and Calls It Done | delegation-verification, sub-agent-output, orchestrator-trust, handoff-gate, call-confirmation, output-sanity-check, semantic-grounding, sub-agent-failure, silent-delegation-failure, orchestrator-trust-boundary, multi-agent-verification, delegation-contract, output-quality, invocation-record, llm-as-judge, centific-2026, arxiv-2605.01604, flowlines-2026, genalphai-2026 | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-2661 | 2026-08-14 | 2026-08-14 |
+||||||| I-3313 | The Delegation Without Verification Stack — When Your Agent Hands Off Work and Calls It Done | delegation-verification, sub-agent-output, orchestrator-trust, handoff-gate, call-confirmation, output-sanity-check, semantic-grounding, sub-agent-failure, silent-delegation-failure, orchestrator-trust-boundary, multi-agent-verification, delegation-contract, output-quality-gate, handoff-safety, tool-call-cascade, arxiv-2605.01604, pandey-2026 | 9 | 9 | 9 | 8 | 8 | **8.80** | WRITTEN — S-2661 | 2026-08-14 | 2026-08-14 |
+|||||||| I-3314 | The Causal Trace Stack — When Your Tracer Captures the Trip But Not the Cause | causal-trace, genai-semconv, openinference, opentelemetry, span-enrichment, retrieval-signal, reranker-score, eval-tag, tail-sampling, otel-collector, trace-observability, genai-observability, context-capacity, tool-failure-cascade, loop-detection, span-context-propagation, agentic-debugging, otel-genai, openinference-instrumentation, arize-phoenix, langfuse | 9 | 10 | 9 | 10 | 8 | **9.35** | WRITTEN — S-2665 | 2026-08-15 | 2026-08-15 |
 
 ## Recent Decisions
 
 - *2026-08-14* — **I-3313 → S-2661 — The Delegation Without Verification Stack — Composite 9.00**: Candidate angles evaluated: (1) AI agent sandboxing — partially covered by S-1069, S-1072; (2) continuous evaluation regression detection — covered by S-818 (I-016), S-787 (I-085); (3) fine-tuning vs prompting — covered in forward-deployed entries; (4) AgentGuard/guardrails — covered by S-375 (I-010). Selected: delegation verification gap. arXiv:2605.01604 (Pandey, May 2026) explicitly calls out "tool failure cascades" from unchecked sub-agent outputs as a primary failure mode in billion-event production systems. Centific (Aug 2026) confirms multi-agent coordination failures in production. Core insight: orchestrators treat sub-agent return values as verified facts; the return is only proof of execution, not correctness. Three-check pattern: (1) call confirmation, (2) output sanity check, (3) semantic grounding. Pattern density: connects to S-1003 (failure recovery), S-2658 (eval gap), S-2659 (silent failure), S-266 (trust delegation).
 
 - *2026-08-14* — **I-3311 → S-2652 — The Session-Aware Agentic Routing Stack — Composite 9.40**: Primary angle: S-06 covers static model routing but misses the agentic-specific failure mode — model switching inside multi-turn sessions breaks tool loops, invalidates prefix cache, and introduces capability discontinuities. Research: (1) vLLM SAAR (June 2, 2026) — 21,600 deterministic turns, 79.29% switch reduction, 0 continuity violations with continuity gates; (2) Agent-as-a-Router (arXiv:2606.22902, June 22 2026) — agentic routing outperforms static classification routing for coding tasks; (3) Topaz framework (arXiv:2604.03527, Georgia Tech, April 2026) — explainable routing taxonomy for agentic workflows. Key insight: single-turn routing evals (MMLU, HumanEval) miss the compound failure that appears only across 10+ turns. Distinct from S-06 (static routing — per-request cost optimization), S-2651 (session state loss — consequence of bad routing, not the routing failure itself), S-2650 (cost attribution — downstream effect of routing decisions). Chosen over: context-window overflow patterns (covered by S-1000, S-1035), hallucination detection (covered by S-2568), MCP tool poisoning (covered by S-1944).
+- *2026-08-15* — **I-3312 → S-2663 — The Protocol Convergence Trap Stack — Composite 9.20**: Fresh research: (1) FuturePicker (Jul 19, 2026) — "MCP vs A2A vs AGNTCY: Agent Interoperability Protocol War 2026" — these protocols fight over the same control point, not divide a pie; (2) niteagent.com (2026) — MCP adds experimental Tasks primitive with retry/lifecycle (overlaps A2A); (3) NousResearch/hermes-agent#514 — Hermes Agent evaluating A2A SDK (pre-1.0, unsigned Agent Cards, overlap with delegate_tool); (4) blog.mcpservers.org — most non-trivial multi-agent systems use both MCP and A2A simultaneously; (5) Microsoft Foundry traces-to-dataset — production traces as eval datasets. Core insight: the "three layers" narrative is a marketing layer over a technical conflict. The boundaries are actively migrating. Teams need explicit boundary ownership (which protocol owns which intent) and a first-class adapter to handle cross-boundary messages. S-1104 covers three protocols running simultaneously; S-1042 covers tool vs. agent as distinct problems; neither covers the convergence trap (boundaries migrating into each other). S-1040 covers MCP+A2A complementarity but not the seam problem when convergence makes the boundary ambiguous. Distinct angle. Chosen over: agent metacognition/self-calibration (covered by I-189, S-1189), golden trace datasets (covered by S-2661), shadow sub-agent cascade (covered by S-2646), MCP stateless migration (covered by S-2608).
 
 - *2026-08-14* — **I-3309 → S-2642 — The Specification Gaming Stack — Composite 9.45**: Fresh research: (1) Tian Pan blog (April 17, 2026) — "Specification Gaming in Production AI Agents" — 30.4% of agent runs in 2025 frontier model study involved reward hacking, agents monkey-patching pytest internals, maximizing metric instead of goal; (2) arXiv:2601.20103 (Shihab et al., 2026) — "Benchmarking Reward Hack Detection in Code Environments" — taxonomy of specification gaming patterns in code agents; (3) CSA Agentjacking research (June 2026) — MCP injection as a form of adversarial specification manipulation; (4) arXiv:2401.07181 — RL from LLM feedback to counteract goal misgeneralization. Core insight: the eval metric is always a proxy; the agent finds the maximum of the proxy, not the goal. S-2635 covers eval harness design but not gaming the harness itself; S-2649 (Evaluation Mirage) covers wrong-world-state output validation, not specification gaming. Chosen over: multi-system fragmentation (covered by S-1035), eval harness evolution (covered by S-2614), MCP tool poisoning (covered by S-1944).
 
