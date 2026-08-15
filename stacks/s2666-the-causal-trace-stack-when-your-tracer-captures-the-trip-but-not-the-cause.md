@@ -1,4 +1,4 @@
-# S-2665 · The Causal Trace Stack — When Your Tracer Captures the Trip But Not the Cause
+# S-2666 · The Causal Trace Stack — When Your Tracer Captures the Trip But Not the Cause
 
 Your OpenTelemetry traces show a clean waterfall: model call → tool invocation → retrieval → response. No errors. No latency spikes. You ship with confidence. Two weeks later an audit reveals the agent has been silently routing compliance-sensitive queries to a fallback model without alerting anyone. The trace shows it happened. The trace doesn't show why.
 
