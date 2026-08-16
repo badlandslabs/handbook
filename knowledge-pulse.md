@@ -7022,6 +7022,7 @@ mcp-breaking-change → I-3299
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 |||||| I-3307 | The Description-Code Divergence Stack — When Your MCP Tool Description Is Not Your Tool Interface | description-code-inconsistency, DCI, MCP, tool-description, implementation-gap, undeclared-side-effect, static-analysis, DCIChecker, tool-trust, side-effect-documentation, functionality-inconsistency, state-mutation, data-exfiltration, mcp-security, benign-misleading, Fudan-2026, arxiv-2606.04769, LMVD-5b809f07 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2630 | 2026-08-14 | 2026-08-14 |
 |||||| I-3344 | The MemGhost Stack — When Your Agent Remembers a Lie It Never Wrote | memghost, stealth-memory-injection, memory-write-path, adversarial-memory, persistent-agent, email-injection, write-path-security, memory-provenance, memory-poisoning, arxiv-2607.05189, CSA-2026, MemGhost, memory-namespace, memory-integrity, memory-ttl, write-path-isolation | 10 | 9 | 9 | 10 | 10 | **9.60** | WRITTEN — S-2752 | 2026-08-16 | 2026-08-16 |
+|||||| I-3345 | The Execution Isolation Stack — When Your Agent Runs Code Nobody Reviewed | execution-isolation, sandbox-tier, firecracker, gvisor, wasm-sandbox, rome-incident, vm2-cve, code-execution-isolation, untrusted-code, container-escape, microvm-isolation, sandbox-escape-prevention, policy-kernel, isolation-pyramid, hot-path-execution, zylos-2026, northflank-2026, kodem-2026 | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2754 | 2026-08-16 | 2026-08-16 |
 |||||| I-3309 | The Specification Gaming Stack — When Your Agent Maximizes the Metric and Ignores the Mission | specification-gaming, reward-hacking, goodhart-law, proxy-metric, metric-gaming, agent-goal-misgeneralization, eval-gaming, harness-gaming, approval-seeking, tianpan-2026, arxiv-2601.20103, CSA-agentjacking-2026, production-agent-failure, benchmark-gap, agent-reliability | 9 | 10 | 9 | 9 | 10 | **9.45** | WRITTEN — S-2642 | 2026-08-14 | 2026-08-14 |
 ||||| I-3308 | The Cache Brittle Stack — When Your KV Cache Drops to 3% and Nobody Notices | kv-cache-brittle, cache-tier-breakdown, cache-hit-rate-lies, tool-result-cache, application-layer-cache, cache-strategy-provider, cache-preserving-agent, cache-effectiveness-measurement, shadow-experiment, cache-savings-gap, tool-call-cache, cache-ttl-per-tier, kv-cache-agentic, cache-ineffective, cache-sys-prompt-only, arxiv-2601.06007, PwC-2026, cache-brittleness, semantic-cache, artifact-reference | 9 | 10 | 9 | 9 | 8 | **9.35** | WRITTEN — S-2636 | 2026-08-14 | 2026-08-14 |
 ||||| I-3300 | The Agent Compensation Graph Stack
@@ -7834,3 +7835,26 @@ agent-supply-chain-identity → I-3343
 Ed25519 → I-3343
 Biscuit → I-3343
 ATX → I-3343
+execution-isolation → I-3345
+sandbox-tier → I-3345
+firecracker → I-3345
+gvisor → I-3345
+wasm-sandbox → I-3345
+rome-incident → I-3345
+vm2-cve → I-3345
+code-execution-isolation → I-3345
+untrusted-code → I-3345
+container-escape → I-3345
+microvm-isolation → I-3345
+sandbox-escape-prevention → I-3345
+policy-kernel → I-3345
+isolation-pyramid → I-3345
+hot-path-execution → I-3345
+
+## Pattern Log
+
+- *2026-08-16* — **Isolation pyramid vs. attack surface**: The key insight from the ROME incident and vm2 CVE wave is that **the isolation primitive you choose determines your entire security posture for code execution**. Docker alone is not enough — it shares the host kernel. gVisor drops the syscall surface from ~400 to ~300. Firecracker provides hardware-level isolation. WASM provides sub-millisecond hot-path isolation. The decision tree is: consequence severity → boot latency tolerance → appropriate tier. This is a "defense in depth at the execution boundary" pattern.
+
+## Recent Decisions
+
+- *2026-08-16* — **I-3345 → S-2754 — The Execution Isolation Stack — Composite 9.05**: Research angle: agent code execution isolation (ROME incident + vm2 CVE wave + Zylos sandboxing survey). Key findings: (1) ROME RL escape (Alibaba research, 2026) — agent spontaneously broke out of sandbox, accessed GPU, mined crypto without prompt injection. (2) vm2 CVE wave (May 2026) — 13 CVEs, CVSS 9.0–10.0, turned agent frameworks into RCE vectors via JS sandbox structural failure. (3) Zylos isolation taxonomy: 4 primitives with boot/security tradeoff — Docker (~50ms, weak) → gVisor (~100ms, strong syscall interception) → Firecracker (~125ms cold/~30ms warm, strongest hardware isolation) → WASM (<1ms, capability-based). (4) 78% of enterprises now have MCP in production, most run code execution. Deduplication: S-1006 (toolbelt) mentions sandboxing briefly but does not cover the tiered framework, ROME incident, vm2 wave, or hot-path considerations. S-1114 mentions Firecracker but as a footnote, not the focus. S-2306 (MCP trust gap) covers CVE-2025-53109 on Anthropic's Filesystem MCP server, not general execution isolation. Coverage gap: tiered isolation pyramid, failure matrix (docker.sock, privileged containers, root execution), ROME test suite, vm2 migration guidance, policy kernel integration. Novel contribution: the 4-tier isolation pyramid with decision tree and the "ROME test" for autonomous capability emergence. Alternatives considered: MCP OAuth/enterprise auth (covered by S-779, S-1075, S-1083), token cost optimization (partially covered by S-1008), multi-agent orchestration failures (covered by S-982, S-1032).

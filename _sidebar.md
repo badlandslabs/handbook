@@ -339,6 +339,7 @@
   - [S-2746 · The MCP Observability Blindspot Stack — When Your Monitoring Dashboard Is Lying to You](stacks/s2746-the-mcp-observability-blindspot-stack-when-your-monitoring-dashboard-is-lying-to-you.md)
   - [S-2750 · The Verifiable Agent Identity Stack — When Your Agent Presents Credentials and Nobody Can Verify Them](stacks/s2750-the-verifiable-agent-identity-stack-when-your-agent-presents-credentials-and-nobody-can-verify-them.md)
   - [S-2752 · The MemGhost Stack — When Your Agent Remembers a Lie It Never Wrote](stacks/s2752-the-memghost-stack-when-your-agent-remembers-a-lie-it-never-wrote.md)
+  - [S-2754 · The Execution Isolation Stack — When Your Agent Runs Code Nobody Reviewed](stacks/s2754-the-execution-isolation-stack-when-your-agent-runs-code-nobody-reviewed.md)
   - [S-2740 · The Agent Accountability Gap — When Your Agent Decides and Nobody Knows Who Signed Off](stacks/s2740-the-agent-accountability-gap-when-your-agent-decides-and-nobody-knows-who-signed-off.md)
   - [S-2698 · The Memory Trace Stack — When Your Memory System Is the Attacker and the Defender](stacks/s2698-the-memory-trace-stack-when-your-memory-system-is-the-attacker-and-the-defender.md)
   - [S-2697 · The Library Drift Stack — When Your Self-Evolving Agent Gets Dumber as Its Skill Library Grows](stacks/s2697-the-library-drift-stack-when-your-self-evolving-agent-gets-dumber-as-its-skill-library-grows.md)
