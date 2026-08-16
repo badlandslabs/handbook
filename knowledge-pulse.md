@@ -6,9 +6,12 @@
 ## Ideas Bank
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
-|----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
-| I-3340 | The Agent Accountability Gap — When Your Agent Decides and Nobody Knows Who Signed Off | agent-accountability, accountability-chain, named-owner, autonomy-tier, tiered-governance, eu-pld-2026, eu-product-liability-directive, human-in-the-loop, audit-record, accountable-owner, governance-gap, ber-i-2026,gartner-2027,bcg-eacp, technology-radar-2026, 72-percent-in-production, 60-percent-governance-gap, 8-percent-comprehensive-governance, 88-percent-pilot-failure, agent-manifest, immutable-accountability-log | 9 | 10 | 8 | 10 | 7 | **8.95** | WRITTEN — S-2740 | 2026-08-16 | 2026-08-16 |
-| I-3336 | The Runtime Enforcement Gap — When Your Verification Scores Are Green but Your Agent Just Gave Away $1.2M | runtime-enforcement-gap, measurement-vs-enforcement, llm-as-judge-circularity, fail-closed, enforcement-actions, distilled-judge, large-judge, consequence-level, kapp0.049, agentprop-bench, c-trace, gdpr-enforcement, waxell-2026, 57-percent-judge-adoption, 97-percent-cost-reduction, schema-contract-gate, business-rule-gate, circularity-break | 9 | 9 | 9 | 8 | 8 | **8.70** | WRITTEN — S-1001 | 2026-08-16 | 2026-08-16 |
+||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+||| I-3340 | The Agent Accountability Gap — When Your Agent Decides and Nobody Knows Who Signed Off | agent-accountability, accountability-chain, named-owner, autonomy-tier, tiered-governance, eu-pld-2026, eu-product-liability-directive, human-in-the-loop, audit-record, accountable-owner, governance-gap, ber-i-2026,gartner-2027,bcg-eacp, technology-radar-2026, 72-percent-in-production, 60-percent-governance-gap, 8-percent-comprehensive-governance, 88-percent-pilot-failure, agent-manifest, immutable-accountability-log | 9 | 10 | 8 | 10 | 7 | **8.95** | WRITTEN — S-2740 | 2026-08-16 | 2026-08-16 |
+||| I-3342 | The MCP Observability Blindspot Stack — When Your Monitoring Dashboard Is Lying to You | mcp-observability, json-rpc-error-in-success, iserror-flag, owasp-mcp08, opentelemetry-mcp, trace-context-propagation, server-side-logging, mcp-audit, agentic-blindspot, transport-vs-tool-layer, 82-percent-visibility-gap, structlog-audit, w3c-tracecontext, mcp-inspector, csa-tool-poisoning, compliance-gdpr-soc2, inference-net-2026, observability-gap, mcp-telemetry | 9 | 10 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2746 | 2026-08-16 | 2026-08-16 |
+||| I-3343 | The Verifiable Agent Identity Stack — When Your Agent Presents Credentials and Nobody Can Verify Them | agent-identity, verifiable-credential, ATX-credential, Ed25519, biscuit-tokens, AIP, IETF-draft, OpenA2A-AIP, agent-identity-protocol, dual-identity, human-principal-binding, delegation-chain, capability-scoped, non-repudiation, agent-trust-score, behavioral-trust, cryptographic-identity, MCP-auth, A2A-auth, delegation-verification, sunilp-aip, draft-fane-opena2a-aip, agent-supply-chain | 10 | 10 | 9 | 10 | 9 | **9.75** | WRITTEN — S-2750 | 2026-08-16 | 2026-08-16 |
+||| I-3341 |
+12|| I-3336 | The Runtime Enforcement Gap — When Your Verification Scores Are Green but Your Agent Just Gave Away $1.2M | runtime-enforcement-gap, measurement-vs-enforcement, llm-as-judge-circularity, fail-closed, enforcement-actions, distilled-judge, large-judge, consequence-level, kapp0.049, agentprop-bench, c-trace, gdpr-enforcement, waxell-2026, 57-percent-judge-adoption, 97-percent-cost-reduction, schema-contract-gate, business-rule-gate, circularity-break | 9 | 9 | 9 | 8 | 8 | **8.70** | WRITTEN — S-1001 | 2026-08-16 | 2026-08-16 |
 | I-3330 | The MCP Schema Inflation Trap — When Your Protocol Tax Costs More Than Your Queries | mcp-schema-inflation, schema-token-tax, context-bloat-per-call, per-request-schema-overhead, 72-percent-context, mcp-token-bloat, tool-schema-filtering, lazy-tool-injection, schema-caching-session, denis-yarats-mcp, perplexity-mcp-exit, cloudflare-mcp, google-workspace-mcp, moonshot-kimi-cli, hermes-agent-lazy, thenewstack-mcp-bloat, token-tax-mcp, schema-overhead | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2709 | 2026-08-15 | 2026-08-15 |
 | I-3333 | The Agent Behavioral Drift Stack — When Your Agent Certification Is Three Weeks Old and Everything Has Changed | behavioral-drift, agent-certification, behavioral-baseline, drift-detection, behavioral-fingerprint, model-drift, context-drift, memory-drift, tool-schema-drift, permission-drift, agent-dashboard, arxiv-2601.04170, bastyn-drift, agnost-drift, certification-gate, drift-rate, drift-score, shadow-evaluation, continuous-monitoring, agentic-SRE | 9 | 9 | 8 | 9 | 8 | **8.80** | WRITTEN — S-2719 | 2026-08-16 | 2026-08-16 |
 | I-3335 | The VulMask Stack — When Your Skill Security Review Cleared Something It Couldn't See | vulmask, phantom-skill, vulnerability-shaped-payload, trigger-condition, skill-script-obfuscation, static-scan-bypass, environment-var-exfil, arxiv-2606.19191, codex-cli-runtime, behavioral-scan, script-inspection, csa-cloudai, owasp-agentic-skills, 58-percent-asr, 36-percent-community-vuln, runtime-containment, delayed-weaponization, skill-update-review | 9 | 10 | 10 | 10 | 9 | **9.60** | WRITTEN — S-2729 | 2026-08-16 | 2026-08-16 |
@@ -2434,7 +2437,24 @@ trust-model-shift -> I-3323
 AgentMarketCap-2026 -> I-3323
 LinuxFoundation-A2A -> I-3323
 TheCodeForge-40k-incident -> I-3323
+memghost → I-3344
+stealth-memory-injection → I-3344
+memory-write-path → I-3344
+adversarial-memory → I-3344
+persistent-memory-poisoning → I-3344
+email-memory-injection → I-3344
+write-path-security → I-3344
+memory-provenance → I-3344
+memory-poisoning → I-3344
+arxiv-2607.05189 → I-3344
+csa-memghost → I-3344
+memory-namespace-isolation → I-3344
+memory-integrity-gate → I-3344
+memory-ttl → I-3344
+write-path-isolation → I-3344
+
 ## Recent Decisions
+- *2026-08-16* — **I-3344 → S-2752 — The MemGhost Stack — Composite 9.60**: Fresh research: arXiv 2607.05189 (Zhang et al., July 2026) + CSA AI Safety Initiative note (July 23, 2026). Novel attack: stealth memory injection — single crafted email plants false memories via the agent's own write tools, 87.5% E2E success on OpenClaw/GPT-5.4, 71.4% on Claude Code SDK/Sonnet 4.6. Key insight: attack committed at ingestion, harm materializes at retrieval (same temporal gap as DNS cache poisoning). Distinct from S-1189 (memory integrity gate covers gradual drift, not adversarial one-shot injection). Five mitigation layers: write-path provenance, memory namespace isolation, TTL with re-derivation, integrity monitoring for anomalous writes, and treat memory as versioned cache. Composite 9.60: Urgency 10 (CSA disclosure, fresh paper), Gap 9 (handbook covers memory architecture S-1020, S-1189, S-1136 but not adversarial write-path exploitation), Specificity 9, Timeliness 10 (July 2026 paper), Density 10 (empirical data, benchmark results, mitigation catalog).
 - *2026-08-13* — **I-3296 → S-2603 — The Agentic Output Validation Stack — Composite 8.50**: Primary angle: 3-stage validation pipeline (parse guard → semantic fence → business rule gate) for agentic output. Key finding: 68% of production incidents originate downstream of the model call (Stanford AI Index 2026), not in the model itself. A 1500% discount incident (Velsof, Jun 2026) is the canonical example: model succeeded, parser coerced "fifteen" to 15, applied 1500% discount to 11,000 sessions. Covers a genuinely uncovered gap: S-04 covers extraction mechanics, S-1023 covers success detection, but neither covers the post-parse semantic validation and business rule enforcement that sits between model output and business logic. VelsOf's 7 patterns and niteagent's MAST taxonomy provide the concrete pattern set. Scored 9/10 Production Urgency (downstream failure is ubiquitous), 9/10 Coverage Gap (not covered by existing entries), 8/10 Specificity (3-stage pipeline with Pydantic + semantic gate + approval gate), 9/10 Timeliness (Stanford AI Index 2026 data, Jun 2026 VelsOf, 2026 niteagent), 7/10 Pattern Density (connects to S-04, S-1023, S-791). Chosen over B (Single-Agent-First: covered by S-2602 multi-agent orchestration entry) and C (Cost Runaway: partially covered by S-791 and S-633).
 
 - *2026-08-09* — **I-3215 → S-2398 — The Semantic Encoding Stack — Composite 9.20**: Tracker re-saturated (I-32xx fully processed). Fresh research: IETF draft-benzing-accp-00 (R.B. Benzing, April 2026, Standards Track) defines ACCP — Agent Context Compression Protocol. Four components: ACCP-M (semantic message encoding), ACCP-I (intent ontology with op_codes delegate/report/query/revise/escalate/archive), ACCP-S (state compression), ACCP-C (codec plugin API). Three-tier HOT/WARM/COLD context model: 2,000 / 200 / 0 token budgets. Achieves 60-90% token reduction over NL inter-agent messaging. github.com/rbenzing/ACCP (protocol-spec, threat-model, best-practices). Deduplication: S-197 covers MCP+A2A transport layers (not encoding efficiency); S-1962 covers recursive fidelity loss via LLM-internal compression; S-2397 covers graph state machines (not semantic encoding). None cover the semantic encoding layer itself — where meaning is compressed before it enters the LLM context window.
@@ -7001,6 +7021,7 @@ mcp-breaking-change → I-3299
 || ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 |||||| I-3307 | The Description-Code Divergence Stack — When Your MCP Tool Description Is Not Your Tool Interface | description-code-inconsistency, DCI, MCP, tool-description, implementation-gap, undeclared-side-effect, static-analysis, DCIChecker, tool-trust, side-effect-documentation, functionality-inconsistency, state-mutation, data-exfiltration, mcp-security, benign-misleading, Fudan-2026, arxiv-2606.04769, LMVD-5b809f07 | 9 | 10 | 9 | 10 | 9 | **9.50** | WRITTEN — S-2630 | 2026-08-14 | 2026-08-14 |
+|||||| I-3344 | The MemGhost Stack — When Your Agent Remembers a Lie It Never Wrote | memghost, stealth-memory-injection, memory-write-path, adversarial-memory, persistent-agent, email-injection, write-path-security, memory-provenance, memory-poisoning, arxiv-2607.05189, CSA-2026, MemGhost, memory-namespace, memory-integrity, memory-ttl, write-path-isolation | 10 | 9 | 9 | 10 | 10 | **9.60** | WRITTEN — S-2752 | 2026-08-16 | 2026-08-16 |
 |||||| I-3309 | The Specification Gaming Stack — When Your Agent Maximizes the Metric and Ignores the Mission | specification-gaming, reward-hacking, goodhart-law, proxy-metric, metric-gaming, agent-goal-misgeneralization, eval-gaming, harness-gaming, approval-seeking, tianpan-2026, arxiv-2601.20103, CSA-agentjacking-2026, production-agent-failure, benchmark-gap, agent-reliability | 9 | 10 | 9 | 9 | 10 | **9.45** | WRITTEN — S-2642 | 2026-08-14 | 2026-08-14 |
 ||||| I-3308 | The Cache Brittle Stack — When Your KV Cache Drops to 3% and Nobody Notices | kv-cache-brittle, cache-tier-breakdown, cache-hit-rate-lies, tool-result-cache, application-layer-cache, cache-strategy-provider, cache-preserving-agent, cache-effectiveness-measurement, shadow-experiment, cache-savings-gap, tool-call-cache, cache-ttl-per-tier, kv-cache-agentic, cache-ineffective, cache-sys-prompt-only, arxiv-2601.06007, PwC-2026, cache-brittleness, semantic-cache, artifact-reference | 9 | 10 | 9 | 9 | 8 | **9.35** | WRITTEN — S-2636 | 2026-08-14 | 2026-08-14 |
 ||||| I-3300 | The Agent Compensation Graph Stack
@@ -7417,6 +7438,7 @@ cost-witness → I-3321
 
 | I-3317 | The Adversarial Eval Harness Stack — When Your Agent Passes All Benchmarks and Ships a Privacy Breach | adversarial-eval, multi-juror, turn-level-audit, proof-agent, evidence-linked, adversarial-trap, AMJS, governance-profile, CI-gate, turn-level-evidence, campaign-eval, persona-juror, disagreement-signal, arxiv-2605.24134, proofagent-ai, adversarial-multi-juror-scoring, turn-level-audit, trap-library, compliance-eval, behavioral-eval | 9 | 10 | 10 | 10 | 9 | **9.65** | WRITTEN — S-2670 | 2026-08-15 | 2026-08-15 |
 | I-3334 | The Intelligence Entropy Stack — When Your Agent System Degrades Without Breaking | intelligence-entropy, entropy-principle, S(t) = S₀ · e, monotonic-disorder, intrinsic-properties, PIG-engine, physical-integrity-gate, ADE-protocol, agent-delivery-engineering, silent-failure-intrinsic, entropy-constant, entropy-budget, state-snapshot, entropy-management, alpha-entropy, stability-coefficient, fail-plausible, class-D-failure, gray-failure-escalation, entropy-trials, 40k-trials, 100k-observations, 22-intrinsic-properties, six-lifecycle-layers, arxiv-2606.08162, dexing-liu-entropy, adversarial-vs-entropic, cross-session-coherence, forgetful-operator, token-budgets-catalog, arxiv-2606.04056, error-becomes-narrative, arxiv-2606.14589, wei-wu-2026, five-class-taxonomy, ADE-standard, github-ADE-standard | 10 | 9 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2723 | 2026-08-16 | 2026-08-16 |
+| I-3343 | The Cascading Hallucination Stack — When Your Agent Pipeline Produces Confident Nonsense | cascading-hallucination, charm-framework, conditional-coherence, error-propagation, multi-stage-rag, entailment-gate, inter-stage-boundary, cascade-break, ground-truth-anchor, contrastive-synthesis, arxiv-2606.04435, 89-percent-detection, 82-percent-reduction | 9 | 9 | 10 | 9 | 9 | **9.15** | WRITTEN — S-2748 | 2026-08-16 | 2026-08-16 |
 | I-3335 | The Hybrid Fault Taxonomy Stack — When Your Agent Fails in Two Languages at Once | hybrid-fault-taxonomy, fault-taxonomy, 5-dimensions, 13-symptom-classes, 12-root-causes, 37-fault-types, shah-morovati-rahman-khomh, arxiv-2603.06847, JACM, 13602-issues, 385-faults, 40-repos, grounded-theory, association-rule-mining, 145-practitioners, dependency-integration-failure, data-type-handling-failure, cognitive-control, agency-dimension, runtime-environment, memory-state, orchestration-dimension, hybrid-failure-profile, semantic-monitoring, propagation-watchers, type-contract-validators, pre-execution-gate, fault-propagation, cascade, graceful-degradation, circuit-breaker, fallback-chain, bulkhead-isolation, zylos-research, ALAS-framework, supergood-2026, arxiv-2505.12501, Supergood-Solutions-graceful-degradation | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2718 | 2026-08-16 | 2026-08-16 |
 
 adversarial-eval-harness → I-3317
@@ -7752,3 +7774,63 @@ waxell-2026 → I-3336
 schema-contract-gate → I-3336
 business-rule-gate → I-3336
 circularity-break → I-3336
+agentic-audit → I-3341
+specification-gap → I-3341
+reasoning-opacity → I-3341
+tacit-assumption → I-3341
+in-source-assertion → I-3341
+assertion-commitment → I-3341
+falsification-loop → I-3341
+guided-fuzzer → I-3341
+code-augur → I-3341
+arxiv-2606.18619 → I-3341
+nus-2026 → I-3341
+vulnerability-detection → I-3341
+security-specification → I-3341
+assumption-validation → I-3341
+specification-inference → I-3341
+34-to-370-percent-more-bugs → I-3341
+22-new-vulnerabilities → I-3341
+16-confirmed-fixed → I-3341
+small-model-augur → I-3341
+unfalsifiable-assertion → I-3341
+coverage-threshold → I-3341
+audit-artifact-structure → I-3341
+opaque-reasoning → I-3341
+trust-without-evidence → I-3341
+mcp-observability → I-3342
+json-rpc-error-in-success → I-3342
+iserror-flag → I-3342
+owasp-mcp08 → I-3342
+opentelemetry-mcp → I-3342
+trace-context-propagation → I-3342
+mcp-audit → I-3342
+agentic-blindspot → I-3342
+mcp-telemetry → I-3342
+mcp-observability-blindspot → I-3342
+inference-net-2026 → I-3342
+agent-identity → I-3343
+verifiable-credential → I-3343
+ATX-credential → I-3343
+Ed25519-agent → I-3343
+biscuit-tokens → I-3343
+IETF-AIP → I-3343
+OpenA2A-AIP → I-3343
+agent-identity-protocol → I-3343
+dual-identity → I-3343
+human-principal-binding → I-3343
+delegation-chain → I-3343
+capability-scoped-delegation → I-3343
+non-repudiation-agent → I-3343
+agent-trust-score → I-3343
+behavioral-trust-agent → I-3343
+cryptographic-agent-identity → I-3343
+MCP-authentication → I-3343
+A2A-authentication → I-3343
+delegation-verification → I-3343
+sunilp-aip → I-3343
+draft-fane-opena2a-aip → I-3343
+agent-supply-chain-identity → I-3343
+Ed25519 → I-3343
+Biscuit → I-3343
+ATX → I-3343
