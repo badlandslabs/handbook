@@ -8,6 +8,8 @@
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 |----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 | I-3330 | The MCP Schema Inflation Trap — When Your Protocol Tax Costs More Than Your Queries | mcp-schema-inflation, schema-token-tax, context-bloat-per-call, per-request-schema-overhead, 72-percent-context, mcp-token-bloat, tool-schema-filtering, lazy-tool-injection, schema-caching-session, denis-yarats-mcp, perplexity-mcp-exit, cloudflare-mcp, google-workspace-mcp, moonshot-kimi-cli, hermes-agent-lazy, thenewstack-mcp-bloat, token-tax-mcp, schema-overhead | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2709 | 2026-08-15 | 2026-08-15 |
+| I-3333 | The Agent Behavioral Drift Stack — When Your Agent Certification Is Three Weeks Old and Everything Has Changed | behavioral-drift, agent-certification, behavioral-baseline, drift-detection, behavioral-fingerprint, model-drift, context-drift, memory-drift, tool-schema-drift, permission-drift, agent-dashboard, arxiv-2601.04170, bastyn-drift, agnost-drift, certification-gate, drift-rate, drift-score, shadow-evaluation, continuous-monitoring, agentic-SRE | 9 | 9 | 8 | 9 | 8 | **8.80** | WRITTEN — S-2719 | 2026-08-16 | 2026-08-16 |
+| I-3335 | The VulMask Stack — When Your Skill Security Review Cleared Something It Couldn't See | vulmask, phantom-skill, vulnerability-shaped-payload, trigger-condition, skill-script-obfuscation, static-scan-bypass, environment-var-exfil, arxiv-2606.19191, codex-cli-runtime, behavioral-scan, script-inspection, csa-cloudai, owasp-agentic-skills, 58-percent-asr, 36-percent-community-vuln, runtime-containment, delayed-weaponization, skill-update-review | 9 | 10 | 10 | 10 | 9 | **9.60** | WRITTEN — S-2728 | 2026-08-16 | 2026-08-16 |
 | I-3331 | The Tool Composition Permission Surface Stack — When Narrow Tools Chained Together Create Capabilities Nobody Authorized | tool-composition, permission-surface, emergent-capability, tool-chaining, narrow-tools, capability-emerge, tool-audit, composition-guard, capability-map, tool-combination, mcp-gateway, composition-gating, capability-class, dangerous-combination, tool-registration-not-authorization, ambient-tool, tool-interaction, capability-bounding, composition-policy, permission-emergence, northflank-88-percent-fail, owasp-agentic, zylos-rbac-2026 | 9 | 9 | 10 | 9 | 8 | **9.05** | WRITTEN — S-2715 | 2026-08-16 | 2026-08-16 |
 | I-3332 | The Tool Description Augmentation Paradox — When Better Descriptions Produce Worse Agents | tool-description-augmentation, augmentation-regression, compact-tool-description, description-token-tradeoff, component-ablation, mcp-tool-quality, arxiv-2602.14878, smell-fix-cost, step-count-regression, 67-percent-more-steps, 16-percent-regression, augmentation-roi, description-compactness, purpose-limitation-return | 9 | 9 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2717 | 2026-08-16 | 2026-08-16 |
 || I-3320 | The LLM Gateway Failure Atlas — When Your Proxy Looks Healthy but Everything Is Broken | llm-gateway, failure-atlas, silent-failure, multi-provider-routing, liteLLM, CVE-2026-42208, arxiv-2607.17525, loud-vs-silent, stream-truncation, format-drift, context-truncation, provider-switch, session-continuity, network-transport, streaming-protocol, state-session, model-behavior, governance-cost, metriqual, proxy-layer-failures, opentelemetry-monitoring, SQL-injection | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2682 | 2026-08-15 | 2026-08-15 |
@@ -3662,6 +3664,8 @@ inferred-commitment → I-3114
 ## Pattern Log
 
 - *2026-08-08* — **I-3188 — The Per-Agent Spend Governance Stack (S-2326) — Composite 9.35**: All prior ideas WRITTEN/DUPLICATE. Fresh research: Kognita (2025) $47k runaway incident, Zylos (May 2026) 60–85% spend recoverable via caching+routing, Goldman Sachs 2026: 24x token demand vs. conversational, avg enterprise $85,521/month AI ops cost. Pattern distilled: **"Circuit Breaker > Alert"** — in agentic systems, enforcement must be synchronous/automatic. Runaway agents discovered from billing statements, not alerts. Deduplication: S-2316 covers loop bounds; this covers dollar-denominated spend enforcement + anomaly detection + cost isolation. F-88 covers session-level dollar ceiling; this extends to per-agent granularity and multi-agent attribution.
+
+- *2026-08-16* — **I-3335 → S-2728 — The VulMask Stack — Composite 9.60**: All I-3330 through I-3334 written in prior runs (S-2709, S-2715, S-2717, S-2719). Tracker I-333x re-saturated. Fresh research: PhantomSkill (arXiv:2606.19191v1, Lin & Yu, June 2026) introduces VulMask — rewrites overt malicious scripts into vulnerability-shaped implementations activated only under attacker-controlled trigger conditions (`$CI_COMMIT_REF_SLUG`, env vars, network responses). Key findings: 58.8% attack success rate against static scanners, 96.6% utility preservation, warning rates drop from 25.4% (overt malware) to 11.4% (VulMask). CodeX CLI runtime behavioral analysis: 97% detection at 2% false-positive rate. CSA CloudAI: 36.8% of community skills have exploitable flaws. Pattern distilled: **"The Review Surface Is Not the Attack Surface"** — SKILL.md and static scan review target the description layer; the actual attack lives in auxiliary scripts, which review never deeply inspects. Second pattern: **"Trigger Conditions Make Obfuscation Invisible"** — malicious code that activates only on `$CI_COMMIT_REF_SLUG == attacker_value` passes review because the trigger never fires in the sandbox. Deduplication: S-1960 covers SKILL.md injection and install-hook obfuscation; S-2728 is distinct — it covers VulMask-class obfuscated auxiliary script execution that survives both SKILL.md review and static scan. No prior stack covers the script-inspection blind spot or behavioral vs. static scan detection gap.
 
 - *2026-07-31* — **I-3096 — Phantom Invocation Stack (S-1913) — Composite 9.20**: Tracker saturated (all prior ideas WRITTEN/DUPLICATE). Fresh research: Tian Pan "Phantom Tool Calls" (Apr 14, 2026, 28% NESTFUL full-sequence accuracy for GPT-4o); Ncubelabs incident (Mar 9, 2026, 600 phantom calls in one day from 20-agent fleet); Basu arXiv:2603.10060 NabaOS tool receipt framework (Mar 2026, 91% hallucination detection, <15ms overhead). Core insight: tool-name hallucination is distinct from tool-bypass (S-200) and tool-param errors (S-51). The model fabricates a function name that doesn't exist in the registry — syntactically valid, semantically plausible, schema-consistent — but never existed. Deduplication: S-200 (tool bypass, fabricated results) — complementary, not duplicate. S-19 (agent loop), S-03 (tool use), S-51 (schema design) — foundational context, no overlap. Rejected: GGUF RCE/CVE-2026-5760 (supply chain angle, not agent-pattern focus). Rejected: Retrieval Debt (S-591 already covers embedding drift). Chosen for: highest specificity score (10) among new candidates, distinct failure mode with clear 6-layer mitigation stack, grounded in real incidents and peer-reviewed research.
 
@@ -7381,6 +7385,8 @@ cost-witness → I-3321
 - *2026-08-14* — **I-3308 → S-2632 — The Wall-Clock Deadline Drift Stack — Composite 8.85**: Fresh research: (1) Tian Pan blog (May 10, 2026) — "Wall-Clock Deadline Drift: Why Your Agent Thinks It Has Time It Doesn't" — core pattern of agents freezing time estimates at planning time; (2) arXiv:2601.13206 (Sehgal et al., Jan 2026) — "Real-Time Deadlines Reveal Temporal Awareness Failures in LLM Strategic Dialogues" — empirical evidence that LLMs fail to adjust behavior under real-time constraints without explicit time updates; (3) Hidekazu Konishi Agent Reliability Engineering Guide (2026) — retry arithmetic: timeout × attempt_count × step_count, not sum. Deduplication: S-1027 (scaffold/loop) covers infinite loops and budget exhaustion, NOT deadline drift from correct-but-timed-out decisions; S-1176 (token budget) covers token count, NOT wall-clock time; S-1263 (cost chain) covers cost accumulation, NOT SLA drift; S-1303 (budget spiral) covers financial runaway, NOT temporal budget; S-1102 (causal temporal event graph) covers trace causality, NOT agent time perception; S-1061 (generator-evaluator) covers long-run coherence, NOT deadline management. Coverage gap: 9/10 — no existing entry covers wall-clock time as a live routing constraint. Timeliness: 8/10 — temporal reasoning failures are a known category but deadline drift specifically is underexplored. Specificity: 9/10 — concrete five-layer mitigation with working Python example. Pattern: frozen-at-planning-time fallacy. 8.90: Urgency 9 (actively exploited), Gap 10 (no standalone entry), Specificity 9 (concrete CVEs + working mitigations), Timeliness 10 (Aug 2026 disclosures), Density 8 (connects to S-1395 memory, S-2614 recovery).
 
 | I-3317 | The Adversarial Eval Harness Stack — When Your Agent Passes All Benchmarks and Ships a Privacy Breach | adversarial-eval, multi-juror, turn-level-audit, proof-agent, evidence-linked, adversarial-trap, AMJS, governance-profile, CI-gate, turn-level-evidence, campaign-eval, persona-juror, disagreement-signal, arxiv-2605.24134, proofagent-ai, adversarial-multi-juror-scoring, turn-level-audit, trap-library, compliance-eval, behavioral-eval | 9 | 10 | 10 | 10 | 9 | **9.65** | WRITTEN — S-2670 | 2026-08-15 | 2026-08-15 |
+| I-3334 | The Intelligence Entropy Stack — When Your Agent System Degrades Without Breaking | intelligence-entropy, entropy-principle, S(t) = S₀ · e, monotonic-disorder, intrinsic-properties, PIG-engine, physical-integrity-gate, ADE-protocol, agent-delivery-engineering, silent-failure-intrinsic, entropy-constant, entropy-budget, state-snapshot, entropy-management, alpha-entropy, stability-coefficient, fail-plausible, class-D-failure, gray-failure-escalation, entropy-trials, 40k-trials, 100k-observations, 22-intrinsic-properties, six-lifecycle-layers, arxiv-2606.08162, dexing-liu-entropy, adversarial-vs-entropic, cross-session-coherence, forgetful-operator, token-budgets-catalog, arxiv-2606.04056, error-becomes-narrative, arxiv-2606.14589, wei-wu-2026, five-class-taxonomy, ADE-standard, github-ADE-standard | 10 | 9 | 9 | 10 | 9 | **9.45** | WRITTEN — S-2723 | 2026-08-16 | 2026-08-16 |
+| I-3335 | The Hybrid Fault Taxonomy Stack — When Your Agent Fails in Two Languages at Once | hybrid-fault-taxonomy, fault-taxonomy, 5-dimensions, 13-symptom-classes, 12-root-causes, 37-fault-types, shah-morovati-rahman-khomh, arxiv-2603.06847, JACM, 13602-issues, 385-faults, 40-repos, grounded-theory, association-rule-mining, 145-practitioners, dependency-integration-failure, data-type-handling-failure, cognitive-control, agency-dimension, runtime-environment, memory-state, orchestration-dimension, hybrid-failure-profile, semantic-monitoring, propagation-watchers, type-contract-validators, pre-execution-gate, fault-propagation, cascade, graceful-degradation, circuit-breaker, fallback-chain, bulkhead-isolation, zylos-research, ALAS-framework, supergood-2026, arxiv-2505.12501, Supergood-Solutions-graceful-degradation | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2718 | 2026-08-16 | 2026-08-16 |
 
 adversarial-eval-harness → I-3317
 multi-juror-scoring → I-3317
@@ -7595,6 +7601,60 @@ step-count-regression → I-3332
 augmentation-roi → I-3332
 description-compactness → I-3332
 purpose-limitation-return → I-3332
+intelligence-entropy → I-3334
+entropy-principle → I-3334
+S(t) = S₀ · e → I-3334
+monotonic-disorder → I-3334
+intrinsic-properties → I-3334
+PIG-engine → I-3334
+physical-integrity-gate → I-3334
+ADE-protocol → I-3334
+vulmask → I-3335
+phantom-skill → I-3335
+vulnerability-shaped-payload → I-3335
+trigger-condition → I-3335
+skill-script-obfuscation → I-3335
+static-scan-bypass → I-3335
+environment-var-exfil → I-3335
+arxiv-2606.19191 → I-3335
+codex-cli-runtime → I-3335
+behavioral-scan → I-3335
+script-inspection → I-3335
+csa-cloudai → I-3335
+58-percent-asr → I-3335
+36-percent-community-vuln → I-3335
+runtime-containment → I-3335
+delayed-weaponization → I-3335
+skill-update-review → I-3335
+agent-delivery-engineering → I-3334
+silent-failure-intrinsic → I-3334
+entropy-constant → I-3334
+entropy-budget → I-3334
+state-snapshot → I-3334
+entropy-management → I-3334
+alpha-entropy → I-3334
+stability-coefficient → I-3334
+fail-plausible → I-3334
+class-D-failure → I-3334
+gray-failure-escalation → I-3334
+entropy-trials → I-3334
+40k-trials → I-3334
+100k-observations → I-3334
+22-intrinsic-properties → I-3334
+six-lifecycle-layers → I-3334
+arxiv-2606.08162 → I-3334
+dexing-liu-entropy → I-3334
+adversarial-vs-entropic → I-3334
+cross-session-coherence → I-3334
+forgetful-operator → I-3334
+token-budgets-catalog → I-3334
+arxiv-2606.04056 → I-3334
+error-becomes-narrative → I-3334
+arxiv-2606.14589 → I-3334
+wei-wu-2026 → I-3334
+five-class-taxonomy → I-3334
+ADE-standard → I-3334
+github-ADE-standard → I-3334
 
 ## Recent Decisions
 
