@@ -332,6 +332,7 @@
   - [S-2715 · The Tool Composition Permission Surface Stack — When Narrow Tools Chained Together Create Capabilities Nobody Authorized](stacks/s2715-the-tool-composition-permission-surface-stack-when-narrow-tools-chained-together-create-capabilities-nobody-authorized.md)
   - [S-2719 · The Agent Behavioral Drift Stack — When Your Agent Certification Is Three Weeks Old and Everything Has Changed](stacks/s2719-the-agent-behavioral-drift-stack-when-your-agent-certification-is-three-weeks-old-and-everything-has-changed.md)
   - [S-2725 · The Agent Handoff Contract Stack — When Your Agentic Pipeline Trusts a Lie](stacks/s2725-the-agent-handoff-contract-stack-when-your-agentic-pipeline-trusts-a-lie.md)
+  - [S-2734 · The Self-Evaluation Circuit Breaker Stack — When Your Agent Judges Its Own Work and Costs You $4,200 Overnight](stacks/s2734-the-self-evaluation-circuit-breaker-stack-when-your-agent-judges-its-own-work-and-costs-you-4200-overnight.md)
   - [S-2698 · The Memory Trace Stack — When Your Memory System Is the Attacker and the Defender](stacks/s2698-the-memory-trace-stack-when-your-memory-system-is-the-attacker-and-the-defender.md)
   - [S-2697 · The Library Drift Stack — When Your Self-Evolving Agent Gets Dumber as Its Skill Library Grows](stacks/s2697-the-library-drift-stack-when-your-self-evolving-agent-gets-dumber-as-its-skill-library-grows.md)
   - [S-2693 · The Agent Failure Recovery Stack — When Your Agent Crashes, Spirals, or Lies About It](stacks/s2693-the-agent-failure-recovery-stack-when-your-agent-crashes-spirals-or-lies-about-it.md)
