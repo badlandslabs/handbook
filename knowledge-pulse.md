@@ -7,6 +7,7 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+| I-3346 | The Model File Supply Chain Stack — When Your Inference Server Runs Attacker Code the Moment It Loads a Model | gguf-metadata-ssti, model-file-rce, cve-2026-5760, sglang-ssti, jinja2-template-injection, inference-server-compromise, model-supply-chain, gguf-security, cve-2026-3059, cve-2026-3060, pickle-deserialization-rce, serving-framework-security, inference-layer-attack, model-registry-trust, gguf-metadata-scan, cvss-9.8, gguf-trojan, template-poisoning, model-provenance, hf-signed-commits | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2778 | 2026-08-17 | 2026-08-17 |
 | I-3344 | The MCP Server Hijack Stack — When Your Tool Server Becomes Your Attacker's Pivot Point | mcp-server-hijack, server-side-rce, sse-injection, transport-layer-attack, mcp-cve-313, cve-2026-44717, cve-2026-56274, cve-2026-40576, cve-2026-58500, mcp-supply-chain, credential-relay, server-compromise, looptap, agentic-browser-attack, mcp-security, owasp-llm-top-10, mitre-atlas, path-traversal, ghas-8rgw-6xp9-2fg3, secret-broker, least-privilege-server | 9 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2760 | 2026-08-17 | 2026-08-17 |
 | I-3345 | The Token Bomb Stack — When Adversaries Make Your Agent Destroy Itself from the Inside | token-bomb, resource-exhaustion, adversarial-cost-attack, cost-hijack, unbounded-consumption, owasp-llm-top-10, llm10, cwe-770, cwe-835, cwe-400, infinite-loop, token-flood, rate-limit-strip, agentjacking, sentry-mcp-injection, inkog, zenml-incident, agentic-dos, cost-attribution, termination-guard, context-bloat, hidden-token-flood, infinite-context, agentic-dos, context-flood, adversarial-context, agent-jailbreak, adversarial-loop, token-spam | 9 | 10 | 10 | 10 | 8 | **9.50** | WRITTEN — S-2765 | 2026-08-17 | 2026-08-17 |
 | I-3346 | The Context Rot Stack — When Your Model Knows Less the More You Tell It | context-rot, attention-degradation, context-length-degradation, middle-loss, performance-length-gradient, chroma-benchmark, positional-attention, retrieval-crowding, context-window-rot, transformer-degradation, needle-in-haystack-fail, middle-token-blindness, length-sensitive-degradation, chroma-research-2025, benchmark-context-rot, position-bias, token-diffusion | 8 | 9 | 9 | 8 | 7 | **8.40** | WRITTEN — S-2768 | 2026-08-17 | 2026-08-17 |
@@ -2459,7 +2460,12 @@ memory-ttl → I-3344
 write-path-isolation → I-3344
 
 ## Recent Decisions
+- *2026-08-17* — **I-3346 → S-2778 — The Model File Supply Chain Stack — Composite 9.60**: Selected over: (1) agent observability/Otel — S-997 exists, OTel GenAI conventions are tooling not pattern; (2) multi-agent orchestration failure — S-986, S-1623, S-2777 cover coordination/orchestrator; (3) memory poisoning — F-185 covers cross-session poisoning, S-2752 covers adversarial memory injection; new angle (inference-layer GGUF metadata SSTI via CVE-2026-5760) is distinct and uncovered. Model file supply chain: CSA AI Safety Initiative April 2026, CVE-2026-5760 CVSS 9.8, three critical SGLang CVEs in rapid succession, active in-the-wild exploitation, no patch at disclosure. Coverage gap 10 — handbook has zero entries on model file metadata as an attack surface. Cross-links: S-902 scaffold supply chain, S-1412 MCP Top 10, S-2760 MCP server hijack, S-1902 disaggregated inference (same layer). Rejected: agent observability/Otel GenAI (covered S-997), multi-agent orchestration failure (covered S-986/S-1623/S-2777), memory poisoning (covered F-185/S-2752).
+
 - *2026-08-17* — **I-3345 → S-2765 — The Token Bomb Stack — Composite 8.85**: Chosen over 3 other candidates: (1) context caching mechanics — covered by S-08 (prompt caching), new angle (persistent cache governance) is thin and timeliness is moderate; (2) agent identity / impersonation — covered by S-992, S-972; (3) tool schema drift — related to S-1007 (tool-call hallucination plateau) with low gap. Token bombing selected: Urgency 9 (CSA Agentjacking June 2026, CVSS 9.0, 2,388+ orgs, OWASP LLM10), Coverage Gap 9 (handbook covers infinite loops and budget bombs in S-996 but not the adversarial injection angle that weaponizes them), Specificity 8 (3 canonical variants with code), Timeliness 9 (exploding attack surface with agent proliferation), Density 7 (links to S-996, S-2752, S-2760). Rejected: evaluation tooling (covered S-2753), synthetic data training (covered S-1028), context scope covenant (covered S-1264).
+red S-997), multi-agent orchestration failure (covered S-986/S-1623/S-2777), memory poisoning (covered F-185/S-2752).
+
+ Chosen over 3 other candidates: (1) context caching mechanics — covered by S-08 (prompt caching), new angle (persistent cache governance) is thin and timeliness is moderate; (2) agent identity / impersonation — covered by S-992, S-972; (3) tool schema drift — related to S-1007 (tool-call hallucination plateau) with low gap. Token bombing selected: Urgency 9 (CSA Agentjacking June 2026, CVSS 9.0, 2,388+ orgs, OWASP LLM10), Coverage Gap 9 (handbook covers infinite loops and budget bombs in S-996 but not the adversarial injection angle that weaponizes them), Specificity 8 (3 canonical variants with code), Timeliness 9 (exploding attack surface with agent proliferation), Density 7 (links to S-996, S-2752, S-2760). Rejected: evaluation tooling (covered S-2753), synthetic data training (covered S-1028), context scope covenant (covered S-1264).
 
 
 - *2026-08-13* — **I-3296 → S-2603 — The Agentic Output Validation Stack — Composite 8.50**: Primary angle: 3-stage validation pipeline (parse guard → semantic fence → business rule gate) for agentic output. Key finding: 68% of production incidents originate downstream of the model call (Stanford AI Index 2026), not in the model itself. A 1500% discount incident (Velsof, Jun 2026) is the canonical example: model succeeded, parser coerced "fifteen" to 15, applied 1500% discount to 11,000 sessions. Covers a genuinely uncovered gap: S-04 covers extraction mechanics, S-1023 covers success detection, but neither covers the post-parse semantic validation and business rule enforcement that sits between model output and business logic. VelsOf's 7 patterns and niteagent's MAST taxonomy provide the concrete pattern set. Scored 9/10 Production Urgency (downstream failure is ubiquitous), 9/10 Coverage Gap (not covered by existing entries), 8/10 Specificity (3-stage pipeline with Pydantic + semantic gate + approval gate), 9/10 Timeliness (Stanford AI Index 2026 data, Jun 2026 VelsOf, 2026 niteagent), 7/10 Pattern Density (connects to S-04, S-1023, S-791). Chosen over B (Single-Agent-First: covered by S-2602 multi-agent orchestration entry) and C (Cost Runaway: partially covered by S-791 and S-633).
@@ -3562,7 +3568,8 @@ agent-delegation → I-3092
 
 ## Pattern Log
 
-- *2026-08-17* — **Resource Authorization as the New Attack Surface**: Agents are autonomous resource-allocating proxies. The agent's authority to decide how many tokens to spend, how many tool calls to make, and how long to retry is a privilege that adversaries can hijack. Token bombing (CWE-770, CVSS 9.0), infinite loops (CWE-835), and rate-limit stripping are all OWASP LLM10: Unbounded Consumption. The Agentjacking attack via Sentry MCP (CSA, June 2026) — 85% success rate, 2,388+ orgs affected — is the canonical proof: the agent's own tool becomes the weapon. The counterintuitive insight: the agent behaves exactly as designed throughout the attack. The vulnerability is the authorization boundary, not the model. Fix: treat token budgets like process memory limits — hard ceilings, enforced in the harness, not the prompt. Cross-links: S-996 (harness design), S-2760 (MCP security), S-2752 (adversarial injection via memory)
+- *2026-08-17* — **Model File Metadata Is Untrusted Infrastructure Code**: The model supply chain is hardening (weight signatures, rare-token probes, HF verification), but the metadata layer — GGUF chat templates, tokenizer configs, reranking parameters — is unexamined attack surface. CVE-2026-5760 (CVSS 9.8) proves the point: a GGUF's `chat_template` field carries a Jinja2 payload that executes on the inference server when the template is rendered. No credentials needed, no user interaction required, active exploitation in the wild. Three critical SGLang CVEs in months signals systemic security debt in the serving layer — the infrastructure that everyone assumed was safe because it's not "the agent." The counterintuitive insight: your threat model probably covers adversarial prompts and malicious tools but not malicious model files, even though inference servers have been processing untrusted model files from public registries since day one. The fix: extend your supply chain trust model to cover metadata, not just weights.
+s, not the prompt. Cross-links: S-996 (harness design), S-2760 (MCP security), S-2752 (adversarial injection via memory)
 
 
 
@@ -7892,7 +7899,24 @@ policy-kernel → I-3345
 isolation-pyramid → I-3345
 hot-path-execution → I-3345
 false-success → I-3348
-confident-closing → I-3348
+gguf-metadata-ssti → I-3346
+model-file-rce → I-3346
+cve-2026-5760 → I-3346
+sglang-ssti → I-3346
+jinja2-template-injection → I-3346
+inference-server-compromise → I-3346
+gguf-trojan → I-3346
+template-poisoning → I-3346
+model-registry-trust → I-3346
+gguf-security → I-3346
+serving-framework-security → I-3346
+inference-layer-attack → I-3346
+cve-2026-3059 → I-3346
+cve-2026-3060 → I-3346
+pickle-deserialization-rce → I-3346
+model-provenance → I-3346
+hf-signed-commits → I-3346
+reranker-score → I-3314
 silent-failure → I-3348
 env-state-mismatch → I-3348
 tau2-bench → I-3348
