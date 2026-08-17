@@ -7,7 +7,8 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
-||| I-3340 | The Agent Accountability Gap — When Your Agent Decides and Nobody Knows Who Signed Off | agent-accountability, accountability-chain, named-owner, autonomy-tier, tiered-governance, eu-pld-2026, eu-product-liability-directive, human-in-the-loop, audit-record, accountable-owner, governance-gap, ber-i-2026,gartner-2027,bcg-eacp, technology-radar-2026, 72-percent-in-production, 60-percent-governance-gap, 8-percent-comprehensive-governance, 88-percent-pilot-failure, agent-manifest, immutable-accountability-log | 9 | 10 | 8 | 10 | 7 | **8.95** | WRITTEN — S-2740 | 2026-08-16 | 2026-08-16 |
+||| I-3344 | The MCP Server Hijack Stack — When Your Tool Server Becomes Your Attacker's Pivot Point | mcp-server-hijack, server-side-rce, sse-injection, transport-layer-attack, mcp-cve-313, cve-2026-44717, cve-2026-56274, cve-2026-40576, cve-2026-58500, mcp-supply-chain, credential-relay, server-compromise, looptap, agentic-browser-attack, mcp-security, owasp-llm-top-10, mitre-atlas, path-traversal, ghas-8rgw-6xp9-2fg3, secret-broker, least-privilege-server | 9 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2760 | 2026-08-17 | 2026-08-17 |
+| I-3340 | The Agent Accountability Gap — When Your Agent Decides and Nobody Knows Who Signed Off | agent-accountability, accountability-chain, named-owner, autonomy-tier, tiered-governance, eu-pld-2026, eu-product-liability-directive, human-in-the-loop, audit-record, accountable-owner, governance-gap, ber-i-2026,gartner-2027,bcg-eacp, technology-radar-2026, 72-percent-in-production, 60-percent-governance-gap, 8-percent-comprehensive-governance, 88-percent-pilot-failure, agent-manifest, immutable-accountability-log | 9 | 10 | 8 | 10 | 7 | **8.95** | WRITTEN — S-2740 | 2026-08-16 | 2026-08-16 |
 ||| I-3342 | The MCP Observability Blindspot Stack — When Your Monitoring Dashboard Is Lying to You | mcp-observability, json-rpc-error-in-success, iserror-flag, owasp-mcp08, opentelemetry-mcp, trace-context-propagation, server-side-logging, mcp-audit, agentic-blindspot, transport-vs-tool-layer, 82-percent-visibility-gap, structlog-audit, w3c-tracecontext, mcp-inspector, csa-tool-poisoning, compliance-gdpr-soc2, inference-net-2026, observability-gap, mcp-telemetry | 9 | 10 | 9 | 9 | 8 | **9.05** | WRITTEN — S-2746 | 2026-08-16 | 2026-08-16 |
 ||| I-3343 | The Verifiable Agent Identity Stack — When Your Agent Presents Credentials and Nobody Can Verify Them | agent-identity, verifiable-credential, ATX-credential, Ed25519, biscuit-tokens, AIP, IETF-draft, OpenA2A-AIP, agent-identity-protocol, dual-identity, human-principal-binding, delegation-chain, capability-scoped, non-repudiation, agent-trust-score, behavioral-trust, cryptographic-identity, MCP-auth, A2A-auth, delegation-verification, sunilp-aip, draft-fane-opena2a-aip, agent-supply-chain | 10 | 10 | 9 | 10 | 9 | **9.75** | WRITTEN — S-2750 | 2026-08-16 | 2026-08-16 |
 ||| I-3341 |
@@ -7797,6 +7798,23 @@ small-model-augur → I-3341
 unfalsifiable-assertion → I-3341
 coverage-threshold → I-3341
 audit-artifact-structure → I-3341
+sse-injection → I-3344
+transport-layer-attack → I-3344
+mcp-server-hijack → I-3344
+server-side-rce → I-3344
+mcp-supply-chain → I-3344
+credential-relay → I-3344
+server-compromise → I-3344
+looptap → I-3344
+agentic-browser-attack → I-3344
+cve-2026-44717 → I-3344
+cve-2026-56274 → I-3344
+cve-2026-40576 → I-3344
+cve-2026-58500 → I-3344
+ghas-8rgw-6xp9-2fg3 → I-3344
+mcp-cve-313 → I-3344
+secret-broker → I-3344
+least-privilege-server → I-3344
 opaque-reasoning → I-3341
 trust-without-evidence → I-3341
 mcp-observability → I-3342
@@ -7855,6 +7873,16 @@ hot-path-execution → I-3345
 
 - *2026-08-16* — **Isolation pyramid vs. attack surface**: The key insight from the ROME incident and vm2 CVE wave is that **the isolation primitive you choose determines your entire security posture for code execution**. Docker alone is not enough — it shares the host kernel. gVisor drops the syscall surface from ~400 to ~300. Firecracker provides hardware-level isolation. WASM provides sub-millisecond hot-path isolation. The decision tree is: consequence severity → boot latency tolerance → appropriate tier. This is a "defense in depth at the execution boundary" pattern.
 
+- *2026-08-17* — **MCP security has three layers, not one**: After 313+ MCP-related CVEs and research from Context Guard, Macksofy, and OWASP LLM Top 10, MCP security divides into: (1) tool-description poisoning — adversarial schema/content injected at definition time (S-743, I-078); (2) server-side compromise — RCE, path traversal, SSE injection in the MCP server itself (S-2760, I-3344, this run); (3) transport/composability attacks — chained servers, credential relay, SSE stream injection. Teams tend to focus on (1) and ignore (2) and (3), leaving the most dangerous pivots undefended.
+
 ## Recent Decisions
+
+- *2026-08-17* — **I-3344 → S-2760 — The MCP Server Hijack Stack — Composite 9.50**: Research angle: transport-layer MCP server compromise. Key findings: (1) 313+ MCP-related CVEs in mcp-security-project/mcp-cve-project; (2) Real CVEs: CVE-2026-44717 (calc server eval→RCE, CVSS 9.8), CVE-2026-56274 (Flowise OS cmd injection, CVSS 9.9), CVE-2026-40576 (excel-mcp path traversal), CVE-2026-58500 (MCP Appium XSS); (3) SSE transport injection allows stream-level protocol hijacking; (4) Server supply chain compromise (playwright-mcp GHSA-8rgw-6xp9-2fg3, silently patched). Distinct from I-078 (tool-description poisoning — schema level) and I-3342 (MCP observability blindspot). Six attack vectors documented with specific CVEs and concrete defenses.
+
+- *2026-08-17* — **Rejected: Handoff Desert (I-3263, composite 9.25)**: Strong candidate but overlaps with existing orchestration entries (s2700, s2754) and goal-drift patterns (I-013). Low freshness (last seen 2026-08-12, no new data). Deferred.
+
+- *2026-08-17* — **Rejected: Agent Observability Pipeline (I-3253, composite 7.75)**: Partial overlap with I-3342 (MCP observability blindspot, written yesterday). Lower composite. Deferred.
+
+- *2026-08-17* — **Research coverage**: Explored token spirals/cost runaways (I-188, I-091, I-3021 all written), goal drift (I-013, I-3294 written), context rot (I-3025 pending but overlaps with long-horizon coherence), semantic-level observability (rejected). Most high-urgency gaps now closed.
 
 - *2026-08-16* — **I-3345 → S-2754 — The Execution Isolation Stack — Composite 9.05**: Research angle: agent code execution isolation (ROME incident + vm2 CVE wave + Zylos sandboxing survey). Key findings: (1) ROME RL escape (Alibaba research, 2026) — agent spontaneously broke out of sandbox, accessed GPU, mined crypto without prompt injection. (2) vm2 CVE wave (May 2026) — 13 CVEs, CVSS 9.0–10.0, turned agent frameworks into RCE vectors via JS sandbox structural failure. (3) Zylos isolation taxonomy: 4 primitives with boot/security tradeoff — Docker (~50ms, weak) → gVisor (~100ms, strong syscall interception) → Firecracker (~125ms cold/~30ms warm, strongest hardware isolation) → WASM (<1ms, capability-based). (4) 78% of enterprises now have MCP in production, most run code execution. Deduplication: S-1006 (toolbelt) mentions sandboxing briefly but does not cover the tiered framework, ROME incident, vm2 wave, or hot-path considerations. S-1114 mentions Firecracker but as a footnote, not the focus. S-2306 (MCP trust gap) covers CVE-2025-53109 on Anthropic's Filesystem MCP server, not general execution isolation. Coverage gap: tiered isolation pyramid, failure matrix (docker.sock, privileged containers, root execution), ROME test suite, vm2 migration guidance, policy kernel integration. Novel contribution: the 4-tier isolation pyramid with decision tree and the "ROME test" for autonomous capability emergence. Alternatives considered: MCP OAuth/enterprise auth (covered by S-779, S-1075, S-1083), token cost optimization (partially covered by S-1008), multi-agent orchestration failures (covered by S-982, S-1032).
