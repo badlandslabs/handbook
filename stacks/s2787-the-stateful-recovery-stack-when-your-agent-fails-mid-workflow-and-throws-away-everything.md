@@ -1,0 +1,39 @@
+# S-2787 · The Stateful Recovery Stack — When Your Agent Fails Mid-Workflow and Throws Away Everything
+
+At minute 9 of a 10-minute agent run, a tool call hangs and then fails. Your agent has accumulated state across 8 prior steps: retrieved documents, executed code, written intermediate results, called 3 external APIs. A naive retry re-executes step 3 — it sends a Slack message that was already sent, re-runs a database write that now conflicts, and inches closer to context-window limits. Meanwhile, the agent doesn't know it failed until the LLM calls a tool with hallucinated parameters and compounds the damage. Nothing crashed. The workflow just quietly consumed $40 in tokens and produced nothing. This is the stateful recovery stack.
+
+## Forces
+
+- **Agents accumulate non-idempotent state.** Unlike a stateless HTTP handler, an agent's mid-workflow state — tool results, memory writes, API calls — makes naive retries dangerous. Re-executing step 3 after step 9 has already fired can mean duplicate charges, database conflicts, and divergent non-deterministic outputs.
+- **Failures in agents are invisible until they aren't.** Unlike software exceptions, agent failures often return HTTP 200 with confident nonsense. The tool call "succeeded" technically but the agent reasoned its way into a dead end. Traditional try-catch blocks catch none of this.
+- **Autonomy and safety are in tension.** An agent too constrained never recovers; one too autonomous compounds failures into runaway cost and loop explosions. The recovery mechanism must preserve meaningful forward progress, not just halt safely.
+- **Grounded correction beats self-correction.** LLMs cannot reliably fix reasoning errors from within — the Reflexion (2023) approach of verbal self-critique is fragile in isolation. Corrections anchored to execution results, tool outputs, and structured critics are more robust.
+
+## The Move
+
+Build failure recovery at the **step level, not the agent level**, with three interlocking layers:
+
+**Layer 1 — Retries scoped to the smallest retriable unit.** Identify the exact sub-step that failed and retry only that. Enforce idempotency on any action with side effects (use idempotency keys on API calls, check-if-exists guards on writes). Track which steps have executed successfully and skip them on retry. Add exponential backoff with jitter — retries at the agent level re-send the full conversation history, wasting tokens and context window with each attempt.
+
+**Layer 2 — Per-tool circuit breakers with three states.** Wrap each tool's external dependency in its own circuit breaker (Closed / Open / Half-Open). When failure_count exceeds threshold within a sliding window, Open the breaker and immediately return a structured error telling the LLM to use an alternative tool — don't retry the same broken service. Half-Open allows one test call before deciding whether to resume or keep the tool disabled. Critically: per-tool isolation, not a global breaker — if your Stripe tool breaks, your GitHub tool should keep working.
+
+**Layer 3 — Stateful checkpointing at node boundaries.** On every state transition (before and after each tool call), serialize an immutable snapshot of the agent's full state — conversation history, tool results, memory, intermediate outputs. If the workflow dies at minute 9, resume from the last checkpoint without re-executing completed steps. LangGraph's `MemorySaver` and Microsoft Agent Framework's checkpoint primitives support this. Choose Postgres for durable production persistence, Redis for sub-millisecond resume in latency-sensitive pipelines.
+
+**Bonus layer — Loop detection as a safety net.** Even with retries and circuit breakers, agents can loop: hitting a flaky dependency, retrying with slightly different parameters, retrying again. Implement three explicit caps: (1) max iterations per step, (2) wall-clock timeout per step (30s–5m depending on expected latency), and (3) call-signature deduplication — if the last N tool calls share the same name and parameters, halt and escalate. Log the full trajectory for post-mortem.
+
+**Bonus layer — Fallback chains for graceful degradation.** When the primary path fails, degrade to a simpler one: if vector search returns no results, fall back to keyword search; if Claude is rate-limited, fall back to a smaller local model for triage; if the agent can't complete a step, return a structured partial result with a clear `status: partial` flag rather than failing the whole run.
+
+## Evidence
+
+- **Engineering post (Modelia.ai / Asynq.ai):** A candidate evaluation agent hallucinated tool parameters, got stuck in loops, and cost 3x its budget in production. Root cause: no step-level retry scoping and no idempotency enforcement on writes. Recovery required adding per-step state tracking and circuit breakers around the flaky API dependencies. — [Harshrastogi.tech](https://www.harshrastogi.tech/blog/agentic-ai-error-recovery-observability-patterns), March 2026
+- **HN thread (Ask HN):** "Prompt injection in a customer support agent processed a $47,000 fraudulent refund." Failure taxonomy from 7 production incidents includes: tool parameter hallucination, context limit surprises causing silent misbehavior, cascade failures from single-point-of-recovery design, and loop accumulation until cost alerts fire. — [Hacker News](https://news.ycombinator.com/item?id=47325105), April 2026
+- **GitHub engineering primer:** Per-tool circuit breaker isolation vs. global breakers — a global breaker failing disables all 20 tools when only 5 (Stripe) are broken; per-tool breakers let the other 15 keep working. Covers Open/Half-Closed/Closed state machine, flapping prevention via jitter, and failure window sizing. — [HimClix/agentic-ai-system-design-primer](https://github.com/HimClix/agentic-ai-system-design-primer/blob/main/resources/tooling/reliability/circuit-breakers.md), 2025
+- **LangGraph production pattern:** 3-line rollback checkpoint pattern — a single bad tool call at step 12 should not invalidate a 12-step run. Thread state vs. checkpoint: thread identifies a unique execution instance; checkpoint is an immutable snapshot at each node boundary. Postgres for durability, Redis for speed. — [AI Dev Day India](https://aidevdayindia.org/blogs/ai-agent-observability-agentops-playbook/ai-agent-rollback-checkpoint-pattern-langgraph-production.html), May 2026
+
+## Gotchas
+
+- **Retrying at the agent level is a budget killer.** Full conversation history re-sent on every retry; each attempt inches closer to context window limits. The "full retry" mental model from traditional software breaks down fast.
+- **Circuit breaker thresholds are workload-specific.** A threshold of 3 failures in 10 calls may be too aggressive for flaky development APIs and too lenient for critical financial services. Calibrate against actual error rates in production, not intuition.
+- **Grounded self-correction requires ground to stand on.** Reflexion-style verbal critique loops ("reflect on what went wrong") only work when the agent has execution results to reflect on. If the failure is a silent hallucination with no error signal, the agent will confidently critique its confident nonsense. Pair with structured critics that check outputs against verifiable constraints.
+- **Loop detection without escalation is a fire-and-forget safety net.** Detecting a loop and logging it is necessary but not sufficient — the loop still consumed resources. The detection must trigger a recovery action: rollback to checkpoint, return partial results, or queue for human review.
+- **Checkpoint state grows unbounded without pruning.** A long-running agent taking checkpoints every node boundary accumulates state that can overwhelm storage and slow resume. Set retention policies (keep last N checkpoints, prune by age) and only checkpoint meaningful state changes, not chatty intermediate LLM tokens.
