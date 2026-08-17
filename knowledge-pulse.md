@@ -7,7 +7,9 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
-|| I-3351 | The EU AI Act Compliance Stack — When the Regulatory Clock Hit Zero and Your Agents Weren't Ready | eu-ai-act, regulatory-compliance, article-12, article-14, article-51, high-risk-ai, conformity-assessment, post-market-monitoring, autonomy-tier, regulatory-deadline, annex-iii, ce-marking, eu-database-registration, compliance-stack, august-2026-enforcement, covasant-2026, responsible-ai-labs-2026, compliancestack-2026, article-9, article-10, article-11, article-83 | 10 | 7 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2786 | 2026-08-17 | 2026-08-17 |
+||| I-3353 | The Context Drift Stack — When Your Multi-Agent System Hallucinates but No Model Is Broken | context-drift, multi-agent-hallucination, CDS, cds-threshold, SSVP, shared-state-verification, contamination-effect, full-broadcast-harmful, selective-sync, cascade-radius, handoff-contract, spatial-drift, temporal-drift, task-drift, context-divergence-score, belief-divergence, inter-agent-sync, handoff-gate, arxiv-2606.21666, celabe-2026, orchestration-failure, multi-agent-recovery | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2790 | 2026-08-17 | 2026-08-17 |
+||| I-3352 | The Silent Handoff Stack — When Your A2A Protocol Succeeds But Nothing Happens | a2a-silent-handoff, a2a-state-machine, partial-handshake, HEARTAT-DISCOVERY-desync, silent-delegation-failure, task-drop, protocol-success-state-loss, futureagi-silent-delegation, codeforge-40k-a2a, OpenTelemetry-a2a, taskId-reuse-bug, cross-org-handoff, delivery-contract, staleness-watchdog, context-hash-handoff, landing-ping, a2a-failure-mode, distributed-state, a2a-protocol, agent-collab, task-lifecycle | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2788 | 2026-08-17 | 2026-08-17 |
+||| I-3351 | The EU AI Act Compliance Stack — When the Regulatory Clock Hit Zero and Your Agents Weren't Ready | eu-ai-act, regulatory-compliance, article-12, article-14, article-51, high-risk-ai, conformity-assessment, post-market-monitoring, autonomy-tier, regulatory-deadline, annex-iii, ce-marking, eu-database-registration, compliance-stack, august-2026-enforcement, covasant-2026, responsible-ai-labs-2026, compliancestack-2026, article-9, article-10, article-11, article-83 | 10 | 7 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2786 | 2026-08-17 | 2026-08-17 |
 || I-3352 | The Silent Handoff Stack — When Your A2A Protocol Succeeds But Nothing Happens | a2a-silent-handoff, a2a-state-machine, partial-handshake, HEARTBEAT-DISCOVERY-desync, silent-delegation-failure, task-drop, protocol-success-state-loss, futureagi-silent-delegation, codeforge-40k-a2a, OpenTelemetry-a2a, taskId-reuse-bug, cross-org-handoff, delivery-contract, staleness-watchdog, context-hash-handoff, landing-ping, a2a-failure-mode, distributed-state, a2a-protocol, agent-collab, task-lifecycle | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2788 | 2026-08-17 | 2026-08-17 |
 || I-3350 | The Circular Wait Stack — When Your Agent Chain Deadlocks on Bidirectional Dependencies | circular-wait, bidirectional-dependency, multi-agent-deadlock, agent-handoff-cycle, delegation-depth, handoff-contract, task-state-machine, task-board, cycle-detection, inter-agent-blocking, clarification-cycle, distributed-agent-failure, ms-research-47-failure-modes, unidirectional-handoff, timeout-escalation, tianpan-2026, concret-io, velocity-software | 8 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2782 | 2026-08-17 | 2026-08-17 |
 | I-3346 | The Model File Supply Chain Stack — When Your Inference Server Runs Attacker Code the Moment It Loads a Model | gguf-metadata-ssti, model-file-rce, cve-2026-5760, sglang-ssti, jinja2-template-injection, inference-server-compromise, model-supply-chain, gguf-security, cve-2026-3059, cve-2026-3060, pickle-deserialization-rce, serving-framework-security, inference-layer-attack, model-registry-trust, gguf-metadata-scan, cvss-9.8, gguf-trojan, template-poisoning, model-provenance, hf-signed-commits | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2778 | 2026-08-17 | 2026-08-17 |
@@ -7968,10 +7970,33 @@ inter-agent-blocking → I-3350
 clarification-cycle → I-3350
 distributed-agent-failure → I-3350
 ms-research-47-failure-modes → I-3350
-unidirectional-handoff → I-3350
+context-drift → I-3353
+contamination-effect → I-3353
+full-broadcast-harmful → I-3353
+CDS → I-3353
+SSVP → I-3353
+shared-state-verification → I-3353
+context-divergence-score → I-3353
+selective-sync → I-3353
+handoff-contract → I-3353
+belief-divergence → I-3353
+inter-agent-sync → I-3353
+handoff-gate → I-3353
+cascade-radius → I-3353
+spatial-drift → I-3353
+temporal-drift → I-3353
+task-drift → I-3353
+arxiv-2606.21666 → I-3353
+OrchestraBench → I-3353
+orchestration-failure-mode → I-3353
+unrecoverable-fault → I-3353
+model-driven-routing → I-3353
+
 timeout-escalation → I-3350
 
 ## Pattern Log
+
+- *2026-08-17* — **Multi-agent hallucination = context drift, not model quality**: The breakthrough insight from Rodrigues/Celabe (arXiv:2606.21666) is that the dominant failure mode in multi-agent pipelines — where individually-capable agents produce wrong joint outputs — is not a model deficiency. It's distributed knowledge-state divergence. The counter-intuitive practical implication: synchronization that shares *more* context (full broadcast) is worse than sharing *less* (selective SSVP), because it contaminates the shared context with local errors. This reframes hallucination mitigation as a coordination problem (CDS gates, handoff contracts, cascade-aware timeouts) rather than a model quality problem. Connects to the contamination/cascade pattern family from previous runs.
 
 - *2026-08-17* — **Context rot is position-dependent, not size-dependent**: The key empirical finding from Chroma (July 2025, 18 models) is that model performance degrades as context length grows — but not uniformly. Information in the middle of the context window receives the least attention and is most likely to be lost or misattended. The implication: context window management isn't just about *how much* you put in, but *where* you put it. High-value information should occupy context boundaries (start and end positions), not sit buried in the middle. This connects to S-02 (context as budget) and S-1000 (silent degradation) as the operational consequences of this structural attention property.
 
@@ -7981,9 +8006,11 @@ timeout-escalation → I-3350
 
 ## Recent Decisions
 
+- *2026-08-17* — **Context drift is a distributed systems problem, not a model problem**: arXiv:2606.21666 (Rodrigues, Celabe, June 2026) reframes multi-agent hallucination as context drift — divergence of internal knowledge states between concurrent agents. Key counterintuitive finding: full broadcast synchronization is worse than no sync (34% higher hallucination rate in travel planning domain via contamination effect). SSVP (Shared State Verification Protocol) with CDS threshold achieves modest reduction (−5.9% vs. no-sync, d=0.30) using 58% fewer API calls. Cascade radius grows with pipeline depth (OrchestraBench: 0.9→4.7 across depths 3–7). The practical implication: every handoff boundary needs a CDS gate, and the naive fix (share everything) is actively harmful. This connects to S-2788 (task-state handoffs), S-1023 (failure recovery), and S-1001 (runtime enforcement) as the knowledge-state complement to protocol-level and output-level failures.
+
 - *2026-08-17* — **I-3344 → S-2760 — The MCP Server Hijack Stack — Composite 9.50**: Research angle: transport-layer MCP server compromise. Key findings: (1) 313+ MCP-related CVEs in mcp-security-project/mcp-cve-project; (2) Real CVEs: CVE-2026-44717 (calc server eval→RCE, CVSS 9.8), CVE-2026-56274 (Flowise OS cmd injection, CVSS 9.9), CVE-2026-40576 (excel-mcp path traversal), CVE-2026-58500 (MCP Appium XSS); (3) SSE transport injection allows stream-level protocol hijacking; (4) Server supply chain compromise (playwright-mcp GHSA-8rgw-6xp9-2fg3, silently patched). Distinct from I-078 (tool-description poisoning — schema level) and I-3342 (MCP observability blindspot). Six attack vectors documented with specific CVEs and concrete defenses.
 
-- *2026-08-17* — **I-3348 → S-2775 — The False Success Stack — Composite 9.08**: Research angle: environment state vs. natural language completion mismatch. Source: arXiv:2606.09863 (ICML 2026 FAGEN Workshop), Laksh Advani. Key findings: (1) 45-48% of tau2-bench failures are false successes; (2) 75.8% of AppWorld coding-agent failures are false successes; (3) LLM judges fail at AUROC ≤ 0.65 on tau2-bench, 0.54 on AppWorld; (4) judges follow surface completion proxies — confident language, clean formatting, assertive closing. Distinct from S-928 (Phantom Completion — absorbed tool errors) and S-2774 (Judge Bias — eval system failures). Chosen over MCP security/Token Bomb because those were already written this session; this failure mode is more fundamental (underpins eval reliability across agent stacks).
+- *2026-08-17* — **I-3353 → S-2790 — The Context Drift Stack — Composite 9.40**: Research angle: multi-agent knowledge-state divergence as the root cause of joint hallucination. Primary source: arXiv:2606.21666v1 (Rodrigues, Celabe, June 2026). Key findings: (1) Context Divergence Score (CDS) quantifies spatial/temporal/task drift between agent pairs; (2) Full broadcast synchronization is harmful — 34% higher hallucination rate vs. no-sync in travel planning via contamination effect; (3) SSVP with selective CDS-gated sync achieves HR=0.463 (−5.9% vs. no-sync, d=0.30) using 58% fewer API calls; (4) Cascade radius grows 0.9→4.7 as pipeline deepens from 3→7 stages (OrchestraBench arXiv:2608.05263). Dedup: distinct from I-3352 (A2A silent handoff — task-state protocol failure vs. knowledge-state drift), distinct from I-3350 (circular wait — control flow deadlock vs. belief divergence), distinct from I-3333 (behavioral drift — model-level drift over time vs. inter-agent state divergence). Chosen over OrchestraBench (I-3354, composite 9.25) because context drift is more fundamental — it explains *why* orchestration cascades propagate, not just *that* they do. Core move: CDS-gated selective synchronization with handoff contracts and cascade-aware timeouts. Source: arXiv:2606.09863 (ICML 2026 FAGEN Workshop), Laksh Advani. Key findings: (1) 45-48% of tau2-bench failures are false successes; (2) 75.8% of AppWorld coding-agent failures are false successes; (3) LLM judges fail at AUROC ≤ 0.65 on tau2-bench, 0.54 on AppWorld; (4) judges follow surface completion proxies — confident language, clean formatting, assertive closing. Distinct from S-928 (Phantom Completion — absorbed tool errors) and S-2774 (Judge Bias — eval system failures). Chosen over MCP security/Token Bomb because those were already written this session; this failure mode is more fundamental (underpins eval reliability across agent stacks).
 
 
 - *2026-08-17* — **Rejected: Agent Observability Pipeline (I-3253, composite 7.75)**: Partial overlap with I-3342 (MCP observability blindspot, written yesterday). Lower composite. Deferred.
