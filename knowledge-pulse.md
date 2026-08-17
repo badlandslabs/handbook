@@ -7,6 +7,9 @@
 
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
+|| I-3351 | The EU AI Act Compliance Stack — When the Regulatory Clock Hit Zero and Your Agents Weren't Ready | eu-ai-act, regulatory-compliance, article-12, article-14, article-51, high-risk-ai, conformity-assessment, post-market-monitoring, autonomy-tier, regulatory-deadline, annex-iii, ce-marking, eu-database-registration, compliance-stack, august-2026-enforcement, covasant-2026, responsible-ai-labs-2026, compliancestack-2026, article-9, article-10, article-11, article-83 | 10 | 7 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2786 | 2026-08-17 | 2026-08-17 |
+|| I-3352 | The Silent Handoff Stack — When Your A2A Protocol Succeeds But Nothing Happens | a2a-silent-handoff, a2a-state-machine, partial-handshake, HEARTBEAT-DISCOVERY-desync, silent-delegation-failure, task-drop, protocol-success-state-loss, futureagi-silent-delegation, codeforge-40k-a2a, OpenTelemetry-a2a, taskId-reuse-bug, cross-org-handoff, delivery-contract, staleness-watchdog, context-hash-handoff, landing-ping, a2a-failure-mode, distributed-state, a2a-protocol, agent-collab, task-lifecycle | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2788 | 2026-08-17 | 2026-08-17 |
+|| I-3350 | The Circular Wait Stack — When Your Agent Chain Deadlocks on Bidirectional Dependencies | circular-wait, bidirectional-dependency, multi-agent-deadlock, agent-handoff-cycle, delegation-depth, handoff-contract, task-state-machine, task-board, cycle-detection, inter-agent-blocking, clarification-cycle, distributed-agent-failure, ms-research-47-failure-modes, unidirectional-handoff, timeout-escalation, tianpan-2026, concret-io, velocity-software | 8 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2782 | 2026-08-17 | 2026-08-17 |
 | I-3346 | The Model File Supply Chain Stack — When Your Inference Server Runs Attacker Code the Moment It Loads a Model | gguf-metadata-ssti, model-file-rce, cve-2026-5760, sglang-ssti, jinja2-template-injection, inference-server-compromise, model-supply-chain, gguf-security, cve-2026-3059, cve-2026-3060, pickle-deserialization-rce, serving-framework-security, inference-layer-attack, model-registry-trust, gguf-metadata-scan, cvss-9.8, gguf-trojan, template-poisoning, model-provenance, hf-signed-commits | 10 | 10 | 9 | 10 | 8 | **9.60** | WRITTEN — S-2778 | 2026-08-17 | 2026-08-17 |
 | I-3344 | The MCP Server Hijack Stack — When Your Tool Server Becomes Your Attacker's Pivot Point | mcp-server-hijack, server-side-rce, sse-injection, transport-layer-attack, mcp-cve-313, cve-2026-44717, cve-2026-56274, cve-2026-40576, cve-2026-58500, mcp-supply-chain, credential-relay, server-compromise, looptap, agentic-browser-attack, mcp-security, owasp-llm-top-10, mitre-atlas, path-traversal, ghas-8rgw-6xp9-2fg3, secret-broker, least-privilege-server | 9 | 10 | 9 | 10 | 8 | **9.50** | WRITTEN — S-2760 | 2026-08-17 | 2026-08-17 |
 | I-3345 | The Token Bomb Stack — When Adversaries Make Your Agent Destroy Itself from the Inside | token-bomb, resource-exhaustion, adversarial-cost-attack, cost-hijack, unbounded-consumption, owasp-llm-top-10, llm10, cwe-770, cwe-835, cwe-400, infinite-loop, token-flood, rate-limit-strip, agentjacking, sentry-mcp-injection, inkog, zenml-incident, agentic-dos, cost-attribution, termination-guard, context-bloat, hidden-token-flood, infinite-context, agentic-dos, context-flood, adversarial-context, agent-jailbreak, adversarial-loop, token-spam | 9 | 10 | 10 | 10 | 8 | **9.50** | WRITTEN — S-2765 | 2026-08-17 | 2026-08-17 |
@@ -2458,8 +2461,26 @@ memory-namespace-isolation → I-3344
 memory-integrity-gate → I-3344
 memory-ttl → I-3344
 write-path-isolation → I-3344
+a2a-silent-handoff → I-3352
+a2a-state-machine → I-3352
+partial-handshake → I-3352
+HEARTBEAT-DISCOVERY-desync → I-3352
+silent-delegation-failure → I-3352
+task-drop → I-3352
+protocol-success-state-loss → I-3352
+taskId-reuse-bug → I-3352
+cross-org-handoff → I-3352
+delivery-contract → I-3352
+staleness-watchdog → I-3352
+context-hash-handoff → I-3352
+landing-ping → I-3352
+a2a-failure-mode → I-3352
+distributed-state → I-3352
+a2a-protocol → I-3352
 
 ## Recent Decisions
+- *2026-08-17* — **I-3352 → S-2788 — The Silent Handoff Stack — Composite 8.95**: Selected over: (1) A2A capability mismatch — S-2783 covers advertised-vs-accepted capability gap; (2) multi-agent coordination topology — S-986, S-1623, S-2777, S-288 cover routing/topology; (3) MCP+A2A coexistence — S-1040 covers the protocol taxonomy, S-2783 covers A2A specifics; (4) browser/coding agent sandboxing — S-1960, S-1003 cover execution isolation. New angle (silent A2A state-machine failure: protocol returns 200 but task dropped at handler, HEARTBEAT/DISCOVERY desync, no delivery guarantee across distributed state boundary) is distinct and uncovered. Evidence: FutureAGI reports dominant production failure is "silent delegation failure" on A2A handoffs, TheCodeForge reports $40k loss from A2A partial handshake, n8n blog details stateful task lifecycle failure modes across organizational boundaries. Cross-links: S-2783 (capability mismatch, same A2A failure mode family), S-1040 (protocol taxonomy), S-2780 (transport layer latency). Rejected: A2A v1.0 signed agent cards/AP2 payments (covered S-2750 I-3343), cross-org agent governance (covered S-1000/S-1001).
+
 - *2026-08-17* — **I-3346 → S-2778 — The Model File Supply Chain Stack — Composite 9.60**: Selected over: (1) agent observability/Otel — S-997 exists, OTel GenAI conventions are tooling not pattern; (2) multi-agent orchestration failure — S-986, S-1623, S-2777 cover coordination/orchestrator; (3) memory poisoning — F-185 covers cross-session poisoning, S-2752 covers adversarial memory injection; new angle (inference-layer GGUF metadata SSTI via CVE-2026-5760) is distinct and uncovered. Model file supply chain: CSA AI Safety Initiative April 2026, CVE-2026-5760 CVSS 9.8, three critical SGLang CVEs in rapid succession, active in-the-wild exploitation, no patch at disclosure. Coverage gap 10 — handbook has zero entries on model file metadata as an attack surface. Cross-links: S-902 scaffold supply chain, S-1412 MCP Top 10, S-2760 MCP server hijack, S-1902 disaggregated inference (same layer). Rejected: agent observability/Otel GenAI (covered S-997), multi-agent orchestration failure (covered S-986/S-1623/S-2777), memory poisoning (covered F-185/S-2752).
 
 - *2026-08-17* — **I-3345 → S-2765 — The Token Bomb Stack — Composite 8.85**: Chosen over 3 other candidates: (1) context caching mechanics — covered by S-08 (prompt caching), new angle (persistent cache governance) is thin and timeliness is moderate; (2) agent identity / impersonation — covered by S-992, S-972; (3) tool schema drift — related to S-1007 (tool-call hallucination plateau) with low gap. Token bombing selected: Urgency 9 (CSA Agentjacking June 2026, CVSS 9.0, 2,388+ orgs, OWASP LLM10), Coverage Gap 9 (handbook covers infinite loops and budget bombs in S-996 but not the adversarial injection angle that weaponizes them), Specificity 8 (3 canonical variants with code), Timeliness 9 (exploding attack surface with agent proliferation), Density 7 (links to S-996, S-2752, S-2760). Rejected: evaluation tooling (covered S-2753), synthetic data training (covered S-1028), context scope covenant (covered S-1264).
@@ -3567,6 +3588,8 @@ delegation-constraint → I-3092
 agent-delegation → I-3092
 
 ## Pattern Log
+
+- *2026-08-17* — **A2A Protocol Success ≠ Work Completion**: A2A returns HTTP 200, AgentCard exchange succeeds, task object is created, SSE stream opens — all correct. But the task can be dropped at the handler, lost to a HEARTBEAT/DISCOVERY desync, or silently misprocessed. The A2A task lifecycle is distributed across two servers with no atomic commit, no at-least-once delivery guarantee, and task IDs that get poisoned when reused after cancellation. This is the inverse of S-2783 (capability mismatch) — where the protocol fails gracefully, this pattern fails silently. The critical countermeasure: landing-ping (poll for first handler message), context integrity hash at every handoff boundary, progressive staleness watchdog, and OpenTelemetry trace context propagation across the A2A boundary.
 
 - *2026-08-17* — **Model File Metadata Is Untrusted Infrastructure Code**: The model supply chain is hardening (weight signatures, rare-token probes, HF verification), but the metadata layer — GGUF chat templates, tokenizer configs, reranking parameters — is unexamined attack surface. CVE-2026-5760 (CVSS 9.8) proves the point: a GGUF's `chat_template` field carries a Jinja2 payload that executes on the inference server when the template is rendered. No credentials needed, no user interaction required, active exploitation in the wild. Three critical SGLang CVEs in months signals systemic security debt in the serving layer — the infrastructure that everyone assumed was safe because it's not "the agent." The counterintuitive insight: your threat model probably covers adversarial prompts and malicious tools but not malicious model files, even though inference servers have been processing untrusted model files from public registries since day one. The fix: extend your supply chain trust model to cover metadata, not just weights.
 s, not the prompt. Cross-links: S-996 (harness design), S-2760 (MCP security), S-2752 (adversarial injection via memory)
@@ -7932,6 +7955,21 @@ tool-response-proxy → I-3348
 effect-verification → I-3348
 post-condition-check → I-3348
 completion-lies → I-3348
+circular-wait → I-3350
+bidirectional-dependency → I-3350
+multi-agent-deadlock → I-3350
+agent-handoff-cycle → I-3350
+delegation-depth → I-3350
+handoff-contract → I-3350
+task-state-machine → I-3350
+task-board → I-3350
+cycle-detection → I-3350
+inter-agent-blocking → I-3350
+clarification-cycle → I-3350
+distributed-agent-failure → I-3350
+ms-research-47-failure-modes → I-3350
+unidirectional-handoff → I-3350
+timeout-escalation → I-3350
 
 ## Pattern Log
 

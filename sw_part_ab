@@ -1,0 +1,69 @@
+  2026-08-13 | O:483.00 H:497.99 L:481.00 C:483.01 Vol:18.8M
+  2026-08-14 | O:487.60 H:514.67 L:483.20 C:514.39 Vol:25.5M
+
+Key Levels: Support=$510.40 | Resistance=$561.47
+
+════════════════════════════════════════════════════════════
+CANDIDATE #2: MU (Memory)
+════════════════════════════════════════════════════════════
+Current Price: $971.66
+Key SMAs: 20MA=$890.05 | 50MA=$960.65 | 200MA=$552.44
+RSI(14): 56.3 (NEUTRAL)
+ATR(14): $63.03 (6.49%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +10.7% | 20-Day Return: +14.5%
+Volume Ratio: 0.7x avg
+
+Last 10 Days OHLCV:
+  2026-08-03 | O:786.36 H:836.62 L:770.10 C:829.50 Vol:42.6M
+  2026-08-04 | O:866.82 H:902.43 L:858.50 C:892.67 Vol:37.5M
+  2026-08-05 | O:885.30 H:928.98 L:881.20 C:893.19 Vol:34.7M
+  2026-08-06 | O:843.11 H:913.33 L:827.00 C:881.47 Vol:35.8M
+  2026-08-07 | O:903.60 H:904.80 L:847.02 C:877.57 Vol:34.6M
+  2026-08-10 | O:863.67 H:894.99 L:854.40 C:861.00 Vol:27.8M
+  2026-08-11 | O:871.80 H:879.00 L:844.62 C:868.52 Vol:29.4M
+  2026-08-12 | O:912.94 H:935.80 L:899.54 C:911.29 Vol:36.8M
+  2026-08-13 | O:912.89 H:978.00 L:906.50 C:949.83 Vol:36.7M
+  2026-08-14 | O:979.32 H:984.00 L:956.20 C:971.66 Vol:27.8M
+
+Key Levels: Support=$960.65 | Resistance=$1011.77
+
+════════════════════════════════════════════════════════════
+CANDIDATE #3: PANW (Cybersecurity)
+════════════════════════════════════════════════════════════
+Current Price: $384.27
+Key SMAs: 20MA=$350.95 | 50MA=$326.32 | 200MA=$222.40
+RSI(14): 65.5 (BULLISH)
+ATR(14): $14.53 (3.78%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +5.6% | 20-Day Return: +7.1%
+Volume Ratio: 0.7x avg
+
+Last 10 Days OHLCV:
+  2026-08-03 | O:336.49 H:347.70 L:330.00 C:347.13 Vol:7.3M
+  2026-08-04 | O:351.60 H:367.50 L:349.07 C:366.34 Vol:8.2M
+  2026-08-05 | O:373.87 H:376.98 L:362.22 C:362.66 Vol:5.6M
+  2026-08-06 | O:350.13 H:361.47 L:349.00 C:359.49 Vol:5.7M
+  2026-08-07 | O:365.50 H:370.50 L:359.15 C:363.86 Vol:4.8M
+  2026-08-10 | O:365.38 H:385.17 L:362.95 C:385.04 Vol:5.8M
+  2026-08-11 | O:384.20 H:387.20 L:375.93 C:383.80 Vol:6.0M
+  2026-08-12 | O:380.90 H:389.25 L:376.22 C:387.01 Vol:5.5M
+  2026-08-13 | O:394.12 H:398.88 L:387.35 C:396.00 Vol:4.6M
+  2026-08-14 | O:396.76 H:397.31 L:380.85 C:384.27 Vol:4.3M
+
+Key Levels: Support=$326.32 | Resistance=$398.88
+
+======================================================================
+STAGE 3: COGNITIVE CRITIQUE & REGIME ALIGNMENT
+======================================================================
+
+[BULL CASE]
+Traceback (most recent call last):
+  File "/opt/data/handbook/swing_scan.py", line 294, in <module>
+    if qqq:
+       ^^^
+  File "/tmp/tradeenv/lib/python3.13/site-packages/pandas/core/generic.py", line 1513, in __bool__
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().

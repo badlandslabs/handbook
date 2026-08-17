@@ -1,13 +1,12 @@
 ======================================================================
-SWING TRADE SCAN — 2026-08-17 11:08 UTC
+SWING TRADE SCAN — 2026-08-17 11:10 UTC
 ======================================================================
-[OK] QQQ: 125 rows | Close=$731.07
-[OK] SPY: 125 rows | Close=$776.34
-[OK] IWM: 125 rows | Close=$305.09
-$VIX: possibly delisted; no price data found  (period=6mo)
-[SKIP] VIX: insufficient data (0 rows)
-[OK] TLT: 125 rows | Close=$82.04
-[OK] HYG: 125 rows | Close=$79.71
+[OK] QQQ: 501 rows | Close=$731.07
+[OK] SPY: 501 rows | Close=$776.34
+[OK] IWM: 501 rows | Close=$305.09
+[OK] ^VIX: 501 rows | Close=$14.92
+[OK] TLT: 501 rows | Close=$82.04
+[OK] HYG: 501 rows | Close=$79.71
 
 ======================================================================
 STAGE 1: MACRO MARKET REGIME ANALYSIS
@@ -15,8 +14,8 @@ STAGE 1: MACRO MARKET REGIME ANALYSIS
 
 ──────────────────────────────────────────────────
 QQQ: $731.07
-  20 SMA: $704.13 | 50 SMA: $712.78 | 200 SMA: $nan
-  Price vs 200 SMA: ▼ BEAR (below)
+  20 SMA: $704.13 | 50 SMA: $712.78 | 200 SMA: $649.53
+  Price vs 200 SMA: ▲ BULL (above)
   Price vs 50 SMA:  ▲ BULL
   RSI(14): 59.6 ↔ NEUTRAL
   ATR(14): $11.00 (1.5% of price)
@@ -25,8 +24,8 @@ QQQ: $731.07
 
 ──────────────────────────────────────────────────
 SPY: $776.34
-  20 SMA: $756.20 | 50 SMA: $748.54 | 200 SMA: $nan
-  Price vs 200 SMA: ▼ BEAR (below)
+  20 SMA: $756.20 | 50 SMA: $748.54 | 200 SMA: $702.75
+  Price vs 200 SMA: ▲ BULL (above)
   Price vs 50 SMA:  ▲ BULL
   RSI(14): 65.8 ↔ NEUTRAL
   ATR(14): $7.09 (0.9% of price)
@@ -35,13 +34,16 @@ SPY: $776.34
 
 ──────────────────────────────────────────────────
 IWM: $305.09
-  20 SMA: $296.72 | 50 SMA: $295.01 | 200 SMA: $nan
-  Price vs 200 SMA: ▼ BEAR (below)
+  20 SMA: $296.72 | 50 SMA: $295.01 | 200 SMA: $267.71
+  Price vs 200 SMA: ▲ BULL (above)
   Price vs 50 SMA:  ▲ BULL
   RSI(14): 63.4 ↔ NEUTRAL
   ATR(14): $3.43 (1.1% of price)
   Volume: 0.7x 20-day avg ▼ LOW
   5-Day Change: +1.7%
+
+──────────────────────────────────────────────────
+VIX: 14.9 | 20-SMA: 16.4 | Regime: NEUTRAL
 
 ======================================================================
 STAGE 1 (continued): SECTOR ROTATION & STOCK SCAN
@@ -51,26 +53,26 @@ Loaded 45 stocks from the scan pool
 Top Swing Candidates (scored by structural quality):
 Ticker      Price    RSI   ATR%     5D%    20D%  Score   200SMA
 -----------------------------------------------------------------
-AMD      $ 514.39  53.6   5.1%   +6.4%   +3.8%     4 ▼BEAR
-NFLX     $  78.16  62.0   2.6%   +5.4%  +13.4%     4 ▼BEAR
-MU       $ 971.66  56.2   6.5%  +10.7%  +14.5%     4 ▼BEAR
-PANW     $ 384.27  65.3   3.8%   +5.6%   +7.1%     4 ▼BEAR
-ASML     $1844.08  59.7   2.9%   +5.9%   +5.7%     4 ▼BEAR
-NET      $ 315.78  64.1   5.7%   +5.2%  +13.7%     4 ▼BEAR
-MRNA     $  63.32  56.7   5.7%   +7.0%   +2.4%     4 ▼BEAR
-NVDA     $ 225.16  63.0   2.6%   +0.5%  +11.0%     3 ▼BEAR
-AMZN     $ 262.65  53.5   2.6%   -4.3%   +6.2%     3 ▼BEAR
-AVGO     $ 392.99  46.4   3.9%   -8.1%   +6.0%     3 ▼BEAR
-CRWD     $ 216.95  61.2   4.0%   +1.2%   +6.8%     3 ▼BEAR
-ZS       $ 183.60  70.8   4.2%   +8.8%  +22.4%     3 ▼BEAR
-NOW      $ 124.00  61.8   4.7%   -0.7%  +20.1%     3 ▼BEAR
-TEAM     $ 162.22  79.0   4.3%   +8.8%  +73.9%     3 ▼BEAR
-DDOG     $ 255.46  50.6   6.1%   +9.2%   -1.2%     3 ▼BEAR
-SMCI     $  39.84  70.8   5.4%  +28.0%  +64.8%     3 ▼BEAR
-VRTX     $ 505.75  56.5   2.7%   +2.0%   +4.1%     3 ▼BEAR
-BIIB     $ 209.83  55.4   3.1%   +0.9%   +1.9%     3 ▼BEAR
-PLTR     $ 174.04  68.3   4.4%   +1.2%  +31.5%     3 ▼BEAR
-SOFI     $  18.29  55.5   4.0%   -0.5%   +5.8%     3 ▼BEAR
+AMD      $ 514.39  53.7   5.1%   +6.4%   +3.8%     7 ▲BULL
+MU       $ 971.66  56.3   6.5%  +10.7%  +14.5%     7 ▲BULL
+PANW     $ 384.27  65.5   3.8%   +5.6%   +7.1%     7 ▲BULL
+ASML     $1844.08  59.6   2.9%   +5.9%   +5.7%     7 ▲BULL
+NET      $ 315.78  63.9   5.7%   +5.2%  +13.7%     7 ▲BULL
+MRNA     $  63.32  56.6   5.7%   +7.0%   +2.4%     7 ▲BULL
+NVDA     $ 225.16  63.0   2.6%   +0.5%  +11.0%     6 ▲BULL
+AMZN     $ 262.65  53.5   2.6%   -4.3%   +6.2%     6 ▲BULL
+AVGO     $ 392.99  46.5   3.9%   -8.1%   +6.0%     6 ▲BULL
+CRWD     $ 216.95  61.3   4.0%   +1.2%   +6.8%     6 ▲BULL
+ZS       $ 183.60  70.8   4.2%   +8.8%  +22.4%     6 ▲BULL
+NOW      $ 124.00  61.7   4.7%   -0.7%  +20.1%     6 ▲BULL
+TEAM     $ 162.22  78.8   4.3%   +8.8%  +73.9%     6 ▲BULL
+DDOG     $ 255.46  50.8   6.1%   +9.2%   -1.2%     6 ▲BULL
+SMCI     $  39.84  70.7   5.4%  +28.0%  +64.8%     6 ▲BULL
+VRTX     $ 505.75  56.5   2.7%   +2.0%   +4.1%     6 ▲BULL
+BIIB     $ 209.83  55.3   3.1%   +0.9%   +1.9%     6 ▲BULL
+PLTR     $ 174.04  68.1   4.4%   +1.2%  +31.5%     6 ▲BULL
+PINS     $  24.06  55.2   4.1%   +3.1%   +4.2%     6 ▲BULL
+DOCU     $  62.04  64.9   4.6%   +3.0%  +17.6%     6 ▲BULL
 
 ======================================================================
 STAGE 2: DEEP-DIVE — TOP 3 SWING TRADE SETUPS
@@ -80,10 +82,10 @@ STAGE 2: DEEP-DIVE — TOP 3 SWING TRADE SETUPS
 CANDIDATE #1: AMD (Semiconductors)
 ════════════════════════════════════════════════════════════
 Current Price: $514.39
-Key SMAs: 20MA=$494.24 | 50MA=$510.40 | 200MA=$nan
-RSI(14): 53.6 (NEUTRAL)
+Key SMAs: 20MA=$494.24 | 50MA=$510.40 | 200MA=$324.33
+RSI(14): 53.7 (NEUTRAL)
 ATR(14): $26.26 (5.11%)
-Trend Structure: RANGE
+Trend Structure: HH/HL (BULL)
 5-Day Return: +6.4% | 20-Day Return: +3.8%
 Volume Ratio: 0.9x avg
 
@@ -102,38 +104,13 @@ Last 10 Days OHLCV:
 Key Levels: Support=$510.40 | Resistance=$561.47
 
 ════════════════════════════════════════════════════════════
-CANDIDATE #2: NFLX (Streaming)
-════════════════════════════════════════════════════════════
-Current Price: $78.16
-Key SMAs: 20MA=$72.78 | 50MA=$74.84 | 200MA=$nan
-RSI(14): 62.0 (BULLISH)
-ATR(14): $2.00 (2.56%)
-Trend Structure: RANGE
-5-Day Return: +5.4% | 20-Day Return: +13.4%
-Volume Ratio: 0.7x avg
-
-Last 10 Days OHLCV:
-  2026-08-03 | O:72.77 H:73.95 L:72.18 C:73.33 Vol:33.9M
-  2026-08-04 | O:72.51 H:73.75 L:72.30 C:73.57 Vol:42.9M
-  2026-08-05 | O:75.11 H:75.30 L:73.16 C:74.20 Vol:29.0M
-  2026-08-06 | O:75.14 H:75.21 L:73.10 C:73.69 Vol:28.9M
-  2026-08-07 | O:73.12 H:74.50 L:73.08 C:74.14 Vol:24.8M
-  2026-08-10 | O:73.80 H:76.32 L:73.57 C:76.29 Vol:27.0M
-  2026-08-11 | O:76.20 H:76.90 L:74.48 C:74.79 Vol:27.8M
-  2026-08-12 | O:74.35 H:74.67 L:73.57 C:74.21 Vol:20.8M
-  2026-08-13 | O:76.01 H:78.40 L:75.44 C:78.24 Vol:41.5M
-  2026-08-14 | O:78.48 H:78.73 L:77.76 C:78.16 Vol:26.7M
-
-Key Levels: Support=$74.84 | Resistance=$78.73
-
-════════════════════════════════════════════════════════════
-CANDIDATE #3: MU (Memory)
+CANDIDATE #2: MU (Memory)
 ════════════════════════════════════════════════════════════
 Current Price: $971.66
-Key SMAs: 20MA=$890.05 | 50MA=$960.65 | 200MA=$nan
-RSI(14): 56.2 (NEUTRAL)
+Key SMAs: 20MA=$890.05 | 50MA=$960.65 | 200MA=$552.44
+RSI(14): 56.3 (NEUTRAL)
 ATR(14): $63.03 (6.49%)
-Trend Structure: RANGE
+Trend Structure: HH/HL (BULL)
 5-Day Return: +10.7% | 20-Day Return: +14.5%
 Volume Ratio: 0.7x avg
 
@@ -150,6 +127,31 @@ Last 10 Days OHLCV:
   2026-08-14 | O:979.32 H:984.00 L:956.20 C:971.66 Vol:27.8M
 
 Key Levels: Support=$960.65 | Resistance=$1011.77
+
+════════════════════════════════════════════════════════════
+CANDIDATE #3: PANW (Cybersecurity)
+════════════════════════════════════════════════════════════
+Current Price: $384.27
+Key SMAs: 20MA=$350.95 | 50MA=$326.32 | 200MA=$222.40
+RSI(14): 65.5 (BULLISH)
+ATR(14): $14.53 (3.78%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +5.6% | 20-Day Return: +7.1%
+Volume Ratio: 0.7x avg
+
+Last 10 Days OHLCV:
+  2026-08-03 | O:336.49 H:347.70 L:330.00 C:347.13 Vol:7.3M
+  2026-08-04 | O:351.60 H:367.50 L:349.07 C:366.34 Vol:8.2M
+  2026-08-05 | O:373.87 H:376.98 L:362.22 C:362.66 Vol:5.6M
+  2026-08-06 | O:350.13 H:361.47 L:349.00 C:359.49 Vol:5.7M
+  2026-08-07 | O:365.50 H:370.50 L:359.15 C:363.86 Vol:4.8M
+  2026-08-10 | O:365.38 H:385.17 L:362.95 C:385.04 Vol:5.8M
+  2026-08-11 | O:384.20 H:387.20 L:375.93 C:383.80 Vol:6.0M
+  2026-08-12 | O:380.90 H:389.25 L:376.22 C:387.01 Vol:5.5M
+  2026-08-13 | O:394.12 H:398.88 L:387.35 C:396.00 Vol:4.6M
+  2026-08-14 | O:396.76 H:397.31 L:380.85 C:384.27 Vol:4.3M
+
+Key Levels: Support=$326.32 | Resistance=$398.88
 
 ======================================================================
 STAGE 3: COGNITIVE CRITIQUE & REGIME ALIGNMENT

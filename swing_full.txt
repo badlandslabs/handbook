@@ -1,0 +1,241 @@
+======================================================================
+SWING TRADE SCAN — 2026-08-17 11:15 UTC
+======================================================================
+[OK] QQQ: 501 rows | Close=$731.07
+[OK] SPY: 501 rows | Close=$776.34
+[OK] IWM: 501 rows | Close=$305.09
+[OK] ^VIX: 501 rows | Close=$14.92
+[OK] TLT: 501 rows | Close=$82.04
+[OK] HYG: 501 rows | Close=$79.71
+
+======================================================================
+STAGE 1: MACRO MARKET REGIME ANALYSIS
+======================================================================
+
+──────────────────────────────────────────────────
+QQQ: $731.07
+  20 SMA: $704.13 | 50 SMA: $712.78 | 200 SMA: $649.53
+  Price vs 200 SMA: ▲ BULL (above)
+  Price vs 50 SMA:  ▲ BULL
+  RSI(14): 59.6 ↔ NEUTRAL
+  ATR(14): $11.00 (1.5% of price)
+  Volume: 0.6x 20-day avg ▼ LOW
+  5-Day Change: +1.4%
+
+──────────────────────────────────────────────────
+SPY: $776.34
+  20 SMA: $756.20 | 50 SMA: $748.54 | 200 SMA: $702.75
+  Price vs 200 SMA: ▲ BULL (above)
+  Price vs 50 SMA:  ▲ BULL
+  RSI(14): 65.8 ↔ NEUTRAL
+  ATR(14): $7.09 (0.9% of price)
+  Volume: 0.7x 20-day avg ▼ LOW
+  5-Day Change: +0.4%
+
+──────────────────────────────────────────────────
+IWM: $305.09
+  20 SMA: $296.72 | 50 SMA: $295.01 | 200 SMA: $267.71
+  Price vs 200 SMA: ▲ BULL (above)
+  Price vs 50 SMA:  ▲ BULL
+  RSI(14): 63.4 ↔ NEUTRAL
+  ATR(14): $3.43 (1.1% of price)
+  Volume: 0.7x 20-day avg ▼ LOW
+  5-Day Change: +1.7%
+
+──────────────────────────────────────────────────
+VIX: 14.9 | 20-SMA: 16.4 | Regime: NEUTRAL
+
+======================================================================
+STAGE 1 (continued): SECTOR ROTATION & STOCK SCAN
+======================================================================
+Loaded 42 stocks from the scan pool
+
+Top Swing Candidates (scored by structural quality):
+Ticker       Price    RSI   ATR%     5D%    20D%  Score Trend
+--------------------------------------------------------------
+AMD      $ 514.39  53.7   5.1%   +6.4%   +3.8%     7 ▲BULL
+MU       $ 971.66  56.3   6.5%  +10.7%  +14.5%     7 ▲BULL
+PANW     $ 384.27  65.5   3.8%   +5.6%   +7.1%     7 ▲BULL
+ASML     $1844.08  59.6   2.9%   +5.9%   +5.7%     7 ▲BULL
+NET      $ 315.78  63.9   5.7%   +5.2%  +13.7%     7 ▲BULL
+NVDA     $ 225.16  63.0   2.6%   +0.5%  +11.0%     6 ▲BULL
+AMZN     $ 262.65  53.5   2.6%   -4.3%   +6.2%     6 ▲BULL
+AVGO     $ 392.99  46.5   3.9%   -8.1%   +6.0%     6 ▲BULL
+CRWD     $ 216.95  61.3   4.0%   +1.2%   +6.8%     6 ▲BULL
+ZS       $ 183.60  70.8   4.2%   +8.8%  +22.4%     6 ▲BULL
+NOW      $ 124.00  61.7   4.7%   -0.7%  +20.1%     6 ▲BULL
+TEAM     $ 162.22  78.8   4.3%   +8.8%  +73.9%     6 ▲BULL
+DDOG     $ 255.46  50.8   6.1%   +9.2%   -1.2%     6 ▲BULL
+SMCI     $  39.84  70.7   5.4%  +28.0%  +64.8%     6 ▲BULL
+VRTX     $ 505.75  56.5   2.7%   +2.0%   +4.1%     6 ▲BULL
+PLTR     $ 174.04  68.1   4.4%   +1.2%  +31.5%     6 ▲BULL
+DOCU     $  62.04  64.9   4.6%   +3.0%  +17.6%     6 ▲BULL
+ZM       $ 105.96  63.9   3.5%   +4.6%  +14.0%     6 ▲BULL
+MSFT     $ 495.40  70.9   2.5%   -0.9%  +25.8%     5 ▲BULL
+LRCX     $ 332.36  54.6   5.2%   +6.7%   +6.1%     5 ▲BULL
+
+======================================================================
+STAGE 2: DEEP-DIVE — TOP 3 SWING TRADE SETUPS
+======================================================================
+
+════════════════════════════════════════════════════════════
+CANDIDATE #1: AMD (Semiconductors)
+════════════════════════════════════════════════════════════
+Current Price: $514.39
+Key SMAs: 20MA=$494.24 | 50MA=$510.40 | 200MA=$324.33
+RSI(14): 53.7 (NEUTRAL)
+ATR(14): $26.26 (5.11%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +6.4% | 20-Day Return: +3.8%
+Volume Ratio: 0.9x avg
+
+Last 5 Days OHLCV:
+  2026-08-10 | O:477.09 H:483.36 L:469.29 C:469.56 (-2.9%) Vol:19.7M
+  2026-08-11 | O:474.75 H:475.99 L:463.21 C:474.32 (+1.0%) Vol:18.1M
+  2026-08-12 | O:488.32 H:491.69 L:480.88 C:482.93 (+1.8%) Vol:18.6M
+  2026-08-13 | O:483.00 H:497.99 L:481.00 C:483.01 (+0.0%) Vol:18.8M
+  2026-08-14 | O:487.60 H:514.67 L:483.20 C:514.39 (+6.5%) Vol:25.5M
+
+Key Levels: Support=$510.40 (-0.8%) | Resistance=$540.11 (+5.0%)
+
+════════════════════════════════════════════════════════════
+CANDIDATE #2: MU (Memory)
+════════════════════════════════════════════════════════════
+Current Price: $971.66
+Key SMAs: 20MA=$890.05 | 50MA=$960.65 | 200MA=$552.44
+RSI(14): 56.3 (BULLISH)
+ATR(14): $63.03 (6.49%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +10.7% | 20-Day Return: +14.5%
+Volume Ratio: 0.7x avg
+
+Last 5 Days OHLCV:
+  2026-08-10 | O:863.67 H:894.99 L:854.40 C:861.00 (-1.9%) Vol:27.8M
+  2026-08-11 | O:871.80 H:879.00 L:844.62 C:868.52 (+0.9%) Vol:29.4M
+  2026-08-12 | O:912.94 H:935.80 L:899.54 C:911.29 (+4.9%) Vol:36.8M
+  2026-08-13 | O:912.89 H:978.00 L:906.50 C:949.83 (+4.2%) Vol:36.7M
+  2026-08-14 | O:979.32 H:984.00 L:956.20 C:971.66 (+2.3%) Vol:27.8M
+
+Key Levels: Support=$960.65 (-1.1%) | Resistance=$1011.77 (+4.1%)
+
+════════════════════════════════════════════════════════════
+CANDIDATE #3: PANW (Cybersecurity)
+════════════════════════════════════════════════════════════
+Current Price: $384.27
+Key SMAs: 20MA=$350.95 | 50MA=$326.32 | 200MA=$222.40
+RSI(14): 65.5 (BULLISH)
+ATR(14): $14.53 (3.78%)
+Trend Structure: HH/HL (BULL)
+5-Day Return: +5.6% | 20-Day Return: +7.1%
+Volume Ratio: 0.7x avg
+
+Last 5 Days OHLCV:
+  2026-08-10 | O:365.38 H:385.17 L:362.95 C:385.04 (+5.8%) Vol:5.8M
+  2026-08-11 | O:384.20 H:387.20 L:375.93 C:383.80 (-0.3%) Vol:6.0M
+  2026-08-12 | O:380.90 H:389.25 L:376.22 C:387.01 (+0.8%) Vol:5.5M
+  2026-08-13 | O:394.12 H:398.88 L:387.35 C:396.00 (+2.3%) Vol:4.6M
+  2026-08-14 | O:396.76 H:397.31 L:380.85 C:384.27 (-3.0%) Vol:4.3M
+
+Key Levels: Support=$326.32 (-15.1%) | Resistance=$398.88 (+3.8%)
+
+======================================================================
+STAGE 3: COGNITIVE CRITIQUE & REGIME ALIGNMENT
+======================================================================
+
+[BULL CASE]
+  QQQ above 200 SMA: True → Structural trend is BULL
+  QQQ RSI: 59.6 → Not overextended — room for upside
+  Regime: TREND CONFIRMED (all three SMAs rising, price above all)
+
+[BEAR CASE / INVERSION THESIS]
+  If QQQ closes below 50 SMA ($712.78): Full macro de-risk warranted
+  VIX at 14.9 — historically LOW = complacency risk; sudden spike could crush longs
+  August is a seasonally weak month for equities (historical pattern)
+  Broad market RSI at 59.6 = moderate; a meaningful pullback to 690-700 zone would be healthy
+
+[INVALIDATION TRIGGERS]
+  QQQ closes below 50 SMA ($712.78): Trade hypothesis invalidated — exit all longs
+  QQQ breaks below $700: Major support failure; reduce exposure immediately
+
+[LONG BIAS RATIONALE]
+  All three major indices (QQQ, SPY, IWM) trading above 200 SMA = structural bull
+  VIX near lows (14.9) confirms low systemic fear — environment favors long positions
+  TLT at $82.04 — rising yields a headwind for long-duration assets but bull trend intact
+  Long bias with strict stop discipline is appropriate for current regime
+
+======================================================================
+STAGE 4: TACTICAL ORDER BLUEPRINTS — TOP 3 SWING SETUPS
+======================================================================
+
+────────────────────────────────────────────────────────────
+ADVISORY #1: AMD | Sector: Semiconductors
+────────────────────────────────────────────────────────────
+DIRECTION: LONG
+SETUP RATIONALE: AMD at $514.39 is above its 50 SMA ($510.40), 
+  with RSI at 53.7 — bullish momentum intact, pullback entry. 
+  Semiconductors sector shows relative strength within QQQ ecosystem.
+
+  ▶ ENTRY TYPE: Buy Limit @ $507.82 (tight pullback within daily ATR)
+  ▶ STOP LOSS: $500.19 (risk $14.20/share = 2.8%)
+  ▶ T1 (50% profit): $542.79 → +5.5% gain | 2:1 R:R
+  ▶ T2 (close remaining): $556.98 → +8.3% gain | 3:1 R:R
+  ▶ TRAILING STOP (after T1 hit): $529.65
+  ▶ POSITION SIZE: Risk 1-2% of portfolio | $1420 max loss per 100 shares
+  ▶ ATR-Based Volatility: 5.1% daily — HIGH exec risk
+  ▶ INVALIDATION: Close below $510.40 (50 SMA) = immediate full exit
+  ▶ HOLDING WINDOW: 5–15 trading days (swing)
+  ▶ CATALYST CHECK: Verify upcoming earnings / news before entry
+
+────────────────────────────────────────────────────────────
+ADVISORY #2: MU | Sector: Memory
+────────────────────────────────────────────────────────────
+DIRECTION: LONG
+SETUP RATIONALE: MU at $971.66 is above its 50 SMA ($960.65), 
+  with RSI at 56.3 — bullish momentum intact, pullback entry. 
+  Memory sector shows relative strength within QQQ ecosystem.
+
+  ▶ ENTRY TYPE: Buy Limit @ $955.90 (tight pullback within daily ATR)
+  ▶ STOP LOSS: $941.44 (risk $30.22/share = 3.1%)
+  ▶ T1 (50% profit): $1032.10 → +6.2% gain | 2:1 R:R
+  ▶ T2 (close remaining): $1062.32 → +9.3% gain | 3:1 R:R
+  ▶ TRAILING STOP (after T1 hit): $1000.58
+  ▶ POSITION SIZE: Risk 1-2% of portfolio | $3022 max loss per 100 shares
+  ▶ ATR-Based Volatility: 6.5% daily — HIGH exec risk
+  ▶ INVALIDATION: Close below $960.65 (50 SMA) = immediate full exit
+  ▶ HOLDING WINDOW: 5–15 trading days (swing)
+  ▶ CATALYST CHECK: Verify upcoming earnings / news before entry
+
+────────────────────────────────────────────────────────────
+ADVISORY #3: PANW | Sector: Cybersecurity
+────────────────────────────────────────────────────────────
+DIRECTION: LONG
+SETUP RATIONALE: PANW at $384.27 is above its 50 SMA ($326.32), 
+  with RSI at 65.5 — moderately extended, wait for pullback. 
+  Cybersecurity sector shows relative strength within QQQ ecosystem.
+
+  ▶ ENTRY TYPE: Buy Limit @ $380.64 (tight pullback within daily ATR)
+  ▶ STOP LOSS: $362.47 (risk $21.80/share = 5.7%)
+  ▶ T1 (50% profit): $427.87 → +11.3% gain | 2:1 R:R
+  ▶ T2 (close remaining): $449.67 → +17.0% gain | 3:1 R:R
+  ▶ TRAILING STOP (after T1 hit): $420.61
+  ▶ POSITION SIZE: Risk 1-2% of portfolio | $2180 max loss per 100 shares
+  ▶ ATR-Based Volatility: 3.8% daily — MODERATE exec risk
+  ▶ INVALIDATION: Close below $326.32 (50 SMA) = immediate full exit
+  ▶ HOLDING WINDOW: 5–15 trading days (swing)
+  ▶ CATALYST CHECK: Verify upcoming earnings / news before entry
+
+======================================================================
+PORTFOLIO WATCH: REGIME EXPOSURE & RISK CHECK
+======================================================================
+
+MACRO REGIME: STRUCTURAL BULL ✓
+  QQQ: ▲ BULL ($731.07 vs 200 SMA $649.53)
+  SPY: ▲ BULL ($776.34 vs 200 SMA $702.75)
+  IWM: ▲ BULL ($305.09 vs 200 SMA $267.71)
+  Recommended net equity exposure: 75-100%
+  Preferred longs: Mega-cap tech (MSFT, GOOGL, META, AAPL), Semiconductor leaders (NVDA, AMD, ASML)
+  Hedging: Consider QQQ puts or TLT long if VIX breaks above 20
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================

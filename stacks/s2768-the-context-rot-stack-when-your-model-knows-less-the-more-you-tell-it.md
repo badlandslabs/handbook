@@ -1,4 +1,4 @@
-# S-2767 · The Context Rot Stack: When Your Model Knows Less the More You Tell It
+# S-2768 · The Context Rot Stack: When Your Model Knows Less the More You Tell It
 
 *You loaded 64,000 tokens of context into your RAG pipeline. Your agent retrieved 20 relevant chunks. The context window is full, the retrieval returned results, and the model confidently gave you the wrong answer. Not because it doesn't know. Because it forgot what it knew.*
 
