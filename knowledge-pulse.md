@@ -8,6 +8,10 @@
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 ||| I-3353 | The Context Drift Stack — When Your Multi-Agent System Hallucinates but No Model Is Broken | context-drift, multi-agent-hallucination, CDS, cds-threshold, SSVP, shared-state-verification, contamination-effect, full-broadcast-harmful, selective-sync, cascade-radius, handoff-contract, spatial-drift, temporal-drift, task-drift, context-divergence-score, belief-divergence, inter-agent-sync, handoff-gate, arxiv-2606.21666, celabe-2026, orchestration-failure, multi-agent-recovery | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2790 | 2026-08-17 | 2026-08-17 |
+| I-3355 | The MCP Transport Lifecycle Stack — When Your Agent Stops Working and Nobody Told It the Server Was Gone | mcp-transport, stdio-lifecycle, sse-deprecated, streamable-http, oauth-token-expiry, zombie-process, transport-mismatch, mcp-observatory, driftguard, mcp-connection, mcp-lifecycle, stdio-no-reconnect, sse-legacy, transport-canary, mcp-token-watchdog | 9 | 10 | 8 | 9 | 9 | **9.00** | WRITTEN — S-2794 | 2026-08-17 | 2026-08-17 |
+| I-3357 | The Inference Compounding Stack — When Your Agentic Workflow Costs 10× More Than Your Chatbot | inference-compounding, token-volume, call-count-cost, semantic-tool-cache, targeted-prefix-cache, model-tier-routing, step-budget, inference-finops, agentic-cost, anthropic-prompt-cache, arxiv-dont-break-cache, 60-80-percent-reduction, agent-cost-optimization, tool-result-cache, cost-multiplicative | 10 | 8 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2799 | 2026-08-17 | 2026-08-17 |
+| I-3356 | The Forge Guardrail Stack — When Your Local Model Can't Compete but You Don't Want to Pay for Frontier | forge, guardrail-stack, self-hosted-llm, agentic-reliability, rescue-parsing, retry-nudge, step-enforcement, error-recovery, context-compaction, vram-budget, acm-cais-2026, compounding-math, tool-agnostic, reliability-layer, composable-middleware, forge-guardrails, proxy-mode, workflowrunner, Zambelli-2026, 53-to-84-percent, arxiv-3786335 | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2796 | 2026-08-17 | 2026-08-17 |
+| I-3354 | The Cascading Failure Blast Radius Stack — When One Agent's Bad Output Becomes Everyone's Fact | cascading-failure, blast-radius, ASI08, OWASP-agentic, multi-agent-cascade, access-scope, operating-velocity, detection-window, blast-radius-formula, planning-execution-separation, replay-gate, circuit-breaker, belief-entropy, cascade-compounding, agent-handoff-contract, inter-agent-trust, least-agency, cascade-observability, microsoft-hve-core, beyondscale-2026, OWASP-ASI08-2025 | 9 | 9 | 10 | 10 | 9 | **9.40** | WRITTEN — S-2792 | 2026-08-17 | 2026-08-17 |
 ||| I-3352 | The Silent Handoff Stack — When Your A2A Protocol Succeeds But Nothing Happens | a2a-silent-handoff, a2a-state-machine, partial-handshake, HEARTAT-DISCOVERY-desync, silent-delegation-failure, task-drop, protocol-success-state-loss, futureagi-silent-delegation, codeforge-40k-a2a, OpenTelemetry-a2a, taskId-reuse-bug, cross-org-handoff, delivery-contract, staleness-watchdog, context-hash-handoff, landing-ping, a2a-failure-mode, distributed-state, a2a-protocol, agent-collab, task-lifecycle | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2788 | 2026-08-17 | 2026-08-17 |
 ||| I-3351 | The EU AI Act Compliance Stack — When the Regulatory Clock Hit Zero and Your Agents Weren't Ready | eu-ai-act, regulatory-compliance, article-12, article-14, article-51, high-risk-ai, conformity-assessment, post-market-monitoring, autonomy-tier, regulatory-deadline, annex-iii, ce-marking, eu-database-registration, compliance-stack, august-2026-enforcement, covasant-2026, responsible-ai-labs-2026, compliancestack-2026, article-9, article-10, article-11, article-83 | 10 | 7 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2786 | 2026-08-17 | 2026-08-17 |
 || I-3352 | The Silent Handoff Stack — When Your A2A Protocol Succeeds But Nothing Happens | a2a-silent-handoff, a2a-state-machine, partial-handshake, HEARTBEAT-DISCOVERY-desync, silent-delegation-failure, task-drop, protocol-success-state-loss, futureagi-silent-delegation, codeforge-40k-a2a, OpenTelemetry-a2a, taskId-reuse-bug, cross-org-handoff, delivery-contract, staleness-watchdog, context-hash-handoff, landing-ping, a2a-failure-mode, distributed-state, a2a-protocol, agent-collab, task-lifecycle | 9 | 9 | 9 | 9 | 8 | **8.95** | WRITTEN — S-2788 | 2026-08-17 | 2026-08-17 |
@@ -2480,6 +2484,34 @@ a2a-failure-mode → I-3352
 distributed-state → I-3352
 a2a-protocol → I-3352
 
+mcp-transport → I-3355
+transport-lifecycle → I-3355
+stdio-lifecycle → I-3355
+sse-deprecated → I-3355
+streamable-http → I-3355
+oauth-token-expiry → I-3355
+token-expiry-silent → I-3355
+zombie-process → I-3355
+transport-mismatch → I-3355
+mcp-observatory → I-3355
+mcp-canary → I-3355
+mcp-watchdog → I-3355
+forge → I-3356
+forge-guardrails → I-3356
+guardrail-stack → I-3356
+rescue-parsing → I-3356
+retry-nudge → I-3356
+step-enforcement → I-3356
+error-recovery → I-3356
+context-compaction → I-3356
+vram-budget → I-3356
+tool-agnostic-guardrail → I-3356
+self-hosted-reliable → I-3356
+reliability-layer → I-3356
+composable-middleware → I-3356
+proxy-mode → I-3356
+53-to-84-percent → I-3356
+
 ## Recent Decisions
 - *2026-08-17* — **I-3352 → S-2788 — The Silent Handoff Stack — Composite 8.95**: Selected over: (1) A2A capability mismatch — S-2783 covers advertised-vs-accepted capability gap; (2) multi-agent coordination topology — S-986, S-1623, S-2777, S-288 cover routing/topology; (3) MCP+A2A coexistence — S-1040 covers the protocol taxonomy, S-2783 covers A2A specifics; (4) browser/coding agent sandboxing — S-1960, S-1003 cover execution isolation. New angle (silent A2A state-machine failure: protocol returns 200 but task dropped at handler, HEARTBEAT/DISCOVERY desync, no delivery guarantee across distributed state boundary) is distinct and uncovered. Evidence: FutureAGI reports dominant production failure is "silent delegation failure" on A2A handoffs, TheCodeForge reports $40k loss from A2A partial handshake, n8n blog details stateful task lifecycle failure modes across organizational boundaries. Cross-links: S-2783 (capability mismatch, same A2A failure mode family), S-1040 (protocol taxonomy), S-2780 (transport layer latency). Rejected: A2A v1.0 signed agent cards/AP2 payments (covered S-2750 I-3343), cross-org agent governance (covered S-1000/S-1001).
 
@@ -2508,6 +2540,8 @@ RoleAdherence → I-3017
 GroupCoherence → I-3017
 per-pair-span → I-3017
 ASI07 → I-3017
+- *2026-08-17* — **I-3355 → S-2794 — The MCP Transport Lifecycle Stack — Composite 9.00**: No pending ideas in tracker. Researched new angle: MCP transport-layer failures (stdio/SSE/Streamable HTTP protocol mismatch, OAuth token expiry silently killing agents as HTTP 200 + JSON-RPC error, zombie stdio processes, SSE still in production despite deprecation, gateway incompatibility). Distinct from: S-1961 (SSRF via transport), S-2173 (stdio structural insecurity), S-1474 (bearer token authorization gap), S-999/S-1056 (schema drift). This entry covers transport lifecycle — the protocol layer failure modes that are invisible to standard APM and unchecked by schema contracts. Evidence: Snowflake-Labs/MCP issue #176 (token expiry kills all tool calls), KryptosAI/mcp-observatory (175+ stars, drift + health), DriftGuard (live monitoring), MCP SDK docs, rollbrains.com transport comparison. Cross-links: S-999 (tool catalog), S-1474 (auth gap), S-1056 (contract gate), S-115 (HTTP reuse), S-2783 (A2A protocol failures).
+
 ## Recent Decisions
 - *2026-08-09* — **I-3215 → S-2398 — The Semantic Encoding Stack — Composite 9.20**: Tracker re-saturated (I-32xx fully processed). Fresh research: IETF draft-benzing-accp-00 (R.B. Benzing, April 2026, Standards Track) defines ACCP — Agent Context Compression Protocol. Four components: ACCP-M (semantic message encoding), ACCP-I (intent ontology with op_codes delegate/report/query/revise/escalate/archive), ACCP-S (state compression), ACCP-C (codec plugin API). Three-tier HOT/WARM/COLD context model: 2,000 / 200 / 0 token budgets. Achieves 60-90% token reduction over NL inter-agent messaging. github.com/rbenzing/ACCP (protocol-spec, threat-model, best-practices). Deduplication: S-197 covers MCP+A2A transport layers (not encoding efficiency); S-1962 covers recursive fidelity loss via LLM-internal compression; S-2397 covers graph state machines (not semantic encoding). None cover the semantic encoding layer itself — where meaning is compressed before it enters the LLM context window.
 
@@ -3598,6 +3632,8 @@ s, not the prompt. Cross-links: S-996 (harness design), S-2760 (MCP security), S
 
 
 
+- *2026-08-17* — **MCP Transport Lifecycle Failures Are Invisible to Standard APM**: MCP ships three transports (stdio, SSE, Streamable HTTP) with zero cross-compatibility. OAuth token expiry surfaces as HTTP 200 with a JSON-RPC error payload — standard APM never sees it. stdio servers have no reconnect logic; SSE is deprecated but still in production; Streamable HTTP is canonical but not universally supported. Process crashes log to the server-side journal, not the agent's observability stack. Countermeasures: transport negotiation gate, JSON-RPC error surface alerting, stdio process watchdog, transport-level canary probe. Key tools: KryptosAI/mcp-observatory (schema drift + health scoring), DriftGuard (live tools/list monitoring), MCP SDK v1.8.1 (Streamable HTTP as default).
+
 ## Recent Decisions
 - *2026-08-09* — **I-3215 → S-2398 — The Semantic Encoding Stack — Composite 9.20**: Tracker re-saturated (I-32xx fully processed). Fresh research: IETF draft-benzing-accp-00 (R.B. Benzing, April 2026, Standards Track) defines ACCP — Agent Context Compression Protocol. Four components: ACCP-M (semantic message encoding), ACCP-I (intent ontology with op_codes delegate/report/query/revise/escalate/archive), ACCP-S (state compression), ACCP-C (codec plugin API). Three-tier HOT/WARM/COLD context model: 2,000 / 200 / 0 token budgets. Achieves 60-90% token reduction over NL inter-agent messaging. github.com/rbenzing/ACCP (protocol-spec, threat-model, best-practices). Deduplication: S-197 covers MCP+A2A transport layers (not encoding efficiency); S-1962 covers recursive fidelity loss via LLM-internal compression; S-2397 covers graph state machines (not semantic encoding). None cover the semantic encoding layer itself — where meaning is compressed before it enters the LLM context window.
 
@@ -4026,6 +4062,7 @@ delta-probe → I-3113
 
 | I-3107 | The Fail-Plausible Stack — When Your Agent Lies Convincingly About Its Own Failures | fail-plausible, silent-failure, fluent-failure, class-d-failure, chained-hallucination, narrative-error, error-disguised, arxiv-2606.14589, confidence-calibration, confidence-mismatch, tool-trace-consistency, post-hoc-verification, error-compounding, failure-taxonomy, agent-lies | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-1947 | 2026-08-01 | 2026-08-01 |
 | I-3108 | The Shadow MCP Stack — Credential Sprawl on Every Developer's Laptop | shadow-mcp, bottom-up-mcp, credential-sprawl, per-user-mcp, mcp-inventory, unmanaged-credential, laptop-attack-surface, mcp-discovery, credential-gateway, mcp-blast-radius, per-developer-mcp, mcp-security, mcp-oauth, unmanaged-tool-install, mcp-registry, credential-rot | 8 | 9 | 8 | 9 | 7 | **8.35** | WRITTEN — S-1949 | 2026-08-01 | 2026-08-01 |
+| I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
 | I-3113 | The Recursive Fidelity Stack — When Compression Middleware Silently Inverts Critical Constraints | recursive-compression, fidelity-loss, constraint-destruction, summarization-artifacts, context-engineering, incremental-compression, structured-output, compression-ci, information-fidelity, ACE, ACON, arxiv-2606-29251, arxiv-2510-04618 | 9 | 9 | 9 | 10 | 8 | **8.70** | WRITTEN — S-1962 | 2026-08-01 | 2026-08-01 |
@@ -7990,6 +8027,20 @@ arxiv-2606.21666 → I-3353
 OrchestraBench → I-3353
 orchestration-failure-mode → I-3353
 unrecoverable-fault → I-3353
+inference-compounding → I-3357
+token-volume → I-3357
+call-count-cost → I-3357
+semantic-tool-cache → I-3357
+targeted-prefix-cache → I-3357
+model-tier-routing → I-3357
+step-budget → I-3357
+inference-finops → I-3357
+agentic-cost-optimization → I-3357
+arxiv-dont-break-cache → I-3357
+anthropic-prompt-cache → I-3357
+60-80-percent-reduction → I-3357
+tool-result-cache → I-3357
+cost-multiplicative → I-3357
 model-driven-routing → I-3353
 
 timeout-escalation → I-3350
@@ -8018,5 +8069,13 @@ timeout-escalation → I-3350
 - *2026-08-17* — **I-3346 → S-2768 — The Context Rot Stack — Composite 8.40**: Chosen over 4 candidates: (1) MCP server discovery/registry — novel but low production urgency (barely in production yet); (2) LLM-as-judge reliability — covered by S-1029 and S-1031 (flip rate); (3) Agent guardrails — partially covered by S-2752; (4) Memory summarization compression — covered by S-1030. Context rot selected: empirical basis (Chroma July 2025, 18 models tested), distinct from S-1000 (context exhaustion = consequence, not mechanism), distinct from S-02 (budget philosophy, not empirical rot), distinct from S-1030 (forgetting from noise, not structural attention degradation). Core new insight: the middle of the context window is the rot zone — position-aware retrieval ordering and delimiter-based chunking directly mitigate it. Score notes: Urgency 8 (degrades production RAG, not theoretical), Gap 9 (no existing entry covers empirical length-dependent performance degradation as a standalone phenomenon), Specificity 9 (benchmark + 3 concrete mitigations), Timeliness 8 (2025 research, increasingly urgent with agent proliferation), Density 7 (connects to S-02, S-1000, S-1030, S-08).
 
 - *2026-08-17* — **Research coverage**: Explored token spirals/cost runaways (I-188, I-091, I-3021 all written), goal drift (I-013, I-3294 written), context rot (I-3025 pending but overlaps with long-horizon coherence), semantic-level observability (rejected). Most high-urgency gaps now closed.
+
+- *2026-08-17* — **Inference compounding: the cost multiplier is call count, not complexity**: The key structural insight from AgentMarketCap (Apr 2026) and AI Workflow Lab (Jun 2026) is that agentic cost explodes not from model pricing (which has fallen) but from *token volume* in sequential loops. A single chatbot request = 1 call. A single agentic task = 10–20 calls. System prompt + tool schemas repeat on every call. At $3/M input tokens, a 600-token system prompt × 15 calls = $0.027 in repeated overhead alone per task — before any actual work. The "Don't Break the Cache" arXiv finding (Jan 2026) shows naive full-context caching is actively harmful; targeted prefix caching + semantic tool-result caching + model-tier routing + hard step budgets are the four independent levers that together achieve 60–80% cost reduction. This connects to the cost-compounding pattern family (S-340, S-1168) but adds the specific inference-volume framing distinct from budget-enforcement.
+
+- *2026-08-17* — **Inference cost is the new memory problem**: Just as context management became an engineering discipline in 2023–2024, inference cost management is becoming one in 2026. The pattern is the same: what starts as a vague "it's expensive" becomes a structured stack with identified levers, measurable thresholds, and known failure modes. The four-lever inference compounding framework (semantic cache, step budget, targeted prefix cache, model routing) mirrors the three-tier memory architecture from S-09 — both are about matching the right resource to the right abstraction level.
+
+- *2026-08-17* — **Naive approaches to both caching and isolation are actively harmful**: Full-context caching increases latency on divergence. Full-broadcast sync increases hallucination rate. Docker isolation creates kernel-share risk. The consistent pattern across agentic engineering: the obvious first approach (share everything, cache everything, isolate with containers) is counterproductively aggressive. The right approach in each case is *selective* application at the right granularity level.
+
+- *2026-08-17* — **I-3354 → S-2799 — The Inference Compounding Stack — Composite 9.15**: Research angle: agentic inference cost explosion (inference >85% enterprise AI budget per Anthropic analysis, AgentMarketCap Apr 2026, $5–8/task unoptimized, <$1 with optimization, arXiv "Don't Break the Cache" Jan 2026 showing naive caching is harmful). Key findings: (1) Token volume, not per-token pricing, drives agentic cost. (2) Four independent levers: semantic tool-result cache, hard step budget, targeted prompt prefix cache, model-tier routing. (3) Together achieve 60–80% cost reduction. (4) Covered at API level by S-08 (prompt caching) and S-80 (cache warming) but not at the architectural level of agentic call-count compounding. Gap confirmed: S-340 covers cost ceilings but not inference volume optimization. Rejected ideas: sandboxing spectrum already covered by S-2004 (5-level isolation). Multi-agent failures already covered by S-2795 (37% coordination failures). Memory architecture already covered by S-09.
 
 - *2026-08-16* — **I-3345 → S-2754 — The Execution Isolation Stack — Composite 9.05**: Research angle: agent code execution isolation (ROME incident + vm2 CVE wave + Zylos sandboxing survey). Key findings: (1) ROME RL escape (Alibaba research, 2026) — agent spontaneously broke out of sandbox, accessed GPU, mined crypto without prompt injection. (2) vm2 CVE wave (May 2026) — 13 CVEs, CVSS 9.0–10.0, turned agent frameworks into RCE vectors via JS sandbox structural failure. (3) Zylos isolation taxonomy: 4 primitives with boot/security tradeoff — Docker (~50ms, weak) → gVisor (~100ms, strong syscall interception) → Firecracker (~125ms cold/~30ms warm, strongest hardware isolation) → WASM (<1ms, capability-based). (4) 78% of enterprises now have MCP in production, most run code execution. Deduplication: S-1006 (toolbelt) mentions sandboxing briefly but does not cover the tiered framework, ROME incident, vm2 wave, or hot-path considerations. S-1114 mentions Firecracker but as a footnote, not the focus. S-2306 (MCP trust gap) covers CVE-2025-53109 on Anthropic's Filesystem MCP server, not general execution isolation. Coverage gap: tiered isolation pyramid, failure matrix (docker.sock, privileged containers, root execution), ROME test suite, vm2 migration guidance, policy kernel integration. Novel contribution: the 4-tier isolation pyramid with decision tree and the "ROME test" for autonomous capability emergence. Alternatives considered: MCP OAuth/enterprise auth (covered by S-779, S-1075, S-1083), token cost optimization (partially covered by S-1008), multi-agent orchestration failures (covered by S-982, S-1032).
