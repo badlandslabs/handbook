@@ -8,7 +8,10 @@
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 ||| I-3353 | The Context Drift Stack — When Your Multi-Agent System Hallucinates but No Model Is Broken | context-drift, multi-agent-hallucination, CDS, cds-threshold, SSVP, shared-state-verification, contamination-effect, full-broadcast-harmful, selective-sync, cascade-radius, handoff-contract, spatial-drift, temporal-drift, task-drift, context-divergence-score, belief-divergence, inter-agent-sync, handoff-gate, arxiv-2606.21666, celabe-2026, orchestration-failure, multi-agent-recovery | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2790 | 2026-08-17 | 2026-08-17 |
-|| I-3380 | The State-Grounded Synthetic Data Stack — When Your Training Data Has More Tool-Call Hallucinations Than Your Agent | state-grounded, synthetic-training-data, backend-is-truth, StateGen, tool-call-hallucination, four-role-pipeline, multi-agent-synthetic-data, authoritatve-state, state-manager, training-data-quality, agent-fine-tuning, synthetic-trajectory, arxiv-2606.16307, paypal-ai, self-referential-generation, state-invariant, multi-axis-judge, tool-simulator, user-simulator | 9 | 10 | 9 | 9 | 7 | **9.00** | WRITTEN — S-2811 | 2026-08-18 | 2026-08-18 |
+| I-3391 | The AILM Stack — When Your Agent Is Already the Bridge and Nobody Told Security | ail m, lateral-movement, agent-pivot, tool-chain-bridge, cross-boundary-pivot, delegated-authority, agent-security, mcp-tool-chain, orca-security, csa-ailm, microsoft-security, zero-networks, tool-domain-boundary, agent-as-network-segment, post-exploitation, authorization-boundary, scope-creep, tool-composition-pivot, ai-induced-lateral-movement | 9 | 10 | 9 | 10 | 8 | **9.20** | WRITTEN — S-2830 | 2026-08-18 | 2026-08-18 |
+| I-3392 | The Silent Coercion Stack — When Your Tool Accepts Wrong Arguments and Returns Wrong Data | silent-coercion, parameter-mismatch, tool-call-failure, argument-error, type-coercion, enum-coercion, 200-ok-lies, contradiction-check, bfcl-v3, output-validation, production-tool-failure, malformed-argument, qveris-2026, waxell-2026, parameter-validation, output-contract, semantic-precondition, 60-75-percent, 37-percent-silent | 9 | 9 | 9 | 10 | 9 | **9.20** | WRITTEN — S-2835 | 2026-08-18 | 2026-08-18 |
+| I-3380 | The State-Grounded Synthetic Data Stack — When Your Training Data Has More Tool-Call Hallucinations Than Your Agent | state-grounded, synthetic-training-data, backend-is-truth, StateGen, tool-call-hallucination, four-role-pipeline, multi-agent-synthetic-data, authoritatve-state, state-manager, training-data-quality, agent-fine-tuning, synthetic-trajectory, arxiv-2606.16307, paypal-ai, self-referential-synthetic-loop, contamination-effect, tool-call-accuracy, llm-as-judge | 9 | 10 | 9 | 9 | 7 | **9.00** | WRITTEN — S-2811 | 2026-08-18 | 2026-08-18 |
+| I-3390 | The Agent = Model + Harness Stack — When Your Benchmark Score Is a Lie Because You're Testing the Wrong Thing | harness-engineering, benchmark-sensitivity, harness-bench, model-harness-separation, agent-equals-model-plus-harness, tool-schema-design, budget-partition, verification-gate, arxiv-2605.27922, langchain-harness, terminal-bench, model-selection, harness-configuration, swe-bench, webarena, agent-benchmark, qihoo360, peking-university, execution-scaffold | 9 | 9 | 9 | 8 | 9 | **8.90** | WRITTEN — S-2825 | 2026-08-18 | 2026-08-18 |
 | I-3355 | The MCP Transport Lifecycle Stack — When Your Agent Stops Working and Nobody Told It the Server Was Gone | mcp-transport, stdio-lifecycle, sse-deprecated, streamable-http, oauth-token-expiry, zombie-process, transport-mismatch, mcp-observatory, driftguard, mcp-connection, mcp-lifecycle, stdio-no-reconnect, sse-legacy, transport-canary, mcp-token-watchdog | 9 | 10 | 8 | 9 | 9 | **9.00** | WRITTEN — S-2794 | 2026-08-17 | 2026-08-17 |
 | I-3357 | The Inference Compounding Stack — When Your Agentic Workflow Costs 10× More Than Your Chatbot | inference-compounding, token-volume, call-count-cost, semantic-tool-cache, targeted-prefix-cache, model-tier-routing, step-budget, inference-finops, agentic-cost, anthropic-prompt-cache, arxiv-dont-break-cache, 60-80-percent-reduction, agent-cost-optimization, tool-result-cache, cost-multiplicative | 10 | 8 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2799 | 2026-08-17 | 2026-08-17 |
 | I-3356 | The Forge Guardrail Stack — When Your Local Model Can't Compete but You Don't Want to Pay for Frontier | forge, guardrail-stack, self-hosted-llm, agentic-reliability, rescue-parsing, retry-nudge, step-enforcement, error-recovery, context-compaction, vram-budget, acm-cais-2026, compounding-math, tool-agnostic, reliability-layer, composable-middleware, forge-guardrails, proxy-mode, workflowrunner, Zambelli-2026, 53-to-84-percent, arxiv-3786335 | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2796 | 2026-08-17 | 2026-08-17 |
@@ -3623,6 +3626,21 @@ governance-proxy → I-3092
 agent-authority → I-3092
 delegation-constraint → I-3092
 agent-delegation → I-3092
+
+causal-attribution → I-3393
+internal-state-trace → I-3393
+agentdog → I-3393
+why-attribution → I-3393
+reasoning-drift → I-3393
+silent-correct-wrong-reason → I-3393
+correct-outcome-wrong-reason → I-3393
+internal-causal-misalignment → I-3393
+belief-anchoring → I-3393
+causal-fork → I-3393
+counterfactual-reasoning → I-3393
+action-driver → I-3393
+arxiv-2601.15075 → I-3393
+hierarchical-attribution → I-3393
 
 ## Pattern Log
 
@@ -7287,6 +7305,7 @@ boundary-contract -> I-3312
 - *2026-08-14* — **Silent-Diff Anti-Pattern: The Dependency That Changes Without Permission**: Providers (OpenAI, Anthropic, Google) update model weights and inference behavior without notice, creating behavioral regressions that bypass every diff-triggered gate in your CI/CD. The pattern is that your quality gates are designed for changes you make, not for changes the ecosystem makes around you. This mirrors the broader "dependency without version pinning" problem from traditional software, but with a critical difference: you can't pin a model version without losing access to bug fixes and capability improvements. The correct response is continuous behavioral evaluation on production traffic — not a diff trigger, but a time-series signal. Related anti-patterns: supply-chain dependency without lockfiles, third-party API without contract testing.
 
 || I-3307 | The LangGraph Checkpoint RCE Stack — When Your Durable State Layer Becomes Your Code Execution Vector | langgraph-checkpoint, CVE-2026-28277, CVE-2026-27794, CVE-2026-27022, msgpack-deserialization, pickle-fallback, RCE, BaseCache, checkpoint-security, langgraph-Redis, langgraph-SQLite, serialization-attack, checkpoint-injection, pickle-injection, cache-layer-RCE, shared-infrastructure, langgraph-cve-chain, pickle_fallback, JsonPlusSerializer, checkpoint-isolation | 9 | 10 | 9 | 10 | 8 | **8.90** | WRITTEN — S-2627 | 2026-08-14 | 2026-08-14 |
+|| I-3381 | The Budget Separation Stack — When Your Error Budget Is Useless Because It's Measuring the Wrong Numerator | error-budget-separation, budget-decomposition, reliability-burn, governance-burn, latency-burn, budget-silo, burn-rate, burn-rate-alert, multi-window-burn, budget-policy, deploy-freeze, governance-bias, budget-conflation, error-budget-numerator, cordum-2026, agentmarketcap-2026, agent-governance-toolkit, sla-separation, slo-decomposition, policy-denials, infra-failures, latency-regressions, budget-governance, budget-reliability, microsoft-agent-sre | 9 | 9 | 9 | 9 | 8 | **8.85** | WRITTEN — S-2828 | 2026-08-18 | 2026-08-18 |
 || I-3310 | The Agentic Spend Attribution Stack — When the Invoice Lands but Nobody Knows Why | agentic-finops, spend-attribution, trace-attribution, cost-governance, per-agent-budget, chargeback, llm-call-trace, token-cost-rollup, budget-quota, team-attribution, feature-attribution, agentic-cost-hierarchy, observability-tag, spend-anomaly, trace-span-tagging, finops-llm, Uber-agentic-budget, Gartner-agentic-cancel, cost-accountability, budget-enforcement, spend-visibility | 9 | 9 | 9 | 9 | 8 | **8.90** | WRITTEN — S-2650 | 2026-08-14 | 2026-08-14 |
 | I-3318 | The ASI06 Memory Guard Stack — When Your Agent Remembers the Wrong Lesson | ASI06, memory-poisoning, OWASP-agentic, MINJA, query-only-injection, memory-guard, provenance-scoring, behavioral-drift, memory-write-sanitization, trust-decay, OWASP-agent-memory-guard, memory-injection, session-persistence, write-path-defense, read-path-validation, memory-rollback, memory-snapshot | 9 | 9 | 9 | 9 | 9 | **9.00** | WRITTEN — S-2674 | 2026-08-15 | 2026-08-15 |
 | I-3319 | The Agent Governor Stack — When Your Agent Keeps Running After It Should Have Stopped | agent-governor, kill-switch, emergency-stop, EU-AI-Act, Article-14, autonomy-tier, action-fence, infrastructure-stop, human-oversight, AGT-012, compliance, rollback, graduated-autonomy, confirmation-gate, governor-pattern, unbypassable-stop, action-limit, autonomous-halt, compliance-evidence, agent-halt | 9 | 9 | 9 | 10 | 8 | **9.05** | WRITTEN — S-2678 | 2026-08-15 | 2026-08-15 |
@@ -8043,6 +8062,33 @@ anthropic-prompt-cache → I-3357
 tool-result-cache → I-3357
 cost-multiplicative → I-3357
 model-driven-routing → I-3353
+harness-bench → I-3390
+model-harness-separation → I-3390
+agent-equals-model-plus-harness → I-3390
+tool-schema-design → I-3390
+budget-partition → I-3390
+verification-gate → I-3390
+langchain-harness → I-3390
+terminal-bench → I-3390
+harness-configuration → I-3390
+agent-benchmark → I-3390
+harness-variance → I-3390
+
+silent-coercion → I-3392
+parameter-mismatch → I-3392
+type-coercion → I-3392
+enum-coercion → I-3392
+200-ok-lies → I-3392
+contradiction-check → I-3392
+bfcl-v3 → I-3392
+output-contract → I-3392
+semantic-precondition → I-3392
+60-75-percent → I-3392
+37-percent-silent → I-3392
+malformed-argument → I-3392
+output-validation → I-3392
+production-tool-failure → I-3392
+argument-error → I-3392
 
 timeout-escalation → I-3350
 
@@ -8122,3 +8168,11 @@ multi-agent-synthetic-data → I-3380
 ## Recent Decisions
 
 - *2026-08-18* — **I-3380 → S-2811 — The State-Grounded Synthetic Data Stack — Composite 9.00**: Fresh research: arXiv:2606.16307 (Khedar et al., PayPal AI, June 2026) on StateGen — 4-role synthetic data pipeline with authoritative state manager. Key insight: the backend-is-truth invariant eliminates tool-call hallucination from training data by construction. Tool-call hallucination scores: ~9.x/10 (naive synthetic) to ~1.x/10 (state-grounded), on 64,698 evaluated conversations. Deduplication: S-2807 covers contamination in eval data, not training data; S-2810 covers trajectory evaluation, not generation; S-2775 covers false success in production, not its root cause in training. No existing entry covers the generation side of the problem. Composite 9.00 (Urgency 9, Gap 10, Specificity 9, Timeliness 9, Density 7).
+
+- *2026-08-18* — **I-3391 → S-2830 — The AILM Stack — Composite 9.20**: Fresh research: Orca Security (AILM Research Pod, Feb 2026), CSA AI Safety Initiative (CSA Research Note, March 2026), Microsoft Security Blog ("Securing AI Agents: When AI Tools Move from Reading to Acting," June 2026), Zero Networks, GTFO.dev ("AI-Induced Lateral Movement: Agents Don't Need a Path or a Badge," July 2026). Core insight: AILM (AI-Induced Lateral Movement) exploits the agent's *authorized* cross-system access as the pivot — structurally distinct from credential theft (revocable) and network path exploitation (blockable). The agent's delegated permissions ARE the bridge. Deduplication: S-2760 (MCP Server Hijack) covers server-side compromise as the pivot; S-2688 (Blast Radius) covers post-compromise containment; S-1188 (A2A Authorization Island) covers inter-agent auth boundaries. AILM requires no compromise — it uses authorized delegation across tool-domain boundaries within a single agent session. Composite 9.20 (Urgency 9, Gap 10, Specificity 9, Timeliness 10, Density 8).
+
+- *2026-08-18* — **Harness variance > model variance on agent benchmarks**: Harness-Bench (arXiv:2605.27922, Yao et al., Peking + Qihoo360, May 2026) introduces a diagnostic benchmark showing that harness configuration deltas produce >40pp success-rate changes — exceeding what model swaps achieve. The `Agent = Model + Harness` equation reframes agent engineering: the harness (tool schema, budget partition, retry policy, verification gate) is the dominant variable, not the model. LangChain's Terminal-Bench 2.0 case: top-30 → top-5 via harness iteration alone. This is novel to the handbook and connects to S-06 (routing), S-2799 (cost compounding), R-17 (behavioral regression), and S-817 (trajectory eval).
+
+- *2026-08-18* — **I-3392 → S-2835 — The Silent Coercion Stack — Composite 9.20**: Research angle: tool-call parameter mismatch failures in production. Key findings: (1) BFCL v3 (May 2026): 60-75% of production tool-calling failures are parameter errors, NOT wrong-tool selection — the industry focus on routing is misdirected. (2) QVeris 72-hour production trace (2026): 37% of tool calls had mismatched parameters that passed silently — no error, no exception, response looked legitimate. (3) Gabriel Anhaia trace (May 2026): 17 retries caused by truncated response the model correctly identified but couldn't recover from — failure was in the output contract. (4) 90% per-call accuracy compounds to 59% at 5 calls — most drops are argument failures. Deduplication: S-833 covers explicit validation failures from fabricated args; this entry covers the silent-coercion sibling where wrong arguments pass validation and return subtly wrong data. S-2199 covers downstream resp
+
+- *2026-08-18* — **I-3393 → S-2838 — The Agentic Causal Trace Stack — Composite 8.60**: Fresh research: arXiv:2601.15075 (Qian et al., Shanghai AI Lab / Renmin U. / NUS, Feb 2026) on AgentDoG — hierarchical framework for general agentic attribution. Core distinction from existing entries: all existing attribution work (S-1018, S-1009, S-1047) focuses on *failure attribution* — identifying what went wrong after a bad outcome. AgentDoG targets *internal causal attribution* — identifying why the agent made a decision given its internal state, regardless of whether the outcome was correct. Novel insight: agents frequently reach correct outcomes through flawed reasoning (internal causal misalignment), then fail silently when context shifts. The "silent drift" pattern — correct output on Run 1, wrong output on Run 1' with same reasoning — is the key failure mode. Deduplication: S-1018 (component-level attribution) finds which component broke; this entry finds *why the reasoning that drove it was flawed* — distinct levels. S-1009 (RCA) needs causal trace data as input — this is the data model RCA depends on. S-1047 (dead letter queue) triage needs causal fork flags. S-1029 (eval harness) logs only pass/fail, missing the silent-correct-wrong-reason case. Composite 8.60 (Urgency 8, Gap 10, Specificity 9, Timeliness 8, Density 8).onse corruption. This fills the specific gap: pre-call validation + contradiction check for production tool calls. Composite 9.20 (Urgency 9, Gap 9, Specificity 9, Timeliness 10, Density 9).
