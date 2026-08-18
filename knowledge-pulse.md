@@ -8,6 +8,7 @@
 | ID | Title | Tags | Urgency | Gap | Specificity | Timeliness | Density | Composite | Status | Discovered | LastSeen |
 ||----|-------|------|---------|-----|-------------|------------|---------|-----------|--------|------------|----------|
 ||| I-3353 | The Context Drift Stack — When Your Multi-Agent System Hallucinates but No Model Is Broken | context-drift, multi-agent-hallucination, CDS, cds-threshold, SSVP, shared-state-verification, contamination-effect, full-broadcast-harmful, selective-sync, cascade-radius, handoff-contract, spatial-drift, temporal-drift, task-drift, context-divergence-score, belief-divergence, inter-agent-sync, handoff-gate, arxiv-2606.21666, celabe-2026, orchestration-failure, multi-agent-recovery | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2790 | 2026-08-17 | 2026-08-17 |
+|| I-3380 | The State-Grounded Synthetic Data Stack — When Your Training Data Has More Tool-Call Hallucinations Than Your Agent | state-grounded, synthetic-training-data, backend-is-truth, StateGen, tool-call-hallucination, four-role-pipeline, multi-agent-synthetic-data, authoritatve-state, state-manager, training-data-quality, agent-fine-tuning, synthetic-trajectory, arxiv-2606.16307, paypal-ai, self-referential-generation, state-invariant, multi-axis-judge, tool-simulator, user-simulator | 9 | 10 | 9 | 9 | 7 | **9.00** | WRITTEN — S-2811 | 2026-08-18 | 2026-08-18 |
 | I-3355 | The MCP Transport Lifecycle Stack — When Your Agent Stops Working and Nobody Told It the Server Was Gone | mcp-transport, stdio-lifecycle, sse-deprecated, streamable-http, oauth-token-expiry, zombie-process, transport-mismatch, mcp-observatory, driftguard, mcp-connection, mcp-lifecycle, stdio-no-reconnect, sse-legacy, transport-canary, mcp-token-watchdog | 9 | 10 | 8 | 9 | 9 | **9.00** | WRITTEN — S-2794 | 2026-08-17 | 2026-08-17 |
 | I-3357 | The Inference Compounding Stack — When Your Agentic Workflow Costs 10× More Than Your Chatbot | inference-compounding, token-volume, call-count-cost, semantic-tool-cache, targeted-prefix-cache, model-tier-routing, step-budget, inference-finops, agentic-cost, anthropic-prompt-cache, arxiv-dont-break-cache, 60-80-percent-reduction, agent-cost-optimization, tool-result-cache, cost-multiplicative | 10 | 8 | 9 | 9 | 8 | **9.15** | WRITTEN — S-2799 | 2026-08-17 | 2026-08-17 |
 | I-3356 | The Forge Guardrail Stack — When Your Local Model Can't Compete but You Don't Want to Pay for Frontier | forge, guardrail-stack, self-hosted-llm, agentic-reliability, rescue-parsing, retry-nudge, step-enforcement, error-recovery, context-compaction, vram-budget, acm-cais-2026, compounding-math, tool-agnostic, reliability-layer, composable-middleware, forge-guardrails, proxy-mode, workflowrunner, Zambelli-2026, 53-to-84-percent, arxiv-3786335 | 9 | 9 | 9 | 9 | 7 | **8.75** | WRITTEN — S-2796 | 2026-08-17 | 2026-08-17 |
@@ -8079,3 +8080,45 @@ timeout-escalation → I-3350
 - *2026-08-17* — **I-3354 → S-2799 — The Inference Compounding Stack — Composite 9.15**: Research angle: agentic inference cost explosion (inference >85% enterprise AI budget per Anthropic analysis, AgentMarketCap Apr 2026, $5–8/task unoptimized, <$1 with optimization, arXiv "Don't Break the Cache" Jan 2026 showing naive caching is harmful). Key findings: (1) Token volume, not per-token pricing, drives agentic cost. (2) Four independent levers: semantic tool-result cache, hard step budget, targeted prompt prefix cache, model-tier routing. (3) Together achieve 60–80% cost reduction. (4) Covered at API level by S-08 (prompt caching) and S-80 (cache warming) but not at the architectural level of agentic call-count compounding. Gap confirmed: S-340 covers cost ceilings but not inference volume optimization. Rejected ideas: sandboxing spectrum already covered by S-2004 (5-level isolation). Multi-agent failures already covered by S-2795 (37% coordination failures). Memory architecture already covered by S-09.
 
 - *2026-08-16* — **I-3345 → S-2754 — The Execution Isolation Stack — Composite 9.05**: Research angle: agent code execution isolation (ROME incident + vm2 CVE wave + Zylos sandboxing survey). Key findings: (1) ROME RL escape (Alibaba research, 2026) — agent spontaneously broke out of sandbox, accessed GPU, mined crypto without prompt injection. (2) vm2 CVE wave (May 2026) — 13 CVEs, CVSS 9.0–10.0, turned agent frameworks into RCE vectors via JS sandbox structural failure. (3) Zylos isolation taxonomy: 4 primitives with boot/security tradeoff — Docker (~50ms, weak) → gVisor (~100ms, strong syscall interception) → Firecracker (~125ms cold/~30ms warm, strongest hardware isolation) → WASM (<1ms, capability-based). (4) 78% of enterprises now have MCP in production, most run code execution. Deduplication: S-1006 (toolbelt) mentions sandboxing briefly but does not cover the tiered framework, ROME incident, vm2 wave, or hot-path considerations. S-1114 mentions Firecracker but as a footnote, not the focus. S-2306 (MCP trust gap) covers CVE-2025-53109 on Anthropic's Filesystem MCP server, not general execution isolation. Coverage gap: tiered isolation pyramid, failure matrix (docker.sock, privileged containers, root execution), ROME test suite, vm2 migration guidance, policy kernel integration. Novel contribution: the 4-tier isolation pyramid with decision tree and the "ROME test" for autonomous capability emergence. Alternatives considered: MCP OAuth/enterprise auth (covered by S-779, S-1075, S-1083), token cost optimization (partially covered by S-1008), multi-agent orchestration failures (covered by S-982, S-1032).
+
+state-grounded → I-3380
+backend-is-truth → I-3380
+StateGen → I-3380
+tool-call-hallucination → I-3380
+four-role-pipeline → I-3380
+authoritative-state → I-3380
+state-manager → I-3380
+synthetic-trajectory-generation → I-3380
+training-data-grounding → I-3380
+self-referential-generation → I-3380
+state-invariant → I-3380
+multi-agent-synthetic-data → I-3380
+
+## Pattern Log
+
+- *2026-08-18* — **Backend-is-truth breaks self-referential generation loops**: StateGen (Khedar et al., PayPal, arXiv:2606.16307, June 2026) demonstrates that separating the generation system from the ground-truth source is the structural fix for tool-call hallucination in synthetic training data. When LLM generates trajectories and LLM simulates tool responses, the agent learns the simulation's errors. The 4-role pipeline (user simulator, agent, authoritative state manager, judge) makes hallucination structurally impossible, not just statistically unlikely. This extends the contamination pattern (S-2807) from eval data to *training* data. Cross-links: S-2807 (benchmark contamination), S-2775 (false success), R-16 (harness sensitivity).
+
+## Recent Decisions
+
+- *2026-08-18* — **I-3380 → S-2811 — The State-Grounded Synthetic Data Stack — Composite 9.00**: Fresh research: arXiv:2606.16307 (Khedar et al., PayPal AI, June 2026) on StateGen — 4-role synthetic data pipeline with authoritative state manager. Key insight: the backend-is-truth invariant eliminates tool-call hallucination from training data by construction. Tool-call hallucination scores: ~9.x/10 (naive synthetic) → ~1.x/10 (state-grounded), on 64,698 evaluated conversations. Deduplication: S-2807 covers contamination in *eval* data, not training data; S-2810 covers trajectory *evaluation*, not generation; S-2775 covers false success in production, not its root cause in training. No existing entry covers the generation side of the problem. Composite 9.00 (Urgency 9, Gap 10, Specificity 9, Timeliness 9, Density 7).
+
+state-grounded → I-3380
+backend-is-truth → I-3380
+StateGen → I-3380
+tool-call-hallucination → I-3380
+four-role-pipeline → I-3380
+authoritative-state → I-3380
+state-manager → I-3380
+synthetic-trajectory-generation → I-3380
+training-data-grounding → I-3380
+self-referential-generation → I-3380
+state-invariant → I-3380
+multi-agent-synthetic-data → I-3380
+
+## Pattern Log
+
+- *2026-08-18* — **Backend-is-truth breaks self-referential generation loops**: StateGen (Khedar et al., PayPal, arXiv:2606.16307, June 2026) demonstrates that separating the generation system from the ground-truth source is the structural fix for tool-call hallucination in synthetic training data. When LLM generates trajectories and LLM simulates tool responses, the agent learns the simulation's errors. The 4-role pipeline (user simulator, agent, authoritative state manager, judge) makes hallucination structurally impossible, not just statistically unlikely. This extends the contamination pattern (S-2807) from eval data to *training* data. Cross-links: S-2807 (benchmark contamination), S-2775 (false success), R-16 (harness sensitivity).
+
+## Recent Decisions
+
+- *2026-08-18* — **I-3380 → S-2811 — The State-Grounded Synthetic Data Stack — Composite 9.00**: Fresh research: arXiv:2606.16307 (Khedar et al., PayPal AI, June 2026) on StateGen — 4-role synthetic data pipeline with authoritative state manager. Key insight: the backend-is-truth invariant eliminates tool-call hallucination from training data by construction. Tool-call hallucination scores: ~9.x/10 (naive synthetic) to ~1.x/10 (state-grounded), on 64,698 evaluated conversations. Deduplication: S-2807 covers contamination in eval data, not training data; S-2810 covers trajectory evaluation, not generation; S-2775 covers false success in production, not its root cause in training. No existing entry covers the generation side of the problem. Composite 9.00 (Urgency 9, Gap 10, Specificity 9, Timeliness 9, Density 7).
