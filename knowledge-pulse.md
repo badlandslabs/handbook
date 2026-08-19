@@ -8247,3 +8247,26 @@ ACS-eval-bridge → I-3400
 ## Recent Decisions
 
 - *2026-08-19* — **I-3401 → S-2871 — The Agentic Triple SLO Stack — Composite 9.00**: S-1005 exists as the parent AI SRE discipline entry, but it is high-level. This entry drills into the specific implementation: three independent SLIs with per-SLI targets, error budget drills that find failure modes before production traffic, and a calibration table by agent role. S-2836 (eval gap) covers why benchmarks miss production failures — the triple SLO is the ongoing measurement system that catches them after deployment. Chose this over model collapse (I-3399, covered by S-1028 + S-1236) and guardrail bypass (I-3398, covered by S-1000 + OWASP LLM Top 10). Research: AlexCloudStar "AI Agent Reliability Engineering 2026" (14-min read, May 2026), Microsoft Tech Community "Applying SRE to Autonomous AI Agents" (May 19, 2026, open-source agent-sre package), AgentMarketCap "Agent Reliability Engineering" (Apr 2026). The three-SLO model is validated across multiple independent sources as the production standard for 2026.
+
+|| I-3394 | The Program-Level Scheduler Stack — When Your GPU Treats Your Agent as 100 Separate Requests | program-level-scheduling, gpu-scheduler, agent-workflow, kv-cache, session-affinity, agent-execution-graph, saga, HPDC-2026, arxiv-2605.00528, AEG, TCT-fairness, WA-LRU, GPU-utilization, agent-inference, workflow-atomic, inference-compounding, gpu-cluster, work-stealing, agent-fair-share, prefill-decode | 9 | 10 | 9 | 10 | 8 | **9.25** | WRITTEN — S-2879 | 2026-08-19 | 2026-08-19 |
+
+program-level-scheduling → I-3394
+gpu-scheduler → I-3394
+agent-workflow → I-3394
+kv-cache → I-3394
+session-affinity → I-3394
+agent-execution-graph → I-3394
+AEG → I-3394
+TCT-fairness → I-3394
+WA-LRU → I-3394
+saga-guo → I-3394
+workflow-atomic → I-3394
+inference-compounding → I-3394
+HPDC-2026 → I-3394
+arxiv-2605.00528 → I-3394
+
+## Pattern Log
+- *2026-08-19* — **Program-level scheduling as the missing abstraction**: SAGA (Guo et al., arXiv:2605.00528v2, HPDC 2026) identifies a structural mismatch: GPU cluster schedulers were designed for single-request inference; agentic AI is compound inference. The key insight is that the AEG (Agent Execution Graph) provides the scheduler with structural knowledge of future cache needs — turning a probabilistic eviction problem into a near-deterministic one. This connects to the Inference Compounding pattern (S-2799) from the previous run: once you understand that agentic loops are 100:1 input/output ratio, the 38% KV cache regen cost becomes obvious in hindsight. The contrarian angle: NVLink and faster interconnect don't fix this — the problem is scheduler abstraction level, not hardware bandwidth.
+
+## Recent Decisions
+- *2026-08-19* — **I-3394 → S-2879 — The Program-Level Scheduler Stack — Composite 9.25**: Tracker largely saturated (I-33xx fully processed, I-34xx mostly reviewed). Fresh research surfaced SAGA (Guo et al., HPDC 2026) on GPU cluster scheduling mismatch with agent workloads. Deduplication: no existing entry covers the scheduler abstraction problem. Existing S-1981 (Token Budget) covers cost-per-decision; S-2799 (Inference Compounding) covers token volume; neither addresses the GPU-level scheduling problem that causes 3-8× latency inflation. Decision to write: this is a genuinely novel architectural failure mode that will become critical as more organizations run agentic workloads on dedicated GPU clusters (as opposed to API-gated hosted inference).

@@ -1,366 +1,345 @@
-#!/usr/bin/env python3
-"""NASDAQ Swing Trade Scanner — Quantitative Multi-Dimensional Analysis"""
-
 import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+import warnings
+warnings.filterwarnings('ignore')
 
-OUTPUT = []
-def log(msg):
-    print(msg)
-    OUTPUT.append(msg)
+print("=" * 80)
+print(f"SWING TRADE SCAN — {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}")
+print("=" * 80)
 
-def compute_indicators(df):
-    df = df.copy()
-    df['sma20'] = df['Close'].rolling(20).mean()
-    df['sma50'] = df['Close'].rolling(50).mean()
-    df['sma200'] = df['Close'].rolling(200).mean()
-    df['ema20'] = df['Close'].ewm(span=20).mean()
-    delta = df['Close'].diff()
-    gain = delta.clip(lower=0).ewm(alpha=1/14).mean()
-    loss = (-delta.clip(upper=0)).ewm(alpha=1/14).mean()
-    df['rsi'] = 100 - (100 / (1 + gain / loss))
-    df['atr'] = df['High'].sub(df['Low']).rolling(14).mean()
-    df['vol20'] = df['Volume'].rolling(20).mean()
-    return df
+# =====================================================================
+# STAGE 1A: MACRO REGIME — MAJOR INDICES
+# =====================================================================
+tickers_majors = ['QQQ', 'SPY', 'IWM', 'VIX', 'TLT', 'HYG']
 
-log("=" * 70)
-log(f"SWING TRADE SCAN — {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
-log("=" * 70)
+print("\n[STAGE 1A] MACRO REGIME — MAJOR INDICES")
+print("-" * 70)
 
-# ── Load Macro Data ──────────────────────────────────────────────────────
-macro_tickers = ['QQQ', 'SPY', 'IWM', '^VIX', 'TLT', 'HYG']
-data = {}
-for t in macro_tickers:
+def get_ta_data(ticker, period='6mo'):
     try:
-        tk = yf.Ticker(t)
-        hist = tk.history(period='2y', interval='1d')
-        if len(hist) > 50:
-            data[t] = compute_indicators(hist)
-            log(f"[OK] {t}: {len(hist)} rows | Close=${hist['Close'].iloc[-1]:.2f}")
-        else:
-            log(f"[SKIP] {t}: insufficient data ({len(hist)} rows)")
+        t = yf.Ticker(ticker)
+        hist = t.history(period=period)
+        if len(hist) < 30:
+            return None
+        close = hist['Close']
+        high = hist['High']
+        low = hist['Low']
+        volume = hist['Volume']
+        
+        # Moving averages
+        ema20 = close.ewm(span=20).mean().iloc[-1]
+        ema50 = close.ewm(span=50).mean().iloc[-1]
+        sma200 = close.rolling(200).mean().iloc[-1]
+        
+        # ATR
+        high_low = high - low
+        high_close = np.abs(high - close.shift())
+        tr = pd.concat([high_low, high_close], axis=1).max(axis=1)
+        atr14 = tr.rolling(14).mean().iloc[-1]
+        
+        # RSI
+        delta = close.diff()
+        gain = delta.where(delta > 0, 0).rolling(14).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(14).mean()
+        rs = gain / loss
+        rsi = (100 - (100 / (1 + rs))).iloc[-1]
+        
+        # MACD
+        ema12 = close.ewm(span=12).mean()
+        ema26 = close.ewm(span=26).mean()
+        macd_line = ema12.iloc[-1] - ema26.iloc[-1]
+        macd_signal = macd_line.ewm(span=9).mean().iloc[-1]
+        macd_hist = macd_line - macd_signal
+        
+        current = close.iloc[-1]
+        prev_close = close.iloc[-2]
+        pct_chg_day = (current - prev_close) / prev_close * 100
+        pct_chg_1m = (current - close.iloc[-21]) / close.iloc[-21] * 100 if len(close) > 21 else 0
+        
+        # Recent swing high/low
+        swing_high_20 = high.tail(20).max()
+        swing_low_20 = low.tail(20).min()
+        
+        # Trend
+        above_ema20 = current > ema20
+        above_ema50 = current > ema50
+        above_200sma = current > sma200 if not np.isnan(sma200) else True
+        
+        return {
+            'close': current,
+            'prev_close': prev_close,
+            'pct_chg_day': pct_chg_day,
+            'pct_chg_1m': pct_chg_1m,
+            'ema20': ema20,
+            'ema50': ema50,
+            'sma200': sma200,
+            'atr14': atr14,
+            'rsi14': rsi,
+            'macd_line': macd_line,
+            'macd_signal': macd_signal,
+            'macd_hist': macd_hist,
+            'volume_avg_20': volume.tail(20).mean(),
+            'volume_today': volume.iloc[-1],
+            'swing_high_20': swing_high_20,
+            'swing_low_20': swing_low_20,
+            'above_ema20': above_ema20,
+            'above_ema50': above_ema50,
+            'above_200sma': above_200sma,
+        }
     except Exception as e:
-        log(f"[FAIL] {t}: {e}")
+        return {'error': str(e)}
 
-if not data:
-    log("FATAL: No market data loaded.")
-    exit(1)
+index_data = {}
+for ticker in tickers_majors:
+    d = get_ta_data(ticker, '6mo')
+    if d:
+        index_data[ticker] = d
+        if 'error' not in d:
+            regime_flag = "BULL" if (d['above_ema50'] and d['above_200sma']) else ("BEAR" if (not d['above_ema50'] and not d['above_200sma']) else "TRANSITIONAL")
+            print(f"\n{ticker}: ${d['close']:.2f}  |  Day: {d['pct_chg_day']:+.2f}%  |  1M: {d['pct_chg_1m']:+.1f}%")
+            print(f"  EMA20: ${d['ema20']:.2f}  EMA50: ${d['ema50']:.2f}  SMA200: ${d['sma200']:.2f}")
+            print(f"  RSI14: {d['rsi14']:.1f}  |  MACD Hist: {d['macd_hist']:.4f}  |  ATR14: {d['atr14']:.2f}")
+            print(f"  Regime: {regime_flag}  |  Vol Ratio: {d['volume_today']/d['volume_avg_20']:.2f}x avg")
+            print(f"  20d High: ${d['swing_high_20']:.2f}  |  20d Low: ${d['swing_low_20']:.2f}")
 
-# ── Macro Regime Analysis ────────────────────────────────────────────────
-log("\n" + "=" * 70)
-log("STAGE 1: MACRO MARKET REGIME ANALYSIS")
-log("=" * 70)
+# =====================================================================
+# STAGE 1B: NASDAQ 100 TOP COMPONENTS SWING SCAN
+# =====================================================================
+print("\n\n[STAGE 1B] NASDAQ 100 COMPONENT SWING SCAN")
+print("-" * 70)
 
-qqq = data.get('QQQ')
-spy = data.get('SPY')
-iwm = data.get('IWM')
-vix = data.get('^VIX')
-
-for name, df in [('QQQ', qqq), ('SPY', spy), ('IWM', iwm)]:
-    if df is None: continue
-    price = df['Close'].iloc[-1]
-    sma20 = df['sma20'].iloc[-1]
-    sma50 = df['sma50'].iloc[-1]
-    sma200 = df['sma200'].iloc[-1]
-    rsi = df['rsi'].iloc[-1]
-    atr = df['atr'].iloc[-1]
-    vol_now = df['Volume'].iloc[-1]
-    vol_avg = df['vol20'].iloc[-1]
-    vol_ratio = vol_now / vol_avg if vol_avg > 0 else 1.0
-
-    above_200 = price > sma200
-    above_50 = price > sma50
-    above_20 = price > sma20
-
-    log(f"\n{'─'*50}")
-    log(f"{name}: ${price:.2f}")
-    log(f"  20 SMA: ${sma20:.2f} | 50 SMA: ${sma50:.2f} | 200 SMA: ${sma200:.2f}")
-    log(f"  Price vs 200 SMA: {'▲ BULL (above)' if above_200 else '▼ BEAR (below)'}")
-    log(f"  Price vs 50 SMA:  {'▲ BULL' if above_50 else '▼ BEAR'}")
-    log(f"  RSI(14): {rsi:.1f} {'⚠ OVERBOUGHT' if rsi>70 else '⚠ OVERSOLD' if rsi<30 else '↔ NEUTRAL'}")
-    log(f"  ATR(14): ${atr:.2f} ({atr/price*100:.1f}% of price)")
-    log(f"  Volume: {vol_ratio:.1f}x 20-day avg {'▲ HIGH' if vol_ratio>1.3 else '▼ LOW' if vol_ratio<0.7 else '↔ NORMAL'}")
-
-    recent5 = df['Close'].tail(5)
-    chg5 = (recent5.iloc[-1] / recent5.iloc[0] - 1) * 100
-    log(f"  5-Day Change: {chg5:+.1f}%")
-
-if vix is not None:
-    vp = vix['Close'].iloc[-1]
-    vma = vix['Close'].rolling(20).mean().iloc[-1]
-    regime = 'HIGH FEAR / VOLATILE' if vp > vma * 1.1 else 'LOW FEAR / CALM' if vp < vma * 0.9 else 'NEUTRAL'
-    log(f"\n{'─'*50}")
-    log(f"VIX: {vp:.1f} | 20-SMA: {vma:.1f} | Regime: {regime}")
-
-# ── Sector Scan ────────────────────────────────────────────────────────────
-log("\n" + "=" * 70)
-log("STAGE 1 (continued): SECTOR ROTATION & STOCK SCAN")
-log("=" * 70)
-
-stock_pool = [
-    'NVDA','AAPL','MSFT','AMZN','META','GOOGL','TSLA','AVGO','AMD',
-    'NFLX','QCOM','TXN','AMAT','MU','INTC','ADI','LRCX','KLAC',
-    'PANW','SNPS','CDNS','MRVL','ASML','ARM','CRWD','NET','ZS',
-    'NOW','TEAM','DDOG','APP','SMCI','VRTX','REGN','COIN',
-    'RIVN','PLTR','SOFI','SNAP','ROKU','DOCU','ZM'
+# Top NASDAQ 100 components by weight / relevance for swing trading
+nasdaq100_scan = [
+    'NVDA', 'AAPL', 'MSFT', 'AMZN', 'GOOGL', 'META', 'AVGO', 'TSLA',
+    'AMD', 'NFLX', 'QCOM', 'TXN', 'INTC', 'AMAT', 'MU', 'LRCX',
+    'PANW', 'ORLY', 'CSX', 'ADSK', 'CDNS', 'SNPS', 'NXPI', 'KLAC',
+    'INTU', 'CTAS', 'FAST', 'CTSH', 'ADP', 'PAYX', 'BKNG', 'VRTX',
+    'REGN', 'MRVL', 'ON', 'HPQ', 'DELL', 'CRWD', 'ZS', 'FTNT',
+    'TEAM', 'MDB', 'DDOG', 'NET', 'APP', 'SMCI', 'ARM', 'COIN',
+    'mar', 'COST', 'PEP', 'SBUX'
 ]
 
-stock_data = {}
-for t in stock_pool:
+scan_results = []
+
+for ticker in nasdaq100_scan:
     try:
-        tk = yf.Ticker(t)
-        hist = tk.history(period='1y', interval='1d')
-        if len(hist) > 30:
-            stock_data[t] = compute_indicators(hist)
+        d = get_ta_data(ticker, '6mo')
+        if d and 'error' not in d:
+            # Calculate score metrics
+            rsi = d['rsi14']
+            macd_ok = d['macd_hist'] > 0
+            above_key = d['above_ema20'] and d['above_ema50']
+            
+            # ATR-based volatility regime
+            atr_pct = d['atr14'] / d['close'] * 100
+            
+            # Near support/resistance scoring
+            support_dist = (d['close'] - d['swing_low_20']) / d['close'] * 100
+            resistance_dist = (d['swing_high_20'] - d['close']) / d['close'] * 100
+            
+            # Near 52w high?
+            near_high = (d['swing_high_20'] - d['close']) / d['swing_high_20'] < 0.02
+            
+            scan_results.append({
+                'ticker': ticker,
+                'close': d['close'],
+                'pct_chg_1m': d['pct_chg_1m'],
+                'rsi14': rsi,
+                'macd_hist': d['macd_hist'],
+                'macd_ok': macd_ok,
+                'above_ema20': d['above_ema20'],
+                'above_ema50': d['above_ema50'],
+                'atr_pct': atr_pct,
+                'atr14': d['atr14'],
+                'support_dist': support_dist,
+                'resistance_dist': resistance_dist,
+                'near_high': near_high,
+                'vol_ratio': d['volume_today'] / d['volume_avg_20'],
+            })
     except:
         pass
 
-log(f"Loaded {len(stock_data)} stocks from the scan pool")
+# Filter: NOT overbought RSI, above key MAs, reasonable volatility
+filtered = [
+    r for r in scan_results
+    if r['above_ema20'] and r['above_ema50']
+    and r['rsi14'] < 80
+    and r['rsi14'] > 30
+    and r['macd_ok']
+    and r['atr_pct'] > 0.5  # must be liquid enough
+]
 
-swing_candidates = []
-for ticker, df in stock_data.items():
-    try:
-        price = df['Close'].iloc[-1]
-        sma20 = df['sma20'].iloc[-1]
-        sma50 = df['sma50'].iloc[-1]
-        sma200 = df['sma200'].iloc[-1]
-        rsi = df['rsi'].iloc[-1]
-        atr = df['atr'].iloc[-1]
-        vol_avg = df['vol20'].iloc[-1]
-        vol_now = df['Volume'].iloc[-1]
-        vol_ratio = vol_now / vol_avg if vol_avg > 0 else 1.0
-        ret_5d = (df['Close'].iloc[-1] / df['Close'].iloc[-6] - 1) * 100 if len(df) > 5 else 0
-        ret_20d = (df['Close'].iloc[-1] / df['Close'].iloc[-21] - 1) * 100 if len(df) > 20 else 0
+# Sort by composite score: momentum + setup quality
+for r in filtered:
+    # Score: higher RSI(but not overbought) + strong momentum + near support = good
+    momentum_score = r['pct_chg_1m'] * 0.3 + r['macd_hist'] / r['close'] * 1000
+    setup_score = (70 - r['rsi14']) * 0.5 + r['support_dist'] * 0.3  # prefer pullback setups
+    r['score'] = momentum_score + setup_score
 
-        above_200 = price > sma200
-        above_50 = price > sma50
-        above_20 = price > sma20
+filtered.sort(key=lambda x: x['score'], reverse=True)
 
-        score = 0
-        if above_200: score += 3
-        if above_50: score += 2
-        if above_20: score += 1
-        if rsi < 40: score += 2
-        if rsi > 70: score -= 1
-        if ret_5d > 5: score += 1
-        if vol_ratio > 1.5: score += 1
+print("\nTOP SWING SETUPS (Filtered: Above MAs, RSI 30-80, MACD positive)")
+print(f"{'Ticker':<8} {'Price':>8} {'1M%':>7} {'RSI':>5} {'MACD_H':>8} {'ATR%':>5} {'SupD%':>6} {'Score':>7}")
+print("-" * 60)
+for r in filtered[:15]:
+    print(f"{r['ticker']:<8} ${r['close']:>7.2f} {r['pct_chg_1m']:>+6.1f}% {r['rsi14']:>5.1f} {r['macd_hist']:>8.3f} {r['atr_pct']:>5.1f} {r['support_dist']:>5.1f}% {r['score']:>7.2f}")
 
-        swing_candidates.append({
-            'ticker': ticker,
-            'price': price,
-            'sma20': sma20, 'sma50': sma50, 'sma200': sma200,
-            'rsi': rsi, 'atr': atr, 'atr_pct': atr/price*100,
-            'vol_ratio': vol_ratio,
-            'ret_5d': ret_5d, 'ret_20d': ret_20d,
-            'above_200': above_200, 'above_50': above_50, 'above_20': above_20,
-            'score': score
-        })
-    except:
-        pass
+# =====================================================================
+# STAGE 2: DEEP DIVE — TOP 3 SETUPS
+# =====================================================================
+print("\n\n[STAGE 2] DEEP DIVE — TOP 3 SWING TRADE SETUPS")
+print("=" * 70)
 
-swing_candidates.sort(key=lambda x: x['score'], reverse=True)
+top3 = filtered[:3]
 
-log(f"\nTop Swing Candidates (scored by structural quality):")
-log(f"{'Ticker':<8} {'Price':>9} {'RSI':>6} {'ATR%':>6} {'5D%':>7} {'20D%':>7} {'Score':>6} {'Trend'}")
-log("-"*62)
-for c in swing_candidates[:20]:
-    flag = "▲BULL" if c['above_200'] else "▼BEAR"
-    log(f"{c['ticker']:<8} ${c['price']:>7.2f} {c['rsi']:>5.1f} {c['atr_pct']:>5.1f}% {c['ret_5d']:>+6.1f}% {c['ret_20d']:>+6.1f}% {c['score']:>5d} {flag}")
+trade_details = []
+for ticker in [r['ticker'] for r in top3]:
+    print(f"\n{'='*70}")
+    print(f"DEEP DIVE: {ticker}")
+    print(f"{'='*70}")
+    
+    d = get_ta_data(ticker, '6mo')
+    if not d or 'error' in d:
+        continue
+    
+    close = d['close']
+    atr = d['atr14']
+    rsi = d['rsi14']
+    
+    # Entry: pullback to EMA20 or today's range
+    entry_price = round(close * 0.995, 2)  # slight discount
+    stop_loss = round(entry_price - 2.0 * atr, 2)
+    risk_pct = (entry_price - stop_loss) / entry_price * 100
+    
+    # Targets: 2:1 and 3:1 R:R
+    t1_price = round(entry_price + 2.0 * atr, 2)
+    t2_price = round(entry_price + 3.5 * atr, 2)
+    
+    rr1 = (t1_price - entry_price) / (entry_price - stop_loss)
+    rr2 = (t2_price - entry_price) / (entry_price - stop_loss)
+    
+    # Invalidation: below swing low or macro breakdown
+    inv_price = round(d['swing_low_20'] * 0.98, 2)
+    
+    print(f"  Current Price:     ${close:.2f}")
+    print(f"  ATR(14):           ${atr:.2f}  ({d['atr_pct']:.1f}% of price)")
+    print(f"  Entry (Limit):     ${entry_price:.2f}  (at/near EMA20 pullback)")
+    print(f"  Stop Loss:         ${stop_loss:.2f}  (Risk: {risk_pct:.1f}% / ${entry_price - stop_loss:.2f})")
+    print(f"  T1 Target (2:1):   ${t1_price:.2f}  (R:R = {rr1:.1f}:1)")
+    print(f"  T2 Target (3:1):   ${t2_price:.2f}  (R:R = {rr2:.1f}:1)")
+    print(f"  Invalidation:      ${inv_price:.2f}  (below 20d swing low)")
+    print(f"  RSI:               {rsi:.1f}  {'Overbought' if rsi > 70 else 'Neutral' if rsi > 40 else 'Oversold'}")
+    print(f"  MACD Histogram:   {d['macd_hist']:.4f}  (Momentum: {'Positive' if d['macd_hist'] > 0 else 'Negative'})")
+    print(f"  20d Range:         Low ${d['swing_low_20']:.2f} | High ${d['swing_high_20']:.2f}")
+    print(f"  20EMA:             ${d['ema20']:.2f}  |  50EMA: ${d['ema50']:.2f}  |  SMA200: ${d['sma200']:.2f}")
+    
+    trade_details.append({
+        'ticker': ticker,
+        'close': close,
+        'entry': entry_price,
+        'stop': stop_loss,
+        't1': t1_price,
+        't2': t2_price,
+        'inv': inv_price,
+        'atr': atr,
+        'rsi': rsi,
+        'rr1': rr1,
+        'rr2': rr2,
+        'risk_pct': risk_pct,
+        'score': next(r['score'] for r in filtered if r['ticker'] == ticker)
+    })
 
-# ── Select Top 3 from Different Sectors ──────────────────────────────────
-sector_map = {
-    'NVDA': 'AI/Semiconductors', 'AAPL': 'Consumer Tech', 'MSFT': 'Cloud/Enterprise',
-    'AMZN': 'E-commerce/Cloud', 'META': 'Social Media/AI', 'GOOGL': 'Search/AI',
-    'TSLA': 'EV/Auto', 'AVGO': 'Semiconductors', 'AMD': 'Semiconductors',
-    'NFLX': 'Streaming', 'QCOM': 'Semiconductors', 'TXN': 'Semiconductors',
-    'AMAT': 'Semiconductor Equipment', 'MU': 'Memory', 'INTC': 'Semiconductors',
-    'ADI': 'Analog', 'LRCX': 'Semiconductor Equipment', 'KLAC': 'Semiconductor Equipment',
-    'PANW': 'Cybersecurity', 'SNPS': 'EDA/Software', 'CDNS': 'EDA/Software',
-    'MRVL': 'AI Networking', 'ASML': 'Semiconductor Equipment', 'ARM': 'Semiconductors/IP',
-    'CRWD': 'Cybersecurity', 'NET': 'Cybersecurity', 'ZS': 'Cybersecurity',
-    'NOW': 'Enterprise Software', 'TEAM': 'Enterprise Software', 'DDOG': 'Cloud Monitoring',
-    'APP': 'Fintech', 'SMCI': 'AI Infrastructure', 'VRTX': 'Biotech',
-    'REGN': 'Biotech', 'COIN': 'Crypto Finance', 'RIVN': 'EV',
-    'PLTR': 'AI/Data', 'SOFI': 'Fintech', 'SNAP': 'Social Media',
-    'ROKU': 'Streaming', 'DOCU': 'Cloud SaaS', 'ZM': 'Communications',
-}
+# =====================================================================
+# STAGE 3: COGNITIVE CRITIQUE
+# =====================================================================
+print("\n\n[STAGE 3] COGNITIVE CRITIQUE & REGIME ALIGNMENT")
+print("=" * 70)
 
-top3 = []
-seen_sectors = set()
-for c in swing_candidates:
-    sector = sector_map.get(c['ticker'], 'Other')
-    if sector not in seen_sectors and len(top3) < 3:
-        seen_sectors.add(sector)
-        top3.append((c, sector))
-
-# ── Stage 2: Deep-Dive ────────────────────────────────────────────────────
-log("\n" + "=" * 70)
-log("STAGE 2: DEEP-DIVE — TOP 3 SWING TRADE SETUPS")
-log("=" * 70)
-
-for i, (c, sector) in enumerate(top3, 1):
-    ticker = c['ticker']
-    df = stock_data[ticker]
-    price = c['price']
-    atr = c['atr']
-    atr_pct = c['atr_pct']
-    rsi = c['rsi']
-    sma20 = c['sma20']
-    sma50 = c['sma50']
-    sma200 = c['sma200']
-    above_200 = c['above_200']
-    above_50 = c['above_50']
-
-    log(f"\n{'═'*60}")
-    log(f"CANDIDATE #{i}: {ticker} ({sector})")
-    log(f"{'═'*60}")
-    log(f"Current Price: ${price:.2f}")
-    log(f"Key SMAs: 20MA=${sma20:.2f} | 50MA=${sma50:.2f} | 200MA=${sma200:.2f}")
-    if rsi > 70: rsi_label = "(OVERBOUGHT)"
-    elif rsi < 30: rsi_label = "(OVERSOLD)"
-    elif rsi > 55: rsi_label = "(BULLISH)"
-    else: rsi_label = "(NEUTRAL)"
-    log(f"RSI(14): {rsi:.1f} {rsi_label}")
-    log(f"ATR(14): ${atr:.2f} ({atr_pct:.2f}%)")
-    if above_200 and above_50: ts = "HH/HL (BULL)"
-    elif not above_50: ts = "LH/LL (BEAR)"
-    else: ts = "RANGE"
-    log(f"Trend Structure: {ts}")
-    log(f"5-Day Return: {c['ret_5d']:+.1f}% | 20-Day Return: {c['ret_20d']:+.1f}%")
-    log(f"Volume Ratio: {c['vol_ratio']:.1f}x avg")
-
-    # Last 5 days OHLCV (most relevant for near-term)
-    log(f"\nLast 5 Days OHLCV:")
-    for idx, row in df.tail(5).iterrows():
-        chg_pct = (row['Close'] / df['Close'].shift(1).loc[idx] - 1) * 100
-        log(f"  {idx.strftime('%Y-%m-%d')} | O:{row['Open']:.2f} H:{row['High']:.2f} L:{row['Low']:.2f} C:{row['Close']:.2f} ({chg_pct:+.1f}%) Vol:{row['Volume']/1e6:.1f}M")
-
-    # Key levels
-    recent_low = df['Low'].tail(20).min()
-    recent_high = df['High'].tail(20).max()
-    nearest_support = max(sma50 if sma50 < price else price * 0.95, recent_low)
-    nearest_resistance = min(sma50 if sma50 > price else price * 1.05, recent_high)
-
-    log(f"\nKey Levels: Support=${nearest_support:.2f} ({nearest_support/price*100-100:+.1f}%) | Resistance=${nearest_resistance:.2f} ({nearest_resistance/price*100-100:+.1f}%)")
-
-# ── Stage 3: Cognitive Critique ──────────────────────────────────────────
-log("\n" + "=" * 70)
-log("STAGE 3: COGNITIVE CRITIQUE & REGIME ALIGNMENT")
-log("=" * 70)
-
-if qqq is not None and len(qqq) > 0:
-    qqq_price = qqq['Close'].iloc[-1]
-    qqq_200 = qqq['sma200'].iloc[-1]
-    qqq_rsi = qqq['rsi'].iloc[-1]
-    log(f"\n[BULL CASE]")
-    log(f"  QQQ above 200 SMA: {qqq_price > qqq_200} → Structural trend is {'BULL' if qqq_price > qqq_200 else 'BEAR'}")
-    log(f"  QQQ RSI: {qqq_rsi:.1f} → {'Not overextended — room for upside' if qqq_rsi < 70 else 'Overbought — correction risk elevated'}")
-    if qqq_price > qqq_200 and qqq['sma50'].iloc[-1] > qqq_200:
-        log(f"  Regime: TREND CONFIRMED (all three SMAs rising, price above all)")
+macro_regime = "TRANSITIONAL"
+if 'QQQ' in index_data:
+    qqq = index_data['QQQ']
+    if qqq['above_ema50'] and qqq['above_200sma'] and qqq['rsi14'] < 70:
+        macro_regime = "BULL"
+    elif not qqq['above_ema50'] and not qqq['above_200sma'] and qqq['rsi14'] > 50:
+        macro_regime = "BEAR"
     else:
-        log(f"  Regime: TRANSITIONAL / PULLBACK WITHIN BULL")
+        macro_regime = "TRANSITIONAL"
 
-log(f"\n[BEAR CASE / INVERSION THESIS]")
-if qqq is not None:
-    log(f"  If QQQ closes below 50 SMA (${qqq['sma50'].iloc[-1]:.2f}): Full macro de-risk warranted")
-    log(f"  VIX at {vix['Close'].iloc[-1]:.1f} — historically LOW = complacency risk; sudden spike could crush longs")
-    log(f"  August is a seasonally weak month for equities (historical pattern)")
-    log(f"  Broad market RSI at {qqq_rsi:.1f} = moderate; a meaningful pullback to 690-700 zone would be healthy")
+print(f"\n>>> MACRO REGIME ASSESSED: {macro_regime}")
+print(f"    QQQ Price: ${index_data.get('QQQ', {}).get('close', 'N/A')} | RSI: {index_data.get('QQQ', {}).get('rsi14', 'N/A'):.1f}")
+print(f"    VIX Level: ${index_data.get('VIX', {}).get('close', 'N/A')}")
 
-log(f"\n[INVALIDATION TRIGGERS]")
-if qqq is not None:
-    stop_price = qqq['sma50'].iloc[-1]
-    log(f"  QQQ closes below 50 SMA (${stop_price:.2f}): Trade hypothesis invalidated — exit all longs")
-    log(f"  QQQ breaks below $700: Major support failure; reduce exposure immediately")
+for td in trade_details:
+    ticker = td['ticker']
+    d = get_ta_data(ticker, '6mo')
+    
+    print(f"\n{'─'*70}")
+    print(f"CRITIQUE: {ticker}")
+    print(f"{'─'*70}")
+    
+    # Bull case
+    print(f"  ✓ BULL CASE: {ticker} above key EMAs, MACD histogram expanding,")
+    print(f"    momentum building. ATR suggests {d['atr_pct']:.1f}% daily swings,")
+    print(f"    allowing active swing capture.")
+    
+    # Bear case
+    print(f"  ✗ BEAR CASE: Market in {macro_regime} regime — if broad indices")
+    print(f"    correct, {ticker} will not decouple. Earnings risk always present.")
+    print(f"    {'Overbought RSI on daily' if td['rsi'] > 65 else 'RSI in neutral zone'}")
+    
+    # Invalidation triggers
+    print(f"  ⚠ INVALIDATION: If {ticker} closes below ${td['inv']:.2f}")
+    print(f"    (20d swing low = {d['swing_low_20']:.2f}), trade is immediately void.")
+    print(f"    If QQQ breaks below EMA50 = macro risk, tighten stop to BE.")
 
-log(f"\n[LONG BIAS RATIONALE]")
-log(f"  All three major indices (QQQ, SPY, IWM) trading above 200 SMA = structural bull")
-log(f"  VIX near lows ({vix['Close'].iloc[-1]:.1f}) confirms low systemic fear — environment favors long positions")
-log(f"  TLT at ${data['TLT']['Close'].iloc[-1]:.2f} — rising yields a headwind for long-duration assets but bull trend intact")
-log(f"  Long bias with strict stop discipline is appropriate for current regime")
+# =====================================================================
+# STAGE 4: TACTICAL ORDER BLUEPRINT
+# =====================================================================
+print("\n\n" + "=" * 70)
+print("STAGE 4: TACTICAL ORDER BLUEPRINTS — TOP SWING TRADES")
+print("=" * 70)
 
-# ── Stage 4: Tactical Order Blueprints ───────────────────────────────────
-log("\n" + "=" * 70)
-log("STAGE 4: TACTICAL ORDER BLUEPRINTS — TOP 3 SWING SETUPS")
-log("=" * 70)
+# Position sizing: risk 1-2% per trade in transitional/volatile environment
+risk_pct = 1.5  # conservative for auto-execution
 
-for i, (c, sector) in enumerate(top3, 1):
-    ticker = c['ticker']
-    df = stock_data[ticker]
-    price = c['price']
-    atr = c['atr']
-    atr_pct = c['atr_pct']
-    rsi = c['rsi']
-    sma20 = c['sma20']
-    sma50 = c['sma50']
-    sma200 = c['sma200']
-    above_200 = c['above_200']
-    above_50 = c['above_50']
+for i, td in enumerate(trade_details, 1):
+    risk_amount_per_share = td['entry'] - td['stop']
+    shares = int((10000 * risk_pct / 100) / risk_amount_per_share)  # assume $10K account
+    
+    print(f"""
+{'─'*70}
+TRADE #{i}: {td['ticker']}
+{'─'*70}
+  DIRECTION:        {'LONG' if td['entry'] < td['close'] * 1.01 else 'LONG'}
+  SETUP RATIONALE:  {td['ticker']} above EMA20/50, MACD positive, 
+                    sitting {td['close'] - index_data.get(td['ticker'], {}).get('swing_low_20', td['close'] * 0.95):.2f} above 20d low 
+                    — momentum shift setup in {'bull' if macro_regime == 'BULL' else 'transitional'} macro regime.
 
-    direction = 'LONG' if (above_200 and above_50) else 'WATCH'
+  ORDER EXECUTION:
+    Entry Type:      BUY LIMIT @ ${td['entry']:.2f}  (pullback to EMA20 zone)
+    Stop Loss:       SELL STOP-LIMIT @ ${td['stop']:.2f}
+                     (2.0× ATR = ${td['atr']:.2f} risk per share)
 
-    # Stop: below 50 SMA or 1.5x ATR, whichever is closer to entry
-    stop_candidates = []
-    if sma50 < price and sma50 > price * 0.85:
-        stop_candidates.append(sma50 * 0.98)  # 2% below 50 SMA
-    stop_candidates.append(price - atr * 1.5)
-    stop_loss = max(stop_candidates)
-    risk_per_share = price - stop_loss
+  PROFIT TARGETS:
+    T1 (50% size):   SELL LIMIT @ ${td['t1']:.2f}  →  {td['rr1']:.1f}:1 R:R
+    T2 (50% size):   SELL LIMIT @ ${td['t2']:.2f}  →  {td['rr2']:.1f}:1 R:R
 
-    # Targets: 2:1 and 3:1
-    t1 = price + risk_per_share * 2.0
-    t2 = price + risk_per_share * 3.0
-    trailing_stop = t1 - atr * 0.5
+  TRAILING STOP (after T1 hit):
+    Move SL to BREAKEVEN + 0.5× ATR once T1 is reached.
 
-    rr1 = risk_per_share * 2 / price * 100
-    rr2 = risk_per_share * 3 / price * 100
-    rr_pct = risk_per_share / price * 100
+  POSITION SIZING (@ ${10000 * risk_pct / 100:.0f} risk on $10K acct):
+    Risk per share:  ${risk_amount_per_share:.2f}
+    Shares:          ~{shares}  |  Capital used: ${shares * td['entry']:.0f}
 
-    log(f"\n{'─'*60}")
-    log(f"ADVISORY #{i}: {ticker} | Sector: {sector}")
-    log(f"{'─'*60}")
-    log(f"DIRECTION: {direction}")
-    log(f"SETUP RATIONALE: {ticker} at ${price:.2f} is {'above' if above_50 else 'near'} its 50 SMA (${sma50:.2f}), ")
-    log(f"  with RSI at {rsi:.1f} — {'bullish momentum intact, pullback entry' if rsi < 65 else 'moderately extended, wait for pullback' if rsi < 75 else 'overbought, do NOT chase'}. ")
-    log(f"  {sector} sector shows relative strength within QQQ ecosystem.")
+  INVALIDATION:     Close below ${td['inv']:.2f} (20d swing low)
+                    → Immediate exit, no questions.
 
-    log(f"\n  ▶ ENTRY TYPE: Buy Limit @ ${price - atr*0.25:.2f} (tight pullback within daily ATR)")
-    log(f"  ▶ STOP LOSS: ${stop_loss:.2f} (risk ${risk_per_share:.2f}/share = {rr_pct:.1f}%)")
-    log(f"  ▶ T1 (50% profit): ${t1:.2f} → +{rr1:.1f}% gain | 2:1 R:R")
-    log(f"  ▶ T2 (close remaining): ${t2:.2f} → +{rr2:.1f}% gain | 3:1 R:R")
-    log(f"  ▶ TRAILING STOP (after T1 hit): ${trailing_stop:.2f}")
-    log(f"  ▶ POSITION SIZE: Risk 1-2% of portfolio | ${risk_per_share*100:.0f} max loss per 100 shares")
-    log(f"  ▶ ATR-Based Volatility: {atr_pct:.1f}% daily — {'LOW' if atr_pct < 3 else 'MODERATE' if atr_pct < 5 else 'HIGH'} exec risk")
-    log(f"  ▶ INVALIDATION: Close below ${sma50:.2f} (50 SMA) = immediate full exit")
-    log(f"  ▶ HOLDING WINDOW: 5–15 trading days (swing)")
-    log(f"  ▶ CATALYST CHECK: Verify upcoming earnings / news before entry")
+  HOLDING WINDOW:   2–15 trading days (target T1 within 5 days)
+""")
 
-# ── Portfolio Watch ──────────────────────────────────────────────────────
-log("\n" + "=" * 70)
-log("PORTFOLIO WATCH: REGIME EXPOSURE & RISK CHECK")
-log("=" * 70)
-
-if qqq is not None and spy is not None and iwm is not None:
-    regime = "BULL"
-    if qqq['Close'].iloc[-1] > qqq['sma200'].iloc[-1]: regime_bull = True
-    else: regime_bull = False
-    if spy['Close'].iloc[-1] > spy['sma200'].iloc[-1]: spy_bull = True
-    else: spy_bull = False
-    if iwm['Close'].iloc[-1] > iwm['sma200'].iloc[-1]: iwm_bull = True
-    else: iwm_bull = False
-
-    full_bull = regime_bull and spy_bull and iwm_bull
-
-    log(f"\nMACRO REGIME: {'STRUCTURAL BULL ✓' if full_bull else 'TRANSITIONAL / RANGE'}")
-    log(f"  QQQ: {'▲ BULL' if regime_bull else '▼ BEAR'} (${qqq['Close'].iloc[-1]:.2f} vs 200 SMA ${qqq['sma200'].iloc[-1]:.2f})")
-    log(f"  SPY: {'▲ BULL' if spy_bull else '▼ BEAR'} (${spy['Close'].iloc[-1]:.2f} vs 200 SMA ${spy['sma200'].iloc[-1]:.2f})")
-    log(f"  IWM: {'▲ BULL' if iwm_bull else '▼ BEAR'} (${iwm['Close'].iloc[-1]:.2f} vs 200 SMA ${iwm['sma200'].iloc[-1]:.2f})")
-    log(f"  Recommended net equity exposure: {'75-100%' if full_bull else '40-60%'}")
-    log(f"  Preferred longs: Mega-cap tech (MSFT, GOOGL, META, AAPL), Semiconductor leaders (NVDA, AMD, ASML)")
-    log(f"  Hedging: Consider QQQ puts or TLT long if VIX breaks above 20")
-
-log("\n" + "=" * 70)
-log("ANALYSIS COMPLETE")
-log("=" * 70)
+print("=" * 70)
+print(f"Scan completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}")
+print("NOTE: Execute with GTC limit orders. Review pre-market if macro shifts.")
+print("=" * 70)

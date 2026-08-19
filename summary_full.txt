@@ -1,0 +1,143 @@
+================================================================================
+QQQ (Invesco QQQ Trust, Series 1)
+  Price=$717.51 | Prev=$729.87 | Gap=-1.69%
+  SMA20=$706.24 | SMA50=$712.84 | EMA9=$721.28
+  ATR14=$12.03 | RSI14=74.8 | MACD_Hist=2.715
+  Ret5d=-0.13% | Ret10d=-0.88% | Ret1m=1.2%
+  52W: High=748.65 (-4.2%) | Low=555.6 (29.1%)
+  AvgVol=42,869,054 | Rating=None | Target=$None | FwdPE=None
+  Sector: None
+  5-Day Closes: [np.float64(723.7), np.float64(732.07), np.float64(731.07), np.float64(729.87), np.float64(717.51)]
+  5-Day Lows:   [np.float64(722.92), np.float64(724.03), np.float64(728.32), np.float64(729.27), np.float64(715.92)]
+================================================================================
+SPY (State Street SPDR S&P 500 ETF T)
+  Price=$767.45 | Prev=$772.67 | Gap=-0.68%
+  SMA20=$758.68 | SMA50=$749.53 | EMA9=$769.89
+  ATR14=$7.29 | RSI14=77.2 | MACD_Hist=0.769
+  Ret5d=-0.4% | Ret10d=-0.5% | Ret1m=2.56%
+  52W: High=779.37 (-1.5%) | Low=629.28 (22.0%)
+  AvgVol=51,624,830 | Rating=None | Target=$None | FwdPE=None
+  Sector: None
+  5-Day Closes: [np.float64(772.49), np.float64(777.88), np.float64(776.34), np.float64(772.67), np.float64(767.45)]
+  5-Day Lows:   [np.float64(771.28), np.float64(774.11), np.float64(775.43), np.float64(772.51), np.float64(766.92)]
+================================================================================
+IWM (iShares Russell 2000 Index Fund)
+  Price=$300.23 | Prev=$304.06 | Gap=-1.26%
+  SMA20=$297.49 | SMA50=$295.65 | EMA9=$301.43
+  ATR14=$3.57 | RSI14=67.0 | MACD_Hist=0.442
+  Ret5d=-0.25% | Ret10d=-0.49% | Ret1m=1.24%
+  52W: High=305.18 (-1.6%) | Low=223.69 (34.2%)
+  AvgVol=24,089,001 | Rating=None | Target=$None | FwdPE=None
+  Sector: None
+  5-Day Closes: [np.float64(302.71), np.float64(303.5), np.float64(305.09), np.float64(304.06), np.float64(300.23)]
+  5-Day Lows:   [np.float64(301.0), np.float64(302.72), np.float64(302.74), np.float64(303.23), np.float64(300.11)]
+================================================================================
+NVDA (NVIDIA Corporation)
+  Price=$219.74 | Prev=$225.01 | Gap=-2.34%
+  SMA20=$212.1 | SMA50=$206.94 | EMA9=$220.32
+  ATR14=$6.58 | RSI14=77.4 | MACD_Hist=1.213
+  Ret5d=1.03% | Ret10d=3.68% | Ret1m=6.01%
+  52W: High=236.54 (-7.1%) | Low=164.07 (33.9%)
+  AvgVol=144,516,088 | Rating=strong_buy | Target=$302.82758 | FwdPE=17.1
+  Sector: Technology
+  5-Day Closes: [np.float64(224.09), np.float64(225.3), np.float64(225.16), np.float64(225.01), np.float64(219.74)]
+  5-Day Lows:   [np.float64(220.2), np.float64(223.71), np.float64(224.5), np.float64(224.86), np.float64(218.69)]
+================================================================================
+AAPL (Apple Inc.)
+  Price=$310.03 | Prev=$305.59 | Gap=1.45%
+  SMA20=$316.31 | SMA50=$308.9 | EMA9=$308.5
+  ATR14=$8.28 | RSI14=28.2 | MACD_Hist=-1.632
+  Ret5d=1.68% | Ret10d=0.3% | Ret1m=-5.32%
+  52W: High=344.57 (-10.0%) | Low=223.78 (38.5%)
+  AvgVol=56,430,803 | Rating=buy | Target=$325.699 | FwdPE=32.5
+  Sector: Technology
+  5-Day Closes: [np.float64(302.25), np.float64(305.26), np.float64(305.93), np.float64(305.59), np.float64(310.03)]
+  5-Day Lows:   [np.float64(300.57), np.float64(302.05), np.float64(304.3), np.float64(302.94), np.float64(305.74)]
+================================================================================
+MSFT (Microsoft Corporation)
+  Price=$481.63 | Prev=$480.35 | Gap=0.27%
+  SMA20=$458.34 | SMA50=$415.12 | EMA9=$485.65
+  ATR14=$16.97 | RSI14=78.1 | MACD_Hist=-0.608
+  Ret5d=-4.4% | Ret10d=-2.27% | Ret1m=21.09%
+  52W: High=553.72 (-13.0%) | Low=349.2 (37.9%)
+  AvgVol=40,207,874 | Rating=strong_buy | Target=$569.5583 | FwdPE=20.4
+  Sector: Technology
+  5-Day Closes: [np.float64(492.43), np.float64(496.88), np.float64(495.4), np.float64(480.35), np.float64(481.63)]
+  5-Day Lows:   [np.float64(491.52), np.float64(493.01), np.float64(493.92), np.float64(478.41), np.float64(477.15)]
+================================================================================
+AMZN (Amazon.com, Inc.)
+  Price=$259.45 | Prev=$261.31 | Gap=-0.71%
+  SMA20=$257.68 | SMA50=$248.59 | EMA9=$264.28
+  ATR14=$9.84 | RSI14=67.5 | MACD_Hist=-0.907
+  Ret5d=-4.71% | Ret10d=-6.48% | Ret1m=4.81%
+  52W: High=287.2 (-9.7%) | Low=196.0 (32.4%)
+  AvgVol=50,059,372 | Rating=strong_buy | Target=$327.004 | FwdPE=24.9
+  Sector: Consumer Cyclical
+  5-Day Closes: [np.float64(267.28), np.float64(265.13), np.float64(262.65), np.float64(261.31), np.float64(259.45)]
+  5-Day Lows:   [np.float64(267.1), np.float64(264.71), np.float64(262.42), np.float64(258.34), np.float64(257.73)]
+================================================================================
+GOOGL (Alphabet Inc.)
+  Price=$344.2 | Prev=$344.0 | Gap=0.06%
+  SMA20=$345.86 | SMA50=$352.84 | EMA9=$347.53
+  ATR14=$10.71 | RSI14=54.0 | MACD_Hist=-0.557
+  Ret5d=0.12% | Ret10d=-8.86% | Ret1m=-0.85%
+  52W: High=408.61 (-15.8%) | Low=196.6 (75.1%)
+  AvgVol=32,428,011 | Rating=strong_buy | Target=$427.52 | FwdPE=23.3
+  Sector: Communication Services
+  5-Day Closes: [np.float64(343.54), np.float64(346.36), np.float64(345.9), np.float64(344.0), np.float64(344.2)]
+  5-Day Lows:   [np.float64(340.88), np.float64(343.76), np.float64(344.5), np.float64(341.93), np.float64(340.19)]
+================================================================================
+META (Meta Platforms, Inc.)
+  Price=$543.67 | Prev=$568.97 | Gap=-4.45%
+  SMA20=$585.82 | SMA50=$594.92 | EMA9=$577.62
+  ATR14=$22.96 | RSI14=39.5 | MACD_Hist=-3.192
+  Ret5d=-9.26% | Ret10d=-7.53% | Ret1m=-15.55%
+  52W: High=790.8 (-31.3%) | Low=520.26 (4.5%)
+  AvgVol=18,442,140 | Rating=strong_buy | Target=$754.14246 | FwdPE=15.6
+  Sector: Communication Services
+  5-Day Closes: [np.float64(578.85), np.float64(594.97), np.float64(589.85), np.float64(568.97), np.float64(543.67)]
+  5-Day Lows:   [np.float64(578.21), np.float64(579.39), np.float64(589.29), np.float64(564.75), np.float64(543.21)]
+================================================================================
+TSLA (Tesla, Inc.)
+  Price=$336.87 | Prev=$339.3 | Gap=-0.72%
+  SMA20=$325.52 | SMA50=$368.42 | EMA9=$334.28
+  ATR14=$10.86 | RSI14=75.5 | MACD_Hist=4.871
+  Ret5d=1.22% | Ret10d=2.91% | Ret1m=-11.1%
+  52W: High=498.83 (-32.5%) | Low=297.38 (13.3%)
+  AvgVol=42,178,682 | Rating=buy | Target=$395.3405 | FwdPE=154.9
+  Sector: Consumer Cyclical
+  5-Day Closes: [np.float64(327.51), np.float64(339.96), np.float64(342.27), np.float64(339.3), np.float64(336.87)]
+  5-Day Lows:   [np.float64(323.64), np.float64(325.24), np.float64(335.33), np.float64(337.48), np.float64(331.12)]
+================================================================================
+AMD (Advanced Micro Devices, Inc.)
+  Price=$484.39 | Prev=$506.0 | Gap=-4.27%
+  SMA20=$491.36 | SMA50=$510.42 | EMA9=$491.08
+  ATR14=$29.78 | RSI14=61.2 | MACD_Hist=1.869
+  Ret5d=2.12% | Ret10d=-6.59% | Ret1m=-11.03%
+  52W: High=584.73 (-17.2%) | Low=149.22 (224.6%)
+  AvgVol=29,536,893 | Rating=strong_buy | Target=$612.8383 | FwdPE=31.3
+  Sector: Technology
+  5-Day Closes: [np.float64(482.93), np.float64(483.01), np.float64(514.39), np.float64(506.0), np.float64(484.39)]
+  5-Day Lows:   [np.float64(480.88), np.float64(481.0), np.float64(483.2), np.float64(504.52), np.float64(474.98)]
+================================================================================
+AVGO (Broadcom Inc.)
+  Price=$380.0 | Prev=$392.43 | Gap=-3.17%
+  SMA20=$399.88 | SMA50=$389.71 | EMA9=$400.77
+  ATR14=$16.31 | RSI14=54.5 | MACD_Hist=-2.648
+  Ret5d=-8.67% | Ret10d=-9.13% | Ret1m=-1.68%
+  52W: High=495.0 (-23.2%) | Low=281.87 (34.8%)
+  AvgVol=25,897,148 | Rating=strong_buy | Target=$527.88446 | FwdPE=19.5
+  Sector: Technology
+  5-Day Closes: [np.float64(416.05), np.float64(417.82), np.float64(392.99), np.float64(392.43), np.float64(380.0)]
+  5-Day Lows:   [np.float64(414.61), np.float64(411.41), np.float64(388.5), np.float64(391.31), np.float64(377.01)]
+================================================================================
+^VIX (CBOE Volatility Index)
+  Price=$15.76 | Prev=$15.84 | Gap=-0.51%
+  SMA20=$16.35 | SMA50=$17.0 | EMA9=$15.41
+  ATR14=$1.05 | RSI14=40.5 | MACD_Hist=-0.016
+  Ret5d=8.18% | Ret10d=-0.44% | Ret1m=-5.41%
+  52W: High=35.3 (-55.4%) | Low=13.38 (17.8%)
+  AvgVol=0 | Rating=None | Target=$None | FwdPE=None
+  Sector: None
+  5-Day Closes: [np.float64(14.63), np.float64(14.25), np.float64(15.19), np.float64(15.84), np.float64(15.74)]
+  5-Day Lows:   [np.float64(14.39), np.float64(14.18), np.float64(14.89), np.float64(15.6), np.float64(15.74)]

@@ -1,120 +1,95 @@
+#!/opt/hermes/.venv/bin/python3
 import yfinance as yf
-import json
 import pandas as pd
+import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
 
-def compute_rsi(series, period=14):
-    delta = series.diff()
-    gain = delta.where(delta > 0, 0.0)
-    loss = (-delta).where(delta < 0, 0.0)
-    avg_gain = gain.rolling(period).mean()
-    avg_loss = loss.rolling(period).mean()
-    rs = avg_gain / avg_loss
-    rsi = 100 - (100 / (1 + rs))
-    return rsi
+candidates = ['NVDA', 'AAPL', 'ADBE', 'SMCI', 'META', 'GOOGL', 'MSFT', 'AMZN', 'TSLA']
 
-def compute_atr(hist, period=14):
-    high = hist['High']
-    low = hist['Low']
-    close = hist['Close']
-    tr1 = high - low
-    tr2 = (high - close.shift()).abs()
-    tr3 = (low - close.shift()).abs()
-    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
-    atr = tr.rolling(period).mean()
-    return atr
+for t in candidates:
+    try:
+        tk = yf.Ticker(t)
+        hist = tk.history(period="3mo", interval="1d")
+        hist4h = tk.history(period="5d", interval="1h")
+        if len(hist) < 30:
+            continue
+        
+        close = hist['Close'].iloc[-1]
+        sma20 = hist['Close'].tail(20).mean()
+        sma50 = hist['Close'].tail(50).mean()
+        sma200 = hist['Close'].tail(200).mean() if len(hist) >= 200 else close
+        high20 = hist['High'].tail(20).max()
+        low20 = hist['Low'].tail(20).min()
+        high252 = hist['High'].tail(252).max() if len(hist) >= 252 else high20
+        atr = (hist['High'] - hist['Low']).tail(14).mean()
+        
+        delta = hist['Close'].diff()
+        gain = delta.clip(lower=0).rolling(14).mean()
+        loss = (-delta.clip(upper=0)).rolling(14).mean()
+        rsi14 = (100 - 100/(1 + gain/loss)).iloc[-1]
+        
+        d4 = hist4h['Close'].diff()
+        g4 = d4.clip(lower=0).rolling(14).mean()
+        l4 = (-d4.clip(upper=0)).rolling(14).mean()
+        rsi4h = (100 - 100/(1 + g4/l4)).iloc[-1]
+        
+        ema12 = hist['Close'].ewm(span=12).mean()
+        ema26 = hist['Close'].ewm(span=26).mean()
+        macd = ema12.iloc[-1] - ema26.iloc[-1]
+        macd_sig = hist['Close'].ewm(span=9).mean().ewm(span=12).mean().ewm(span=9).mean().iloc[-1] - ema26.iloc[-1]
+        macd_hist = macd - macd_sig
+        
+        vol20 = hist['Volume'].tail(20).mean()
+        vol_today = hist['Volume'].iloc[-1]
+        vol_ratio = vol_today / vol20 if vol20 > 0 else 1
+        
+        # Support/Resistance from last 20 days
+        recent_highs = sorted(hist['High'].tail(20).nlargest(3).values)
+        recent_lows = sorted(hist['Low'].tail(20).nsmallest(3).values)
+        
+        e8_4h = hist4h['Close'].ewm(span=8).mean().iloc[-1] if len(hist4h) > 8 else close
+        e20_4h = hist4h['Close'].ewm(span=20).mean().iloc[-1] if len(hist4h) > 20 else close
+        e50_4h = hist4h['Close'].ewm(span=50).mean().iloc[-1] if len(hist4h) > 50 else close
+        
+        # Recent 10-day closes
+        r10c = list(zip([str(d.date()) for d in hist.index[-10:]], [f"{c:.2f}" for c in hist['Close'].tail(10)]))
+        
+        print(f"\n{'='*60}")
+        print(f"{t} | ${close:.2f}")
+        print(f"{'='*60}")
+        print(f"RSI(14): {rsi14:.1f} | 4h RSI: {rsi4h:.1f}")
+        print(f"SMA20: {sma20:.2f} | SMA50: {sma50:.2f} | SMA200: {sma200:.2f}")
+        print(f"AboveSMA20: {close > sma20} | AboveSMA50: {close > sma50} | AboveSMA200: {close > sma200}")
+        print(f"MACD: {macd:.3f} | Signal: {macd_sig:.3f} | Hist: {macd_hist:.3f} {'POSITIVE' if macd_hist>0 else 'NEGATIVE'}")
+        print(f"20d High: {high20:.2f} | 20d Low: {low20:.2f} | ATR(14): {atr:.2f} ({atr/close*100:.1f}% of price)")
+        print(f"52w High: {high252:.2f} | % from 52w: {(high252-close)/high252*100:.1f}%")
+        print(f"VolRatio: {vol_ratio:.2f}x | TodayVol: {vol_today:,.0f} | 20dAvg: {vol20:,.0f}")
+        print(f"% from 20d High: {(high20-close)/high20*100:.1f}% | % from 20d Low: {(close-low20)/low20*100:.1f}%")
+        print(f"Top R zones: {[f'{h:.2f}' for h in recent_highs]}")
+        print(f"Top S zones: {[f'{l:.2f}' for l in recent_lows]}")
+        print(f"4h EMA8: {e8_4h:.2f} | 4h EMA20: {e20_4h:.2f} | 4h EMA50: {e50_4h:.2f} | BullCross4h: {e8_4h > e20_4h}")
+        print(f"10-day closes: {r10c}")
+    except Exception as e:
+        print(f"ERROR {t}: {e}")
 
-focus = ['AMD', 'TSLA', 'META', 'PANW', 'AVGO', 'NVDA', 'AAPL', 'AMZN', 'MSFT']
+print("\n" + "="*60)
+print("VIX / MACRO")
+print("="*60)
+vix = yf.Ticker("^VIX")
+hvix = vix.history(period="1mo", interval="1d")
+print(f"VIX last 10 days: {[(str(d.date()), f'{c:.2f}') for d,c in zip(hvix.index[-10:], hvix['Close'].tail(10))]}")
+print(f"VIX 20d avg: {hvix['Close'].tail(20).mean():.2f}")
 
-results = {}
-for t in focus:
-    tk = yf.Ticker(t)
-    hist = tk.history(period='60d', interval='1d')
-    info = tk.info
-    
-    if hist is None or len(hist) < 20:
-        continue
-    
-    close = hist['Close']
-    rsi = compute_rsi(close, 14)
-    atr = compute_atr(hist, 14)
-    
-    ret_5d = float(close.iloc[-1] / close.iloc[-6] - 1) * 100 if len(close) > 5 else 0
-    ret_10d = float(close.iloc[-1] / close.iloc[-11] - 1) * 100 if len(close) > 10 else 0
-    ret_20d = float(close.iloc[-1] / close.iloc[-21] - 1) * 100 if len(close) > 20 else 0
-    
-    hi20 = float(close.rolling(20).max().iloc[-1])
-    lo20 = float(close.rolling(20).min().iloc[-1])
-    price_pos_20d = float((close.iloc[-1] - lo20) / (hi20 - lo20) * 100) if (hi20 - lo20) > 0 else 50
-    
-    bb_mid = float(close.rolling(20).mean().iloc[-1])
-    bb_std = float(close.rolling(20).std().iloc[-1])
-    bb_upper = bb_mid + 2*bb_std
-    bb_lower = bb_mid - 2*bb_std
-    bb_pos = float((close.iloc[-1] - bb_lower) / (bb_upper - bb_lower) * 100) if (bb_upper - bb_lower) > 0 else 50
-    
-    sma20 = float(close.rolling(20).mean().iloc[-1])
-    sma50 = float(close.rolling(50).mean().iloc[-1]) if len(close) >= 50 else None
-    ema12 = float(close.ewm(span=12).mean().iloc[-1])
-    ema26 = float(close.ewm(span=26).mean().iloc[-1])
-    macd = ema12 - ema26
-    signal = float(close.ewm(span=26).mean().ewm(span=9).mean().iloc[-1])
-    macd_hist = macd - signal
-    
-    vol_sma20 = float(hist['Volume'].rolling(20).mean().iloc[-1])
-    vol_today = float(hist['Volume'].iloc[-1])
-    vol_ratio = vol_today / vol_sma20 if vol_sma20 > 0 else 1
-    
-    # 10d swing levels
-    swing_high_10d = float(hist['High'].rolling(10).max().iloc[-1])
-    swing_low_10d = float(hist['Low'].rolling(10).min().iloc[-1])
-    
-    # Fibonacci levels (from 20d low to 20d high)
-    fib_382 = lo20 + (hi20 - lo20) * 0.382
-    fib_618 = lo20 + (hi20 - lo20) * 0.618
-    fib_786 = lo20 + (hi20 - lo20) * 0.786
-    
-    results[t] = {
-        'price': round(float(close.iloc[-1]), 2),
-        'ret_5d': round(ret_5d, 2),
-        'ret_10d': round(ret_10d, 2),
-        'ret_20d': round(ret_20d, 2),
-        'rsi14': round(float(rsi.iloc[-1]), 1),
-        'atr14': round(float(atr.iloc[-1]), 2),
-        'hi20': round(hi20, 2),
-        'lo20': round(lo20, 2),
-        'price_pos_20d': round(price_pos_20d, 0),
-        'bb_upper': round(bb_upper, 2),
-        'bb_mid': round(bb_mid, 2),
-        'bb_lower': round(bb_lower, 2),
-        'bb_pos': round(bb_pos, 0),
-        'sma20': round(sma20, 2),
-        'sma50': round(sma50, 2) if sma50 else None,
-        'macd': round(macd, 3),
-        'macd_hist': round(macd_hist, 3),
-        'vol_ratio': round(vol_ratio, 2),
-        'swing_high_10d': round(swing_high_10d, 2),
-        'swing_low_10d': round(swing_low_10d, 2),
-        'fib_382': round(fib_382, 2),
-        'fib_618': round(fib_618, 2),
-        'fib_786': round(fib_786, 2),
-        'market_cap': info.get('marketCap'),
-        'pe_ratio': info.get('trailingPE'),
-        'beta': info.get('beta'),
-        'earnings_next': info.get('earningsNext'),
-    }
+dxy = yf.Ticker("UUP")
+hdxy = dxy.history(period="1mo", interval="1d")
+print(f"DXY last 10 days: {[(str(d.date()), f'{c:.2f}') for d,c in zip(hdxy.index[-10:], hdxy['Close'].tail(10))]}")
 
-with open('/opt/data/handbook/swing_deep.json', 'w') as f:
-    json.dump(results, f, indent=2)
+tlt = yf.Ticker("TLT")
+htlt = tlt.history(period="1mo", interval="1d")
+print(f"TLT last 10 days: {[(str(d.date()), f'{c:.2f}') for d,c in zip(htlt.index[-10:], htlt['Close'].tail(10))]}")
 
-for t, d in results.items():
-    print(f"\n{'='*60}")
-    print(f"{t}: ${d['price']}  |  5d:{d['ret_5d']:+.1f}%  10d:{d['ret_10d']:+.1f}%  20d:{d['ret_20d']:+.1f}%")
-    print(f"  RSI(14)={d['rsi14']}  ATR=${d['atr14']}  Vol Ratio={d['vol_ratio']}x")
-    print(f"  20d Hi:${d['hi20']}  20d Lo:${d['lo20']}  Pos in range:{d['price_pos_20d']:.0f}%")
-    print(f"  BB Upper:${d['bb_upper']}  BB Mid:${d['bb_mid']}  BB Lower:${d['bb_lower']}  BB Pos:{d['bb_pos']:.0f}%")
-    print(f"  SMA20:${d['sma20']}  SMA50:${d['sma50']}")
-    print(f"  MACD={d['macd']}  MACD Hist={d['macd_hist']}")
-    print(f"  10d Swing H:${d['swing_high_10d']}  10d Swing L:${d['swing_low_10d']}")
-    print(f"  Fib 38.2%:${d['fib_382']}  Fib 61.8%:${d['fib_618']}  Fib 78.6%:${d['fib_786']}")
-    if d.get('earnings_next'):
-        print(f"  Next Earnings: {d['earnings_next']}")
+# HY credit spreads proxy
+jnk = yf.Ticker("HYG")
+hjnk = jnk.history(period="1mo", interval="1d")
+print(f"HYG last 5 days: {list(zip([str(d.date()) for d in hjnk.index[-5:]], [f'{c:.2f}' for c in hjnk['Close'].tail(5)]))}")
