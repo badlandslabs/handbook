@@ -1,0 +1,41 @@
+# S-2885 · The Agent Tool Stack — When the Model Is Capable but the Agent Is Powerless
+
+A capable LLM plus a blank tool list is just a sophisticated autocomplete. The model can reason about航班 booking, data analysis, and code deployment, but without the right tools it cannot act on any of it. Teams spend weeks tuning model prompts only to discover the bottleneck was never the model — it was what the agent was allowed to touch.
+
+## Forces
+
+- **Tools are the agent's body, not an add-on.** A model with a context window but no tools can reason about the world. A model with tools can change it. Without tools, even the most powerful reasoning model is a passenger.
+- **Too many tools causes decision paralysis.** Giving an agent 200 tools is as harmful as giving it 2. The agent wastes tokens deciding which tool to use, picks the wrong one, or calls tools in nonsensical orders. Tool cardinality is a design problem.
+- **Tool descriptions are the prompt.** The model's tool-calling behavior is almost entirely determined by the description, parameters, and examples embedded in the tool definition — not in the system prompt. A vague description produces vague, wrong tool calls.
+- **Browser and code execution are the most demanded tools, the hardest to get right.** Every team building web automation or autonomous coding agents hits the same wall: stale page state, dynamic rendering, and race conditions that break scripted interactions.
+- **The tool ecosystem is fragmenting around MCP, but adoption is uneven.** Model Context Protocol reached 97M+ monthly SDK downloads and 13,000+ public servers in under a year, but enterprise adoption is still catching up — many production systems still use bespoke tool wrappers.
+
+## The Move
+
+Build a minimal, purpose-fit tool layer. The tools an agent needs depend entirely on the task — a research agent needs different tools than a coding agent. The principle is: give each agent exactly what it needs, nothing more, with descriptions precise enough that the model can reason about when and how to use them.
+
+**Browser tools** — Agents that automate web workflows need more than screenshots. The Agent Browser Protocol (ABP) fork of Chromium freezes JavaScript execution after each action and captures the resulting page state as a structured event summary, solving the "stale state" problem that causes most browser-agent failures (modals appearing between screenshot and action, dynamic reflow, autocomplete dropdowns covering targets). Libretto's Browser Tools SDK provides 6 Playwright-based tools at 55% lower cost than alternatives. Notte adds structured Pydantic output, CAPTCHA solving, proxy rotation, and secrets management as a full platform.
+
+**Code execution** — Agents that write or modify code need a sandboxed execution environment. Anthropic's MCP code execution tool lets agents run Python in an isolated container, get results back, and iterate. The OpenAI Agents SDK exposes `CodeInterpreter`. The pattern is: write code → execute → receive output → revise. This requires versioning and artifact management so the agent doesn't lose context from execution history.
+
+**File system and project tools** — Agents doing multi-file work need structured access to file read/write, directory listing, and search. These are deceptively complex: the agent needs to know the project structure, not just read files one at a time. Some teams implement a "project graph" tool that gives the agent a topological view of the codebase.
+
+**Web search and retrieval** — For research agents, real-time web search via SerpAPI, Brave Search, or DuckDuckGo. For domain-specific knowledge, RAG over internal documents with vector search. The key design choice is freshness: static embeddings for slow-moving knowledge, live search for anything that changes.
+
+**MCP as the unifying layer** — Anthropic's Model Context Protocol has become the closest thing to a standard for tool exposure. 97M+ monthly SDK downloads (as of December 2025) with 13,000+ public MCP servers covering GitHub, Slack, database connectors, cloud infrastructure, and more. The "USB-C for AI" analogy holds: MCP lets agents connect to any compatible tool without per-integration glue code.
+
+## Evidence
+
+- **HN Show HN (154 points):** The Agent Browser Protocol (ABP) project — a Chromium fork explicitly solving stale page state — achieves 90.5% on Online Mind2Web benchmark (90% easy tasks, 85.51% hard tasks) using Opus 4.6. The key finding: "Most browser-agent failures aren't really about the model misunderstanding the page. Instead, the problem is that the model is reasoning from a stale state." — [Show HN: Agent Browser Protocol](https://news.ycombinator.com/item?id=47336171)
+- **Anthropic Engineering Blog:** "Building Effective AI Agents" (December 2024, 543 HN points) defines an agent as "an augmented LLM running in a loop" — a LLM hooked up to tools, memory, and data. The engineering guidance is to start with the simplest tool set and only add complexity when needed. On tool design: "Prompt engineering your tools is as important as prompt engineering your prompts." — [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents)
+- **OpenClaw.Direct / Community Analysis:** MCP grew from ~100K monthly SDK downloads to 97M+ in just over a year. The top MCP use cases in production are: database queries (PostgreSQL, MongoDB connectors), GitHub operations (repo management, PR reviews), cloud infrastructure (AWS/GCP/Azure resource management), and Slack/communication tool integration. — [MCP Examples: 10 Real-World Use Cases](https://openclaw.direct/mcp-guide/model-context-protocol-examples)
+- **AgntWork Reddit Roundup (2026):** Community consensus on agent tool priorities: reliability (minimizing hallucinations), integration (API-first design with cloud compatibility), customization (fine-tuning for domain-specific tool behavior), and scalability. Coding agents and browser agents are the two categories with the most real-world production deployments per Reddit community discussions. — [2025's Top AI Agent Tools: A Reddit Community Roundup](https://agntwork.com/2025s-top-ai-agent-tools-a-reddit-community-roundup/)
+- **OpenAI Developers Blog (2025):** "Agent building blocks (Responses API, Agents SDK, AgentKit) made multi-step workflows easier to ship and operate." Tool use converged with reasoning as a core model capability — models that are good at reasoning are good at tool selection and sequencing. — [OpenAI for Developers in 2025](https://developers.openai.com/blog/openai-for-developers-2025)
+
+## Gotchas
+
+- **Tool descriptions in system prompts are a waste.** Put the description, parameters, and usage examples in the tool definition itself — the model reads this in the tool schema at call time, not in the system prompt. System prompt tool descriptions cause inconsistencies and token waste.
+- **Every tool needs an error response that the model can act on.** A tool that returns "error occurred" with no detail is useless — the model cannot recover. Design error responses to include error type, affected parameters, and suggested alternative actions.
+- **Browser automation tools break on JavaScript-heavy SPAs without special handling.** Static HTML scraping tools fail silently on React/Vue/Angular apps. The ABP approach (freeze JS state post-action) and Playwright-based tools are the current solutions — screenshot-only tools are inadequate for modern web apps.
+- **MCP servers are third-party code in your agent's trust boundary.** A malicious or buggy MCP server can exfiltrate data passed through it. Treat MCP server access the same as any other plugin: scope it to the minimum permissions required, log all tool calls, and sandbox execution.
+- **Giving agents more tools does not make them more capable past a threshold.** Anthropic's guidance is explicit: start with the minimum viable tool set. The HN discussion on the Anthropic article surfaced strong community agreement: "It's insane that people use whole frameworks to send what is essentially an array of strings to a webservice." The failure mode is adding tools for extensibility that nobody uses, while increasing latency and token cost for every call.
