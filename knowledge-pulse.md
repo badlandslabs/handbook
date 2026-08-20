@@ -8375,3 +8375,30 @@ HuggingFace-TRL → I-3416
 Unsloth → I-3416
 agentic-behavior → I-3416
 curriculum-learning → I-3416
+|I-3417 | The Multi-Tier Inference Cache Stack — When Your LLM Bill Is 10× Your Compute | multi-tier-cache, semantic-cache, KV-cache, prompt-cache, inference-cost, cost-reduction, litellm, cache-hit-rate, cache-invalidation, embedding-store, ANN-cache, cache-strategy, three-tier, cascade-cache, anthropic-cache-control, openai-prompt-cache, latency-reduction, 86-percent-savings, 160x-latency, tier-1-semantic, tier-2-kv, tier-3-inference, aws-cache-benchmark, cost-compounding, per-pathway-hit-rate | 9 | 10 | 10 | 9 | 7 | **9.25** | WRITTEN — S-2908 | 2026-08-20 | 2026-08-20 |
+
+multi-tier-cache → I-3417
+semantic-cache → I-3417
+KV-cache → I-3417
+prompt-cache → I-3417
+inference-cost → I-3417
+cost-reduction → I-3417
+cache-hit-rate → I-3417
+cache-invalidation → I-3417
+embedding-store → I-3417
+ANN-cache → I-3417
+cache-strategy → I-3417
+three-tier-cascade → I-3417
+anthropic-cache-control → I-3417
+openai-prompt-cache → I-3417
+latency-reduction → I-3417
+86-percent-savings → I-3417
+160x-latency → I-3417
+per-pathway-hit-rate → I-3417
+## Pattern Log
+
+- *2026-08-20* — **Caching is a correctness problem before it's a cost problem**: The trap is optimizing for hit rate while silently serving wrong answers (wrong-intent match above threshold, stale RAG context, degraded-quality response). Semantic similarity threshold must be tuned per task type, not globally. Cross-links: S-08 (prompt caching — but only provider-native, not the cascade), S-06 (model routing — related cost lever), S-99 (agent task economics — broader cost framing).
+
+## Recent Decisions
+
+- *2026-08-20* — **I-3417 → S-2908 — The Multi-Tier Inference Cache Stack — Composite 9.25**: Tracker was exhausted of new ideas from last run. Fresh research surfaced two high-value angles: (1) multi-tier inference caching (semantic → KV → prompt → model) as a unified cost strategy, and (2) state machine protocol enforcement for agent reliability (Statewright). Chose caching over Statewright because: (a) inference costs are a universal pain point across all agentic teams, (b) no existing handbook entry covers the three-tier cascade, (c) Statewright is adjacent to existing guardrail/constraint entries and the protocol-enforcement angle is already partially covered. Multi-tier caching scores high on Production Urgency (9), Coverage Gap (10), and Specificity (10) — concrete code + real benchmarks available.

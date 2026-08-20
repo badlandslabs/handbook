@@ -1,26 +1,38 @@
-#!/usr/bin/env python3
 import re
-
 with open('knowledge-pulse.md') as f:
     content = f.read()
 
-lines = content.split('\n')
+# Find Ideas Bank section
+idx_start = content.find('## Ideas Bank')
+idx_end = content.find('## Recent Decisions')
+if idx_end == -1:
+    idx_end = content.find('## Pattern Log')
+ideas_section = content[idx_start:idx_end]
 
-# Find non-WRITTEN I-32xx entries
-for i, line in enumerate(lines):
-    line = line.rstrip()
-    if not line.startswith('|'):
-        continue
-    cols = [c.strip() for c in line.split('|') if c.strip()]
-    if len(cols) >= 2 and cols[0].startswith('I-32') and not cols[0].startswith('I-320'):
-        # Find status
-        status = None
-        composite = None
-        for c in cols:
-            if c.startswith('WRITTEN') or c.startswith('DUPLICATE') or c.startswith('DEFERRED') or c.startswith('CANDIDATE') or c.startswith('RESEARCH') or c.startswith('DORMANT'):
-                status = c
-            if c.startswith('**') and '/' in c:
-                composite = c
-        if status and 'WRITTEN' not in status:
-            title = cols[2] if len(cols) > 2 else 'N/A'
-            print(f"L{i+1}: {cols[0]} | {title[:70]} | {status} | {composite}")
+# Split into lines
+lines = ideas_section.split('\n')
+
+# Find lines with triple-pipe idea entries
+results = []
+for line in lines:
+    if re.match(r'\|\|\|\s*I-\d+', line):
+        results.append(line)
+
+pending = []
+for r in results:
+    score_m = re.search(r'\*\*(\d+\.\d+)\*\*', r)
+    status_m = re.search(r'\|\s*WRITTEN\s*—|\|\s*DUPLICATE', r)
+    id_m = re.search(r'I-(\d+)', r)
+    # Title is after "The "
+    title_m = re.search(r'\|\s*\|\s*\|\s*\|\s*The\s+([^\|]+)', r)
+
+    if not status_m and score_m and id_m:
+        score = float(score_m.group(1))
+        iid = 'I-' + id_m.group(1)
+        title = title_m.group(1).strip() if title_m else '?'
+        pending.append((score, iid, title))
+
+pending.sort(reverse=True)
+print(f"Pending ideas: {len(pending)}")
+for s, i, t in pending[:25]:
+    print(f'{s:.2f} | {i} | {t[:85]}')

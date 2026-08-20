@@ -379,6 +379,7 @@
   - [S-2899 · The Multi-Agent Consensus Arbitration Stack — When Your Agents Vote on Wrong and Nobody Is In Charge](stacks/s2899-the-multi-agent-consensus-arbitration-stack-when-your-agents-vote-on-wrong-and-nobody-is-in-charge.md)
   - [S-2904 · The Agentic Coordination Deadlock Stack — When Your Agents Wait for Each Other Forever](stacks/s2904-the-agentic-coordination-deadlock-stack-when-your-agents-wait-for-each-other-forever.md)
   - [S-2905 · The Agentic Fine-Tuning Stack — When Your Base Model Knows Everything and Does Nothing Right](stacks/s2905-the-agentic-fine-tuning-stack-when-your-base-model-knows-everything-and-does-nothing-right.md)
+  - [S-2908 · The Multi-Tier Inference Cache Stack — When Your LLM Bill Is 10× Your Compute](stacks/s2908-the-multi-tier-inference-cache-stack-when-your-llm-bill-is-10x-your-compute.md)
   - [S-2813 · The Tool-Call Argument Contract Stack — When Your Agent Picks the Right Tool and Gets It Completely Wrong](stacks/s2813-the-tool-call-argument-contract-stack-when-your-agent-picks-the-right-tool-and-gets-it-completely-wrong.md)
   - [S-2815 · The Agentic Longitudinal Regression Stack — When Your Agent Isn't as Good as It Was Last Week](stacks/s2815-the-agentic-longitudinal-regression-stack-when-your-agent-isnt-as-good-as-it-was-last-week.md)
   - [S-2817 · The Orchestration Topology Stack — When Your Agent Does Too Much and Knows Too Little](stacks/s2817-the-orchestration-topology-stack-when-your-agent-does-too-much-and-knows-too-little.md)
