@@ -8288,9 +8288,13 @@ harness-agnostic → I-3410
 || I-3413 | The Multi-Agent Consensus Arbitration Stack — When Your Agents Vote on Wrong and Nobody Is In Charge | consensus-arbitration, multi-agent-disagreement, taxonomy, binding-resolution, fact-evidence-anchor, style-merge, reasoning-trace, calibration, competency-routing, competing-goals, human-escalation, arbiter-agent, confidence-weighted, evidence-count, disagreement-type-tag, tianpan, arxiv-voting, majority-vote-fail, RLHF-sycophancy, conformance-bias, cascade-amplification, handoff-contract | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2899 | 2026-08-20 | 2026-08-20 |
 
 ## Recent Decisions
-- *2026-08-19* — **I-3412 → S-2894 — The Synthetic Proving Ground Stack — Composite 9.35**: Tracker saturated. Fresh research: AgentSwarms multi-agent simulation guide (Jun 2026) — "you cannot unit-test a society; a swarm is a small society"; Microsoft AWM paper (arXiv:2602.10090) — Agent World Model for synthetic environment generation; TheCodeForge A2A post-mortem — $40k lost to handshake timeout never caught in integration tests. Deduplication: 7 existing entries cover sandboxing for code execution (S-1069, S-1072, S-1085, S-1108) or eval harnesses (S-1000, S-1121, S-2863). None cover synthetic environments for *adversarial failure discovery* — finding failure modes eval suites don't know to test for. Novel angle: emergent failures from agent interactions, not component failures. S-2893 (Agent Architecture) chosen over synthetic proving ground — written. Synthetic Proving Ground chosen: highest composite, distinct problem space, no duplicate.
+- *2026-08-20* — **I-3415 → S-2904 — The Agentic Coordination Deadlock Stack — Composite 9.10**: Tracker saturated; fresh research required. Sources: tianpan.co (Apr 2026) — 37% of multi-agent failures are coordination breakdowns, 25-95% deadlock rate under normal conditions; TraceFix (ACM CAIS '26, arXiv:2605.07935) — TLA+ verification cuts deadlock/livelock from 31.1% to 14.1%; Cemri 2025 — 14 failure modes catalog; COMPEL Framework (AITE M1.2-Art12) — four coordination topologies; Resomnium (Apr 2026) — coordination breakdown five-step pattern. Deduplication: existing entries cover coordination tangentially (S-1011 rate limits, S-1034 role fences, S-1046 dead-end, S-1144 orchestration topologies) but none address the formal deadlock mechanism: circular wait from convergent reasoning, the four Coffman conditions, or the prevention hierarchy (resource ordering → handoff contracts → TLA+ verification → stall guards). This is a novel standalone entry with strong backing from 5 independent sources. S-2904 written.
+
+- *2026-08-19* — **I-3412 → S-2894 — The Synthetic Proving Ground Stack — Composite 9.35**: Fresh research: AgentSwarms multi-agent simulation guide (Jun 2026) — "you cannot unit-test a society; a swarm is a small society"; Microsoft AWM paper (arXiv:2602.10090) — Agent World Model for synthetic environment generation; TheCodeForge A2A post-mortem — $40k lost to handshake timeout never caught in integration tests. Deduplication: 7 existing entries cover sandboxing for code execution (S-1069, S-1072, S-1085, S-1108) or eval harnesses (S-1000, S-1121, S-2863). None cover synthetic environments for *adversarial failure discovery* — finding failure modes eval suites don't know to test for. Novel angle: emergent failures from agent interactions, not component failures. S-2893 (Agent Architecture) chosen over synthetic proving ground — written. Synthetic Proving Ground chosen: highest composite, distinct problem space, no duplicate.
 
 ## Pattern Log
+- *2026-08-20* — **Classical distributed systems failure modes are back in agentic systems**: Agentic coordination deadlock (circular wait in the agents' reasoning graph), livelock, and priority inversion are the new frontier of agentic failures. The four Coffman conditions for deadlock — mutual exclusion, hold-and-wait, no preemption, circular wait — all apply to multi-agent systems. The key new mechanism is *convergent reasoning*: multiple agents reasoning independently from the same context reach the same conclusions, including the same next-step dependency, producing symmetric circular waits. Sources: tianpan.co (Apr 2026), TraceFix (Xia et al., ACM CAIS '26, arXiv:2605.07935), Cemri et al. 2025 (14 failure modes), COMPEL Framework (AITE M1.2-Art12, 2026). The prevention hierarchy is: total resource ordering → handoff contracts → TLA+ protocol verification → stall guards → global coordinator timeout. Distinct from S-1011 (rate limit coordination) and S-1034 (role fences) — those prevent *resource contention*, this prevents *reasoning graph deadlock*. Wrote S-2904.
+
 - *2026-08-19* — **Hallucination cascade has a quantifiable accuracy trade-off**: Hallucination Cascade (Jamshidi et al., arXiv:2606.07937v1, Polytechnique Montréal, June 2026) provides the first empirical quantification of error propagation dynamics in multi-agent LLM cascades: 500 experiments, 1,250 evaluated responses across GPT-5.3 / DeepSeek-V3 / LLaMA-3-70B-Instruct. Key findings: 3-agent chains reduce hallucination scores (0.422 → 0.272, amplification factor 0.644) but factual accuracy also declines (0.789 → 0.769). The accuracy–hallucination trade-off is structural, not model-specific. Amplification factor below 1.0 means the chain is *suppressing* hallucination signal but also *eroding* factual grounding. This is distinct from S-1052 (trust propagation) and S-1007 (tool-call hallucination plateau) — this is the quantitative cascade dynamics. Wrote S-2882.
 
 - *2026-08-19* — **Tool schema drift is measurable and invisible to HTTP probes**: AliveMCP measured a 7.1% drift rate over 48 hours across 196 healthy MCP servers (AliveMCP blog, 2026-04-25). Four drift shapes: removed tools, renamed parameters, changed descriptions, added breaking optional params. Naively extrapolates to ~50% chance of drift over 30 days for any given server. Invisible to health-check probes that only check HTTP status. Only canonical-JSON hashing of the tools/list response catches it. Already covered by S-2877 (Schema Drift Stack).
@@ -8325,8 +8329,29 @@ delta-box → I-3414
 ibm-stratus → I-3414
 cordum-rollback → I-3414
 agentnative-runtime → I-3414
-adaline-labs-tool-reliability → I-3414
+coordination-deadlock → I-3415
+circular-wait → I-3415
+convergent-reasoning → I-3415
+deadlock → I-3415
+livelock → I-3415
+dining-philosophers → I-3415
+Coffman-conditions → I-3415
+total-ordering → I-3415
+handoff-contract → I-3415
+TraceFix → I-3415
+TLA-plus → I-3415
+TLC-model-check → I-3415
+Cemri-2025 → I-3415
+COMPEL-framework → I-3415
+distributed-systems → I-3415
+coordination-failure → I-3415
+stall-guard → I-3415
+Conway-alignment → I-3415
+deadlock-rate-31-percent → I-3415
+ACM-CAIS-2026 → I-3415
+tianpan-2026 → I-3415
 
 ## Ideas Bank
 
 | I-3414 | The Agentic Saga Stack — When Your Agent Half-Completes a Workflow and Nobody Knows What Happened | agentic-saga, saga-pattern, compensation, compensating-transaction, rollback, idempotency, failure-recovery, partial-completion, LIFO-stack, external-state-mutation, durable-execution, temporal, delta-box, memoria, ibm-stratus, cordum-2026, agentmarketcap-2026, agentnative-2026, adaline-labs-2026, neurips-2025 | 10 | 10 | 10 | 10 | 10 | **10.00** | WRITTEN — S-2901 | 2026-08-20 | 2026-08-20 |
+| I-3415 | The Agentic Coordination Deadlock Stack — When Your Agents Wait for Each Other Forever | coordination-deadlock, circular-wait, convergent-reasoning, deadlock, livelock, dining-philosophers, Coffman-conditions, total-ordering, handoff-contract, TraceFix, TLA-plus, TLC-model-check, Cemri-2025, COMPEL-framework, distributed-systems, coordination-failure, stall-guard, Conway-alignment, tianpan-2026, ACM-CAIS-2026, deadlock-rate-31-percent | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2904 | 2026-08-20 | 2026-08-20 |
