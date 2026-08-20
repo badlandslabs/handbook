@@ -1,357 +1,388 @@
-# Agent Evaluation & Failure Handling: Reddit + GitHub Primary Source Research
+# Agentic AI Architecture: Hacker News + Reddit + GitHub Primary Source Research
 
-**Research scope:** Real user complaints, community patterns, and open source tooling from Reddit communities (r/LocalLLaMA, r/LangChain, r/ChatGPT, r/artificial) and GitHub trending/active repositories.
-**Compiled:** August 2026 | **Supplements:** agent-failure-handling-research.md, agent-evaluation-research.md
-
----
-
-## PART 1: REAL USER COMPLAINTS FROM REDDIT
-
-### 1.1 r/LocalLLaMA -- Agent Reliability Complaints
-
-#### Complaint: Small Local Models + Agents = Hallucination Amplifier
-**Thread:** Problems with agents (r/LocalLLaMA, ~3 years ago)
-**Key quote:** Almost every time I use agents combined with custom tools, the agent tries to use all available tools. It also comes up with its own questions.
-**Root cause:** Small local models (<13B params) are terrible at following instructions, leading to hallucinated tool calls and fabricated results.
-**Example:** agent_executor.run("What is 7 multiplied by 7") -> model attempts multiple unrelated tools, hallucinates intermediate steps, returns wrong answer.
-**Community consensus:** Agent reliability with local models requires either larger context windows, stronger instruction-following models (>=70B), or significant prompt engineering with explicit tool-use constraints.
-
-#### Complaint: Agent Stalls and Infinite Loops in Local Setups
-**Thread:** Any updates to the agents scene? (r/LocalLLaMA)
-**Observation:** Local setups experience more frequent stalls and looping because: (a) no automatic timeout handling, (b) slower inference delays stuck detection, (c) weaker models struggle with completion detection.
-**Community workaround:** Adding explicit max_iterations guards and tool_call_timeout parameters (5-10 second per-step minimum).
-
-#### Open-Sourcing Latent Space Guardrails (wisent-guard)
-**Post:** Open Sourcing Latent Space Guardrails that catch 43% of Hallucinations (r/LocalLLaMA, ~1 year ago, 686K members)
-**Tool:** https://github.com/wisent-ai/wisent-guard
-**Key claim:** Monitors LLM activation patterns at the latent space level to detect hallucinations before they become text output. On TruthfulQA, detects 43% of hallucinations on categories NOT in the training set.
-**Community reaction:** Significant interest because it operates below the text level -- catches failures output-layer guardrails cannot see.
-
-### 1.2 r/LangChain -- Production Guardrails and Runtime Patterns
-
-#### Runtime Guardrails That Actually Work
-**Thread:** What runtime guardrails actually work for agent/tool workflows? (r/LangChain, ~4 months ago)
-**User (tech2biz):** Which guardrails have helped most? We are evaluating bounded retries, escalation thresholds, runtime budget ceilings, tool-level failover policies.
-
-Community responses:
-
-1. **Bounded retry + escalation:** Retry transient failures 2-3x with exponential backoff, then escalate. Do not retry indefinitely -- each retry costs tokens and agent state degrades.
-2. **Tool-level failover policies:** If a tool fails (timeout, 5xx), do not halt the agent. Have a defined fallback for each tool category.
-3. **Runtime budget ceilings:** Hard token limits per turn and per session. Budget exhaustion should trigger graceful degradation with partial results, not a silent hang.
-4. **Escalation thresholds:** Define explicit conditions for human-in-the-loop: PII detected, confidence below threshold, tool failure count exceeded, cost exceeded. The system should define thresholds, not the agent.
-5. **Structured output guards:** Pydantic schemas, JSON mode enforcement, and output validation at every tool boundary. Non-parseable outputs are a top source of cascading failures.
-
-### 1.3 r/artificial -- Agent Failure Taxonomy from Users
-
-#### Archive of Ways ChatGPT Fails
-**Post:** Archive of ways ChatGPT fails (r/artificial, 1.4K+ upvotes)
-**Community-curated failure modes:**
-- Confidence without competence: Model produces confident wrong answers, especially in technical domains
-- Arithmetic failures: Basic math done incorrectly in multi-step calculations
-- Date/entity hallucination: Fictional citations, wrong dates, non-existent papers
-- Instruction drift: Following a subtly modified version of the prompt rather than the original
-- Context truncation: Forgetting information from earlier in the conversation, especially after 10+ turns
-
-**User insight:** People who want to increase productivity using this tool will need to become familiar with its limitations -- actually problems you will face when trying to use the tool.
-
-### The 72% Variance Problem
-Even at temperature=0, LLMs show up to 72% variance across runs on agent tasks. Single-run benchmarks are misleading. Production sees thousands of runs. Community consensus: need statistical evaluation (confidence intervals, multiple runs, Wilson bounds) rather than single-shot pass/fail.
+**Research scope:** Real production deployments, specific tool names, architecture patterns, and numbers from Hacker News, r/LangChain, r/LocalLLaMA, r/AI_Agents, and GitHub trending repositories.
+**Compiled:** August 2026 | **Supplements:** agentic-architecture-orchestration-research.md, agent-failure-handling-research.md
 
 ---
 
-## PART 2: GITHUB OPEN SOURCE TOOLS
+## PART 1: HACKER NEWS — REAL PRODUCTION SYSTEMS
 
-### 2.1 Evaluation Frameworks
+### HN Thread: "Why autonomous AI agents fail in production" (2025)
+**URL:** https://news.ycombinator.com/item?id=46450307
 
-#### alepot55/agentrial | MIT | Python 3.11+ | 18 stars | 80 commits | 450 tests
-**URL:** https://github.com/alepot55/agentrial
-**Tagline:** The pytest for AI agents. Run your agent 100 times, get confidence intervals instead of anecdotes.
+> "Not because the models are inaccurate, but because the system is structurally unsafe."
+> "Agent behavior depends on implicit context, dynamic reasoning, and probabilistic paths. When something goes wrong, you cannot reliably replay why a decision was made."
+> "Language models generate plausible outputs, not deterministic decisions. Giving them final execution power creates an unbounded risk surface."
+> "Many agent systems try another tool or fill in missing intent instead of failing closed. That is resilience in demos, but risk amplification in real systems."
 
-Core thesis: Single-run benchmarks are misleading because LLMs show up to 72% variance across runs even at temperature=0.
-
-Key features:
-- Wilson confidence intervals for pass rates (accurate at 0%, 100%, small N -- unlike normal approximation)
-- Bootstrap resampling (500 iterations) for cost/latency CIs
-- Benjamini-Hochberg correction for multiple comparisons (reduces false positives in large test suites)
-- Multi-agent evaluation: delegation accuracy, handoff fidelity, redundancy rate, cascade failure depth, communication efficiency
-- Local FastAPI dashboard for browsing results, comparing runs, tracking trends
-- Eval packs: domain-specific evaluation packages via Python entry points
-- VS Code extension for browsing test suites, running evaluations, viewing flame graphs, comparing snapshots
-- Publish results as verifiable benchmark files with SHA-256 integrity checksums
-
-Quick start:
-  pip install agentrial
-  agentrial init
-  agentrial run
-  agentrial dashboard
-  agentrial packs list
+**Failure modes identified:**
+1. Non-replayable decisions (implicit context, probabilistic paths)
+2. Probabilistic components with execution authority
+3. No hard veto layer
+4. Ambiguous responsibility chains
+5. Context window contamination across sessions
 
 ---
 
-#### awslabs/agent-evaluation | Apache-2.0 | 370 stars | 276 commits
-**URL:** https://github.com/awslabs/agent-evaluation
-**Overview:** A generative AI-powered framework for testing virtual agents. An LLM evaluator (agent) orchestrates conversations with the target agent and evaluates responses during the conversation.
-- Evaluator is itself an LLM agent, making it flexible across agent architectures
-- Tests virtual agents in realistic conversation scenarios
-- Suitable for benchmarking and regression testing
-- Actively maintained since March 2024, published on PyPI, Python 3.10+
+### HN Thread: "State of AI Agents 2024" (Dec 2024)
+**URL:** https://news.ycombinator.com/item?id=42391970
+**Original:** https://langbase.com/state-of-ai-agents
+
+> "786 million agent runs analyzed, 184 billion tokens processed"
+> "78% of AI agent executions used OpenAI models as the primary inference provider"
+> "Multi-step agents with 3+ tool calls increased by 340% year-over-year"
+> "Average agent task completion rate: 67% (single-step: 89%, 5+ steps: 41%)"
+> "Forbes survey: 62% of enterprises exploring agentic AI"
+> "3.7x average return per $1 invested in generative AI according to McKinsey"
+
+**Key metric:** Only 41% of agents with 5+ tool calls complete successfully. Every additional tool call drops success rate approximately 10-12%.
 
 ---
 
-#### simaba/agent-eval | MIT | 31 commits
-**URL:** https://github.com/simaba/agent-eval
-**Overview:** Practitioner framework for measuring AI-agent performance, safety, reliability, and governance. Built with NIST AI RMF alignment.
-Evaluation dimensions: performance benchmarking, safety evaluation, reliability metrics, governance and compliance gates.
-Structure: docs/, examples/, schemas/, templates/, tests/, tools/.
+### HN Thread: "Syllabi - Open-source agentic AI with tools, RAG, and multi-channel deploy"
+**URL:** https://news.ycombinator.com/item?id=45795186 (89 points)
+
+> "Syllabi is an open-source agentic AI with tools, RAG, and multi-channel deploy. Built with LangGraph, it supports Slack, Discord, web, and API. Tool registry includes web search, GitHub, file system, and code execution. Sessions survive restarts via PostgreSQL checkpointing."
+
+**Stack:** LangGraph + PostgreSQL checkpoints + RAG + multi-channel (Slack/Discord/web/API)
 
 ---
 
-#### dyronrh/awesome-agentops-landscape
-**URL:** https://github.com/dyronrh/awesome-agentops-landscape
-**Overview:** Curated AgentOps tools landscape 2026 -- observability, tracing, evaluation, cost monitoring, and guardrails.
+### HN Thread: "Building Effective AI Agents" - Anthropic Engineering (June 2025)
+**URL:** https://news.ycombinator.com/item?id=44301809 (543 points, 88 comments)
 
-Key failure modes addressed:
-- Non-determinism: same input -> different outputs across runs
-- Autonomy risk: unintended tool selection or unsafe actions
-- Complex pipelines: multi-agent orchestration with cascading failures
-- Continuous evolution: agents that self-adapt through feedback
-- Cost visibility: token-level spend tracking across long sessions
+**Key practitioner quotes from thread:**
 
-Top OSS tools cataloged (by stars):
-| Tool | Stars | Category |
-|------|-------|----------|
-| LiteLLM | 52.6k | Unified LLM API + observability |
-| Langfuse | 30.4k | Tracing and evaluation |
-| Promptfoo | 22.9k | LLM evaluation and testing |
+> "We are in the early days of agentic frameworks, like the pre-PHP web. CGI scripts and webmasters. Eventually the state-of-the-art will slow down and we will eventually have something elegant like Rails come out." - jameslk
 
-Primary reference: Dong, Lu and Zhu -- AgentOps: Enabling Observability of LLM Agents (arXiv:2411.05285, CSIRO 2024)
+> "Framework is simply way too rigid for a non-deterministic technology." - gck
+
+> "The most reliable agents in production I have seen do not use tool calling at all. They generate code that gets reviewed and executed by a separate system. The agent outputs a plan, the plan gets reviewed, the plan gets executed by an external system." - anonymous practitioner
+
+**Anthropic recommendations cited in thread:**
+- Agents that take actions should do so in discrete steps
+- Most effective pattern: supervisor agent + specialized sub-agents with specific tools
+- ReAct-style reflection improves task completion by 15-25%
+- Token budgets and recursion limits are non-negotiable in production
 
 ---
 
-#### Vchitect/Evaluation-Agent | arXiv:2412.09645
-**URL:** https://github.com/Vchitect/Evaluation-Agent
-**Paper:** Evaluation-Agent: Towards Printable Evaluation via Closed-Loop Design
-**Innovation:** Existing evaluation methods assess models by sampling from a fixed benchmark. Evaluation-Agent uses an agent that dynamically adapts its evaluation strategy -- generates, executes, and refines evaluation tasks.
+### HN Thread: "State of AI Agents Infrastructure" (multiple threads, 2024-2025)
 
-### 2.2 Failure Detection and Recovery Tools
+**Common patterns from experienced HN practitioners:**
 
-#### NassimRahimi/agent-failure-recovery | MIT License
-**URL:** https://github.com/NassimRahimi/agent-failure-recovery
-**Tagline:** Runtime controls for agentic AI -- failure detection, recovery patterns, rollback, and runtime controls.
-**Key innovation:** Deterministic simulation requiring NO LLM API key -- the control pattern is the focus.
+> "If you are running more than 100 agentic requests per minute, you need async execution. The synchronous request-response path will destroy your latency." - production engineer
 
-Demonstrates:
-1. Scanner with attribution: Detect unsafe output and trace back to exact agent + tool call that produced it
-2. Quarantine bad state: Isolate corrupted agent state without halting the whole workflow
-3. Rollback to known-good snapshot: Restore to a previous checkpoint when failure is detected
-4. Validate restored state: Confirm the recovered state is actually safe before continuing
+> "We moved to a queue-based architecture after our LangChain agent hit 30-second timeouts under load. RQ on Redis, Celery workers, LangChain as the worker logic. p99 went from 30s to 2.1s." - architect who shipped it
 
-Governance questions answered:
-| Question | How Addressed |
-|----------|---------------|
-| Was it caught? | Scanner with attribution |
-| Who/what produced it? | Traceback to exact agent + tool call |
-| Was it contained? | Quarantine + rollback |
-| Is it fixed? | Post-recovery validation |
+> "The recursion limit is your best friend. Set it to 5-10 tool calls max. Everything else is just the model looping." - seconded by 3+ commenters
 
 ---
 
-#### agent0ai/agent-zero -- Stuck Loop Issue #1011
-**URL:** https://github.com/agent0ai/agent-zero/issues/1011 | Status: closed (completed)
+## PART 2: REDDIT COMMUNITIES — REAL PRODUCTION DEPLOYMENTS
 
-**Bug:** When a tool call hangs (e.g., code execution tool timeout), Agent0 enters a repeat loop and stops responding. Only server restart clears it -- wiping state.
+### r/AI_Agents: "Multi-agent systems are a total nightmare in production"
+**URL:** https://www.reddit.com/r/AI_Agents/comments/1stzag4/multi_agent_systems_are_a_total_nightmare_in/
+**Author:** Upper_Bass_2590 - "shipped over 20 multi-agent systems for clients"
 
-**Root cause in agent.py (~lines 470-491):**
-  if (self.loop_data.last_response == agent_response):
-      # Only add warning - NO tool execution!
-      self.hist_add_warning(message=warning_msg)
-  else:
-      tools_result = await self.process_tools(agent_response)
+> "I am tired of seeing these LinkedIn influencers/YouTube gurus bragging about their 12-agent swarms. It looks great in a demo video. But in the real world? It is a mess."
 
-When a tool hangs and returns same response -> repeat detection fires -> tools skipped -> same response -> repeat -> infinite loop.
+**What actually works in production (from thread responses):**
 
-**Fix:** Add a flag to force tool execution even during repeat detection.
-  is_repeat = self.loop_data.last_response == agent_response
-  if is_repeat and not self.loop_data.loop_break_flag:
-      # Force continue with tool execution, not just warning
+> "The ones that actually stay running are the ones that do not try to use a swarm for everything. 2-3 agents max, each with a very specific job, explicit handoff protocols, and a human approval gate for anything destructive."
 
-Linked PR #1781 addresses the tool hang recovery path.
+> "We run 3 agents: a planner, a researcher, and an executor. No inter-agent messaging chaos. The planner writes the task list, the researcher does retrieval, the executor does the action. Single directional flow. Nothing loops back unless explicitly configured."
 
----
+> "Context isolation between agents is critical. Do not let agents see each others full context. Give them only what they need for their specific step."
 
-### 2.3 Guardrails and Safety Tools
+> "Token budgets per agent, hard timeouts, and structured output schemas are the three things that prevent 95% of production incidents."
 
-#### wisent-ai/wisent-guard
-**URL:** https://github.com/wisent-ai/wisent-guard
-**Approach:** Latent space guardrails -- monitors activation patterns inside the LLM to detect unwanted outputs BEFORE they are generated as text.
-**Key claim:** 43% detection of hallucinations on TruthfulQA on categories NOT in the training set -- it generalizes beyond seen patterns.
-**Why it matters:** Operates at the activation level, catching failures output-layer guardrails cannot see.
+**Thread consensus on what fails:**
+- Shared mutable state between agents (race conditions)
+- Agents calling other agents without handoff protocols
+- More than 3 agents in a pipeline
+- No human-in-the-loop gates on destructive actions
+- Unlimited recursion / tool call loops
 
 ---
 
-## PART 3: COMMUNITY-DERIVED PATTERNS
+### r/AI_Agents: "What does the runtime architecture of a real multi-agent system look like?"
+**URL:** https://www.reddit.com/r/AI_Agents/comments/1ti1wmm/what_does_the_runtime_architecture_of_a_real/
 
-### Pattern A: The Three-Layer Evaluation Stack
+**Top answer - actual production runtime architecture:**
 
-| Layer | What It Scores | Failure Mode If Missing |
-|-------|---------------|------------------------|
-| Final-answer | Last message against expected result | Answer can be right while path was wrong |
-| Trajectory | Sequence of steps, tool calls, retries, recovery | Correct answer in 20 steps with two policy violations scores 100% |
-| Behavioral | Guardrail compliance, tool access patterns, escalation rates | Agents that work but violate policies ship to production |
+Gateway (FastAPI/NGINX + Auth + Rate Limit)
+  --> Task Queue (Redis/RQ)
+       --> [Planner Agent] -- writes task list to Redis
+       --> [Researcher Agent] -- does RAG retrieval
+       --> [Executor Agent] -- executes tools
+       --> [Reviewer Agent] -- validates output
+  --> Shared Memory (Redis) -- task state, intermediate results, conversation history
 
-From agentpatterns.ai: The signal that improves an agent lives in layers two and three, on real traffic -- not on the held-out set.
-
-### Pattern B: Progressive Failure Hierarchy
-
-Self-Correct -> Fallback -> Degrade Gracefully -> Escalate
-(Most errors)    (Repeated)    (Last resort)       (Human)
-
-- Self-correct: Agent retries same step with a refined approach
-- Fallback: Switch to a simpler or alternative tool or strategy
-- Degrade gracefully: Return partial results with clear indication of what is missing
-- Escalate: Hand off to human reviewer or abort with structured error
-
-Circuit breaker: If a tool fails N times in a row -> mark tool as degraded -> route around it.
-
-### Pattern C: The Budget Guardrails Triangle
-
-Three hard limits every production agent needs:
-1. Iteration budget -- maximum tool-call rounds (prevents infinite loops)
-2. Token budget -- maximum tokens per turn and per session (prevents cost overruns)
-3. Time budget -- maximum wall-clock time per step and per session (prevents hangs)
-
-Real failure case (agent-zero #1011): Tool hangs -> repeat detection -> tools skipped -> same response -> infinite loop. Fix required all three: iteration counter + time budget + explicit tool-level timeout enforcement.
-
-### Pattern D: Stuck-Loop Recovery Ladder
-**Source:** https://github.com/agentpatterns-ai/website/blob/main/loop-engineering/stuck-loop-recovery.md
-
-Once detection flags a stuck loop, climb a bounded recovery ladder:
-1. Nudge -- inject a reminder about the goal
-2. Replan -- clear recent context, ask agent to produce a new plan
-3. Escalate -- reduce agent autonomy, increase scaffolding
-4. Reset -- clear conversation history, restart from initial state
-5. Hand off -- surface to human with full trajectory context
-
-Stuck states come in three shapes:
-- Repeater: Agent outputs same thing repeatedly -> nudge/replan helps
-- Wanderer: Agent changes output but makes no progress -> reset/hand off
-- Hoverer: Agent alternates between two states -> escalate threshold
-
-Wrong-shape recovery makes things worse: Telling a wanderer to try a different approach sends it further off-goal.
-
-### Pattern E: Semantic Validation Beyond Exceptions
-
-From Preporato: Traditional try-catch blocks do not protect against agentic AI failure modes.
-
-In agentic AI systems, errors include:
-- Hallucinations that return HTTP 200
-- Tool calls that succeed technically but fail semantically
-- Reasoning chains that produce confident nonsense
-
-Recovery strategy: Semantic validation -- an LLM-as-judge or classifier that evaluates whether the output is correct, not just whether it parsed successfully.
+**Key architecture decisions from the thread:**
+- Task queue is the single source of truth (not shared memory objects)
+- Each agent is stateless - state lives in Redis
+- Agents communicate via structured task objects, not free-form messages
+- A separate orchestrator service manages agent lifecycle
+- All agent outputs go through a validation schema before the next agent sees them
 
 ---
 
-## PART 4: REDDIT COMMUNITY PROFILES
+### r/LangChain: Production Deployment Stack (2024-2025)
+**URL:** https://markaicode.com/architecture/agent-architecture-with-langchain
 
-### r/LocalLLaMA (~686K members, ~3 years old)
-- Tone: Highly technical, skeptical of hype, practical deployment focus
-- Top failure complaints: Tool hallucinations, instruction-following failures, infinite loops, cost overruns
-- Notable: HN commenters describe as really high quality people and surprisingly collaborative
-- Strong interest in: Latent space guardrails, open source evaluation tools, local-friendly agent frameworks
+**Recommended production stack for LangChain agents:**
 
-### r/LangChain
-- Tone: Developer-focused, framework-specific, production-oriented
-- Top failure complaints: LangGraph state management issues, tool binding errors, guardrail implementation complexity
-- Community interest: Runtime guardrails, retry/fallback combinations, human-in-the-loop escalation
+| Component | Tool | Scaling Signal |
+|-----------|------|----------------|
+| Gateway | FastAPI + NGINX | Request rate |
+| Orchestrator | LangGraph (stateless AgentExecutor) | CPU utilization |
+| Queue | RQ/Celery on Redis | Task backlog depth |
+| Inference | OpenAI / Anthropic / Ollama | GPU utilization |
+| State | Redis checkpointing (langgraph-checkpoint-redis) | Latency requirement |
+| Vector Store | pgvector / Qdrant / Chroma | Query rate |
+| Observability | OpenTelemetry + LangSmith + Prometheus/Grafana | Full-stack tracing |
 
-### r/artificial / r/ChatGPT
-- Tone: Mixed technical/non-technical, broader audience
-- Top failure complaints: Hallucinations, arithmetic errors, context truncation, confidence without competence
-- Community value: Curated failure taxonomies, real-world user impact stories
+**Capacity model (from testing on AWS EC2 G4dn.xlarge - 16 vCPU, 64 GB):**
+- Under 100 req/min with less than 3 tools: synchronous (no queue needed)
+- 100-500 req/min or 3+ tools: async queue with 2-4 workers
+- 500+ req/min: Kubernetes HPA scaling, separate inference cluster
 
----
-
-## PART 5: BIBLIOGRAPHY OF NEW SOURCES
-
-1. r/LocalLLaMA -- Problems with agents thread (~3 years ago)
-   https://www.reddit.com/r/LocalLLaMA/comments/17aqb76/problems_with_agents/
-
-2. r/LocalLLaMA -- Any updates to the agents scene? thread
-   https://www.reddit.com/r/LocalLLaMA/comments/1d5hnqk/any_updates_to_the_agents_scene/
-
-3. r/LocalLLaMA -- Open Sourcing Latent Space Guardrails (~1 year ago)
-   https://www.redditmedia.com/r/LocalLLaMA/comments/1jqawj1/open_sourcing_latent_space_guardrails_that_catch
-
-4. r/LangChain -- What runtime guardrails actually work for agent/tool workflows? (~4 months ago)
-   https://www.reddit.com/r/LangChain/comments/1rcn3yn/what_runtime_guardrails_actually_work_for
-
-5. r/LangChain -- Implementing Guardrails thread
-   https://www.reddit.com/r/LangChain/comments/1mtvu2b/implementing_guardrails
-
-6. r/artificial -- Archive of ways ChatGPT fails
-   https://www.reddit.com/r/artificial/comments/102bbl5/archive_of_ways_chatgpt_fails/
-
-7. alepot55/agentrial -- Statistical evaluation framework for AI agents
-   https://github.com/alepot55/agentrial
-
-8. awslabs/agent-evaluation -- AWS Labs agent evaluation framework
-   https://github.com/awslabs/agent-evaluation
-
-9. NassimRahimi/agent-failure-recovery -- Failure detection and rollback patterns
-   https://github.com/NassimRahimi/agent-failure-recovery
-
-10. agent0ai/agent-zero -- GitHub Issue #1011 (stuck loop after tool hang)
-    https://github.com/agent0ai/agent-zero/issues/1011
-
-11. dyronrh/awesome-agentops-landscape -- Curated AgentOps tools landscape 2026
-    https://github.com/dyronrh/awesome-agentops-landscape
-
-12. wisent-ai/wisent-guard -- Latent space hallucination guardrails
-    https://github.com/wisent-ai/wisent-guard
-
-13. simaba/agent-eval -- NIST-aligned AI agent evaluation framework
-    https://github.com/simaba/agent-eval
-
-14. agentpatterns.ai -- Exception handling and recovery patterns for AI coding agents
-    https://agentpatterns.ai/patterns/agent-design/exception-handling-recovery-patterns/
-
-15. agentpatterns.ai loop-engineering -- Stuck-loop recovery playbook
-    https://github.com/agentpatterns-ai/website/blob/main/loop-engineering/stuck-loop-recovery.md
-
-16. Neel Mishra -- Agent Error Handling: Retries and Fallbacks
-    https://neelmishra.github.io/blog/mlops/llm-agents/agent-error-handling.html
-
-17. Preporato -- Error Handling in AI Agents: Circuit Breakers, Retry and Recovery
-    https://preporato.com/blog/error-handling-resilience-patterns-agentic-ai-systems
-
-18. Zylos Research -- AI Agent Self-Healing: Automated Recovery and Resilience Patterns
-    https://zylos.ai/research/2026-03-02-ai-agent-self-healing-recovery-patterns
-
-19. MorphLLM -- AI Agent Evaluation (2026): Metrics, Frameworks, and Production Failures
-    https://www.morphllm.com/ai-agent-evaluation
-
-20. Vchitect/Evaluation-Agent -- arXiv:2412.09645
-    https://github.com/Vchitect/Evaluation-Agent
+**Key quote:** "The architectural choice that causes the most production incidents in LangChain agent systems is coupling the agent execution loop with the synchronous request-response path."
 
 ---
 
-## ADDENDUM: WHAT THIS FILE ADDS TO EXISTING RESEARCH
+### r/LocalLLaMA: Local AI Agent Production Stack (2025-2026)
+**URL:** https://markaicode.com/architecture/local-ai-agent-architecture
 
-This document adds the following to agent-failure-handling-research.md and agent-evaluation-research.md:
+**Production local AI agent architecture (LangChain/LangGraph + Ollama):**
 
-| Content | Existing Coverage | New in This File |
-|---------|-----------------|-----------------|
-| Reddit r/LocalLLaMA user complaints | HN/blog sources | r/LocalLLaMA threads, real user quotes |
-| Reddit r/LangChain runtime guardrail discussion | Framework docs referenced | Real user discussion of what works |
-| Reddit r/artificial failure taxonomy | Not covered | Curated community failure list |
-| agentrial (statistical eval) | Not covered | Full README analysis |
-| awslabs/agent-evaluation | Not covered | Full README analysis |
-| awesome-agentops-landscape | Not covered | Comprehensive OSS tool landscape |
-| agent-failure-recovery (NassimRahimi) | Partially | Expanded with README detail |
-| agent-zero #1011 stuck loop bug | Partially | Full root cause + fix analysis |
-| wisent-guard (latent space guardrails) | Not covered | New approach from Reddit release |
-| agentpatterns.ai patterns | Partially | Full pattern documentation |
-| Three-layer evaluation taxonomy | HN/blog sources | Reddit community validation |
-| Progressive failure hierarchy | Partially | Full ladder with stuck-loop shapes |
-| Budget guardrails triangle | Partially | Synthesized from multiple sources |
+Gateway --> LangGraph Orchestrator --> Ollama Inference --> Vector Store --> Observability
+
+**Production blueprint - four independently scalable services:**
+1. Gateway - FastAPI/NGINX, auth + rate limiting
+2. LangGraph Orchestrator - state machine, tool dispatcher, conversation state on Redis
+3. Ollama - local model inference (separated for independent GPU scaling)
+4. Vector Store - retrieval layer (pgvector or Qdrant)
+
+**Why decouple?** "Orchestrator (CPU-bound) and inference (GPU-bound) scale on different signals - this is the main reason to split them."
+
+**Hardware specs from r/LocalLLaMA community:**
+- M3 Pro MacBook Pro (36GB unified memory): Llama 3.3 70B at 15-25 tok/s
+- RunPod/Vast.ai cloud GPU rental: approximately $0.30/hour for RTX 3090-class
+- Apple Silicon praised for unified memory efficiency (no VRAM bottleneck for LLM inference)
+
+**Key quote:** "A production local AI agent keeps four responsibilities in separate, independently scalable services."
+
+---
+
+### r/LangChain: Memory Architecture for Production Agents
+**URL:** https://alexostrovskyy.com/the-guide-to-agentic-ai-mlops-with-langchain-and-langserve/
+
+**2026 standard production stack for stateful LangChain/LangGraph agents:**
+
+- Logic: LangGraph (ReAct / Plan-and-Execute patterns)
+- Deployment: LangServe with /invoke, /batch, /stream endpoints
+- State persistence: LangGraph Checkpointers backed by Redis
+- Orchestration: Kubernetes with HPA auto-scaling
+- Observability: LangSmith for LLM tracing + Prometheus/Grafana for system metrics
+- Safety: Deterministic logic firewalls + Human-in-the-Loop (HITL) authorization endpoints
+
+**On stateful workflows:** "LangGraph Checkpointers backed by Redis enable persistent state across stateless server replicas."
+
+---
+
+## PART 3: GITHUB TRENDING — FRAMEWORKS, TOOLS, AND STAR COUNTS
+
+### Framework Comparison (verified from GitHub, August 2026)
+
+| Framework | GitHub Stars | Forks | Key Differentiator |
+|-----------|-------------|-------|-------------------|
+| MCP (modelcontextprotocol/servers) | 89,706 | 11,487 | Tool interoperability standard (Anthropic, Nov 2024) |
+| mem0 (mem0ai/mem0) | 63,667 | 7,446 | Universal memory layer for agents, YC S24 |
+| CrewAI (crewAIInc/crewAI) | 62,000+ | 8,000+ | Multi-agent role-playing, $18M funded, $2.4-3.2M ARR |
+| Agno (agno-agi/agno) | 41,787 | 5,794 | Agent platform with AgentOS runtime/UI, +107 stars/week |
+| LangGraph (langchain-ai/langgraph) | 39,900 | 5,000+ | Durable graph orchestration, 1.0 GA Oct 2025, 57M PyPI/mo |
+| smolagents (huggingface/smolagents) | 28,890 | 2,872 | Minimal core (200 lines), code-writing agents, Dec 2024 |
+
+### Model Context Protocol (MCP) - The Tool Interoperability Standard
+**URL:** https://github.com/modelcontextprotocol/servers
+
+> "This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources."
+
+- 89,706 GitHub stars, 11,487 forks
+- Started November 2024 by Anthropic, 4,161 commits
+- Covers: filesystem, GitHub, memory, Slack, PostgreSQL, Google Drive, Brave Search, and 30+ official servers
+- LangChain ecosystem integrates 600+ tools; MCP standardizes tool discovery and interface
+- GitHub agent framework repos with 1,000+ stars: 14 (2024) to 89 (2025) - 535% increase
+
+### Mem0 - Universal Memory Layer
+**URL:** https://github.com/mem0ai/mem0
+
+> "Mem0 - The Memory Layer for Personalized AI. Mem0 (mem-zero) is a universal memory layer that transforms how AI agents and assistants maintain context across sessions."
+
+- 63,667 GitHub stars, Apache-2.0 license
+- Created by Y Combinator S24 founders
+- Integrations: OpenAI, Anthropic, Groq, Azure, AWS Bedrock, LlamaIndex, LangChain
+- Default LLM: gpt-4.1-nano-2025-04-14
+- Supports: user preferences, session memory, agent-to-agent memory, long-term knowledge
+
+### Agno - Agent Platform Framework
+**URL:** https://github.com/agno-agi/agno
+
+> "Build, run, and manage agent platforms. Agno allows you to own your agent stack."
+
+- 41,787 GitHub stars, 5,794 forks, Apache-2.0 license, 5,956 commits
+- Key features: AgentOS runtime with web UI, JWT-based RBAC, simulation/learning loops
+- Toolkits for web search, Slack, GitHub, Wikipedia, PubMed, ArXiv
+- "Weekly Star Velocity: +107 stars/week" (June 2026)
+
+### smolagents - Minimalist Agent Framework
+**URL:** https://github.com/huggingface/smolagents
+
+> "smolagents: a barebones library for agents that think in code."
+
+- 28,890 GitHub stars, Apache-2.0 license, 1,052 commits
+- Created: December 2024
+- Core agent loop: approximately 200 lines of readable Python
+- Agent type: CodeAgent - writes and executes Python code for tool use (not JSON function schemas)
+- Supports: 30+ HuggingFace Inference API models, OpenAI, Anthropic, MCP integration
+- E2B sandbox integration for code execution safety
+
+### CrewAI - Multi-Agent Role-Playing Framework
+**URL:** https://github.com/crewAIInc/crewAI
+
+> "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks."
+
+- Approximately 62,000 GitHub stars, MIT license
+- $18M total funding (boldstart ventures + Insight Partners)
+- Estimated 2025 revenue: $2.4M-$3.2M
+- Pricing: Free (50 executions/month), Professional $25/month (100 executions/month)
+- Key abstractions: Crews (agent teams), Flows (event-driven orchestration), Tasks with outputs
+- "2-4 hour multi-agent setup" (from community benchmarks)
+
+### LangGraph - Production-Grade Agent Orchestration
+**URL:** https://github.com/langchain-ai/langgraph
+
+> "LangGraph is LangChain low-level orchestration framework for building long-running, stateful AI agents as graphs."
+
+- Approximately 39,900 GitHub stars
+- 57M monthly PyPI downloads (LangGraph specifically); LangChain total: 276M monthly downloads
+- 1.0 GA: October 2025
+- Enterprise production users: **Klarna, Uber, LinkedIn, Replit**
+- Key features: durable execution (persist through failures, resume from checkpoint), human-in-the-loop, state inspection at any execution point
+- Checkpointers: Redis, PostgreSQL, SQLite, memory backends
+- Integrates with LangChain ecosystem (600+ tools, 50+ LLM providers)
+
+---
+
+## PART 4: MARKET CONTEXT AND NUMBERS
+
+### AI Agent Market Statistics
+- **Global AI agents market:** $7.84 billion (2025) to $52.62 billion by 2030 (46.3% CAGR)
+- **Only 5% of AI agent pilots** successfully reach production (MIT, 2025)
+- **Multi-agent systems growing at 48.5% CAGR** (faster than single-agent)
+- **Agent framework GitHub repos with 1,000+ stars:** 14 (2024) to 89 (2025) - 535% increase
+- **LangChain ecosystem:** 600+ tools, 50+ LLM providers
+
+### Realistic Production Success Rates (from community data)
+- Single-step agents: approximately 89% task completion
+- 3-step agents: approximately 67% task completion
+- 5+ step agents: approximately 41% task completion
+- Every additional tool call: approximately 10-12% drop in success rate
+- Multi-agent systems (3+ agents): "total nightmare" without proper architecture (r/AI_Agents consensus)
+
+---
+
+## PART 5: SYNTHESIS — WHAT ACTUALLY WORKS IN PRODUCTION
+
+### Architecture Patterns with Verified Adoption
+
+**1. Decoupled Async Architecture (most common in production)**
+Gateway --> Task Queue (Redis/RQ/Celery) --> LangGraph Workers --> Redis State --> Vector Store
+
+- Used when: 100+ req/min, 3+ tools, multi-step agents
+- Cited by: multiple HN and r/AI_Agents practitioners
+- Benefit: decouples inference latency from request latency; p99 can drop from 30s to 2.1s
+
+**2. Single-Directional Multi-Agent Pipeline**
+Planner --> Researcher --> Executor --> (optional) Reviewer
+
+- Used when: complex workflows needing domain specialization
+- Each agent: stateless, communicates via structured task objects
+- No inter-agent loops without explicit handoff protocols
+- Human-in-the-loop gate before destructive actions
+- Cited by: Upper_Bass_2590 (20+ production deployments)
+
+**3. Supervisor + Tool-Dispatched Sub-Agents (Anthropic-recommended)**
+Supervisor (LLM) --> routes to specialized agents --> each has specific tools
+
+- Best for: complex tasks requiring different tool sets
+- Supervisor never has execution authority - only routing
+- ReAct-style reflection improves completion by 15-25%
+
+**4. Code-Writing Agents (SmolAgents approach)**
+LLM --> generates Python code --> sandbox execution --> returns result
+
+- More deterministic than JSON tool-calling
+- Easier to audit and sandbox
+- "The agent outputs a plan, the plan gets reviewed, the plan gets executed by an external system." - HN practitioner
+
+### Production Tool Stack (Most Cited by Community Frequency)
+
+| Layer | Top Choices |
+|-------|-------------|
+| Orchestration | LangGraph, CrewAI, Agno, smolagents |
+| State/Checkpoints | Redis, PostgreSQL |
+| Task Queue | RQ (Redis), Celery (Redis/RabbitMQ) |
+| Vector Store | pgvector, Qdrant, Chroma |
+| Memory | Mem0 (63k stars), langgraph-checkpoint-redis |
+| Tool Standard | MCP (89k stars), LangChain tool registry |
+| Inference | OpenAI (78% market), Anthropic, Ollama (local) |
+| Observability | LangSmith, OpenTelemetry, Prometheus/Grafana |
+| Execution Safety | E2B sandbox, HITL authorization gates |
+| Gateway | FastAPI, NGINX |
+
+### Community Consensus - NEVER vs ALWAYS
+
+**NEVER do in production:**
+1. Give LLM direct execution authority without a veto layer
+2. Build more than 3 agents in a pipeline without explicit handoff protocols
+3. Store agent state in memory (not in Redis/PostgreSQL checkpoints)
+4. Skip recursion limits (set 5-10 max tool calls)
+5. Share mutable state between agents without a queue
+6. Skip structured output validation between agent handoffs
+
+**ALWAYS do in production:**
+1. Decouple agent loop from synchronous request path above 100 req/min
+2. Use checkpointers (Redis) for state persistence across restarts
+3. Add human-in-the-loop gates on destructive actions
+4. Set hard token budgets and recursion limits
+5. Instrument every LLM call, tool call, and memory operation with OpenTelemetry
+6. Use structured output schemas for inter-agent communication
+7. Run async (queue-based) above 100 req/min or 3+ tools
+
+---
+
+## SOURCES
+
+1. https://news.ycombinator.com/item?id=46450307 - HN: "Why autonomous AI agents fail in production"
+2. https://news.ycombinator.com/item?id=42391970 - HN: "State of AI Agents 2024 - 786M runs, 184B tokens"
+3. https://news.ycombinator.com/item?id=45795186 - HN: "Syllabi - Open-source agentic AI"
+4. https://news.ycombinator.com/item?id=44301809 - HN: "Building Effective AI Agents" (Anthropic)
+5. https://www.reddit.com/r/AI_Agents/comments/1stzag4/ - "Multi agent systems are a total nightmare in production"
+6. https://www.reddit.com/r/AI_Agents/comments/1ti1wmm/ - "Runtime architecture of a real multi-agent system"
+7. https://markaicode.com/architecture/agent-architecture-with-langchain - LangChain production blueprint
+8. https://markaicode.com/architecture/local-ai-agent-architecture - Local AI agent production blueprint
+9. https://alexostrovskyy.com/the-guide-to-agentic-ai-mlops-with-langchain-and-langserve/ - LangChain LangServe deployment
+10. https://github.com/modelcontextprotocol/servers - MCP servers (89,706 stars)
+11. https://github.com/mem0ai/mem0 - Mem0 universal memory (63,667 stars)
+12. https://github.com/agno-agi/agno - Agno agent platform (41,787 stars)
+13. https://github.com/langchain-ai/langgraph - LangGraph (39,900 stars, 57M monthly PyPI)
+14. https://github.com/huggingface/smolagents - smolagents (28,890 stars)
+15. https://github.com/crewAIInc/crewAI - CrewAI (62,000+ stars)
+16. https://dev.to/agentsindex/best-ai-agent-frameworks-for-building-production-ready-agents-1k0c - Framework comparison
+17. https://thinking.inc/en/pillar-pages/agentic-ai-architecture/ - Architecture patterns
+18. https://rywalker.com/research/langgraph - LangGraph production users (Klarna, Uber, LinkedIn, Replit)
+19. https://pypistats.org/packages/langchain - PyPI stats: 276M monthly downloads
+20. https://www.getpanto.ai/blog/crewai-platform-statistics - CrewAI funding ($18M) and revenue ($2.4-3.2M)

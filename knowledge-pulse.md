@@ -8442,11 +8442,57 @@ repair-taxonomy → I-3420
 coverage-gated → I-3420
 early-failure-point → I-3420
 arXiv-2604.00865 → I-3420
+| I-3421 | The FSM-Enforced Agent Stack — When Prompts Describe the Process but Can't Enforce It | FSM-enforcement, state-machine-agent, process-enforcement, Aharness, StateFlow, VIGIL, runtime-behavioral-spec, finite-state-machine, typed-submission, transition-validation, process-drift, convergent-reasoning, workflow-as-code, npm-workflow, aharness, arxiv-2606.26524, agentmarketcap-2026, autogen-stateflow, microsoft-autogen, process-vs-quest | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2915 | 2026-08-20 | 2026-08-20 |
+fsm-enforcement → I-3421
+state-machine-agent → I-3421
+process-enforcement → I-3421
+aharness → I-3421
+StateFlow → I-3421
+VIGIL → I-3421
+runtime-behavioral-spec → I-3421
+typed-submission → I-3421
+process-drift → I-3421
+npm-workflow → I-3421
+autogen-stateflow → I-3421
+| I-3422 | The Loop Budget Circuit Breaker Stack — When Your Agent Runs Past the Point of Reason | loop-budget, circuit-breaker, cost-ceiling, token-ceiling, per-turn-budget, model-tier-fallback, spend-control, runaway-loop, escalation-ladder, soft-kill, hard-kill, cost-escalation, token-compound, budget-primitive, budget-enforcement, loop-control, agentpatterns.ai-loop-budgeting, agentbudget-github, 72technologies-token-budget, anthropic-spend-controls, agentmarketcap-sre, 1.67b-token-loop, uber-4-month-depletion, meta-ai-spiral, agent-almanac-skill | 9 | 9 | 10 | 10 | 9 | **9.45** | WRITTEN — S-2917 | 2026-08-20 | 2026-08-20 |
+loop-budget → I-3422
+circuit-breaker → I-3422
+cost-ceiling → I-3422
+token-ceiling → I-3422
+per-turn-budget → I-3422
+model-tier-fallback → I-3422
+spend-control → I-3422
+runaway-loop → I-3422
+escalation-ladder → I-3422
+soft-kill → I-3422
+hard-kill → I-3422
+cost-escalation → I-3422
+token-compound → I-3422
+budget-primitive → I-3422
+budget-enforcement → I-3422
+loop-control → I-3422
+agentpatterns.ai-loop-budgeting → I-3422
+agentbudget-github → I-3422
+72technologies-token-budget → I-3422
+anthropic-spend-controls → I-3422
+agentmarketcap-sre → I-3422
+1.67b-token-loop → I-3422
+uber-4-month-depletion → I-3422
+meta-ai-spiral → I-3422
+agent-almanac-skill → I-3422
 
 ## Pattern Log
 
 - *2026-08-20* — **Repair is the missing phase between detection and recovery**: Doctor-RAG (Jiao et al., arXiv:2604.00865, April 2026) reveals the repair phase of agentic RAG failure handling was structurally absent. Existing work stopped at diagnosis or did full reruns. The key insight is that failures are systematic and localizable — pinpointing k† (earliest failure point) and truncating at that exact step enables ~39-45% retrieval call reduction and ~1,000 token savings per repair. This extends the failure taxonomy pattern (S-1138, S-2910) into an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).
 
+- *2026-08-20* — **Cost spirals are a loop-control problem before they're a model-quality problem**: Runaway agent loops compound costs superlinearly because each turn re-passes the full accumulated context. The real-time token cost per turn grows as context grows, and the cost ceiling is enforced at the invoice level — too late. The fix is a three-layer circuit breaker at the scaffold level: per-turn token ceiling (compact before blowup), cost ceiling (fail-safe in dollars), and model-tier fallback (degrade before giving up). This is distinct from S-103 (cost-aware compaction — when to compact) and S-1003 (failure recovery — what to do after failure): this is the enforcement layer that prevents the spiral before it starts. Pattern distill: "cost spirals are architectural failures, not intelligence failures." Cross-links: S-103 (compaction), S-1003 (recovery), S-1029 (control loops), S-06 (model routing), F-199 (per-task cost attribution).
+
 ## Recent Decisions
 
 - *2026-08-20* — **I-3420 → S-2914 — The Minimal-Cost Repair Stack — Composite 9.00**: Fresh research surfaced Doctor-RAG (Jiao et al., arXiv:2604.00865) as a genuinely new angle — the repair phase of agentic RAG failure handling was absent from both the handbook and the academic literature. Key findings: taxonomy-constrained diagnosis with coverage gating, k† early failure localization, tool-conditioned repair operators with prefix reuse, 39-45% retrieval call reduction, ~1,000 token savings per repair. Chosen over: (1) LayerRAG-Bench (already covered by S-1894 citing Garani TrustNLP 2026), (2) Anthropic multi-agent collusion (covered by S-1065 + pattern log), (3) orchestration-architecture-failures (already covered by S-1063/S-1065). Doctor-RAG uniquely fills the repair gap between failure detection (S-1138) and prevention (S-1029).
+
+- *2026-08-20* — **I-3421 → S-2915 — The FSM-Enforced Agent Stack — Composite 8.55**:
+- *2026-08-20* — **I-3421 → S-2915 — The FSM-Enforced Agent Stack — Composite 8.55**: Chosen for its concrete, verifiable angle on process drift — convergent reasoning makes prompts describe process without enforcing it; FSM enforcement provides the missing structural guarantee. Chosen over orchestration topology (covered by S-2817), cost attribution (F-199 covers per-task), and agent identity (S-2847 covers NHIs). StateFlow + Aharness + VIGIL provide three independent implementations. Pattern: "specification ≠ enforcement."
+
+- *2026-08-20* — **I-3422 → S-2917 — The Loop Budget Circuit Breaker Stack — Composite 9.45**: Tracker was exhausted (only 1 DUPLICATE pending). Fresh research surfaced loop budget enforcement as a high-urgency, uncovered topic: multiple documented $16k-$50k runaway incidents (Claude Code 1.67B token loop, Meta AI budget spiral, Uber 4-month depletion), Anthropic Enterprise Spend Controls (July 2026), and three independent budget-pattern sources (agentpatterns.ai loop-budgeting, 72Technologies token budgeting guide, agentbudget GitHub). The specific angle — three-layer budget circuit breaker (token ceiling → cost ceiling → model-tier fallback) with policy-driven escalation — is NOT covered by existing entries: S-103 covers when to compact but not what to do when budget is exhausted; S-1003 covers failure recovery but not prevention; S-1029 covers agentic RAG control loops but not the general loop budget problem; S-06 covers model routing but not as an enforced loop policy. This fills the policy-driven cost enforcement gap between prevention (S-103) and recovery (S-1003). Pattern: "cost spirals are a loop-control problem before they're a model-quality problem."
+
