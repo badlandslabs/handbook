@@ -388,6 +388,7 @@
   - [S-2915 · The FSM-Enforced Agent Stack — When Prompts Describe the Process but Can't Enforce It](stacks/s2915-the-fsm-enforced-agent-stack-when-prompts-describe-the-process-but-cant-enforce-it.md)
   - [S-2916 · The A2A Agent Card Poisoning Stack — When Your Agent Routes Sensitive Data to a Malicious Agent It Discovered Last Week](stacks/s2916-the-a2a-agent-card-poisoning-stack-when-your-agent-routes-sensitive-data-to-a-malicious-agent-it-discovered-last-week.md)
   - [S-2917 · The Loop Budget Circuit Breaker Stack — When Your Agent Runs Past the Point of Reason](stacks/s2917-the-loop-budget-circuit-breaker-stack-when-your-agent-runs-past-the-point-of-reason.md)
+  - [S-2919 · The Trajectory Oracle Stack — When Your Agent Passed the Test but Broke in Production](stacks/s2919-the-trajectory-oracle-stack-when-your-agent-passed-the-test-but-broke-in-production.md)
   - [S-2813 · The Tool-Call Argument Contract Stack — When Your Agent Picks the Right Tool and Gets It Completely Wrong](stacks/s2813-the-tool-call-argument-contract-stack-when-your-agent-picks-the-right-tool-and-gets-it-completely-wrong.md)
   - [S-2815 · The Agentic Longitudinal Regression Stack — When Your Agent Isn't as Good as It Was Last Week](stacks/s2815-the-agentic-longitudinal-regression-stack-when-your-agent-isnt-as-good-as-it-was-last-week.md)
   - [S-2817 · The Orchestration Topology Stack — When Your Agent Does Too Much and Knows Too Little](stacks/s2817-the-orchestration-topology-stack-when-your-agent-does-too-much-and-knows-too-little.md)

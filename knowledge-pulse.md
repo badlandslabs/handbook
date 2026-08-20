@@ -8480,10 +8480,27 @@ agentmarketcap-sre → I-3422
 uber-4-month-depletion → I-3422
 meta-ai-spiral → I-3422
 agent-almanac-skill → I-3422
+|I-3423 | The Trajectory Oracle Stack — When Your Agent Passed the Test but Broke in Production | trajectory-test, stochastic-verdict, agentassay, CONSISTENT-verdict, three-valued-verdict, regression-test, trajectory-oracle, dry-run-mode, pre-execution-approval, trajectory-assertion, sub-sampling, token-efficient-test, agent-regression, trajectory-log, arxiv-2603.02601, how2dryrun, blast-radius-tool, simulation-environment, LangChain-2026 | 9 | 10 | 10 | 9 | 8 | **9.30** | WRITTEN — S-2919 | 2026-08-20 | 2026-08-20 |
+trajectory-test → I-3423
+stochastic-verdict → I-3423
+agentassay → I-3423
+CONSISTENT-verdict → I-3423
+three-valued-verdict → I-3423
+regression-test → I-3423
+trajectory-oracle → I-3423
+dry-run-mode → I-3423
+pre-execution-approval → I-3423
+trajectory-assertion → I-3423
+sub-sampling → I-3423
+token-efficient-test → I-3423
+trajectory-log → I-3423
+simulation-environment → I-3423
 
 ## Pattern Log
 
-- *2026-08-20* — **Repair is the missing phase between detection and recovery**: Doctor-RAG (Jiao et al., arXiv:2604.00865, April 2026) reveals the repair phase of agentic RAG failure handling was structurally absent. Existing work stopped at diagnosis or did full reruns. The key insight is that failures are systematic and localizable — pinpointing k† (earliest failure point) and truncating at that exact step enables ~39-45% retrieval call reduction and ~1,000 token savings per repair. This extends the failure taxonomy pattern (S-1138, S-2910) into an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).
+- *2026-08-20* — **The trajectory is the output, not the final answer**: AgentAssay (Bhardwaj, arXiv:2603.02601, March 2026) introduces stochastic three-valued verdicts (PASS/CONSISTENT/FAIL) for agent regression testing, replacing binary PASS/FAIL with semantic behavioral classification. 78–100% cost reduction via multi-signal sub-sampling (blast radius + change impact + flakiness). Combined with dry-run mode (pre-execution tool interception for simulation or human approval), this fills the structural gap between unit tests and production — where you can catch a wrong tool call before it fires. Cross-links: S-1000 (regression gap), S-2671 (live eval gap), S-2917 (loop budget — runaway trajectory cost control).
+
+- *2026-08-20* — **Repair is the missing phase between detection and recovery**: Doctor-RAG (Jiao et al., arXiv:2604.00865, April 2026) reveals the repair phase of agentic RAG failure handling was structurally absent. Existing work stopped at diagnosis or did full reruns. The key insight is that failures are systematic and localizable — pinpointing k† (earliest failure point) and truncating at that exact step enables ~39-45% retrieval call reduction and ~1,000 token savings per repair. This extends the failure taxonomy pattern (S-1138, S-2910) into an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).to an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).
 
 - *2026-08-20* — **Cost spirals are a loop-control problem before they're a model-quality problem**: Runaway agent loops compound costs superlinearly because each turn re-passes the full accumulated context. The real-time token cost per turn grows as context grows, and the cost ceiling is enforced at the invoice level — too late. The fix is a three-layer circuit breaker at the scaffold level: per-turn token ceiling (compact before blowup), cost ceiling (fail-safe in dollars), and model-tier fallback (degrade before giving up). This is distinct from S-103 (cost-aware compaction — when to compact) and S-1003 (failure recovery — what to do after failure): this is the enforcement layer that prevents the spiral before it starts. Pattern distill: "cost spirals are architectural failures, not intelligence failures." Cross-links: S-103 (compaction), S-1003 (recovery), S-1029 (control loops), S-06 (model routing), F-199 (per-task cost attribution).
 
