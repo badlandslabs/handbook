@@ -8289,6 +8289,7 @@ harness-agnostic → I-3410
 
 ## Recent Decisions
 - *2026-08-20* — **I-3415 → S-2904 — The Agentic Coordination Deadlock Stack — Composite 9.10**: Tracker saturated; fresh research required. Sources: tianpan.co (Apr 2026) — 37% of multi-agent failures are coordination breakdowns, 25-95% deadlock rate under normal conditions; TraceFix (ACM CAIS '26, arXiv:2605.07935) — TLA+ verification cuts deadlock/livelock from 31.1% to 14.1%; Cemri 2025 — 14 failure modes catalog; COMPEL Framework (AITE M1.2-Art12) — four coordination topologies; Resomnium (Apr 2026) — coordination breakdown five-step pattern. Deduplication: existing entries cover coordination tangentially (S-1011 rate limits, S-1034 role fences, S-1046 dead-end, S-1144 orchestration topologies) but none address the formal deadlock mechanism: circular wait from convergent reasoning, the four Coffman conditions, or the prevention hierarchy (resource ordering → handoff contracts → TLA+ verification → stall guards). This is a novel standalone entry with strong backing from 5 independent sources. S-2904 written.
+- *2026-08-20* — **I-3416 → S-2905 — The Agentic Fine-Tuning Stack — Composite 9.00**: Top-ranked idea from fresh multi-angle research (HN, GitHub, research papers). Deduplication: S-194 covers general synthetic data pipeline; S-2149 covers agents generating training data; neither covers the training loop itself for agentic behaviors. Key finding: standard SFT degrades tool-use generalization unless trajectories include diversity + failed examples. Sources: arXiv:2512.08769 (production agentic workflows), OpenAI Agent RFT (accuracy +5-23%, tool latency -18%), Presenc AI RLHF Toolchain 2026 (TRL, Unsloth, OpenRLHF, GRPO comparison), Stanford Agentic AI curriculum (Math-Shepherd PRM). Composite scores: Trust Boundary Migration (9.05) covered by s2897 + MCP security entries; Fine-Tuning-for-Agentic (8.95) is genuinely uncovered. Written with 3 concrete code examples: trajectory vs completion training, custom reward function for agents, and schema augmentation for generalization testing.
 
 - *2026-08-19* — **I-3412 → S-2894 — The Synthetic Proving Ground Stack — Composite 9.35**: Fresh research: AgentSwarms multi-agent simulation guide (Jun 2026) — "you cannot unit-test a society; a swarm is a small society"; Microsoft AWM paper (arXiv:2602.10090) — Agent World Model for synthetic environment generation; TheCodeForge A2A post-mortem — $40k lost to handshake timeout never caught in integration tests. Deduplication: 7 existing entries cover sandboxing for code execution (S-1069, S-1072, S-1085, S-1108) or eval harnesses (S-1000, S-1121, S-2863). None cover synthetic environments for *adversarial failure discovery* — finding failure modes eval suites don't know to test for. Novel angle: emergent failures from agent interactions, not component failures. S-2893 (Agent Architecture) chosen over synthetic proving ground — written. Synthetic Proving Ground chosen: highest composite, distinct problem space, no duplicate.
 
@@ -8355,3 +8356,22 @@ tianpan-2026 → I-3415
 
 | I-3414 | The Agentic Saga Stack — When Your Agent Half-Completes a Workflow and Nobody Knows What Happened | agentic-saga, saga-pattern, compensation, compensating-transaction, rollback, idempotency, failure-recovery, partial-completion, LIFO-stack, external-state-mutation, durable-execution, temporal, delta-box, memoria, ibm-stratus, cordum-2026, agentmarketcap-2026, agentnative-2026, adaline-labs-2026, neurips-2025 | 10 | 10 | 10 | 10 | 10 | **10.00** | WRITTEN — S-2901 | 2026-08-20 | 2026-08-20 |
 | I-3415 | The Agentic Coordination Deadlock Stack — When Your Agents Wait for Each Other Forever | coordination-deadlock, circular-wait, convergent-reasoning, deadlock, livelock, dining-philosophers, Coffman-conditions, total-ordering, handoff-contract, TraceFix, TLA-plus, TLC-model-check, Cemri-2025, COMPEL-framework, distributed-systems, coordination-failure, stall-guard, Conway-alignment, tianpan-2026, ACM-CAIS-2026, deadlock-rate-31-percent | 9 | 10 | 9 | 9 | 8 | **9.10** | WRITTEN — S-2904 | 2026-08-20 | 2026-08-20 |
+
+|| I-3416 | The Agentic Fine-Tuning Stack — When Your Base Model Knows Everything and Does Nothing Right | agentic-fine-tuning, RLHF, SFT, GRPO, DPO, KTO, PRM, process-reward, trajectory-training, LoRA-rank, tool-use-generalization, schema-augmentation, OpenRLHF, HuggingFace-TRL, Unsloth, agentic-saga, synthetic-data, curriculum-learning, agentic-behavior, OpenAI-Agent-RFT, arxiv-2512.08769 | 9 | 10 | 9 | 9 | 6 | **9.00** | WRITTEN — S-2905 | 2026-08-20 | 2026-08-20 |
+agentic-fine-tuning → I-3416
+RLHF → I-3416
+SFT → I-3416
+GRPO → I-3416
+DPO → I-3416
+KTO → I-3416
+PRM → I-3416
+process-reward → I-3416
+trajectory-training → I-3416
+LoRA-rank → I-3416
+tool-use-generalization → I-3416
+schema-augmentation → I-3416
+OpenRLHF → I-3416
+HuggingFace-TRL → I-3416
+Unsloth → I-3416
+agentic-behavior → I-3416
+curriculum-learning → I-3416
