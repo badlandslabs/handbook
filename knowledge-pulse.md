@@ -8496,9 +8496,32 @@ token-efficient-test → I-3423
 trajectory-log → I-3423
 simulation-environment → I-3423
 
+## Ideas Bank
+
+| I-3424 | The Immutable Artifact Stack — When a One-Word Prompt Change Breaks Production | immutable-artifact, prompt-version, model-pin, memory-schema-version, artifact-bundle, canary-agent, auto-rollback, metric-gated-promotion, backward-compatible-migration, session-pinning, automatic-co, future-agi, mlflow-prompt-registry, claude-managed-agents, prompt-versioning, content-addressed, five-tuple-artifact, agentic-deployment, prompt-drift, artifact-checksum | 9 | 9 | 10 | 9 | 8 | **8.85** | WRITTEN — S-2920 | 2026-08-20 | 2026-08-20 |
+immutable-artifact → I-3424
+prompt-version → I-3424
+model-pin → I-3424
+memory-schema-version → I-3424
+artifact-bundle → I-3424
+canary-agent → I-3424
+auto-rollback → I-3424
+metric-gated-promotion → I-3424
+backward-compatible-migration → I-3424
+session-pinning → I-3424
+content-addressed → I-3424
+five-tuple-artifact → I-3424
+prompt-drift → I-3424
+artifact-checksum → I-3424
+
 ## Pattern Log
 
-- *2026-08-20* — **The trajectory is the output, not the final answer**: AgentAssay (Bhardwaj, arXiv:2603.02601, March 2026) introduces stochastic three-valued verdicts (PASS/CONSISTENT/FAIL) for agent regression testing, replacing binary PASS/FAIL with semantic behavioral classification. 78–100% cost reduction via multi-signal sub-sampling (blast radius + change impact + flakiness). Combined with dry-run mode (pre-execution tool interception for simulation or human approval), this fills the structural gap between unit tests and production — where you can catch a wrong tool call before it fires. Cross-links: S-1000 (regression gap), S-2671 (live eval gap), S-2917 (loop budget — runaway trajectory cost control).
+- *2026-08-20* — **"The version" is a five-tuple, not a prompt string**: Agent deployment artifacts bundle five coupled components — prompt, tool definitions, model pin, memory schema, and configuration — that must version together, canary together, and roll back together. The key insight: canary for agents must be behavior-gated (trajectory diffing, tool-call distribution, task success rate), not just error-rate gated. And rollback must include session pinning + backward-compatible memory migration (add-only columns, never drop on rollback). This is distinct from S-1321 (frozen endpoint — model provider changes) and S-1160 (agent CI/CD — test pipeline). Pattern: "artifact coupling." Cross-links: S-1321, S-1160, S-2919 (trajectory oracle for behavioral canary gates), S-1020 (memory schema versioning).
+
+## Recent Decisions
+
+- *2026-08-20* — **I-3424 → S-2920 — The Immutable Artifact Stack — Composite 8.85**: Tracker exhausted (all I-34xx ideas WRITTEN). Fresh research from Automatic.co agent versioning (Aug 2026), Future AGI prompt registry (July 2026), Claude Managed Agents cookbook (April 2026), MLflow prompt registry, and agent versioning/rollback guides. Chosen over indirect prompt injection defense (S-2339 covers the web-as-weapon surface, S-1050 covers tool-response poisoning, S-1560 covers adversarial surface — no single entry covers the OWASP LLM01 privilege-separation + spotlighting + paired-LLM pattern as a first-class structural stack, but security entries are well-covered; immutable artifact is more uncovered and higher urgency for the general agentic audience). Chosen over agentic memory OS-paging (S-1020, S-1002, S-09 already cover tiered memory; the OS-paging angle is interesting but the 2026 articles are mostly framework-specific and less pattern-dense). Immutable artifact scores high on Production Urgency (9), Specificity (10), and Coverage Gap (9) — five-component bundle + canary gating + auto-rollback is not covered by any existing entry.
+
 
 - *2026-08-20* — **Repair is the missing phase between detection and recovery**: Doctor-RAG (Jiao et al., arXiv:2604.00865, April 2026) reveals the repair phase of agentic RAG failure handling was structurally absent. Existing work stopped at diagnosis or did full reruns. The key insight is that failures are systematic and localizable — pinpointing k† (earliest failure point) and truncating at that exact step enables ~39-45% retrieval call reduction and ~1,000 token savings per repair. This extends the failure taxonomy pattern (S-1138, S-2910) into an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).to an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).
 
