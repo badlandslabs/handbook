@@ -8282,7 +8282,9 @@ harness-agnostic → I-3410
 
 ## Ideas Bank
 
+| I-3418 | The MCP Auth Gap Stack — When 50% of Your MCP Servers Have No Authentication and You're Already in Production | mcp-auth-blank, mcp-auth-gate, mcp-credential-mismanage, mcp-oauth-scheme, mcp-two-gate, auth-without-authz, owasp-mcp01, mcp-authorization-gap, mcp-security, zuplo-2026, astrix-5200, oauth-scoped-token, scope-limited-token, deny-by-default, agent-audit-log, mcp-gateway-policy, owasp-mcp-top10, linux-foundation-mcp, csa-nhi-survey, pdo-may-2026 | 9 | 10 | 9 | 10 | 9 | **9.40** | WRITTEN — S-2911 | 2026-08-20 | 2026-08-20 |
 | I-3410 | The Scoped Harness Stack — When Your Company Has an Agent Workforce Without an Organizational Chart | scoped-harness, per-scope, org-wide-agent, multiplay, QM, quartermaster, company-brain, per-employee, isolated-workspace, scope-inheritance, harness-agnostic, yc-software-qm, SOTA-2026-08 | 9 | 10 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2890 | 2026-08-19 | 2026-08-19 |
+
 | I-3411 | The Negative Knowledge Stack — When Your Agent Wastes Hours Re-Trying Decisions That Were Already Rejected | negative-knowledge, handoff-loss, rejected-alternatives, inter-agent, decision-log, compression-event, MAST, paelladoc, agentpatterns, skillsmp, handoff-integrity, constraint-framing, why-attribution, arxiv-2503.13657 | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-2892 | 2026-08-20 | 2026-08-20 |
 || I-3412 | The Synthetic Proving Ground Stack — When Your Agent Broke Production Because It Had Never Been Wrong | synthetic-proving-ground, agent-simulation, synthetic-environment, sandbox-testing, pre-production-test, emergent-failure, multi-agent-simulation, τ-bench, agent-world-model, AWM, smallville, project-sid, failure-injection, adversarial-scenario | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2894 | 2026-08-19 | 2026-08-19 |
 || I-3413 | The Multi-Agent Consensus Arbitration Stack — When Your Agents Vote on Wrong and Nobody Is In Charge | consensus-arbitration, multi-agent-disagreement, taxonomy, binding-resolution, fact-evidence-anchor, style-merge, reasoning-trace, calibration, competency-routing, competing-goals, human-escalation, arbiter-agent, confidence-weighted, evidence-count, disagreement-type-tag, tianpan, arxiv-voting, majority-vote-fail, RLHF-sycophancy, conformance-bias, cascade-amplification, handoff-contract | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2899 | 2026-08-20 | 2026-08-20 |
@@ -8375,7 +8377,8 @@ HuggingFace-TRL → I-3416
 Unsloth → I-3416
 agentic-behavior → I-3416
 curriculum-learning → I-3416
-|I-3417 | The Multi-Tier Inference Cache Stack — When Your LLM Bill Is 10× Your Compute | multi-tier-cache, semantic-cache, KV-cache, prompt-cache, inference-cost, cost-reduction, litellm, cache-hit-rate, cache-invalidation, embedding-store, ANN-cache, cache-strategy, three-tier, cascade-cache, anthropic-cache-control, openai-prompt-cache, latency-reduction, 86-percent-savings, 160x-latency, tier-1-semantic, tier-2-kv, tier-3-inference, aws-cache-benchmark, cost-compounding, per-pathway-hit-rate | 9 | 10 | 10 | 9 | 7 | **9.25** | WRITTEN — S-2908 | 2026-08-20 | 2026-08-20 |
+|I-3417 | The Multi-Tier Inference Cache Stack — When Your LLM Bill Is 10× Your Compute | multi-tier-cache, semantic-cache, KV-cache, prompt-cache, inference-cost, cost-reduction, cache-hit-rate, cache-invalidation, embedding-store, ANN-cache, cache-strategy, three-tier-cascade, anthropic-cache-control, openai-prompt-cache, latency-reduction, 86-percent-savings, 160x-latency, per-pathway-hit-rate | 9 | 9 | 9 | 9 | 7 | **9.25** | WRITTEN — S-2908 | 2026-08-20 | 2026-08-20 |
+|I-3418 | The MCP Fault Taxonomy Stack — When Your MCP Server Runs but Your Agent Breaks | mcp-fault, mcp-runtime-fault, mcp-server-fault, fault-taxonomy, tool-related-fault, schema-fault, configuration-fault, host-logging-fault, schema-drift, tools/list, mcp-schema-hash, host-logging-corruption, dependency-mismatch, server-startup, arxiv-2606.05339, arxiv-2603.05637, owotogbe-2026, taraghi-2026, mcp-fault-category, JSON-RPC-stream, stream-isolation | 10 | 10 | 10 | 10 | 8 | **9.70** | WRITTEN — S-2910 | 2026-08-20 | 2026-08-20 |
 
 multi-tier-cache → I-3417
 semantic-cache → I-3417
@@ -8395,6 +8398,15 @@ latency-reduction → I-3417
 86-percent-savings → I-3417
 160x-latency → I-3417
 per-pathway-hit-rate → I-3417
+mcp-auth-blank → I-3418
+mcp-auth-gate → I-3418
+mcp-credential-mismanage → I-3418
+mcp-oauth-scheme → I-3418
+mcp-two-gate → I-3418
+auth-without-authz → I-3418
+owasp-mcp01 → I-3418
+mcp-authorization-gap → I-3418
+
 ## Pattern Log
 
 - *2026-08-20* — **Caching is a correctness problem before it's a cost problem**: The trap is optimizing for hit rate while silently serving wrong answers (wrong-intent match above threshold, stale RAG context, degraded-quality response). Semantic similarity threshold must be tuned per task type, not globally. Cross-links: S-08 (prompt caching — but only provider-native, not the cascade), S-06 (model routing — related cost lever), S-99 (agent task economics — broader cost framing).
@@ -8402,3 +8414,39 @@ per-pathway-hit-rate → I-3417
 ## Recent Decisions
 
 - *2026-08-20* — **I-3417 → S-2908 — The Multi-Tier Inference Cache Stack — Composite 9.25**: Tracker was exhausted of new ideas from last run. Fresh research surfaced two high-value angles: (1) multi-tier inference caching (semantic → KV → prompt → model) as a unified cost strategy, and (2) state machine protocol enforcement for agent reliability (Statewright). Chose caching over Statewright because: (a) inference costs are a universal pain point across all agentic teams, (b) no existing handbook entry covers the three-tier cascade, (c) Statewright is adjacent to existing guardrail/constraint entries and the protocol-enforcement angle is already partially covered. Multi-tier caching scores high on Production Urgency (9), Coverage Gap (10), and Specificity (10) — concrete code + real benchmarks available.
+
+| I-3419 | The MCP Rug-Pull Stack — When Your Approved Tool Definition Changes the Moment Your Agent Starts Working | rug-pull, schema-drift, schema-pinning, mcp-tool-poisoning, tool-shadowing, cross-server-shadow, cve-2025-54136, cvss-8.8, csa-tool-poisoning, csa-jul-2026, invariant-labs, 60-percent-attack-rate, 72.8-percent-best-model, 5.5-percent-public-servers-poisoned, beyondscale-2026, tool-definition-approval, schema-hash, tool-manifest, csa-45-servers | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-2913 | 2026-08-20 | 2026-08-20 |
+
+rug-pull → I-3419
+schema-drift → I-3419
+schema-pinning → I-3419
+mcp-tool-poisoning → I-3419
+tool-shadowing → I-3419
+cross-server-shadow → I-3419
+| I-3419 | The MCP Rug-Pull Stack — When Your Approved Tool Definition Changes the Moment Your Agent Starts Working | rug-pull, schema-drift, schema-pinning, mcp-tool-poisoning, tool-shadowing, cross-server-shadow, cve-2025-54136, cvss-8.8, csa-tool-poisoning, csa-jul-2026, invariant-labs, 60-percent-attack-rate, 72.8-percent-best-model, 5.5-percent-public-servers-poisoned, tool-definition-approval, schema-hash, tool-manifest, csa-45-servers | 9 | 9 | 9 | 10 | 9 | **9.25** | WRITTEN — S-2913 | 2026-08-20 | 2026-08-20 |
+| I-3420 | The Minimal-Cost Repair Stack — When Your Agentic RAG Fails and You Rerun Everything | minimal-cost-repair, failure-aware-repair, prefix-reuse, local-repair, agentic-rag, trajectory-repair, k†-localization, doctor-RAG, taxonomy-constrained-diagnosis, evidence-sufficiency, tool-conditioned-repair, rerun-waste, repair-taxonomy, coverage-gated, early-failure-point, arxiv-2604.00865, jiao-2026, hit-macquarie-unsw-meituan | 9 | 9 | 9 | 9 | 8 | **9.00** | WRITTEN — S-2914 | 2026-08-20 | 2026-08-20 |
+
+minimal-cost-repair → I-3420
+failure-aware-repair → I-3420
+prefix-reuse → I-3420
+local-repair → I-3420
+agentic-rag → I-3420
+trajectory-repair → I-3420
+k†-localization → I-3420
+doctor-RAG → I-3420
+taxonomy-constrained-diagnosis → I-3420
+evidence-sufficiency → I-3420
+tool-conditioned-repair → I-3420
+rerun-waste → I-3420
+repair-taxonomy → I-3420
+coverage-gated → I-3420
+early-failure-point → I-3420
+arXiv-2604.00865 → I-3420
+
+## Pattern Log
+
+- *2026-08-20* — **Repair is the missing phase between detection and recovery**: Doctor-RAG (Jiao et al., arXiv:2604.00865, April 2026) reveals the repair phase of agentic RAG failure handling was structurally absent. Existing work stopped at diagnosis or did full reruns. The key insight is that failures are systematic and localizable — pinpointing k† (earliest failure point) and truncating at that exact step enables ~39-45% retrieval call reduction and ~1,000 token savings per repair. This extends the failure taxonomy pattern (S-1138, S-2910) into an actionable repair phase. Cross-links: S-1894 (agentic RAG evidence desert — what breaks), S-1029 (control loops — prevention), S-1951 (trace attribution — diagnosis layer).
+
+## Recent Decisions
+
+- *2026-08-20* — **I-3420 → S-2914 — The Minimal-Cost Repair Stack — Composite 9.00**: Fresh research surfaced Doctor-RAG (Jiao et al., arXiv:2604.00865) as a genuinely new angle — the repair phase of agentic RAG failure handling was absent from both the handbook and the academic literature. Key findings: taxonomy-constrained diagnosis with coverage gating, k† early failure localization, tool-conditioned repair operators with prefix reuse, 39-45% retrieval call reduction, ~1,000 token savings per repair. Chosen over: (1) LayerRAG-Bench (already covered by S-1894 citing Garani TrustNLP 2026), (2) Anthropic multi-agent collusion (covered by S-1065 + pattern log), (3) orchestration-architecture-failures (already covered by S-1063/S-1065). Doctor-RAG uniquely fills the repair gap between failure detection (S-1138) and prevention (S-1029).
