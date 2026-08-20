@@ -8513,10 +8513,46 @@ content-addressed → I-3424
 five-tuple-artifact → I-3424
 prompt-drift → I-3424
 artifact-checksum → I-3424
+| I-3425 | The MCP Tool Poisoning Stack — When Your Agent Trusts the Tool Description It Reads From a Server | mcp-tool-poisoning, tool-description-poison, rug-pull-attack, tool-shadowing, invisible-context-poison, csa-tool-poisoning, invariant-labs, signed-manifest, description-hash, mcp-gateway, permission-matrix, semantic-input-validation, owasp-mcp, csa-2026, beyondscale-2026, practical-devsecops-2026, speakeasy-mcp, safeguard-sh, 55-percent-mcp-servers-poisoned, four-attack-variants, tool-trust-model, supply-chain-attack | 10 | 10 | 10 | 10 | 8 | **9.80** | WRITTEN — S-2924 | 2026-08-20 | 2026-08-20 |
+mcp-tool-poisoning → I-3425
+tool-description-poison → I-3425
+rug-pull-attack → I-3425
+tool-shadowing → I-3425
+invisible-context-poison → I-3425
+csa-tool-poisoning → I-3425
+invariant-labs → I-3425
+signed-manifest → I-3425
+description-hash → I-3425
+mcp-gateway → I-3425
+permission-matrix → I-3425
+owasp-mcp → I-3425
+csa-2026 → I-3425
+beyondscale-2026 → I-3425
+|| I-3426 | The Inference Server Perimeter Stack — When Your GPU Node Becomes the Entry Point | inference-server-security, llm-serving-cve, ssrf-inference, deserialization-rce, model-file-attack, vllm-cve, sglang-cve, lmdeploy-cve, cve-2026-33626, cve-2026-5760, cve-2025-62164, cve-2025-67729, triton-security, ollama-security, bento-ml-security, ipc-exposure, path-traversal, trust-remote-code, hardening-checklist, csa-ai-safety, llm-serving-security | 9 | 9 | 10 | 10 | 9 | **9.30** | WRITTEN — S-2923 | 2026-08-20 | 2026-08-20 |
+inference-server-security → I-3426
+llm-serving-cve → I-3426
+ssrf-inference → I-3426
+deserialization-rce → I-3426
+model-file-attack → I-3426
+cve-2026-33626 → I-3426
+cve-2026-5760 → I-3426
+cve-2025-62164 → I-3426
+cve-2025-67729 → I-3426
+trust-remote-code → I-3426
+csa-ai-safety → I-3426
+llm-serving-security → I-3426
+inference-server-perimeter → I-3426
 
 ## Pattern Log
 
+- *2026-08-20* — **LLM serving frameworks have their own CVE taxonomy**: The six vulnerability classes (deserialization RCE, SSRF, dynamic code execution via model templates, IPC exposure, path traversal, auth bypass) recur across vLLM, SGLang, lmdeploy, Triton, Ollama, and BentoML. The key shift: the inference server is now a perimeter device, not an internal pipeline component. The 12-hour exploitation window (LMDeploy CVE-2026-33626) sets the benchmark for patching cadence. Cross-links: S-2778 (model file supply chain — GGUF/Jinja2 RCE), S-201 (MCP server hardening — same CVE surface discipline), S-77 (prompt injection hardening — different layer).
+
+## Recent Decisions
+
+- *2026-08-20* — **I-3426 → S-2923 — The Inference Server Perimeter Stack — Composite ~9.0**: Selected over other candidates (synthetic data fine-tuning, context overflow graceful degradation, prompt injection defense taxonomy) because: (a) the CVE landscape is real, actively exploited (12h window), and not covered by any existing entry as a standalone taxonomy, (b) s2778 covers model file weaponization but not the broader serving-layer perimeter, (c) s201 covers MCP server security but not inference framework hardening, (d) the topic connects to 5+ existing security entries (F-194, S-77, S-375, S-715, S-1209) creating high pattern density, (e) concrete CVE data and hardening checklist available from CSA AI Safety Initiative and the llm-serving-security GitHub repo.
+
 - *2026-08-20* — **"The version" is a five-tuple, not a prompt string**: Agent deployment artifacts bundle five coupled components — prompt, tool definitions, model pin, memory schema, and configuration — that must version together, canary together, and roll back together. The key insight: canary for agents must be behavior-gated (trajectory diffing, tool-call distribution, task success rate), not just error-rate gated. And rollback must include session pinning + backward-compatible memory migration (add-only columns, never drop on rollback). This is distinct from S-1321 (frozen endpoint — model provider changes) and S-1160 (agent CI/CD — test pipeline). Pattern: "artifact coupling." Cross-links: S-1321, S-1160, S-2919 (trajectory oracle for behavioral canary gates), S-1020 (memory schema versioning).
+- *2026-08-20* — **"Tool poisoning is a supply-chain attack, not input validation"**: MCP tool poisoning embeds adversarial instructions in tool metadata (descriptions, schemas, parameter defaults) that agents read as trusted operational context. Four variants: description poisoning, rug-pull (server swaps malicious version post-audit), tool shadowing (same name, different behavior), invisible-context poisoning (payload in enum/default values). Invariant Labs found 5.5% of public MCP servers already contain poisoned metadata (CSA, Jul 2026). Critical gap: MCP has no native signing, no schema hash verification, no description integrity guarantee. Defense is four-layer: signed tool manifests (hash-pinned descriptions), gateway permission matrices, semantic input validation (directive keyword scanning), runtime behavioral monitoring. Pattern: "trust-model inversion" — the agent trusts the server's metadata, but the server is untrusted. Distinct from S-2173 (MCP transport layer) and S-2794 (MCP transport lifecycle). Cross-links: S-1458 (policy kernel for deterministic enforcement), S-1961 (SSRF — agent as attack vector), S-2794 (MCP transport lifecycle).
 
 ## Recent Decisions
 
