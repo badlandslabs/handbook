@@ -8265,8 +8265,68 @@ inference-compounding → I-3394
 HPDC-2026 → I-3394
 arxiv-2605.00528 → I-3394
 
+## Deduplication Index
+
+multi-scope → I-3410
+per-scope → I-3410
+scoped-harness → I-3410
+company-brain → I-3410
+org-wide-agent → I-3410
+per-employee-agent → I-3410
+QM-yc → I-3410
+quartermaster → I-3410
+multiplayer-agent → I-3410
+isolated-workspace → I-3410
+scope-inheritance → I-3410
+harness-agnostic → I-3410
+
+## Ideas Bank
+
+| I-3410 | The Scoped Harness Stack — When Your Company Has an Agent Workforce Without an Organizational Chart | scoped-harness, per-scope, org-wide-agent, multiplay, QM, quartermaster, company-brain, per-employee, isolated-workspace, scope-inheritance, harness-agnostic, yc-software-qm, SOTA-2026-08 | 9 | 10 | 9 | 10 | 9 | **9.15** | WRITTEN — S-2890 | 2026-08-19 | 2026-08-19 |
+| I-3411 | The Negative Knowledge Stack — When Your Agent Wastes Hours Re-Trying Decisions That Were Already Rejected | negative-knowledge, handoff-loss, rejected-alternatives, inter-agent, decision-log, compression-event, MAST, paelladoc, agentpatterns, skillsmp, handoff-integrity, constraint-framing, why-attribution, arxiv-2503.13657 | 9 | 9 | 9 | 10 | 9 | **9.30** | WRITTEN — S-2892 | 2026-08-20 | 2026-08-20 |
+|| I-3412 | The Synthetic Proving Ground Stack — When Your Agent Broke Production Because It Had Never Been Wrong | synthetic-proving-ground, agent-simulation, synthetic-environment, sandbox-testing, pre-production-test, emergent-failure, multi-agent-simulation, τ-bench, agent-world-model, AWM, smallville, project-sid, failure-injection, adversarial-scenario | 9 | 10 | 9 | 10 | 9 | **9.35** | WRITTEN — S-2894 | 2026-08-19 | 2026-08-19 |
+|| I-3413 | The Multi-Agent Consensus Arbitration Stack — When Your Agents Vote on Wrong and Nobody Is In Charge | consensus-arbitration, multi-agent-disagreement, taxonomy, binding-resolution, fact-evidence-anchor, style-merge, reasoning-trace, calibration, competency-routing, competing-goals, human-escalation, arbiter-agent, confidence-weighted, evidence-count, disagreement-type-tag, tianpan, arxiv-voting, majority-vote-fail, RLHF-sycophancy, conformance-bias, cascade-amplification, handoff-contract | 8 | 9 | 9 | 9 | 8 | **8.55** | WRITTEN — S-2899 | 2026-08-20 | 2026-08-20 |
+
+## Recent Decisions
+- *2026-08-19* — **I-3412 → S-2894 — The Synthetic Proving Ground Stack — Composite 9.35**: Tracker saturated. Fresh research: AgentSwarms multi-agent simulation guide (Jun 2026) — "you cannot unit-test a society; a swarm is a small society"; Microsoft AWM paper (arXiv:2602.10090) — Agent World Model for synthetic environment generation; TheCodeForge A2A post-mortem — $40k lost to handshake timeout never caught in integration tests. Deduplication: 7 existing entries cover sandboxing for code execution (S-1069, S-1072, S-1085, S-1108) or eval harnesses (S-1000, S-1121, S-2863). None cover synthetic environments for *adversarial failure discovery* — finding failure modes eval suites don't know to test for. Novel angle: emergent failures from agent interactions, not component failures. S-2893 (Agent Architecture) chosen over synthetic proving ground — written. Synthetic Proving Ground chosen: highest composite, distinct problem space, no duplicate.
+
 ## Pattern Log
+- *2026-08-19* — **Hallucination cascade has a quantifiable accuracy trade-off**: Hallucination Cascade (Jamshidi et al., arXiv:2606.07937v1, Polytechnique Montréal, June 2026) provides the first empirical quantification of error propagation dynamics in multi-agent LLM cascades: 500 experiments, 1,250 evaluated responses across GPT-5.3 / DeepSeek-V3 / LLaMA-3-70B-Instruct. Key findings: 3-agent chains reduce hallucination scores (0.422 → 0.272, amplification factor 0.644) but factual accuracy also declines (0.789 → 0.769). The accuracy–hallucination trade-off is structural, not model-specific. Amplification factor below 1.0 means the chain is *suppressing* hallucination signal but also *eroding* factual grounding. This is distinct from S-1052 (trust propagation) and S-1007 (tool-call hallucination plateau) — this is the quantitative cascade dynamics. Wrote S-2882.
+
+- *2026-08-19* — **Tool schema drift is measurable and invisible to HTTP probes**: AliveMCP measured a 7.1% drift rate over 48 hours across 196 healthy MCP servers (AliveMCP blog, 2026-04-25). Four drift shapes: removed tools, renamed parameters, changed descriptions, added breaking optional params. Naively extrapolates to ~50% chance of drift over 30 days for any given server. Invisible to health-check probes that only check HTTP status. Only canonical-JSON hashing of the tools/list response catches it. Already covered by S-2877 (Schema Drift Stack).
+
 - *2026-08-19* — **Program-level scheduling as the missing abstraction**: SAGA (Guo et al., arXiv:2605.00528v2, HPDC 2026) identifies a structural mismatch: GPU cluster schedulers were designed for single-request inference; agentic AI is compound inference. The key insight is that the AEG (Agent Execution Graph) provides the scheduler with structural knowledge of future cache needs — turning a probabilistic eviction problem into a near-deterministic one. This connects to the Inference Compounding pattern (S-2799) from the previous run: once you understand that agentic loops are 100:1 input/output ratio, the 38% KV cache regen cost becomes obvious in hindsight. The contrarian angle: NVLink and faster interconnect don't fix this — the problem is scheduler abstraction level, not hardware bandwidth.
 
 ## Recent Decisions
 - *2026-08-19* — **I-3394 → S-2879 — The Program-Level Scheduler Stack — Composite 9.25**: Tracker largely saturated (I-33xx fully processed, I-34xx mostly reviewed). Fresh research surfaced SAGA (Guo et al., HPDC 2026) on GPU cluster scheduling mismatch with agent workloads. Deduplication: no existing entry covers the scheduler abstraction problem. Existing S-1981 (Token Budget) covers cost-per-decision; S-2799 (Inference Compounding) covers token volume; neither addresses the GPU-level scheduling problem that causes 3-8× latency inflation. Decision to write: this is a genuinely novel architectural failure mode that will become critical as more organizations run agentic workloads on dedicated GPU clusters (as opposed to API-gated hosted inference).
+
+- *2026-08-19* — **I-3402 → S-2882 — The Hallucination Cascade Stack — Composite 8.80**: Selected over: (1) Agentic memory AgeMem (ACL 2026) — covered by S-991 (Agent Memory Stack) and S-1051 (Memory Gap Stack); AgeMem is a tuning mechanism, not a new architecture.raining paradigm, not an architectural pattern for practitioners. (2) Eywa provenance memory — covered by S-991 + S-1051; Eywa's contribution is the evidence/belief separation, which S-1051 addresses. (3) Tool schema drift — covered by S-2877. (4) MCP security/A2A threats — covered by S-1458 (Policy Kernel) and S-1040 (Protocol Taxonomy). New angle: quantitative cascade dynamics from empirical data (amplification factor, accuracy-hallucination trade-off) provides concrete engineering targets no existing entry supplies. Evidence: Hallucination Cascade (Jamshidi et al., arXiv:2606.07937v1, June 2026, 500 experiments, Polytechnique Montréal) + Structura (Huang et al., 2025, 60% claim mutation reduction with structured anchors) + AliveMCP (7.1% schema drift rate). Cross-links: S-1052 (cascade stack, trust propagation), S-1007 (tool-call hallucination plateau), S-2864 (trajectory anomaly detector), S-2415 (checkpoint/recovery).
+
+- *2026-08-20* — **I-3411 → S-2892 — The Negative Knowledge Stack — Composite 9.30**: Fresh research: Paella doc on agent handoffs (Jul 2026) coined the "what gets lost is everything that is not code" framing; MAST taxonomy (arxiv:2503.13657) identifies inter-agent misalignment as primary failure category in 1,600+ production traces; Reddit r/AI_Agents community finding that constraint information is the most dropped element in handoffs; SkillsMP session handoff skill codifies "considered and rejected" as first-class section. Deduplication: existing entries cover the *what* of handoffs (S-1182, S-1286, S-1325, S-1347) — schema, contracts, routing, blast radius. None cover the *what was left out*: rejected alternatives, constraint exclusions, and the reasoning trails that died at the boundary. This is the negative knowledge angle — structurally distinct from every prior handoff entry.
+
+- *2026-08-20* — **Multi-agent disagreement is a structural problem, not a voting problem**: Tian Pan (April 2026) establishes a six-type taxonomy (stylistic/factual/reasoning/calibration/competency/competing) where each type maps to a distinct resolution strategy. The critical architectural insight: agents must classify disagreement *before* sharing outputs — once outputs are visible, independence is compromised and conformity bias takes over. This connects to S-1559 (debate panels amplify shared blind spots) and S-2441 (cascade amplification of wrong consensus). The contrarian angle: adding more agents to a vote doesn't help if they share the same blind spots — diversity of training, context, and model matters more than number.
+
+- *2026-08-20* — **I-3413 → S-2899 — The Multi-Agent Consensus Arbitration Stack — Composite 8.55**: Tracker saturated; all I-34xx ideas exhausted. Fresh research from Tian Pan's consensus/arbitration post (April 2026) + Käesberg et al. on majority voting failure modes. Deduplication: S-1559 covers debate amplification; S-2441 covers cascade amplification; S-2351 covers agent voting convergence; none cover arbitration as a first-class structural layer with binding resolution, evidence anchoring, and human escalation taxonomy. Pattern log updated with new findings. Wrote S-2899.
+
+- *2026-08-20* — **Saga pattern for agentic workflows is distinct from failure recovery**: Existing failure recovery entries (S-2896, S-1012) cover detection and escalation of silent behavioral failures. The saga stack covers the structural problem of *partial workflow completion* — when an agent's step sequence produces side effects across multiple external systems, and one step fails, the others remain done. This requires explicit compensation declarations, LIFO rollback ordering, idempotency-keyed compensation APIs, DLQ for compensation failures, and durable execution infrastructure (Temporal/Restate). Novel: the compensation declaration as a first-class schema alongside step registration, and the Safety Kernel gate on compensation execution (a compensation action can itself violate policy and must escalate). Sources: Cordum 2026 (LIFO Redis stack + Safety Kernel), AgentMarketCap April 2026 (DeltaBox 5ms/14ms C/R, Replit branching fs, MatrixOne/Memoria), AgentNative 2026 (LangGraph checkpoints + Temporal saga + EU AI Act Article 14 audit), IBM STRATUS NeurIPS 2025 (undo operator), Adaline Labs April 2026 (idempotency keys per tool call, timeout per tool, state-mutation risk classification).
+
+- *2026-08-20* — **I-3414 → S-2901 — The Agentic Saga Stack — Composite 10.00**: Tracker saturated (all I-34xx WRITTEN). Fresh research on agent checkpoint/rollback engineering from AgentMarketCap (April 2026), Cordum (2026), AgentNative (2026), Adaline Labs (April 2026), and IBM STRATUS (NeurIPS 2025). Deduplication: existing entries cover failure *detection* (S-2896, S-1012) and durable *execution* (S-1247 mentions saga in one line), but none cover the saga pattern as a first-class architectural discipline for agentic workflows — the compensation declaration schema, LIFO compensation stack, idempotency-keyed compensation APIs, DLQ for compensation failures, or Safety Kernel gating on compensation actions. This is distinct from all existing entries. Counter-intuitive insight: compensation logic must be gated through the same Safety Kernel as forward actions — a refund compensation for a fraud-flagged account must escalate, not execute.
+
+## Deduplication Index
+
+saga-pattern → I-3414
+compensation-declaration → I-3414
+agentic-saga → I-3414
+LIFO-rollback → I-3414
+partial-completion → I-3414
+idempotency-keyed-compensation → I-3414
+safety-kernel-compensation → I-3414
+delta-box → I-3414
+ibm-stratus → I-3414
+cordum-rollback → I-3414
+agentnative-runtime → I-3414
+adaline-labs-tool-reliability → I-3414
+
+## Ideas Bank
+
+| I-3414 | The Agentic Saga Stack — When Your Agent Half-Completes a Workflow and Nobody Knows What Happened | agentic-saga, saga-pattern, compensation, compensating-transaction, rollback, idempotency, failure-recovery, partial-completion, LIFO-stack, external-state-mutation, durable-execution, temporal, delta-box, memoria, ibm-stratus, cordum-2026, agentmarketcap-2026, agentnative-2026, adaline-labs-2026, neurips-2025 | 10 | 10 | 10 | 10 | 10 | **10.00** | WRITTEN — S-2901 | 2026-08-20 | 2026-08-20 |
